@@ -1,0 +1,18 @@
+[Unit]
+Description=群星网站：从 qunxing-site 的 main 拉取并部署静态站
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=qx-deploy
+Group=qx-deploy
+Environment=HOME=/srv/qunxing/www
+ExecStart=/usr/local/lib/qunxing/deploy-www.sh
+# 只允许写网站目录
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ReadWritePaths=/srv/qunxing/www
