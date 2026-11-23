@@ -1,4 +1,5 @@
-# 每天检查一次：证书还剩多少天（少于 21 天算失败），以及首页是否返回 200。
+# 网站的外部检查：每天一次，也可以在 Actions 页面手动运行。
+# 检查证书剩余天数（少于 21 天算失败）、跳转、首页和安全响应头、公开文件、404。
 # 失败时 GitHub 会给维护者发邮件，服务器上不需要装发信程序。
 # 域名还没解析到服务器之前，自动跳过。
 # 注意：公开仓库 60 天没有任何活动时，GitHub 会停用定时工作流，需要在 Actions 页面重新启用。
@@ -17,33 +18,58 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: 证书剩余天数和首页状态
+      - name: 外部检查
         run: |
           set -euo pipefail
+          site="https://www.qunxingmath.org"
           if ! getent hosts www.qunxingmath.org >/dev/null; then
             echo "::notice::www.qunxingmath.org 还没有解析，跳过检查。"
             exit 0
           fi
           fail=0
+          err() { echo "::error::$1"; fail=1; }
+
+          # 1. 证书剩余天数
           for host in www.qunxingmath.org qunxingmath.org; do
             end=$(openssl s_client -servername "$host" -connect "$host:443" </dev/null 2>/dev/null \
               | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2 || true)
             if [ -z "$end" ]; then
-              echo "::error::拿不到 $host 的证书。"
-              fail=1
+              err "拿不到 $host 的证书。"
               continue
             fi
             days=$(( ( $(date -d "$end" +%s) - $(date +%s) ) / 86400 ))
             echo "$host 的证书还剩 $days 天。"
-            if [ "$days" -lt 21 ]; then
-              echo "::error::$host 的证书只剩 $days 天，自动续期可能出了问题。"
-              fail=1
-            fi
+            [ "$days" -ge 21 ] || err "$host 的证书只剩 $days 天，自动续期可能出了问题。"
           done
-          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://www.qunxingmath.org/ || true)
+
+          # 2. 跳转：都应该 301 到 https://www
+          for url in "http://qunxingmath.org/" "http://www.qunxingmath.org/" "https://qunxingmath.org/"; do
+            got=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' --max-time 20 "$url" || true)
+            echo "$url → $got"
+            [ "$got" = "301 $site/" ] || err "$url 应该 301 到 $site/，实际是：$got"
+          done
+
+          # 3. 首页和安全响应头（curl 默认校验证书链）
+          headers=$(curl -s -D - -o /dev/null --max-time 20 "$site/" || true)
+          code=$(awk 'NR==1 {print $2}' <<<"$headers")
           echo "首页返回 $code。"
-          if [ "$code" != "200" ]; then
-            echo "::error::首页返回 $code，不是 200。"
-            fail=1
-          fi
+          [ "$code" = "200" ] || err "首页返回 $code，不是 200。"
+          for h in strict-transport-security content-security-policy x-content-type-options referrer-policy; do
+            grep -qi "^$h:" <<<"$headers" || err "首页缺少响应头 $h。"
+          done
+
+          # 4. 公开文件
+          for path in /llms.txt /robots.txt /.well-known/security.txt; do
+            c=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$site$path" || true)
+            echo "$path 返回 $c。"
+            [ "$c" = "200" ] || err "$path 返回 $c，不是 200。"
+          done
+          sec=$(curl -s --max-time 20 "$site/.well-known/security.txt" || true)
+          grep -q '^Contact: ' <<<"$sec" || err "security.txt 里没有 Contact。"
+
+          # 5. 不存在的页面
+          c=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$site/no-such-page-site-monitor" || true)
+          echo "不存在的页面返回 $c。"
+          [ "$c" = "404" ] || err "不存在的页面返回 $c，不是 404。"
+
           exit "$fail"
