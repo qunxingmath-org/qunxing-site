@@ -63,6 +63,8 @@ curl -sI -H 'Accept-Encoding: gzip' https://www.qunxingmath.org/   # Content-Enc
 journalctl -u qunxing-www-deploy.service -n 20      # 部署记录
 ```
 
+另外，`.github/workflows/site-monitor.yml` 每天在 GitHub 上检查一次：证书剩余天数（少于 21 天算失败），以及首页是否返回 200。失败时 GitHub 会发邮件给维护者。也可以在仓库的 Actions 页面手动运行一次。
+
 ## 回滚
 
 1. 先停定时器，否则 5 分钟后又会部署 main 的最新版本：`systemctl stop qunxing-www-deploy.timer`。

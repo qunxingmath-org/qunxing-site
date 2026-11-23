@@ -1,0 +1,49 @@
+# 每天检查一次：证书还剩多少天（少于 21 天算失败），以及首页是否返回 200。
+# 失败时 GitHub 会给维护者发邮件，服务器上不需要装发信程序。
+# 域名还没解析到服务器之前，自动跳过。
+# 注意：公开仓库 60 天没有任何活动时，GitHub 会停用定时工作流，需要在 Actions 页面重新启用。
+name: site-monitor
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: 证书剩余天数和首页状态
+        run: |
+          set -euo pipefail
+          if ! getent hosts www.qunxingmath.org >/dev/null; then
+            echo "::notice::www.qunxingmath.org 还没有解析，跳过检查。"
+            exit 0
+          fi
+          fail=0
+          for host in www.qunxingmath.org qunxingmath.org; do
+            end=$(openssl s_client -servername "$host" -connect "$host:443" </dev/null 2>/dev/null \
+              | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2 || true)
+            if [ -z "$end" ]; then
+              echo "::error::拿不到 $host 的证书。"
+              fail=1
+              continue
+            fi
+            days=$(( ( $(date -d "$end" +%s) - $(date +%s) ) / 86400 ))
+            echo "$host 的证书还剩 $days 天。"
+            if [ "$days" -lt 21 ]; then
+              echo "::error::$host 的证书只剩 $days 天，自动续期可能出了问题。"
+              fail=1
+            fi
+          done
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://www.qunxingmath.org/ || true)
+          echo "首页返回 $code。"
+          if [ "$code" != "200" ]; then
+            echo "::error::首页返回 $code，不是 200。"
+            fail=1
+          fi
+          exit "$fail"
