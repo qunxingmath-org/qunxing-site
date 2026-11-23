@@ -1,0 +1,35 @@
+# 群星仓库的通用检查：DCO 签名（只查 PR 里的提交）和仓库卫生（密钥、大文件）。
+# 只读权限；不用第三方 Action；actions/checkout 固定到提交哈希。
+name: checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: DCO 签名
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: bash .github/scripts/check-dco.sh "$BASE_SHA" "$HEAD_SHA"
+
+      - name: 仓库卫生（密钥、大文件）
+        run: bash .github/scripts/check-hygiene.sh
