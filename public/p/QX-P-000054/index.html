@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-000054 Shunia 整数根公式（mathlib4 PR #42050 审查对象） · 群星题库</title>
+<meta name="description" content="求 a 的 n 次整数根，真能靠一个长度固定的模表达式算出来？">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-000054/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-000054.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-000054.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-000054</span></nav>
+<h1 class="ptitle">Shunia 整数根公式（mathlib4 PR #42050 审查对象）</h1>
+<p class="ptitle-en" lang="en">Shunia&#x27;s integer n-th root formula: a fixed-length modular expression for floor(a^(1/n))</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">中等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 截至 2026-11-21</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-21 · 在所查范围内没找到相同结果 · 查了 1 个来源</dd><dt>MSC</dt><dd><span class="mono">11Y16 · 11A25 68W30</span></dd><dt>提出者</dt><dd>Joseph M. Shunia（arXiv:2404.00332）；mathlib4 PR #42050 提交者 rbajaj5 (2026-07-24)</dd><dt>首次发表</dt><dd>2024-04（v1）</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>a 的 n 次根可由固定长度模表达式计算（Shunia 猜想；mathlib4 PR #42050 由 LLM 生成提交，尚未通过社区审查）。</p>
+<h3>形式化表述</h3>
+<p>∃固定长度表达式模板 T: ∀a,n（适用范围见原论文）: T(a,n) = ⌊a^{1/n}⌋（或精确根，视原论文 6.1 的精确表述）。</p>
+<h2>人话版</h2>
+<p><strong>一句话</strong>：求 a 的 n 次整数根，真能靠一个长度固定的模表达式算出来？</p>
+<p>给定正整数 a 和 n，⌊a^{1/n}⌋ 是 a 的 n 次根向下取整。通常的算法要么依赖浮点、要么循环次数随规模增长。Shunia 在来源 6.1 提出的猜想断言：存在一个长度固定的表达式模板 T，形如先用模幂 (x+1)^{k+1} mod m 与 (x+1)^k mod m 作比再减一，使 T(a,n) 恰好给出 ⌊a^{1/n}⌋（或原论文意义上的精确根），并且模板本身的大小不随 a、n 增长。若成立，这就是一个『常数长度』的开方算法。要否定它，只需找出使该表达式给出错误结果的 (a,n)。</p>
+<p>（AI 起草，未经人工审校）</p>
+<h2>原文摘录</h2>
+<blockquote><p>The n-th root of a can be computed by the fixed-length modular expression ((x+1)^{k+1} mod m)/((x+1)^k mod m) − 1 (Shunia, open conjecture 6.1 of arXiv:2404.00332; mathlib4 PR #42050, LLM-generated, state=open draft)。</p>
+<p>—— arXiv:2404.00332；<a href="https://github.com/leanprover-community/mathlib4/pull/42050" rel="nofollow noopener">https://github.com/leanprover-community/mathlib4/pull/42050</a></p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li>原论文 arXiv:2404.00332 &quot;Polynomial quotient rings and Kronecker substitution…&quot; (v6, 2024-11-25, math.GM 分类) 自证该公式（提出论文自身含证明——查新需核对证明是否成立）；</li><li>PR #42050（rbajaj5, 2026-07-24）LLM 生成、draft、未合并、待人工复核。</li></ul>
+<h2>边界与约定</h2>
+<ul><li>最小参数: (a,n) 网格数值测试——公式在精确整数算术下对任意 (a,n,m) 可直接计算验证；k、m 选取规则的钉死是第一检查点。</li><li>退化情形: a 为完全 n 次幂（精确根情形）vs 非幂（⌊a^{1/n}⌋ 情形——公式目标须区分）；a=0,1；n=1（公式应返回 a 自身——自检锚点）；m 的下界（m 不足时模运算截断破坏公式——原文条件所在）。</li><li>约定依赖: 模乘除法的精确性（(x+1)^k mod m 的除法须为整除——公式成立前提）；&quot;固定长度表达式&quot;=与 a,n 无关的运算步数结构。</li><li>结构性锚点: mathlib4 PR #42050 的 Lean 形式化（LLM 生成 draft）——审计其证明步骤等价于核对原论文论证；任何反例 (a,n) 直接证伪原论文证明。</li><li>建议独立验证方法（仅描述，不执行）: 独立实现公式在 (a,n)∈[1,10^4]×[2,10] 网格测试（不同实现）；Lean 证明人工审计（PR diff 逐条）；对声称成立的公式核对 k/m 选取在边界 a 附近的行为。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>[DISPUTED-PROOF] 原论文自证其 Conjecture 6.1（提出论文自答型）——本条目任务转为&quot;审计该证明与 LLM 形式化&quot;；若审计通过则本条关闭，若发现缺口则为实质成果。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>来源</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-20</td><td>mathlib4 PR</td><td><a href="https://github.com/leanprover-community/mathlib4/pull/42050" rel="nofollow noopener">https://github.com/leanprover-community/mathlib4/pull/42050</a></td><td>state=open, draft, LLM-generated 标签，5条评论待审</td></tr><tr><td>2026-11-20</td><td>WebSearch</td><td></td><td>论文为 math.GM 分类、引用量 2；自证型论文——其证明正确性未经独立验证</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://github.com/leanprover-community/mathlib4/pull/42050" rel="nofollow noopener">arXiv:2404.00332；https://github.com/leanprover-community/mathlib4/pull/42050</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/leanprover-community/mathlib4/pull/42050" rel="nofollow noopener">mathlib4 PR</a> <span class="muted">（查新依据）</span></li><li>WebSearch <span class="muted">（查新依据）</span></li><li><a href="https://arxiv.org/abs/2404.00332" rel="nofollow noopener">arXiv 2404.00332</a></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-000054（card_rev bdac15adb024043c），https://www.qunxingmath.org/p/QX-P-000054/</p>
+  <p><a href="/p/QX-P-000054.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-000054.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems/000/QX-P-000054.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

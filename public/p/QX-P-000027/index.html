@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-000027 Erdos P85: f(n+1) &gt;= f(n) for min degree forcing C4 · 群星题库</title>
+<meta name="description" content="点数多一个，逼出四元环所需的最小度会反而变小吗？">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-000027/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-000027.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-000027.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/combinatorics/">组合</a> › <span class="mono">QX-P-000027</span></nav>
+<h1 class="ptitle">Erdos P85: f(n+1) &gt;= f(n) for min degree forcing C4</h1>
+<p class="ptitle-en" lang="en">Erdos P85: is f(n+1) at least f(n) for the minimum degree that forces a C4?</p>
+<p class="chips"><span class="chip">组合</span><span class="chip">证明</span><span class="chip">中等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 截至 2026-11-21</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-21 · 在所查范围内没找到相同结果 · 查了 3 个来源</dd><dt>MSC</dt><dd><span class="mono">05C35 · 05C07</span></dd><dt>提出者</dt><dd>Paul Erdős(及合作者; 由T. F. Bloom站点整理)</dd><dt>首次发表</dt><dd>见上述文献年份; 站点页面活跃维护</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>强迫C4的最小度函数f(n): 是否对充分大n单调不减 f(n+1)≥f(n)?</p>
+<h3>形式化表述</h3>
+<p>f(n):=min{δ: δ-最小度⟹含C4}; 已知f(n)=(1+o(1))√n (via ex(n;C4)); 问: 最终单调性(及更弱&#x27;下跳≤常数c&#x27;变体)。</p>
+<h2>人话版</h2>
+<p><strong>一句话</strong>：点数多一个，逼出四元环所需的最小度会反而变小吗？</p>
+<p>f(n) 是最小的整数 δ，使得每个 n 个顶点、最小度至少 δ 的图都必然含一个四元环 C4。这个函数由 ex(n;C4)（不含四元环的 n 顶点图最多能有多少条边）决定，已知 f(n) = (1+o(1))√n。问题问的是更细的形状：n 增大时 f(n) 会不会往下掉？猜想是存在 N₀，使所有 n ≥ N₀ 都有 f(n+1) ≥ f(n)，即最终单调不减；一个更弱的变体是允许偶尔下降，但降幅被一个常数 c 界住。</p>
+<p>（AI 起草，未经人工审校）</p>
+<h2>已知结果与进展</h2>
+<ul><li>[PARTIAL] f(n)=(1+o(1))√n (由ex(n;C4)渐近)。</li><li>[BACKGROUND] 弱变体: 下跳是否≤常数c? 亦开放。</li></ul>
+<h2>边界与约定</h2>
+<ul><li>最小参数: f(n) 精确值序列（OEIS A006672）——n≤30 可分支定界/nauty 穷举 C₄-free 图的最大最小度；增量序列 f(n+1)−f(n) 的符号模式是直接检查点（是否存在负增量、首例位置）。</li><li>退化情形: n&lt;4（无 C₄ 可能，f 未定义——域外）；n=4（f(4): K₄ 减边？C₄-free 4 点图最大最小度=1（路径/星形），f(4)=2）；δ 离散化使&quot;下跳&quot;含义明确（负增量大小）。</li><li>约定依赖: 最小度 δ(G)=min_v deg(v)；C₄ 为子图（非诱导）；&quot;for all large n&quot;=∃N₀∀n≥N₀——声称证明须给出显式 N₀ 或说明存在性。</li><li>结构性锚点: 极性图（ex(n;C₄) 极值）的最小度结构随 n 的跳变是单调性破坏的候选机制——扰动分析路线；渐近 (1+o(1))√n 与单调性的相容性（渐近单调不排除有限次下跳）。</li><li>建议独立验证方法（仅描述，不执行）: 用 nauty/geng+分支定界独立计算 f(n)（n≤30，与 OEIS 已知值交叉）并检查增量符号；对声称证明在小 n 机器模拟其构造/障碍论证；弱变体（下跳 ≤c）先于强单调性验证（分层攻克）。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>[PARTIAL] f(n)=(1+o(1))√n (由ex(n;C4)渐近)。</li><li>[BACKGROUND] 弱变体: 下跳是否≤常数c? 亦开放。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>来源</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-20</td><td>erdosproblems.com/#85 live</td><td><a href="https://www.erdosproblems.com/85" rel="nofollow noopener">https://www.erdosproblems.com/85</a></td><td>站点live核查(2026-11-20): Status Open(0 proof expositions/claims), 2025-12编辑。f(n)=(1+o(1))√n由#552给出; 弱变体(下跳≤c)亦在站点提出; 已形式化。</td></tr><tr><td>2026-11-20</td><td>batch_F采集快照</td><td></td><td>状态open; 悬赏无; 相关EP: #552; OEIS A006672; 形式化陈述: Yes (DeepMind formal-conjectures)</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://www.erdosproblems.com/85" rel="nofollow noopener">Erdős 1993 p.345; Erdős 1994b; 1995; 1996</a> <span class="muted">（原始出处）</span></li><li><a href="https://www.erdosproblems.com/85" rel="nofollow noopener">erdosproblems.com/#85 live</a> <span class="muted">（查新依据）</span></li><li>batch_F采集快照 <span class="muted">（查新依据）</span></li><li><a href="https://www.erdosproblems.com/85" rel="nofollow noopener">Erdős Problems 85</a></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-000027（card_rev 426d8e737cd13e45），https://www.qunxingmath.org/p/QX-P-000027/</p>
+  <p><a href="/p/QX-P-000027.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-000027.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems/000/QX-P-000027.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

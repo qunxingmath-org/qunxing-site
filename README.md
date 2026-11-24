@@ -13,6 +13,17 @@ qunxingmath.org 的源码，包括：
 - `public/`：网站的静态文件，原样发布。现在是一个占位页，以及 `robots.txt`、`llms.txt`、`/.well-known/security.txt`。
 - `deploy/`：服务器配置和部署脚本，见 [deploy/README.md](deploy/README.md)。不含任何密钥。
 
+## 题库
+
+- `public/problems/`（中文）、`public/en/problems/`（英文）、`public/p/<编号>/`（题目页和 `.md`）、`public/api/v1/`（静态 JSON），由 `tools/build_problems.py` 从 qunxing-data 生成；`data/bank.json` 记下用的是哪个提交。
+- 更新题库：
+  1. 把 qunxing-data 的本地克隆切到要发布的提交；
+  2. 运行 `python3 tools/build_problems.py --data <qunxing-data>`；
+  3. 提交 PR。
+- 生成的目录（`public/problems`、`public/en/problems`、`public/p`、`public/api/v1`）由脚本整体管理，不要手改。
+- CI 按 `data/bank.json` 里的提交取 qunxing-data，检查页面是否一致。
+- 以后（WEB-040）改为由 CI 构建、服务器拉取构建结果，不再把生成的文件提交进仓库。
+
 ## 下载页
 
 - 页面 `public/download/`（中文）和 `public/en/download/`（英文）由 `tools/build_download.py` 从 `data/release.json` 生成。网站不允许脚本，所以是生成好的静态页面。
