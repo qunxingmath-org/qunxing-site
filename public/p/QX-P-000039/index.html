@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-000039 Fortune猜想：Fortunate数都不是合数 · 群星题库</title>
+<meta name="description" content="在 primorial 后面补上的那个最小素数增量，自己会不会是合数？">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-000039/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-000039.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-000039.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-000039</span></nav>
+<h1 class="ptitle">Fortune猜想：Fortunate数都不是合数</h1>
+<p class="ptitle-en" lang="en">Fortune&#x27;s conjecture: every Fortunate number is prime</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">中等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 截至 2026-11-21</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-21 · 在所查范围内没找到相同结果 · 查了 1 个来源</dd><dt>MSC</dt><dd><span class="mono">11A41 · 11N05</span></dd><dt>提出者</dt><dd>R. F. Fortune (1988)</dd><dt>首次发表</dt><dd>1988</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>Fortune(1988)猜想：所有Fortunate数（primorial后最近的下一个素数与primorial之差）都是素数。合数Fortunate数必须为奇数且不被前千个素数整除——因此任何反例极大。</p>
+<h3>形式化表述</h3>
+<p>∀n≥1: F_n := min{m&gt;1 : p_n# + m ∈ P} 是素数。</p>
+<h2>人话版</h2>
+<p><strong>一句话</strong>：在 primorial 后面补上的那个最小素数增量，自己会不会是合数？</p>
+<p>先取前 n 个素数的乘积，记作 p_n#，这个数叫 primorial。然后找最小的 m &gt; 1，使 p_n# + m 是素数，这个 m 就叫第 n 个 Fortunate 数。Fortune 1988 年猜想：这样得到的 m 永远是素数。要否定它，只需要一个 n 使对应的 m 是合数；但要证明它，则要对所有 n 论证。卡片提醒：如果真有合数的 Fortunate 数，它必须是奇数，而且不被前一千个素数整除，所以任何反例都会非常大，靠计算很难直接撞上。</p>
+<p>（AI 起草，未经人工审校）</p>
+<h2>原文摘录</h2>
+<blockquote><p>对每个n，设g为大于1且使p_n#+g为素数的最小整数，则g必为素数。</p>
+<p>—— Wikipedia: Fortunate number</p></blockquote>
+<h2>已知结果与进展</h2>
+<p>Wikipedia：验证至n=3000（2017）全部为素数；任何合成反例不能被前1000个素数整除→下界巨大；相关不等式工作（Rezguia等）无实质推进。</p>
+<h2>边界与约定</h2>
+<ul><li>最小参数: 小 n 全枚举——n≤12 手工/机器均可（p_n#+m 试除）；验证前沿 n≈3000（2017）。</li><li>退化情形: p_n#+1 素时是否影响定义（m&gt;1 使其不入 F_n——注意 p_n#+1 素性与 F_n 无直接关系，但&quot;Fortune 猜想&quot;另有 p_n#+1 素数型的近邻命题，勿混）；F_n=2 可能性（m 奇故不可能）。</li><li>约定依赖: primorial 记号 p_n#（前 n 个素数之积）；&quot;最小 m&gt;1&quot;；素性判定标准。</li><li>结构性锚点: 任何声称反例 F_n 须为合成数且素因子全部 &gt;p_n（结构事实）——反例搜索等价于在 p_n# 之后的素数间隙结构中找合成&quot;最近偏移&quot;；验证域外（n&gt;3000）才可能出现。</li><li>建议独立验证方法（仅描述，不执行）: PARI/GP 独立重算 F_1..F_3000（与 2017 验证不同实现）并延伸至 n≤5000；对声称反例做素因子分解+&quot;&gt;p_n&quot;结构检验。</li></ul>
+<h2>相关进展与声称解决</h2>
+<p>[PARTIAL] 数值验证至n≈3000。未见声称解决。</p>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>来源</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-20</td><td>Wikipedia条目(batch_G采集,HandWiki同源)</td><td><a href="https://en.wikipedia.org/wiki/Fortunate_number" rel="nofollow noopener">https://en.wikipedia.org/wiki/Fortunate_number</a></td><td>清单素数节收录为开放</td></tr><tr><td>2026-11-20</td><td>WebSearch(查新)</td><td></td><td>仍开放；验证至n≈3000；反例需避开前1000素数</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://en.wikipedia.org/wiki/Fortunate_number" rel="nofollow noopener">Wikipedia: Fortunate number</a> <span class="muted">（原始出处）</span></li><li><a href="https://en.wikipedia.org/wiki/Fortunate_number" rel="nofollow noopener">Wikipedia条目(batch_G采集,HandWiki同源)</a> <span class="muted">（查新依据）</span></li><li>WebSearch(查新) <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-000039（card_rev b39bd542e484641d），https://www.qunxingmath.org/p/QX-P-000039/</p>
+  <p><a href="/p/QX-P-000039.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-000039.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems/000/QX-P-000039.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

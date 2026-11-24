@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-000048 tan(arctan 1 + … + arctan n) 对 n≥5 非整数 · 群星题库</title>
+<meta name="description" content="把 arctan 1 到 arctan n 加起来再取正切，结果可能是个整数吗？">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-000048/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-000048.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-000048.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-000048</span></nav>
+<h1 class="ptitle">tan(arctan 1 + … + arctan n) 对 n≥5 非整数</h1>
+<p class="ptitle-en" lang="en">x_n = tan(arctan 1 + ... + arctan n) is not an integer for n &gt;= 5</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">中等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 证据较弱 · 截至 2026-11-21</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-21 · 在所查范围内没找到相同结果 · 查了 1 个来源</dd><dt>MSC</dt><dd><span class="mono">11B37 · 11J72 11Y55</span></dd><dt>提出者</dt><dd>Amdeberhan–Medina–Moll (2008)</dd><dt>首次发表</dt><dd>2008</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>对一切 n≥5，x_n = tan(arctan1+…+arctan n) 不是整数。</p>
+<h3>形式化表述</h3>
+<p>设 x₁=1, x_{n+1}=(x_n+n+1)/(1−(n+1)·x_n)（等价 FC 形式: x_n=(x_{n−1}+n)/(1−n·x_{n−1})，n≥2；另有高斯整数表示 x_n=B_n/A_n, (A_n,B_n) 来自 ∏_{k=1}^n (1+ki) 的实/虚部，A_n=0 时为极点非整数）；则 ∀n≥5: x_n∉ℤ。<br>（核对修正注记 2026-11-21，SOL验证Agent：原形式化递推分母&quot;1−n·x_n&quot;差一位——正确为 1−(n+1)x_n（FC Arxiv/2607.05739/TanArctanSum.lean verbatim 核录 x_n=(x_{n−1}+n)/(1−n·x_{n−1})）；原式在 n=1 处即除零（1−x₁=0），而真值 x₂=tan(arctan1+arctan2)=−3 有限。小例锚点（按修正递推）: x₃=0∈ℤ、x₄=4∈ℤ（故猜想从 n≥5 起）、x₅=−3/5∉ℤ ✓。来源链更正: FC 现行路径 Arxiv/2607.05739/TanArctanSum.lean，参考文献含 AMM08（J. Number Theory 128 (2008) 1807-1846）与 2026 后续论文 arXiv:2607.05739（ exceptional set E={n≥5: |x_n|&gt;n/2+1} 等部分结果）。）</p>
+<h2>人话版</h2>
+<p><strong>一句话</strong>：把 arctan 1 到 arctan n 加起来再取正切，结果可能是个整数吗？</p>
+<p>x_n 定义为 tan(arctan 1 + arctan 2 + … + arctan n)。用正切加法公式可以把它写成递推：x_{n+1} = (x_n + n + 1)/(1 − (n+1)x_n)，每步都是有理运算，所以 x_n 总是有理数（除非分母为 0，此时是极点，也不算整数）。猜想是：从 n = 5 起 x_n 永远不是整数。卡片给出的锚点：x₃ = 0、x₄ = 4 都是整数，所以起点定在 5；x₅ = −3/5 不是。要否定它，只需找到一个 n ≥ 5 使 x_n 恰为整数；要证明它，需要对递推的分子分母做数论控制。</p>
+<p>（AI 起草，未经人工审校）</p>
+<h2>原文摘录</h2>
+<blockquote><p>For all n ≥ 5, x_n = tan(Σ_{i=1..n} arctan i) is not an integer. (Amdeberhan–Medina–Moll 2008)</p>
+<p>—— 论文（2008）；formal-conjectures Arxiv 家族收录</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li>Amdeberhan–Medina–Moll (2008) 提出并给出数值证据与部分 n 的整除性分析；</li><li>形式化条目 status=open（formal-conjectures Arxiv 家族）。</li><li>[2026 后续] arXiv:2607.05739（FC 引用）：定义 exceptional set E={n≥5: |x_n|&gt;n/2+1} 并给出部分结果——未关闭主命题（FC 类标 research open, question，2026-11-21 核录）。</li></ul>
+<h2>边界与约定</h2>
+<ul><li>最小参数: n=5（x₅=−3/5 非整数 ✓ 基线）；n=6..30 数值扩展（修正递推或高斯整数递推均可精确有理计算）。</li><li>退化情形: A_n=0 的极点情形（FC 明确规定极点不算整数值——声称证明须处理该约定）；x_n 的符号/象限（tan 值与角度象限由 B_n/A_n 有理值承载）；n=3,4 整数例外（域外起点）。</li><li>约定依赖: arctan 主值分支；递推与高斯整数表示的等价性（需 (1+ki) 乘法封闭性）；&quot;整数&quot;按 ℤ（极点除外）。</li><li>结构性锚点: A_n、B_n 的增长与整除性——AMM08 的 p-adic/整除分析（x_n 的分母结构）是主要已知方法；2607.05739 的 exceptional set 结果给出 |x_n| 规模的部分控制。</li><li>建议独立验证方法（仅描述，不执行）: 高斯整数乘积递推独立算 A_n,B_n 至 n≤10^4，统计整除例外（与 AMM08/2607.05739 途径不同实现）；对声称证明检查其对 A_n 零点与 exceptional set 的处理。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>无。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>来源</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-20</td><td>formal-conjectures 快照</td><td><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures</a></td><td>status_fc=open</td></tr><tr><td>2026-11-20</td><td>本Agent未深查独立文献</td><td></td><td>无声称解决记录；二轮补强（原论文编号+后续引用）</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">论文（2008）；formal-conjectures Arxiv 家族收录</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">formal-conjectures 快照</a> <span class="muted">（查新依据）</span></li><li>本Agent未深查独立文献 <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-000048（card_rev c73d20c1c30890c7），https://www.qunxingmath.org/p/QX-P-000048/</p>
+  <p><a href="/p/QX-P-000048.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-000048.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems/000/QX-P-000048.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

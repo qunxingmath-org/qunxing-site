@@ -36,3 +36,12 @@ jobs:
 
       - name: 下载页与 data/release.json 一致
         run: python3 tools/build_download.py --check
+
+      - name: 取 qunxing-data（data/bank.json 记下的提交）
+        run: |
+          commit=$(python3 -c "import json; print(json.load(open('data/bank.json'))['source']['commit'])")
+          git clone --quiet --filter=blob:none --no-checkout https://github.com/qunxingmath-org/qunxing-data.git "$RUNNER_TEMP/qunxing-data"
+          git -C "$RUNNER_TEMP/qunxing-data" checkout --quiet "$commit"
+
+      - name: 题库页面与数据一致
+        run: python3 tools/build_problems.py --data "$RUNNER_TEMP/qunxing-data" --check

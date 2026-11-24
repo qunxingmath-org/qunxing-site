@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-001186 偏反馈在线学习：随机 vs 确定性学习者的候选分离（ω₁ 标签空间） · 群星题库</title>
+<meta name="description" content="把标签空间取成 ω₁，随机学习者真的能严格赢过确定性学习者吗？">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-001186/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-001186.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-001186.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/computing/">理论计算机</a> › <span class="mono">QX-P-001186</span></nav>
+<h1 class="ptitle">偏反馈在线学习：随机 vs 确定性学习者的候选分离（ω₁ 标签空间）</h1>
+<p class="ptitle-en" lang="en">Separating randomized from deterministic online learners under partial feedback</p>
+<p class="chips"><span class="chip">理论计算机</span><span class="chip">构造</span><span class="chip">初等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 截至 2026-11-21</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-21 · 在所查范围内没找到相同结果 · 查了 1 个来源</dd><dt>MSC</dt><dd><span class="mono">68Q32 · 62L12 03E15</span></dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>在标签空间 ω₁、可数余可数 σ-代数上，构造随机学习者严格优于确定性学习者（错分次数 T）的分离实例。</p>
+<h3>形式化表述</h3>
+<p>∃(标签空间, σ-代数): R(T) &lt; D(T)（随机最优严格小于确定性最优）。</p>
+<h2>人话版</h2>
+<p><strong>一句话</strong>：把标签空间取成 ω₁，随机学习者真的能严格赢过确定性学习者吗？</p>
+<p>在线学习是这样一个过程：学习器每一步先作预测，随后收到（部分）正确答案，并累积错分次数 T。若允许学习器掷硬币，得到的就是随机学习器，衡量标准通常是期望错分次数。题目要求在标签空间 ω₁（第一个不可数序数）配上可数余可数 σ-代数（可数集的补集都可测）这一非标准测度背景下，构造一个具体实例，使随机学习器的最优错分数严格小于确定性学习器的最优错分数——即证明随机化在这种情况下确实带来本质收益。</p>
+<p>（AI 起草，未经人工审校）</p>
+<h2>原文摘录</h2>
+<blockquote><p>Open problem (Shao–Fang–Lin–Tao, &#x27;Partial Feedback Online Learning&#x27;, arXiv:2601.21462 §5.3): construct a separation where randomized learners strictly outperform deterministic learners (T mistakes) on label space ω₁ with co-countable σ-algebra.</p>
+<p>—— 提出: Shao–Fang–Lin–Tao (arXiv:2601.21462)</p></blockquote>
+<p>跟踪: mathlib4 issue #45524（2026-10-31）；github.com/2503140kcsk-eng/ai-open-problem-lean-rocq-2026/pull/1</p>
+<h2>已知结果与进展</h2>
+<p>论文正文给出主定理；§5.3 分离构造开放；mathlib4 issue #45524 跟踪形式化（部分 tower-property 论证已形式化）。</p>
+<h2>边界与约定</h2>
+<ul><li>日期: 2026-11-21；添加者: SOL验证Agent（C层抽样轨道C）；性质: 仅列检查点</li><li>测度边界: 可数余可数σ-代数上测度非σ有限（有限测度不存在除平凡）——R(T)期望口径在无概率测度时须按最坏情况/外测度核对</li><li>基数边界: ω₁不可数性使用点（可数标签空间时分离是否存在——反差检查）；choice依赖（ω₁良序）</li><li>建议独立验证: Lean/mathlib形式化继续（独立于原文论证的交互式证明）+手工测度论复核tower性质步骤</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>- [PARTIAL] 主定理已证；分离构造开放。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>来源</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-10-31</td><td>mathlib4 issue #45524</td><td><a href="https://github.com/leanprover-community/mathlib4/issues/45524" rel="nofollow noopener">https://github.com/leanprover-community/mathlib4/issues/45524</a></td><td>open problems 跟踪帖；提交者自述部分形式化</td></tr><tr><td>2026</td><td>arXiv:2601.21462</td><td><a href="https://arxiv.org/abs/2601.21462" rel="nofollow noopener">https://arxiv.org/abs/2601.21462</a></td><td>原论文 §5.3 明示开放问题</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li>提出: Shao–Fang–Lin–Tao (arXiv:2601.21462)
+跟踪: mathlib4 issue #45524（2026-10-31）；github.com/2503140kcsk-eng/ai-open-problem-lean-rocq-2026/pull/1 <span class="muted">（原始出处）</span></li><li><a href="https://github.com/leanprover-community/mathlib4/issues/45524" rel="nofollow noopener">mathlib4 issue #45524</a> <span class="muted">（查新依据）</span></li><li><a href="https://arxiv.org/abs/2601.21462" rel="nofollow noopener">arXiv:2601.21462</a> <span class="muted">（查新依据）</span></li><li><a href="https://arxiv.org/abs/2601.21462" rel="nofollow noopener">arXiv 2601.21462</a></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-001186（card_rev 3032a1c2c8069652），https://www.qunxingmath.org/p/QX-P-001186/</p>
+  <p><a href="/p/QX-P-001186.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-001186.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems/001/QX-P-001186.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

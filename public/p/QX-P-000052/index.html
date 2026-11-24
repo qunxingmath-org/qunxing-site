@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-000052 Tao 优化常数 1a：Sidon 集自相关常数的精确值 · 群星题库</title>
+<meta name="description" content="那个把函数自相关压到最低的常数，精确值究竟是多少？">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-000052/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-000052.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-000052.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-000052</span></nav>
+<h1 class="ptitle">Tao 优化常数 1a：Sidon 集自相关常数的精确值</h1>
+<p class="ptitle-en" lang="en">Tao&#x27;s optimisation constant 1a: determining the exact Sidon autocorrelation constant</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">待补</span><span class="chip">中等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 截至 2026-11-21</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-21 · 在所查范围内没找到相同结果 · 查了 1 个来源</dd><dt>MSC</dt><dd><span class="mono">11B30 · 42A85</span></dd><dt>提出者</dt><dd>Terence Tao (2026)（Optimization Constants 项目）</dd><dt>首次发表</dt><dd>2026</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>确定与 Sidon 集相关的自相关常数的精确值；当前已知区间 [1.292, 1.50286…]，能否改进任一侧。</p>
+<h3>形式化表述</h3>
+<p>C₁a := 最大的常数 C 使得对一切非负 f: ℝ→ℝ 有 max_{−1/2≤t≤1/2} ∫_ℝ f(t−x)f(x)dx ≥ C·(∫_{−1/4}^{1/4} f(x)dx)²。（与加性组合中 Sidon 集最大尺寸相关。）<br>FC OptimizationConstants/1a.lean 结构（2026-11-21 核录）: 已解定理 c1a_lower_bound（1.2748 ≤ C₁a，M2010 线）与 c1a_upper_bound（C₁a ≤ 1.5029）；三个 open 子项（均 research open, question value）: ①改进上界 1.5028628587…（T2026）；②改进下界 1.292（PBV2026）；③确定精确值 C₁a=?。<br>目标: 缩小 [1.292, 1.5028628587…] 任一侧或确定精确值。<br>（补全注记 2026-11-21，SOL验证Agent：原形式化将定义推给 FC 条目——已按 FC 1a.lean verbatim 补全变分定义；引用链: Tao 优化常数项目页 + M2010（Matolcsi–Máté–Vinuesa, arXiv:0907.1379）+ Y2026 + T2026（Together AI EinsteinArena）+ PBV2026（Piterbarg–Bajaj–Vincent, GitHub sidon-autocorrelation）。）</p>
+<h2>人话版</h2>
+<p><strong>一句话</strong>：那个把函数自相关压到最低的常数，精确值究竟是多少？</p>
+<p>C₁a 的定义是一个变分问题的答案：在所有非负函数 f: R→R 中，把『f 与自己的卷积在最优点处的最大值』与『f 在 [−1/4,1/4] 上积分的平方』相比，取这个比值能保证的最小常数。这个常数和加性组合里 Sidon 集的最大尺寸直接相关，所以曲线下压得越低，关于 Sidon 集的结论就越强。卡片记录：已知 1.292 ≤ C₁a ≤ 1.5028628587…，下界来自 PBV2026，上界来自 T2026，另外还有更早的 1.2748 下界与 1.5029 上界。问题要的是精确值，或者至少把任一侧显著改进。</p>
+<p>（AI 起草，未经人工审校）</p>
+<h2>原文摘录</h2>
+<blockquote><p>Determine the exact value of the autocorrelation constant related to Sidon sets; current bounds 1.292 ≤ C_{1a} ≤ 1.5028628587… (T2026 upper, PBV2026 lower).</p>
+<p>—— formal-conjectures OptimizationConstants 1a</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li>Tao (2026) 优化常数项目给出上界；PBV2026 给下界 1.292；</li><li>两侧界均为近年结果，方法（数值优化+组合构造）可延续。</li></ul>
+<h2>边界与约定</h2>
+<ul><li>最小参数: f 的试探函数族（区间特征函数/高斯/多峰构造）数值优化；步长函数离散化近似（T2026 的 1.5028… 来自步长函数族）。</li><li>退化情形: f≡0（两侧为 0——下界方向自动满足）；∫_{−1/4}^{1/4} f=0（右边退化无约束）；f 缩放不变性（两侧同为二次型——常数定义良定）。</li><li>约定依赖: 自相关 max 取于 t∈[−1/2,1/2]；积分域 ℝ 与 [−1/4,1/4]；C 的&quot;最大常数&quot;=对一切 f 的下确界比值。</li><li>结构性锚点: 已证界 1.2748（M2010 解析）与 1.5029（数值）之间的缺口即题目空间；PBV2026 multi-scale arcsine 方法与 T2026 AI 搜索构造为两端现成路线。</li><li>建议独立验证方法（仅描述，不执行）: 独立数值优化（步长函数离散化+全局搜索）复算两端界（与 T2026/PBV2026 实现不同源）；对声称解析证明审查其 f 族的完备性（对一切非负 f 的量词）。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>无；项目设计本身即为&quot;逐步改进常数&quot;。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>来源</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-20</td><td>formal-conjectures 快照</td><td><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures</a></td><td>C_{1a}∈[1.292, 1.5028628587…], open</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">formal-conjectures OptimizationConstants 1a</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">formal-conjectures 快照</a> <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-000052（card_rev 5274030d4b16f9a3），https://www.qunxingmath.org/p/QX-P-000052/</p>
+  <p><a href="/p/QX-P-000052.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-000052.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems/000/QX-P-000052.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

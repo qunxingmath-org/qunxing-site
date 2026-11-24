@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-000035 Markel S3-猜想：共轭类大小两两互异的有限群仅 S3 · 群星题库</title>
+<meta name="description" content="共轭类大小两两不同，这样的有限群除了 S₃ 还有别的吗？">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-000035/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-000035.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-000035.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/algebra/">代数</a> › <span class="mono">QX-P-000035</span></nav>
+<h1 class="ptitle">Markel S3-猜想：共轭类大小两两互异的有限群仅 S3</h1>
+<p class="ptitle-en" lang="en">Markel&#x27;s conjecture: S_3 is the only finite group with pairwise distinct conjugacy class sizes</p>
+<p class="chips"><span class="chip">代数</span><span class="chip">证明</span><span class="chip">中等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 截至 2026-11-21</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-21 · 在所查范围内没找到相同结果 · 查了 1 个来源</dd><dt>MSC</dt><dd><span class="mono">20E45 · 20D60</span></dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>若有限群的各个共轭类大小互不相同，则该群同构于 S3？（1 类平凡群除外）</p>
+<h3>形式化表述</h3>
+<p>∀有限群 G≠1: (|K_i| 两两互异, K_i 为共轭类) ⇒ G ≅ S3。可解情形已证；一般情形开放。</p>
+<h2>人话版</h2>
+<p><strong>一句话</strong>：共轭类大小两两不同，这样的有限群除了 S₃ 还有别的吗？</p>
+<p>把有限群 G 的元素按共轭关系分类，每一类的元素个数叫共轭类大小；单位元自成一类，所以总有一类大小为 1。问题问：如果所有共轭类的大小互不相同，G 是不是只能是三阶对称群 S₃（也就是 6 个元素的置换群）？平凡群被排除在外。卡片记录：可解群的情形已经证出来了，一般情形仍开放，所以真正缺的是对非可解群的处理。要解决它需要完整分类，或造出一个反例群。</p>
+<p>（AI 起草，未经人工审校）</p>
+<h2>原文摘录</h2>
+<blockquote><p>Markel&#x27;s conjecture (1973): every finite nontrivial group with pairwise distinct conjugacy class sizes is isomorphic to S3. (可解情形成立; 一般情形开放)</p>
+<p>—— 提出: A. R. Markel (1973, 原论文）</p></blockquote>
+<p>形式化: formal-conjectures Paper/ConjugacyClassSizes.lean；相关讨论 arXiv:2606.22244</p>
+<h2>已知结果与进展</h2>
+<p>Markel 1973 证可解情形；非可解情形的障碍在于类大小集合与单群构造的匹配；FC ConjugacyClassSizes.lean 形式化（2026 arXiv:2606.22244 讨论线）。</p>
+<h2>边界与约定</h2>
+<ul><li>最小参数: S₃（唯一已知 ah-群基线）；A₅（类大小 1,12,12,15,20——12 重复，非 ah，最小非可解候选排除）；GAP SmallGroups 全域 ah-群扫描（阶 ≤10^4 应仅得 S₃）。</li><li>退化情形: 平凡群（1 类，域外）；交换群（类大小全 1，非 ah——除非 1 阶）；中心非平凡的群（中心点类大小 1 与恒等类大小 1 重复 → ah-群必中心平凡——FC test 定理 trivial_center 已核）。</li><li>约定依赖: 共轭类大小=类内元素个数；&quot;两两互异&quot;作用于全部共轭类（含恒等类）。</li><li>结构性锚点: ah-群 ⟹ 中心平凡（FC 已形式化 test）；可解情形已证（三独立证明）→ 剩余障碍纯在非可解侧，CFSG/单群分类结构是必经依赖。</li><li>建议独立验证方法（仅描述，不执行）: GAP/SmallGroups 穷举阶 ≤10^5 全部群的共轭类大小分布（与文献途径不同源）；对声称证明检查其对非可解单群族（PSL(2,q) 等）的类大小模式处理。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>- [PARTIAL] 可解情形已证（Markel 1973）；2026 arXiv:2606.22244 有相关群类构造分析。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>来源</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-20</td><td>formal-conjectures 官网在线复核</td><td><a href="https://google-deepmind.github.io/formal-conjectures/" rel="nofollow noopener">https://google-deepmind.github.io/formal-conjectures/</a></td><td>Open 1,910 / Solved 3,080 / 总4,990（1,170 已形式化证明）；research open 条目以 @[category research open] 属性 + sorry 标记</td></tr><tr><td>2026-11-20</td><td>formal-conjectures GitHub 仓库</td><td><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures</a></td><td>Apache-2.0；DeepMind+社区维护；文件路径核对</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li>提出: A. R. Markel (1973, 原论文）
+形式化: formal-conjectures Paper/ConjugacyClassSizes.lean；相关讨论 arXiv:2606.22244 <span class="muted">（原始出处）</span></li><li><a href="https://google-deepmind.github.io/formal-conjectures/" rel="nofollow noopener">formal-conjectures 官网在线复核</a> <span class="muted">（查新依据）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">formal-conjectures GitHub 仓库</a> <span class="muted">（查新依据）</span></li><li><a href="https://arxiv.org/abs/2606.22244" rel="nofollow noopener">arXiv 2606.22244</a></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-000035（card_rev 1e1f4af87a00583a），https://www.qunxingmath.org/p/QX-P-000035/</p>
+  <p><a href="/p/QX-P-000035.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-000035.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems/000/QX-P-000035.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

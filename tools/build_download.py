@@ -30,7 +30,7 @@ T = {
         "lang": "zh-CN", "path": "/download/", "other": "/en/download/", "other_lang": "en", "other_label": "English",
         "title": "下载群星桌面端 · 群星 Qunxing",
         "desc": "下载群星桌面端：Windows 安装包，或免安装的完整应用包。用你已有的 AI 订阅探索开放数学问题，结果用 Lean 检验。",
-        "home": "首页", "lang_nav": "语言", "sp": "", "h1": "下载群星桌面端",
+        "home": "首页", "lang_nav": "语言", "sp": "", "bank": "题库", "bank_path": "/problems/", "h1": "下载群星桌面端",
         "lead": "在自己的电脑上，用你已有的 AI 订阅探索开放数学问题；结果用 Lean 检验。",
         "btn_setup": "下载 Windows 版（安装包）", "btn_zip": "完整应用包（免安装 zip）",
         "meta": "版本 {v} · {d} · 安装包 {s}", "zip_size": "{s}",
@@ -74,7 +74,7 @@ T = {
         "lang": "en", "path": "/en/download/", "other": "/download/", "other_lang": "zh-CN", "other_label": "中文",
         "title": "Download the Qunxing desktop app · Qunxing",
         "desc": "Download the Qunxing desktop app for Windows: an installer, or a full package that runs without installing. Explore open math problems with the AI subscription you already have; results are checked in Lean.",
-        "home": "Home", "lang_nav": "Language", "sp": " ", "h1": "Download the Qunxing desktop app",
+        "home": "Home", "lang_nav": "Language", "sp": " ", "bank": "Problems", "bank_path": "/en/problems/", "h1": "Download the Qunxing desktop app",
         "lead": "Explore open math problems on your own computer, with the AI subscription you already have. Results are checked in Lean.",
         "btn_setup": "Download for Windows (installer)", "btn_zip": "Full package (zip, no install)",
         "meta": "Version {v} · {d} · installer {s}", "zip_size": "{s}",
@@ -214,7 +214,7 @@ def page(lang, rel):
   <div class="wrap">
     <div class="top">
       <a class="mark" href="/" aria-label="{e(t['home'])}">{MARK}<span>群星</span><span class="en" lang="en">Qunxing</span></a>
-      <nav aria-label="{e(t['lang_nav'])}">{link(t['other'], e(t['other_label']), lang=t['other_lang'])}</nav>
+      <nav aria-label="{e(t['lang_nav'])}">{link(t['bank_path'], e(t['bank']))}{link(t['other'], e(t['other_label']), lang=t['other_lang'])}</nav>
     </div>
     <h1>{e(t['h1'])}</h1>
     <p class="lead">{e(t['lead'])}</p>
