@@ -100,7 +100,9 @@ class ReleaseTests(unittest.TestCase):
             cli("-Vm", out/"keys.json", "-p", root/"root.pub")
             cli("-Vm", out/"manifest.json", "-p", root/"signer.pub")
             self.assertEqual({p.name for p in out.iterdir()},
-                             {"keys.json", "keys.json.minisig", "manifest.json", "manifest.json.minisig"})
+                             {"keys.json", "keys.json.minisig", "manifest.json", "manifest.json.minisig", "manifests.log"})
+            record = json.loads((out/"manifests.log").read_text(encoding="utf-8"))
+            self.assertEqual(record["sha256"], sha256((out/"manifest.json").read_bytes()).hexdigest())
 
     def test_text_extract_and_sitemap(self):
         with tempfile.TemporaryDirectory() as tmp:

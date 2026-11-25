@@ -2,7 +2,7 @@
 """Prepare an immutable signed update manifest with an offline signing identity."""
 import argparse
 from datetime import datetime, timedelta, timezone
-from hashlib import file_digest
+from hashlib import file_digest, sha256
 import json
 from pathlib import Path
 import shutil
@@ -58,7 +58,13 @@ def sign(args):
         stage = Path(temp)/"update"
         stage.mkdir()
         name = stage/"manifest.json"
-        name.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        name.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+        existing_log = args.previous.with_name("manifests.log") if args.previous else None
+        history = existing_log.read_text(encoding="utf-8").splitlines() if existing_log else []
+        log_entry = {field: result[field] for field in ("epoch", "version", "key_id", "generated_at")}
+        log_entry["sha256"] = sha256(name.read_bytes()).hexdigest()
+        (stage/"manifests.log").write_text("\n".join(history + [json.dumps(log_entry, separators=(",", ":"))]) + "\n",
+                                         encoding="utf-8", newline="\n")
         comment = f'version={result["version"]} epoch={result["epoch"]} expires_at={result["expires_at"]}'
         subprocess.run(["minisign", "-Sm", str(name), "-s", str(args.signing_identity), "-t", comment], check=True)
         subprocess.run(["minisign", "-Vm", str(name), "-P", public_key], check=True)
