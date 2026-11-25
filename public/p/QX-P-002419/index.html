@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002419 无穷多个 1/(n+1)×1/(n+2) 矩形能否全部装入单位正方形 · 群星题库</title>
+<meta name="description" content="Can all infinitely many 1/(n+1) by 1/(n+2) rectangles be packed into a unit square?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002419/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002419.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002419.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/geometry/">几何</a> › <span class="mono">QX-P-002419</span></nav>
+<h1 class="ptitle">无穷多个 1/(n+1)×1/(n+2) 矩形能否全部装入单位正方形</h1>
+<p class="ptitle-en" lang="en">Can all infinitely many 1/(n+1) by 1/(n+2) rectangles be packed into a unit square?</p>
+<p class="chips"><span class="chip">几何</span><span class="chip">证明</span><span class="chip">中等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到部分结果 · 查了 9 个来源</dd><dt>MSC</dt><dd><span class="mono">52C15</span></dd><dt>提出者</dt><dd>Leo Moser；A. Meir 与 L. Moser 1968 年问题</dd><dt>首次发表</dt><dd>Concrete Mathematics 1988 第 1 章习题 37；更早追溯到 Meir–Moser 1968</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>对每个整数 $n\ge0$，取闭矩形<br>$$<br>R_n=\frac1{n+1}\times\frac1{n+2}.<br>$$<br>问：能否把整个无穷族 $\{R_n:n\ge0\}$ 装入闭单位正方形 $[0,1]^2$，使得每个矩形完整位于正方形内，且任意两个矩形的内部不相交？</p>
+<p>边或角可以接触，矩形可以任意旋转。等价地，问是否存在放置映射，使所有 $R_n$ 的内部两两不交。</p>
+<h3>形式化表述</h3>
+<p><code>rectangles_pack_unit_square</code>：存在 <code>Configuration c</code>，满足<br>$$<br>\forall n,\ (c.\mathrm{rect}\ n).\mathrm{toSet}\subseteq[0,1]^2,<br>$$<br>并且<br>$$<br>\forall m\ne n,\quad<br>\operatorname{int}(c.\mathrm{rect}\ m).\mathrm{toSet}\cap<br>\operatorname{int}(c.\mathrm{rect}\ n).\mathrm{toSet}=\varnothing.<br>$$</p>
+<h2>原文摘录</h2>
+<blockquote><p>Will all the $1/k$ by $1/(k+1)$ rectangles, for $k&gt;0$, fit together inside a $1$ by $1$ square? (Recall that their areas sum to $1$.)</p>
+<p>—— Ronald L. Graham、Donald E. Knuth、Oren Patashnik，*Concrete Mathematics*，第 1 章 Research problem 37，1988；1990 第六次印刷本，[OCR 全文](<a href="https://archive.org/download/concrete-mathematics_202406/Concrete%20Mathematics_djvu.txt" rel="nofollow noopener">https://archive.org/download/concrete-mathematics_202406/Concrete%20Mathematics_djvu.txt</a>)。OCR 将 $1$ 识别为 $I$、将 $0$ 识别为 $1$，此处按公式上下文规范化。</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li><strong>面积恰好相等：</strong> $$ \sum_{n=0}^{\infty}\frac1{(n+1)(n+2)} =\sum_{n=0}^{\infty}\left(\frac1{n+1}-\frac1{n+2}\right)=1. $$ 因而若内部不交且全部装入单位正方形，就不可能有正面积空洞；这正是困难所在。</li><li><strong>早期容器：</strong>MO #34145 的实读答案报告 Jennings 1994 把全族装入边长 $133/132$ 的正方形，Bálint 的结果改进到边长 $501/500$。后者只比单位正方形大约 $0.2\%$。</li><li><strong>Paulhus 方法与后续修复：</strong>Tao §1 实读确认，Paulhus 曾把全族装入面积 $1+1/(10^9+1)$ 的正方形；Joós 指出其部分引理证明有问题，Grzegorek–Januszewski 修复了缺口。Zhu–Joós 进一步报告正方形容器面积增量约 $1.26\times10^{-9}$。</li><li><strong>有限前缀：</strong>Zhu–Joós 2022 报告前 $1.35\times10^{11}$ 个矩形可装入单位正方形。该文同时给出从任意有限前缀到“全族进入稍大正方形”的严格 Theorem 2.1，但没有证明无穷族进入边长 1 的正方形。</li><li><strong>临界指数仍缺：</strong>Tao 证明 $1/2&lt;t&lt;1$ 时，删去充分多前项后，边长 $n^{-t}$ 的平方可完美装入相应面积的正方形；他明确指出论证不能延伸到 $t=1$。本题的矩形族仍开放。</li><li><strong>当前形式化状态：</strong>本地 Lean 的 <code>rectangles_pack_unit_square</code> 与逐点覆盖版本均为 <code>research open/sorry</code>；已知的 $133/132$、$501/500$ 容器仅列为 solved 变体，不是单位正方形情形。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>内部不交允许接触：</strong>共享一条边或一个角不违反 packing；重叠任意正面积才违反条件。矩形均视为闭集。</li><li><strong>contained 是逐矩形要求：</strong>整个 $R_n$ 必须在 $[0,1]^2$ 内，不能只要求中心或部分区域在内。</li><li><strong>packing 与逐点 covering 不同：</strong>面积和只保证补集为零测集，不保证每个边界点都被某矩形覆盖。Lean 把 <code>rectangles_cover_unit_square</code> 与 <code>rectangles_pack_unit_square</code> 分开陈述；本题采用后者。</li><li><strong>旋转自由：</strong>Lean 使用实数角度 <code>Angle</code>，不限于 $0^\circ,90^\circ,180^\circ,270^\circ$。轴平行构造是更强限制下的合法特例。</li><li><strong>索引平移：</strong>原题 $k=1,2,\ldots$ 对应本题 $n=0,1,\ldots$；$R_0=1\times1/2$，$R_1=1/2\times1/3$，不能从 $n=1$ 漏掉最大矩形。</li><li><strong>有限与无穷：</strong>前 $N$ 块面积为 $1-1/(N+1)$，留下面积 $1/(N+1)$。无论 $N$ 多大，都不能直接断言无穷尾族也能无重叠地填进同一正方形。</li><li><strong>查重：</strong>已检索 75 份既有草稿和实时题库的 34145、<code>rectangles_pack_unit_square</code>、$1/(n+1)\times1/(n+2)$、Moser、Jennings、Paulhus 与源链接，未发现精确重复。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] Jennings/Bálint/Paulhus：</strong>把所需正方形从 $133/132$、$501/500$ 逐步推进到面积 $1+10^{-9}$ 量级；均非精确单位正方形。</li><li><strong>[PARTIAL] Zhu–Joós 2022：</strong>计算报告前 $1.35\times10^{11}$ 块装入单位正方形，并证明全族可进入边长 $1+1/n$ 的正方形（前提是前 $n-1$ 块已装入）；没有消除最后的面积增量。</li><li><strong>[VARIANT] Tao 2022/2023：</strong>解决 $t&lt;1$ 的近调和平方尾族；临界 $t=1$ 明确排除，不能当作本题解答。</li><li><strong>[CLAIM] 未定位到一般解：</strong>MO 2026-03-06 的评论仍讨论有限算法极限；Tao 2022 与后续 2023 出版物仍称 Meir–Moser 矩形问题开放。未找到可信的全族单位正方形构造或不可能性证明。</li><li><strong>访问限制：</strong>Concrete Mathematics OCR、MO 全帖、Lean、Zhu–Joós 与 Tao 全文已实读；Jennings 1994 的 ScienceDirect 正文 403，仅核对 DOI/Linking Hub 元数据及实读二手引文；Jennings 1995 只核对书目。Springer 正文返回 303，Google Scholar 全量被引、MathSciNet 权限及十类深查未完成，故 <code>status_strength=weak</code>、<code>novelty.depth=basic</code>。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 精确题源</td><td>[MO #34145](<a href="https://mathoverflow.net/questions/34145" rel="nofollow noopener">https://mathoverflow.net/questions/34145</a>)</td><td>问题、7 答案与评论实读；无穷族仍无完整解，2026-03-06 有计算讨论</td></tr><tr><td>2026-11-25</td><td>A 原书练习</td><td>[Concrete Mathematics OCR](<a href="https://archive.org/download/concrete-mathematics_202406/Concrete%20Mathematics_djvu.txt" rel="nofollow noopener">https://archive.org/download/concrete-mathematics_202406/Concrete%20Mathematics_djvu.txt</a>)</td><td>第 1 章 Research problem 37 实读；确认问的是所有 k 的无穷族</td></tr><tr><td>2026-11-25</td><td>A 形式化</td><td>[本地 Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Mathoverflow/34145.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Mathoverflow/34145.lean</a>)</td><td>实读 packing、覆盖、面积和与容器变体；主命题 sorry</td></tr><tr><td>2026-11-25</td><td>B 引文追踪</td><td>[MO #34145](<a href="https://mathoverflow.net/questions/34145" rel="nofollow noopener">https://mathoverflow.net/questions/34145</a>)；[Zhu–Joós](<a href="https://arxiv.org/html/2211.10356v1" rel="nofollow noopener">https://arxiv.org/html/2211.10356v1</a>)</td><td>实读 Jennings、Bálint、Paulhus、Joós、Grzegorek–Januszewski 的引文链</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>WebSearch 原词 1–10</td><td>MO 号、原句、作者、DOI、尺寸、Lean 名及中英文组合</td></tr><tr><td>2026-11-25</td><td>D 预印本</td><td>[2211.10356](<a href="https://arxiv.org/html/2211.10356v1" rel="nofollow noopener">https://arxiv.org/html/2211.10356v1</a>)；[2202.03594](<a href="https://arxiv.org/html/2202.03594v2" rel="nofollow noopener">https://arxiv.org/html/2202.03594v2</a>)</td><td>实读全文：有限前缀/近似容器与 t&lt;1 尾族，不是 t=1 全族解</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–10</td><td>精确题句与 2025–2026 组合；大量同名装箱噪声已排除</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>[MO #34145](<a href="https://mathoverflow.net/questions/34145" rel="nofollow noopener">https://mathoverflow.net/questions/34145</a>)</td><td>Linked #325481 重定向回本页；不是另一个已解有限问题</td></tr><tr><td>2026-11-25</td><td>G 几何书目</td><td>[Geometry Junkyard](<a href="https://ics.uci.edu/~eppstein/junkyard/rect.html" rel="nofollow noopener">https://ics.uci.edu/~eppstein/junkyard/rect.html</a>)</td><td>实读条目：面积和 1、Paulhus 边长 1.000000001 的历史结果</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[Formal Conjectures](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Mathoverflow/34145.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Mathoverflow/34145.lean</a>)</td><td>未发现可信 AI 全族证明；主命题仍 sorry</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 5–7、9–10</td><td>中文检索主要得裂项求和与一般排样，无本问题新解</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code></td><td>精确名称、MO 号、Lean 名、DOI 与对象词无重复</td></tr><tr><td>2026-11-25</td><td>当前状态综合</td><td>[Tao §1](<a href="https://arxiv.org/html/2202.03594v2" rel="nofollow noopener">https://arxiv.org/html/2202.03594v2</a>)；[MO](<a href="https://mathoverflow.net/questions/34145" rel="nofollow noopener">https://mathoverflow.net/questions/34145</a>)；[Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Mathoverflow/34145.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Mathoverflow/34145.lean</a>)</td><td>全族近似装箱与极大有限前缀已知；单位正方形精确全族 packing 未解决</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://archive.org/download/concrete-mathematics_202406/Concrete%20Mathematics_djvu.txt" rel="nofollow noopener">Ronald L. Graham, Donald E. Knuth, Oren Patashnik, Concrete Mathematics，第 1 章 Research problem 37，Addison-Wesley，1988；1990 第六次印刷本（OCR 全文实读）</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Mathoverflow/34145.lean" rel="nofollow noopener">Formal Conjectures: Mathoverflow/34145.lean（本地实读）</a> <span class="muted">（restatement）</span></li><li><a href="https://mathoverflow.net/questions/34145" rel="nofollow noopener">MathOverflow #34145, Can we cover the unit square by these rectangles?（问题、答案、评论实读）</a> <span class="muted">（查新依据）</span></li><li><a href="https://arxiv.org/html/2211.10356v1" rel="nofollow noopener">Mingliang Zhu, Antal Joós, Packing 1.35·10^11 rectangles into a unit square, arXiv:2211.10356v1（全文实读）</a> <span class="muted">（progress）</span></li><li><a href="https://arxiv.org/html/2202.03594v2" rel="nofollow noopener">Terence Tao, Perfectly packing a square by squares of nearly harmonic sidelength, arXiv:2202.03594v2（全文实读）</a> <span class="muted">（progress）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002419（card_rev 8889a17ba50df249），https://www.qunxingmath.org/p/QX-P-002419/</p>
+  <p><a href="/p/QX-P-002419.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002419.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/ba717bfcad2a03ad31ec5c2c659851d8fd275982/problems/002/QX-P-002419.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

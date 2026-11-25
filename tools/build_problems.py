@@ -43,7 +43,8 @@ SECTORS = [  # 键、中文、英文、MSC 主类前两位
 ]
 SECTOR = {k: (zh, en) for k, zh, en, _ in SECTORS}
 MSC = {p: k for k, _, _, codes in SECTORS for p in codes.split()}
-LEVELS = {"elementary": ("初等", "Elementary"), "medium": ("中等", "Intermediate"), "advanced": ("较难", "Advanced"), None: ("待补", "Pending")}
+LEVELS = {"elementary": ("初等", "Entry"), "medium": ("中等", "Intermediate"), "advanced": ("高等", "Advanced"), "legendary": ("传奇", "Legendary"),
+          None: ("待补", "Pending")}
 KINDS = {"proof": ("证明", "Proof"), "construction": ("构造", "Construction"), "bound": ("求界", "Bound"), "calculation": ("计算", "Calculation"), None: ("待补", "Pending")}
 # 文献状态（取自题卡，不是本站的判定）。用词避开"已解决""已验证"。
 LIT = {"open": ("开放", "Open"), "partially_solved": ("部分解决", "Partly solved"), "claimed": ("有人声称解决", "Claimed"),
@@ -66,7 +67,8 @@ def sector_of(meta):
 
 def band_of(meta):
     lv = (meta.get("difficulty") or {}).get("level")
-    return None if lv is None else "elementary" if lv <= 2 else "medium" if lv == 3 else "advanced"
+    # 难度 5 只给"传奇"：提出 30 年以上、领域外也有名、公认极难（题卡格式 3.10）
+    return None if lv is None else "elementary" if lv <= 2 else "medium" if lv == 3 else "advanced" if lv == 4 else "legendary"
 
 
 def kind_of(meta):
@@ -274,10 +276,15 @@ def overview(lang, cards, commit):
                     for k, *_ in SECTORS if k in by)
     lits = " · ".join(f"{e(lab(LIT.get(k, (k, k)), lang))} {n}" for k, n in sorted(lit.items(), key=lambda x: -x[1]))
     src = f'<a href="https://github.com/{DATA_REPO}/tree/{commit}">{DATA_REPO}@{commit[:7]}</a>'
+    nleg = sum(1 for c in cards if c["band"] == "legendary")
+    legend_link = "" if not nleg else (
+        f'<p class="legend-link"><a href="{root}legendary/"><b>传奇</b> · {nleg} 道久未解决的著名猜想</a></p>' if zh else
+        f'<p class="legend-link"><a href="{root}legendary/"><b>Legendary</b> · {nleg} famous long-standing conjectures</a></p>')
     if zh:
         body = f"""<h1>群星题库</h1>
 <p class="lead2">{len(cards)} 道开放数学问题，来自期刊、问题集和问答站。每道题有题面、人话版、原文摘录、来源和查新记录。</p>
 {disclaimer(lang)}
+{legend_link}
 <h2>按星域浏览</h2>
 <ul class="tiles">{tiles}</ul>
 <p class="muted small">文献状态：{lits}。所有题目目前都暂无提交（<code>no_submission</code>）。</p>
@@ -295,6 +302,7 @@ def overview(lang, cards, commit):
     body = f"""<h1>The Qunxing problem bank</h1>
 <p class="lead2">{len(cards)} open math problems from journals, problem collections and Q&amp;A sites. Each has a statement, a plain-language summary (in Chinese), source quotes, references and a novelty-check record.</p>
 {disclaimer(lang)}
+{legend_link}
 <h2>Browse by sector</h2>
 <ul class="tiles">{tiles}</ul>
 <p class="muted small">Literature status: {lits}. No problem has submissions yet (<code>no_submission</code>).</p>
@@ -362,11 +370,55 @@ def sector_pages(lang, key, items):
     return out
 
 
+def legend_reason(meta):
+    """difficulty.note 开头"传奇：……"的那一句；没有就返回空串"""
+    note = str((meta.get("difficulty") or {}).get("note") or "")
+    if not note.startswith("传奇："):
+        return ""
+    return note[3:].split(" 原作者的说明：")[0].strip()
+
+
+def legend_page(lang, cards):
+    zh = lang == "zh"
+    root = "/problems/legendary/" if zh else "/en/problems/legendary/"
+    other = "/en/problems/legendary/" if zh else "/problems/legendary/"
+    items = sorted((c for c in cards if c["band"] == "legendary"), key=lambda c: (c["meta"].get("track") != "open", c["meta"]["id"]))
+    rows = []
+    for c in items:
+        m = c["meta"]
+        title = m.get("title") if zh else (m.get("title_en") or m.get("title"))
+        track = ("开放问题" if zh else "Open problem") if m.get("track") == "open" else ("核对证明声明" if zh else "Check a claimed proof")
+        why = legend_reason(m) if zh else ""
+        rows.append(f'<tr><td class="mono"><a href="/p/{e(m["id"])}/">{e(m["id"])}</a></td><td>{e(title or "")}'
+                    + (f'<div class="muted small">{e(why)}</div>' if why else "")
+                    + f'</td><td>{e(lab(SECTOR[c["sector"]], lang))}</td><td>{e(track)}</td><td>{e(lit_text(m, lang, date=False))}</td></tr>')
+    head = ("<th>编号</th><th>题目</th><th>星域</th><th>轨道</th><th>文献状态</th>" if zh else
+            "<th>ID</th><th>Problem</th><th>Sector</th><th>Track</th><th>Literature status</th>")
+    crumbs = f'<nav class="crumbs" aria-label="{"位置" if zh else "Breadcrumb"}"><a href="{"/problems/" if zh else "/en/problems/"}">{"题库" if zh else "Problems"}</a> › {"传奇" if zh else "Legendary"}</nav>'
+    if zh:
+        intro = ("<p>难度分四档：初等、中等、高等、传奇。<b>传奇</b>只给三条都满足的题：提出 30 年以上仍未解决；在本领域之外也有名"
+                 "（有自己的百科词条、收进著名问题清单，或者有悬赏）；公认极难。</p>"
+                 "<p>\"核对证明声明\"的题，是有人声称证明了这个猜想，等待核对。</p>")
+        body = f"{crumbs}\n<h1>传奇 <span class=\"count\">{len(items)} 道</span></h1>\n{intro}\n{disclaimer(lang)}\n"
+        title, desc = "传奇 · 群星题库", f"群星题库里的 {len(items)} 道传奇题：提出 30 年以上仍未解决、在本领域之外也有名的猜想。"
+    else:
+        intro = ("<p>Difficulty has four tiers: Entry, Intermediate, Advanced and Legendary. A problem is <b>Legendary</b> only if all three hold: "
+                 "it has been open for 30+ years; it is famous beyond its field (its own encyclopedia entry, a famous problem list, or a prize); "
+                 "and it is widely considered extremely hard. The one-line reasons are on the Chinese page.</p>"
+                 "<p>“Check a claimed proof” means someone has claimed a proof of the conjecture and it is waiting to be checked.</p>")
+        body = f"{crumbs}\n<h1>Legendary <span class=\"count\">{len(items)} problems</span></h1>\n{intro}\n{disclaimer(lang)}\n"
+        title, desc = "Legendary · Qunxing problem bank", f"{len(items)} legendary problems in the Qunxing problem bank: famous conjectures open for 30+ years."
+    body += f"""<div class="tbl"><table class="plist"><thead><tr>{head}</tr></thead><tbody>
+{chr(10).join(rows)}
+</tbody></table></div>"""
+    return root, page(lang, title, desc, body, root, other)
+
+
 def detail(c, commit):
     m, key = c["meta"], c["sector"]
     pid = m["id"]
     chips = [lab(SECTOR[key], "zh"), lab(KINDS[c["kind"]], "zh"), lab(LEVELS[c["band"]], "zh"), "开放问题" if m.get("track") == "open" else "验证"]
-    chips = "".join(f'<span class="chip">{e(x)}</span>' for x in chips) + "".join(f'<span class="chip warn">{e(lab(FLAGS[f], "zh"))}</span>' for f in flags_of(m))
+    chips = "".join(f'<span class="chip{" legend" if x == LEVELS["legendary"][0] else ""}">{e(x)}</span>' for x in chips) + "".join(f'<span class="chip warn">{e(lab(FLAGS[f], "zh"))}</span>' for f in flags_of(m))
     nv = m.get("novelty") or {}
     scope = (nv.get("scope") or {}).get("sources") or []
     nv_txt = " · ".join(x for x in [nv.get("last_checked_at"), lab(NOVELTY.get(nv.get("result"), (nv.get("result") or "", "")), "zh") if nv.get("result") else None,
@@ -467,6 +519,9 @@ def build(data):
         for k, items in by.items():
             for path, text in sector_pages(lang, k, items).items():
                 files[path.lstrip("/") + "index.html"] = text.encode("utf-8")
+        if any(c["band"] == "legendary" for c in cards):
+            path, text = legend_page(lang, cards)
+            files[path.lstrip("/") + "index.html"] = text.encode("utf-8")
     for c in cards:
         pid = c["meta"]["id"]
         files[f"p/{pid}/index.html"] = detail(c, commit).encode("utf-8")

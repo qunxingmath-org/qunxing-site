@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002403 构造点数少于 200 且覆盖参数大于 5 的斯坦纳系统 · 群星题库</title>
+<meta name="description" content="Construct a nontrivial Steiner system with n &lt; 200 and t &gt; 5">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002403/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002403.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002403.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/combinatorics/">组合</a> › <span class="mono">QX-P-002403</span></nav>
+<h1 class="ptitle">构造点数少于 200 且覆盖参数大于 5 的斯坦纳系统</h1>
+<p class="ptitle-en" lang="en">Construct a nontrivial Steiner system with n &lt; 200 and t &gt; 5</p>
+<p class="chips"><span class="chip">组合</span><span class="chip">构造</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 在所查范围内没找到相同结果 · 查了 7 个来源</dd><dt>MSC</dt><dd><span class="mono">05B05</span></dd><dt>提出者</dt><dd>Epoch AI FrontierMath: Open Problems（Kunal Marwaha）</dd><dt>首次发表</dt><dd>Epoch AI 2026 在线开放问题；背景为 Steiner 1853 与 Keevash 2014</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>构造一个非平凡 Steiner 系统 $S(t,k,n)$：在 $n$ 元集合 $X$ 上选取若干 $k$ 元子集作为区组，使每个 $t$ 元子集恰好包含于一个区组中，并要求<br>$$<br>n&gt;k&gt;t&gt;5,\qquad t&lt;10,\qquad n&lt;200.<br>$$<br>等价地，寻找整数 $n,k,t$ 及区组族 $\mathcal B\subseteq\binom{X}{k}$，使<br>$$<br>t\in\{6,7,8,9\},\qquad<br>\forall R\in\binom{X}{t},\quad<br>\#\{B\in\mathcal B:R\subseteq B\}=1.<br>$$<br>这是 Epoch AI 的 <strong>Large Steiner Systems</strong> 构造题，也是本地 Lean 命题 <code>large_steiner_systems</code>：证明 <code>Nonempty LargeSteinerSystemWitness</code>。答案必须列出具体参数与全部区组，而非只引用存在定理。</p>
+<h2>原文摘录</h2>
+<blockquote><p>“Perhaps surprisingly, no example of a Steiner system with $r &gt; 5$ is known, despite a theorem, proven in 2014, that many such examples do exist. While there is no guarantee that an example exists with $n &lt; 200$ and $5 &lt; r &lt; 10$, there is also no reason to expect this not to be the case.”</p>
+<p>—— Epoch AI，[*Large Steiner Systems*](<a href="https://epoch.ai/frontiermath/open-problems/large-steiner-systems" rel="nofollow noopener">https://epoch.ai/frontiermath/open-problems/large-steiner-systems</a>)，2026，About the problem；页面全文实读。</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li><strong>[KNOWN，定义与计数]</strong> 若 $S(t,k,n)$ 存在，则区组总数为 $$ b=\frac{\binom nt}{\binom kt}, $$ 每个点落在 $$ r_{\mathrm{pt}}=\frac{\binom{n-1}{t-1}}{\binom{k-1}{t-1}} $$ 个区组中。这些数必须为整数；更一般地，对 $0\le i\le t$，$\binom{k-i}{t-i}$ 必须整除 $\binom{n-i}{t-i}$。</li><li><strong>[KNOWN，$t\le5$ 的显式例子]</strong> Mathieu 设计给出 $S(4,5,11)$、$S(5,6,12)$、$S(4,7,23)$、$S(5,8,24)$ 等；本地 Lean 还列出了 Fano 平面及 $S(5,6,12)$ 的具体区组。这些都不满足本题的 $t&gt;5$。</li><li><strong>[KNOWN，Keevash 渐近存在]</strong> Keevash 的 Theorem 1.4 推出：固定 $k&gt;t\ge1$ 后，存在 $n_0=n_0(k,t)$，使每个满足上述可除性条件的 $n&gt;n_0$ 都有 $S(t,k,n)$。这解决了包括 $t&gt;5$ 在内的一般存在猜想。</li><li><strong>[KNOWN，证明边界]</strong> Keevash 明确说没有优化参数，并描述了随机化代数构造；2024 年版还提到后续较短证明可给合理界。但本次实读内容没有给出 $t\in\{6,7,8,9\}$、$n&lt;200$ 的具名设计或区组表。</li><li><strong>[OPEN，有限显式构造]</strong> Epoch 当前页面仍标 <code>Unsolved</code>；本地 <code>large_steiner_systems</code> 为 <code>research open/sorry</code>。截至 2026-11-25，本次检索未找到满足全部界限的公认构造。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>量词是“存在一组”：</strong>只需一个参数三元组及一套区组；不要求对所有可除参数构造，也不要求证明某组参数不存在。</li><li><strong>严格不等式：</strong>$n&gt;k&gt;t&gt;5$，且 $t&lt;10,n&lt;200$。因此 $t=6,7,8,9$，而 $k$ 可取 $t+1,\dots,n-1$。</li><li><strong>非平凡性：</strong>$k&lt;n$ 排除只有一个全域区组的退化情形；$k&gt;t$ 排除取全部 $t$ 子集的平凡系统。</li><li><strong>恰好一次而非至少一次：</strong>每个 $t$ 子集必须恰在一个区组中；区组族按集合计，不另要求区组互异之外的群对称性。</li><li><strong>渐近存在不提供有限界：</strong>Keevash 的 $n_0(k,t)$ 未在本题范围内具体化，且论文明确未优化；不能据此断言 $n&lt;200$ 可行或不可行。</li><li><strong>与 $S(6,9,45)$ 的关系：</strong>实时题库 <code>QX-P-001821</code> 已收录这个具体候选。其可除性计数为 $96965,19393,3526,574,82,10$，均为整数，但通过计数检验不等于构造出区组。即使该候选被解决，也只完成本题允许的一种参数选择。</li><li><strong>与“大集”不同：</strong>本题的 large 指高覆盖参数与有限点数范围，不是把全部 $t$ 子集分解成许多 Steiner 系统的 large set 问题。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL IN THE BROADER THEORY，不是本题解]</strong> Keevash 2014 证明充分大阶数的存在性；它不列出小阶数显式设计，故不能标记为 <code>same_solved</code> 或 <code>implied_by_stronger</code>。</li><li><strong>[NO SMALL WITNESS FOUND]</strong> 22 组 WebSearch、Epoch 原页、Wikipedia、MathOverflow 与本地 Lean 均未给出 $n&lt;200,t&gt;5$ 的完整区组表。</li><li><strong>[RELATED LIVE-BANK CARD]</strong> <code>QX-P-001821</code> 专问 $S(6,9,45)$；本卡问任意合格参数的存在性构造，命题范围不同，未复制其 MSE 外部编号。</li><li><strong>[ACCESS LIMITATION]</strong> Math Stack Exchange #263131 原页本次返回 403；仅实读群星题库中已存正文与元数据，不把原帖内容称为已读。MathSciNet、完整引文网络及近期 arXiv 分类未系统遍历，故 <code>depth=basic</code>、<code>status_strength=weak</code>。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 题源与基准</td><td>[Epoch AI](<a href="https://epoch.ai/frontiermath/open-problems/large-steiner-systems" rel="nofollow noopener">https://epoch.ai/frontiermath/open-problems/large-steiner-systems</a>)</td><td>全文实读；Unsolved，Prompt 要求参数及区组</td></tr><tr><td>2026-11-25</td><td>A 形式化题源</td><td>[SteinerSystem.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/SteinerSystem.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/SteinerSystem.lean</a>)</td><td>本地实读；目标 Nonempty witness，仍 sorry</td></tr><tr><td>2026-11-25</td><td>B 原始定理</td><td>[Keevash v4](<a href="https://arxiv.org/html/1401.3665v4" rel="nofollow noopener">https://arxiv.org/html/1401.3665v4</a>)</td><td>Theorem 1.4 与 §1.2–1.5 实读；渐近存在、参数未优化</td></tr><tr><td>2026-11-25</td><td>B 引文与社区</td><td>[MO #118545](<a href="https://mathoverflow.net/questions/118545/what-are-the-major-open-problems-in-design-theory-nowaday" rel="nofollow noopener">https://mathoverflow.net/questions/118545/what-are-the-major-open-problems-in-design-theory-nowaday</a>)</td><td>全部答案实读；存在猜想已解，显式高 t 构造仍困难</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>WebSearch 原词 1、4–8、14–16、20–22</td><td>高 t、具体构造、2025/2026 进展交叉；无小界内见证</td></tr><tr><td>2026-11-25</td><td>D 预印本与全文</td><td>[Keevash HTML](<a href="https://arxiv.org/html/1401.3665v4" rel="nofollow noopener">https://arxiv.org/html/1401.3665v4</a>)</td><td>精确核对 Theorem 1.4；无 n&lt;200 的具名结果</td></tr><tr><td>2026-11-25</td><td>E 通用与多语言</td><td>WebSearch 原词 11–13、17–18</td><td>中英文原句、AI 解决说法；仅见原题重述</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>[MO #118545](<a href="https://mathoverflow.net/questions/118545/what-are-the-major-open-problems-in-design-theory-nowaday" rel="nofollow noopener">https://mathoverflow.net/questions/118545/what-are-the-major-open-problems-in-design-theory-nowaday</a>)；MSE #263131</td><td>MO 实读；MSE 403，不冒充已读</td></tr><tr><td>2026-11-25</td><td>G 百科与数据库</td><td>[Wikipedia](<a href="https://en.wikipedia.org/wiki/Steiner_system" rel="nofollow noopener">https://en.wikipedia.org/wiki/Steiner_system</a>)</td><td>全文实读；定义、计数及 t≤5 例子</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[Epoch](<a href="https://epoch.ai/frontiermath/open-problems/large-steiner-systems" rel="nofollow noopener">https://epoch.ai/frontiermath/open-problems/large-steiner-systems</a>)；[Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/SteinerSystem.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/SteinerSystem.lean</a>)</td><td>当前基准与形式化均未解决</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 12、18</td><td>中文检索命中 Epoch 题源转载；无新构造</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>QX-P-001821</code> 与 110 份草稿</td><td>只有更窄的 S(6,9,45) 卡；无本题精确重复</td></tr><tr><td>2026-11-25</td><td>当前状态综合</td><td>[Epoch](<a href="https://epoch.ai/frontiermath/open-problems/large-steiner-systems" rel="nofollow noopener">https://epoch.ai/frontiermath/open-problems/large-steiner-systems</a>)；[Keevash](<a href="https://arxiv.org/html/1401.3665v4" rel="nofollow noopener">https://arxiv.org/html/1401.3665v4</a>)</td><td>渐近存在已证；n&lt;200、t&gt;5 的显式构造仍未找到</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://epoch.ai/frontiermath/open-problems/large-steiner-systems" rel="nofollow noopener">Epoch AI, Large Steiner Systems, FrontierMath: Open Problems（2026；页面与 Prompt 全文实读）</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/SteinerSystem.lean" rel="nofollow noopener">Formal Conjectures: Wikipedia/SteinerSystem.lean（本地全文实读）</a> <span class="muted">（restatement）</span></li><li><a href="https://arxiv.org/html/1401.3665v4" rel="nofollow noopener">Peter Keevash, The existence of designs, arXiv:1401.3665v4（2024 decennial edition；Theorem 1.4 与相关章节实读）</a> <span class="muted">（progress）</span></li><li><a href="https://en.wikipedia.org/wiki/Steiner_system" rel="nofollow noopener">Wikipedia: Steiner system（当前页面全文实读）</a> <span class="muted">（综述）</span></li><li><a href="https://mathoverflow.net/questions/118545/what-are-the-major-open-problems-in-design-theory-nowaday" rel="nofollow noopener">MathOverflow #118545, What are the major open problems in design theory nowaday?（全部答案实读）</a> <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002403（card_rev 1fc78d1336f5797c），https://www.qunxingmath.org/p/QX-P-002403/</p>
+  <p><a href="/p/QX-P-002403.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002403.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/ba717bfcad2a03ad31ec5c2c659851d8fd275982/problems/002/QX-P-002403.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

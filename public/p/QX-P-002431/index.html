@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002431 完美长方体是否存在 · 群星题库</title>
+<meta name="description" content="Does a perfect cuboid exist?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002431/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002431.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002431.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002431</span></nav>
+<h1 class="ptitle">完美长方体是否存在</h1>
+<p class="ptitle-en" lang="en">Does a perfect cuboid exist?</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip legend">传奇</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-24</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-24 · 找到部分结果 · 查了 11 个来源</dd><dt>MSC</dt><dd><span class="mono">11D41</span></dd><dt>提出者</dt><dd>经典问题；最早提出者不详，欧拉曾系统研究</dd><dt>首次发表</dt><dd>18 世纪已有研究；Leech (1977) 与 Guy《Unsolved Problems in Number Theory》D18 给出现代表述</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p><strong>完美长方体</strong>（perfect cuboid，又称 perfect Euler brick）是指三条棱、三条面对角线和体对角线长度全部为正整数的长方体。</p>
+<p>问：是否存在正整数 $a,b,c,d,e,f,g$，使得<br>$$<br>a^2+b^2=d^2,\qquad<br>a^2+c^2=e^2,\qquad<br>b^2+c^2=f^2,\qquad<br>a^2+b^2+c^2=g^2?<br>$$</p>
+<p>等价地，问四个正整数<br>$$<br>a^2+b^2,\quad a^2+c^2,\quad b^2+c^2,\quad a^2+b^2+c^2<br>$$<br>能否同时为完全平方数。</p>
+<p>只要求前三个平方条件成立时，称为 <strong>Euler 砖</strong>；这样的长方体有无穷多组。额外要求体对角线也为整数，就构成完美长方体问题。</p>
+<h3>形式化表述</h3>
+<p>formal-conjectures 将三条棱取为正自然数 <code>ℕ+</code>，定义<br>```lean<br>def IsPerfectCuboid (a b c : ℕ+) : Prop :=<br>IsEulerBrick a b c ∧ IsSquare (a^2 + b^2 + c^2)<br>```<br>并把存在性表述为<br>$$<br>\exists a\,b\,c:\mathbb N^+,\ \operatorname{IsPerfectCuboid}(a,b,c).<br>$$</p>
+<h2>原文摘录</h2>
+<blockquote><p>A perfect cuboid is a cuboid having integer side lengths, integer face diagonals … and an integer space diagonal.</p>
+<p>No perfect cuboids are known despite an exhaustive search …</p>
+<p>—— Eric W. Weisstein，*MathWorld: Perfect Cuboid*，2026-11-24 读取，[链接](<a href="https://mathworld.wolfram.com/PerfectCuboid.html" rel="nofollow noopener">https://mathworld.wolfram.com/PerfectCuboid.html</a>)</p></blockquote>
+<blockquote><p>The result is still a bounded-fiber theorem rather than a proof of the full perfect-cuboid conjecture.</p>
+<p>—— Ricky Cipollini，arXiv:2609.14526 摘要，2026-09-13，[链接](<a href="https://arxiv.org/abs/2609.14526" rel="nofollow noopener">https://arxiv.org/abs/2609.14526</a>)</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li>[EXISTENCE OF EULER BRICKS] 最小 Euler 砖的棱长为 $(44,117,240)$，面对角线为 $(125,244,267)$，但 $$ 44^2+117^2+240^2=73225 $$ 不是平方数。Euler 砖存在不代表完美长方体存在。</li><li>[SEARCH] 经典穷举给出若存在则最小棱大于 $5\times10^{11}$、奇数棱大于 $2.5\times10^{13}$、体对角线大于 $9\times10^{15}$ 等必要条件。这些是有限范围搜索，不是全局证明。</li><li>[PARITY] 本原 Euler 砖恰有一条奇数棱；若完美长方体存在，三条面对角线中恰有一条为奇数，体对角线为奇数，另两条棱分别被 4 与 16 整除。模运算还可强制若干小素因子出现，但尚不能拼成全局矛盾。</li><li>[2026 MASTER-TUPLE REDUCTION] Peschmann 声称每个本原 Euler 砖都来自标准四参数 $(a,b,m,n)$ 构造。固定 $(m,n)$ 后，仍需排除无界的 $(a,b)$ 特化，所以“排除一个纤维”不是只检查有限个长方体。</li><li>[2026 BOUNDED FIBERS] Peschmann 的 arXiv:2604.28072 排除 $\max(m,n)\le100$ 的 2,040 个互素异奇偶参数对中的 1,072 个；Cipollini 的 arXiv:2609.14526 声称再排除剩余 968 个。若两篇预印本的证明均成立，则有界范围 $$ \mathcal P_{100}=\{(m,n):2\le m\le100,\ 1\le n&lt;m,\ \gcd(m,n)=1,\ m-n\text{ 为奇数}\} $$ 的全部 2,040 个纤维都被排除。Cipollini 明确说这不覆盖任意 $(m,n)$。</li><li>[CUBOID CONJECTURES] 三个 cuboid 猜想分别断言三类多项式不可约；三者合起来可推出完美长方体不存在，但它们与主问题不等价。formal-conjectures 快照已把第一猜想标为 solved；Asiryan 2026 的 arXiv:2610.25319 声称完成第二猜想，本次未独立复现其 Chabauty–Coleman 证书；第三猜想在所查快照中仍开放。</li><li>[RANK OBSTRUCTION] Asiryan 的 arXiv:2610.10643 声称修复 Paulsen–West 的秩证明缺口：正完美长方体配置生成的子群秩至少为 2。这是存在时的必要条件，并不排除所有配置。</li><li>[FINITE PER INVARIANT] Asiryan 的 arXiv:2609.38650 声称对每个平方类不变量 $N=\operatorname{sf}(abcg/2)$，相似类数 $M(N)$ 有限，并证明加权零密度。该文 Comments 明确不声称完美长方体不存在，也不声称所有参数上的总数有限。</li><li>[FORMAL STATUS] 固定提交 <code>6bc2f749</code> 的 <code>perfect_euler_brick_existence</code> 仍为 <code>research open + sorry</code>。这是形式化项目状态，不是社区共识证明。</li></ul>
+<h2>边界与约定</h2>
+<ul><li>本题要求<strong>全部七个长度同时为正整数</strong>；不是只要求体对角线和两条面对角线为整数。</li><li>只要求三条棱相等的对象是完美立方体问题，与 perfect cuboid 不同。</li><li>整数解与有理数解等价：四个方程均为齐次方程，清除分母即可互相转换。</li><li>若存在非本原解，除以 $\gcd(a,b,c)$ 得到本原解；反之本原解乘以任意正整数仍为解。因此只研究本原解不失一般性。</li><li>棱的顺序不重要；交换 $b,c$ 只会重排面对角线。</li><li>Saunderson 型 Euler 砖、第二 cuboid 多项式对应子族、$\max(m,n)\le100$ 的纤维，都是真子族。</li><li>“所有有界纤维已排除”不等于“所有长方体已排除”；固定纤维内 $(a,b)$ 仍可无界变化。</li><li>完美平行六面体已知存在，但不要求所有角为直角，因此不是本题的反例。</li><li>数值搜索、启发式、有限个纤维的证书与全局不存在性证明必须分开记录。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>[BOUNDED, NOT GLOBAL] Peschmann–Cipollini 两篇 2026 预印本若通过独立核验，将排除全部 2,040 个 $m\le100$ 的纤维。Cipollini 明确写道：“nothing here forces an arbitrary master tuple to have $m\le100$”。</li><li>[SECOND CONJECTURE] Asiryan 的 arXiv:2610.25319v2（2026-11-04）声称证明第二 cuboid 多项式不可约。即使该证明被接受，也只剩第一、第二猜想成立；还需第三猜想才能按 Sharipov 路线排除全部完美长方体。</li><li>[NOT A CLAIM] Yelle 的 arXiv:2602.00239v2 虽然在摘要页使用“obstruction”“infinite descent”等强烈措辞，但正文 Introduction 与 Conclusion 都明确不声称解决全局存在性问题。</li><li>[CONCRETE FLAW IN A SELF-POSTED PROOF] 中国科学院“科学智慧火花”2025-08-27 的投稿声称完全解决。其 Lemma 3.12 断言：若 $$ W^2=(p^2+q^2)(r^2+s^2), $$ 则两个因子必须分别为平方。取 $$ (p,q,r,s)=(8,1,7,4), $$ 则 $$ p^2+q^2=8^2+1^2=65=4^2+7^2=r^2+s^2, $$ 从而乘积为 $65^2$，但 $65$ 不是平方数。这直接反驳该引理所声称的必要性；因此该自述证明不能作为解决证据。</li><li>[COMMUNITY STATUS] MathOverflow 的 9 条精确短语结果与 Math StackExchange 的 17 条结果仍以开放问题重述、部分参数方法和个人证明尝试为主，未发现被接受的全局证明。</li><li>截至 2026-11-24，本次检索没有找到完美长方体的明确实例，也没有找到覆盖全部 $(m,n)$ 或全部 Euler 砖的全局不存在性证明。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-24</td><td>A 经典题源</td><td><a href="https://mathworld.wolfram.com/PerfectCuboid.html" rel="nofollow noopener">https://mathworld.wolfram.com/PerfectCuboid.html</a></td><td>给出定义并称没有已知完美长方体；页面列经典书目。</td></tr><tr><td>2026-11-24</td><td>A 综述状态</td><td><a href="https://en.wikipedia.org/wiki/Euler_brick#Perfect_cuboid" rel="nofollow noopener">https://en.wikipedia.org/wiki/Euler_brick#Perfect_cuboid</a></td><td>仍标 Unsolved problem；最后编辑 2026-07-07，早于 9–11 月新预印本。</td></tr><tr><td>2026-11-24</td><td>B 最新有界结果</td><td><a href="https://arxiv.org/abs/2609.14526" rel="nofollow noopener">https://arxiv.org/abs/2609.14526</a></td><td>排除剩余 968 纤维，但明确不证明全局猜想。</td></tr><tr><td>2026-11-24</td><td>B 前一半有界结果</td><td><a href="https://arxiv.org/abs/2604.28072" rel="nofollow noopener">https://arxiv.org/abs/2604.28072</a></td><td>1,072/2,040 个纤维；Section 5.1 明列 968 个遗漏及 $m&gt;100$ 未处理。</td></tr><tr><td>2026-11-24</td><td>B 最新 cuboid 子族</td><td><a href="https://arxiv.org/abs/2610.25319" rel="nofollow noopener">https://arxiv.org/abs/2610.25319</a></td><td>声称第二 cuboid 猜想；不是全局存在问题判定。</td></tr><tr><td>2026-11-24</td><td>B 明确非解决声明</td><td><a href="https://arxiv.org/abs/2609.38650" rel="nofollow noopener">https://arxiv.org/abs/2609.38650</a></td><td>Comments 明说不证明不存在性，也不证明总数有限。</td></tr><tr><td>2026-11-24</td><td>B arXiv 全字段</td><td><a href="https://arxiv.org/search/?query=%22perfect+cuboid%22&amp;searchtype=all&amp;abstracts=show&amp;order=-announced_date_first&amp;size=50" rel="nofollow noopener">https://arxiv.org/search/?query=%22perfect+cuboid%22&amp;searchtype=all&amp;abstracts=show&amp;order=-announced_date_first&amp;size=50</a></td><td>42 条结果；2026 年最新条目为有界纤维、秩条件、逐平方类有限性与第二 cuboid 猜想。</td></tr><tr><td>2026-11-24</td><td>C 形式化状态</td><td><a href="https://github.com/google-deepmind/formal-conjectures/blob/6bc2f7490a49cc0258406ffb675483f4318a04b5/FormalConjectures/Wikipedia/EulerBrick.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/6bc2f7490a49cc0258406ffb675483f4318a04b5/FormalConjectures/Wikipedia/EulerBrick.lean</a></td><td><code>perfect_euler_brick_existence</code> 为 research open + sorry。</td></tr><tr><td>2026-11-24</td><td>D MathOverflow</td><td><a href="https://mathoverflow.net/search?q=%22perfect+cuboid%22" rel="nofollow noopener">https://mathoverflow.net/search?q=%22perfect+cuboid%22</a></td><td>9 条结果，未见社区接受的全局解决。</td></tr><tr><td>2026-11-24</td><td>D Math StackExchange</td><td><a href="https://math.stackexchange.com/search?q=%22perfect+cuboid%22" rel="nofollow noopener">https://math.stackexchange.com/search?q=%22perfect+cuboid%22</a></td><td>17 条结果；含旧证明尝试，未形成可靠解决证据。</td></tr><tr><td>2026-11-24</td><td>E 自述证明核对</td><td><a href="https://idea.cas.cn/zhhh/sxwlhxytw/sx/info/2025/552712.html" rel="nofollow noopener">https://idea.cas.cn/zhhh/sxwlhxytw/sx/info/2025/552712.html</a></td><td>Lemma 3.12 被 $65=1^2+8^2=4^2+7^2$ 反驳；评论需专家审议。</td></tr><tr><td>2026-11-24</td><td>F 题库去重</td><td><a href="https://github.com/qunxingmath-org/qunxing-data/tree/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems" rel="nofollow noopener">https://github.com/qunxingmath-org/qunxing-data/tree/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems</a></td><td>无全局存在性同题；仅有第二、第三 cuboid 多项式相邻卡片。</td></tr><tr><td>2026-11-24</td><td>工具限制</td><td><a href="https://api.openalex.org/works?search=perfect%20cuboid&amp;per-page=10" rel="nofollow noopener">https://api.openalex.org/works?search=perfect%20cuboid&amp;per-page=10</a></td><td>OpenAlex 返回 429；未把不可读结果用作证据。</td></tr><tr><td>2026-11-24</td><td>工具限制</td><td><a href="https://github.com/qunxingmath-org/qunxing-data/tree/main/.github/scripts" rel="nofollow noopener">https://github.com/qunxingmath-org/qunxing-data/tree/main/.github/scripts</a></td><td>未找到附件所述 make_cards.py；本卡使用 card-draft/1 模板与本地结构校验。</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://mathworld.wolfram.com/PerfectCuboid.html" rel="nofollow noopener">Eric W. Weisstein, Perfect Cuboid, MathWorld（经典问题表述与定义）</a> <span class="muted">（原始出处）</span></li><li><a href="https://doi.org/10.2307/2320014" rel="nofollow noopener">John Leech, The Rational Cuboid Revisited, American Mathematical Monthly 84 (1977), 518–533</a> <span class="muted">（综述）</span></li><li><a href="https://arxiv.org/abs/2604.28072" rel="nofollow noopener">René Peschmann, A torsion-intersection proof of perfect-cuboid nonexistence on 1,072 explicit master-tuple fibers, 2026</a> <span class="muted">（progress）</span></li><li><a href="https://arxiv.org/abs/2609.14526" rel="nofollow noopener">Ricky Cipollini, Elimination of René Peschmann’s 968 Remaining Hard Fibers for the Perfect Cuboid Problem, 2026</a> <span class="muted">（progress）</span></li><li><a href="https://arxiv.org/abs/2604.09328" rel="nofollow noopener">René Peschmann, Quartic reductions and elliptic obstructions for perfect Euler bricks, 2026</a> <span class="muted">（progress）</span></li><li><a href="https://arxiv.org/abs/2610.25319" rel="nofollow noopener">Valery Asiryan, Irreducibility of the Cuboid Polynomial Q_{p,q}(t) via the Rank-One Chabauty-Coleman Method, v2, 2026</a> <span class="muted">（progress）</span></li><li><a href="https://arxiv.org/abs/2610.10643" rel="nofollow noopener">Valery Asiryan, On the Rank Condition for Perfect Cuboids, 2026</a> <span class="muted">（progress）</span></li><li><a href="https://arxiv.org/abs/2609.38650" rel="nofollow noopener">Valery Asiryan, Finiteness in Square Classes and Weighted Zero Density of Perfect Cuboids, 2026</a> <span class="muted">（progress）</span></li><li><a href="https://arxiv.org/html/2602.00239v2" rel="nofollow noopener">Stéphane Yelle, An Elementary Obstruction to the Existence of a Perfect Cuboid, v2, 2026</a> <span class="muted">（progress）</span></li><li><a href="https://idea.cas.cn/zhhh/sxwlhxytw/sx/info/2025/552712.html" rel="nofollow noopener">中国科学院科学智慧火花：完美长方体不存在的一种证明方法，投稿人 Cf，2025-08-27</a> <span class="muted">（查新依据）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/6bc2f7490a49cc0258406ffb675483f4318a04b5/FormalConjectures/Wikipedia/EulerBrick.lean" rel="nofollow noopener">formal-conjectures：Wikipedia/EulerBrick.lean（固定提交 6bc2f749）</a> <span class="muted">（restatement）</span></li><li><a href="https://arxiv.org/src/2604.28072v1/anc/proven_fibers.csv" rel="nofollow noopener">Peschmann 论文附件：proven_fibers.csv（1,072 个纤维）</a> <span class="muted">（database）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002431（card_rev 09f2d8ae239d4dc3），https://www.qunxingmath.org/p/QX-P-002431/</p>
+  <p><a href="/p/QX-P-002431.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002431.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/ba717bfcad2a03ad31ec5c2c659851d8fd275982/problems/002/QX-P-002431.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

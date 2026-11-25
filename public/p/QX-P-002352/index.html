@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002352 Irving–Leather 构造是否在二的每个幂次达到稳定匹配数最大值 · 群星题库</title>
+<meta name="description" content="Does the Irving–Leather construction maximize stable matchings at every power of two?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002352/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002352.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002352.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/combinatorics/">组合</a> › <span class="mono">QX-P-002352</span></nav>
+<h1 class="ptitle">Irving–Leather 构造是否在二的每个幂次达到稳定匹配数最大值</h1>
+<p class="ptitle-en" lang="en">Does the Irving–Leather construction maximize stable matchings at every power of two?</p>
+<p class="chips"><span class="chip">组合</span><span class="chip">证明</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到部分结果 · 查了 8 个来源</dd><dt>MSC</dt><dd><span class="mono">05C70</span></dd><dt>提出者</dt><dd>Robert W. Irving、Paul Leather（Thurber §2 归属）</dd><dt>首次发表</dt><dd>构造及计数复杂性见 Irving–Leather 1986；Thurber 2002 §2 重述猜想</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>设 $M(n)$ 为稳定婚姻问题的最大可能稳定匹配数：两侧各有 $n$ 个参与者，每人对另一侧全部 $n$ 个参与者给出完整、严格、无平局的偏好序；匹配是两侧之间的双射，且不存在一对未配对者彼此都更偏爱对方胜过当前伴侣。</p>
+<p>定义</p>
+<p>$$<br>a_0=1,\qquad a_1=2,\qquad a_{k+2}=3a_{k+1}^{2}-2a_k^{4}\quad(k\ge0).<br>$$</p>
+<p>问：是否对每个整数 $k\ge0$ 都有</p>
+<p>$$<br>M(2^k)=a_k?<br>$$</p>
+<p>即 Irving–Leather 构造在每一个二的幂次规模是否都达到最大稳定匹配数。</p>
+<h3>形式化表述</h3>
+<p><code>irving_leather_pow_two</code>：</p>
+<p>$$<br>\forall k\in\mathbb N,\quad \operatorname{maxStableMatchings}(2^k)=\operatorname{irvingLeatherCount}(k).<br>$$</p>
+<h2>原文摘录</h2>
+<blockquote><p>Then $b_n$ gives a lower bound on the maximum number of stable matches in a $2^n\times2^n$ instance. For a justification of this recurrence, see [Thu02], appendix A.</p>
+<p>—— Clay Thomas，*A recurrence giving a lower bound for stable matchings*，p. 1，2019-08-09，[PDF](<a href="https://oeis.org/A005154/a005154.pdf" rel="nofollow noopener">https://oeis.org/A005154/a005154.pdf</a>)。这里 $b_0=1,b_1=2,b_n=3b_{n-1}^2-2b_{n-2}^4$；原文明确称其为下界，而非最大性结论。</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li><strong>精确下界构造：</strong>Thomas 实读确认，上述递推给出 $M(2^k)\ge a_k$；数列开头为 $1,2,10,268,195472,\ldots$。[Thomas p. 1](<a href="https://oeis.org/A005154/a005154.pdf" rel="nofollow noopener">https://oeis.org/A005154/a005154.pdf</a>)</li><li><strong>下界的增长：</strong>Thomas Proposition 1 证明 $$a_k\sim r\,s^{2^k},\qquad r=\frac{\sqrt3-1}{2},\quad s\approx2.280142.$$ 因此 $M(n)^{1/n}$ 在 $n=2^k$ 上至少渐近趋于 $s$。[Thomas](<a href="https://oeis.org/A005154/a005154.pdf" rel="nofollow noopener">https://oeis.org/A005154/a005154.pdf</a>)</li><li><strong>一般上界：</strong>Karlin–Gharan–Weber 证明存在统一常数 $c$，使所有 $n$ 都有 $M(n)\le c^n$；这改进了此前的 $2^{n\log n-O(n)}$ 上界，但没有确定最优常数，也没有证明 $M(2^k)=a_k$。[arXiv:1711.01032](<a href="https://arxiv.org/abs/1711.01032" rel="nofollow noopener">https://arxiv.org/abs/1711.01032</a>)</li><li><strong>复杂度结果不解决极值问题：</strong>给定实例计数稳定匹配是 #P-complete；这是 Irving–Leather 1986 的著名结果，但不等于求所有实例中的最大数量，更不证明某个构造达到最大值。</li><li><strong>当前形式化状态：</strong><code>irving_leather_pow_two</code> 在本地 Lean 中为 <code>research open/sorry</code>；较弱增长率等式另列为 <code>irving_leather_growth_rate</code>，也 open/sorry。</li><li><strong>OEIS 状态：</strong>A005154 的 <code>approved</code> 是数列条目审核状态，不是“每个 $2^k$ 处均为最大值”的证明状态。[OEIS](<a href="https://oeis.org/A005154" rel="nofollow noopener">https://oeis.org/A005154</a>)</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>问题类型：</strong>比较的是同一实例中稳定匹配的<strong>数量</strong>，不是最大权稳定匹配，也不是最大基数稳定匹配。</li><li><strong>严格完整偏好：</strong>所有人对另一侧全部参与者排序，不允许平局、不可接受对象或不完整列表。SMTI/MAX-SMTI 是不同模型。</li><li><strong>稳定婚姻不是稳定室友：</strong>婚姻问题有两个等大侧；室友问题只有一个参与者池，甚至可能没有稳定匹配。</li><li><strong>计数约定：</strong>双射按配对整体计数，不按求婚顺序或算法运行路径重复计数；$n=0$ 的空双射对应 $a_0=1$。</li><li><strong>逐点等式强于增长等式。</strong>共同极限 $\lim M(n)^{1/n}=\lim a_k^{1/2^k}$ 不自动给出每个 $k$ 的 $M(2^k)=a_k$。</li><li><strong>小项不等于全证。</strong>验证若干小的 $k$ 或计算若干序列项，不能替代对所有 $k$ 的上界证明。</li><li><strong>查重。</strong>已检索 70 份草稿和实时题库的 <code>IrvingLeather</code>、<code>irving_leather</code>、<code>irvingLeatherCount</code>、A005154、Thurber、两个 DOI 与稳定匹配关键词，未发现同一精确命题。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] Irving–Leather 构造：</strong>给出每个 $2^k$ 规模的下界 $a_k$；OEIS 与 Thomas 均明确按下界表述。</li><li><strong>[PARTIAL] Thomas 2019：</strong>严格证明递推序列的渐近式，常数 $s\approx2.280142$；不证明最大性。</li><li><strong>[PARTIAL] Karlin–Gharan–Weber 2017/2018：</strong>证明一般简单指数上界 $M(n)\le c^n$；常数与下界底数尚未匹配。</li><li><strong>[CLAIM] 未定位到逐点最大性的证明或反例。</strong>原题名、作者、DOI、Lean 名、2024–2026 与 A005154 检索未找到可信的一般解。</li><li><strong>访问限制：</strong>Thomas PDF、OEIS、Lean、arXiv 摘要、Wikipedia 与三套书目 API 已实读；Irving–Leather 1986 SIAM 正文 403，Thurber 2002 的 CORE/ScienceDirect 403、浏览器验证码、Elsevier API 无正文，故其 §2/Appendix A 未取得。Google Scholar、MathSciNet 权限及十类深查未完成。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 精确题源</td><td>[Formal Conjectures](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/IrvingLeatherStableMatchings.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/IrvingLeatherStableMatchings.lean</a>)</td><td>本地 Lean 实读；<code>irving_leather_pow_two</code> open/sorry</td></tr><tr><td>2026-11-25</td><td>A 原始构造</td><td>[Irving–Leather DOI](<a href="https://doi.org/10.1137/0215048" rel="nofollow noopener">https://doi.org/10.1137/0215048</a>)</td><td>DOI 元数据核对；SIAM 正文 403，未冒充已读</td></tr><tr><td>2026-11-25</td><td>A Thurber</td><td>[Thurber DOI](<a href="https://doi.org/10.1016/S0012-365X(01" rel="nofollow noopener">https://doi.org/10.1016/S0012-365X(01</a>)00194-7)</td><td>元数据确认 2002, pp. 195–219；正文未取得</td></tr><tr><td>2026-11-25</td><td>B 引文追踪</td><td>[Thomas](<a href="https://oeis.org/A005154/a005154.pdf" rel="nofollow noopener">https://oeis.org/A005154/a005154.pdf</a>)；[OEIS](<a href="https://oeis.org/A005154" rel="nofollow noopener">https://oeis.org/A005154</a>)</td><td>实读递推、下界解释、Thurber Appendix A 与 Irving–Leather p. 657 的出处</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>WebSearch 原词 1–26</td><td>DOI、作者、原句、上下界、Lean 名与中英文组合；无逐点最大性一般证明</td></tr><tr><td>2026-11-25</td><td>D 预印本</td><td>[arXiv:1711.01032](<a href="https://arxiv.org/abs/1711.01032" rel="nofollow noopener">https://arxiv.org/abs/1711.01032</a>)</td><td>实读简单指数上界；未确定最优底数或解决精确等式</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–26</td><td>大量同名人物/匹配噪声已排除；未找到反例</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>WebSearch 原词 1–26</td><td>未定位直接解决该猜想的 MO/MSE 主帖；不声称全量审计</td></tr><tr><td>2026-11-25</td><td>G 书目与数列</td><td>[OEIS A005154](<a href="https://oeis.org/A005154" rel="nofollow noopener">https://oeis.org/A005154</a>)</td><td>全文实读；COMMENTS 只说下界，approved 不表示猜想已证</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[Formal Conjectures](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/IrvingLeatherStableMatchings.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/IrvingLeatherStableMatchings.lean</a>)</td><td>未发现可信 AI 证明；主命题仍 sorry</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 8</td><td>中文检索仅得稳定婚姻背景与同名噪声</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code></td><td>精确 Lean 名、A005154、DOI、Thurber 与对象关键词无重复</td></tr><tr><td>2026-11-25</td><td>当前状态交叉核对</td><td>[Thomas 2019](<a href="https://oeis.org/A005154/a005154.pdf" rel="nofollow noopener">https://oeis.org/A005154/a005154.pdf</a>)；[OEIS 2026](<a href="https://oeis.org/A005154" rel="nofollow noopener">https://oeis.org/A005154</a>)；[Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/IrvingLeatherStableMatchings.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/IrvingLeatherStableMatchings.lean</a>)</td><td>下界与一般上界已知，精确最大性未定位到解；status_strength=weak</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://doi.org/10.1137/0215048" rel="nofollow noopener">R. W. Irving, P. Leather, The complexity of counting stable marriages, SIAM J. Comput. 15(3), 655–667 (1986)（DOI 元数据核对；正文 403）</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/IrvingLeatherStableMatchings.lean" rel="nofollow noopener">Formal Conjectures: Paper/IrvingLeatherStableMatchings.lean（本地实读）</a> <span class="muted">（restatement）</span></li><li><a href="https://oeis.org/A005154/a005154.pdf" rel="nofollow noopener">Clay Thomas, A recurrence giving a lower bound for stable matchings (2019-08-09；PDF 全文实读)</a> <span class="muted">（progress）</span></li><li><a href="https://arxiv.org/abs/1711.01032" rel="nofollow noopener">Karlin, Gharan, Weber, A Simply Exponential Upper Bound on the Maximum Number of Stable Matchings, arXiv:1711.01032v2（摘要实读）</a> <span class="muted">（progress）</span></li><li><a href="https://oeis.org/A005154" rel="nofollow noopener">OEIS A005154（全文实读；2026-11-24 修改）</a> <span class="muted">（database）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002352（card_rev 8bc6d0d8f9176cef），https://www.qunxingmath.org/p/QX-P-002352/</p>
+  <p><a href="/p/QX-P-002352.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002352.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/ba717bfcad2a03ad31ec5c2c659851d8fd275982/problems/002/QX-P-002352.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

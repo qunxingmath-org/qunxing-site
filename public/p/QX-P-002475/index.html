@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002475 幂塔对角和是否只有 43 一个素数值 · 群星题库</title>
+<meta name="description" content="Is 43 the only prime of the form tetration(b,a) + tetration(a,b)?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002475/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002475.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002475.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002475</span></nav>
+<h1 class="ptitle">幂塔对角和是否只有 43 一个素数值</h1>
+<p class="ptitle-en" lang="en">Is 43 the only prime of the form tetration(b,a) + tetration(a,b)?</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 证据较弱 · 截至 2026-11-24</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-24 · 在所查范围内没找到相同结果 · 查了 11 个来源</dd><dt>MSC</dt><dd><span class="mono">11A41</span></dd><dt>提出者</dt><dd>Marco Ripà</dd><dt>首次发表</dt><dd>2026-08-11（OEIS A393643）；2026-08-14（MathOverflow #514251）</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>对整数 $a\ge2$、$h\ge1$，递推定义整数幂塔<br>$$<br>T_1(a)=a,\qquad T_{h+1}(a)=a^{T_h(a)}.<br>$$<br>记 ${}^h a=T_h(a)$。考虑<br>$$<br>S(a,b)={}^b a+{}^a b,\qquad a,b\ge2.<br>$$</p>
+<p><strong>问题：</strong>$43={}^3 2+{}^2 3=16+27$ 是否是 $S(a,b)$ 的唯一素数值？等价地，是否存在 $a,b\ge2$ 使<br>$$<br>{}^b a+{}^a b\ne43<br>$$<br>且 ${}^b a+{}^a b$ 为素数？</p>
+<h3>形式化表述</h3>
+<p>$$<br>\forall a,b\in\mathbb Z,\ a,b\ge2:\quad<br>\operatorname{Prime}({}^b a+{}^a b)<br>\Longrightarrow {}^b a+{}^a b=43.<br>$$</p>
+<h2>原文摘录</h2>
+<blockquote><p>$a(2)$ is the only known prime of the form $x\mathbin{\hat{\hat{}}}y+y\mathbin{\hat{\hat{}}}x$ ($x,y\ge2$), and it is unknown whether another such prime exists.</p>
+<p>—— Marco Ripà，OEIS A393643，2026-08-11，[链接](<a href="https://oeis.org/A393643" rel="nofollow noopener">https://oeis.org/A393643</a>)</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li>已知 $$ {}^3 2=2^{2^2}=16,\qquad {}^2 3=3^3=27, $$ 所以 $S(2,3)=S(3,2)=43$ 为素数。</li><li>[OEIS A393643](<a href="https://oeis.org/A393643" rel="nofollow noopener">https://oeis.org/A393643</a>) 列出一般四参数和 $x\uparrow\uparrow y+w\uparrow\uparrow z$ 的若干素数，但其 COMMENTS 明确区分：$43$ 是对角形式 $x\uparrow\uparrow y+y\uparrow\uparrow x$ 的唯一已知素数，是否还有另一个未知。一般四参数数列中的 $31,283,65563$ 等不能作为本题反例。</li><li>奇偶性给出必要条件：若 $a,b$ 同为偶数，则 $S(a,b)$ 为大于 $2$ 的偶数；若同为奇数，和也为偶数。因此新的素数例子必须满足 $a,b$ 奇偶性相反。</li><li>本次用 PARI/GP 严格复核了 $(a,b)=(2,5)$： $$ S(2,5)={}^5 2+{}^2 5=2^{65536}+25 $$ 有 $19729$ 位十进制数字，<code>isprime</code> 返回 $0$，故为合数。这不是大规模搜索，也不能证明唯一性。</li><li>[MathOverflow 已采纳回答](<a href="https://mathoverflow.net/questions/514251/are-there-infinitely-many-primes-of-the-form-hspace1mm-b-a-pm-a-b-w" rel="nofollow noopener">https://mathoverflow.net/questions/514251/are-there-infinitely-many-primes-of-the-form-hspace1mm-b-a-pm-a-b-w</a>) 给出“素数值很可能有限”的启发式：固定 $a$ 时，$b=2,\dots,a$ 中最大的倒数素性概率约为 $1/\log({}^a2)\approx1/{}^{a-1}2$，故期望总和被 $$ \sum_{a\ge2}\frac{a}{{}^{a-1}2}&lt;\infty $$ 控制。这里使用素数定理的 $1/\log N$ 启发式，没有处理各幂塔和之间的依赖性，不是证明。</li><li>原帖评论称小范围计算只找到 $43$ 和差形式的 $11$，但没有给出完整代码、精确高度范围或可复算记录；本次不把该说法当作独立验证。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>只收和形式：</strong>$S(a,b)={}^b a+{}^a b$。差形式 ${}^b a-{}^a b$ 是另一题，已知 $11$，不在本卡结论范围内。</li><li><strong>存在性问题：</strong>本卡问“除 $43$ 外是否还有一个素数值”，不是直接问“是否有无穷多个”。若找到另一个素数，本题答案为否；若证明没有，则答案为是。</li><li><strong>按值计数：</strong>$S(a,b)=S(b,a)$，所以交换 $a,b$ 不产生新值。题面不要求列举所有产生 $43$ 的参数对。</li><li><strong>参数范围：</strong>$a,b\ge2$，幂塔高度至少 $2$；不允许 $a=1$ 或高度 $1$ 的退化情况。</li><li><strong>严格素性：</strong>解决所需的反例必须是可验证的素数，而不是 pseudoprime 或 probable prime；有限搜索不能证明不存在其他例子。</li><li><strong>一般四参数数列：</strong>OEIS A393643 与 A396947 允许两个独立底数和两个独立高度；本题要求两者交叉绑定，不能从一般数列直接读取答案。</li><li><strong>与题库相邻题的区别：</strong>[QX-P-001814](<a href="https://github.com/qunxingmath-org/qunxing-data/blob/main/problems/001/QX-P-001814.text.md" rel="nofollow noopener">https://github.com/qunxingmath-org/qunxing-data/blob/main/problems/001/QX-P-001814.text.md</a>) 研究 $2\uparrow\uparrow\infty$ 的模素数极限，不是有限整数幂塔的和。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><code>[PARTIAL]</code> 已知 $43$；OEIS 的一般四参数计算与本次 $(2,5)$ 合数复核提供有限数据。</li><li><code>[HEURISTIC]</code> 素数定理启发式预计只有有限个素数值，但没有严格化。</li><li><code>[VARIANT]</code> 差形式、一般四参数和/差、幂塔同余速度均为不同问题。</li><li>未找到针对“43 唯一”的 <code>[CLAIM]</code> 未核实解决声明，也未找到 arXiv、Lean 或 AI 成果给出唯一性证明或第二个严格素数例子。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-24</td><td>A 题源本身</td><td><a href="https://oeis.org/A393643" rel="nofollow noopener">https://oeis.org/A393643</a></td><td>读取定义、COMMENTS、EXAMPLE 与程序；明确称 43 为对角和唯一已知素数，另一个是否存在未知。</td></tr><tr><td>2026-11-24</td><td>A 题源本身</td><td><a href="https://mathoverflow.net/questions/514251/are-there-infinitely-many-primes-of-the-form-hspace1mm-b-a-pm-a-b-w" rel="nofollow noopener">https://mathoverflow.net/questions/514251/are-there-infinitely-many-primes-of-the-form-hspace1mm-b-a-pm-a-b-w</a></td><td>完整读取原帖、1 个回答和全部评论；答案为启发式，不是证明。</td></tr><tr><td>2026-11-24</td><td>B 引文追踪</td><td><a href="https://mathoverflow.net/posts/514251/timeline" rel="nofollow noopener">https://mathoverflow.net/posts/514251/timeline</a></td><td>按题号、网址和精确短语检索只找到原帖、OEIS 与第三方镜像；未见后续解答。</td></tr><tr><td>2026-11-24</td><td>C 学术搜索引擎</td><td><a href="https://scholar.google.com/scholar?q=%22Are+there+infinitely+many+primes+of+the+form%22+tetration" rel="nofollow noopener">https://scholar.google.com/scholar?q=%22Are+there+infinitely+many+primes+of+the+form%22+tetration</a></td><td>跳转至 Google 同步/验证页，未能读取结果或被引用列表。</td></tr><tr><td>2026-11-24</td><td>C 学术搜索引擎</td><td><a href="https://api.openalex.org/works?search=Are%20there%20infinitely%20many%20primes%20of%20the%20form%20tetration%20a%20b%20plus%20minus%20b%20a&amp;per-page=10&amp;select=id,title,publication_year,doi" rel="nofollow noopener">https://api.openalex.org/works?search=Are%20there%20infinitely%20many%20primes%20of%20the%20form%20tetration%20a%20b%20plus%20minus%20b%20a&amp;per-page=10&amp;select=id,title,publication_year,doi</a></td><td>返回 4 条记录，均为幂塔冻结位、同余速度或无关会议论文，没有本卡命题。</td></tr><tr><td>2026-11-24</td><td>D 预印本和全文</td><td><a href="https://export.arxiv.org/api/query?search_query=all:%22tetration%22+AND+all:%22infinitely+many+primes%22&amp;start=0&amp;max_results=10" rel="nofollow noopener">https://export.arxiv.org/api/query?search_query=all:%22tetration%22+AND+all:%22infinitely+many+primes%22&amp;start=0&amp;max_results=10</a></td><td>返回 2 条同余速度论文；摘要均不处理幂塔对角和的素性。另一精确查询触发 429。</td></tr><tr><td>2026-11-24</td><td>D 预印本和全文</td><td><a href="https://arxiv.org/abs/2611.10018" rel="nofollow noopener">https://arxiv.org/abs/2611.10018</a></td><td>读取 API 摘要；证明某些素数底数同余速度无穷性，与本题无关。</td></tr><tr><td>2026-11-24</td><td>E 通用搜索引擎</td><td><a href="https://www.google.com/" rel="nofollow noopener">https://www.google.com/</a></td><td>WebSearch 用精确短语、题号、解决/反例词及中文词检索；有效结果主要指向 MO、OEIS 和一般幂塔背景。</td></tr><tr><td>2026-11-24</td><td>F 问答和社区</td><td><a href="https://math.stackexchange.com/" rel="nofollow noopener">https://math.stackexchange.com/</a></td><td>精确对角和短语未发现同题解答；Reddit 检索无同题线索。</td></tr><tr><td>2026-11-24</td><td>G 问题集和数据库</td><td><a href="https://oeis.org/A396947" rel="nofollow noopener">https://oeis.org/A396947</a></td><td>读取差形式数列；其定义与注释均不声称解决对角和唯一性。</td></tr><tr><td>2026-11-24</td><td>H AI 成果和形式化</td><td><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures</a></td><td>仓库树未找到 tetration 或 A393643 条目；没有本题形式化或解决记录。</td></tr><tr><td>2026-11-24</td><td>J 群星题库</td><td><a href="https://github.com/qunxingmath-org/qunxing-data" rel="nofollow noopener">https://github.com/qunxingmath-org/qunxing-data</a></td><td>本地 2228 张卡按题号、OEIS 编号、tetration、幂塔、43 等全文检索；无精确同题，已区分 QX-P-001814。</td></tr></tbody></table></div>
+<p><strong>查新结论：</strong>在 2026-11-24 实际完成并记录的基础检索范围内，没有找到证明 $43$ 唯一或给出第二个素数值的论文、回答或可核验成果。Google Scholar 未能读取，部分 arXiv 请求触发 429；因此状态强度为 <code>weak</code>，不能写成“已确认开放”。</p>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://oeis.org/A393643" rel="nofollow noopener">Marco Ripà, OEIS A393643, 2026-08-11；COMMENTS 提出 43 是否为 x^^y+y^^x 唯一已知素数值</a> <span class="muted">（原始出处）</span></li><li><a href="https://mathoverflow.net/questions/514251/are-there-infinitely-many-primes-of-the-form-hspace1mm-b-a-pm-a-b-w" rel="nofollow noopener">Marco Ripà, Are there infinitely many primes of the form ^b a ± ^a b?, MathOverflow #514251, 2026-08-14</a> <span class="muted">（restatement）</span></li><li><a href="https://oeis.org/A396947" rel="nofollow noopener">OEIS A396947: Primes of the form x^^y - w^^z</a> <span class="muted">（database）</span></li><li><a href="https://api.openalex.org/works?search=Are%20there%20infinitely%20many%20primes%20of%20the%20form%20tetration%20a%20b%20plus%20minus%20b%20a&amp;per-page=10&amp;select=id,title,publication_year,doi" rel="nofollow noopener">OpenAlex 检索：tetration a b plus minus b a primes</a> <span class="muted">（查新依据）</span></li><li><a href="https://export.arxiv.org/api/query?search_query=all:%22tetration%22+AND+all:%22infinitely+many+primes%22&amp;start=0&amp;max_results=10" rel="nofollow noopener">arXiv API: tetration AND infinitely many primes</a> <span class="muted">（查新依据）</span></li><li><a href="https://github.com/qunxingmath-org/qunxing-data" rel="nofollow noopener">qunxingmath-org/qunxing-data, commit d594dcadf2bc95cb18dd1a1a669efe0f229e764e</a> <span class="muted">（database）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002475（card_rev b149d08145660f3d），https://www.qunxingmath.org/p/QX-P-002475/</p>
+  <p><a href="/p/QX-P-002475.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002475.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/ba717bfcad2a03ad31ec5c2c659851d8fd275982/problems/002/QX-P-002475.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>
