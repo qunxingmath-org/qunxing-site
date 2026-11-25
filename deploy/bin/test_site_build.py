@@ -1,16 +1,19 @@
 """Regression tests for release activation, mirror integrity and update metadata."""
-from datetime import datetime, timezone
+from argparse import Namespace
+from datetime import datetime, timedelta, timezone
 from hashlib import sha256
 from io import BytesIO
 import json
 from pathlib import Path
+import shutil
+import subprocess
 import tempfile
 import unittest
 from unittest.mock import patch
 from urllib.error import HTTPError
 from xml.etree import ElementTree
 
-from build_manifest import manifest
+from build_manifest import manifest, sign
 from build_site import full_text, sitemap
 from release_assets import ASSETS, latest, mirror_present, sync_mirror
 
@@ -66,6 +69,38 @@ class ReleaseTests(unittest.TestCase):
             values, _ = manifest(policy, keys, assets, datetime(2026, 11, 25, tzinfo=timezone.utc))
             self.assertEqual(values["expires_at"], "2026-12-02T00:00:00Z")
             self.assertEqual(values["packages"]["prices"]["sha256"], sha256(b"{}").hexdigest())
+
+    @unittest.skipUnless(shutil.which("minisign"), "minisign is required for the signature test")
+    def test_sign_and_verify_with_ephemeral_keys(self):
+        def cli(*args):
+            subprocess.run(["minisign", *map(str, args)], check=True,
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            assets = root/"assets"
+            assets.mkdir()
+            (assets/"prices.json").write_text("{}", encoding="utf-8")
+            for role in ("root", "signer"):
+                cli("-G", "-W", "-p", root/f"{role}.pub", "-s", root/f"{role}.sec")
+            public = (root/"signer.pub").read_text(encoding="utf-8").splitlines()[-1]
+            expires = (datetime.now(timezone.utc) + timedelta(days=15)).isoformat()
+            keys = {"epoch": 1, "keys": [{"id": "fixture", "public_key": public, "expires_at": expires}]}
+            key_file = root/"keys.json"
+            key_file.write_text(json.dumps(keys), encoding="utf-8")
+            cli("-Sm", key_file, "-s", root/"root.sec")
+            policy = root/"policy.json"
+            policy.write_text(json.dumps({"epoch": 1, "version": 1, "key_id": "fixture",
+                                          "min_app_version": "0.9.0", "mirrors": [],
+                                          "inbox_endpoints": [], "packages": {"prices": "prices.json"}}),
+                              encoding="utf-8")
+            out = root/"signed"
+            sign(Namespace(keys=key_file, root_public=root/"root.pub", policy=policy,
+                           signing_identity=root/"signer.sec", assets=assets, output=out, previous=None))
+            cli("-Vm", out/"keys.json", "-p", root/"root.pub")
+            cli("-Vm", out/"manifest.json", "-p", root/"signer.pub")
+            self.assertEqual({p.name for p in out.iterdir()},
+                             {"keys.json", "keys.json.minisig", "manifest.json", "manifest.json.minisig"})
 
     def test_text_extract_and_sitemap(self):
         with tempfile.TemporaryDirectory() as tmp:
