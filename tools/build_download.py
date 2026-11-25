@@ -69,6 +69,7 @@ T = {
         ],
         "foot1": "© 2026 群星贡献者 · The Qunxing Contributors",
         "foot2": "代码 MIT；数据和文字的许可见各仓库的 LICENSE",
+        "privacy": "隐私政策", "privacy_path": "/privacy/", "priv_more": "数据存在哪里、谁会收到、保存多久：见隐私政策。",
     },
     "en": {
         "lang": "en", "path": "/en/download/", "other": "/download/", "other_lang": "zh-CN", "other_label": "中文",
@@ -113,6 +114,7 @@ T = {
         ],
         "foot1": "© 2026 The Qunxing Contributors · 群星贡献者",
         "foot2": "Code: MIT; licenses for data and texts are in each repository’s LICENSE",
+        "privacy": "Privacy Policy", "privacy_path": "/en/privacy/", "priv_more": "Where data is stored, who receives it and how long it is kept: see the Privacy Policy.",
     },
 }
 
@@ -237,7 +239,7 @@ def page(lang, rel):
 
   <section>
     <h2>{e(t['priv_h'])}</h2>
-    <ul class="plain">{items(e(x) for x in t['priv'])}</ul>
+    <ul class="plain">{items(e(x) for x in t['priv'])}<li>{link(t['privacy_path'], e(t['priv_more']))}</li></ul>
   </section>
 
   <section id="verify">
@@ -253,7 +255,7 @@ def page(lang, rel):
 
 <footer class="wrap">
   <p>{e(t['foot1'])}</p>
-  <p>{e(t['foot2'])} · <a href="/llms.txt">llms.txt</a></p>
+  <p>{e(t['foot2'])} · {link(t['privacy_path'], e(t['privacy']))} · <a href="/llms.txt">llms.txt</a></p>
 </footer>
 </body>
 </html>
