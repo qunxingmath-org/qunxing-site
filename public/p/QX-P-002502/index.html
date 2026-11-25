@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002502 临界线上简单零点占比能否无条件超过 Montgomery–Taylor 的 0.6725 下界 · 群星题库</title>
+<meta name="description" content="Can the unconditional simple-critical-zero proportion exceed the Montgomery-Taylor bound?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002502/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002502.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002502.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002502</span></nav>
+<h1 class="ptitle">临界线上简单零点占比能否无条件超过 Montgomery–Taylor 的 0.6725 下界</h1>
+<p class="ptitle-en" lang="en">Can the unconditional simple-critical-zero proportion exceed the Montgomery-Taylor bound?</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">高等</span><span class="chip">验证</span><span class="chip warn">草稿</span><span class="chip warn">验证轨道</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>有人声称解决 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到有人声称解决的记录 · 查了 8 个来源</dd><dt>MSC</dt><dd><span class="mono">11M26</span></dd><dt>提出者</dt><dd>Formal Conjectures 题源（基于 Alpöge–Furman 2026 §7.2）</dd><dt>首次发表</dt><dd>2026；Lean 题源标注</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>记 $\rho=\beta+i\gamma$ 为 $\zeta(s)$ 的非平凡零点，$m_\rho$ 为其重数。对 $T&gt;0$，定义<br>$$<br>N(T,2T)=\sum_{T&lt;\gamma\le2T}m_\rho,<br>$$<br>以及<br>$$<br>N_s(T,2T)=\#\{\rho:T&lt;\gamma\le2T,\ \beta=\tfrac12,\ m_\rho=1\}.<br>$$<br>令<br>$$<br>c_{\mathrm{MT}}^{-1}=\frac12+\frac1{\sqrt2}\cot\frac1{\sqrt2}<br>=1.3274\ldots,\qquad<br>2-c_{\mathrm{MT}}^{-1}=0.67250\ldots.<br>$$<br><strong>是否存在常数 $c&gt;2-c_{\mathrm{MT}}^{-1}$ 和函数 $o(T)=o(1)$，使对所有 $T&gt;0$ 都有</strong><br>$$<br>(c-o(T))N(T,2T)\le N_s(T,2T)?<br>$$<br>这是 <code>riemannZeta.simple_prop_lt</code>。2026-08-17 的 Yang–Yang 预印本已声称更强的 $0.7962$ 下界，因此本卡列入验证轨道。</p>
+<h2>原文摘录</h2>
+<blockquote><p>“Theorem 1.1 (Main theorem; grade: certified-candidate, see §11). With ineffective constants,<br>$$<br>\liminf_{T\to\infty}\frac{N_0^s(T,2T)}{N(T,2T)}\ge0.7962,\qquad<br>\liminf_{T\to\infty}\frac{N_d(T,2T)}{N(T,2T)}\ge0.8981.<br>$$<br>”</p>
+<p>—— Hongyi Yang、Shihua Yang，[*More than 0.7962 of the zeros of the Riemann zeta function are simple and on the critical line*](<a href="https://zenodo.org/records/21975237" rel="nofollow noopener">https://zenodo.org/records/21975237</a>)，§1，2026-08-17；PDF 第 5 页实读。</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li><strong>[KNOWN，已无条件证实的基线]</strong> [Alpöge–Furman](<a href="https://arxiv.org/html/2608.13637v2" rel="nofollow noopener">https://arxiv.org/html/2608.13637v2</a>) Theorem A 给出 $$ N_s(T,2T)\ge\left(2-c_{\mathrm{MT}}^{-1}-o(1)\right)N(T,2T) = (0.67250\ldots-o(1))N(T,2T). $$ 因而本地 <code>simple_prop_montgomeryTaylor</code> 标为 solved。</li><li><strong>[KNOWN，独立重证]</strong> [Lamzouri 2026](<a href="https://arxiv.org/abs/2609.02882" rel="nofollow noopener">https://arxiv.org/abs/2609.02882</a>) 用 Hilbert 空间不等式给出 $67.25\%$ 简单且在线上界的新无条件证明。</li><li><strong>[KNOWN，不同分子]</strong> 同一 Lamzouri 论文给出至少 $88.76\%$ 的零点满足“简单<strong>或</strong>在临界线上（或两者）”。这不是 $N_s/N$ 的 $88.76\%$ 下界。</li><li><strong>[KNOWN，条件下结果]</strong> Bui–Heath-Brown 假设 RH 证明至少 $19/27$ 的零点简单；RH 下它们都在线上，但该结论不提供本题要求的无条件保证。</li><li><strong>[CLAIM，更强候选]</strong> Yang–Yang 声称 $N_s/N\ge0.7962-o(1)$、$N_d/N\ge0.8981-o(1)$，且对固定本原 Dirichlet $L$ 函数同样成立。路线是把 Gabor 压缩 Weil 矩阵的第三至第六阶迹矩输入精确 Chebyshev–Markov 对偶证书。</li><li><strong>[LIMIT OF CLAIM]</strong> 论文首页脚注和 §11 把等级定为 <strong>certified-candidate，而非 record</strong>：恒等式、证书和配对数层有精确有理/Lean 检查；解析消费层未形式化，外部评审尚未进行。</li><li><strong>[STATUS]</strong> 本地 <code>simple_prop_lt</code> 仍为 open/sorry。若候选主定理获独立核验，取 $c=0.7$ 即可完成它；本次不把候选声称当作已证事实。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>AND，不是 OR：</strong>$N_s$ 要求同时 $\beta=1/2$ 与 $m_\rho=1$。离线简单零点、线上重零点都不计入分子。</li><li><strong>分子相异、分母重数：</strong>$N_s$ 是点的基数；$N$ 把重为 $m_\rho$ 的零点计 $m_\rho$ 次。不可把二者都改成相异计数后仍声称同一常数。</li><li><strong>区间为 $(T,2T]$：</strong>左端排除、右端包含，只计正虚部区间。函数方程保证共轭零点成对，不另计负虚部。</li><li><strong>无条件：</strong>不得假设 RH、GLH、零点对相关猜想或离线零点为 $o(N)$。候选论文明确不使用 RH。</li><li><strong>渐近误差：</strong>论文用无效常数和 $\liminf$，即存在 $T_0$ 使充分大 $T$ 成立。Lean 的 $o(T)$ 对全部 $T&gt;0$ 成立，可在有限初始区间重新定义误差函数来匹配。</li><li><strong>超过基线不等于达到 $0.7962$：</strong>任一固定 $c\in(0.67250\ldots,0.7962)$ 都足以解题；候选证明只是提供一条可能的强解。</li><li><strong>$0.682$ 是另一层上界：</strong>它是原带宽一证书类的天花板，不是零点实际比例的上界，也不妨碍使用高阶矩改进。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] 0.67250… 已证：</strong>Alpöge–Furman 2026；Lamzouri 2026 独立重证。两篇均实读，后者摘要明确称 simple <strong>and</strong> on the critical line。</li><li><strong>[CLAIM] 0.7962 候选：</strong>Yang–Yang，Zenodo 记录 21975237。其 PDF 直接声称主定理，但同时明确 “certified-candidate, not record” 和 “no external review has taken place”。</li><li><strong>[FORMALIZATION SCOPE]：</strong>[复现包](<a href="https://github.com/JoshuaHKU/zeta-0.7947-reproduction" rel="nofollow noopener">https://github.com/JoshuaHKU/zeta-0.7947-reproduction</a>) README 列出核心 Lean 4 的恒等式、局部规律和证书层；解析消费层未形式化。本次未克隆、编译或独立运行该包。</li><li><strong>[VERSION ISSUE]：</strong>Zenodo 记录 DOI 为 21975237，PDF 首页和复现包写 21975236；仓库名/简介为 0.7947，正文为 0.7962；README 与论文的预注册检查数也不同。核验时须固定版本，不能混用。</li><li><strong>[NO VERIFIED MAIN-SOLUTION FOUND]：</strong>28 组 WebSearch 未定位外部同行评审、期刊接收或独立完整复核接受 $0.7962$ 的证据。稀疏搜索不到不证明没有。</li><li><strong>访问限制：</strong>候选 38 页论文只精读摘要、主定理、首页验证脚注与引言，未逐步审计全部矩估计；复现包未运行。故 <code>track=verify</code>、<code>status_strength=weak</code>。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 形式化题源</td><td>[RiemannZetaZeros.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/RiemannZetaZeros.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/RiemannZetaZeros.lean</a>)</td><td>本地实读 N、Ns 与 simple_prop_lt；仍 open/sorry</td></tr><tr><td>2026-11-25</td><td>A 0.6725 原文</td><td>[2608.13637v2](<a href="https://arxiv.org/html/2608.13637v2" rel="nofollow noopener">https://arxiv.org/html/2608.13637v2</a>)</td><td>§1.1 实读；AND 口径、c_MT 公式、基线严格小于目标</td></tr><tr><td>2026-11-25</td><td>A 更强候选原文</td><td>[Zenodo 21975237](<a href="https://zenodo.org/records/21975237" rel="nofollow noopener">https://zenodo.org/records/21975237</a>)；[PDF](<a href="https://zenodo.org/records/21975237/files/More%20than%200.7962%20on%20the%20critical%20line-EN.pdf?download=1" rel="nofollow noopener">https://zenodo.org/records/21975237/files/More%20than%200.7962%20on%20the%20critical%20line-EN.pdf?download=1</a>)</td><td>Theorem 1.1 实读；0.7962，但 certified-candidate</td></tr><tr><td>2026-11-25</td><td>A 复现与验证范围</td><td>[GitHub 复现包](<a href="https://github.com/JoshuaHKU/zeta-0.7947-reproduction" rel="nofollow noopener">https://github.com/JoshuaHKU/zeta-0.7947-reproduction</a>)</td><td>README 实读；解析层未形式化、外部评审 pending</td></tr><tr><td>2026-11-25</td><td>B 引文追踪</td><td>[Lamzouri](<a href="https://arxiv.org/abs/2609.02882" rel="nofollow noopener">https://arxiv.org/abs/2609.02882</a>)；[Bui–Heath-Brown](<a href="https://arxiv.org/abs/1302.5018" rel="nofollow noopener">https://arxiv.org/abs/1302.5018</a>)</td><td>独立重证与条件下 19/27；未完成 Scholar 全量被引</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>WebSearch 原词 1–28</td><td>精确常数、AND/OR、定义、作者与编号交叉</td></tr><tr><td>2026-11-25</td><td>D 预印本与全文</td><td>[2608.13637](<a href="https://arxiv.org/html/2608.13637v2" rel="nofollow noopener">https://arxiv.org/html/2608.13637v2</a>)；[Zenodo PDF](<a href="https://zenodo.org/records/21975237/files/More%20than%200.7962%20on%20the%20critical%20line-EN.pdf?download=1" rel="nofollow noopener">https://zenodo.org/records/21975237/files/More%20than%200.7962%20on%20the%20critical%20line-EN.pdf?download=1</a>)</td><td>实际读取正文；候选不是仅新闻转述</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–10、17–28</td><td>未定位 0.7962 的外部接受或实质反驳</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>WebSearch 原词 4、8、9、21–23</td><td>未定位直接核验候选证明链的 MO/MSE 原帖</td></tr><tr><td>2026-11-25</td><td>G 当前百科</td><td>[Riemann hypothesis](<a href="https://en.wikipedia.org/wiki/Riemann_hypothesis" rel="nofollow noopener">https://en.wikipedia.org/wiki/Riemann_hypothesis</a>)</td><td>检索列出 0.6725 文献；本次未把百科当成候选证明证据</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[zeta-23-lean](<a href="https://github.com/anthropics/zeta-23-lean" rel="nofollow noopener">https://github.com/anthropics/zeta-23-lean</a>)；[0.7962 复现包](<a href="https://github.com/JoshuaHKU/zeta-0.7947-reproduction" rel="nofollow noopener">https://github.com/JoshuaHKU/zeta-0.7947-reproduction</a>)</td><td>两者形式化范围不同；本次均未编译</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 10、13、26</td><td>中文报道常数有 79.45/79.47/79.62 差异；以原文为准</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code> 与 105 份草稿</td><td>精确 Lean 名、0.6725、相关编号无重复</td></tr><tr><td>2026-11-25</td><td>当前状态综合</td><td>[0.6725 原文](<a href="https://arxiv.org/html/2608.13637v2" rel="nofollow noopener">https://arxiv.org/html/2608.13637v2</a>)；[0.7962 候选](<a href="https://zenodo.org/records/21975237" rel="nofollow noopener">https://zenodo.org/records/21975237</a>)</td><td>基线已证；更强命题有明确未独立核验的候选证明</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://arxiv.org/html/2608.13637v2" rel="nofollow noopener">L. Alpöge, R. Furman, More than two thirds of the zeros of the Riemann zeta function are simple and on the critical line, arXiv:2608.13637v2（§1.1 实读）</a> <span class="muted">（原始出处）</span></li><li><a href="https://arxiv.org/abs/2609.02882" rel="nofollow noopener">Y. Lamzouri, A new proof that more than 2/3 of the zeros of the Riemann zeta function are simple and on the critical line, arXiv:2609.02882v2（摘要实读）</a> <span class="muted">（progress）</span></li><li><a href="https://zenodo.org/records/21975237" rel="nofollow noopener">H. Yang, S. Yang, More than 0.7962 of the zeros of the Riemann zeta function are simple and on the critical line, 2026-08-17（PDF 关键页面实读；certified-candidate）</a> <span class="muted">（progress）</span></li><li><a href="https://arxiv.org/abs/1302.5018" rel="nofollow noopener">H. M. Bui, D. R. Heath-Brown, On simple zeros of the Riemann zeta-function, arXiv:1302.5018（摘要实读）</a> <span class="muted">（progress）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/RiemannZetaZeros.lean" rel="nofollow noopener">Formal Conjectures: Paper/RiemannZetaZeros.lean（本地全文实读）</a> <span class="muted">（restatement）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002502（card_rev 059ab51433981178），https://www.qunxingmath.org/p/QX-P-002502/</p>
+  <p><a href="/p/QX-P-002502.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002502.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/ba717bfcad2a03ad31ec5c2c659851d8fd275982/problems/002/QX-P-002502.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

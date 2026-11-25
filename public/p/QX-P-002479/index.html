@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002479 豪斯多夫 Toronto 空间是否必为离散空间 · 群星题库</title>
+<meta name="description" content="Is every Hausdorff Toronto space discrete?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002479/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002479.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002479.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/topology/">拓扑</a> › <span class="mono">QX-P-002479</span></nav>
+<h1 class="ptitle">豪斯多夫 Toronto 空间是否必为离散空间</h1>
+<p class="ptitle-en" lang="en">Is every Hausdorff Toronto space discrete?</p>
+<p class="chips"><span class="chip">拓扑</span><span class="chip">证明</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到部分结果 · 查了 6 个来源</dd><dt>MSC</dt><dd><span class="mono">54G99</span></dd><dt>提出者</dt><dd>Juris Steprans（1990 原问题）；William Rea Brian（2014 系统研究）</dd><dt>首次发表</dt><dd>1990，Open Problems in Topology；2014 Brian 论文给出主要结构与 GCH 结果</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>称拓扑空间 $X$ 为 <strong>Toronto 空间</strong>，如果对每个子空间 $Y\subseteq X$，只要<br>$$<br>|Y|=|X|,<br>$$<br>就存在同胚 $Y\cong X$。这里 $Y$ 使用从 $X$ 继承的子空间拓扑，同胚要求连续双射且逆映射连续。</p>
+<p><strong>是否每个 Hausdorff（$T_2$）Toronto 空间都具有离散拓扑？</strong></p>
+<p>等价地，对任意 $X$，<br>$$<br>X\text{ 是 Hausdorff Toronto 空间}<br>\quad\Longrightarrow\quad<br>\forall x\in X,\ \{x\}\text{ 在 }X\text{ 中为开集}.<br>$$</p>
+<h3>形式化表述</h3>
+<p>本地 Lean 的 <code>TorontoSpace X</code> 表示<br>$$<br>\forall Y\subseteq X,\ |Y|=|X|\Rightarrow Y\cong_{\mathrm{top}}X.<br>$$<br>待判定<br>$$<br>\boxed{\forall X,\ \mathrm{T2Space}(X)\land\mathrm{TorontoSpace}(X)<br>\Rightarrow\mathrm{DiscreteTopology}(X).}<br>$$</p>
+<h2>原文摘录</h2>
+<blockquote><p>“A Toronto space is a topological space which is homeomorphic to every one of its full-cardinality subspaces, and the Toronto problem asks whether every Hausdorff Toronto space of size $\aleph_1$ is discrete.”</p>
+<p>—— William Rea Brian，*The Toronto problem*，摘要，p.1，[作者 PDF](<a href="https://wrbrian.wordpress.com/wp-content/uploads/2012/01/thetorontoproblem.pdf" rel="nofollow noopener">https://wrbrian.wordpress.com/wp-content/uploads/2012/01/thetorontoproblem.pdf</a>)，2026-11-25 实读。</p></blockquote>
+<blockquote><p>“If the GCH holds then every Hausdorff Toronto space (of any size) is discrete.”</p>
+<p>—— William Rea Brian，同上，Proposition 2.6，p.4，2026-11-25 实读。</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li><strong>[KNOWN] 有限空间：</strong>本地 Lean 证明每个有限空间都是 Toronto 空间，因为唯一同势子空间是其自身；有限 Hausdorff 空间必离散。</li><li><strong>[KNOWN] 可数情形：</strong>每个可数 Hausdorff Toronto 空间离散。Brian p.1 明确陈述，并在 Corollary 6.2 给出可数 Toronto 空间的完全分类；Wikipedia 也重述此结论。</li><li><strong>[KNOWN] 非 Hausdorff 反例：</strong>无限集上的离散、不可离散、余有限及更一般的小补集拓扑都是 Toronto 空间，却不 Hausdorff。因此 Hausdorff 假设不可删。</li><li><strong>[PARTIAL，GCH] Brian Proposition 2.6：</strong>若广义连续统假设 GCH 成立，则任意基数的 Hausdorff Toronto 空间均离散。证明要点：非离散空间将有宽度 $\lambda&lt;|X|$ 的 thin-tall scattered 结构，并迫使 $2^\lambda=2^{|X|}$，与 GCH 冲突。</li><li><strong>[PARTIAL，ZFC 障碍] Brian Theorem 2.4：</strong>若存在基数为 $\aleph_1$ 的非离散 Hausdorff Toronto 空间，则 $$ 2^{\aleph_0}=2^{\aleph_1}. $$ 因而该等式不成立的模型中所有 HATS 都离散（Corollary 2.5）。</li><li><strong>[PARTIAL，结构] Brian Propositions 2.2–2.3：</strong>非离散 HATS 必须是 thin-tall scattered、高度 $\omega_1$、宽度 $\omega$，且遗传可分但非 Lindelöf。这大幅限制可能反例的形状，但没有排除其存在。</li><li><strong>[REPORTED，PFA]</strong> MathOverflow #24144 的 2014 回答称，PFA 下不存在基数为 $\aleph_1$ 的非离散 $T_3$ Toronto 空间。本次未独立读取 PFA 原始证明，作为回答者报告的条件结果保留。</li><li><strong>[OPEN] 当前状态：</strong>2026-11-25 本地主命题仍为 <code>research open/sorry</code>；2025-11-20 编辑的 Wikipedia 仍把不可数非离散 Hausdorff Toronto 空间的存在作为问题。GCH 条件不能删去后直接照搬证明。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>原问题与一般化：</strong>Brian 的原始 Toronto problem 问 $|X|=\aleph_1$；本题按本地 Lean 问所有基数。GCH 已覆盖一般化，但 ZFC 中即使 $\aleph_1$ 情形也仍未找到反例。</li><li><strong>公理范围：</strong><code>status</code> 指 ZFC 加 Hausdorff/Toronto 条件，不预设 GCH、CH 或 PFA。条件定理解决相应模型，不自动成为无附加公理的定理。</li><li><strong>“一致”与“存在”：</strong>若要否定本题，只需在一个 ZFC 模型中构造非离散 Hausdorff Toronto 空间；这与证明所有模型中都存在不同。现有资料只说存在性一致性问题未知。</li><li><strong>同势子空间：</strong>要求每个与 $X$ 等势的 $Y$ 都同胚于 $X$，不只是存在一个大子空间同胚于 $X$，也不是每个闭子空间或每个开子空间。</li><li><strong>有限与无限：</strong>有限空间情形平凡；真正的困难在不可数空间。对无限 $X$，要求所有同势子空间与只要求 proper 同势子空间等价。</li><li><strong>T2 假设：</strong>不可离散或余有限拓扑的反例不满足 Hausdorff；$T_1$、regular、normal 等额外分离条件构成更强或不同的子问题。</li><li><strong>同胚与等势：</strong>Toronto 条件把“每个同势子空间”与“同一个拓扑类型”联系起来；仅构造双射不够。</li><li><strong>查重：</strong>88 份草稿及实时题库按 Toronto、TorontoSpace、MO 24144、同势子空间检索，无精确重复。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] 可数与有限情形：</strong>已证离散；非 Hausdorff 的无限 Toronto 空间也有明确例子。</li><li><strong>[PARTIAL] GCH：</strong>Brian Proposition 2.6 解决任意基数，但依赖 GCH。</li><li><strong>[PARTIAL] 必要基数等式：</strong>非离散 HATS 会迫使 $2^{\aleph_0}=2^{\aleph_1}$，并具有 scattered、thin-tall、遗传可分等结构。</li><li><strong>[CLAIM] 未定位到无条件完整解：</strong>8 组检索未找到 ZFC 中覆盖所有基数的离散性证明，也未找到可验证的非离散 Hausdorff Toronto 反例。</li><li><strong>访问限制：</strong>Brian PDF 的摘要、pp.1–5 与结论/参考文献已实读，未逐行复核全部 21 页。MSE #1948388 返回 403；MO 最近活动为 2014，不能当作 2026 活跃讨论。未完成 Scholar 全量被引、MathSciNet 与十类深查，故 <code>depth=basic</code>、<code>status_strength=weak</code>。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 形式化题源</td><td>[Toronto.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Toronto.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Toronto.lean</a>)</td><td>实读 TorontoSpace 与 T2 主命题；open/sorry，GCH 仅 TODO</td></tr><tr><td>2026-11-25</td><td>A 原始问题</td><td>[Open Problems in Topology p.15](<a href="https://archive.org/details/openproblemsinto0000unse/page/15" rel="nofollow noopener">https://archive.org/details/openproblemsinto0000unse/page/15</a>)</td><td>Steprans 1990 原始书目由 Brian [8] 核对；本次未直接读原书</td></tr><tr><td>2026-11-25</td><td>A 主研究论文</td><td>[Brian PDF](<a href="https://wrbrian.wordpress.com/wp-content/uploads/2012/01/thetorontoproblem.pdf" rel="nofollow noopener">https://wrbrian.wordpress.com/wp-content/uploads/2012/01/thetorontoproblem.pdf</a>)</td><td>p.1 开放陈述；Theorem 2.4、Proposition 2.6 实读</td></tr><tr><td>2026-11-25</td><td>B 引文追踪</td><td>[MO #24144](<a href="https://mathoverflow.net/questions/24144/is-there-an-uncountable-non-discrete-hausdorff-toronto-space" rel="nofollow noopener">https://mathoverflow.net/questions/24144/is-there-an-uncountable-non-discrete-hausdorff-toronto-space</a>)；[Brian References](<a href="https://wrbrian.wordpress.com/wp-content/uploads/2012/01/thetorontoproblem.pdf" rel="nofollow noopener">https://wrbrian.wordpress.com/wp-content/uploads/2012/01/thetorontoproblem.pdf</a>)</td><td>定位 2014 主论文、可数分类与 Steprans 原始出处</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>WebSearch 原词 1–8</td><td>精确题名、Lean 名、GCH、同势子空间；未定位无条件新解</td></tr><tr><td>2026-11-25</td><td>D 预印本与全文</td><td>[Brian 作者 PDF](<a href="https://wrbrian.wordpress.com/wp-content/uploads/2012/01/thetorontoproblem.pdf" rel="nofollow noopener">https://wrbrian.wordpress.com/wp-content/uploads/2012/01/thetorontoproblem.pdf</a>)</td><td>21 页；核心前五页与末两页实读</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–8</td><td>排除城市 Toronto 与 GCH 医学/金融等噪声</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>[MO #24144](<a href="https://mathoverflow.net/questions/24144/is-there-an-uncountable-non-discrete-hausdorff-toronto-space" rel="nofollow noopener">https://mathoverflow.net/questions/24144/is-there-an-uncountable-non-discrete-hausdorff-toronto-space</a>)</td><td>2 个回答实读；2014 回答称存在性一致性问题未知</td></tr><tr><td>2026-11-25</td><td>F 问答社区访问限制</td><td>[MSE #1948388](<a href="https://math.stackexchange.com/questions/1948388/examples-of-toronto-spaces" rel="nofollow noopener">https://math.stackexchange.com/questions/1948388/examples-of-toronto-spaces</a>)</td><td>WebFetch 403；只记录为 inaccessible，不据摘要下结论</td></tr><tr><td>2026-11-25</td><td>G 问题集与百科</td><td>[Wikipedia Toronto space](<a href="https://en.wikipedia.org/wiki/Toronto_space" rel="nofollow noopener">https://en.wikipedia.org/wiki/Toronto_space</a>)</td><td>可数分类与开放存在性问题；2025-11-20 编辑</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[Toronto.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Toronto.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Toronto.lean</a>)</td><td>仍 sorry；未发现可信 AI 证明</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 8</td><td>中文结果仅一般拓扑定义；未完成独立俄文深查</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code></td><td>Toronto、TorontoSpace、MO 24144 无重复</td></tr><tr><td>2026-11-25</td><td>当前状态综合</td><td>[Brian](<a href="https://wrbrian.wordpress.com/wp-content/uploads/2012/01/thetorontoproblem.pdf" rel="nofollow noopener">https://wrbrian.wordpress.com/wp-content/uploads/2012/01/thetorontoproblem.pdf</a>)；[Wikipedia](<a href="https://en.wikipedia.org/wiki/Toronto_space" rel="nofollow noopener">https://en.wikipedia.org/wiki/Toronto_space</a>)；[Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Toronto.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Toronto.lean</a>)</td><td>可数与 GCH 已解；ZFC 中不可数 Hausdorff 情形未找到证明或反例</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://archive.org/details/openproblemsinto0000unse/page/15" rel="nofollow noopener">Juris Steprans, Steprans&#x27; Problems, in Open Problems in Topology, J. van Mill and G. M. Reed (eds.), North-Holland, 1990, pp.13–20（原始出处由 Brian References [8] 核对；本次未直接读取全书）</a> <span class="muted">（原始出处）</span></li><li><a href="https://wrbrian.wordpress.com/wp-content/uploads/2012/01/thetorontoproblem.pdf" rel="nofollow noopener">William Rea Brian, The Toronto problem, Topology and its Applications 162 (2014), 76–90；作者 PDF p.1–5、p.20–21 实读</a> <span class="muted">（progress）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Toronto.lean" rel="nofollow noopener">Formal Conjectures: Wikipedia/Toronto.lean（本地全文实读）</a> <span class="muted">（restatement）</span></li><li><a href="https://mathoverflow.net/questions/24144/is-there-an-uncountable-non-discrete-hausdorff-toronto-space" rel="nofollow noopener">MathOverflow #24144：问题、全部回答与评论实读</a> <span class="muted">（查新依据）</span></li><li><a href="https://en.wikipedia.org/wiki/Toronto_space" rel="nofollow noopener">Wikipedia: Toronto space（全文实读；2025-11-20 最后编辑）</a> <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002479（card_rev 63440401ac8b92cb），https://www.qunxingmath.org/p/QX-P-002479/</p>
+  <p><a href="/p/QX-P-002479.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002479.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/ba717bfcad2a03ad31ec5c2c659851d8fd275982/problems/002/QX-P-002479.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>
