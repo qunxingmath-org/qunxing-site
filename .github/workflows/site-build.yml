@@ -1,0 +1,89 @@
+name: site-build
+on:
+  push:
+    branches: [main]
+    paths: ["public/**", "tools/**", "data/**", "deploy/**", ".github/workflows/site-build.yml"]
+  pull_request:
+    paths: ["public/**", "tools/**", "data/**", "deploy/**", ".github/workflows/site-build.yml"]
+  schedule:
+    - cron: "11 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          persist-credentials: false
+      - name: Read the public problem bank
+        run: |
+          set -euo pipefail
+          git clone --quiet --depth 1 --branch main https://github.com/qunxingmath-org/qunxing-data.git "$RUNNER_TEMP/qunxing-data"
+      - name: Install the signature verifier for PR tests
+        if: github.event_name == 'pull_request'
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq minisign
+      - name: Tests and static build
+        run: |
+          set -euo pipefail
+          python3 -B deploy/bin/test_site_build.py -v
+          python3 deploy/bin/build_site.py --data "$RUNNER_TEMP/qunxing-data" --output "$RUNNER_TEMP/site"
+          test -s "$RUNNER_TEMP/site/index.html"
+          test -s "$RUNNER_TEMP/site/api/v1/problems.json"
+          test -s "$RUNNER_TEMP/site/llms-full.txt"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: qunxing-static-site
+          path: ${{ runner.temp }}/site
+          retention-days: 7
+          if-no-files-found: error
+
+  publish:
+    if: github.repository == 'qunxingmath-org/qunxing-site' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: qunxing-static-site
+          path: ${{ runner.temp }}/site
+      - name: Publish the staged site on its build branch
+        env:
+          BUILD_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git init -q --initial-branch=site-artifacts site-output
+          cd site-output
+          git remote add origin https://github.com/qunxingmath-org/qunxing-site.git
+          status=0
+          git ls-remote --exit-code origin refs/heads/site-artifacts >/dev/null || status=$?
+          case "$status" in
+            0)
+              git fetch --quiet --depth 1 origin refs/heads/site-artifacts
+              git reset --mixed --quiet FETCH_HEAD
+              ;;
+            2) ;;
+            *) exit "$status" ;;
+          esac
+          mv "$RUNNER_TEMP/site" public
+          git add -A -- public
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit --quiet --signoff -m "Publish static site from $GITHUB_SHA"
+          basic=$(printf 'x-access-token:%s' "$BUILD_TOKEN" | base64 -w0)
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $basic" \
+            push origin HEAD:refs/heads/site-artifacts
