@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002458 复指数下 Schanuel 猜想是否成立 · 群星题库</title>
+<meta name="description" content="Does Schanuel&#x27;s conjecture hold for the complex exponential?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002458/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002458.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002458.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002458</span></nav>
+<h1 class="ptitle">复指数下 Schanuel 猜想是否成立</h1>
+<p class="ptitle-en" lang="en">Does Schanuel&#x27;s conjecture hold for the complex exponential?</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip legend">传奇</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到部分结果 · 查了 7 个来源</dd><dt>MSC</dt><dd><span class="mono">11J81</span></dd><dt>提出者</dt><dd>Stephen Schanuel</dd><dt>首次发表</dt><dd>1966，Serge Lang, Introduction to Transcendental Numbers, pp.30–31</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>设 $n\geq0$，$z_1,\ldots,z_n\in\mathbb C$ 在有理数域 $\mathbb Q$ 上线性独立，即<br>$$<br>q_1z_1+\cdots+q_nz_n=0,\quad q_i\in\mathbb Q<br>\quad\Longrightarrow\quad q_1=\cdots=q_n=0.<br>$$<br>令 $\exp:\mathbb C\to\mathbb C^\times$ 为标准复指数。<strong>是否对所有这样的 $z_i$，都有</strong><br>$$<br>\boxed{<br>\operatorname{trdeg}_{\mathbb Q}<br>\mathbb Q(z_1,\ldots,z_n,e^{z_1},\ldots,e^{z_n})\geq n?<br>}<br>$$<br>本地 Lean 的 <code>schanuel_conjecture</code> 将右边写成中间域 <code>adjoin ℚ (range z ∪ range (cexp ∘ z))</code> 的超越次数，目前为 <code>research open/sorry</code>。</p>
+<h2>原文摘录</h2>
+<blockquote><p>“If $x_1,\ldots,x_n\in\mathbb C$ are $\mathbb Q$-linearly independent, then $\mathrm{tr.deg.}_{\mathbb Q}(x_1,\ldots,x_n,\exp(x_1),\ldots,\exp(x_n))\geq n$.”</p>
+<p>—— Aslanyan 等，Conjecture 6.11，[arXiv:2010.00102](<a href="https://arxiv.org/abs/2010.00102" rel="nofollow noopener">https://arxiv.org/abs/2010.00102</a>)，引 Lang 1966；2026-11-25 实读。</p></blockquote>
+<blockquote><p>“Assuming Schanuel’s conjecture, we prove that the complete theory $T_{\exp}$ of the real exponential field is axiomatized……”</p>
+<p>—— Berarducci–Gallinaro，摘要，[arXiv:2603.08365v3](<a href="https://arxiv.org/abs/2603.08365" rel="nofollow noopener">https://arxiv.org/abs/2603.08365</a>)，2026-09-25；2026-11-25 实读。</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li><strong>[KNOWN] $n=1$：</strong>若 $z\neq0$，Hermite–Lindemann 定理保证 $e^z$ 超越，因此 $z,e^z$ 中至少一个超越，超越次数至少 $1$。$z=0$ 不在线性独立集合中。</li><li><strong>[KNOWN] 代数输入：</strong>若 $z_1,\ldots,z_n$ 都是代数数且 $\mathbb Q$-线性独立，Lindemann–Weierstrass 定理保证 $e^{z_1},\ldots,e^{z_n}$ 代数独立，故本题结论成立。这覆盖很多 $z_i$，但一般输入可能是超越数。</li><li><strong>[KNOWN] 相关经典定理：</strong>Lindemann–Weierstrass 已证明 $e,\pi$ 各自超越；Gelfond–Schneider 与 Baker 的定理控制某些指数或对数关系，但均未证明一般的 Schanuel 超越次数下界。六指数定理已证，而更强的四指数猜想仍开放。</li><li><strong>[PARTIAL] 函数域版本：</strong>Ax（1971）证明形式幂级数/函数域中的 Schanuel 型命题。Shimura 簇、模函数等 Ax-Schanuel 定理也属于函数超越或几何变体，不自动给出 $\mathbb C$ 上标准指数的算术结论。</li><li><strong>[PARTIAL] 无条件模型论：</strong>Berarducci–Gallinaro（2026）证明受限指数函数理论的 model completeness；完整实指数理论的公理化与可判定性仍以实 Schanuel $\mathrm{SC}_{\mathbb R}$ 为假设。</li><li><strong>[CONDITIONAL] 实指数可判定性：</strong>Macintyre–Wilkie 证明若实 Schanuel 成立，则 $\mathbb R_{\exp}$ 的完整一阶理论可判定。weak/uniform Schanuel 与决定性有密切联系，但都未成为无条件定理。</li><li><strong>[OPEN] 当前状态：</strong>一般 $n\geq2$ 的复 Schanuel 仍未解决；实 Schanuel 也未解决。2026-09-25 的论文仍写 “Assuming Schanuel’s conjecture”，本地 Lean 主命题仍为 <code>sorry</code>。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>陈述强度：</strong>$\operatorname{trdeg}\geq n$ 表示 $2n$ 个数中至少能选出 $n$ 个代数无关数；它不声称全部 $2n$ 个代数无关，也不要求某一个固定子集无关。</li><li><strong>量词范围：</strong>先对每个 $n$、每个 $\mathbb Q$-线性独立复数组断言；不能只在 $z_i$ 为代数数、实数或满足额外非退化条件时证明就宣称完成一般命题。</li><li><strong>标准复指数：</strong>$e^{z_i}$ 使用同一个复指数函数。Zilber 的 pseudo-exponentiation、模 $j$ 函数、形式幂级数或 D10Z 的 $\Phi_{\exp}$ 都不是这里的标准指数。</li><li><strong>实版本：</strong>实 Schanuel 只取 $x_i\in\mathbb R$，结论涉及 $\mathbb Q(x_i,e^{x_i})$。复版本推出实版本；实版本即使解决也不自动给出含非实 $z_i$ 的反例或证明。</li><li><strong>特例与一般情形：</strong>$n=0$ 平凡，$n=1$ 已由 Lindemann 解决；代数输入的全 $n$ 也已由 Lindemann–Weierstrass 解决。未解内核是含超越输入的一般 $n\geq2$。</li><li><strong>条件结果：</strong>“若 Schanuel，则可判定/可推出某数超越”是条件推论，不能把假设删掉后当已证结果。</li><li><strong>查重：</strong>90 份草稿中 Tarski 可判定卡以实 Schanuel 为条件，QX-P-001744 只在条件答案中提及 Schanuel；均非本题。实时题库无 <code>schanuel_conjecture</code> 或标准复陈述的精确重复。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] 经典特例：</strong>$n=1$ 与代数输入由 Lindemann–Weierstrass 覆盖；这些是真正已证的特殊范围。</li><li><strong>[PARTIAL] 函数域与几何类比：</strong>Ax 的函数域定理、模函数与志村簇 Ax-Schanuel 提供方法，但不解决固定标准复指数的算术命题。</li><li><strong>[CONDITIONAL] 2026 模型论：</strong>Berarducci–Gallinaro 在实 Schanuel 假设下给出完整实指数理论的新公理化，并重得可判定性；无条件部分是受限理论。</li><li><strong>[VARIANT] D10Z 声称：</strong>[Zenodo 15476755](<a href="https://zenodo.org/records/15476755" rel="nofollow noopener">https://zenodo.org/records/15476755</a>) 声称“resolution”，但记录明确把指数重定义为 D10Z Phase-Flow，并把域与独立性改成 D10Z 版本。它没有陈述或证明这里的标准 $\exp$ 命题，关系为 <code>variant</code>，不是 <code>same_solved</code> 或 <code>claim_unverified</code>。</li><li><strong>[NO STANDARD SOLUTION]：</strong>8 组 WebSearch 与全文核对未定位标准复 Schanuel 的已确认证明或反例。</li><li><strong>访问限制：</strong>Lang 1966 原书页未直接读取；Macintyre–Wilkie 原章节未直接读取。Wikipedia、2020 论文与 2026 论文相关段落已实读。未完成 Scholar 全量被引、MathSciNet 与十类深查，故 <code>depth=basic</code>、<code>status_strength=weak</code>。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 形式化题源</td><td>[Schanuel.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Schanuel.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Schanuel.lean</a>)</td><td>全文实读；标准复陈述 open/sorry</td></tr><tr><td>2026-11-25</td><td>A 原始出处</td><td>[Lang 1966 书目](<a href="https://archive.org/details/introductiontota0000lang" rel="nofollow noopener">https://archive.org/details/introductiontota0000lang</a>)</td><td>pp.30–31 由两份实读来源引用；原书页本次未读</td></tr><tr><td>2026-11-25</td><td>A 精确重述</td><td>[arXiv:2010.00102 §6.3](<a href="https://arxiv.org/html/2010.00102v2" rel="nofollow noopener">https://arxiv.org/html/2010.00102v2</a>)</td><td>Conjecture 6.11 的标准复指数陈述实读</td></tr><tr><td>2026-11-25</td><td>B 引文追踪</td><td>[Wikipedia References](<a href="https://en.wikipedia.org/wiki/Schanuel%27s_conjecture#References" rel="nofollow noopener">https://en.wikipedia.org/wiki/Schanuel%27s_conjecture#References</a>)</td><td>Lang、Waldschmidt、Ax、Macintyre–Wilkie、Zilber 线索逐项定位</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>WebSearch 原词 1–7</td><td>未定位标准命题的新证明或反例</td></tr><tr><td>2026-11-25</td><td>D 预印本与全文</td><td>[2020 精确陈述](<a href="https://arxiv.org/html/2010.00102v2" rel="nofollow noopener">https://arxiv.org/html/2010.00102v2</a>)；[2026 模型论](<a href="https://arxiv.org/html/2603.08365v3" rel="nofollow noopener">https://arxiv.org/html/2603.08365v3</a>)</td><td>前者重述开放猜想；后者仍以实 Schanuel 为假设</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–8</td><td>区分经典猜想、Ax-Schanuel 与 D10Z 变体</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>WebSearch 原词 2–7</td><td>仅定位条件性 MO 问题；未发现同题完整解</td></tr><tr><td>2026-11-25</td><td>G 百科与数据库</td><td>[Wikipedia](<a href="https://en.wikipedia.org/wiki/Schanuel%27s_conjecture" rel="nofollow noopener">https://en.wikipedia.org/wiki/Schanuel%27s_conjecture</a>)</td><td>全文实读；称 major unsolved problem，列实/弱变体</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[本地 Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Schanuel.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Schanuel.lean</a>)；[D10Z](<a href="https://zenodo.org/records/15476755" rel="nofollow noopener">https://zenodo.org/records/15476755</a>)</td><td>Lean 仍 sorry；D10Z 改指数，非同题</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 8</td><td>中文结果重述标准猜想及 $e,\pi$ 条件推论；无完整解</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code></td><td>Schanuel 仅作其他题条件假设；无精确重复</td></tr><tr><td>2026-11-25</td><td>当前状态综合</td><td>[Wikipedia](<a href="https://en.wikipedia.org/wiki/Schanuel%27s_conjecture" rel="nofollow noopener">https://en.wikipedia.org/wiki/Schanuel%27s_conjecture</a>)；[2026 论文](<a href="https://arxiv.org/abs/2603.08365" rel="nofollow noopener">https://arxiv.org/abs/2603.08365</a>)；[Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Schanuel.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Schanuel.lean</a>)</td><td>特例已证，一般复/实版本开放；2026 结果仍为条件性</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://archive.org/details/introductiontota0000lang" rel="nofollow noopener">Serge Lang, Introduction to Transcendental Numbers (1966), pp.30–31（Schanuel 猜想的早期公布出处；本次未直接读原书，经 Wikipedia 与 Aslanyan et al. 核对）</a> <span class="muted">（原始出处）</span></li><li><a href="https://arxiv.org/abs/2010.00102" rel="nofollow noopener">Vahagn Aslanyan; Sebastian Eterović; Jonathan Kirby, A Closure Operator Respecting the Modular j-Function, arXiv:2010.00102v2, Conjecture 6.11（精确陈述实读）</a> <span class="muted">（restatement）</span></li><li><a href="https://arxiv.org/abs/2603.08365" rel="nofollow noopener">Alessandro Berarducci; Francesco Gallinaro, On the elementary theory of the real exponential field, arXiv:2603.08365v3（2026-09-25；摘要与 §1 实读）</a> <span class="muted">（progress）</span></li><li><a href="https://en.wikipedia.org/wiki/Schanuel%27s_conjecture" rel="nofollow noopener">Wikipedia: Schanuel&#x27;s conjecture（全文实读）</a> <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002458（card_rev 8b1f1d251f45f4c4），https://www.qunxingmath.org/p/QX-P-002458/</p>
+  <p><a href="/p/QX-P-002458.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002458.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002458.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002413 验证最小 Mills 常数的超越性：Saito 条件定理与 Alpöge RH 证明的组合 · 群星题库</title>
+<meta name="description" content="Verify transcendence of the least Mills constant via Saito&#x27;s theorem and the claimed proof of RH">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002413/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002413.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002413.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002413</span></nav>
+<h1 class="ptitle">验证最小 Mills 常数的超越性：Saito 条件定理与 Alpöge RH 证明的组合</h1>
+<p class="ptitle-en" lang="en">Verify transcendence of the least Mills constant via Saito&#x27;s theorem and the claimed proof of RH</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">高等</span><span class="chip">验证</span><span class="chip warn">草稿</span><span class="chip warn">验证轨道</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>有人声称解决 · 截至 2026-11-24</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-24 · 找到有人声称解决的记录 · 查了 12 个来源</dd><dt>MSC</dt><dd><span class="mono">11J81</span></dd><dt>提出者</dt><dd>W. H. Mills（存在性）；Kota Saito（无理性）；Kota Saito 与 Levent Alpöge 的组合声称（超越性）</dd><dt>首次发表</dt><dd>1947 年存在性；2025 年无理性；2025-12-07 Saito v3 给出 DH/RH 条件下的超越性；2026-11-23 OEIS 记录无条件组合声称</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>令<br>$$<br>\mathcal W=\left\{x\in\mathbb （本机文件 R:） x&gt;1,\ \left\lfloor x^{3^n}\right\rfloor\ \text{对所有 }n\ge1\text{ 均为素数}\right\},<br>$$<br>并令<br>$$<br>A=\min\mathcal W<br>$$<br>为<strong>最小 Mills 常数</strong>。Mills 定理保证 $\mathcal W\ne\varnothing$，且该集合有最小元。</p>
+<p>本题要求核验如下组合声称：<br>$$<br>\boxed{\quad A\text{ 是超越数。}\quad}<br>$$</p>
+<p>逻辑链由两部分组成：</p>
+<ol><li>Saito 已证明：若密度假设 DH 成立（或更强的 RH 成立），则最小 Mills 常数超越；</li><li>Alpöge 于 2026 年发布 RH 的 Lean 证明，Lean FRO 与 Mathlib Initiative 随后联合认证其陈述与证明正确。</li></ol>
+<p>因此本题不是重新猜测一个数值，而是审计“Saito Theorem 1.8 + RH”是否确实推出关于 $\min\mathcal W$ 的无条件超越性，并核对 RH 形式化的语义对应与公开质疑。</p>
+<h3>形式化表述</h3>
+<p>设 <code>IsMills A := ∀ n : ℕ+, Prime ⌊A ^ (3 ^ (n : ℕ))⌋₊</code>，并设 <code>IsMinMills A := IsLeast {x | x &gt; 1 ∧ IsMills x} A</code>。待核验结论为<br>$$<br>\forall A,\ \mathrm{IsMinMills}\ A\ \Longrightarrow\ \mathrm{Irrational}\ A\ \land\ \neg\mathrm{Algebraic}\ A.<br>$$<br>其中超越性等价于“无理且非代数”；本卡的重点是后一部分。</p>
+<h2>原文摘录</h2>
+<blockquote><p>Theorem 1.8. If DH is true (more strongly if RH is true), then Mills’ constant is transcendental.</p>
+<p>—— Kota Saito，*Transcendency of variants of Mills’ constant*，arXiv:2508.16068v3，2025-12-07，[全文](<a href="https://arxiv.org/html/2508.16068v3#S1.Thmtheorem8" rel="nofollow noopener">https://arxiv.org/html/2508.16068v3#S1.Thmtheorem8</a>)</p></blockquote>
+<blockquote><p>We have full confidence that Alpöge’s proof of the Riemann Hypothesis is correct.</p>
+<p>—— Lean FRO and Mathlib Initiative，*Lean verification of the Riemann Hypothesis*，2026-11-21，[联合声明](<a href="https://leanprover-community.github.io/blog/posts/riemann-hypothesis/" rel="nofollow noopener">https://leanprover-community.github.io/blog/posts/riemann-hypothesis/</a>)</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li>[KNOWN] Mills 1947 证明存在某个 $A&gt;1$ 使 $\lfloor A^{3^n}\rfloor$ 对所有 $n\ge1$ 为素数；最小 Mills 常数定义为这些 $A$ 的最小元。</li><li>[KNOWN] Saito 2025 在 *Mathematika* 发表无条件结果：最小 Mills 常数无理。[DOI: 10.1112/mtk.70027](<a href="https://doi.org/10.1112/mtk.70027" rel="nofollow noopener">https://doi.org/10.1112/mtk.70027</a>)</li><li>[PARTIAL] Saito 的早期结果给出三分岔：最小 Mills 常数超越，或某个 $A^{3^m}$ 是三次 Pisot–Vijayaraghavan 数；无理性定理排除了代数二次等更宽情形，但没有单独排除全部代数数。</li><li>[CONDITIONAL] Saito arXiv:2508.16068v3 的 Theorem 1.8 明确证明 <strong>DH 或 RH 蕴含 Mills 常数超越</strong>。其摘要仍写“超越性保持开放”，因为该版本只给条件结果。</li><li>[FORMAL CLAIM] Alpöge 2026 发布约 1700 万行 Lean 代码；Lean FRO 与 Mathlib Initiative 2026-11-21 联合声明已核对 Mathlib 的标准 <code>RiemannHypothesis</code> 陈述、代码库编译、Comparator/con-leche 陈述一致性，以及 Lean 官方内核和多个独立检查器的证明重放。</li><li>[DATABASE CLAIM] OEIS A051021 在 2026-11-23 评论中把 Saito 与 Alpöge 组合为“证明该常数超越”。这是声称存在的直接记录，但不是独立数学审计。</li><li>[RESTATEMENT] formal-conjectures 的 <code>Mills.lean</code> 定义 <code>IsMills</code> 与 <code>IsMinMills</code>，并把存在性、最小性、无理性标为 <code>research solved</code>；这些声明仍以 <code>sorry</code> 结束，文件没有超越性定理或 <code>formal_proof</code> 属性。</li><li>[UNCONDITIONAL VARIANTS] Saito 同一论文对若干变体给出无条件超越性，例如 $\xi((1+\sqrt2)^k+(1-\sqrt2)^k)$，以及对充分大的整数 $r$ 的 $\xi(r3^k-1)$；这些变体不能自动替代 $C_k=3^k$ 的临界情形。</li></ul>
+<h2>边界与约定</h2>
+<ul><li>必须针对<strong>最小元</strong> $A=\min\mathcal W$。任取一个 Mills 数 $x\in\mathcal W$ 的超越性，与最小 Mills 常数的超越性不是同一命题。</li><li>“无理”与“超越”不同：超越要求 $A$ 不是任何非零整系数多项式的根。已证无理性不能单独完成本题。</li><li>Saito 的 Theorem 1.8 是条件定理；其充分条件是 DH，并说明 RH 更强。RH 认证不能被改写成 DH 已有独立无条件证明。</li><li>Alpöge/Lean 工程认证的是 Mathlib 的 <code>RiemannHypothesis</code>。把该定理作为输入与 Saito 论文组合，仍需检查 $\mathrm{RH}\Rightarrow\mathrm{DH}$ 的标准推导、Saito 的符号动力学/Pisot 数论证以及最小元定义的一致性。</li><li>GitHub issue #96 提出的是 <code>anyGeometry</code>、退化构造和最终依赖链的语义问题，并明确不声称 Lean 内核接受矛盾。其开放状态既不能证明 RH 错误，也不能替代对依赖链的数学审计。</li><li>数值近似 <code>1.306377883863080690...</code> 与大量 probable primes 都不是超越性证明；有限位计算不能排除代数数。</li><li>形式化声明中的 <code>Prime ⌊A^(3^n)⌋₊</code> 使用自然数底，需确保与实数 floor 及“所有正整数 $n$”的约定一致。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>[PRIMARY] Saito v3 于 2025-12-07 修订，Theorem 1.8 给出 DH/RH 条件下的超越性；OEIS 记录该文发表于 *Ramanujan Journal* 70 (2026), Art. 69。[arXiv](<a href="https://arxiv.org/abs/2508.16068" rel="nofollow noopener">https://arxiv.org/abs/2508.16068</a>)</li><li>[RH CERTIFICATE] Lean FRO 与 Mathlib Initiative 于 2026-11-21 联合认证 Alpöge 的 RH 证明；仓库 <code>comparator.json</code> 的目标包括 <code>riemannHypothesis</code>，允许公理只有 <code>propext</code>、<code>Quot.sound</code>、<code>Classical.choice</code>。[声明](<a href="https://leanprover-community.github.io/blog/posts/riemann-hypothesis/" rel="nofollow noopener">https://leanprover-community.github.io/blog/posts/riemann-hypothesis/</a>)、[仓库](<a href="https://github.com/leanprover-community/riemann-hypothesis" rel="nofollow noopener">https://github.com/leanprover-community/riemann-hypothesis</a>)</li><li>[DOWNSTREAM CLAIM] OEIS A051021 于 2026-11-23 明确记录“Saito + Alpöge 证明超越”。[OEIS](<a href="https://oeis.org/A051021" rel="nofollow noopener">https://oeis.org/A051021</a>)</li><li>[DATABASE UPDATE] MathWorld 2026-11-23 更新称识别 Mills 素数序列与最小常数的 RH 假设已 discharged，并记录 Saito 的无理性结果；该条目没有自行给出超越性证明。[MathWorld](<a href="https://mathworld.wolfram.com/MillsConstant.html" rel="nofollow noopener">https://mathworld.wolfram.com/MillsConstant.html</a>)</li><li>[SEMANTIC AUDIT] RH 仓库 issue #96 仍开放，要求给出 trivial predicates 在最终定理依赖链中的角色、独立 replay 与陈述忠实性说明；一条后续 AI 辅助审计报告了到 <code>anyGeometry</code> 等构造的可达路径，但明确说可达性不等于必要性或无效性。[issue #96](<a href="https://github.com/leanprover-community/riemann-hypothesis/issues/96" rel="nofollow noopener">https://github.com/leanprover-community/riemann-hypothesis/issues/96</a>)</li><li>[INACCESSIBLE] Nielsen 的批评文稿在 PhilArchive 有记录，但本次页面抓取返回 403；本卡不把二手转述当作已读证据，也不据此判定 RH 证明有效或无效。</li><li>截至 2026-11-24，未找到对“Saito Theorem 1.8 + 已认证 RH ⇒ 最小 Mills 常数超越”这一最终组合的独立、可复现审计报告或专门 Lean 形式化。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2025-12-07</td><td>A 核心条件定理</td><td><a href="https://arxiv.org/html/2508.16068v3#S1.Thmtheorem8" rel="nofollow noopener">https://arxiv.org/html/2508.16068v3#S1.Thmtheorem8</a></td><td>Theorem 1.8：DH（或 RH）⇒ Mills 常数超越；对象是最小元 ξ(3^k)。</td></tr><tr><td>2026-11-21</td><td>B RH 形式化认证</td><td><a href="https://leanprover-community.github.io/blog/posts/riemann-hypothesis/" rel="nofollow noopener">https://leanprover-community.github.io/blog/posts/riemann-hypothesis/</a></td><td>Lean FRO/Mathlib Initiative 认证 Mathlib 的标准 RH 陈述与证明，并记录多内核检查。</td></tr><tr><td>2026-11-23</td><td>B 下游声称</td><td><a href="https://oeis.org/A051021" rel="nofollow noopener">https://oeis.org/A051021</a></td><td>评论明确写 Saito + Alpöge 证明 Mills 常数超越；这是组合声称的公开记录。</td></tr><tr><td>2026-11-23</td><td>B 数据库更新</td><td><a href="https://mathworld.wolfram.com/MillsConstant.html" rel="nofollow noopener">https://mathworld.wolfram.com/MillsConstant.html</a></td><td>称 RH 假设已 discharged，并记录无理性；没有给出超越性证明。</td></tr><tr><td>2026-11-24</td><td>B 语义审计</td><td><a href="https://github.com/leanprover-community/riemann-hypothesis/issues/96" rel="nofollow noopener">https://github.com/leanprover-community/riemann-hypothesis/issues/96</a></td><td>issue 仍开放；讨论 trivial predicates 与最终依赖链，明确不声称内核矛盾。</td></tr><tr><td>2026-11-24</td><td>C 形式化状态</td><td><a href="https://github.com/google-deepmind/formal-conjectures/blob/6bc2f7490a49cc0258406ffb675483f4318a04b5/FormalConjectures/Wikipedia/Mills.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/6bc2f7490a49cc0258406ffb675483f4318a04b5/FormalConjectures/Wikipedia/Mills.lean</a></td><td>只有存在性、最小性、无理性等 sorry 声明；无超越性形式化。</td></tr><tr><td>2026-11-24</td><td>D 题库去重</td><td><a href="https://github.com/qunxingmath-org/qunxing-data/tree/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems" rel="nofollow noopener">https://github.com/qunxingmath-org/qunxing-data/tree/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems</a></td><td>对 Mills、米尔斯、2508.16068、transcendental 检索，无同题；QX-P-000181 等仅顺带提及 Mills 型常数。</td></tr><tr><td>2026-11-24</td><td>E 不可达来源</td><td><a href="https://philarchive.org/rec/NIEIOT-2" rel="nofollow noopener">https://philarchive.org/rec/NIEIOT-2</a></td><td>直接抓取返回 403；只登记为不可达线索，不当作已读证明或反证。</td></tr><tr><td>2026-11-24</td><td>工具限制</td><td><a href="https://github.com/qunxingmath-org/qunxing-data/tree/main/.github/scripts" rel="nofollow noopener">https://github.com/qunxingmath-org/qunxing-data/tree/main/.github/scripts</a></td><td>未找到附件所述 make_cards.py；本卡按 card-draft/1 模板制作并做本地结构自查。</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://doi.org/10.1090/S0002-9904-1947-08849-2" rel="nofollow noopener">W. H. Mills, A prime-representing function, Bull. Amer. Math. Soc. 53 (1947), 604–605</a> <span class="muted">（原始出处）</span></li><li><a href="https://doi.org/10.1112/mtk.70027" rel="nofollow noopener">Kota Saito, Mills’ constant is irrational, Mathematika 71 (2025), no. 3, e70027</a> <span class="muted">（progress）</span></li><li><a href="https://arxiv.org/html/2508.16068v3" rel="nofollow noopener">Kota Saito, Transcendency of variants of Mills’ constant, arXiv:2508.16068v3；Ramanujan Journal 70 (2026), Art. 69</a> <span class="muted">（progress）</span></li><li><a href="https://alpo.ge/remark.pdf" rel="nofollow noopener">Levent Alpöge, Remark: Claimed Proof of the Riemann Hypothesis and Generalized Riemann Hypothesis, 2026</a> <span class="muted">（查新依据）</span></li><li><a href="https://leanprover-community.github.io/blog/posts/riemann-hypothesis/" rel="nofollow noopener">Lean FRO and Mathlib Initiative, Lean verification of the Riemann Hypothesis, 2026-11-21</a> <span class="muted">（restatement）</span></li><li><a href="https://github.com/leanprover-community/riemann-hypothesis" rel="nofollow noopener">leanprover-community/riemann-hypothesis：README、Comparator 配置与验证记录</a> <span class="muted">（restatement）</span></li><li><a href="https://oeis.org/A051021" rel="nofollow noopener">OEIS A051021：Decimal expansion of Mills’s constant</a> <span class="muted">（database）</span></li><li><a href="https://mathworld.wolfram.com/MillsConstant.html" rel="nofollow noopener">MathWorld：Mills’ Constant，2026-11-23 更新</a> <span class="muted">（database）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/6bc2f7490a49cc0258406ffb675483f4318a04b5/FormalConjectures/Wikipedia/Mills.lean" rel="nofollow noopener">formal-conjectures：Wikipedia/Mills.lean（固定提交）</a> <span class="muted">（restatement）</span></li><li><a href="https://github.com/leanprover-community/riemann-hypothesis/issues/96" rel="nofollow noopener">GitHub issue #96：RH 证明的语义与结构性审计讨论</a> <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002413（card_rev 773adf4b6cb5a72f），https://www.qunxingmath.org/p/QX-P-002413/</p>
+  <p><a href="/p/QX-P-002413.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002413.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002413.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

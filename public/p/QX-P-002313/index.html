@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002313 每个非 1 整数是否都作为无穷多个幂模数同余的余数出现 · 群星题库</title>
+<meta name="description" content="Does every integer other than 1 occur as k with 2^n congruent to k modulo n infinitely often?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002313/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002313.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002313.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002313</span></nav>
+<h1 class="ptitle">每个非 1 整数是否都作为无穷多个幂模数同余的余数出现</h1>
+<p class="ptitle-en" lang="en">Does every integer other than 1 occur as k with 2^n congruent to k modulo n infinitely often?</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到部分结果 · 查了 7 个来源</dd><dt>MSC</dt><dd><span class="mono">11A07</span></dd><dt>提出者</dt><dd>Ronald L. Graham（1960）；Paul Erdős 与 Ronald L. Graham（1980 问题集）</dd><dt>首次发表</dt><dd>1960 猜想；Erdős–Graham 1980；Guy, Unsolved Problems in Number Theory, F10</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p><strong>是否对每个整数 $k\ne1$，都存在无穷多个正整数 $n$，使得</strong><br>$$<br>2^n\equiv k\pmod n?<br>$$<br>形式化为 <code>erdos_479</code>：<br>$$<br>\forall^{\mathrm e}k\in\mathbb Z,\quad k\ne1\Longrightarrow<br>\{n\in\mathbb N:2^n\equiv k\pmod n\}\ \text{为无穷集}.<br>$$<br>这里 $k$ 可为负；同余只要求 $n\mid(2^n-k)$，不要求 $k$ 是通常意义下的最小非负余数。</p>
+<h2>已知结果与进展</h2>
+<ul><li><strong>[KNOWN，$k=0$]</strong> 若 $n=2^j$（$j\ge1$），则 $n\mid2^n$，故 $2^n\equiv0\pmod n$。这一类有无穷多解。</li><li><strong>[KNOWN，$k=1$ 必须排除]</strong> $n=1$ 满足模 1 的平凡同余；$n&gt;1$ 时无解。证明取 $n$ 的最小素因子 $p$，则 $2^n\equiv1\pmod p$，所以 $\operatorname{ord}_p(2)\mid n$。但 $\operatorname{ord}_p(2)&lt;p$，而 $n$ 没有小于 $p$ 的素因子，只能有 $\operatorname{ord}_p(2)=1$，矛盾于 $2^1-1=1$。</li><li><strong>[KNOWN，$k=2$]</strong> 每个素数 $p$ 由 Fermat 小定理满足 $2^p\equiv2\pmod p$，故有无穷多素数解；此外还有合数解。</li><li><strong>[PARTIAL，$k=3$]</strong> 2013 论文 OCR 转述 Rotkiewicz 1984 证明 $2^n\equiv3\pmod n$ 有无穷多正整数解。OEIS A050259 给最小非平凡解 $n=4700063497$，本次已精确核验。</li><li><strong>[PARTIAL，其他正余数类]</strong> OEIS 固定 $c$ 表列出 $k=5,7,9$ 等类的解，例如 $2^{19147}\equiv5$、$2^{25}\equiv7$、$2^{2228071}\equiv9$。这些是存在性证据，不自动给每个固定 $k$ 无穷多解。</li><li><strong>[PARTIAL，$k=4$]</strong> $n=6,10$ 都满足 $2^n\equiv4\pmod n$；2013 论文研究 $2^n\equiv4\pmod n$ 的特殊解结构并报告计算与构造，但不据此解决全猜想。</li><li><strong>[PARTIAL，负类 $k=-1$]</strong> $n=3^j$ 满足 $2^{3^j}\equiv-1\pmod{3^j}$，可由 LTE 归纳证明 $v_3(2^{3^j}+1)=j+1$。因此 $k=-1$ 有无穷多解；不能外推到所有负 $k$。</li><li><strong>[PARTIAL，本次精确计算]</strong> 用 Python <code>pow(2,n,n)</code> 扫描 $1\le n\le200000$：$k=1$ 无解，$k=0$ 有 18 个解，$k=2$ 有 18090 个，$k=4$ 有 9756 个，$k=5,6,7,10,12$ 分别有 1,1,2,2,3 个；$k=-1$ 用同余版本另核验 $3,9$。有限扫描不能决定无穷性。</li><li><strong>[OPEN]</strong> 本地主命题为 <code>research open/sorry</code>；OEIS A036236 在 2024 年仍明确称一般情形为 Graham 猜想。所读来源未给所有 $k\ne1$ 的统一证明或反例。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>同余与余数不同：</strong>$2^n\bmod n=k$ 要求 $0\le k&lt;n$，所以固定 $k$ 只有有限个候选 $n$；本题用 $2^n\equiv k\pmod n$，允许 $k$ 为负或大于 $n$。</li><li><strong>$k=0$ 与 $k=1$：</strong>$k=0$ 由 2 的幂解决；$k=1$ 只有退化 $n=1$，故明确排除。二者不能合并成“排除 0 和 1”或“包含 0”。</li><li><strong>奇偶必要约束：</strong>若 $k$ 为奇数而 $n$ 为偶数，则左边 $2^n$ 为偶数，右边模偶数仍为奇数，不可能同余。因此奇 $k$ 的解必须用奇模数；这不是存在性证明。</li><li><strong>$n=1$ 的退化：</strong>模 1 下所有整数同余，任何 $k$ 都有这个平凡解；问题要求无穷集，所以 $n=1$ 不改变状态。</li><li><strong>固定底数：</strong>本题固定底数为 2。底数 $a&gt;2$ 或其他同余推广即使有定理，也不能自动替代 $a=2$ 的统一结论。</li><li><strong>“一个解”与“无穷多解”：</strong>巨大最小解只证明该类非空；Graham 猜想要求每个 $k\ne1$ 的解集无限。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] Rotkiewicz 1984：</strong>$k=3$ 的无穷多解；原文 AMS 访问 403，本次只据 2013 OCR 与 OEIS 交叉记录。</li><li><strong>[PARTIAL] 后续特殊 $k$ 文献：</strong>Shen Mok-Kong 1986 的计算、Kiss–Phong 1988 及中文论文研究若干固定余数类；本次未取得这些论文全文，不扩展其覆盖范围。</li><li><strong>[PARTIAL]  elementary families：</strong>$k=0$ 的 2 的幂、$k=2$ 的素数、$k=-1$ 的 3 的幂可由初等方法完整证明。</li><li><strong>[NO VERIFIED GENERAL-SOLUTION CLAIM]</strong> 16 组 WebSearch 未找到覆盖所有 $k\ne1$ 的证明，也未找到使解集有限的 $k\ne1$。</li><li><strong>访问限制：</strong>Erdős–Graham 1980 OCR 返回 503；Rotkiewicz AMS PDF 返回 403；Guy F10 与 Kiss–Phong 全文未取得。已实读本地 Lean、OEIS 两条来源及 2013 OCR，故 <code>depth=basic</code>、<code>status_strength=weak</code>。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 形式化题源</td><td>[479.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/479.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/479.lean</a>)</td><td>主命题 open/sorry；k∈ℤ、k≠1、解集 Infinite</td></tr><tr><td>2026-11-25</td><td>A 外部编号</td><td>[Erdős Problems #479](<a href="https://www.erdosproblems.com/479" rel="nofollow noopener">https://www.erdosproblems.com/479</a>)</td><td>仅链接与编号，不摘录或改述</td></tr><tr><td>2026-11-25</td><td>A 数据库</td><td>[OEIS A036236](<a href="https://oeis.org/A036236" rel="nofollow noopener">https://oeis.org/A036236</a>)</td><td>2024 注释明确 Graham 1960 猜想；2026-11-24 页面仍列开放来源</td></tr><tr><td>2026-11-25</td><td>A 同余类总表</td><td>[OEIS Wiki](<a href="https://oeis.org/wiki/2%5En_mod_n" rel="nofollow noopener">https://oeis.org/wiki/2%5En_mod_n</a>)</td><td>全文实读；k=0、1、2 与特殊 c 列表</td></tr><tr><td>2026-11-25</td><td>B 引文追踪</td><td>[A036236 参考文献](<a href="https://oeis.org/A036236" rel="nofollow noopener">https://oeis.org/A036236</a>)；[2013 OCR](<a href="https://wenku.csdn.net/doc/vp243kh0v1" rel="nofollow noopener">https://wenku.csdn.net/doc/vp243kh0v1</a>)</td><td>Erdős–Graham 1980、Guy F10、Rotkiewicz 1984</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>WebSearch 原词 1–16</td><td>题号、作者、固定余数类及中英文组合</td></tr><tr><td>2026-11-25</td><td>D 预印本与全文</td><td>[AMS Rotkiewicz](<a href="https://www.ams.org/journals/mcom/1984-43-167/S0025-5718-1984-0744937-8/" rel="nofollow noopener">https://www.ams.org/journals/mcom/1984-43-167/S0025-5718-1984-0744937-8/</a>)</td><td>PDF 403；没有可读新预印本统一证明</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–10、13–16</td><td>精确同余与 solved/counterexample 方向；无一般结论</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>WebSearch 原词 2–8、10–12</td><td>大量伪素数/费马小定理噪声，未定位主问题解答帖</td></tr><tr><td>2026-11-25</td><td>G 数据库与百科</td><td>[A036236](<a href="https://oeis.org/A036236" rel="nofollow noopener">https://oeis.org/A036236</a>)；[A015910](<a href="https://oeis.org/A015910" rel="nofollow noopener">https://oeis.org/A015910</a>)</td><td>最小逆元表不等于无穷性；k=1 无 n&gt;1</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/479.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/479.lean</a>)</td><td>仍 sorry；未发现可信 AI 全称证明</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 8–12</td><td>2013 论文提供特殊类历史；中文报道不构成统一证明</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code> 与 100 份草稿</td><td>479、Lean 全名、OEIS A036236 无精确重复</td></tr><tr><td>2026-11-25</td><td>计算核验</td><td>本地 Python 模幂</td><td>代表解全部通过；n≤200000 仅有限证据</td></tr><tr><td>2026-11-25</td><td>当前状态综合</td><td>[OEIS](<a href="https://oeis.org/A036236" rel="nofollow noopener">https://oeis.org/A036236</a>)；[Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/479.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/479.lean</a>)</td><td>特殊类已知；所有 k≠1 的无穷解仍未统一</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://archive.org/download/oldnewproblemsres0000unse/oldnewproblemsres0000unse_djvu.txt" rel="nofollow noopener">P. Erdős, R. L. Graham, Old and New Problems and Results in Combinatorial Number Theory, Monographies de L&#x27;Enseignement Mathématique 28 (1980)（Internet Archive OCR 返回 503；经 OEIS A036236 书目核对）</a> <span class="muted">（原始出处）</span></li><li><a href="https://oeis.org/A036236" rel="nofollow noopener">OEIS A036236, Least inverse of A015910（全文实读）</a> <span class="muted">（查新依据）</span></li><li><a href="https://oeis.org/wiki/2%5En_mod_n" rel="nofollow noopener">OEIS Wiki, 2^n mod n（全文实读）</a> <span class="muted">（查新依据）</span></li><li><a href="https://www.ams.org/journals/mcom/1984-43-167/S0025-5718-1984-0744937-8/" rel="nofollow noopener">A. Rotkiewicz, On the congruence 2^n-2=1 (mod n), Math. Comp. 43 (1984), 271–272（AMS 正文 403；经 2013 论文转述）</a> <span class="muted">（progress）</span></li><li><a href="https://wenku.csdn.net/doc/vp243kh0v1" rel="nofollow noopener">吴文权、杨仕椿、蒋自国，同余式 2^n-4≡1 (mod n) 的解，四川大学学报（自然科学版）50(1) (2013), 37–40（OCR 实读）</a> <span class="muted">（progress）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/479.lean" rel="nofollow noopener">Formal Conjectures: ErdosProblems/479.lean（本地全文实读）</a> <span class="muted">（restatement）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002313（card_rev eeb16ab5179b5ed6），https://www.qunxingmath.org/p/QX-P-002313/</p>
+  <p><a href="/p/QX-P-002313.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002313.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002313.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

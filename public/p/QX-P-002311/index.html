@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002311 奇数分母真分数的奇数贪心单位分数展开是否总终止 · 群星题库</title>
+<meta name="description" content="Does the odd greedy unit-fraction algorithm always terminate for odd denominators?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002311/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002311.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002311.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002311</span></nav>
+<h1 class="ptitle">奇数分母真分数的奇数贪心单位分数展开是否总终止</h1>
+<p class="ptitle-en" lang="en">Does the odd greedy unit-fraction algorithm always terminate for odd denominators?</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到部分结果 · 查了 7 个来源</dd><dt>MSC</dt><dd><span class="mono">11D68</span></dd><dt>提出者</dt><dd>Paul Erdős; Ronald L. Graham（问题记录）；R. L. Graham（相关表示定理）</dd><dt>首次发表</dt><dd>Graham 1964；Erdős–Graham 1980 问题集</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>设 $x=p/q\in(0,1)$ 为最简正有理数，且 $q$ 为奇数。令 $U_0=\varnothing$，$r_0=x$。递推定义<br>$$<br>n_t=\min\{n\ge1:n\text{ 为奇数},\ n\notin U_t,\ 1/n\le r_t\},<br>\qquad<br>r_{t+1}=r_t-\frac1{n_t},<br>\qquad<br>U_{t+1}=U_t\cup\{n_t\}.<br>$$<br>若某个 $r_t=0$，则停止。<strong>是否对每个这样的 $x$，该过程都在有限步后停止？</strong><br>等价地，是否每个最简奇分母真分数都能写成有限个<strong>互异奇数分母</strong>单位分数之和，且这些分母恰好由上述贪心规则依次选出？</p>
+<h2>已知结果与进展</h2>
+<ul><li><strong>[KNOWN，必要性]</strong> 若 $x$ 能写成有限个奇分母单位分数之和，则最简分母 $q$ 必为奇数：通分后分母是奇数之积，约分不会产生因子 $2$。</li><li><strong>[KNOWN，非贪心存在性]</strong> Breusch 1954 与 Stewart 1954 证明每个最简奇分母 $x$ 都有有限个互异奇分母单位分数表示。Eppstein、Knott 与 Wikipedia 均明确转述此定理；本次未取得两篇原始论文全文。</li><li><strong>[KNOWN，普通贪心终止]</strong> 对无奇偶限制的 Fibonacci 贪心，若当前余数为 $a/b$，取 $d=\lceil b/a\rceil$，则 $$ \frac ab-\frac1d=\frac{ad-b}{bd},\qquad 0\le ad-b&lt;a. $$ 因此约分后的分子严格下降，最终为 $0$。奇数限制破坏这一论证。</li><li><strong>[KNOWN，奇数贪心可执行]</strong> 每步 $r_t&gt;0$ 时，$1/r_t$ 为正实数，而未用奇数无限多，故 $n_t$ 总存在；阈值 $1/r_t$ 随 $r_t$ 下降而不减，所以选出的分母严格递增。</li><li><strong>[PARTIAL，分子失控例]</strong> Eppstein 的 $10/39$ 展开为 $$ \frac{10}{39}=\frac15+\frac1{19}+\frac1{265}+\frac1{196365}. $$ 余数分子依次为 $10,11,14,1$，没有单调性。这说明普通贪心的终止证明失效，但不是不终止反例。</li><li><strong>[PARTIAL，本次精确计算]</strong> 用 <code>fractions.Fraction</code> 对所有最简 $p/q$（$3\le q\le999$，$q$ 奇数）实际执行题面规则：全部终止，失败 $0$ 个；最多 $27$ 步，达到于 $881/937$。这只是有限验证。</li><li><strong>[OPEN]</strong> 本地 <code>erdos_282</code> 为 <code>research open/sorry</code>；Eppstein 与 2026-05-14 Wikipedia 仍明确称一般终止性未知。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>允许等号：</strong>$n\ge1/r$ 包括 $1/n=r$；此时新余数为 $0$，必须停止。</li><li><strong>最简分母：</strong><code>Rat.den</code> 是约分后的正分母。若把 $1/3$ 写成 $2/6$，不能误判为偶分母而排除。</li><li><strong>互异分母：</strong>$U_t$ 记录已用奇数。只写“取最小奇数 $\ge1/r$”而不删去旧值，会在 $1/3$ 处反复选择 $3$，不是本题。</li><li><strong>精确终止：</strong>本地 <code>greedyUnitFractionRem ... =ᶠ[atTop] 0</code> 表示最终恒为零。无限序列的正余数即使趋零，也不给出有限埃及分数表示。</li><li><strong>余数分母：</strong>奇数减奇数分之一，通分分母为奇数，约分后仍为奇数；所以奇数限制不会让后续最简分母变偶。</li><li><strong>表示与算法：</strong>Breusch–Stewart 保证“有表示”，Graham 的幂分母定理保证某类表示存在；二者均不保证特定贪心选择终止。</li><li><strong>一般化变体：</strong>本地另有 $A=\mathbb N$、等差数列分母、平方分母及“哪些 $(x,A)$ 终止”的变体。本题只固定 $A$ 为全体奇数。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] 非贪心构造：</strong>Breusch–Stewart 已解决奇分母的奇数单位分数表示存在性；原论文本次访问受限。</li><li><strong>[RELATED] Graham 1964：</strong>全文实读的 nth 幂论文 Theorem 4、Corollary 1 与 Corollary A 给出平方分母、奇平方分母的区间刻画；不涉及奇数贪心终止。</li><li><strong>[PARTIAL] 有限计算：</strong>本次 $q\le999$ 全通过，最长 $27$ 步；Eppstein 页面还展示分母急剧增大的例子。两者都不能决定无穷族。</li><li><strong>[HEURISTIC] Eppstein：</strong>把余数分子的变化作随机模型，预期有限步终止并估计步数；页面明确说“nothing here is actually random”，不是证明。</li><li><strong>[NO VERIFIED SOLUTION CLAIM] 20 组 WebSearch 未找到一般终止性证明或不终止实例。</strong></li><li><strong>访问限制：</strong>Graham 的 *On finite sums of unit fractions* Wiley 全文返回 403，Stewart 1954 JSTOR 返回客户端挑战；Erdős–Graham 1980 原书全文未取得。已实读 Graham 的 nth 幂论文、Eppstein 算法页、Knott 页面与本地 Lean，故不把受限来源当全文证据，采用 <code>depth=basic</code>、<code>status_strength=weak</code>。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 形式化题源</td><td>[282.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/282.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/282.lean</a>)</td><td>主命题 open/sorry；精读 sInf、删分母与 =ᶠ 0</td></tr><tr><td>2026-11-25</td><td>A 算法综述</td><td>[Eppstein](<a href="https://ics.uci.edu/~eppstein/numth/egypt/approx.html" rel="nofollow noopener">https://ics.uci.edu/~eppstein/numth/egypt/approx.html</a>)</td><td>全文实读；Odd Greedy Method 明确称 always halts 开放</td></tr><tr><td>2026-11-25</td><td>A 外部编号</td><td>[Erdős Problems #282](<a href="https://www.erdosproblems.com/282" rel="nofollow noopener">https://www.erdosproblems.com/282</a>)</td><td>仅链接与编号，不摘录或改述网站文字</td></tr><tr><td>2026-11-25</td><td>B 引文追踪</td><td>[Graham 1964](<a href="https://doi.org/10.2140/pjm.1964.14.85" rel="nofollow noopener">https://doi.org/10.2140/pjm.1964.14.85</a>)</td><td>全文定位 Fibonacci 1202、Erdős–Stein 与相关表示结果</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>WebSearch 原词 1–20</td><td>Breusch、Stewart、Graham、odd greedy 与中文交叉</td></tr><tr><td>2026-11-25</td><td>D 预印本与全文</td><td>[Graham PJM PDF](<a href="https://msp.org/pjm/1964/14-1/pjm-v14-n1-p10-s.pdf" rel="nofollow noopener">https://msp.org/pjm/1964/14-1/pjm-v14-n1-p10-s.pdf</a>)</td><td>11 页全文实读；存在性刻画不是贪心终止</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–20</td><td>精确算法短语与 solved/counterexample 方向；无完整解</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>WebSearch 原词 2–8、20</td><td>未定位直接解决主问题的 MO/MSE 原帖</td></tr><tr><td>2026-11-25</td><td>G 数据库与百科</td><td>[Wikipedia](<a href="https://en.wikipedia.org/wiki/Greedy_algorithm_for_Egyptian_fractions" rel="nofollow noopener">https://en.wikipedia.org/wiki/Greedy_algorithm_for_Egyptian_fractions</a>)；Ron Knott 页面（实读，URL 因题库已有而不重复列入 sources）</td><td>2026-05-14 版仍 unknown；Knott 给 Breusch 与奇偶性</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[282.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/282.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/282.lean</a>)</td><td>仍 sorry；未发现可信 AI 一般证明</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 7、9–12</td><td>中文多混淆非贪心存在性与贪心终止</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code> 与 95 份草稿</td><td>282、odd greedy、Graham DOI 无精确重复</td></tr><tr><td>2026-11-25</td><td>计算核验</td><td>本地 Python <code>Fraction</code></td><td>所有最简奇分母 q≤999 终止；0 失败，最长 27 步</td></tr><tr><td>2026-11-25</td><td>当前状态综合</td><td>[Eppstein](<a href="https://ics.uci.edu/~eppstein/numth/egypt/approx.html" rel="nofollow noopener">https://ics.uci.edu/~eppstein/numth/egypt/approx.html</a>)；[Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/282.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/282.lean</a>)</td><td>非贪心存在性已知；贪心一般终止仍未闭合</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://doi.org/10.1112/plms/s3-14.2.193" rel="nofollow noopener">R. L. Graham, On finite sums of unit fractions, Proceedings of the London Mathematical Society s3-14 (1964), 193–207（出版商全文 403；书目与本地转述核对）</a> <span class="muted">（原始出处）</span></li><li><a href="https://doi.org/10.2140/pjm.1964.14.85" rel="nofollow noopener">R. L. Graham, On finite sums of reciprocals of distinct nth powers, Pacific Journal of Mathematics 14 (1964), 85–92（全文实读）</a> <span class="muted">（progress）</span></li><li><a href="https://ics.uci.edu/~eppstein/numth/egypt/approx.html" rel="nofollow noopener">David Eppstein, Algorithms for Egyptian Fractions（Greedy Method 与 Odd Greedy Method 全文实读）</a> <span class="muted">（综述）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/282.lean" rel="nofollow noopener">Formal Conjectures: ErdosProblems/282.lean（本地全文实读）</a> <span class="muted">（restatement）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002311（card_rev a50607a6d9dfe033），https://www.qunxingmath.org/p/QX-P-002311/</p>
+  <p><a href="/p/QX-P-002311.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002311.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002311.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

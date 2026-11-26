@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-001299 Is there an online learning algorithm making sublinear mistakes on every sequence whenever such an algorithm</title>
+<meta name="description" content="只要某个序列本身可学，就一定有同一套规则学会所有这类序列吗？">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-001299/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-001299.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-001299.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/computing/">理论计算机</a> › <span class="mono">QX-P-001299</span></nav>
+<h1 class="ptitle">Is there an online learning algorithm making sublinear mistakes on every sequence whenever such an algorithm can exist?</h1>
+<p class="ptitle-en" lang="en">Is there one online algorithm with sublinear mistakes whenever some algorithm can succeed?</p>
+<p class="chips"><span class="chip">理论计算机</span><span class="chip">构造</span><span class="chip">初等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 截至 2026-11-21</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-21 · 在所查范围内没找到相同结果 · 查了 1 个来源</dd><dt>MSC</dt><dd><span class="mono">68Q32 · 68T05 62L12</span></dd><dt>提出者</dt><dd>Steve Hanneke</dd><dt>首次发表</dt><dd>2021-07-20</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>二分类在线学习：若点序列X（可随机）本身容许某个学习算法对该序列做到亚线性错误，是否存在单一算法对所有目标概念在该序列上保证亚线性错误？（&#x27;能学则统一可学&#x27;）</p>
+<h3>形式化表述</h3>
+<p>判断存在算法A使：对一切h与一切满足容学条件的X，mistakes_A(h,X)=o(T)。已知：i.i.d.情形O(log T)期望错误算法存在（Hanneke）。</p>
+<h2>人话版</h2>
+<p><strong>一句话</strong>：只要某个序列本身可学，就一定有同一套规则学会所有这类序列吗？</p>
+<p>二分类在线学习：每一轮看到点 x_t，先预测标签，再看到由未知目标概念 h 给出的真实标签，累计预测错误的次数。问题是一种&#x27;能学则统一可学&#x27;：如果点序列 X（可以带随机性）本身就容许某个算法对每个 h 都只犯亚线性（o(T)）个错误，那么是否存在单一的算法 A，对一切这样的 X 和一切 h 都保证 o(T) 个错误。难点在于&#x27;存在某个算法&#x27;只是该序列的性质，而要的是同一套规则同时对所有这类序列奏效。</p>
+<p>（AI 起草，未经人工审校）</p>
+<h2>原文摘录</h2>
+<blockquote><p>This open problem asks whether there exists an online learning algorithm for binary classification that guarantees, for all target concepts, to make a sublinear number of mistakes, under only the assumption that the (possibly random) sequence of points X allows that such a learning algorithm can exist for that sequence.（S. Hanneke, arXiv:2107.09542 摘要）</p>
+<p>—— arXiv 预印本（COLT 2021公开问题）</p></blockquote>
+<h2>已知结果与进展</h2>
+<p>COLT 2021公开问题（PMLR v134，cited 8）；Hanneke 2025 universal multiclass/transductive系列；NeurIPS 2025 &#x27;Optimal Mistake Bounds for Transductive Online Learning&#x27;（30年transductive问题解决——相邻进展）。本条问题无解决。</p>
+<h2>边界与约定</h2>
+<ul><li>最小参数/退化: T→∞渐近口径（亚线性=o(T)）；有限假设类（已知可学基线支）；单点序列/常数序列退化。</li><li>分支/等号: &quot;容学条件&quot;（存在某算法对该序列亚线性）本身依赖h的量词序——与主问题量词交互为本条微妙点；i.i.d.情形O(log T)已知（译述✓）。</li><li>独立验证建议（与查新途径不同源）: 构造对抗序列族数值测试候选统一算法（mistake计数曲线）；可数假设类特例的显式构造尝试。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>COLT正式公开问题+2025相邻进展；主问题未闭。</li><li>状态判定: <strong>OPEN-CONFIRMED</strong>（batch_E查新 2026-11-20）</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>来源</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-20</td><td>COLT 2021 proceedings</td><td><a href="https://proceedings.mlr.press/v134/open-problem-hanneke21b.html" rel="nofollow noopener">https://proceedings.mlr.press/v134/open-problem-hanneke21b.html</a></td><td>公开问题正式收录；无解决</td></tr><tr><td>2026-11-20</td><td>NeurIPS 2025 transductive</td><td><a href="https://neurips.cc/virtual/2025/poster/119098" rel="nofollow noopener">https://neurips.cc/virtual/2025/poster/119098</a></td><td>相邻transductive问题2025解决——方法可借鉴</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://arxiv.org/abs/2107.09542" rel="nofollow noopener">arXiv 预印本（COLT 2021公开问题）</a> <span class="muted">（原始出处）</span></li><li><a href="https://proceedings.mlr.press/v134/open-problem-hanneke21b.html" rel="nofollow noopener">COLT 2021 proceedings</a> <span class="muted">（查新依据）</span></li><li><a href="https://neurips.cc/virtual/2025/poster/119098" rel="nofollow noopener">NeurIPS 2025 transductive</a> <span class="muted">（查新依据）</span></li><li><a href="https://arxiv.org/abs/2107.09542" rel="nofollow noopener">arXiv 2107.09542</a></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-001299（card_rev 53847b465cc5cc4f），https://www.qunxingmath.org/p/QX-P-001299/</p>
+  <p><a href="/p/QX-P-001299.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-001299.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/001/QX-P-001299.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

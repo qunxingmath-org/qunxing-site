@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-000051 Beaver Math Olympiad 第 1 题：(a,b)→(a−b,4b+2)/(2a+1,b−a) 迭代是否相遇 · 群星题库</title>
+<meta name="description" content="从 (1,2) 出发按这条分情况规则一直走，(a,b) 会不会某步相等？">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-000051/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-000051.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-000051.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/logic/">逻辑</a> › <span class="mono">QX-P-000051</span></nav>
+<h1 class="ptitle">Beaver Math Olympiad 第 1 题：(a,b)→(a−b,4b+2)/(2a+1,b−a) 迭代是否相遇</h1>
+<p class="ptitle-en" lang="en">Beaver Math Olympiad problem 1: does the map (a,b) -&gt; (a-b, 4b+2) / (2a+1, b-a) ever hit a = b?</p>
+<p class="chips"><span class="chip">逻辑</span><span class="chip">证明</span><span class="chip">中等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 截至 2026-11-21</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-21 · 在所查范围内没找到相同结果 · 查了 2 个来源</dd><dt>MSC</dt><dd><span class="mono">03D10 · 11B37 68Q04</span></dd><dt>提出者</dt><dd>bbchallenge 社区（Jason Yuen, mxdys 等）</dd><dt>首次发表</dt><dd>2024-2025（bbchallenge 5-态/6-态机器研究）</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>从 (1,2) 出发按上述规则迭代，是否存在 i 使 a_i=b_i（等价于某 6-态图灵机是否停机）。</p>
+<h3>形式化表述</h3>
+<p>判定问题: 迭代 (a₁,b₁)=(1,2)，规则 a≥b 时 (a,b)→(a−b, 4b+2)、a&lt;b 时 (a,b)→(2a+1, b−a)——是否存在 i≥1 使 a_i=b_i？（该判定等价于对应 6-态图灵机的停机性。）<br>（核对修正注记 2026-11-21，SOL验证Agent：原形式化&quot;∀i≥1: a_i≠b_i（或 ∃i: a_i=b_i）&quot;写成了命题与 negation 的罗列（&quot;A 或 ¬A&quot;型），无判定内容——已改为清晰的判定问句。原式两半分别对应&quot;不停机&quot;与&quot;停机&quot;两个互斥方向，保留于此注记。）</p>
+<h2>人话版</h2>
+<p><strong>一句话</strong>：从 (1,2) 出发按这条分情况规则一直走，(a,b) 会不会某步相等？</p>
+<p>从 (a₁,b₁) = (1,2) 出发，每一步看两个数谁大：若 a ≥ b，就把 (a,b) 换成 (a−b, 4b+2)；若 a &lt; b，就换成 (2a+1, b−a)。问是否存在某个下标 i 使 a_i = b_i。这条纯粹的整数递推之所以出名，是因为它等价于问某台 6 状态图灵机是否停机，因此落进了不可判定的邻域：想靠通用算法一次答完所有类似问题是不行的，只能针对这一条具体规则做分析。若能指出某个 i 使两者相等，只需把前面每一步算出来即可验证。</p>
+<p>（AI 起草，未经人工审校）</p>
+<h2>原文摘录</h2>
+<blockquote><p>Starting from (a₁,b₁)=(1,2), apply (a,b)→(a−b, 4b+2) if a≥b, else (a,b)→(2a+1, b−a). Does there exist i with a_i=b_i? (bbchallenge BMO#1; formal-conjectures BeaverMathOlympiad.lean, status research open, <code>sorry</code>)</p>
+<p>—— <a href="https://wiki.bbchallenge.org/wiki/Beaver_Math_Olympiad" rel="nofollow noopener">https://wiki.bbchallenge.org/wiki/Beaver_Math_Olympiad</a>；<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Other/BeaverMathOlympiad.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Other/BeaverMathOlympiad.lean</a></p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li>Lean 文件抽查（2026-11-20 raw 文件）：BMO#1 <code>@[category research open]</code> 且以 sorry 结尾，等价 6-态图灵机停机性；</li><li>同文件 BMO#3/#4 已被外部 Lean4 证明（collatz-cryptid repo），BMO#2 Antihydra 已在池内（B-215）；</li><li>长程计算未观察到 a_i=b_i。</li></ul>
+<h2>边界与约定</h2>
+<ul><li>最小参数: 迭代轨迹任意长程序推进（起始 (1,2) 固定——无参数族）；前 N 步已计算区间内无相遇（bbchallenge 数据）。</li><li>退化情形: a=b 即停（判定事件）；两分支规则的可达状态空间结构（a,b 增长模式: b+4b+2 型与 2a+1 型交替——奇偶/模不变量候选）。</li><li>约定依赖: 迭代按步定义（a_i,b_i 整数序列）；&quot;相遇&quot;=某步两分量相等；TM 等价性以 FC/bbchallenge 编码为准。</li><li>结构性锚点: 同族 BMO#3/#4 已被外部 Lean 证明（collatz-cryptid）——证明风格（不变量/终止分析）可迁移考察；任何声称停机（相遇）必须给出具体 i 或 TM 停机构型序列，声称不停机须给出不变量。</li><li>建议独立验证方法（仅描述，不执行）: 独立实现迭代长程计算（大整数无界推进）+ 模 M 不变量扫描（寻找周期/单调结构）；对声称证明核对 TM 模拟等价性（bbchallenge 编码复验）。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>[PARTIAL] 同族 BMO#3/#4 已解决（外部 Lean4 形式化证明）——说明该类问题确实可被计算机辅助关闭，支撑 A层定位。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>来源</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-20</td><td>Lean raw 文件抽查</td><td><a href="https://raw.githubusercontent.com/google-deepmind/formal-conjectures/main/FormalConjectures/Other/BeaverMathOlympiad.lean" rel="nofollow noopener">https://raw.githubusercontent.com/google-deepmind/formal-conjectures/main/FormalConjectures/Other/BeaverMathOlympiad.lean</a></td><td>BMO#1 research open + sorry；&quot;equivalent to asking whether the 6-state TM halts&quot;</td></tr><tr><td>2026-11-20</td><td>bbchallenge wiki</td><td><a href="https://wiki.bbchallenge.org/wiki/Beaver_Math_Olympiad" rel="nofollow noopener">https://wiki.bbchallenge.org/wiki/Beaver_Math_Olympiad</a></td><td>未解决标注</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://wiki.bbchallenge.org/wiki/Beaver_Math_Olympiad" rel="nofollow noopener">https://wiki.bbchallenge.org/wiki/Beaver_Math_Olympiad；https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Other/BeaverMathOlympiad.lean</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Other/BeaverMathOlympiad.lean" rel="nofollow noopener">https://wiki.bbchallenge.org/wiki/Beaver_Math_Olympiad；https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Other/BeaverMathOlympiad.lean</a> <span class="muted">（原始出处）</span></li><li><a href="https://raw.githubusercontent.com/google-deepmind/formal-conjectures/main/FormalConjectures/Other/BeaverMathOlympiad.lean" rel="nofollow noopener">Lean raw 文件抽查</a> <span class="muted">（查新依据）</span></li><li><a href="https://wiki.bbchallenge.org/wiki/Beaver_Math_Olympiad" rel="nofollow noopener">bbchallenge wiki</a> <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-000051（card_rev 6d87a81eef104126），https://www.qunxingmath.org/p/QX-P-000051/</p>
+  <p><a href="/p/QX-P-000051.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-000051.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/000/QX-P-000051.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002429 确定性多项式时间是否等于有界误差概率多项式时间 · 群星题库</title>
+<meta name="description" content="Does deterministic polynomial time equal bounded-error probabilistic polynomial time?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002429/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002429.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002429.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/computing/">理论计算机</a> › <span class="mono">QX-P-002429</span></nav>
+<h1 class="ptitle">确定性多项式时间是否等于有界误差概率多项式时间</h1>
+<p class="ptitle-en" lang="en">Does deterministic polynomial time equal bounded-error probabilistic polynomial time?</p>
+<p class="chips"><span class="chip">理论计算机</span><span class="chip">证明</span><span class="chip legend">传奇</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到部分结果 · 查了 9 个来源</dd><dt>MSC</dt><dd><span class="mono">68Q15</span></dd><dt>提出者</dt><dd>John Gill（BPP 及概率复杂度类的早期定义）；P=BPP 猜想随后成为标准开放问题</dd><dt>首次发表</dt><dd>Gill 1974 会议论文与 1977 SIAM 论文引入概率图灵机和相关语言类</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>设 $\mathsf P$ 为确定性多项式时间可判定的语言类，$\mathsf{BPP}$ 为有界误差概率多项式时间可判定的语言类。问是否<br>$$<br>\mathsf P=\mathsf{BPP}?<br>$$<br>由于忽略随机位的确定性算法也是合法随机算法，已知 $\mathsf P\subseteq\mathsf{BPP}$；未解的是反向包含 $\mathsf{BPP}\subseteq\mathsf P$。</p>
+<h3>形式化表述</h3>
+<p>在本地 Lean 中，判定问题是 <code>List Bool → Bool</code>。<code>BPP</code> 的精确定义为：存在多项式 $p$ 和多项式时间可计算关系 $R$，使对每个输入 $x$，<br>$$<br>\Pr_{r\in\{0,1\}^{p(|x|)}}\bigl[R(x,r)=L(x)\bigr]\ge\frac23.<br>$$<br>目标 <code>ComplexityTheory.P_eq_BPP</code> 即两个语言集合相等。</p>
+<h2>原文摘录</h2>
+<blockquote><p>A probabilistic Turing machine is a Turing machine with the ability to make decisions based on the outcomes of unbiased coin tosses.</p>
+<p>—— John Gill，*Computational Complexity of Probabilistic Turing Machines*，Crossref 摘要，SIAM J. Comput. 6(4), 675–695，1977，[DOI](<a href="https://doi.org/10.1137/0206049" rel="nofollow noopener">https://doi.org/10.1137/0206049</a>)。SIAM 正文访问返回 403；此处只摘录实际取得的摘要首句。</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li><strong>误差放大：</strong>把 BPP 算法独立重复多项式多次并取多数答案，可将 $1/3$ 误差降为 $2^{-n^c}$；因此定义中的 $2/3$ 不是本质阈值。</li><li><strong>非均匀去随机化：</strong>Adleman 定理给出 $\mathsf{BPP}\subseteq\mathsf{P}/\mathsf{poly}$。即每个输入长度存在一条固定随机串可使算法在所有该长度输入上正确； uniform 地找到这条串可能很昂贵，故不等于 $\mathsf{BPP}\subseteq\mathsf P$。</li><li><strong>多项式层级上界：</strong>Sipser–Lautemann 定理给出 $\mathsf{BPP}\subseteq\Sigma_2^P\cap\Pi_2^P$。由此若 $\mathsf P=\mathsf{NP}$，多项式层级坍缩到 $\mathsf P$，便有 $\mathsf P=\mathsf{BPP}$。</li><li><strong>硬度—随机性条件结果：</strong>Nisan–Wigderson 与 Impagliazzo–Wigderson 的工作表明，足够强的显式电路下界可构造伪随机发生器，从而去随机化 BPP。Impagliazzo–Wigderson 1997 的标题结论是：若 $\mathsf E$ 中某语言需要 $2^{\Omega(n)}$ 大小电路，则 $\mathsf P=\mathsf{BPP}$。</li><li><strong>弱一些的条件模拟：</strong>Babai–Fortnow–Nisan–Wigderson 证明，除非 $\mathsf{EXPTIME}=\mathsf{MA}$，BPP 可在无穷多个输入长度上用亚指数时间模拟；这不是所有长度上的确定性多项式时间算法。</li><li><strong>具体问题：</strong>质数判定已由 AKS 2002 放入 $\mathsf P$；多项式恒等式测试仍在 $\mathsf{coRP}\subseteq\mathsf{BPP}$，尚无已知确定性多项式时间算法，是“BPP 中但未知在 P 中”的标准例子。</li><li><strong>当前形式化状态：</strong>本地 <code>P_eq_BPP</code> 为 <code>research open/sorry</code>；<code>P_subset_BPP</code> 是已知包含。2024 年历史综述和 2026 年可读 BPP 条目仍把等式作为猜想。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>统一的最坏情况错误：</strong>每个输入 $x$ 都满足概率界；不是对某分布平均，也不是只要求高概率输入正确。</li><li><strong>所有随机分支多项式停机：</strong>BPP 要求多项式时间界限对所有硬币结果成立；允许极少数超时运行的期望时间模型不是这里的定义。</li><li><strong>均匀与非均匀：</strong>$\mathsf P$ 要求一个算法处理所有输入；$\mathsf P/\mathsf{poly}$ 允许每个输入长度有不同电路。固定随机串的存在性不等于可在多项式时间构造它。</li><li><strong>不是 $\mathsf{PP}$：</strong>BPP 要求正确概率与 $1/2$ 有常数间隙；PP 只要求多数阈值，可有趋于 $1/2$ 的间隙。</li><li><strong>与 $\mathsf P$ vs $\mathsf{NP}$ 分开：</strong>$\mathsf P=\mathsf{NP}$ 是 Clay 千禧年问题，$\mathsf P=\mathsf{BPP}$ 不是；前者足以推出后者，反向蕴含未知。</li><li><strong>与电路下界分开：</strong>证明某个 $\mathsf{NP}$ 语言无多项式大小电路会解决 $\mathsf P\ne\mathsf{NP}$；$\mathsf P=\mathsf{BPP}$ 可由 $\mathsf E$ 中某语言的指数电路下界推出。两者所需假设强度和对象不同。</li><li><strong>相对化障碍：</strong>存在预言机使 $\mathsf P^A=\mathsf{BPP}^A$，也存在预言机使二者不等，故单纯相对化 diagonalization 不能解决无预言机问题。</li><li><strong>查重：</strong>已检索 75 份既有草稿和实时题库的 <code>P_eq_BPP</code>、<code>ComplexityTheory</code>、P=BPP、BPP、Gill 与 derandomization；未发现同一等式。题库 QX-P-000504 是 ACC⁰ 电路下界，不是本题，未发现精确重复。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] Adleman：</strong>BPP 有多项式大小电路，给出非均匀去随机化；不提供统一确定性多项式时间算法。</li><li><strong>[PARTIAL] Sipser–Lautemann：</strong>BPP 位于多项式层级第二层；说明 P=NP 足以解决等式，却不证明 P=BPP 本身。</li><li><strong>[PARTIAL] Impagliazzo–Wigderson 1997：</strong>E 的指数电路下界可推出 P=BPP；所需下界仍未证明。</li><li><strong>[CLAIM] 未定位到无条件解：</strong>2025–2026 的原句、Lean 名、Gill、去随机化和电路下界检索未找到可信的一般证明或 BPP\P 分离。2026 年关于对数空间 L=RL=BPL 的新闻属于不同资源模型，不能移作 P=BPP。</li><li><strong>访问限制：</strong>Gill 1977 的 SIAM 正文 403，但 Crossref 摘要实读；Impagliazzo–Wigderson ACM 正文 403，但 Crossref 元数据及实读综述核对了条件结论；Nisan–Wigderson PDF 的 OCR 噪声大，未作精确正文引文。Google Scholar 全量被引、MathSciNet 权限及十类深查未完成，故 <code>status_strength=weak</code>、<code>novelty.depth=basic</code>。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 精确题源</td><td>[本地 PvsNP.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Millennium/PvsNP.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Millennium/PvsNP.lean</a>)</td><td>实读 P_eq_BPP open/sorry 与 P⊆BPP</td></tr><tr><td>2026-11-25</td><td>A 精确定义</td><td>[Complexity.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjecturesForMathlib/Computability/Complexity.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjecturesForMathlib/Computability/Complexity.lean</a>)</td><td>实读均匀随机串、多项式时间关系与 2/3 概率界</td></tr><tr><td>2026-11-25</td><td>A 原始论文</td><td>[Gill DOI](<a href="https://doi.org/10.1137/0206049" rel="nofollow noopener">https://doi.org/10.1137/0206049</a>)</td><td>Crossref 摘要实读；SIAM 正文 403</td></tr><tr><td>2026-11-25</td><td>B 引文追踪</td><td>[Gill](<a href="https://doi.org/10.1137/0206049" rel="nofollow noopener">https://doi.org/10.1137/0206049</a>)；[IW97](<a href="https://doi.org/10.1145/258533.258590" rel="nofollow noopener">https://doi.org/10.1145/258533.258590</a>)；[BPP 页面](<a href="https://en.wikipedia.org/wiki/BPP_(complexity" rel="nofollow noopener">https://en.wikipedia.org/wiki/BPP_(complexity</a>))</td><td>元数据、摘要与参考文献交叉核对；无无条件一般解</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>WebSearch 原词 1–10</td><td>原句、作者、DOI、Lean 名、solved 与 2025–2026 组合</td></tr><tr><td>2026-11-25</td><td>D 预印本与综述</td><td>[arXiv:2409.11999](<a href="https://arxiv.org/html/2409.11999" rel="nofollow noopener">https://arxiv.org/html/2409.11999</a>)</td><td>实读 Gill 模型、BPP 定义与历史；不是 P=BPP 的证明</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–10</td><td>大量同名 BPP/ Gill 生物噪声与 AI 新闻已排除</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>WebSearch 原词 6–8</td><td>未定位直接解决 P=BPP 的 MO/MSE 主帖；不声称全量审计</td></tr><tr><td>2026-11-25</td><td>G 百科与数据库</td><td>[Wikipedia BPP](<a href="https://en.wikipedia.org/wiki/BPP_(complexity" rel="nofollow noopener">https://en.wikipedia.org/wiki/BPP_(complexity</a>))；[Clay P vs NP](<a href="https://www.claymath.org/millennium/p-vs-np/" rel="nofollow noopener">https://www.claymath.org/millennium/p-vs-np/</a>)</td><td>前者仍标 P=?BPP 未解；后者确认千禧年问题是不同命题</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[Formal Conjectures](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Millennium/PvsNP.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Millennium/PvsNP.lean</a>)</td><td>未发现可信 AI 一般证明；主命题仍 sorry</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 8</td><td>中文检索主要得定义与一般去随机化介绍，无新证明</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code></td><td>精确名称、DOI、arXiv 与对象词无重复</td></tr><tr><td>2026-11-25</td><td>当前状态综合</td><td>[BPP 页面](<a href="https://en.wikipedia.org/wiki/BPP_(complexity" rel="nofollow noopener">https://en.wikipedia.org/wiki/BPP_(complexity</a>))；[历史综述](<a href="https://arxiv.org/html/2409.11999" rel="nofollow noopener">https://arxiv.org/html/2409.11999</a>)；[Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Millennium/PvsNP.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Millennium/PvsNP.lean</a>)</td><td>有多个条件去随机化结果；无条件 BPP⊆P 与 BPP\P 分离均未解决</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://doi.org/10.1137/0206049" rel="nofollow noopener">John Gill, Computational Complexity of Probabilistic Turing Machines, SIAM J. Comput. 6(4), 675–695 (1977)（Crossref 摘要实读；SIAM 正文 403）</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Millennium/PvsNP.lean" rel="nofollow noopener">Formal Conjectures: Millennium/PvsNP.lean 与 Computability/Complexity.lean（本地实读）</a> <span class="muted">（restatement）</span></li><li><a href="https://doi.org/10.1145/258533.258590" rel="nofollow noopener">Russell Impagliazzo, Avi Wigderson, P=BPP if E requires exponential circuits: Derandomizing the XOR Lemma, STOC 1997, 220–229（Crossref 元数据与综述核对；正文 403）</a> <span class="muted">（progress）</span></li><li><a href="https://arxiv.org/html/2409.11999" rel="nofollow noopener">Melissa Antonelli, Ugo Dal Lago, Paolo Pistone, On Randomized Computational Models and Complexity Classes: a Historical Overview, arXiv:2409.11999v1（全文实读）</a> <span class="muted">（综述）</span></li><li><a href="https://en.wikipedia.org/wiki/BPP_(complexity)" rel="nofollow noopener">Wikipedia: BPP (complexity)（全文实读）</a> <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002429（card_rev efce20b8b2805bec），https://www.qunxingmath.org/p/QX-P-002429/</p>
+  <p><a href="/p/QX-P-002429.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002429.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002429.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

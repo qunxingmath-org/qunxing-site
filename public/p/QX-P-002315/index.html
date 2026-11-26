@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002315 平方根附近短区间内的约数个数是否有统一常数上界 · 群星题库</title>
+<meta name="description" content="Is there a uniform bound for divisors just above the square root?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002315/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002315.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002315.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002315</span></nav>
+<h1 class="ptitle">平方根附近短区间内的约数个数是否有统一常数上界</h1>
+<p class="ptitle-en" lang="en">Is there a uniform bound for divisors just above the square root?</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到部分结果 · 查了 5 个来源</dd><dt>MSC</dt><dd><span class="mono">11N37</span></dd><dt>提出者</dt><dd>Paul Erdős; Moshe Rosenfeld</dd><dt>首次发表</dt><dd>1997，Acta Arithmetica 79(4), 353–359</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>记<br>$$<br>\mathcal D(n,C)=\{d\in\mathbb Z_{&gt;0}:d\mid n,\ \sqrt n&lt;d&lt;\sqrt n+C n^{1/4}\}.<br>$$<br><strong>是否存在一个绝对常数 $K$，使得对每个实数 $C&gt;0$，所有充分大的正整数 $n$ 都满足 $|\mathcal D(n,C)|\le K$？</strong></p>
+<p>形式化为 <code>erdos_887.parts.ii</code>：<br>$$<br>\exists K\in\mathbb N,\ \forall C&gt;0,\ \forall^\circ n\to\infty,\quad<br>|\mathcal D(n,C)|\le K.<br>$$<br>这里 $\forall^\circ$ 表示除有限个 $n$ 外都成立，有限例外可依赖 $C$，但 $K$ 不可依赖 $C$。</p>
+<h2>已知结果与进展</h2>
+<ul><li><strong>[KNOWN，因子差集翻译]</strong> 对 $n$ 的互补因子对 $de=n$，令 $h=|d-e|$。若 $d&gt;\sqrt n$，则 $h=d+n/d-d$。大因子略高于 $\sqrt n$，等价于因子差集有小元素；2026 论文给出 $$ \frac n d-\sqrt n\le h\le2\left(\frac n d-\sqrt n\right),\qquad d&lt;\sqrt n. $$</li><li><strong>[KNOWN，依赖 $C$ 的上界]</strong> Erdős–Rosenfeld 的结果给出充分大 $n$ 至多 $1+C^2$ 个约数。其机制是：若 $\sqrt n&lt;d&lt;\sqrt n+Cn^{1/4}$，则 $$ 2\sqrt n&lt;d+\frac nd&lt;2\sqrt n+C^2. $$ 不同的 $d&gt;\sqrt n$ 给出严格递增的 $d+n/d$，故可把这些和压进长度 $C^2$ 的区间。$C=1$ 时至多一个，$C=2$ 时至多四个。</li><li><strong>[KNOWN，下界构造]</strong> Erdős–Rosenfeld 证明对 $C=16$，无穷多 $n$ 至少有四个约数落在题面开区间内。</li><li><strong>[PARTIAL，2026 代码构造]</strong> 当前 <code>mnn31/erdos-lean</code> 全文实读：取 $$ n=u(u+2)(u+3)(u+5),\qquad (u+2)(u+3)=3(v+1)(v+2), $$ 其中 $(u,v)$ 来自负 Pell 方程 $(2u+5)^2-3(2v+3)^2=-2$ 的无穷递增解。五个不同约数为 $$ (u+2)(u+3),\quad 3(v+1)(v+3),\quad (u+2)(u+5),\quad (u+3)(u+5),\quad 3(v+2)(v+3). $$ 该代码以 $C=7/2$ 证明它们都在相应区间内；本次未独立编译外部仓库。</li><li><strong>[PARTIAL，另一个变体的反例]</strong> 同一实读文件以 $z^2=56x^2+65$ 的 Pell 解构造 $$ n=(x^2-1)(x^2-4)(x^2-16)(x^2-49), $$ 并报告 $C=40$ 时无穷多 $n$ 至少有五个约数。因此“4 是某个 $C$ 下可同时出现的最大约数个数”为假，但这与统一上界问题相容。</li><li><strong>[OPEN]</strong> 本地主命题仍为 <code>research open/sorry</code>；2026-11-08 论文仍把 886、887 列为相关开放问题。所读来源未给出跨所有 $C$ 的绝对 $K$。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>量词次序是关键：</strong>$K$ 不依赖 $C$。已知的 $K(C)=1+C^2$ 不能满足要求。</li><li><strong>开区间：</strong>不计 $d=\sqrt n$，也不计右端点；完全平方数不因中央约数而多计一个。</li><li><strong>只计大因子：</strong>每个 $d&gt;\sqrt n$ 对应互补因子 $n/d&lt;\sqrt n$，不能把一对因子重复计为两个。</li><li><strong>充分大的含义：</strong>对每个 $C$ 可另有 $n_0(C)$，不要求同一个阈值对所有 $C$ 有效。</li><li><strong>两个开放层级不同：</strong>“固定 $C$ 的最大出现个数”和“对所有 $C$ 一致上界”不是同一问题。五约数构造只推进前者。</li><li><strong>闭区间文献：</strong>2026 论文转述的原始上界写为闭区间；整数端点至多改变有限个边界约数，不能据此声称已解决开区间主命题。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] Erdős–Rosenfeld：</strong>无穷四约数构造与 $1+C^2$ 型上界；原刊全文本次访问受限，定理经 2026 论文和本地 Lean 交叉核对。</li><li><strong>[PARTIAL] 2026 外部 Lean 构造：</strong>$C=7/2$ 的五约数无穷族；另有 $C=40$ 构造否定 Rosenfeld 的“4 最优”变体。代码已读，未独立运行验证。</li><li><strong>[RELATED] Chan：</strong>2026 论文转述其对完全平方数、宽度 $n^{1/4}(\log n)^{1/7}$ 的近平方根约数至多五个的结果；只覆盖平方数及更短尺度。</li><li><strong>[NO VERIFIED MAIN-SOLUTION CLAIM]</strong> 18 组 WebSearch 未找到统一常数上界的证明或无界反例；Δ-primitive 平方的新定理不回答 887。</li><li><strong>访问限制：</strong>1997 Acta Arithmetica 原刊正文未取得；外部 Lean 仓库未编译；Google Scholar 全量被引与 MathSciNet 权限未完成，故 <code>depth=basic</code>、<code>status_strength=weak</code>。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 形式化题源</td><td>[887.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/887.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/887.lean</a>)</td><td>主命题 open/sorry；实读 ∃K∀C 与已解变体</td></tr><tr><td>2026-11-25</td><td>A 外部编号</td><td>[Erdős Problems #887](<a href="https://www.erdosproblems.com/887" rel="nofollow noopener">https://www.erdosproblems.com/887</a>)</td><td>仅链接与编号，不摘录或改述</td></tr><tr><td>2026-11-25</td><td>A 当前论文</td><td>[arXiv:2611.11574](<a href="https://arxiv.org/html/2611.11574v1" rel="nofollow noopener">https://arxiv.org/html/2611.11574v1</a>)</td><td>2026-11-08 全文仍明确称 887 相关部分开放</td></tr><tr><td>2026-11-25</td><td>B 引文追踪</td><td>[2026 论文参考文献](<a href="https://arxiv.org/html/2611.11574v1#bib" rel="nofollow noopener">https://arxiv.org/html/2611.11574v1#bib</a>)</td><td>核对 Erdős–Rosenfeld 1997、Chan 与 886/887 关系</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>WebSearch 原词 1–18</td><td>原书名、题号、作者、平方根区间与 Pell 构造交叉</td></tr><tr><td>2026-11-25</td><td>D 预印本与全文</td><td>[2611.11574](<a href="https://arxiv.org/html/2611.11574v1" rel="nofollow noopener">https://arxiv.org/html/2611.11574v1</a>)；[外部 Lean](<a href="https://github.com/mnn31/erdos-lean/blob/main/ErdosLean/Erdos887.lean" rel="nofollow noopener">https://github.com/mnn31/erdos-lean/blob/main/ErdosLean/Erdos887.lean</a>)</td><td>均全文实读；只给固定尺度部分结果</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–10、13–18</td><td>精确式与中文题名；无统一 K 解答</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>WebSearch 原词 3、5–10</td><td>未定位直接解决主命题的 MO/MSE 原帖</td></tr><tr><td>2026-11-25</td><td>G 论文目录</td><td>[Erdős Project](<a href="https://www.renyi.hu/~p_erdos/Erdos.html" rel="nofollow noopener">https://www.renyi.hu/~p_erdos/Erdos.html</a>)</td><td>原刊书目可定位；正文未取得</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[887.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/887.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/887.lean</a>)</td><td>主定理 sorry；外部构造不是统一上界</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 10、13–16</td><td>中文“因子差集”噪声较多，无新解</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code> 与 100 份草稿</td><td>887、factor-difference、Lean 全名无精确重复</td></tr><tr><td>2026-11-25</td><td>当前状态综合</td><td>[2026 论文](<a href="https://arxiv.org/html/2611.11574v1" rel="nofollow noopener">https://arxiv.org/html/2611.11574v1</a>)；[Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/887.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/887.lean</a>)</td><td>固定 C 上下界及五约数构造已知；统一绝对上界仍未闭合</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://www.renyi.hu/~p_erdos/Erdos.html" rel="nofollow noopener">P. Erdős, M. Rosenfeld, The factor-difference set of integers, Acta Arithmetica 79(4) (1997), 353–359（原刊全文本次未取得；经论文目录与 2026 全文书目核对）</a> <span class="muted">（原始出处）</span></li><li><a href="https://arxiv.org/html/2611.11574v1" rel="nofollow noopener">F. Golfieri, V. N. Schvöllner, On the Δ-primitive squares conjecture, arXiv:2611.11574v1（全文实读）</a> <span class="muted">（progress）</span></li><li><a href="https://github.com/mnn31/erdos-lean/blob/main/ErdosLean/Erdos887.lean" rel="nofollow noopener">mnn31/erdos-lean, ErdosLean/Erdos887.lean（当前 main 全文实读，未独立编译）</a> <span class="muted">（progress）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/887.lean" rel="nofollow noopener">Formal Conjectures: ErdosProblems/887.lean（本地全文实读）</a> <span class="muted">（restatement）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002315（card_rev 441d7869099b89a9），https://www.qunxingmath.org/p/QX-P-002315/</p>
+  <p><a href="/p/QX-P-002315.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002315.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002315.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

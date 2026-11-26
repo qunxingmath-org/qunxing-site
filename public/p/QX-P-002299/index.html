@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002299 反向素数是否有无穷多个 · 群星题库</title>
+<meta name="description" content="Are there infinitely many emirps?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002299/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002299.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002299.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002299</span></nav>
+<h1 class="ptitle">反向素数是否有无穷多个</h1>
+<p class="ptitle-en" lang="en">Are there infinitely many emirps?</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">中等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 在所查范围内没找到相同结果 · 查了 6 个来源</dd><dt>MSC</dt><dd><span class="mono">11A63</span></dd><dt>提出者</dt><dd>Jeremiah Farrell（术语）；N. J. A. Sloane（OEIS 条目）</dd><dt>首次发表</dt><dd>术语于 20 世纪提出；OEIS A006567 为原序列条目，本次未核定最早论文日期</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>对自然数 $p$，记 $R(p)$ 为 $p$ 的<strong>十进制数字倒序后所表示的整数</strong>，即 Lean 中的 <code>reverse10</code>。例如<br>$$<br>R(13)=31,\qquad R(17)=71,\qquad R(120)=21.<br>$$<br>称 $p$ 为<strong>反向素数</strong>（emirp），如果<br>$$<br>p\text{ 是素数},\qquad R(p)\text{ 是素数},\qquad R(p)\ne p.<br>$$</p>
+<p><strong>反向素数是否有无穷多个？</strong> 等价地，<br>$$<br>\{p\in\mathbb （本机文件 operatorname{IsEmirp}(p）)\}\text{ 是否为无限集？}<br>$$</p>
+<h3>形式化表述</h3>
+<p>待判定<br>$$<br>\boxed{\{p:\ p.\mathrm{Prime}\land(R(p)).\mathrm{Prime}\land R(p)\ne p\}.\mathrm{Infinite}.}<br>$$</p>
+<h2>原文摘录</h2>
+<blockquote><p>“Emirps (primes whose reversal is a different prime).”</p>
+<p>—— N. J. A. Sloane，[OEIS A006567](<a href="https://oeis.org/A006567" rel="nofollow noopener">https://oeis.org/A006567</a>)，NAME 栏，2026-11-25 实读。</p></blockquote>
+<blockquote><p>“It is not known whether there are infinitely many emirps.”</p>
+<p>—— [Wikipedia, Emirp](<a href="https://en.wikipedia.org/wiki/Emirp" rel="nofollow noopener">https://en.wikipedia.org/wiki/Emirp</a>)，导语，2026-11-23 编辑，2026-11-25 实读。</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li><strong>[KNOWN] 精确集合：</strong>OEIS A006567 的前几项为 $$ 13,17,31,37,71,73,79,97,107,113,149,157,167,179,199,\ldots $$ 本地 Lean 逐项验证 $13,17,31,37$ 是 emirp，且 $11$ 不是。</li><li><strong>[KNOWN] 成对性：</strong>若 $p$ 是 emirp，则 $R(p)$ 也是 emirp，且 $R(R(p))=p$。因此 $13$ 与 $31$、$17$ 与 $71$ 等分别构成二元组；OEIS 将两个方向分别列为项。</li><li><strong>[KNOWN] 模 $18$ 障碍：</strong>同一对中 $p-R(p)$ 被 $9$ 整除，因为反转不改变数字和；两个大于 $2$ 的素数均为奇数，所以差为偶数。因此差被 $18$ 整除。这只是必要同余条件，不能给出无穷性。</li><li><strong>[KNOWN] 与回文素数的并集：</strong>OEIS 明确指出 A007500（反转后仍为素数的素数）是 A002385（回文素数）与 A006567（emirps）的并集。回文素数无穷性本身也开放，不能借它证明本题。</li><li><strong>[VARIANT] 二进制结果：</strong>Dartyge 等 *Reversible primes*（[arXiv:2309.11380](<a href="https://arxiv.org/abs/2309.11380" rel="nofollow noopener">https://arxiv.org/abs/2309.11380</a>)）研究二进制 $n$-bit 可逆素数，得到预期量级的上界，并构造大量至多 $8$ 个素因子的可逆整数。该文不证明十进制 emirps 无穷。</li><li><strong>[OPEN] 当前状态：</strong>2026-11-25 本地 Lean 的 <code>infinitude_question</code> 仍为 <code>research open/question/sorry</code>；Wikipedia 仍明确称无穷性未知。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>严格排除回文：</strong>$11,101,131$ 等回文素数不满足 $R(p)\ne p$，均不是 emirp。实时题库已有回文素数无穷性卡片 QX-P-000350，它与本题对象不同。</li><li><strong>十进制：</strong><code>reverse10</code> 使用 <code>Nat.digits 10</code>，不是二进制、字符串逐字符反转或其他任意进制。</li><li><strong>前导零：</strong>按整数表示去掉前导零；例如 $R(120)=21$。素数不以 $0$ 结尾，故候选 emirp 不存在这一歧义。</li><li><strong>一位数：</strong>$2,3,5,7$ 的反序等于自身，故按定义全部排除；最小 emirp 是 $13$。</li><li><strong>计数口径：</strong>$13$ 与 $31$ 是两个 emirp；若只数无序对，需另除以 $2$，但不影响“有限或无限”的判定。</li><li><strong>“可逆素数”歧义：</strong>某些资料用 reversible prime 指“本身与反序均为素数”的并集，包含回文素数；本题坚持更窄的 emirp 定义。</li><li><strong>计算不是证明：</strong>即使枚举到很大上界，或找到极大 emirp，也不能证明集合无限。</li><li><strong>查重：</strong>86 份草稿及实时题库按 <code>Emirp</code>、<code>A006567</code>、<code>reverse10</code>、<code>infinitude_question</code> 检索，无精确重复；仅回文素数卡片为明确变体。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] 初等结构：</strong>反向 involution、成对计数及差的模 $18$ 条件已知，但未提供无穷族。</li><li><strong>[VARIANT] Dartyge 等 2023：</strong>二进制可逆素数的筛法上界与殆素数下界；主命题的进制和对象均不同。</li><li><strong>[VARIANT] 极大例子：</strong>OEIS 2026 年评论及 Wikipedia 表格记录极大已知 emirp；纪录增长不等于无穷性证明。</li><li><strong>[CLAIM，未核实] Smartick 科普页：</strong>搜索摘要直接声称“有无穷多个”，却未给证明；与题源开放陈述冲突，不采纳为解答。</li><li><strong>[CLAIM] 未定位到完整解：</strong>8 组检索中的 proof、Lean 名、OEIS、MathOverflow、回文区分与中文词未得到可信证明。</li><li><strong>访问限制：</strong>OEIS 与 Wikipedia 全文、arXiv 摘要已读；未逐行复核二进制论文全部证明。Google Scholar 全量被引、MathSciNet 与十类深查未完成，故 <code>depth=basic</code>、<code>status_strength=weak</code>。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 形式化题源</td><td>[Emirp.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Emirp.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Emirp.lean</a>)</td><td>实读 reverse10、IsEmirp 与 open/sorry</td></tr><tr><td>2026-11-25</td><td>A 序列原页</td><td>[OEIS A006567](<a href="https://oeis.org/A006567" rel="nofollow noopener">https://oeis.org/A006567</a>)</td><td>定义、前项、作者、approved 状态实读；无无穷性定理</td></tr><tr><td>2026-11-25</td><td>A 百科题源</td><td>[Wikipedia Emirp](<a href="https://en.wikipedia.org/wiki/Emirp" rel="nofollow noopener">https://en.wikipedia.org/wiki/Emirp</a>)</td><td>无穷性未知；明确排除回文素数；2026-11-23 编辑</td></tr><tr><td>2026-11-25</td><td>B 引文追踪</td><td>[A006567 refs](<a href="https://oeis.org/search?q=A006567+-id:A006567" rel="nofollow noopener">https://oeis.org/search?q=A006567+-id:A006567</a>)；[Wikipedia 参考文献](<a href="https://en.wikipedia.org/wiki/Emirp" rel="nofollow noopener">https://en.wikipedia.org/wiki/Emirp</a>)</td><td>定位术语、OEIS、二进制论文；无十进制无穷性证明</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>WebSearch 原词 1–8</td><td>精确题名、OEIS、Lean 名、proof；无完整解</td></tr><tr><td>2026-11-25</td><td>D 预印本与全文</td><td>[arXiv:2309.11380](<a href="https://arxiv.org/abs/2309.11380" rel="nofollow noopener">https://arxiv.org/abs/2309.11380</a>)</td><td>实读摘要：二进制上界与殆素数下界，不解决本题</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–8</td><td>大量编程题与科普噪声；Smartick 断言无证明</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>WebSearch 原词 6</td><td>未定位直接解决 emirp 无穷性的 MO/MSE 主帖</td></tr><tr><td>2026-11-25</td><td>G 问题集与数据库</td><td>[OEIS A006567](<a href="https://oeis.org/A006567" rel="nofollow noopener">https://oeis.org/A006567</a>)；[A007500](<a href="https://oeis.org/A007500" rel="nofollow noopener">https://oeis.org/A007500</a>)</td><td>后者是回文与 emirp 的并集；对象不可混淆</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[Emirp.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Emirp.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Emirp.lean</a>)</td><td>主命题 sorry；未发现可信 AI 证明</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 8</td><td>中文结果重述定义与编程，未给证明；未做独立俄文深查</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code></td><td>A006567 与 Lean 全名无重复；QX-P-000350 为回文素数变体</td></tr><tr><td>2026-11-25</td><td>当前状态综合</td><td>[Wikipedia](<a href="https://en.wikipedia.org/wiki/Emirp" rel="nofollow noopener">https://en.wikipedia.org/wiki/Emirp</a>)；[OEIS](<a href="https://oeis.org/A006567" rel="nofollow noopener">https://oeis.org/A006567</a>)；[Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Emirp.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Emirp.lean</a>)</td><td>定义与大量实例明确；十进制 emirp 无穷性未找到证明或有限性证明</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://oeis.org/A006567" rel="nofollow noopener">N. J. A. Sloane, OEIS A006567, Emirps (primes whose reversal is a different prime)（条目全文实读；术语由 Jeremiah Farrell 提出）</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Emirp.lean" rel="nofollow noopener">Formal Conjectures: Wikipedia/Emirp.lean（本地全文实读）</a> <span class="muted">（restatement）</span></li><li><a href="https://en.wikipedia.org/wiki/Emirp" rel="nofollow noopener">Wikipedia: Emirp（定义、开放陈述与计数表实读；2026-11-23 最后编辑）</a> <span class="muted">（查新依据）</span></li><li><a href="https://arxiv.org/abs/2309.11380" rel="nofollow noopener">Cécile Dartyge, Bruno Martin, Joël Rivat, Igor E. Shparlinski, Cathy Swaenepoel, Reversible primes, arXiv:2309.11380（摘要实读；二进制变体）</a> <span class="muted">（progress）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002299（card_rev a7bd494c37b7a684），https://www.qunxingmath.org/p/QX-P-002299/</p>
+  <p><a href="/p/QX-P-002299.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002299.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002299.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

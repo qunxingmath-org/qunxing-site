@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002334 四维 Euler 超砖是否存在 · 群星题库</title>
+<meta name="description" content="Does a four-dimensional Euler brick exist?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002334/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002334.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002334.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002334</span></nav>
+<h1 class="ptitle">四维 Euler 超砖是否存在</h1>
+<p class="ptitle-en" lang="en">Does a four-dimensional Euler brick exist?</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 证据较弱 · 截至 2026-11-24</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-24 · 在所查范围内没找到相同结果 · 查了 9 个来源</dd><dt>MSC</dt><dd><span class="mono">11D41</span></dd><dt>提出者</dt><dd>经典高维推广；Pace Nielsen 于 2016 年在 MathOverflow 重述</dd><dt>首次发表</dt><dd>至少 2016 年已有公开提问；formal-conjectures 收录为开放问题</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p><strong>四维 Euler 超砖</strong>是指四条棱长均为正整数，且任意两条棱确定的六个二维面对角线长度也均为整数的四维长方体。</p>
+<p>问：是否存在正整数 $a,b,c,d$，使得<br>$$<br>\begin{aligned}<br>a^2+b^2&amp;=u^2, &amp; a^2+c^2&amp;=v^2, &amp; a^2+d^2&amp;=w^2,\\<br>b^2+c^2&amp;=x^2, &amp; b^2+d^2&amp;=y^2, &amp; c^2+d^2&amp;=z^2?<br>\end{aligned}<br>$$</p>
+<p>等价地，四个正整数<br>$$<br>a^2,\quad b^2,\quad c^2,\quad d^2<br>$$<br>的任意两个之和是否可能同时为完全平方数？</p>
+<h3>形式化表述</h3>
+<p>formal-conjectures 定义<br>```lean<br>def IsEulerHyperBrick (n : ℕ) (sides : Fin n → ℕ+) : Prop :=<br>Pairwise fun i j ↦ IsSquare ((sides i)^2 + (sides j)^2)<br>```<br>并提问<br>$$<br>\exists \mathrm{sides}:\mathrm{Fin}\,4\to\mathbb N^+,\<br>\operatorname{IsEulerHyperBrick}(4,\mathrm{sides}).<br>$$</p>
+<h2>原文摘录</h2>
+<blockquote><p>The problem is to find a four dimensional Euler Brick, in which the four sides $a,b,c,d$ are integers, as are the six face diagonals … or prove that such a cuboid cannot exist.</p>
+<p>—— Tim S. Roberts，*4D Euler Brick*，2026-11-24 读取，[链接](<a href="https://unsolvedproblems.org/index_files/4DEulerBrick.htm" rel="nofollow noopener">https://unsolvedproblems.org/index_files/4DEulerBrick.htm</a>)</p></blockquote>
+<blockquote><p>No case where the sixth face diagonal is also a whole number has been identified.</p>
+<p>—— Oscar Lanzi，MathOverflow #500436 回答，2025-09-16，[链接](<a href="https://mathoverflow.net/questions/500436/about-the-six-pythagorean-equations/500445" rel="nofollow noopener">https://mathoverflow.net/questions/500436/about-the-six-pythagorean-equations/500445</a>)</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li>[THREE DIMENSIONS] 三维 Euler 砖有无穷多组，最小棱长为 $(44,117,240)$，面对角线为 $(125,244,267)$。这说明两两平方和条件在三个数时容易满足。</li><li>[FOUR SUB-BRICKS] 若 $(a,b,c,d)$ 是四维 Euler 超砖，则任取三个数都构成一个三维 Euler 砖。因此一个四维解等价于四个三维 Euler 砖共享同四条棱，且六条面对角线全部为整数。</li><li>[PARITY] 平方模 4 只能为 0 或 1，所以四元组中不可能有两个奇数。对本原四元组，恰有一个奇数；其余三个数都必须被 4 整除。这是必要条件，但远非充分条件。</li><li>[FIVE OF SIX] 已知无穷多组四元组满足六条中的五条。例如 $$ (a,b,c,d)=(85,132,351,720) $$ 有 $$ \begin{aligned} 85^2+132^2&amp;=157^2, &amp; 85^2+720^2&amp;=725^2,\\ 132^2+351^2&amp;=375^2, &amp; 132^2+720^2&amp;=732^2,\\ 351^2+720^2&amp;=801^2, \end{aligned} $$ 但 $85^2+351^2$ 不是平方。</li><li>[INFINITE NEAR-MISS FAMILY] Tito Piezas III 2025 的回答利用两块共享两条棱的 Euler 砖及 Lenhart 参数化，给出五条对角线齐全的无穷族。它只说明“差一条”容易发生，不提供六条齐全的构造。</li><li>[BOYER EXAMPLE] Oscar Lanzi 2025 年转述 Christian Boyer 的例子 $$ \{484,1287,2640,7020\}, $$ 其五条面对角线为 $1375,2684,2937,7137,7500$，第六条不是整数。Boyer 原站本次无法打开，因此只把 MathOverflow 回答作为已读来源。</li><li>[NO LOCAL OBSTRUCTION] Will Sawin 在 MathOverflow #256122 评论中指出，对每个素数 $p$ 都存在 $p$-进整数解：$p&gt;2$ 时可取棱长为 $1,p,p^2,\ldots$，$p=2$ 时改用 4 的幂。因此不能指望仅靠模素数或局部障碍证明不存在。</li><li>[SEARCH STATUS] 本次检查的题源、2025 年 MathOverflow 回答与 Math StackExchange 采纳回答均未给出六条对角线齐全的显式例，也未给出被接受的不存在性证明。</li><li>[FORMAL STATUS] formal-conjectures 的 <code>four_dim_euler_brick_existence</code> 与 <code>n_dim_euler_brick_existence</code> 在固定提交中均为 <code>research open + sorry</code>。</li></ul>
+<h2>边界与约定</h2>
+<ul><li>本题只要求<strong>六个两两平方和</strong>，即六个二维面对角线；不要求三个三条棱之和的平方根或四条棱之和的平方根为整数。</li><li>若要求四维长方体任意两个顶点之间的距离全部为整数，则还要加入 $$ a^2+b^2+c^2,\quad a^2+b^2+d^2,\quad a^2+c^2+d^2,\quad b^2+c^2+d^2,\quad a^2+b^2+c^2+d^2 $$ 为平方，这是更强的问题。</li><li>四维 Euler 超砖不是四维超正方体；四条棱不必相等。</li><li>正整数解与正有理数解等价：齐次方程清除分母后互相转换。</li><li>本原性可取 $\gcd(a,b,c,d)=1$；若有公因子，先约去。</li><li>五条对角线齐全不是部分满足的“弱解”，而是不同的近失问题；不能据此标记主问题已部分解决。</li><li>四维存在不自动给出五维或更高维存在；允许添零或重复坐标会绕过正性与互异条件，不能用于推广。</li><li>“六方程同构”的 MathOverflow #500436 与本题相同；三维完美长方体、四维超正方体和全对角线版本均应排除在本题之外。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>[FIVE-DIAGONAL FAMILIES] 2025 年 Math StackExchange 回答把“两条 Euler 砖共享两条棱”的构造系统化，并给出 $x^2+y^2=5z^2$ 型参数化，从而得到无穷多五条对角线例。它没有跨过第六条。</li><li>[2025 COMMUNITY CHECK] Oscar Lanzi 明确引用 Christian Boyer 与 Tim Roberts，写道没有找到第六条也为整数的情形；这是截至 2025 年的直接开放状态证据。</li><li>[P-ADIC NON-OBSTRUCTION] 每个素数都有局部解，意味着局部方法无法单独排除全局整数解；这也不是存在性证明。</li><li>[WEAKER ONLINE CLAIM] MathOverflow #256122 的评论提到一篇声称“没有四维 Euler 砖”的在线论文，但同一评论立刻质疑该来源（因其还声称 ABC 猜想为真）。本次未把该文当作可靠证明。</li><li>[FORMAL OPEN] formal-conjectures 同时保留四维与任意 $n&gt;3$ 两个开放条目，未附证明。</li><li>截至 2026-11-24，未找到四维 Euler 超砖的明确实例，也未找到覆盖全部正整数四元组的可靠不存在性证明。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-24</td><td>A 原题页</td><td><a href="https://unsolvedproblems.org/index_files/4DEulerBrick.htm" rel="nofollow noopener">https://unsolvedproblems.org/index_files/4DEulerBrick.htm</a></td><td>明确要求六个面对角线全整数或证明不存在，列于 Unsolved Problems。</td></tr><tr><td>2026-11-24</td><td>A 高维重述</td><td><a href="https://mathoverflow.net/questions/256122/euler-bricks-in-high-dimensions" rel="nofollow noopener">https://mathoverflow.net/questions/256122/euler-bricks-in-high-dimensions</a></td><td>0 个回答；评论指出每个素数都有 p-adic 局部解。</td></tr><tr><td>2026-11-24</td><td>B 最近社区核对</td><td><a href="https://mathoverflow.net/questions/500436/about-the-six-pythagorean-equations/500445" rel="nofollow noopener">https://mathoverflow.net/questions/500436/about-the-six-pythagorean-equations/500445</a></td><td>2025-09-16 回答仍称 open，并说未识别第六条整数对角线。</td></tr><tr><td>2026-11-24</td><td>B MSE 采纳回答</td><td><a href="https://math.stackexchange.com/questions/2264401/euler-bricks-and-the-4th-dimension/2264451" rel="nofollow noopener">https://math.stackexchange.com/questions/2264401/euler-bricks-and-the-4th-dimension/2264451</a></td><td>明确称四维 Euler 砖存在性仍开放。</td></tr><tr><td>2026-11-24</td><td>B 五条对角线进展</td><td><a href="https://math.stackexchange.com/questions/2264401/euler-bricks-and-the-4th-dimension/5059052" rel="nofollow noopener">https://math.stackexchange.com/questions/2264401/euler-bricks-and-the-4th-dimension/5059052</a></td><td>2025 年回答给出五条对角线无穷族；没有六条齐全例。</td></tr><tr><td>2026-11-24</td><td>C 形式化状态</td><td><a href="https://github.com/google-deepmind/formal-conjectures/blob/6bc2f7490a49cc0258406ffb675483f4318a04b5/FormalConjectures/Wikipedia/EulerBrick.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/6bc2f7490a49cc0258406ffb675483f4318a04b5/FormalConjectures/Wikipedia/EulerBrick.lean</a></td><td>四维与任意 n&gt;3 均为 research open + sorry。</td></tr><tr><td>2026-11-24</td><td>D arXiv</td><td><a href="https://arxiv.org/search/?query=%22Euler+brick%22+dimension&amp;searchtype=all&amp;abstracts=show&amp;order=-announced_date_first&amp;size=50" rel="nofollow noopener">https://arxiv.org/search/?query=%22Euler+brick%22+dimension&amp;searchtype=all&amp;abstracts=show&amp;order=-announced_date_first&amp;size=50</a></td><td>精确短语组合零命中；不能据此证明全球无文献，但未发现直接新结果。</td></tr><tr><td>2026-11-24</td><td>E Web 检索</td><td><a href="https://www.google.com/search?q=%224-dimensional+Euler+brick%22+example" rel="nofollow noopener">https://www.google.com/search?q=%224-dimensional+Euler+brick%22+example</a></td><td>结果主要为三维 Euler 砖与四维超正方体科普，未出现可靠六方程解或证明。</td></tr><tr><td>2026-11-24</td><td>F 投稿页</td><td><a href="https://unsolvedproblems.org/index_files/Solutions.htm" rel="nofollow noopener">https://unsolvedproblems.org/index_files/Solutions.htm</a></td><td>页面说明投稿未经同行评审；列表无 4D Euler Brick 条目。</td></tr><tr><td>2026-11-24</td><td>G 题库去重</td><td><a href="https://github.com/qunxingmath-org/qunxing-data/tree/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems" rel="nofollow noopener">https://github.com/qunxingmath-org/qunxing-data/tree/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems</a></td><td>无同题；QX-P-001923 的“4D Euler 方程”是微分方程，不是本题。</td></tr><tr><td>2026-11-24</td><td>工具限制</td><td><a href="http://www.christianboyer.com/eulerbricks/" rel="nofollow noopener">http://www.christianboyer.com/eulerbricks/</a></td><td>原站 WebFetch 失败；只引用已读 MathOverflow 回答中的转述。</td></tr><tr><td>2026-11-24</td><td>工具限制</td><td><a href="https://github.com/qunxingmath-org/qunxing-data/tree/main/.github/scripts" rel="nofollow noopener">https://github.com/qunxingmath-org/qunxing-data/tree/main/.github/scripts</a></td><td>未找到附件所述 make_cards.py；使用 card-draft/1 模板与本地结构校验。</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://unsolvedproblems.org/index_files/4DEulerBrick.htm" rel="nofollow noopener">Tim S. Roberts, 4D Euler Brick, Unsolved Problems in Number Theory, Logic, and Cryptography</a> <span class="muted">（原始出处）</span></li><li><a href="https://mathoverflow.net/questions/256122/euler-bricks-in-high-dimensions" rel="nofollow noopener">Pace Nielsen, Euler Bricks in High Dimensions, MathOverflow #256122, 2016</a> <span class="muted">（restatement）</span></li><li><a href="https://mathoverflow.net/questions/500436/about-the-six-pythagorean-equations/500445" rel="nofollow noopener">Oscar Lanzi 对 About the six Pythagorean equations 的回答，引用 Christian Boyer 与 Tim Roberts，2025</a> <span class="muted">（progress）</span></li><li><a href="https://math.stackexchange.com/questions/2264401/euler-bricks-and-the-4th-dimension/5059052" rel="nofollow noopener">Tito Piezas III, Euler bricks and the 4th dimension 的回答 I. Sums，2025</a> <span class="muted">（progress）</span></li><li><a href="https://math.stackexchange.com/questions/2264401/euler-bricks-and-the-4th-dimension" rel="nofollow noopener">Alexander Day, Euler bricks and the 4th dimension, Math StackExchange #2264401, 2017</a> <span class="muted">（restatement）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/6bc2f7490a49cc0258406ffb675483f4318a04b5/FormalConjectures/Wikipedia/EulerBrick.lean" rel="nofollow noopener">formal-conjectures：Wikipedia/EulerBrick.lean（固定提交 6bc2f749）</a> <span class="muted">（restatement）</span></li><li><a href="https://unsolvedproblems.org/index_files/Solutions.htm" rel="nofollow noopener">Unsolved Problems：Contributions and Proposed Solutions</a> <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002334（card_rev 55c56cdbe8040345），https://www.qunxingmath.org/p/QX-P-002334/</p>
+  <p><a href="/p/QX-P-002334.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002334.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002334.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-000049 Fonollosa multiset-sum 最小模猜想（2026） · 群星题库</title>
+<meta name="description" content="模数小到某个界以下时，唯一零和的那套剩余元就不存在了吗？">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-000049/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-000049.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-000049.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-000049</span></nav>
+<h1 class="ptitle">Fonollosa multiset-sum 最小模猜想（2026）</h1>
+<p class="ptitle-en" lang="en">Fonollosa&#x27;s minimum modulus conjecture for the unique multiset-sum problem (2026)</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">中等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 证据较弱 · 截至 2026-11-21</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-21 · 在所查范围内没找到相同结果 · 查了 1 个来源</dd><dt>MSC</dt><dd><span class="mono">11B75 · 05B10 11A07</span></dd><dt>提出者</dt><dd>Josep Maria Fonollosa (2026)</dd><dt>首次发表</dt><dd>2026</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>对 n≥2 与 N&lt;2^n−2^{⌊log₂n⌋}，不存在 n 个 mod N 剩余构成的集合满足 multiset-sum 条件（即 super-increasing 集 {1,3,7,15,…} 不能再缩小上界 N）。</p>
+<h3>形式化表述</h3>
+<p>定义（FC Arxiv/2607.08366/MinModulus.lean 核录）: 有限集 A⊂ℤ/Nℤ 称为 valid mod N，若从 A 中取 |A| 个元素构成的重数多重集（multiset m: A→ℕ, Σm(a)=|A|）中，&quot;全 1 多重集&quot;（每个元素恰取一次）是<strong>唯一</strong>其元素和 ≡0 (mod N) 的多重集。minModulus(n)=2^n−2^{⌊log₂n⌋}。<br>猜想（Fonollosa 2026 Conjecture 1, FC 类标 research open, question）: ∀n≥2, ∀N&lt;minModulus(n): 不存在 valid mod N 的 n 元集 A。<br>（补全注记 2026-11-21，SOL验证Agent：原形式化的&quot;multiset-sum 条件&quot;未定义——已按 FC verbatim 补全（unique multiset-sum = 全 1 多重集唯一零和）。原路径更正: FC 现行文件 <strong>Arxiv/2607.08366/MinModulus.lean</strong>（论文 arXiv:2607.08366, J. A. R. Fonollosa &quot;Minimum modulus for the unique multiset-sum problem&quot;）；pool 译述的&quot;super-increasing 集 {2^k−1} 极小性&quot;为解释性表述，FC 的 Theorem A（@[category research solved]）证明 minModulus n 处存在 valid 集（存在性方向已证），猜想方向（更小 N 不存在）开放。另: PR #7057（2026-10-09 merged）为该文件添加 collision witnesses and bounds——近年活跃记录。）</p>
+<h2>人话版</h2>
+<p><strong>一句话</strong>：模数小到某个界以下时，唯一零和的那套剩余元就不存在了吗？</p>
+<p>设 A 是模 N 的剩余类里的一个 n 元集。从 A 里一共取 n 个元素（可以重复取，用重数 m: A→N 记录，要求各重数之和为 n），得到一种『多重集和』。若在所有这些多重集里，恰好只有『每个元素取一次』这一种的和 ≡ 0 (mod N)，就称 A 在模 N 下有效。卡片记 minModulus(n) = 2^n − 2^⌊log₂n⌋，猜想是：只要 N &lt; minModulus(n)（n ≥ 2），就不存在有效的 n 元集。来源还记录 minModulus(n) 处存在有效集这一方向已被证明，所以剩下的是这个上界能不能再压小。</p>
+<p>（AI 起草，未经人工审校）</p>
+<h2>原文摘录</h2>
+<blockquote><p>For n≥2 and N &lt; 2^n − 2^{⌊log₂ n⌋}, there is no set of n residues mod N satisfying the multiset-sum condition (Fonollosa 2026, Conjecture 1；等价于 {2^k−1}_{k=1..n} 的极小性)。</p>
+<p>—— formal-conjectures（Fonollosa 2026 Conjecture 1）</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li>2026 年新猜想（formal-conjectures 收录，status=open）；</li><li>端点情形 n 小可全部机检。</li><li>[2026-11-21 核录更新] Theorem A（存在性方向）已证（FC 类标 research solved）；PR #7057（merged 2026-10-09）加入 collision witnesses 与界——部分进展，未关闭猜想。</li></ul>
+<h2>边界与约定</h2>
+<ul><li>最小参数: n=2（minModulus=4−2=2; N&lt;2 即 N=1——模 1 退化，注意 ZMod 1 的平凡性）；n=3（8−2=6; N=2..5 可全枚举 valid 性）；n=4（16−4=12; N=2..11 枚举 2^4 子集×多重集验证）。</li><li>退化情形: |A|≤1 平凡 valid（FC 注记，故 n≥2）；N=1（ZMod 1 平凡环——全部和为 0，全 1 多重集不唯一 → invalid ✓ 边界自洽）；A 中元素重复？A 为 Finset（集合无重复）——多重集抽取才产生重复。</li><li>约定依赖: multiset 定义（m: A→ℕ）；&quot;零和&quot;按 mod N；valid 的唯一性针对恰 |A| 个元素的重数多重集。</li><li>结构性锚点: collision witness（PR #7057 新增）= 对候选 N 找到非全 1 零和多重集即证明 invalid——反例方向的机器可验结构；Theorem A 的构造集是极小性的下界锚点。</li><li>建议独立验证方法（仅描述，不执行）: 对 n≤8 枚举全部 A⊂ZMod N 与全部重数多重集，独立核验 valid 性与 Conjecture 1（与 PR #7057 途径不同实现）；对声称反例（N&lt;minModulus 的 valid 集）多重集穷举复核。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>无（新猜想）。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>来源</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-20</td><td>formal-conjectures 快照</td><td><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures</a></td><td>status_fc=open</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">formal-conjectures（Fonollosa 2026 Conjecture 1）</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">formal-conjectures 快照</a> <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-000049（card_rev df3eed892c10bba7），https://www.qunxingmath.org/p/QX-P-000049/</p>
+  <p><a href="/p/QX-P-000049.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-000049.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/000/QX-P-000049.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

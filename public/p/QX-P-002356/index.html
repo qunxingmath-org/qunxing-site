@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002356 Juggler 猜想：平方根迭代是否总到达 1 · 群星题库</title>
+<meta name="description" content="The Juggler conjecture: does the floor-square-root iteration always reach 1?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002356/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002356.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002356.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002356</span></nav>
+<h1 class="ptitle">Juggler 猜想：平方根迭代是否总到达 1</h1>
+<p class="ptitle-en" lang="en">The Juggler conjecture: does the floor-square-root iteration always reach 1?</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-24</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-24 · 找到部分结果 · 查了 7 个来源</dd><dt>MSC</dt><dd><span class="mono">11B83</span></dd><dt>提出者</dt><dd>Clifford A. Pickover</dd><dt>首次发表</dt><dd>1991 年，Computers and the Imagination</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>定义正整数上的 Juggler 映射<br>$$<br>J(n)=<br>\begin{cases}<br>\lfloor\sqrt n\rfloor,&amp;n\text{ 为偶数},\\<br>\lfloor n^{3/2}\rfloor,&amp;n\text{ 为奇数}.<br>\end{cases}<br>$$<br>从任意正整数 \(n\) 出发，考虑轨道<br>$$<br>n,\ J(n),\ J^2(n),\ J^3(n),\ldots.<br>$$<br><strong>Juggler 猜想</strong>问：是否每个正整数轨道都必然在有限步后到达 \(1\)？等价地，<br>$$<br>\forall n\ge1,\ \exists m\in\mathbb N,\ J^m(n)=1.<br>$$<br>例如<br>$$<br>3\to5\to11\to36\to6\to2\to1.<br>$$</p>
+<h2>原文摘录</h2>
+<blockquote><p>All positive integers appear to eventually reach 1, a conjecture that holds at least up to \(10^6\).</p>
+<p>—— Eric W. Weisstein，MathWorld，[Juggler Sequence](<a href="https://mathworld.wolfram.com/JugglerSequence.html" rel="nofollow noopener">https://mathworld.wolfram.com/JugglerSequence.html</a>)</p></blockquote>
+<blockquote><p>Neither the exclusion of all nontrivial cycles nor universal termination is established.</p>
+<p>—— Philippe Cochin，2026，[Lower Bounds for Cycle Lengths in the Juggler Map](<a href="https://zenodo.org/records/22676453" rel="nofollow noopener">https://zenodo.org/records/22676453</a>)</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li>[DEFINITION] 当前标准是 <strong>floor 版</strong> Juggler 映射。若把 floor 换成 round，则得到另一序列 OEIS A094685，不能混用。</li><li>[COMPUTATION] MathWorld 记录至少所有 \(n\le10^6\) 的初值都到达 \(1\)。Cochin 2026 重新精确计算了该下降 floor，并把更大范围作为论文中的计算输入。</li><li>[THREE FATES] 对每个初值，轨道只有三种逻辑可能：到达 \(1\)、进入非平凡循环、或无界。排除循环与无界仍需额外论证。</li><li>[CYCLE FINANCING] 若循环最小值为 \(n\)、长度为 \(L\)、奇数步数为 \(o\)，Cochin 证明 $$ n\log n\,(3^o-2^L)\le L\,3^o. $$ 它限制累积取整损失所能抵消的形式膨胀。</li><li>[PERIOD LOWER BOUNDS] 结合已验证下降 floor，该预印本给出周期下界 \(25781,176251,478245,780239\)，对应 floor $$ 10^6,\quad26254995,\quad162849448,\quad350000000. $$ 这些是假设循环存在时的长度下界，不是终止证明。</li><li>[FINITE WORDS] 有限奇偶字排除与精确分类把“无下降 floor 输入的偶数步”推进到至少八步，并给周期至少二十二；同样没有排除全部循环。</li><li>[EXACT CODING] 2026 年 companion preprint 把 Juggler 轨道精确映入 \(2\)-adic 的 shortcut \(3n-1\) 系统，在实际周期轨道上保持返回时间。但符号回归不保证对应值是普通整数。</li><li>[ARITHMETIC OBSTRUCTION] 该论文构造真实 Juggler 前缀，证明任意精确的模回归也不强制满足整数回归所需的可除性，说明不能直接把 \(3n-1\) 的循环排除转移到 Juggler。</li><li>[FORMALIZATION] 2026 预印本附有部分核心命题的 Lean 4 形式化；作者明确区分这些证明与下降计算、逐长度数值比较和待审解析识别。本次未运行其代码。</li></ul>
+<h2>边界与约定</h2>
+<ul><li>只讨论正整数；\(0\) 不在定义域内。\(J(1)=1\)，所以到达 \(1\) 后即停。</li><li>每一步都取整，不是先走完整个奇偶字再统一取整。</li><li>主猜想不要求统一终止时间，也不要求轨道单调。</li><li>“验证到 \(10^6\)”是有限计算，不是对所有初值的数学证明。</li><li>循环长度下界以存在已验证下降 floor 为前提；floor 本身仍是计算结果。</li><li>\(2\)-adic \(3n-1\) 与通常 Collatz \(3n+1\) 不是同一正整数系统；编码结果不能直接当作主猜想证明。</li><li>2026 年预印本及 Lean 材料尚未独立评审，本卡只记录其明确的部分结果与限制。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>[1991 ORIGIN] Pickover 在 *Computers and the Imagination* 中提出这一迭代变体。</li><li>[OEIS RECORD] A094683 记录单步映射，A007320 记录到达 \(1\) 的步数；两者当前都注明普遍到达性未知。</li><li>[2026 PARTIAL PROGRESS] Cochin 给出循环融资不等式、条件周期下界、有限字分类和 \(2\)-adic 编码障碍。</li><li>[NO FULL SOLUTION FOUND] 两篇 2026 论文都明确不声称普遍终止或排除所有非平凡循环；本次检索未找到可核验的全称证明或反例。</li><li>[STATUS DECISION] 采用 <code>open / partially_solved</code>：有限验证与循环下界是实质部分结果，主猜想仍开放。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-24</td><td>A 原始数据库</td><td><a href="https://oeis.org/A094683" rel="nofollow noopener">https://oeis.org/A094683</a></td><td>floor 版精确定义；历史来源 Pickover 1991；2026-10 新编码评论。</td></tr><tr><td>2026-11-24</td><td>A 开放状态</td><td><a href="https://oeis.org/A007320" rel="nofollow noopener">https://oeis.org/A007320</a></td><td>COMMENTS：It is not known if every starting value eventually reaches 1。</td></tr><tr><td>2026-11-24</td><td>B 计算范围</td><td><a href="https://mathworld.wolfram.com/JugglerSequence.html" rel="nofollow noopener">https://mathworld.wolfram.com/JugglerSequence.html</a></td><td>明说至少验证到 \(10^6\)，来源为 Weisstein 2006 个人通信。</td></tr><tr><td>2026-11-24</td><td>C 学术元数据</td><td><a href="https://zenodo.org/records/22676453" rel="nofollow noopener">https://zenodo.org/records/22676453</a></td><td>2026-09-09 预印本，66 页，附 Lean 与计算材料。</td></tr><tr><td>2026-11-24</td><td>D 最新全文</td><td><a href="https://zenodo.org/records/22676453" rel="nofollow noopener">https://zenodo.org/records/22676453</a></td><td>已读 Abstract、§1 与定理位置；明确不证明 universal termination。</td></tr><tr><td>2026-11-24</td><td>D 编码全文</td><td><a href="https://zenodo.org/records/23772245" rel="nofollow noopener">https://zenodo.org/records/23772245</a></td><td>已读 Abstract、§1.1–§1.2；不声称解决主猜想。</td></tr><tr><td>2026-11-24</td><td>E 通用检索</td><td></td><td>8 组基础词及补充词未找到完整解决或反例。</td></tr><tr><td>2026-11-24</td><td>F 问答社区</td><td></td><td>MathOverflow 站点检索零命中；不把无命中当作证明不存在。</td></tr><tr><td>2026-11-24</td><td>G 数据库</td><td><a href="https://oeis.org/A007320" rel="nofollow noopener">https://oeis.org/A007320</a></td><td>OEIS 表到 \(n=10000\)，与 MathWorld 的 \(10^6\) 计算记录不同范围。</td></tr><tr><td>2026-11-24</td><td>H 形式化项目</td><td><a href="https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/Wikipedia/JugglerConjecture.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/Wikipedia/JugglerConjecture.lean</a></td><td><code>research open</code>，定理以 <code>sorry</code> 结尾。</td></tr><tr><td>2026-11-24</td><td>J 群星题库</td><td><a href="https://github.com/qunxingmath-org/qunxing-data/tree/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems" rel="nofollow noopener">https://github.com/qunxingmath-org/qunxing-data/tree/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems</a></td><td>题名、OEIS 号与 DOI 去重无同题。</td></tr><tr><td>2026-11-24</td><td>不可访问来源</td><td><a href="https://medium.com/@AdithyaGiridharan/the-juggler-sequence-a-simple-rule-that-nobody-can-prove-9c2a16940f95" rel="nofollow noopener">https://medium.com/@AdithyaGiridharan/the-juggler-sequence-a-simple-rule-that-nobody-can-prove-9c2a16940f95</a></td><td>403；Wikipedia 抓取失败；未据其全文作结论。</td></tr><tr><td>2026-11-24</td><td>工具限制</td><td><a href="https://github.com/qunxingmath-org/qunxing-data/tree/main/.github/scripts" rel="nofollow noopener">https://github.com/qunxingmath-org/qunxing-data/tree/main/.github/scripts</a></td><td>未找到附件所述 make_cards.py；使用 card-draft/1 模板与本地结构校验。</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://oeis.org/A094683" rel="nofollow noopener">N. J. A. Sloane 等，OEIS A094683：Juggler sequence；历史来源为 Clifford A. Pickover, Computers and the Imagination, 1991</a> <span class="muted">（原始出处）</span></li><li><a href="https://oeis.org/A007320" rel="nofollow noopener">OEIS A007320：floor 版 Juggler sequence 到达 1 的步数</a> <span class="muted">（database）</span></li><li><a href="https://mathworld.wolfram.com/JugglerSequence.html" rel="nofollow noopener">Eric W. Weisstein, Juggler Sequence, MathWorld</a> <span class="muted">（综述）</span></li><li><a href="https://zenodo.org/records/22676453" rel="nofollow noopener">Philippe Cochin, Lower Bounds for Cycle Lengths in the Juggler Map, Zenodo, 2026-09-09</a> <span class="muted">（progress）</span></li><li><a href="https://zenodo.org/records/23772245" rel="nofollow noopener">Philippe Cochin, The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions, v0.10.0, 2026-10-29</a> <span class="muted">（progress）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/Wikipedia/JugglerConjecture.lean" rel="nofollow noopener">formal-conjectures: JugglerConjecture.lean</a> <span class="muted">（查新依据）</span></li><li><a href="https://github.com/qunxingmath-org/qunxing-data/tree/d594dcadf2bc95cb18dd1a1a669efe0f229e764e/problems" rel="nofollow noopener">qunxing-data 实时题库</a> <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002356（card_rev 2f3e8badecc6531a），https://www.qunxingmath.org/p/QX-P-002356/</p>
+  <p><a href="/p/QX-P-002356.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002356.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002356.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

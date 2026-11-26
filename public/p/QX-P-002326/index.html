@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002326 确定任意交换环上各秩有限局部自由群概形的统一最小消灭指数 · 群星题库</title>
+<meta name="description" content="Determine the optimal universal exponent for finite locally free group schemes of each rank">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002326/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002326.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002326.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/algebra/">代数</a> › <span class="mono">QX-P-002326</span></nav>
+<h1 class="ptitle">确定任意交换环上各秩有限局部自由群概形的统一最小消灭指数</h1>
+<p class="ptitle-en" lang="en">Determine the optimal universal exponent for finite locally free group schemes of each rank</p>
+<p class="chips"><span class="chip">代数</span><span class="chip">待补</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到部分结果 · 查了 7 个来源</dd><dt>MSC</dt><dd><span class="mono">14L15</span></dd><dt>提出者</dt><dd>Alexandre Grothendieck（原问题）；最小统一指数函数为后续强化</dd><dt>首次发表</dt><dd>SGA3 Exposé VIII, Remarque 7.3.1；Tate–Oort 1970 p. 5 再次记录</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>对每个正整数 $n$，定义</p>
+<p>$$<br>E(n)=\min\{m\in\mathbb Z_{&gt;0}:\text{每个秩为 }n\text{ 的有限局部自由群概形都被 }m\text{ 消灭}\},<br>$$</p>
+<p>并约定若集合为空则 $E(n)=0$。这里“每个”遍历<strong>任意交换环</strong> $R$ 上的所有有限局部自由群概形，不要求 $R$ 既约，也不要求群概形交换。求整个函数 $n\mapsto E(n)$。</p>
+<p>等价地，对交换 $R$-Hopf 代数 $A$，若 $A$ 作为 $R$-模有限投射且每个茎的秩恒为 $n$，则要求</p>
+<p>$$<br>(\operatorname{id}_A)^{*m}=\varepsilon_A\eta_R,<br>$$</p>
+<p>其中 $*$ 表示卷积，右边是恒等截面对应的坐标映射。原猜测 $E(n)=n$ 已被秩 $4$ 反例否定；尚需确定正确的统一指数函数。</p>
+<h3>形式化表述</h3>
+<p>Lean 中的定义是</p>
+<p>$$<br>\operatorname{IsUniversalKillingExponent}(n,m)\iff<br>\forall R,A,\ \bigl(\operatorname{rankAtStalk}A=\text{常数 }n\bigr)<br>\Longrightarrow \operatorname{IsKilledBy}(R,A,m),<br>$$</p>
+<p>目标为对所有 $n:\mathbb N^+$ 求出这些正指数集合的下确界（空集取 $0$）。环与代数均在 <code>Type</code> 中。</p>
+<h2>原文摘录</h2>
+<blockquote><p>This file formalizes a counterexample in the non-commutative case: an affine group scheme, finite free of rank four over the base ring <code>R = ℤ[a, b] / (a³, b³, a²b + 2)</code>, whose fourth power map is not trivial.</p>
+<p>—— Mathlib 作者，*Counterexamples.GrothendieckPower*，2026，[在线文档](<a href="https://leanprover-community.github.io/mathlib4_docs/Counterexamples/GrothendieckPower.html" rel="nofollow noopener">https://leanprover-community.github.io/mathlib4_docs/Counterexamples/GrothendieckPower.html</a>)。</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li><strong>域上与既约基上：</strong>SGA3 Exposé VIIA Proposition 8.5 证明域上任意有限群概形被其阶消灭；Corollaire 8.5.2 推出既约基上的有限局部自由情形。因此这些子类中 $E(n)=n$。[SGA3 VIIA](<a href="https://webusers.imj-prg.fr/~patrick.polo/SGA3/Exp7A-13oct24.pdf" rel="nofollow noopener">https://webusers.imj-prg.fr/~patrick.polo/SGA3/Exp7A-13oct24.pdf</a>)</li><li><strong>任意基上的交换群概形：</strong>Deligne 定理证明交换的有限局部自由群概形被其阶消灭，见 SGA3 Remarque 8.5.3 与 Tate–Oort 第 4 页。故交换子类中也有 $E(n)=n$。</li><li><strong>素数阶：</strong>Tate–Oort Theorem 1 证明素数阶群概形必交换且被该素数消灭；结合秩 $1$ 的平凡性，得到 $E(1)=1$、$E(2)=2$、$E(3)=3$。[Tate–Oort 1970](<a href="https://www.numdam.org/articles/10.24033/asens.1186/" rel="nofollow noopener">https://www.numdam.org/articles/10.24033/asens.1186/</a>)</li><li><strong>小幂零 Artin 基：</strong>Schoof Theorem 4.1 处理剩余特征 $p&gt;0$ 且 $\mathfrak m^p=p\mathfrak m=0$ 的 Artin 环；特别地 $\mathfrak m^2=0$ 时，每个局部有限自由群概形被其阶消灭。这是原 $n$ 问题的部分结果，不是全函数公式。[Schoof 2017 §4](<a href="https://reneschoof.github.io/schoof_oortAAG.pdf" rel="nofollow noopener">https://reneschoof.github.io/schoof_oortAAG.pdf</a>)</li><li><strong>秩 $4$ 的新反例：</strong>Mathlib 文档构造 $$R=\mathbb Z[a,b]/(a^3,b^3,a^2b+2),\qquad A=R[U,V]/(U^2-abU+b^2V,\ V^2-a^2V).$$ $A$ 是 $R$ 上秩 $4$ 的自由 Hopf 代数，且不余交换。其第四次幂映射在 $U$ 上取值 $2bUV\ne0$，故不被 $4$ 消灭；第八次幂映射是卷积单位，通用点阶恰为 $8$。所以 $E(4)\ne4$。[Mathlib 主结果](<a href="https://leanprover-community.github.io/mathlib4_docs/Counterexamples/GrothendieckPower.html" rel="nofollow noopener">https://leanprover-community.github.io/mathlib4_docs/Counterexamples/GrothendieckPower.html</a>)</li><li><strong>当前全函数状态：</strong>Formal Conjectures 的 <code>optimal_exponent</code> 仍标 <code>research open/sorry</code>，并明确说“Which exponents kill every group scheme of a given rank is open”。没有从所读来源验证到 $E(4)=8$ 的统一上界，更未验证一般 $E(n)$ 公式。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>“交换 Hopf 代数”不等于“交换群概形”。</strong>$A$ 底层环交换是坐标代数的要求；群概形交换当且仅当 $A$ 余交换。题目允许非余交换的 $A$。</li><li><strong>基环不可限于域或既约环。</strong>秩 $4$ 反例的 $R$ 有 $4=0$、$2\ne0$，是非既约有限环；域上定理不能排除它。</li><li><strong>消灭是映射恒等式。</strong>$\operatorname{IsKilledBy}(R,A,m)$ 要求卷积幂等于卷积单位，而不只是某些 $R$-点或几何点满足 $g^m=e$。</li><li><strong>秩是常数茎秩。</strong>形式化使用 $\operatorname{rankAtStalk}A$ 恒等于 $n$，不是把随点变化的局部秩混入同一量词。</li><li><strong>统一指数先于最小值。</strong>若某 $m$ 对全部对象有效，则其任意正整数倍也有效；但必须先证明统一指数存在，才谈最小值。本题用 $0$ 标记不存在正统一指数的约定。</li><li><strong>反例的“被 $8$ 消灭”不是统一结论。</strong>它只证明该秩 $4$ 对象的指数恰为 $8$。不能据此声称所有秩 $4$ 群概形都被 $8$ 消灭。</li><li><strong>universe 约定。</strong>Lean 命题量化 <code>Type</code> 中的 $R,A$。利用有限局部自由群概形的仿射性及消灭性质的局部性，可用概形语言重述；但形式化文本本身不声称遍历任意 universe。</li><li><strong>查重。</strong>已实时检索 65 份既有草稿与 <code>qunxing-data/problems</code>，使用 <code>FiniteLocallyFreeGroupSchemeExponent</code>、<code>optimal_exponent</code>、原题名、SGA3/Tate–Oort 编号及“有限局部自由群概形/消灭指数”等关键词，未发现同一精确命题。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] 域、既约基、交换群概形：</strong>其最优统一指数均为 $n$，但只是题面全称量词的重要子类。</li><li><strong>[PARTIAL] 素数阶：</strong>Tate–Oort 给出完整结论，覆盖 $n=2,3$ 等素数。</li><li><strong>[PARTIAL] Artin 环：</strong>Schoof 的 $\mathfrak m^p=p\mathfrak m=0$ 条件覆盖平方零极大理想等退化底座。</li><li><strong>[PARTIAL] 原 $E(n)=n$ 猜测：</strong>2026 Mathlib 的秩 $4$ 反例正式否定它；这是对原猜测的否定，不是对替代函数 $E(n)$ 的求出。</li><li><strong>[CLAIM] 网页把原问题标为 Resolved：</strong>VibeMathed 等二手页面报道 AI 找到反例；本次以实际读取的 Mathlib 文档为据，只接受“原等式猜测被否定”，不接受“最优指数函数已解决”的扩张说法。</li><li><strong>未定位到一般函数证明或一般不存在性证明。</strong>按 Lean 名、optimal/universal exponent、rank four/eight、proof/solved 与中英文关键词检索，没有找到可信且可读的全函数解答。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 当前形式化题源</td><td>[Formal Conjectures](<a href="https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Paper/FiniteLocallyFreeGroupSchemeExponent" rel="nofollow noopener">https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Paper/FiniteLocallyFreeGroupSchemeExponent</a>)</td><td>实际读取并核对本地 Lean；<code>optimal_exponent</code> 为 open/sorry，原 <code>killed_by_rank</code> 单独标 solved</td></tr><tr><td>2026-11-25</td><td>A 原题源</td><td>[SGA3 VIII](<a href="https://webusers.imj-prg.fr/~patrick.polo/SGA3/Exp8-8nov09.pdf" rel="nofollow noopener">https://webusers.imj-prg.fr/~patrick.polo/SGA3/Exp8-8nov09.pdf</a>)</td><td>实际提取 PDF 第 26 页；Rem. 7.3.1 提出一般底概形上被阶消灭的问题</td></tr><tr><td>2026-11-25</td><td>B 早期引文</td><td>[Tate–Oort](<a href="https://www.numdam.org/articles/10.24033/asens.1186/" rel="nofollow noopener">https://www.numdam.org/articles/10.24033/asens.1186/</a>)</td><td>实际读第 4–5 页：Deligne 定理、素数阶定理及 1970 年一般问题状态</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>WebSearch 原词 1–20</td><td>组合精确题名、rank/exponent、反例、证明与 Lean 名；无一般函数解答</td></tr><tr><td>2026-11-25</td><td>D 预印本/综述</td><td>[Schoof PDF](<a href="https://reneschoof.github.io/schoof_oortAAG.pdf" rel="nofollow noopener">https://reneschoof.github.io/schoof_oortAAG.pdf</a>)</td><td>实际读 7 页；2017 状态早于反例，Artin 条件不能覆盖任意非既约基</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–20</td><td>英文及中文检索；大量无关有限群指数结果已排除</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>WebSearch 原词 19</td><td>MathOverflow 定向检索未定位直接解决全函数的主帖；不声称社区全量审计</td></tr><tr><td>2026-11-25</td><td>G 书目与原文</td><td>[SGA3 VIIA](<a href="https://webusers.imj-prg.fr/~patrick.polo/SGA3/Exp7A-13oct24.pdf" rel="nofollow noopener">https://webusers.imj-prg.fr/~patrick.polo/SGA3/Exp7A-13oct24.pdf</a>)；[SGA3 VIII](<a href="https://webusers.imj-prg.fr/~patrick.polo/SGA3/Exp8-8nov09.pdf" rel="nofollow noopener">https://webusers.imj-prg.fr/~patrick.polo/SGA3/Exp8-8nov09.pdf</a>)</td><td>实际读取 Prop. 8.5、Cor. 8.5.2、Rem. 8.5.3、Rem. 7.3.1</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[Mathlib 文档](<a href="https://leanprover-community.github.io/mathlib4_docs/Counterexamples/GrothendieckPower.html" rel="nofollow noopener">https://leanprover-community.github.io/mathlib4_docs/Counterexamples/GrothendieckPower.html</a>)</td><td>实际读取秩 4 构造及第八幂结果；没有全函数形式化</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 7；SGA3 法文原文</td><td>中文检索只找到反例报道；状态以 SGA3、Schoof 与 Mathlib 原文为准</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code></td><td>精确名称、编号、题名和对象关键词无重复；65 份草稿亦无重复</td></tr><tr><td>2026-11-25</td><td>当前状态交叉核对</td><td>[Formal Conjectures](<a href="https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Paper/FiniteLocallyFreeGroupSchemeExponent" rel="nofollow noopener">https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Paper/FiniteLocallyFreeGroupSchemeExponent</a>)；[Mathlib](<a href="https://leanprover-community.github.io/mathlib4_docs/Counterexamples/GrothendieckPower.html" rel="nofollow noopener">https://leanprover-community.github.io/mathlib4_docs/Counterexamples/GrothendieckPower.html</a>)</td><td>原 $E(n)=n$ 已否定，整条函数仍开放；仅基础检索，status_strength=weak</td></tr></tbody></table></div>
+<p><strong>访问限制：</strong>SGA3 两部 PDF、Schoof 全文、Tate–Oort 第 4–5 页及 Mathlib 文档均已实际读取。Google Scholar、MathSciNet 完整被引追踪及十类深查未完成，不声称已穷尽 2026 年预印本或所有问答社区。二手 AI 网页只作为线索，不作为一般函数已解的证据。</p>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://webusers.imj-prg.fr/~patrick.polo/SGA3/Exp8-8nov09.pdf" rel="nofollow noopener">Demazure–Grothendieck, SGA3, Exposé VIII, Remarque 7.3.1（重编本 PDF 实际阅读）</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/FiniteLocallyFreeGroupSchemeExponent.lean" rel="nofollow noopener">Formal Conjectures: Paper/FiniteLocallyFreeGroupSchemeExponent.lean（本地与在线文档实际核对）</a> <span class="muted">（restatement）</span></li><li><a href="https://reneschoof.github.io/schoof_oortAAG.pdf" rel="nofollow noopener">René Schoof, Is a finite locally free group scheme killed by its order? 2017 预稿（全文实际阅读）</a> <span class="muted">（综述）</span></li><li><a href="https://leanprover-community.github.io/mathlib4_docs/Counterexamples/GrothendieckPower.html" rel="nofollow noopener">Mathlib, Counterexamples.GrothendieckPower（在线文档实际阅读）</a> <span class="muted">（progress）</span></li><li><a href="https://www.numdam.org/articles/10.24033/asens.1186/" rel="nofollow noopener">Tate–Oort, Group schemes of prime order, Ann. Sci. ENS 3 (1970), 1–21（第 4–5 页实际阅读）</a> <span class="muted">（progress）</span></li><li><a href="https://webusers.imj-prg.fr/~patrick.polo/SGA3/Exp7A-13oct24.pdf" rel="nofollow noopener">SGA3, Exposé VIIA（Proposition 8.5、Corollaire 8.5.2、Remarque 8.5.3 实际阅读）</a> <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002326（card_rev 48cdce39ce0c0ee9），https://www.qunxingmath.org/p/QX-P-002326/</p>
+  <p><a href="/p/QX-P-002326.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002326.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002326.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

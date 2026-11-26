@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002265 完全室友问题中近似稳定匹配的通用阈值是否最终等于 N/2 上取整 · 群星题库</title>
+<meta name="description" content="Is the universal approximate-stability threshold in the complete roommates problem eventually ceil(N/2)?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002265/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002265.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002265.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/applied/">交叉与应用</a> › <span class="mono">QX-P-002265</span></nav>
+<h1 class="ptitle">完全室友问题中近似稳定匹配的通用阈值是否最终等于 N/2 上取整</h1>
+<p class="ptitle-en" lang="en">Is the universal approximate-stability threshold in the complete roommates problem eventually ceil(N/2)?</p>
+<p class="chips"><span class="chip">交叉与应用</span><span class="chip">待补</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到部分结果 · 查了 5 个来源</dd><dt>MSC</dt><dd><span class="mono">91B68</span></dd><dt>提出者</dt><dd>Angelo Fanelli；Luca Moscardelli</dd><dt>首次发表</dt><dd>2025（ECAI 2025）</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>设有 $N$ 个代理人，完全可接受图允许任意两人配对。每个代理人 $i$ 对其他 $N-1$ 人给出严格偏好，并将单身排在所有他人之后。把候选人 $j$ 在 $i$ 的列表中的位置记为 $r_i(j)\in\{1,\ldots,N-1\}$，并约定<br>$$<br>r_i(i)=N.<br>$$<br>一个匹配 $M$ 是对合：$M(i)=j$ 当且仅当 $M(j)=i$；不动点表示单身。</p>
+<p>对于 $i\ne j$ 且 $M(i)\ne j$，称 $\{i,j\}$ 是一个 <strong>$k$-阻塞对</strong>，如果<br>$$<br>r_i(M(i))-r_i(j)\ge k,<br>\qquad<br>r_j(M(j))-r_j(i)\ge k.<br>$$<br>若匹配 $M$ 没有 $k$-阻塞对，则称它 <strong>$k$-稳定</strong>。注意 $1$-稳定就是通常的严格稳定。</p>
+<p>定义<strong>通用存在阈值</strong><br>$$<br>K(N)=\min\{k\in\mathbb Z_{&gt;0}:\ \text{每个 }N\text{ 人完全严格偏好实例都有 }k\text{-稳定匹配}\}.<br>$$<br>该最小值存在，因为 $k=N+1$ 时任何改进都不可能达到 $N$ 位。</p>
+<p><strong>问题：是否最终有</strong><br>$$<br>K(N)=\left\lceil\frac N2\right\rceil<br>$$<br>成立？即是否存在 $N_0\ge3$，使所有 $N\ge N_0$ 都满足此等式？</p>
+<h2>原文摘录</h2>
+<blockquote><p>A central open question is to determine the exact value of $k$ that guarantees the existence of a $k$-stable matching in general graph topologies.</p>
+<p>We conjecture that the lower bound can be improved and that $|N|/2$ could represent the true threshold even for larger values of $|N|$.</p>
+<p>—— Angelo Fanelli、Luca Moscardelli, *Approximately Stable Matching*, §5, 印刷页 3589, ECAI 2025，[开放获取论文](<a href="https://doi.org/10.3233/FAIA251234" rel="nofollow noopener">https://doi.org/10.3233/FAIA251234</a>)。</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li><strong>精确模型已核对：</strong>论文 §2 把匹配定义为允许不动点的对合，单身排名为 $\delta_i+1$；$k$-阻塞要求双方排名改进都至少为 $k$。完全图时 $\delta_i=N-1$，所以单身排名正是 $N$。[全文 §2](<a href="https://doi.org/10.3233/FAIA251234" rel="nofollow noopener">https://doi.org/10.3233/FAIA251234</a>)</li><li><strong>上界：</strong>Theorem 1 证明，只要每个 $k_i\ge(\delta_i+1)/2$，任何实例都在至多 $\lceil |N|/2\rceil$ 个 $k$-阻塞移动后终止。对完全图取共同整数 $k=\lceil N/2\rceil$，得到 $$K(N)\le\left\lceil\frac N2\right\rceil.$$ 注意这是存在兼收敛保证，尚不是阈值最小性。[Theorem 1](<a href="https://doi.org/10.3233/FAIA251234" rel="nofollow noopener">https://doi.org/10.3233/FAIA251234</a>)</li><li><strong>直接相邻阈值的收敛反例：</strong>Theorem 2 对每个 $n\ge5$ 构造完全图实例，在 $k=\lceil n/2\rceil-1$ 时存在循环阻塞动力学，且公平选择也不能避免循环。因此 Theorem 1 的<strong>收敛</strong>界是紧的；但它不排除该 $k$ 下另有不需要由动力学到达的稳定匹配。[Theorem 2](<a href="https://doi.org/10.3233/FAIA251234" rel="nofollow noopener">https://doi.org/10.3233/FAIA251234</a>)</li><li><strong>存在性的平方根下界：</strong>Theorem 3 对任意 $q$ 分别构造奇数和偶数规模的完全图实例，规模至少 $q$，但在 $k=\Omega(\sqrt N)$ 时没有 $k$-稳定匹配。因此已知非存在尺度远低于 $N/2$。[Theorem 3](<a href="https://doi.org/10.3233/FAIA251234" rel="nofollow noopener">https://doi.org/10.3233/FAIA251234</a>)</li><li><strong>小规模枚举：</strong>§5 报告穷举了 $N\le6$ 的所有完全图偏好实例，结果表明 $k=N/2-1$ 不足以保证存在，提示 $N/2$ 可能紧。本文没有给出这些枚举数据的可复现附件或更大规模证明。[§5](<a href="https://doi.org/10.3233/FAIA251234" rel="nofollow noopener">https://doi.org/10.3233/FAIA251234</a>)</li><li><strong>一般图与树：</strong>Theorem 4 证明无环可接受图即使 $k=1$ 也多项式收敛；这与完全图的高阈值问题不同，不能用于填补完全图缺口。</li><li>本地 Lean 文件把 $K(N)$ 精确定义为最小正阈值，并把 eventual equality 标为研究开放；<code>sorry</code> 不是证明。[Lean 文件](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/ApproximatelyStableMatching.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/ApproximatelyStableMatching.lean</a>)</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>整数取整：</strong>$k$ 是正整数。完全图上的 $N/2$ 上界解释为 $\lceil N/2\rceil$，即 Lean 中的 $(N+1)/2$；不能对奇数 $N$ 误写成 $N/2$。</li><li><strong>完全室友模型：</strong>只有一个代理人集合，任意异人配对均可；不是男女二分的稳定婚姻模型。稳定婚姻在 $k=1$ 时的存在性不能解决本题。</li><li><strong>严格且完全偏好：</strong>不允许平局；每人恰好排序其他 $N-1$ 人。一般不完全列表、平局和可接受图变体均不属于本题。</li><li><strong>允许单身：</strong>不动点是合法匹配，且单身比任何可接受配对都差。若要求完美匹配，则是另一个更强且可能改变答案的问题。</li><li><strong>阈值量词：</strong>$K(N)$ 要求对每一个偏好实例都存在某个 $k$-稳定匹配；不要求同一匹配对所有实例有效，也不要求算法找到它。</li><li><strong>存在与收敛：</strong>“存在 $k$-稳定匹配”不等价于“从任意匹配反复执行 $k$-阻塞移动必收敛”。Theorem 2 只否定后者。</li><li><strong>最终相等：</strong>问题不要求 $N=1,2,3$ 等小规模也满足公式，只要求从某个 $N_0$ 起全部成立。</li><li>实时检索 50 份既有草稿和 <code>qunxing-data/problems</code>，未发现同题。QX-P-000438 是 Pittel 的随机稳定婚姻计数与排序阈值猜想，不是本题。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] 上界：</strong>Fanelli–Moscardelli Theorem 1 已证 $K(N)\le\lceil N/2\rceil$。[全文](<a href="https://doi.org/10.3233/FAIA251234" rel="nofollow noopener">https://doi.org/10.3233/FAIA251234</a>)</li><li><strong>[PARTIAL] 下界：</strong>Theorem 3 排除 $k=\Omega(\sqrt N)$ 的通用保证，§5 的 $N\le6$ 枚举进一步排除相邻小阈值；均未把下界推到 $\lceil N/2\rceil-1$ 的存在性阈值。</li><li><strong>[VARIANT] 收敛阈值：</strong>Theorem 2 表明 $\lceil N/2\rceil-1$ 不能保证收敛，但这不是不存在稳定匹配的反例。</li><li><strong>[VARIANT] 无环图：</strong>Theorem 4 的 $1$-收敛结果针对树状可接受图，与完全图主问题分开。</li><li><strong>[CLAIM] 主问题：</strong>执行 solved、conjecture、2026、精确论文名、DOI、$k$-stable、$N/2$ 及中文检索，未定位到可信完整解决或待核验的解决声称。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 题源全文</td><td>[IOS Press 开放获取论文](<a href="https://doi.org/10.3233/FAIA251234" rel="nofollow noopener">https://doi.org/10.3233/FAIA251234</a>)</td><td>通过出版商 PDF 表单读取全部 8 页；核对 §2 定义、Theorems 1–3 与 §5 开放问题</td></tr><tr><td>2026-11-25</td><td>B 原始定理与量词</td><td>[Theorem 1–3](<a href="https://doi.org/10.3233/FAIA251234" rel="nofollow noopener">https://doi.org/10.3233/FAIA251234</a>)</td><td>区分存在与收敛、整数取整、奇偶规模及平方根下界</td></tr><tr><td>2026-11-25</td><td>C 出版商元数据</td><td>[IOS Press 页面](<a href="https://ebooks.iospress.nl/doi/10.3233/FAIA251234" rel="nofollow noopener">https://ebooks.iospress.nl/doi/10.3233/FAIA251234</a>)</td><td>核对作者、页码 3583–3590、ECAI 2025、DOI 与 CC BY-NC 4.0</td></tr><tr><td>2026-11-25</td><td>D arXiv 与近期预印本</td><td>WebSearch 原词 4、9、10、11–14</td><td>精确题名、DOI、$k$-stable 与 solved/2026 组合未定位后续完整解</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 2、3、6、7、15</td><td>搜索阈值、rank-improvement、roommates 与中文名；噪声排除后无主问题解答</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>WebSearch 原词 8</td><td>未定位对应 MathOverflow/Math.SE 主帖；不声称完成社区全量审计</td></tr><tr><td>2026-11-25</td><td>G 数据库与百科</td><td>WebSearch 原词 1、12、13</td><td>检索结果主要是其他稳定匹配变体；没有本题精确阈值的新状态</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[Lean 命题](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/ApproximatelyStableMatching.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/ApproximatelyStableMatching.lean</a>)；[Roommates 定义](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjecturesForMathlib/Combinatorics/Roommates.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjecturesForMathlib/Combinatorics/Roommates.lean</a>)</td><td>主命题仍为 <code>research open</code> 与 <code>sorry</code>；定义明确 K(N) 为最小正阈值</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 15</td><td>中文检索无本题新证明或反例</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code></td><td>按 DOI、论文名、近似稳定、roommates、阈值检索，无精确重复</td></tr><tr><td>2026-11-25</td><td>当前状态交叉核对</td><td>[论文 §5](<a href="https://doi.org/10.3233/FAIA251234" rel="nofollow noopener">https://doi.org/10.3233/FAIA251234</a>)</td><td>2025 原文明确称中心问题开放；近一年未检索到新状态，故强度为 weak</td></tr></tbody></table></div>
+<p><strong>访问限制：</strong>出版商 PDF 实际读取成功，但普通 HTML 全文端点不存在，PDF 经页面表单取得。Google Scholar、MathSciNet 完整被引追踪不可用；小规模枚举附件和后续引用未独立复现。故采用 <code>status_strength: weak</code>、<code>novelty.depth: basic</code>。</p>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://doi.org/10.3233/FAIA251234" rel="nofollow noopener">Angelo Fanelli, Luca Moscardelli, Approximately Stable Matching, ECAI 2025, Frontiers in Artificial Intelligence and Applications 413 (2025), 3583–3590</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/ApproximatelyStableMatching.lean" rel="nofollow noopener">Formal Conjectures: Paper/ApproximatelyStableMatching.lean, FanelliMoscardelli.stability_threshold_tight</a> <span class="muted">（restatement）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjecturesForMathlib/Combinatorics/Roommates.lean" rel="nofollow noopener">Formal Conjectures for Mathlib: Combinatorics/Roommates.lean, CompleteProfile 与 stabilityThreshold</a> <span class="muted">（restatement）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002265（card_rev b66dccc4f9636c4a），https://www.qunxingmath.org/p/QX-P-002265/</p>
+  <p><a href="/p/QX-P-002265.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002265.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002265.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

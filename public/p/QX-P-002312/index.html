@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002312 贪心 Mian–Chowla Sidon 序列是否达到近平方根计数 · 群星题库</title>
+<meta name="description" content="Does the greedy Mian–Chowla Sidon sequence have near-square-root counting growth?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002312/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002312.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002312.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002312</span></nav>
+<h1 class="ptitle">贪心 Mian–Chowla Sidon 序列是否达到近平方根计数</h1>
+<p class="ptitle-en" lang="en">Does the greedy Mian–Chowla Sidon sequence have near-square-root counting growth?</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">求界</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到部分结果 · 查了 6 个来源</dd><dt>MSC</dt><dd><span class="mono">11B05</span></dd><dt>提出者</dt><dd>A. M. Mian; S. D. Chowla；增长率问题与 Erdős–Graham 相关</dd><dt>首次发表</dt><dd>序列书目 1944；开放增长率问题见 Erdős–Graham 1980</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>称正整数集合 $A$ 为 <strong>Sidon 集</strong>，如果<br>$$<br>a+b=c+d,\quad a,b,c,d\in A<br>\quad\Longrightarrow\quad<br>\{a,b\}=\{c,d\}.<br>$$<br>这里允许 $a=b$，唯一的重复只允许交换两个加数。Mian–Chowla 贪心序列定义为<br>$$<br>a_1=1,\qquad<br>a_{n+1}=\min\{m&gt;a_n:\{a_1,\ldots,a_n,m\}\text{ 是 Sidon 集}\}.<br>$$<br>它始于<br>$$<br>1,2,4,8,13,21,31,45,66,81,97,\ldots.<br>$$<br>令 $A=\{a_n:n\ge1\}$。<strong>是否对每个 $\varepsilon&gt;0$，都存在 $c_\varepsilon&gt;0$，使得充分大的 $N$ 满足</strong><br>$$<br>|A\cap[1,N]|\ge c_\varepsilon N^{1/2-\varepsilon}?<br>$$<br>即 $A(N)=\Omega_\varepsilon(N^{1/2-\varepsilon})$ 对所有 $\varepsilon&gt;0$ 最终成立。</p>
+<h2>已知结果与进展</h2>
+<ul><li><strong>[KNOWN，定义与存在性]</strong> 给定有限 Sidon 集 $A$，可取 $m&gt;2\max A$，则 $A\cup\{m\}$ 仍为 Sidon 集；故贪心候选总存在，序列严格递增且无限。本地 <code>greedySidon.go</code> 用 <code>Nat.find</code> 选出最小候选。</li><li><strong>[KNOWN，初等下界]</strong> Erdős 的贪心论证给出 $$A(N)\gg N^{1/3}.$$ 本质上，加入 $x$ 的障碍可写成 $x=b+c-a$ 或 $2x=a+b$；对 $m$ 元集合分别至多有 $m^3$ 与 $m^2$ 个障碍。因此当 $N$ 远大于 $m^3$ 时还能继续加入元素。Balogh–Füredi–Roy §1 实读并转述了这一论证。</li><li><strong>[KNOWN，有限区间上界]</strong> 同一论文 Theorem 1.1 给出：充分大的 $N$， $$S(N)&lt;\sqrt N+0.998\,N^{1/4},$$ 其中 $S(N)$ 是 $[1,N]$ 中 Sidon 子集的<strong>最大</strong>基数。配合 Singer 型构造可知 $S(N)\sim\sqrt N$。</li><li><strong>[PARTIAL，单项数值界]</strong> OEIS Comments 记录 $$\frac{n^2}{2}+O(n)&lt;a(n)&lt;\frac{n^3}{6}+O(n^2),$$ 这是渐近写法，不是本题所需的 $A(N)$ 下界。Lewis 1999 计算到第 $1600$ 项，$a_{1600}=51824567$，用于倒数和的估计。</li><li><strong>[HEURISTIC，不是定理]</strong> OEIS 明确标为 Conjecture 的 $a(n)\sim n^3/\log^2 n$ 若成立，会推出 $A(N)\asymp N^{1/3}(\log N)^{2/3}$，从而否定所有小 $\varepsilon$ 的本题强下界。目前没有证明；有限数据也不能判定。</li><li><strong>[OPEN]</strong> 本地 <code>erdos_340</code> 为 <code>research open/sorry</code>；$N^{1/3}$ 与近平方根之间仍有指数缺口。差集 $A-A$ 是否有正密度也是另一个开放问题。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>允许重复加数：</strong>$2a$ 也是必须检查的和。因此 $1,2,3$ 不是 Sidon 集，因为 $1+3=2+2$。</li><li><strong>贪心 vs 任意构造：</strong>Ruzsa 等构造的其他无限 Sidon 集可有 $x^{\sqrt2-1+o(1)}$ 计数，但这不说明特定的 Mian–Chowla 贪心集。</li><li><strong>最大 vs 极大：</strong>$S(N)$ 取最大基数。$A\cap[1,N]$ 按构造不能再加入任何 $[1,N]$ 内的整数，因此是 inclusion-maximal；极大不意味着最大。有限最大 Sidon 集的 $\sqrt N$ 理论不解决本题。</li><li><strong>量词顺序：</strong>对每个 $\varepsilon&gt;0$，可分别取 $c_\varepsilon,N_\varepsilon$。只证明某个固定 $\varepsilon$ 不够。</li><li><strong>下标：</strong>OEIS 从 $a_1=1$；本地 Lean 的 <code>greedySidon 0=1</code>、<code>greedySidon 1=2</code>，故 Lean 第 $k$ 项对应 OEIS 第 $k+1$ 项。</li><li><strong>数值与渐近：</strong>“计算到第 $n$ 项”不是对所有 $N$ 的计数下界；OEIS 的 $n^3/\log^2 n$ 行明确是猜想。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] 下界：</strong>初等贪心障碍计数稳定在 $N^{1/3}$，本次未找到对同一贪心序列的更强已证指数。</li><li><strong>[VARIANT] 有限 Sidon 集问题：</strong>Alexeev–Mixon 2025/2026 证明 $\{1,2,4,8,13\}$ 不能扩张为有限完美差集，并附 Lean 验证；这是 Erdős #707 型扩张问题，不是本题增长率。</li><li><strong>[VARIANT] 线性形式：</strong>Cheng 2024 的 *Greedy Sidon sets for linear forms* 是相关变体；本次未取得全文，不把摘要线索当作本题部分定理。</li><li><strong>[NO SOLUTION CLAIM FOUND] 14 组 WebSearch 未找到解决同一贪心序列近平方根下界的证明，也未找到证明其否定的文献。</strong>OEIS 的相反猜想保持启发式级别。</li><li><strong>访问限制：</strong>Mian–Chowla 1944 原文未取得，定义由 OEIS 与 Lean 核对；PubMed 页面遭 cookie 挑战，但 arXiv 摘要可直接读取。Google Scholar/MathSciNet 完整被引追踪不可用，故 <code>depth=basic</code>、<code>status_strength=weak</code>。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 题源与书目</td><td>[OEIS A005282](<a href="https://oeis.org/A005282" rel="nofollow noopener">https://oeis.org/A005282</a>)</td><td>全文实读：定义、初项、上下界评论、猜想与 1944 书目</td></tr><tr><td>2026-11-25</td><td>A 形式化题源</td><td>[340.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/340.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/340.lean</a>)</td><td>主命题 open/sorry；精确量词与 N^{1/3} 已知变体</td></tr><tr><td>2026-11-25</td><td>A 外部编号</td><td>[Erdős Problems #340](<a href="https://www.erdosproblems.com/340" rel="nofollow noopener">https://www.erdosproblems.com/340</a>)</td><td>仅链接与编号，不摘录或改述网站文字</td></tr><tr><td>2026-11-25</td><td>B 引文追踪</td><td>WebSearch 原词 1–14</td><td>定位 Erdős–Graham、Mian–Chowla、BFR、Cheng、Alexeev–Mixon</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>[BFR v1](<a href="https://arxiv.org/html/2103.15850v1" rel="nofollow noopener">https://arxiv.org/html/2103.15850v1</a>)</td><td>实读有限最大 Sidon 上界与贪心 N^{1/3} 论证</td></tr><tr><td>2026-11-25</td><td>D 预印本与全文</td><td>[Alexeev–Mixon v2](<a href="https://arxiv.org/abs/2510.19804" rel="nofollow noopener">https://arxiv.org/abs/2510.19804</a>)</td><td>摘要证明另一扩张问题；不是增长率解</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–14</td><td>精确短语、AEPS 编号与中文词交叉；无完整解</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>WebSearch 原词 2、4、10</td><td>未定位直接解决该贪心增长率的 MO/MSE 原帖</td></tr><tr><td>2026-11-25</td><td>G 数据库与百科</td><td>[OEIS](<a href="https://oeis.org/A005282" rel="nofollow noopener">https://oeis.org/A005282</a>)；[Wikipedia](<a href="https://en.wikipedia.org/wiki/Sidon_sequence" rel="nofollow noopener">https://en.wikipedia.org/wiki/Sidon_sequence</a>)</td><td>数值范围与一般无限 Sidon 结果；不混同特定贪心集</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[340.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/340.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/340.lean</a>)</td><td>仍 sorry；Alexeev–Mixon 的 Lean 针对另一命题</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 8、12、14</td><td>中文结果多为一般 Sidon 科普，无本题完整证明</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code> 与 95 份草稿</td><td>340、A005282、greedySidon 与来源链接无精确重复</td></tr><tr><td>2026-11-25</td><td>当前状态综合</td><td>[OEIS](<a href="https://oeis.org/A005282" rel="nofollow noopener">https://oeis.org/A005282</a>)；[BFR](<a href="https://arxiv.org/html/2103.15850v1" rel="nofollow noopener">https://arxiv.org/html/2103.15850v1</a>)</td><td>N^{1/3} 下界与有限最大集理论均未闭合；定 weak/basic</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://oeis.org/A005282" rel="nofollow noopener">A. M. Mian; S. D. Chowla, On the B_2-sequences of Sidon, Proc. Nat. Acad. Sci. India A14 (1944), 3–4（OEIS 书目；原文未取得）</a> <span class="muted">（原始出处）</span></li><li><a href="https://oeis.org/A005282" rel="nofollow noopener">OEIS A005282: Mian–Chowla sequence（全文实读，2026-11-24 修改）</a> <span class="muted">（database）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/340.lean" rel="nofollow noopener">Formal Conjectures: ErdosProblems/340.lean；Combinatorics/Basic.lean（本地全文实读）</a> <span class="muted">（restatement）</span></li><li><a href="https://arxiv.org/html/2103.15850v1" rel="nofollow noopener">József Balogh; Zoltán Füredi; Souktik Roy, An upper bound on the size of Sidon sets, arXiv:2103.15850v1（相关章节实读）</a> <span class="muted">（progress）</span></li><li><a href="https://oeis.org/A005282/a005282.pdf" rel="nofollow noopener">Rachel Lewis, Mian–Chowla and B2 sequences, 1999（OEIS 所存三页全文实读）</a> <span class="muted">（progress）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002312（card_rev 89291bf941dc2cff），https://www.qunxingmath.org/p/QX-P-002312/</p>
+  <p><a href="/p/QX-P-002312.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002312.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002312.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

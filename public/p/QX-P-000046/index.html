@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-000046 θ₃ 算术和 S(k) 正性系列猜想 · 群星题库</title>
+<meta name="description" content="对奇素数 k 定义的这串算术和 S(k)，凭什么总是正的？">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-000046/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-000046.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-000046.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-000046</span></nav>
+<h1 class="ptitle">θ₃ 算术和 S(k) 正性系列猜想</h1>
+<p class="ptitle-en" lang="en">A chain of positivity conjectures for the arithmetic sum S(k) built from theta_3</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">中等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>开放 · 证据较弱 · 截至 2026-11-21</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-21 · 在所查范围内没找到相同结果 · 查了 1 个来源</dd><dt>MSC</dt><dd><span class="mono">11F27 · 11L05 11A07</span></dd><dt>提出者</dt><dd>来源 arXiv 论文作者（Lean 形式化: google-deepmind/formal-conjectures 贡献者）</dd><dt>首次发表</dt><dd>来源论文 2020s；形式化库快照 2026-11 采集</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>对奇素数 k，θ₃ 函数相关的算术和 S(k)（由 theta 级数系数构造的特定和）恒正；且逐级有更强的下界 S(k)&gt;k、&gt;2k、&gt;3k，并最终对每个固定 n 有 nk&lt;S(k)。</p>
+<h3>形式化表述</h3>
+<p>S&#x27;(h,k) := Σ_{j=1}^{k−1} (−1)^{j+1+⌊hj/k⌋}（h=1,…,k−1）；S(k) := Σ_{h=1}^{k−1} S&#x27;(h,k)。<br>猜想链（FC Arxiv/2501.03234/ArithmeticSumS.lean 核录，均 @[category research open]）:<br>①∀ 奇素数 k: S(k)&gt;0（Conj 1.1）；②∀ 素数 k&gt;5: S(k)&gt;k（Conj 4.1）；③∀ 素数 k&gt;233: S(k)&gt;2k（Conj 4.2）；④∀ 素数 k&gt;3119: S(k)&gt;3k（Conj 4.3）；⑤∀n ∃N: ∀k≥N 奇素数, S(k)&gt;nk（Conj 4.4，N 依赖 n）。<br>（补全注记 2026-11-21，SOL验证Agent：原形式化缺 S(k) 定义——已按 FC 文件核录补全（原论文 arXiv:2501.03234，&quot;S&#x27;&quot;记号依论文以避重载）；FC 测试值 S(0..9)=[0,0,1,2,5,4,7,10,11,8]（S(5)=4&lt;5 与②的 k&gt;5 前提自洽，S(7)=10&gt;7 ✓）。原路径&quot;Arxiv 家族 ThetaFunction.lean&quot;系 HF 镜像旧快照路径，现行主仓路径已改为 Arxiv/2501.03234/ArithmeticSumS.lean。）</p>
+<h2>人话版</h2>
+<p><strong>一句话</strong>：对奇素数 k 定义的这串算术和 S(k)，凭什么总是正的？</p>
+<p>先看 S&#x27;(h,k)：把 j 从 1 到 k−1 求和，每一项是 (−1) 的 (j+1+⌊hj/k⌋) 次方，也就是一个由整除商决定符号的 ±1。再把 h 从 1 到 k−1 把这些 S&#x27;(h,k) 加起来，就得到 S(k)；这张卡片的数值记录是 S(0..9)=[0,0,1,2,5,4,7,10,11,8]。猜想是一整条链：S(k) 恒正；k&gt;5 时 S(k)&gt;k；k&gt;233 时 S(k)&gt;2k；k&gt;3119 时 S(k)&gt;3k；最终对每个固定 n 都有 S(k)&gt;nk。越往后越强，全部针对奇素数 k。否定其中任一环只需要算出一个反例 k，证明则要对所有大素数估计这类符号和。</p>
+<p>（AI 起草，未经人工审校）</p>
+<h2>原文摘录</h2>
+<blockquote><p>For every odd prime k, S(k)&gt;0 (Conj 1.1); further S(k)&gt;k for k&gt;5, S(k)&gt;2k for k&gt;233, S(k)&gt;3k for k&gt;3119, and eventually nk&lt;S(k) for all n.<br>（来源: formal-conjectures Arxiv 家族 ThetaFunction.lean）</p>
+<p>—— google-deepmind/formal-conjectures, FormalConjectures/Arxiv 家族 ThetaFunction.lean（经 HF 镜像 SZLHOLDINGS/szl-open-problems-v1 catalog 快照 commit b576d52, status=open）</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li>提出论文（arXiv 来源，Lean 形式化于 formal-conjectures ThetaFunction.lean）已给出数值证据与较弱层次；</li><li>各层级猜想互为递进，低阶层次若被证明可自洽推出高层级需要的单调性素材。</li></ul>
+<h2>边界与约定</h2>
+<ul><li>最小参数: k=3（S=2&gt;0 ✓ ①基线）；k=5（S=4：①真但②域外——②的 k&gt;5 前提临界）；k=7（S=10&gt;7 ✓②基线）；k=233 与 k=3119（③④阈值临界——FC 未列测试值，可数值核验 S(233)、S(3119) 与 2k/3k 的关系）。</li><li>退化情形: 合数/偶数 k 不在域内（S(k) 对非奇素数无断言——S(9)=8 等测试值仅供定义校验）；h,j 求和域 [1,k−1]（下取整特征 ⌊hj/k⌋ 的取值 0..h−1）；符号特征 (−1)^{j+1+⌊hj/k⌋} 的奇偶分析是核心结构。</li><li>约定依赖: 双层求和顺序（S(k)=Σ_h S&#x27;(h,k)）；整数底平方 ⌊·⌋₊；θ₃ 关联为论文语境（命题本体只依赖上述有限和）。</li><li>结构性锚点: S&#x27;(h,k) 与 k 的互质结构（hj mod k 的排列性质）——按 h 与 k 互质/不质分层是候选论证路线；任何声称证明须覆盖全部奇素数 k（无穷域）且数值验证可程序化到很大范围。</li><li>建议独立验证方法（仅描述，不执行）: 独立实现 S(k) 求和核验 FC 测试值并向 k≤10^6 奇素数扩展（与原论文数值途径不同实现）；对阈值临界点（233, 3119）重点复算；对声称证明检查其对 ⌊hj/k⌋ 奇偶分布的论证。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li>无已知声称解决；属&quot;提出论文留作开放&quot;型。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>来源</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-20</td><td>formal-conjectures 快照</td><td><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures</a></td><td>status_fc=open（5条子猜想）</td></tr><tr><td>2026-11-20</td><td>本Agent未深查</td><td></td><td>未检索到该具体和函数的独立文献；[表述需回溯原论文编号] 二轮补强</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">google-deepmind/formal-conjectures, FormalConjectures/Arxiv 家族 ThetaFunction.lean（经 HF 镜像 SZLHOLDINGS/szl-open-problems-v1 catalog 快照 commit b576d52, status=open）</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures" rel="nofollow noopener">formal-conjectures 快照</a> <span class="muted">（查新依据）</span></li><li>本Agent未深查 <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-000046（card_rev 17b6fc151b7cba32），https://www.qunxingmath.org/p/QX-P-000046/</p>
+  <p><a href="/p/QX-P-000046.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-000046.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/000/QX-P-000046.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002455 黎曼 ζ 函数临界线六阶矩的精确首项渐近是否成立 · 群星题库</title>
+<meta name="description" content="Does the sixth critical-line moment of the Riemann zeta function have the conjectured precise leading asymptotic?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002455/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002455.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002455.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002455</span></nav>
+<h1 class="ptitle">黎曼 ζ 函数临界线六阶矩的精确首项渐近是否成立</h1>
+<p class="ptitle-en" lang="en">Does the sixth critical-line moment of the Riemann zeta function have the conjectured precise leading asymptotic?</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">证明</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到部分结果 · 查了 8 个来源</dd><dt>MSC</dt><dd><span class="mono">11M06</span></dd><dt>提出者</dt><dd>J. Brian Conrey、Amit Ghosh</dd><dt>首次发表</dt><dd>1998，IMRN 1998(15), 775–780</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>设 $\zeta(s)$ 为黎曼 $\zeta$ 函数，定义归一化的临界线六阶矩</p>
+<p>$$<br>M_3(T)=\frac1T\int_0^T|\zeta(\tfrac12+it)|^6\,dt.<br>$$</p>
+<p>对每个素数 $p$，令</p>
+<p>$$<br>a_3=\prod_p\left(1-\frac1p\right)^9<br>\sum_{m=0}^{\infty}\binom{m+2}{2}^{\!2}p^{-m}.<br>$$</p>
+<p>问：是否有</p>
+<p>$$<br>M_3(T)\sim\frac{42a_3}{9!}(\log T)^9<br>\qquad(T\to\infty)?<br>$$</p>
+<p>这里 $\sim$ 表示两边之比趋于 $1$，$\log$ 为自然对数。</p>
+<h3>形式化表述</h3>
+<p>Lean 中</p>
+<p>$$<br>\operatorname{moment}\ k\ T=\frac1T\int_0^T\|\zeta(\tfrac12+it)\|^{2k}\,dt,<br>$$</p>
+<p>且 <code>arithmeticFactor k</code> 定义为</p>
+<p>$$<br>\prod_{p:\mathrm{Nat.Primes}}<br>\left(1-\frac1p\right)^{k^2}<br>\sum_{m:\mathbb N}\frac{(\operatorname{Nat.multichoose}\ k\ m)^2}{p^m}.<br>$$</p>
+<p>目标 <code>moment_isEquiv₃</code> 是</p>
+<p>$$<br>\operatorname{moment}\ 3\ \sim_{\mathrm{atTop}}\<br>T\mapsto\frac{42\,\operatorname{arithmeticFactor}\ 3}{9!}(\log T)^9.<br>$$</p>
+<h2>原文摘录</h2>
+<blockquote><p>In this paper, we present evidence to support the Conjecture.</p>
+<p>Since full asymptotics remain out of reach for higher moments, one naturally asks for weaker results: upper and lower bounds of the correct order of magnitude, consistent with (2).</p>
+<p>—— J. B. Conrey、A. Ghosh，*A conjecture for the sixth power moment of the Riemann zeta-function*，1998，[arXiv 全文](<a href="https://arxiv.org/html/math/9807187" rel="nofollow noopener">https://arxiv.org/html/math/9807187</a>)；Alexandra Florea，*A Survey of Moment Bounds for ζ(s)*，§1，2025，[arXiv 全文](<a href="https://arxiv.org/html/2509.20335" rel="nofollow noopener">https://arxiv.org/html/2509.20335</a>)。</p></blockquote>
+<h2>已知结果与进展</h2>
+<ul><li><strong>原猜想：</strong>Conrey–Ghosh 1998 提出六阶矩首项为 $(42a_3/9!)T(\log T)^9$。原文明确说论文是给出支持猜想的证据，而非证明；其平均定理只在 Dirichlet 多项式长度参数 $0&lt;\theta&lt;1/2$ 时可用，外推到 $\theta=1$ 是额外假设。[Conrey–Ghosh](<a href="https://arxiv.org/html/math/9807187" rel="nofollow noopener">https://arxiv.org/html/math/9807187</a>)</li><li><strong>随机矩阵因子：</strong>Keating–Snaith 给出 $c_k=a_kf_k$，其中 $f_k=\prod_{j=0}^{k-1}j!/(j+k)!$。对 $k=3$，$f_3=1/8640$，而 $g_3=9!f_3=42$，故随机矩阵部分与 $42/9!$ 一致；算术部分由 $a_3$ 编码。[Florea §2](<a href="https://arxiv.org/html/2509.20335" rel="nofollow noopener">https://arxiv.org/html/2509.20335</a>)</li><li><strong>仅有的精确整数矩：</strong>Hardy–Littlewood 证明 $k=1$，Ingham 证明 $k=2$，常数分别为 $1$ 与 $1/(2\pi^2)$。Florea 2025 与 Connes 2026 均把 $k=3$ 及更高完整渐近列为未解决。[Florea §1](<a href="https://arxiv.org/html/2509.20335" rel="nofollow noopener">https://arxiv.org/html/2509.20335</a>)；[Connes §3.4.5](<a href="https://arxiv.org/html/2602.04022" rel="nofollow noopener">https://arxiv.org/html/2602.04022</a>)</li><li><strong>正确阶的估计已有：</strong>六阶矩的无条件下界达到 $T(\log T)^9$ 的量级；在 RH 下，Harper 的上界达到 $T(\log T)^9$ 的量级。没有 $\log$ 幂损失的阶估计仍不等于精确系数 $42a_3/9!$。[Florea §3](<a href="https://arxiv.org/html/2509.20335" rel="nofollow noopener">https://arxiv.org/html/2509.20335</a>)</li><li><strong>Ng 的条件性加强：</strong>若三元加性除数和猜想 $\mathcal{AD}(\theta,C)$（$\theta\in[1/2,2/3)$）成立，Ng 的 Corollary 1.2 给出 $$I_3(T)=T\mathcal P_9(\log T)+O(T^{(3\theta/2+1+C)/(2+C)+\varepsilon}),$$ 其中 $\mathcal P_9$ 为九次多项式。该加性除数和输入本身仍开放，因此不是本题的无条件解。[Ng §1](<a href="https://arxiv.org/html/1610.04977v3" rel="nofollow noopener">https://arxiv.org/html/1610.04977v3</a>)</li><li><strong>当前形式化状态：</strong><code>moment_isEquiv₃</code> 标 <code>research open/sorry</code>；第一、第二矩另列，算术因子有独立定义和 $a_0=1$ 测试。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>必须保留 $1/T$。</strong>文献常写 $I_3(T)=\int_0^T|\zeta(1/2+it)|^6dt$，其主项多一个因子 $T$；本题 Lean 定义已归一化。</li><li><strong>积分起点无关紧要。</strong>原文常从 $1$ 积分到 $T$，本题从 $0$ 到 $T$；有限区间之差不影响 $T\to\infty$ 的首项。</li><li><strong>“六阶”是 $2k=6$。</strong>不是六阶导数、不是 $\zeta(s)^6$ 的复数值，也不是零点离散矩。</li><li><strong>$a_3$ 是正收敛 Euler 乘积。</strong>本地级数为 $\sum_{m\ge0}\binom{m+2}{2}^2p^{-m}$，配 $(1-1/p)^9$；Lean 的 <code>Nat.multichoose 3 m</code> 就是 $\binom{m+2}{2}$。</li><li><strong>历史写法不替代目标定义。</strong>Conrey–Ghosh 预印本把 $a_3$ 写为局部乘积；本卡以 Lean、Ng 式 (1.7)、Connes §3.4.5 和 Florea 式 (9) 的标准 $k^2$ 无穷级数定义为准。</li><li><strong>RH 不是目标假设。</strong>在 RH 下得到正确阶上界，不会自动确定首项常数；Ng 的条件性结果依赖加性除数和猜想，而不是仅依赖 RH。</li><li><strong>首项不等于完整展开。</strong>即使主项猜得正确，低阶对数项、误差项及完整矩多项式仍是进一步问题。</li><li><strong>不要与家族平均混淆。</strong>Dirichlet $L$ 函数六阶矩的已证结果不直接推出单个黎曼 $\zeta$ 的六阶矩。</li><li><strong>查重。</strong>已实时检索 65 份草稿和 <code>qunxing-data/problems</code> 的 Lean 名、Conrey–Ghosh、Florea、arXiv 号、DOI 与“六阶矩/42a3”等关键词，无同一精确命题。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] $k=1,2$：</strong>精确首项已证，但不覆盖 $k=3$。</li><li><strong>[PARTIAL] 六阶正确阶：</strong>无条件下界与 RH 上界已有，未给精确首项。</li><li><strong>[PARTIAL] 条件性主项：</strong>Ng 从三元加性除数和猜想推出九次多项式主项及幂节省误差。</li><li><strong>[HEURISTIC] Conrey–Ghosh：</strong>原论文明确以证据支持猜想，并把 $\theta=1$ 外推作为假设。</li><li><strong>[VARIANT] 随机矩阵与家族矩：</strong>支持常数结构，但不是单个 $\zeta$ 六阶矩的证明。</li><li><strong>[CLAIM] 未定位到无条件完整解。</strong>按 2025/2026、sixth moment、asymptotic、proof/solved、Lean 名及中英文常数检索，未找到可信且可读的完整证明或反例。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 原题源</td><td>[Conrey–Ghosh arXiv](<a href="https://arxiv.org/html/math/9807187" rel="nofollow noopener">https://arxiv.org/html/math/9807187</a>)</td><td>实读 HTML/PDF/TeX；原文是 Conjecture，θ=1 外推未证明</td></tr><tr><td>2026-11-25</td><td>A 当前形式化题源</td><td>[Formal Conjectures](<a href="https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Paper/RiemannZetaMoments" rel="nofollow noopener">https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Paper/RiemannZetaMoments</a>)</td><td>实读并核对本地 Lean；moment_isEquiv₃ 为 open/sorry</td></tr><tr><td>2026-11-25</td><td>B 引文与条件结果</td><td>[Ng HTML](<a href="https://arxiv.org/html/1610.04977v3" rel="nofollow noopener">https://arxiv.org/html/1610.04977v3</a>)</td><td>实读 §1；AD 猜想推出 Corollary 1.2，不是无条件渐近</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>WebSearch 原词 1–14</td><td>综述、原论文、DOI、Lean 名、证明/反例组合；无一般解</td></tr><tr><td>2026-11-25</td><td>D 最新预印本/综述</td><td>[Florea 2025](<a href="https://arxiv.org/html/2509.20335" rel="nofollow noopener">https://arxiv.org/html/2509.20335</a>)；[Connes 2026](<a href="https://arxiv.org/html/2602.04022" rel="nofollow noopener">https://arxiv.org/html/2602.04022</a>)</td><td>实读相关章节；高阶完整渐近仍不可及，仅 k=1,2 精确已证</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–14</td><td>中英文检索；排除六阶导数、其他 L 函数与数值常数 42 的无关结果</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>WebSearch 原词 1–14</td><td>未定位直接解决主猜想的 MO/MSE 主帖；不声称全量审计</td></tr><tr><td>2026-11-25</td><td>G 书目元数据</td><td>[Crossref](<a href="https://api.crossref.org/works/10.1155/S1073792898000476" rel="nofollow noopener">https://api.crossref.org/works/10.1155/S1073792898000476</a>)</td><td>实读 DOI 元数据；OUP 页 fetch failed、PDF 403，arXiv 全文可读</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[Lean 文档](<a href="https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Paper/RiemannZetaMoments" rel="nofollow noopener">https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Paper/RiemannZetaMoments</a>)</td><td>未发现可信 AI 无条件证明；主命题仍 sorry</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 7</td><td>中文结果多为无关；以实际英文论文的量词与归一化为准</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code></td><td>精确名称、编号、DOI、arXiv 与对象关键词无重复</td></tr><tr><td>2026-11-25</td><td>当前状态交叉核对</td><td>[Florea](<a href="https://arxiv.org/html/2509.20335" rel="nofollow noopener">https://arxiv.org/html/2509.20335</a>)；[Ng](<a href="https://arxiv.org/html/1610.04977v3" rel="nofollow noopener">https://arxiv.org/html/1610.04977v3</a>)；[Formal Conjectures](<a href="https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Paper/RiemannZetaMoments" rel="nofollow noopener">https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Paper/RiemannZetaMoments</a>)</td><td>六阶精确首项开放，条件性/阶估计已进展；基础检索，status_strength=weak</td></tr></tbody></table></div>
+<p><strong>访问限制：</strong>Conrey–Ghosh 的 arXiv HTML、原始 PDF 与 TeX 均已实际读取；Florea、Ng、Connes 和 Formal Conjectures 的相关章节亦已读取。OUP 期刊页 fetch failed、PDF 返回 403，但同文 arXiv 版本完整可读，故不标为原文 inaccessible。Google Scholar、MathSciNet 完整被引追踪及十类深查未完成。</p>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://arxiv.org/html/math/9807187" rel="nofollow noopener">J. B. Conrey, A. Ghosh, A conjecture for the sixth power moment of the Riemann zeta-function, IMRN 1998(15), 775–780（arXiv HTML/PDF/TeX 实际读取）</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Paper/RiemannZetaMoments.lean" rel="nofollow noopener">Formal Conjectures: Paper/RiemannZetaMoments.lean（本地与在线文档实际核对）</a> <span class="muted">（restatement）</span></li><li><a href="https://arxiv.org/html/2509.20335" rel="nofollow noopener">Alexandra Florea, A Survey of Moment Bounds for ζ(s): from Heath-Brown’s work to the present, arXiv:2509.20335（2025；§1–3 实际读取）</a> <span class="muted">（综述）</span></li><li><a href="https://arxiv.org/html/1610.04977v3" rel="nofollow noopener">Nathan Ng, The sixth moment of the Riemann zeta function and ternary additive divisor sums, arXiv:1610.04977v3（§1 实际读取）</a> <span class="muted">（progress）</span></li><li><a href="https://arxiv.org/html/2602.04022" rel="nofollow noopener">Alain Connes, The Riemann Hypothesis: Past, Present and a Letter Through Time, arXiv:2602.04022（§3.4.5 实际读取）</a> <span class="muted">（综述）</span></li><li><a href="https://api.crossref.org/works/10.1155/S1073792898000476" rel="nofollow noopener">Crossref: DOI 10.1155/S1073792898000476（元数据实际读取；OUP 正文不可达）</a> <span class="muted">（查新依据）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002455（card_rev 25d77dbea6171317），https://www.qunxingmath.org/p/QX-P-002455/</p>
+  <p><a href="/p/QX-P-002455.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002455.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002455.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

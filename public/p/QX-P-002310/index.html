@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>QX-P-002310 区间内最长素数等差数列的长度是否为 log N 的小 o · 群星题库</title>
+<meta name="description" content="Is the longest prime arithmetic progression in [1,N] of length o(log N)?">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="canonical" href="https://www.qunxingmath.org/p/QX-P-002310/">
+<link rel="alternate" type="text/markdown" href="/p/QX-P-002310.md">
+<link rel="alternate" type="application/json" href="/api/v1/problems/QX-P-002310.json">
+</head>
+<body>
+<header class="sky sky-xs">
+  <div class="wrap wide">
+    <div class="top">
+      <a class="mark" href="/" aria-label="首页"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 6 L37.2 26.8 L58 32 L37.2 37.2 L32 58 L26.8 37.2 L6 32 L26.8 26.8 Z"/></svg><span>群星</span><span class="en" lang="en">Qunxing</span></a>
+      <nav aria-label="题库"><a href="/problems/">题库</a><a class="hl" href="/download/">下载</a></nav>
+    </div>
+  </div>
+</header>
+<main class="wrap wide bank">
+<nav class="crumbs" aria-label="位置"><a href="/problems/">题库</a> › <a href="/problems/number_theory/">数论</a> › <span class="mono">QX-P-002310</span></nav>
+<h1 class="ptitle">区间内最长素数等差数列的长度是否为 log N 的小 o</h1>
+<p class="ptitle-en" lang="en">Is the longest prime arithmetic progression in [1,N] of length o(log N)?</p>
+<p class="chips"><span class="chip">数论</span><span class="chip">求界</span><span class="chip">高等</span><span class="chip">开放问题</span><span class="chip warn">草稿</span><span class="chip warn">开放状态证据较弱</span></p>
+<p class="disclaimer"><b>本站不验证。</b>题目状态来自文献和题卡整理者的记录，没有经过本站核验；任何提交在本站都不算"已验证"。</p>
+<section class="summary" aria-label="聚合摘要">
+  <p><span class="badge">暂无提交 <code>no_submission</code></span></p>
+  <p class="verify">本站是否验证：否（site_verified: false）</p>
+  <dl class="kv"><dt>文献状态</dt><dd>部分解决 · 证据较弱 · 截至 2026-11-25</dd><dt>形式化</dt><dd>没有</dd><dt>最近查新</dt><dd>2026-11-25 · 找到部分结果 · 查了 5 个来源</dd><dt>MSC</dt><dd><span class="mono">11N05</span></dd><dt>提出者</dt><dd>Paul Erdős; Ronald L. Graham</dd><dt>首次发表</dt><dd>Erdős–Graham 1979/1980；原书全文本次未取得</dd></dl>
+</section>
+<article class="md">
+<h2>题面</h2>
+<p>令 $L(N)$ 为 $[1,N]\cap\mathbb Z$ 中由素数组成的最长等差数列的项数。即求最大的 $k$，使得存在正整数 $a,d$，对一切 $0\le j&lt;k$，<br>$$<br>a+jd\le N,\qquad a+jd\text{ 均为素数}.<br>$$<br><strong>是否</strong><br>$$<br>L(N)=o(\log N),<br>$$<br>也就是 $\lim_{N\to\infty}L(N)/\log N=0$？</p>
+<h2>已知结果与进展</h2>
+<ul><li><strong>[KNOWN，PNT 上界]</strong> 对每个 $\varepsilon&gt;0$，充分大的 $N$ 有 $$L(N)\le(1+\varepsilon)\log N.$$ 证明要点：若 $k\ge2$，则 $\gcd(a,d)=1$，否则素数 $a$ 的某个素因子会整除后面所有项。一方面 $k\le N/d+O(1)$；另一方面，等差数列素数定理在 $d\le(1+\delta)\log N$ 时给出 $k\le(1+o(1))N/(\varphi(d)\log N)$。按 $d$ 与 $\log N$ 的大小分两种情形即可。本地 Lean 将 $(1+o(1))\log N$ 上界标为已解。</li><li><strong>[KNOWN，固定长度存在性]</strong> Green–Tao 2008 证明：对每个固定 $k$，存在 $k$ 个素数组成等差数列。因此 $L(N)\to\infty$。</li><li><strong>[PARTIAL，定量构造]</strong> Green–Tao 的短笔记给出 $k$ 项等差数列的指数塔上界（高度 7）。它描述“需要多大的 $N$ 才能找到长度 $k$”，并不控制“$N$ 以内最长能有多长”。</li><li><strong>[OPEN，小 o 改进]</strong> 从 $(1+o(1))\log N$ 推进到 $o(\log N)$ 需要排除 $L(N)\sim\log N$ 甚至 $L(N)/\log N$ 有正下极限的可能。本地 <code>erdos_200</code> 仍为 <code>research open/sorry</code>。</li><li><strong>计算限制：</strong>有限区间的记录只给出下界。PrimePages 页面仍列 25 项记录，明显落后于后续搜索，故本卡不把它称为 2026 年当前记录，也不以计算记录推断渐近上界。</li></ul>
+<h2>边界与约定</h2>
+<ul><li><strong>全素数而非连续素数：</strong>$7,37,67,97,127,157$ 是合法六项等差数列，尽管中间有合数。要求“连续素数”的 CPAP 是另一个问题。</li><li><strong>固定 $k$ vs 增长 $k$：</strong>Green–Tao 的 $\forall k\,\exists(a,d)$ 不与 $L(N)=o(\log N)$ 矛盾；后者统一控制所有 $k\le L(N)$。</li><li><strong>退化情形：</strong>$k=1$ 总可取；$d=0$ 不能产生两项不同素数。为渐近上界可只考虑 $k\ge2$。</li><li><strong>模数互素：</strong>若 $k\ge2$ 且 $g=\gcd(a,d)&gt;1$，则 $g\mid a$。因 $a$ 为素数，只能 $g=a$，于是第二项 $a+d&gt;a$ 也被 $a$ 整除，矛盾。</li><li><strong>对数：</strong>$\log$ 为自然对数。$o(\log N)$ 允许 $\log N/\log\log N$，但排除 $\log N$ 的主项。</li></ul>
+<h2>相关进展与声称解决</h2>
+<ul><li><strong>[PARTIAL] PNT 路线：</strong>$(1+o(1))\log N$ 是标准上界；没有从该陈述自动得到小 o 的逻辑途径。</li><li><strong>[RELATED] Green–Tao：</strong>解决任意长存在性，并给定量指数塔界；两者都不是本题上界。</li><li><strong>[VARIANT] 大素数间隙：</strong>Ford–Green–Konyagin–Tao 用覆盖类构造大间隙，相关博客讨论过素数等差数列，但对象与本题不同。</li><li><strong>[NO SOLUTION CLAIM FOUND] 20 组 WebSearch 未找到同一 $L(N)=o(\log N)$ 命题的证明或否定。</strong></li><li><strong>访问限制：</strong>Erdős–Graham 原书全文与 MathSciNet 完整被引追踪不可用；PrimePages 记录数据过时，primerecords.dk 本次抓取失败。故只声称基础查新，<code>depth=basic</code>、<code>status_strength=weak</code>。</li></ul>
+<h2>开放状态证据</h2>
+<div class="tbl"><table><thead><tr><th>日期</th><th>检索面</th><th>链接</th><th>要点</th></tr></thead><tbody><tr><td>2026-11-25</td><td>A 原始书目</td><td>[MR 0592420](<a href="https://mathscinet.ams.org/mathscinet-getitem?mr=592420" rel="nofollow noopener">https://mathscinet.ams.org/mathscinet-getitem?mr=592420</a>)</td><td>仅定位 Erdős–Graham 1980；原书全文 inaccessible</td></tr><tr><td>2026-11-25</td><td>A 形式化题源</td><td>[200.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/200.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/200.lean</a>)</td><td>主命题 open/sorry；PNT 上界变体 solved</td></tr><tr><td>2026-11-25</td><td>A 外部编号</td><td>[Erdős Problems #200](<a href="https://www.erdosproblems.com/200" rel="nofollow noopener">https://www.erdosproblems.com/200</a>)</td><td>仅链接与编号，不摘录或改述网站文字</td></tr><tr><td>2026-11-25</td><td>B 引文追踪</td><td>WebSearch 原词 1–20</td><td>定位 ErGr79/ErGr80、Green–Tao 及定量笔记；无完整解</td></tr><tr><td>2026-11-25</td><td>C 学术检索</td><td>[Green–Tao v6](<a href="https://arxiv.org/abs/math/0404188" rel="nofollow noopener">https://arxiv.org/abs/math/0404188</a>)</td><td>摘要与版本实读；固定长度存在性</td></tr><tr><td>2026-11-25</td><td>D 预印本与全文</td><td>[定量笔记](<a href="https://people.maths.ox.ac.uk/greenbj/papers/back-of-an-envelope.pdf" rel="nofollow noopener">https://people.maths.ox.ac.uk/greenbj/papers/back-of-an-envelope.pdf</a>)</td><td>四页实读；指数塔构造界不是 L(N) 上界</td></tr><tr><td>2026-11-25</td><td>E 通用搜索</td><td>WebSearch 原词 1–20</td><td>英文精确式、中文译名与 solved/counterexample 方向交叉</td></tr><tr><td>2026-11-25</td><td>F 问答社区</td><td>WebSearch 原词 2–7、17、20</td><td>未定位直接解决该渐近命题的 MO/MSE 原帖</td></tr><tr><td>2026-11-25</td><td>G 数据库与百科</td><td>[PrimePages](<a href="https://t5k.org/glossary/xpage/arithmeticsequence.html" rel="nofollow noopener">https://t5k.org/glossary/xpage/arithmeticsequence.html</a>)；[OEIS A005115](<a href="https://oeis.org/A005115" rel="nofollow noopener">https://oeis.org/A005115</a>)</td><td>定义与历史结果；记录页数据已过时</td></tr><tr><td>2026-11-25</td><td>H AI 与形式化</td><td>[200.lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/200.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/200.lean</a>)</td><td>仍 sorry；未发现可信 AI 一般证明</td></tr><tr><td>2026-11-25</td><td>I 中文与其他语言</td><td>WebSearch 原词 7、11、12</td><td>中文多混淆任意长存在性与最长长度上界</td></tr><tr><td>2026-11-25</td><td>J 群星实时题库</td><td><code>qunxing-data/problems</code> 与 95 份草稿</td><td>200、A005115、MR0592420 无精确重复；避开已有 Green–Tao DOI</td></tr><tr><td>2026-11-25</td><td>当前状态综合</td><td>[Lean](<a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/200.lean" rel="nofollow noopener">https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/200.lean</a>)；[Green–Tao](<a href="https://arxiv.org/abs/math/0404188" rel="nofollow noopener">https://arxiv.org/abs/math/0404188</a>)</td><td>仅固定长度存在性与 PNT 上界；小 o 主命题未闭合</td></tr></tbody></table></div>
+</article>
+<section class="sec">
+  <h2>来源</h2>
+  <ul class="plain"><li><a href="https://mathscinet.ams.org/mathscinet-getitem?mr=592420" rel="nofollow noopener">P. Erdős; R. L. Graham, Old and new problems and results in combinatorial number theory, Monographies de L&#x27;Enseignement Mathématique 28 (1980), MR 0592420（原书全文未取得）</a> <span class="muted">（原始出处）</span></li><li><a href="https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/200.lean" rel="nofollow noopener">Formal Conjectures: ErdosProblems/200.lean（本地全文实读）</a> <span class="muted">（restatement）</span></li><li><a href="https://arxiv.org/abs/math/0404188" rel="nofollow noopener">Ben Green; Terence Tao, The primes contain arbitrarily long arithmetic progressions, arXiv:math/0404188v6（摘要实读）</a> <span class="muted">（progress）</span></li><li><a href="https://people.maths.ox.ac.uk/greenbj/papers/back-of-an-envelope.pdf" rel="nofollow noopener">Ben Green; Terence Tao, A bound for progressions of length k in the primes（四页全文实读）</a> <span class="muted">（progress）</span></li><li><a href="https://t5k.org/glossary/xpage/arithmeticsequence.html" rel="nofollow noopener">PrimePages: arithmetic sequence（全文实读；其中记录数据已过时）</a> <span class="muted">（综述）</span></li></ul>
+</section>
+<section class="sec">
+  <h2>失败路径</h2>
+  <p>尚未记录失败路径。用群星桌面端探索这道题，结束时可以自己决定是否匿名提交失败路径。</p>
+</section>
+<section class="sec">
+  <h2>引用与导出</h2>
+  <p>引用：群星题库 QX-P-002310（card_rev b355c02d60016e7a），https://www.qunxingmath.org/p/QX-P-002310/</p>
+  <p><a href="/p/QX-P-002310.md">Markdown 版</a> · <a href="/api/v1/problems/QX-P-002310.json">JSON（完整题卡）</a> · <a href="https://github.com/qunxingmath-org/qunxing-data/blob/081e329165d3104f5faff3a86270fd6cff1d8f6e/problems/002/QX-P-002310.text.md">在 GitHub 上看题卡</a>（题面有问题？在 qunxing-data 开 Issue，选"题面异议"）</p>
+</section>
+<p class="cta-en"><a class="btn" href="/download/">在群星桌面端里探索这道题</a></p>
+</main>
+<footer class="wrap wide">
+  <p>© 2026 群星贡献者 · The Qunxing Contributors</p>
+  <p>题卡文字 CC BY-SA 4.0；结构化字段 CC0 1.0；引用的原文片段保持原许可。本站不验证题目状态和任何提交。 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>
