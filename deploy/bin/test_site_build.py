@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -16,6 +17,9 @@ from xml.etree import ElementTree
 from build_manifest import manifest, sign
 from build_site import full_text, sitemap
 from release_assets import ASSETS, latest, mirror_present, sync_mirror
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+from test_evidence_export import EvidenceExportTests
 
 
 def sample():

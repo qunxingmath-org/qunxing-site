@@ -1,0 +1,2936 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001024",
+  "card_rev": "ec089c286914f879",
+  "summary": {
+    "math_status": {
+      "value": "claimed_resolution",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-07"
+      ],
+      "parts": [
+        {
+          "subquestion": "Pálfy–Pudlák等价的逻辑范围",
+          "value": "partial",
+          "note": "1980 Thm2给两个全称问题等价。任意给定L由有限群区间⇒有限代数同余格成立；反向全称证明通过扩大格，不能当逐格同一性定理。"
+        },
+        {
+          "subquestion": "允许无限或可数局部有限群",
+          "value": "partial",
+          "note": "Tůma1989的一般无限群结果由作者1995原文重述；Repnitskiĭ–Tůma作者稿Thm3.4进一步给可数局部有限群。二者均未满足本题有限G限制。"
+        },
+        {
+          "subquestion": "M_n与受限群类",
+          "value": "partial",
+          "note": "1980 Thm3排除部分带阿贝尔正规子群的表示，尤其M7无可解有限群表示；这不是排除所有有限群。Baddeley–Lucchini1997摘要给高度2问题的单群约化，不能据此关闭主问。"
+        },
+        {
+          "subquestion": "≤7元素格与L7",
+          "value": "claimed_resolution",
+          "note": "2012 DeMeo Thm6.1.1为除一个可能例外的有限代数表示；2026 companion声称以PGL2(F2)≤PGL2(F64)实现该L7，继而全部≤7元素格可表示。后者原稿已核对象和区间列表，未在本轮独立复算全部过群。不能把L7与7原子的M7混同。"
+        },
+        {
+          "subquestion": "有限代数表示及有限群完整区间识别不可判定",
+          "value": "claimed_resolution",
+          "note": "companion Thm1.1(ii),(iv)及diophantine.tex终段声称不可判定；结尾Diophantine逻辑约化依赖加权实现和计数等结构定理，本轮未独立核这些核心，故不能写已知算法不可判定。"
+        },
+        {
+          "subquestion": "有限signature与任意finitary signature",
+          "value": "partial",
+          "note": "在固定有限载体上仅有限等价关系；逐个非同余选一个不兼容运算，所得有限signature具有相同同余格。因此作者有限signature否定声明若成立，不只是对一个受限运算签名的反例。"
+        },
+        {
+          "subquestion": "有限代数同余格的彩色图刻画与固定规模判定",
+          "value": "partial",
+          "note": "已取得实际Lean证明/程序并读定义与最终statement；graph_criterion只作等价刻画，graphSizeDecidable只判定给定size。静态检查未复跑，不形成全题形式化认证。"
+        },
+        {
+          "subquestion": "七元格L7=L10的有限群区间表示",
+          "value": "partial",
+          "note": "GAP代码专验PSL2(64)中S3之上的七元完整区间；作者报告有运行记录，本轮只读程序未重跑。不是所有有限格之结论。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026",
+      "review": "read_unchecked",
+      "by": "OpenAI 公开数学稿（仓库作者说明）",
+      "date": "2026-09-24"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "完整证明/反例声明待核",
+      "scope_note": "主稿固定adc7版本Theorem1.2声称存在一个有限格，对任意有限G及H≤G均不与整个[H,G]同构，完整覆盖Kourovka15.73的否定；Theorem1.1及同伴稿另声称有限代数表示失败/不可判定。已取得主稿完整TeX并核范围，且对fence/normal-test/label及Ramsey比例步骤做了明确限定的独立核查；未核完Theorem3.2绝对统一界与后续全部归约，故仍为完整声明待核而非原题已推翻。作者声称已证明B的存在，缺数值B本身不构成漏洞；但现卡要求具体有限格的操作性交付本轮未完成。官方Lean及公开GAP不覆盖完整否定，本轮亦未运行这两套代码。v50无解题标记只反映该版本编目。",
+      "evidence_ids": [
+        "O1024-V50",
+        "O1024-NEGATIVE",
+        "O1024-RAMSEY",
+        "A1024-E01",
+        "A1024-E02",
+        "C1024-01",
+        "C1024-02",
+        "C1024-05",
+        "M1024-LOCAL-NORMAL",
+        "M1024-CHAIN-SCOPE"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "Pálfy–Pudlák等价的逻辑范围",
+      "math_status": "部分进展",
+      "scope_note": "1980 Thm2给两个全称问题等价。任意给定L由有限群区间⇒有限代数同余格成立；反向全称证明通过扩大格，不能当逐格同一性定理。",
+      "evidence_ids": [
+        "A1024-E03"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "允许无限或可数局部有限群",
+      "math_status": "仅特例",
+      "scope_note": "Tůma1989的一般无限群结果由作者1995原文重述；Repnitskiĭ–Tůma作者稿Thm3.4进一步给可数局部有限群。二者均未满足本题有限G限制。",
+      "evidence_ids": [
+        "A1024-E04",
+        "A1024-E05"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "M_n与受限群类",
+      "math_status": "仅特例",
+      "scope_note": "1980 Thm3排除部分带阿贝尔正规子群的表示，尤其M7无可解有限群表示；这不是排除所有有限群。Baddeley–Lucchini1997摘要给高度2问题的单群约化，不能据此关闭主问。",
+      "evidence_ids": [
+        "A1024-E03",
+        "A1024-E07"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "≤7元素格与L7",
+      "math_status": "完整声明待核",
+      "scope_note": "2012 DeMeo Thm6.1.1为除一个可能例外的有限代数表示；2026 companion声称以PGL2(F2)≤PGL2(F64)实现该L7，继而全部≤7元素格可表示。后者原稿已核对象和区间列表，未在本轮独立复算全部过群。不能把L7与7原子的M7混同。",
+      "evidence_ids": [
+        "A1024-E02",
+        "A1024-E06"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "有限代数表示及有限群完整区间识别不可判定",
+      "math_status": "完整声明待核",
+      "scope_note": "companion Thm1.1(ii),(iv)及diophantine.tex终段声称不可判定；结尾Diophantine逻辑约化依赖加权实现和计数等结构定理，本轮未独立核这些核心，故不能写已知算法不可判定。",
+      "evidence_ids": [
+        "A1024-E02",
+        "A1024-E08",
+        "A1024-E09"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "有限signature与任意finitary signature",
+      "math_status": "部分进展",
+      "scope_note": "在固定有限载体上仅有限等价关系；逐个非同余选一个不兼容运算，所得有限signature具有相同同余格。因此作者有限signature否定声明若成立，不只是对一个受限运算签名的反例。",
+      "evidence_ids": [
+        "A1024-E01",
+        "A1024-E02"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限代数同余格的彩色图刻画与固定规模判定",
+      "math_status": "实质进展",
+      "scope_note": "已取得实际Lean证明/程序并读定义与最终statement；graph_criterion只作等价刻画，graphSizeDecidable只判定给定size。静态检查未复跑，不形成全题形式化认证。",
+      "evidence_ids": [
+        "C1024-02",
+        "C1024-03"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "七元格L7=L10的有限群区间表示",
+      "math_status": "仅特例",
+      "scope_note": "GAP代码专验PSL2(64)中S3之上的七元完整区间；作者报告有运行记录，本轮只读程序未重跑。不是所有有限格之结论。",
+      "evidence_ids": [
+        "C1024-07"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "arXiv / Kourovka Notebook",
+      "query": "find 15.73. in https://arxiv.org/pdf/1401.0300v50",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "第15辑(2002)，印刷p.96 / PDF p.95（0起页码），15.73",
+      "note": "已读该题与邻题。有限格L、有限群G、H≤G、整个闭区间；署名P.P.Pálfy。该项无♯/∗或解题评论；不据此推出2026年没有其他完整声明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / Kourovka Notebook",
+      "query": "find 15.73. in https://arxiv.org/pdf/1401.0300v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v1",
+      "locator": "印刷p.93 / PDF p.92（0起页码），15.73",
+      "note": "与v50问题量词一致；只是2014上传版所含2002辑条目，不把v1当2002年原版扫描本。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Kourovka 官方更新",
+      "query": "find 15.73 in 21upd.pdf",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21upd.pdf",
+      "locator": "2026-11路径更新PDF，39页，可解析全文",
+      "note": "本轮find在该文本无15.73；只是该入口无该编号，不是问题仍开放的证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Kourovka 官方 Repository",
+      "query": "find 15.73 in Repository",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "locator": "Repository可解析页面",
+      "note": "该页编号检索无命中，仍有外部2026完整解声明，另行登记。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "OpenAI math / GitHub Web",
+      "query": "open A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/openai/math/tree/main/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026",
+      "locator": "网页访问",
+      "note": "Web open返回DisabledError；随后使用GitHub connector取得固定版本TeX，未把本次失败计为已读全文。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub API via connector",
+      "query": "GET contents/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026; GET contents/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/build?ref=adc7f1241b42e322a6451854ab7e4b4c146bf78a; GET build/sections?ref=adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026",
+      "locator": "原稿目录与build/sections列表",
+      "note": "枚举主稿和章节后取UTF-8源文件。原PDF blob读取发生UnicodeDecodeError，未使用该失败输出来声称读了PDF。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "fetch_file preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/build/main.tex and build/sections/{classification,extensions,framework,gluing,growth,introduction,lattices,lifts,packets,rigidity}.tex ref=adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026",
+      "locator": "main.tex及10个章节全文",
+      "note": "完整TeX已取得并保存为sources_001024/negative；逐文件Git blob SHA校验一致。全文取得不等于逐行验证整篇。本轮根节点重点读introduction及classification定义、统一行动、核间隙与Ramsey步骤；其他选段独立检查另见M1024。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "fetch_blob 40efd546716ed67ed8f005b71cc8876c21e5e8bf (main manuscript PDF)",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026",
+      "locator": "主稿PDF blob",
+      "note": "二进制blob经该接口解码时报UnicodeDecodeError；本轮依据已取到的完整TeX，无须再冒称PDF阅读。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "William DeMeo 作者博客",
+      "query": "open https://williamdemeo.org/blog/openai-flrp-claim/ ; open lines 270 and 380",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://williamdemeo.org/blog/openai-flrp-claim/",
+      "locator": "2026-10-07文章；阅读方法、Theorem3.2、Lean覆盖及Assessment段",
+      "note": "作者明确逐行阅读由Claude执行，不是人类审稿验证；核心群论未验证。此文没有给出主定理反例或已确认数学漏洞。根节点核对这些方法说明，结论仍待二审。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "固定稿TeX及本轮推导",
+      "query": "核 classification.tex 895–906 的有限调色Ramsey步骤与 proof quantifier order",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/build/sections/classification.tex",
+      "locator": "Reduction Proposition / equal multiplicities；introduction Theorems1.1,1.2",
+      "note": "独立核对仅：若对所有长度的链有统一有限种正比值，足够长的齐色三元组满足m_i/m_j=m_j/m_k=m_i/m_k=t>0，故t²=t且t=1。前提的统一调色数需要Uniform active actions等群论引理，不由本步推出。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A1024-Q01",
+      "route": "学术",
+      "site": "web/search_service system2",
+      "query": "Pálfy Pudlák finite lattice congruence finite algebra subgroup interval finite group 1980",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中1980原文、作者讲义及2026 OpenAI新声明；随后分别读取，不沿用旧OPEN。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q02",
+      "route": "学术",
+      "site": "web/search_service system2",
+      "query": "Tuma every finite lattice interval subgroup lattice infinite group 1989 finite representation problem",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Tůma1989刊方摘要及其1995作者原论文重述；有限与无限须分开。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q03",
+      "route": "学术",
+      "site": "web/search_service system1；recency=730",
+      "query": "\"Finite congruence lattices\" \"characterization\" \"undecidability\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中OpenAI2026-09-24完整范围声明、官方Lean范围页、DeMeo本人评论线索。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q04",
+      "route": "学术",
+      "site": "web/search_service system1；recency=730",
+      "query": "\"finite lattice representation problem\" (solved OR proof OR counterexample OR retraction OR erratum) 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中同日第二份A negative solution...声明；两稿同一团队，不能互作独立验证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q05",
+      "route": "学术",
+      "site": "web/open；1980原文大学镜像",
+      "query": "open https://math.hawaii.edu/~ralph/Classes/619/PalfyPudlak.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得6页原文，读取Theorem2、Lemma2/3及其证明；是两个全称问题等价，非逐格双向等价。",
+      "url": "https://math.hawaii.edu/~ralph/Classes/619/PalfyPudlak.pdf",
+      "locator": "pp.23–26；Theorem2；Lemmas2–3",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A1024-Q06",
+      "route": "学术",
+      "site": "web/open；GitHub原稿目录",
+      "query": "open https://github.com/openai/math/tree/main/preprints/Finite-Congruence-Lattices-Characterization-and-Undecidability-September-24-2026",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "web返回DisabledError；后续以GitHub connector取得固定版原始TeX，不把本次web失败写成功。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "A1024-Q07",
+      "route": "学术",
+      "site": "web/open；ScienceDirect",
+      "query": "open https://www.sciencedirect.com/science/article/pii/0021869389901713",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "刊方原文直达403；可检索到作者摘要，后用作者1995原文的亲自重述核范围。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "A1024-Q08",
+      "route": "学术",
+      "site": "web/open；OpenReferee",
+      "query": "open https://openreferee.org/api/versions/4cadf1b5e243446b9deefb83a73b1b73/pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "先TimeoutError，后重试400 Timeout；仅索引可见，未取得此镜像PDF，未核其与GitHub固定版字节一致性。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "A1024-Q09",
+      "route": "学术",
+      "site": "web/open；GitHub原稿目录",
+      "query": "open https://github.com/openai/math/tree/main/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "web返回DisabledError；随后根代理以GitHub connector取固定正文，我读取本地正文。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "A1024-Q10",
+      "route": "学术",
+      "site": "web/open；作者本人主页",
+      "query": "open https://williamdemeo.org/blog/openai-flrp-claim/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取2026-10-07评论的审阅披露、两稿比较、3.2范围、formalization和结语；作者明说逐行核查为AI辅助、不是referee verification。",
+      "url": "https://williamdemeo.org/blog/openai-flrp-claim/",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "A1024-Q11",
+      "route": "学术",
+      "site": "web/open；官方仓库范围页",
+      "query": "open https://github.com/openai/math/blob/main/lean/docs/206.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "Scope明确只涵盖colored-graph characterization；不可判定与subgroup-interval结论在其外。本分片不复跑Lean。",
+      "url": "https://github.com/openai/math/blob/main/lean/docs/206.md",
+      "locator": "Scope",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "A1024-Q12",
+      "route": "学术",
+      "site": "web/search_service system1；recency=180",
+      "query": "\"finite lattice\" \"OpenAI\" (November OR correction OR erratum OR revised OR withdrawn OR flaw)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中AI Proof Watch自身11月日期更正与项目增列，不是已确认数学勘误；命中DeMeo未核核心声明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q13",
+      "route": "学术",
+      "site": "web/search_service system1；recency=730",
+      "query": "\"A negative solution to the finite lattice representation problem\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "得到固定release commit adc7f1241b42e322a6451854ab7e4b4c146bf78a和原稿路径；正文另取得。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q14",
+      "route": "学术",
+      "site": "web/find；1980原文",
+      "query": "find \"Proof of Theorem 2\" in PalfyPudlak.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "核全称(i)⇒(ii)先将L扩到L′，再转传递群作用；(ii)⇒(i)由G/H陪集作用逐格成立。",
+      "url": "https://math.hawaii.edu/~ralph/Classes/619/PalfyPudlak.pdf",
+      "locator": "p.26",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A1024-Q15",
+      "route": "学术",
+      "site": "web/find；DeMeo本人主页",
+      "query": "find \"November\"; find \"revis\" in https://williamdemeo.org/blog/openai-flrp-claim/",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "仅指该页文本的两次find无命中，不等于全网没有后续修订。",
+      "url": "https://williamdemeo.org/blog/openai-flrp-claim/",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "A1024-Q16",
+      "route": "学术",
+      "site": "web/open及click；GitHub固定版原稿",
+      "query": "open raw.githubusercontent.com/openai/math/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/paper.pdf；open对应companion paper.pdf；click DeMeo Sources两原稿",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "两raw PDF均DisabledError、两目录click restricted；保留访问失败，不推断原稿不存在。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "A1024-Q17",
+      "route": "学术",
+      "site": "web/search_service system2",
+      "query": "Baddeley Lucchini 1998 On Representing Finite Lattices as Intervals Subgroup lattices 1997 7069 theorem pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Baddeley–Lucchini1997作者机构书目/摘要，另有Baddeley1998不同论文；不把年份相近书目混为一篇。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q18",
+      "route": "学术",
+      "site": "web/search_service system2",
+      "query": "\"finite lattice\" \"width\" \"two\" congruence lattice theorem finite algebra",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2026原稿对Snow2000的引用；本轮未取得Snow原文，不单凭该转引升级宽度≤2结果。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q19",
+      "route": "学术",
+      "site": "web/search_service system2",
+      "query": "\"Tuma\" \"Intervals in subgroup lattices of infinite groups\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Tůma1989摘要、1995原文、Repnitskiĭ–Tůma作者稿alg07_01.pdf。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q20",
+      "route": "学术",
+      "site": "web/open；DML-CZ作者原论文",
+      "query": "open https://dml.cz/bitstream/handle/10338.dmlcz/128508/CzechMathJ_45-1995-1_3.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得19页论文，读引言pp.21–22和参考文献：作者重述1989任意代数格在无限群区间表示；将无限构造改有限是另一步。",
+      "url": "https://dml.cz/bitstream/handle/10338.dmlcz/128508/CzechMathJ_45-1995-1_3.pdf",
+      "locator": "Introduction pp.21–22",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A1024-Q21",
+      "route": "学术",
+      "site": "web/open；ScienceDirect及作者机构书目",
+      "query": "open https://www.sciencedirect.com/science/article/pii/S0021869397970691；open https://www.research.unipd.it/handle/11577/127562?mode=complete",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "ScienceDirect403；机构正式元数据与摘要可读，1997 J.Algebra196(1),1–100，针对M_n将问题约化到有限非交换单群问题。",
+      "url": "https://www.research.unipd.it/handle/11577/127562?mode=complete",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q22",
+      "route": "学术",
+      "site": "web/open；OpenReferee",
+      "query": "open https://openreferee.org/papers/1a99de340d3142189e648b807a729daa?panel=review&version=96130463334d459b993d21e619197e87；open其/api/versions/96130463334d459b993d21e619197e87/pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "论文页0可读行；版本PDF不可访问，未将页面Candidate/Provided by publisher当数学验证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "A1024-Q23",
+      "route": "学术",
+      "site": "web/open；作者预印本",
+      "query": "open https://ka.karlin.mff.cuni.cz/preprint/alg07_01.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得19页2006-12-31作者稿，读Theorem3.4及相邻证明：可数紧元的代数格在可数局部有限群区间表示；局部有限不等于有限。",
+      "url": "https://ka.karlin.mff.cuni.cz/preprint/alg07_01.pdf",
+      "locator": "Theorem3.4 pp.17–18；Introduction",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A1024-Q24",
+      "route": "学术",
+      "site": "web/open；非官方转换镜像",
+      "query": "open https://wcook04.github.io/plectis-atlas/papers/Finite-Congruence-Lattices-Characterization-and-Undecidability-September-24-2026.html",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "取得转换后全文，页面明说文本/定理编号可能不同于PDF；只作导航，最终声明核对改用官方固定版TeX，未把镜像编号2.1与PDF索引2.2混用。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "A1024-Q25",
+      "route": "学术",
+      "site": "web/open；社区转引目录",
+      "query": "open https://mathcommunity.github.io/oai-math-revised/papers/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "该页为索引/转引与有限范围的比较器记录，不是另一独立数学证明；主要引用追到官方原稿和DeMeo本人网页。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "A1024-Q26",
+      "route": "学术",
+      "site": "web/search_service system1；recency=1095",
+      "query": "\"finite lattice representation\" \"2025\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定向近期检索主要返回2026两稿、作者旧研究页和旧开放问题页；本次返回范围未找到另一同量词2025完整声明，非穷尽结论。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q27",
+      "route": "学术",
+      "site": "web/search_service system1；recency=730",
+      "query": "\"finite lattice representation\" (\"correction\" OR \"erratum\" OR \"withdrawn\" OR \"refuted\" OR \"November 2026\")",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回发布/转引页和未核标注，未见可核的一手数学撤回或勘误全文；不能据此宣布没有。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q28",
+      "route": "学术",
+      "site": "web/search_service system2",
+      "query": "\"finite lattices of width\" \"congruence\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "仍主要命中Snow2000转引，不继续扩大追稿；该特例不用于主问关闭。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q29",
+      "route": "学术",
+      "site": "web/search_service system2",
+      "query": "Baddeley \"A New Approach to the Finite Lattice Representation Problem\" 1998 theorem",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "确认另有1998 Periodica Mathematica Hungarica36,17–59的文献线索；未取得该篇原文，不能把它与1997合著文混同。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q30",
+      "route": "学术",
+      "site": "web/open；arXiv作者博士论文",
+      "query": "open https://arxiv.org/abs/1204.4305；open https://arxiv.org/pdf/1204.4305；open https://arxiv.org/html/1204.4305",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "PDF124页取得、首页固定v3 2012-05-07；HTML失败不影响PDF。读Theorem6.1.1及§6.1/6.2：≤7元素除一可能例外；这是有限代数子类结果。",
+      "url": "https://arxiv.org/pdf/1204.4305v3",
+      "locator": "Theorem6.1.1 p.54；§6.2",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A1024-Q31",
+      "route": "学术",
+      "site": "web/search_service system1；recency=730",
+      "query": "\"A negative solution to the finite lattice representation problem\" (erratum OR withdrawn OR retraction OR correction OR response)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回原稿索引、DeMeo转引、有限范围formalization记录；未见本题一手撤回或已成立的漏洞声明，待持续版本核验。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q32",
+      "route": "学术",
+      "site": "web/search_service system1；recency=730",
+      "query": "\"Finite congruence lattices: characterization and undecidability\" (erratum OR withdrawn OR retraction OR correction OR response)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回原稿和说明/索引；未取得数学勘误或正式同行评审结果，不把聚合站措辞作为已解决证据。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q33",
+      "route": "学术",
+      "site": "web/search_service system1；recency=730",
+      "query": "\"finite lattice representation\" 2025 2026 (site:arxiv.org OR site:link.springer.com OR site:ams.org) ",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "在该定向返回范围没有获得额外同量词完整解的一手论文；结果未限定为零条，未作全库穷尽被引检索。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1024-Q34",
+      "route": "学术",
+      "site": "本地原始稿；根代理GitHub fetch_file取得",
+      "query": "读取 sources_001024/negative/main.tex、introduction.tex、classification.tex；固定commit adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "main与10节正文由根代理下载并核Git blob SHA；我读主声明、有限signature说明、全称等价及Definition3.1/Thm3.2与首批引理；未声称独立审完Sections3–7。",
+      "url": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026",
+      "locator": "introduction.tex：main:congruences/main:group；classification.tex：cls:tested-chain/cls:chain-rigidity",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "A1024-Q35",
+      "route": "学术",
+      "site": "GitHub connector fetch/fetch_file",
+      "query": "GET companion目录及build树；fetch_file build/paper.tex、sections/introduction.tex、small.tex、minimum.tex、diophantine.tex，ref=adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "本代理取得5份官方原始TeX，保存companion_scope并逐一按Git blob SHA验证；读主声明及指定章节，结构核心其余章节未通读。",
+      "url": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Finite-Congruence-Lattices-Characterization-and-Undecidability-September-24-2026",
+      "locator": "m:main；f:prop-l7-interval；n:undecidable/n:interval-undecidable；q:minimum",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system1",
+      "query": "\"finite lattice representation\" proof solved Lean AI；recency=365",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "命中OpenAI family 206、官方Lean scope和DeMeo博客；随后读原文核scope。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system1",
+      "query": "\"Kourovka\" \"15.73\" solution；recency=365",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "与前项同批请求；检出公开FLRP否定声明，交原题及学术路线核对应量词。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system1",
+      "query": "\"finite lattice representation\" github",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "检出官方OpenAI仓库与社区入口。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/openai/math/commits?per_page=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "当前头3344da59991ed94f9ba711217b29c1d760badfa6，author date 2026-11-25T00:18:47Z。",
+      "url": "https://api.github.com/repos/openai/math/commits?per_page=1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repo:openai/math FiniteCongruenceGraph; topn=30",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "命中ComparatorChallenges/FiniteCongruenceGraph.json及docs/206.md，并依其路径读实际solution module。",
+      "result_count": 2,
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repo:google-deepmind/formal-conjectures 15.73; topn=20",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "只表示此关键词检索无命中。",
+      "result_count": 0,
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "William DeMeo 作者博客",
+      "query": "OPEN https://williamdemeo.org/blog/openai-flrp-claim/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取发布日期、AI协助说明、否定声称与核心步骤说明；后续OPEN lineno=340读取Lean覆盖及结论。博客自己的checked不等于独立人类审稿。",
+      "url": "https://williamdemeo.org/blog/openai-flrp-claim/",
+      "locator": "发布2026-10-07；The short version / The negative solution / What the Lean code covers / Conclusion",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "William DeMeo 作者博客",
+      "query": "OPEN https://williamdemeo.org/blog/openai-flrp-claim/ lineno=340",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取代码覆盖、未形式化核心、GAP特例和结论；不声称完成论文数学复核。",
+      "url": "https://williamdemeo.org/blog/openai-flrp-claim/",
+      "locator": "What the Lean code covers / The seven-element lattice / Where this leaves us",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=openai/math path=lean/docs/206.md ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "官方范围声明明确所选定理仅graph criterion。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/docs/206.md",
+      "locator": "lean/docs/206.md",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=openai/math path=lean/ComparatorChallenges/FiniteCongruenceGraph.json ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "匹配solution_module与唯一theorem_names，允许公理清单只是配置。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/ComparatorChallenges/FiniteCongruenceGraph.json",
+      "locator": "lean/ComparatorChallenges/FiniteCongruenceGraph.json",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=openai/math path=lean/ComparatorChallenges/FiniteCongruenceGraph.lean ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "目标题面文件末尾为sorry；不可据此称solution模块也缺证明。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/ComparatorChallenges/FiniteCongruenceGraph.lean",
+      "locator": "lean/ComparatorChallenges/FiniteCongruenceGraph.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=openai/math path=lean/OAI/Algebra/Universal/GraphCriterion.lean ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "已读完整303行：graph_criterion的双向证明及依赖定义；只等价刻画，不给任何不可表示格。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Algebra/Universal/GraphCriterion.lean",
+      "locator": "lean/OAI/Algebra/Universal/GraphCriterion.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=openai/math path=preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/README.md ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "公开作者OpenAI、日期September24及完整否定声称标题；该README没有撤回注。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/README.md",
+      "locator": "preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/README.md",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=openai/math path=lean/OAI/Algebra/Universal/GraphDecidability.lean ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整读固定size判定程序；开头明确不存在见证size的统一界。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Algebra/Universal/GraphDecidability.lean",
+      "locator": "lean/OAI/Algebra/Universal/GraphDecidability.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=openai/math path=lean/OAI/Algebra/Universal/Coset.lean ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整读给定有限群余陪集作用的同余格≃[H,G]；不是任意有限格的实现。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Algebra/Universal/Coset.lean",
+      "locator": "lean/OAI/Algebra/Universal/Coset.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=openai/math path=lean/OAI/Algebra/Universal/Congruence.lean ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整读有限运算签名、兼容关系、全部同余格和Representable定义。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Algebra/Universal/Congruence.lean",
+      "locator": "lean/OAI/Algebra/Universal/Congruence.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=openai/math path=lean/lean-toolchain ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "leanprover/lean4:v4.34.1；本轮未启动Lean。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/lean-toolchain",
+      "locator": "lean/lean-toolchain",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=openai/math path=lean/lake-manifest.json ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "核依赖锁：mathlib=d13f23b723b8a846827a245b89c10fc7d3f11612；未安装依赖或构建。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/lake-manifest.json",
+      "locator": "lean/lake-manifest.json",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/openai/math/contents/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026?ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "确认目录有README、build、paper.pdf；未在该入口读取PDF。",
+      "url": "https://api.github.com/repos/openai/math/contents/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026?ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/openai/math/contents/lean/OAI/GroupTheory/FiniteLattice?ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "列14个群论辅引理文件，未逐个读完该目录，不能据此给主定理形式化认证。",
+      "url": "https://api.github.com/repos/openai/math/contents/lean/OAI/GroupTheory/FiniteLattice?ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/openai/math/contents/lean/OAI/Algebra/Universal?ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "列出Congruence/Coset/GraphCriterion/GraphDecidability四文件，随后完整读取。",
+      "url": "https://api.github.com/repos/openai/math/contents/lean/OAI/Algebra/Universal?ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/openai/math/commits?path=preprints%2FA-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026&per_page=100",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "返回1条Initial commit adc7f1241b42e322a6451854ab7e4b4c146bf78a（2026-10-06）；截至当前头未显示此目录后续修改。该有限history核查没有发现官方撤回/数学修稿。",
+      "url": "https://api.github.com/repos/openai/math/commits?path=preprints%2FA-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026&per_page=100",
+      "result_count": 1,
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/openai/math/commits?path=preprints%2FFinite-Congruence-Lattices-Characterization-and-Undecidability-September-24-2026&per_page=100",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "返回1条Initial commit adc7f1241b42e322a6451854ab7e4b4c146bf78a（2026-10-06）；截至当前头未显示此目录后续修改。该有限history核查没有发现官方撤回/数学修稿。",
+      "url": "https://api.github.com/repos/openai/math/commits?path=preprints%2FFinite-Congruence-Lattices-Characterization-and-Undecidability-September-24-2026&per_page=100",
+      "result_count": 1,
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system2",
+      "query": "site:github.com/google-deepmind/formal-conjectures \"finite lattice\"",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "检出issue1795，随后读GitHub API正文。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system2",
+      "query": "site:github.com/leanprover-community/mathlib4 \"lattice\" \"representable\"",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "出现非同题数学库命中；后续代码关键词检索未找到主题全解。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system2",
+      "query": "\"finite lattice representation\" GAP github",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "检出UniversalAlgebra/fin-lat-rep-gap issue1及L10特例程序。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system2",
+      "query": "\"finite lattice representation\" \"Lean\" \"negative\"",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "检出OpenAI scope、AI Proof Watch及agda研究计划；后续读原始入口。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/google-deepmind/formal-conjectures/issues/1795",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "状态open；created2026-01-20、updated2026-01-23、comments=0；请求添加肯定FLRP猜想，没有证明附件。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/issues/1795",
+      "locator": "What is the conjecture / Prerequisites needed / Choose either option",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/UniversalAlgebra/fin-lat-rep-gap/issues/1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "closed；2026-09-17创建，09-25更新，comments=0；仅L7=L10七元格的表示程序与说明。",
+      "url": "https://github.com/UniversalAlgebra/fin-lat-rep-gap/issues/1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web / AI Proof Watch",
+      "query": "OPEN https://aiproofwatch.com/problems/finite-lattice-representation-negative",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "只读此二手索引页；页底Nov17 correction / Nov18 amendment不可自动当作原稿数学修订，官方路径历史另核。学术路线另核其编辑历史。",
+      "url": "https://aiproofwatch.com/problems/finite-lattice-representation-negative",
+      "locator": "Publication history / Sources",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/UniversalAlgebra/fin-lat-rep-gap/contents/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "列文件后固定head，再按固定commit取README和程序。",
+      "url": "https://api.github.com/repos/UniversalAlgebra/fin-lat-rep-gap/contents/",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/ualib/agda-algebras/issues/451",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "返回Moved Permanently且url为空；没有由此取得issue正文，随后web fallback读取公开页。",
+      "url": "https://api.github.com/repos/ualib/agda-algebras/issues/451",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repo:google-deepmind/formal-conjectures \"finite lattice\" \"representation\"; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "此为代码检索结果，和已读issue1795的题面提议分开。",
+      "result_count": 0,
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repo:leanprover-community/mathlib4 \"Representable\" \"Congruence\"; topn=10",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "唯一命中scripts/nolints_prime_decls.txt把CategoryTheory.relativelyRepresentable和CongruenceSubgroup分散列出，不是有限格表示定理；未用为结果证据。",
+      "result_count": 1,
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/UniversalAlgebra/fin-lat-rep-gap/commits?per_page=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "head=e891783487eaaea9efe3c3e57f9c848cafba1a58；2026-09-25合并L10程序PR2。",
+      "url": "https://api.github.com/repos/UniversalAlgebra/fin-lat-rep-gap/commits?per_page=1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web / GitHub",
+      "query": "OPEN https://github.com/ualib/agda-algebras/issues/451",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "公开页显示FLRP研究计划，基础设施WP及开放研究RP；网页索引抓取约两个月前，不能据此保证当前仓库状态；未读具体Agda实现或复跑。",
+      "url": "https://github.com/ualib/agda-algebras/issues/451",
+      "locator": "Description / Structure / Acceptance criteria",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=UniversalAlgebra/fin-lat-rep-gap path=README.md ref=e891783487eaaea9efe3c3e57f9c848cafba1a58",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整读程序scope及作者报告的运行结果；有界群库搜索、具体格构造不是全域FLRP证明。",
+      "url": "https://github.com/UniversalAlgebra/fin-lat-rep-gap/blob/e891783487eaaea9efe3c3e57f9c848cafba1a58/README.md",
+      "locator": "README.md",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=UniversalAlgebra/fin-lat-rep-gap path=findUpperIntervals.g ref=e891783487eaaea9efe3c3e57f9c848cafba1a58",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得全文，定向读header及findUpperIntervals主函数参数n1,n2,minsz,maxsz和循环范围；未逐行核完所有旧例程。",
+      "url": "https://github.com/UniversalAlgebra/fin-lat-rep-gap/blob/e891783487eaaea9efe3c3e57f9c848cafba1a58/findUpperIntervals.g",
+      "locator": "findUpperIntervals.g",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=UniversalAlgebra/fin-lat-rep-gap path=L10/verifyPSL264.g ref=e891783487eaaea9efe3c3e57f9c848cafba1a58",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整读：生成SL(2,64)及S3子群，IntermediateSubgroups求全区间，再调用isomorphism test；本轮没有执行。",
+      "url": "https://github.com/UniversalAlgebra/fin-lat-rep-gap/blob/e891783487eaaea9efe3c3e57f9c848cafba1a58/L10/verifyPSL264.g",
+      "locator": "L10/verifyPSL264.g",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=UniversalAlgebra/fin-lat-rep-gap path=L10/latticeTests.g ref=e891783487eaaea9efe3c3e57f9c848cafba1a58",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整读七元目标up-sets及内部点全排列的同构比较；本轮没有执行。",
+      "url": "https://github.com/UniversalAlgebra/fin-lat-rep-gap/blob/e891783487eaaea9efe3c3e57f9c848cafba1a58/L10/latticeTests.g",
+      "locator": "L10/latticeTests.g",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/UniversalAlgebra/fin-lat-rep-gap/contents/L10?ref=e891783487eaaea9efe3c3e57f9c848cafba1a58",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "目录确认verifyPSL264.g及latticeTests.g等后读取；未读取所有已提交结果文件。",
+      "url": "https://api.github.com/repos/UniversalAlgebra/fin-lat-rep-gap/contents/L10?ref=e891783487eaaea9efe3c3e57f9c848cafba1a58",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地静态代码核查",
+      "query": "对固定commit取得的Congruence.lean、GraphCriterion.lean、Coset.lean、GraphDecidability.lean去注释后检索\\b(sorry|axiom|admit|native_decide)\\b",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "四文件均无该词匹配；只支持所读源码无此类显式占位，不等于依赖审计或独立构建。未执行Lean/GAP、未运行#print axioms。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002871〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 20,
+      "note": "实际命中：QX-P-000100,QX-P-000101,QX-P-000610,QX-P-000616,QX-P-000688,QX-P-000707,QX-P-000715,QX-P-000817,QX-P-000818,QX-P-000819,QX-P-000994,QX-P-001013,QX-P-001024,QX-P-001058,QX-P-001119,QX-P-001259,QX-P-001378,QX-P-001431,QX-P-001457,QX-P-001979。索引只用于候选筛选；正文比对另列。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002872〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 20,
+      "note": "实际命中：QX-P-000257,QX-P-000264,QX-P-000473,QX-P-000705,QX-P-000751,QX-P-000909,QX-P-001024,QX-P-001303,QX-P-001478,QX-P-001508,QX-P-001515,QX-P-001648,QX-P-001764,QX-P-002091,QX-P-002308,QX-P-002310,QX-P-002315,QX-P-002427,QX-P-002462,QX-P-002492。索引只用于候选筛选；正文比对另列。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002873〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 1,
+      "note": "实际命中：QX-P-001024。索引只用于候选筛选；正文比对另列。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内任务.jsonl",
+      "query": "按 id 读取 QX-P-001024 与 QX-P-000616 的 card_metadata/card_text 全文",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "当前卡与 000616 的范围比较；均为本包固定版本。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/001/QX-P-001979.meta.json",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001979.meta.json",
+      "note": "已读取固定提交全文；Git blob SHA 08b7beeb5d824638307117f5c7fa718f64127ba6",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/001/QX-P-001979.text.md",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001979.text.md",
+      "note": "已读取固定提交全文；Git blob SHA f62280026c0a83f0efd1d9b6edadcef73ba433ab",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/000/QX-P-000707.meta.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000707.meta.json",
+      "note": "已读取固定提交全文；Git blob SHA 331867f39b62b9aaecffbaa5e15dd17673fec9ff",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/000/QX-P-000707.text.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000707.text.md",
+      "note": "已读取固定提交全文；Git blob SHA 8beb7782c6c48b09585b551bc289607a79cbec72",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/001/QX-P-001058.meta.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001058.meta.json",
+      "note": "已读取固定提交全文；Git blob SHA 36747467a9cf817e558c8d128ea0caa40cbbb41e",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/001/QX-P-001058.text.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001058.text.md",
+      "note": "已读取固定提交全文；Git blob SHA e548c0fa77578b0fec259e90b38652f23c681229",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2_search_query",
+      "query": "finite lattice representation problem subgroup interval normal subgroup quotient lattice Palfy Pudlak PDF definition",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 Pálfy–Pudlák 1980 原文、2018 作者综述及新公开解答声称；新声称已转主代理负责，未凭搜索摘要定数学状态。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "Web open",
+      "query": "https://mathoverflow.net/questions/85724",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "locator": "MO 85724 原帖、Correction 段、2012-02-22 update",
+      "url": "https://mathoverflow.net/questions/85724",
+      "note": "实际取得全文并读取所列位置。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open",
+      "query": "https://math.hawaii.edu/~ralph/Classes/619/PalfyPudlak.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "Theorem 2（印刷 p.23）、其证明（p.26）及 core 约化（p.23）",
+      "url": "https://math.hawaii.edu/~ralph/Classes/619/PalfyPudlak.pdf",
+      "note": "实际取得全文并读取所列位置。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open",
+      "query": "https://universalalgebra.github.io/ALH-2018/assets/ALH-2018-proceedings-6x9.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "Pálfy, The role of twisted wreath products in the Finite Congruence Lattice Problem, 印刷 pp.88–90（PDF pp.93–95）",
+      "url": "https://universalalgebra.github.io/ALH-2018/assets/ALH-2018-proceedings-6x9.pdf",
+      "note": "实际取得全文并读取所列位置。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web find",
+      "query": "PalfyPudlak.pdf: \"THEOREM 2.\"; ALH-2018-proceedings-6x9.pdf: \"Int(H, G)\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核对全称量词等价及区间定义，未宣称逐格等价。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1_search_query",
+      "query": "\"15.73\" \"finite lattice\" \"Pálfy\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://eprints.maths.manchester.ac.uk/2087/1/18tkt.pdf",
+      "note": "命中旧版 Kourovka 原文摘要含 P. P. Pálfy 署名。当前分片未打开该 PDF，因此不标全文已读；署名纠错已有包内完整摘录独立支持。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本地 Python 3",
+      "query": "枚举 S3 的全部 64 个子集并检验单位元与乘法封闭；对 H=<(12)> 检验正规性及区间大小",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "输出 {'subgroups_S3': 6, 'H_order': 2, 'H_normal': False, 'interval_H_S3_size': 2, 'interval_S3_S3_size': 1, 'normal_subgroups_S3': 3}；仅核定义与极小例，不搜索主问反例。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本轮取得的固定 Git 源码",
+      "query": "读取 sources_001024/negative/framework.tex 的 fenced 定义、Normal-subgroup test、Labels 与 Bottlenecks 完整陈述及证明；读取 classification.tex 的 tested-chain 定义、Theorem 3.2 及其前后说明",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/build/sections/framework.tex",
+      "locator": "framework.tex 开头至 Bottlenecks 证明结束；classification.tex 定义3.1及定理3.2前后",
+      "note": "不把本次局部推导核对标成全篇关键证明已核；日期按客户端 Asia/Shanghai。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=openai/math; ref=adc7f1241b42e322a6451854ab7e4b4c146bf78a; path=preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/README.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/README.md",
+      "note": "固定 README 明示作者 OpenAI、稿面日期 September 24, 2026；Git blob SHA 5d7fe33864c549fba29c4cf1b4a9b088da98f09c。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O1024-V50",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "15.73，印刷p.96；署名及量词",
+      "version": "arXiv:1401.0300v50 (2026-11-02), read 2026-11-27",
+      "subquestions": [
+        "主问题",
+        "题面范围与署名"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "现卡署名“未署名”与正文原文不符；明确是有限群的完整闭区间，H无需正规。Probably not仅表预期。条目本身没有闭合标记，不能覆盖外部最新声明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "O1024-V1",
+      "url": "https://arxiv.org/pdf/1401.0300v1",
+      "locator": "15th Issue (2002), 15.73, 印刷p.93",
+      "version": "arXiv:1401.0300v1（2014年上传版），读取2026-11-27",
+      "subquestions": [
+        "主问题",
+        "历史出处"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读，未核关键步骤",
+      "note": "本轮读取到的早期Kourovka合订条目，非声称2002原版扫描已取得；有限格表示问题的更早起源另见Pálfy–Pudlák等文献。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "O1024-NEGATIVE",
+      "url": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026",
+      "locator": "introduction.tex Theorems1.1/1.2；classification.tex Definition3.1/Theorem3.2",
+      "version": "稿题日期2026-09-24；原稿固定commit adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+      "subquestions": [
+        "主问题",
+        "完整否定声明",
+        "关键统一界"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读，未核关键步骤",
+      "claimant": "OpenAI 公开数学稿（仓库作者说明）",
+      "claim_date": "2026-09-24",
+      "formal_status": "已静态检查未复跑",
+      "note": "主稿Theorem1.2声称存在有限格，不能是任何有限群G中任何D≤G的整个[D,G]；完全覆盖原题否定，作者并非只提出条件性结果。Theorem1.1再用全称Pálfy–Pudlák等价推出有限代数同余格不存在表示。主稿完整TeX11文件已取得且Git blob SHA一致；选择性阅读而未核全篇。核心Theorem3.2声称绝对B对全部测试链/群/域/秩统一，群论Sections3–7未完成独立核验。未给B的具体数值本身并不否定存在性论证，但没有本轮可完整列举并认证的具体反例格，需与现卡要求“具体有限格”的操作性验收区分。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "O1024-RAMSEY",
+      "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/build/sections/classification.tex",
+      "locator": "Lemma Uniform active actions(iv)及reduction proof的pair-ratio Ramsey段（本地行895–906）",
+      "version": "固定commit adc7f1241b42e322a6451854ab7e4b4c146bf78a；2026-11-27本轮推导",
+      "subquestions": [
+        "完整否定声明的局部独立核对"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "设m_i>0，假定原稿已独立建立对任意链长度统一有界的比值种数K。按有序i<j给边赋比值m_i/m_j；有限Ramsey在足够大顶点集给任意指定长度的齐色子链。齐色三元组i<j<k满足t²=(m_i/m_j)(m_j/m_k)=m_i/m_k=t，因t>0得t=1。该代数步骤及先取绝对界再构格的量词顺序正确；若K依链长增长则不能据此得到所需统一B。未核Uniform active actions(ii)–(iv)的群论输入、bounded-depth路线、全类型/度数palette及后继经典群比较，所以这一局部通过不升级主否定为已证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "O1024-READING-SCOPE",
+      "url": "https://williamdemeo.org/blog/openai-flrp-claim/",
+      "locator": "How this post was written；What is already formalized；Assessment",
+      "version": "网页标2026-10-07；读取2026-11-27",
+      "subquestions": [
+        "公开复核范围",
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "公开声称",
+      "review_status": "已读，未核关键步骤",
+      "note": "博客为作者使用Claude的AI辅助评读，逐行检查明言是模型执行，未充作人工审稿。它将核心群链统一性列为未核，并非证明该核心错误；本文本轮不登记“已发现漏洞”。部分Lean局部引理确有代码，具体范围由C1024原始代码证据控制；未核整套库也未运行。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "A1024-E01",
+      "url": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026",
+      "locator": "build/sections/introduction.tex：main:congruences/main:group；classification.tex：cls:tested-chain/cls:chain-rigidity（Thm3.2）",
+      "version": "OpenAI，稿面2026-09-24；固定release adc7f1241b42e322a6451854ab7e4b4c146bf78a；根代理取得main+10节原始TeX正文并验证blob",
+      "subquestions": [
+        "主问题",
+        "有限signature与任意finitary signature",
+        "2026否定完整声明"
+      ],
+      "role": "反例",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读，未核关键步骤",
+      "claimant": "OpenAI",
+      "claim_date": "2026-09-24",
+      "note": "Thm1.2声称存在有限格，对所有有限G及所有D≤G都不是完整[D,G]，覆盖主问且无群阶界。Thm1.1经Pálfy–Pudlák全称等价转移至有限代数。链长绝对B是论文声称证明的结论，非额外假设；未给B数值不本身否定存在性证明。本代理已核scope，未独立核定核心统一界。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "counterexample",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "A1024-E02",
+      "url": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Finite-Congruence-Lattices-Characterization-and-Undecidability-September-24-2026",
+      "locator": "build/sections/introduction.tex：m:main；small.tex：f:prop-l7-interval/f:small-lattices；diophantine.tex：n:undecidable/n:interval-undecidable；minimum.tex：q:minimum",
+      "version": "OpenAI，稿面2026-09-24；固定release adc7f1241b42e322a6451854ab7e4b4c146bf78a；本代理取paper+4指定章节原始TeX并核blob，未取全部核心正文",
+      "subquestions": [
+        "主问题",
+        "有限代数表示不可判定",
+        "有限群区间识别不可判定",
+        "L7及≤7元素格"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "严格蕴含",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "claimant": "OpenAI",
+      "claim_date": "2026-09-24",
+      "note": "主Thm1.1声称一般表示不可判定、存在最小非表示L0且|L0|>7及完整有限群区间识别不可判定；小格章节给PGL2(F2)≤PGL2(F64)的7元素完整区间。已读主声明、该构造及结尾约化，未核高秩/加权结构定理或GAP复跑。不得将Busy Beaver有限定义写成已求得数值/图。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "implies",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "A1024-E03",
+      "url": "https://math.hawaii.edu/~ralph/Classes/619/PalfyPudlak.pdf",
+      "locator": "Algebra Universalis11(1980),22–27：Theorem2 p.23；Lemmas2–3及证明pp.25–26；Theorem3 pp.23,26–27",
+      "version": "P.P.Pálfy–P.Pudlák，1980正式论文，6页大学镜像",
+      "subquestions": [
+        "主问题",
+        "Pálfy–Pudlák全称等价",
+        "M_n在受限群类中的障碍"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读，未核关键步骤",
+      "note": "Thm2等价的是∀有限L可有限代数表示与∀有限L可有限群区间表示。证明(i)⇒(ii)先扩L到L′，不能推出任意固定L的逐格等价。Thm3：core-free H且G有非平凡阿贝尔正规子群、[H,G]=M_n(n≥3)时n−1为素数幂；M7不能由可解有限群实现只排除受限群类。M7是7原子即9元素，不等于DeMeo的7元素L7。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "A1024-E04",
+      "url": "https://dml.cz/bitstream/handle/10338.dmlcz/128508/CzechMathJ_45-1995-1_3.pdf",
+      "locator": "Introduction pp.21–22；参考文献[6]",
+      "version": "Jiří Tůma，On infinite partition representations and their finite quotients，Czech.Math.J.45(120)(1995),21–38；DML正式扫描",
+      "subquestions": [
+        "允许无限群的变式",
+        "Tůma1989范围"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读，未核关键步骤",
+      "note": "作者本人重述其1989结果：每个代数格为某无限群子群格完整区间。该文明确把有限格时将无限自由积换为有限群作为另外问题。1989原稿本轮只有刊方摘要，未读原证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "A1024-E05",
+      "url": "https://ka.karlin.mff.cuni.cz/preprint/alg07_01.pdf",
+      "locator": "Theorem3.4 pp.17–18；Introduction pp.1–2",
+      "version": "Vladimir Repnitskiĭ–Jiří Tůma，Intervals in subgroup lattices of countable locally finite groups；作者稿标2006-12-31，文件alg07_01.pdf",
+      "subquestions": [
+        "允许可数局部有限群的变式"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读，未核关键步骤",
+      "note": "代数格有至多可数紧元⇒可数局部有限群完整区间表示，涵盖每个有限格；群可无限，不能解本题的有限G条件。已读定理与相邻构造，不把作者稿引言的历史开放措辞当2026状态确证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "A1024-E06",
+      "url": "https://arxiv.org/pdf/1204.4305v3",
+      "locator": "Theorem6.1.1 p.54；§6.1–6.3及Figure6.2",
+      "version": "William J.DeMeo，Congruence lattices of finite algebras；arXiv:1204.4305v3，2012-05-07；博士论文",
+      "subquestions": [
+        "≤7元素格的历史特例",
+        "有限搜索不能否定一般表示"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读，未核关键步骤",
+      "note": "定理给出≤7元素格除一个可能例外L7的有限代数表示。它不声称L7不可表示，也不由有限枚举无命中推出全局否定；2026 companion新声称填补L7另列待核。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "A1024-E07",
+      "url": "https://www.research.unipd.it/handle/11577/127562?mode=complete",
+      "locator": "作者机构正式书目及Abstract",
+      "version": "Robert Baddeley–Andrea Lucchini，J.Algebra196(1)(1997),1–100；DOI10.1006/jabr.1997.7069",
+      "subquestions": [
+        "高度2格M_n限制与约化"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "只核到作者机构摘要：对M_n表示问题约化为有限非交换单群的一系列问题；未读100页原文，不将约化写成完整解。1998 Baddeley另有不同论文，不能据本篇年份判题卡该引用有误。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "A1024-E08",
+      "url": "https://williamdemeo.org/blog/openai-flrp-claim/",
+      "locator": "How this post was written；The one-minute version；Theorem3.2；The undecidability claim；Assessment",
+      "version": "William DeMeo本人博客，2026-10-07；2026-11-27访问",
+      "subquestions": [
+        "2026否定完整声明的审阅状态",
+        "两稿独立性"
+      ],
+      "role": "进展",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读，未核关键步骤",
+      "note": "作者明示逐行核查由AI辅助完成、非referee verification；核心3.2及companion结构部分未核。两稿共享统一结构论方法，不能当两个独立确认。此评论不是原证明已被反驳的证据。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "A1024-E09",
+      "url": "https://github.com/openai/math/blob/main/lean/docs/206.md",
+      "locator": "Scope；Comparator links",
+      "version": "openai/math官方lean/docs/206.md；2026-11-27读取main，固定版本及实际代码复跑由代码路线另核",
+      "subquestions": [
+        "形式化覆盖范围"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "已读，未核关键步骤",
+      "note": "仅在学术路线读到官方范围声明：colored-graph criterion；未涵盖不可判定及subgroup-interval结论。本代理未审代码/未运行，不能宣称主问Lean已证。 合并补记：C1024已另取固定3344提交的实际定义和证明体，静态核查未复跑；该原始证据不单独承载完整形式化认证。",
+      "formal_status": "已静态检查未复跑",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C1024-01",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/README.md",
+      "locator": "README 作者/日期/题名；两稿目录的路径限定commit history",
+      "version": "OpenAI Sep24,2026；仓库3344da59991ed94f9ba711217b29c1d760badfa6；此稿目录历史仅初始adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "反例",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "claimant": "OpenAI",
+      "claim_date": "2026-09-24",
+      "note": "代码/社区路线识别公开完整否定声明；README无撤回注，主稿及同伴稿path历史均只有初始提交。论文全文及关键链式定理由原题/学术路线核验，本记录不把题名与声明当正确性认证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "equivalent",
+        "role": "counterexample",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "C1024-02",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Algebra/Universal/GraphCriterion.lean",
+      "locator": "graph_criterion；同目录Congruence.lean的Algebra/Congruence/Representable；docs/206.md；ComparatorChallenges/FiniteCongruenceGraph.json",
+      "version": "3344da59991ed94f9ba711217b29c1d760badfa6",
+      "subquestions": [
+        "主问题",
+        "有限代数同余格的彩色图刻画"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "OpenAI",
+      "rerun": {
+        "commit": "3344da59991ed94f9ba711217b29c1d760badfa6",
+        "theorem": "OAI.FiniteCongruence.graph_criterion",
+        "toolchain": "leanprover/lean4:v4.34.1；lake-manifest mathlib=d13f23b723b8a846827a245b89c10fc7d3f11612",
+        "command": "未执行；仅读取源码、锁文件与静态词扫描",
+        "axioms": "未执行#print axioms。Comparator JSON允许propext、Quot.sound、Classical.choice只是配置，不是本轮实际依赖报告。"
+      },
+      "note": "完整读实际solution证明体：∀有限格Lat，Representable Lat ↔ HasGraphWitness Lat。Representable显式要求非空有限载体、有限多个有限元全运算和完整同余格；HasGraphWitness也要求非空有限图。它没有证明存在不可表示格，也没有证明原题否定或不可判定。Comparator目标文件的sorry与solution中真实双向证明分开；四个Universal源码静态扫描无sorry/axiom/admit/native_decide，不等于构建通过。官方206说明明确排除undecidability与subgroup-interval结论。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C1024-03",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Algebra/Universal/GraphDecidability.lean",
+      "locator": "graphWitnessDecidable；graphSizeDecidable；文件头scope注释",
+      "version": "3344da59991ed94f9ba711217b29c1d760badfa6",
+      "subquestions": [
+        "固定见证规模的可判定性"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "formal_status": "已静态检查未复跑",
+      "note": "graphSizeDecidable对给定自然数size判定0<size且存在Fin size上的合格彩色图；文件明确无统一见证大小界。固定size可判定不能推成全域可判定，更不能推成全域不可判定或反例。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C1024-04",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Algebra/Universal/Coset.lean",
+      "locator": "coset_action_correspondence；coset_action_correspondence_exists",
+      "version": "3344da59991ed94f9ba711217b29c1d760badfa6",
+      "subquestions": [
+        "有限群子群区间的余陪集同余格表示"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "formal_status": "已静态检查未复跑",
+      "note": "已读声明及证明：给定[Fintype G][Group G]、任意子群H，Congruence(cosetAlgebra H)≃o Set.Icc H ⊤；H不要求正规。只核经典桥的群区间到有限代数方向，未给任意有限格L构造G,H。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C1024-05",
+      "url": "https://williamdemeo.org/blog/openai-flrp-claim/",
+      "locator": "2026-10-07；AI-assisted阅读说明；The negative solution；What the Lean code covers；结论",
+      "version": "2026-10-07博客；本轮2026-11-27读取",
+      "subquestions": [
+        "主问题",
+        "公开声明的社区评议",
+        "形式化覆盖范围"
+      ],
+      "role": "进展",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "claimant": "William DeMeo（明确标为Claude协助阅读/撰写）",
+      "claim_date": "2026-10-07",
+      "note": "作者将论文结论描述为可信但尚未审定，核心uniform subgroup-chain bound Theorem3.2尚未核验；不是给出已成立的反例攻击或撤回。博客注明阅读和GAP/代码调查由模型协助，不能登记为独立人类二审。所列Lean仅覆盖图刻画及局部引理，完整否定和不可判定未覆盖；本轮独立读选定代码确认其范围，不沿用博客的已验证措辞。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "C1024-06",
+      "url": "https://github.com/google-deepmind/formal-conjectures/issues/1795",
+      "locator": "What is the conjecture / Prerequisites needed；API state=open comments=0",
+      "version": "创建2026-01-20；更新2026-01-23；读取2026-11-27",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "社区帖子",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "formal_status": "未检到形式化",
+      "note": "提议形式化肯定的FLRP猜想，说明基础设施缺项；没有完成证明或附件。本轮关键词代码搜索无相关命中，仅限所查询入口，不能据此断言整个证明生态不存在实现。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "C1024-07",
+      "url": "https://github.com/UniversalAlgebra/fin-lat-rep-gap/blob/e891783487eaaea9efe3c3e57f9c848cafba1a58/L10/verifyPSL264.g",
+      "locator": "README The L10 programs / Running them；verifyPSL264.g完整程序；latticeTests.g目标与FLR_IsTarget；findUpperIntervals.g参数范围",
+      "version": "e891783487eaaea9efe3c3e57f9c848cafba1a58（2026-09-25）；脚本标注GAP4.15.1/TomLib1.2.11于2026-09-17运行",
+      "subquestions": [
+        "七元格L7=L10的有限群区间表示",
+        "有界GAP搜索"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "William DeMeo / UniversalAlgebra",
+      "note": "程序对SL(2,64)=PSL(2,64)中矩阵生成的S3求完整中间子群，再以七元序关系同构检验特定L10（另文L7）；源码含作者运行结果说明，本轮未执行GAP、未核全结果档。findUpperIntervals受群阶n1..n2及格大小范围限制。具体可表示格及有界搜索均不决定全体有限格原题，不可当全域否定反例或全域肯定证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C1024-08",
+      "url": "https://github.com/ualib/agda-algebras/issues/451",
+      "locator": "FLRP research program；Description / Structure / Acceptance criteria",
+      "version": "创建2026-07-11；本轮2026-11-27读取web页，搜索抓取约两个月前",
+      "subquestions": [
+        "主问题",
+        "Agda形式化研究计划"
+      ],
+      "role": "进展",
+      "publication": "社区帖子",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "note": "原始issue描述六项基础设施WP和四项开放研究RP，不含全题证明；页面显示研究中。API因Moved Permanently且无跳转URL失败，web可读；未获取现仓代码或复跑，作为补充线索不作当前完整形式化证据。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_state": "none",
+        "scope_match": "unconfirmed",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "D1024-C001979",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001979.text.md",
+      "locator": "固定正文与配套 metadata 全文；不是仅题名",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=22150e30c616758a; text_sha=f62280026c0a83f0efd1d9b6edadcef73ba433ab; meta_sha=08b7beeb5d824638307117f5c7fa718f64127ba6",
+      "subquestions": [
+        "原题整体"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "代码仓库",
+      "review_status": "已读未核关键步骤",
+      "note": "metadata 验收和主正文写给定 n 元格/任意有限格成为有限群的整个子群格；正文备注又称“题面校准：区间[H,G]版本……无 n 限制”，两处冲突。原出处 MO 85724 实为小 n（7/8）及图示特定 7 元格的区间表示问题，不能在未修正其题面、补齐图格及确认 n 量词时认定本卡严格同题。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D1024-C000707",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000707.text.md",
+      "locator": "固定正文与配套 metadata 全文；不是仅题名",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=0dc37a3a08287cfd; text_sha=8beb7782c6c48b09585b551bc289607a79cbec72; meta_sha=331867f39b62b9aaecffbaa5e15dd17673fec9ff",
+      "subquestions": [
+        "原题整体"
+      ],
+      "scope_match": "同源不同问",
+      "role": "重述",
+      "publication": "代码仓库",
+      "review_status": "已读未核关键步骤",
+      "note": "Kourovka 15.74，Pálfy 的类 p 有限 p-群：其正规子群格能否不嵌入任何交换群的子群格，当前卡要求 p≥5。研究对象是特定群的正规子群格及格嵌入，不是任意有限格作为有限群全闭区间的同构表示。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D1024-C001058",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001058.text.md",
+      "locator": "固定正文与配套 metadata 全文；不是仅题名",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=3c0f2d9bcc9c2dad; text_sha=e548c0fa77578b0fec259e90b38652f23c681229; meta_sha=36747467a9cf817e558c8d128ea0caa40cbbb41e",
+      "subquestions": [
+        "原题整体"
+      ],
+      "scope_match": "同源不同问",
+      "role": "重述",
+      "publication": "代码仓库",
+      "review_status": "已读未核关键步骤",
+      "note": "Kourovka 1.20，Ershov：刻画正规子群格在整个子群格中可一阶定义的群/群类。询问定义性而非任意有限格的区间可表示性。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D1024-C000616",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000616.text.md",
+      "locator": "本包任务.jsonl 内 card_text/card_metadata 全文",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=42d69b7a287b279a",
+      "subquestions": [
+        "原题整体"
+      ],
+      "scope_match": "同源不同问",
+      "role": "重述",
+      "publication": "代码仓库",
+      "review_status": "已读未核关键步骤",
+      "note": "17.54 要求存在非遗传局部形成 F，使每个有限群中的 F-次正规子群构成子格；没有任意有限格 L 的表示量词，也不要求该子格是整个闭区间。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D1024-SELF",
+      "url": "https://www.qunxingmath.org/p/QX-P-001024/",
+      "locator": "本包 current_task 中题面、形式化、人话、原文摘录及 metadata",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=ec089c286914f879",
+      "subquestions": [
+        "原题整体"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "代码仓库",
+      "review_status": "已读未核关键步骤",
+      "note": "完整题面限定有限 G 与 H≤G；形式化缩写没有显式重写有限 G、H≤G。人话验收“对某类格给出统一构造”只能算子类进展，不能肯定全题。metadata/proposer 与摘录前的提出人写“未署名”，同一摘录末尾明确署 P. P. Pálfy，内部不一致。旧 OPEN 字段及无解题标记不作为本轮状态结论。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D1024-MO1979",
+      "url": "https://mathoverflow.net/questions/85724",
+      "locator": "MO 85724 原帖、Correction 段、2012-02-22 update",
+      "version": "公开页面；asked 2012-01-15；页面 last edited 2025-05-27",
+      "subquestions": [
+        "原题整体"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "社区帖子",
+      "review_status": "仅核关键步骤",
+      "note": "原帖问小 n 的最新进展及图示一个 7 元格的 [H,G] 表示。作者 Correction 明确 Pálfy–Pudlák 的两种全称问题等价不推出固定 n 的逐格等价。读取了文字；未识别图示格的全部偏序关系，不能把缺图版本定为完整同题。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "D1024-PP1980",
+      "url": "https://math.hawaii.edu/~ralph/Classes/619/PalfyPudlak.pdf",
+      "locator": "Theorem 2（印刷 p.23）、其证明（p.26）及 core 约化（p.23）",
+      "version": "Pálfy–Pudlák, Algebra Universalis 11 (1980), 22–27",
+      "subquestions": [
+        "原题整体"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "正式刊发",
+      "review_status": "仅核关键步骤",
+      "note": "Theorem 2 等价的是“每个有限格为某个有限代数同余格”与“每个有限格为某个有限群子群格的区间”两个全称命题。证明先把 L 纳入另一个有限格 L′，再取子区间；不能据此断言任意固定 L 两类表示逐格等价或固定 n 等价。对 [H,G] 可先商去 core_G(H)，保留有限性与区间同构。仅核本逻辑范围，不把等价定理视为原题的肯定/否定解答。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "D1024-PALFY2018",
+      "url": "https://universalalgebra.github.io/ALH-2018/assets/ALH-2018-proceedings-6x9.pdf",
+      "locator": "Pálfy, The role of twisted wreath products in the Finite Congruence Lattice Problem, 印刷 pp.88–90（PDF pp.93–95）",
+      "version": "ALH-2018 proceedings 作者综述",
+      "subquestions": [
+        "原题整体"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "项目报告",
+      "review_status": "仅核关键步骤",
+      "note": "作者定义 Int(H,G) 为全部 H≤X≤G 的子群。明确说明两类表示的等价是“全体有限格”层面的，不是逐格等价。只作为定义与等价范围证据；文中历史开放表述不直接证明截至本轮仍开放。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "D1024-DEFINITIONS",
+      "url": "https://www.qunxingmath.org/p/QX-P-001024/",
+      "locator": "本轮独立定义/量词审校；S3 穷举仅 64 个子集",
+      "version": "2026-11-27（Asia/Shanghai）；Python 3；目标 card_rev=ec089c286914f879",
+      "subquestions": [
+        "原题整体"
+      ],
+      "scope_match": "特例",
+      "role": "证书",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "独立定义审校：有限格按通常非空约定；空偏序集不当作本题反例。闭区间 [H,G] 总含 H,G，H=G 给单元素格（如平凡群），非单元素格才要求 H<G。区间为全部中间子群，meet 为交、join 为生成群；选定子格不能替代全闭区间。G 必须有限；只构造无限 G 的有限区间仍不满足本题。H 不要求正规。仅当 H 正规时才有 [H,G]≅Sub(G/H)；这是商群的全部子群格，不是正规子群格。一般可商去 N=core_G(H)：每个 K≥H 都含 N，K↦K/N 是完整区间同构并使 H/N core-free，有限性保持。正答量词为 ∀非空有限格L ∃有限G ∃H≤G；某类格统一构造仅部分进展；否定需一个L使所有有限G及所有H≤G均不能表示。固定阶界以下的枚举失败不足否定全题。Pálfy–Pudlák 等价在全称问题层面，非逐个 L 或固定元素数的直接等价。\n独立小例 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "M1024-LOCAL-NORMAL",
+      "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/build/sections/framework.tex",
+      "locator": "framework.tex：fenced 定义；Lemma 2.2 Normal-subgroup test；Lemma 2.3 Labels；Bottlenecks 推论",
+      "version": "稿面 2026-09-24；fixed commit adc7f1241b42e322a6451854ab7e4b4c146bf78a；framework.tex Git blob SHA cd59e98c8836889190a3fbd2c2350f5d8401ce70；本轮 2026-11-27（Asia/Shanghai）",
+      "subquestions": [
+        "主问题",
+        "主稿局部引理 2.2–2.3"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅某子问",
+      "claim_state": "公开声称",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "claimant": "OpenAI",
+      "claim_date": "2026-09-24",
+      "note": "核对对象限定于 framework.tex 的 fenced 定义、Lemma 2.2 Normal-subgroup test、Lemma 2.3 Labels，另检查紧随的 Bottlenecks 推论。以下是本轮独立局部推导，不是对全稿或 Theorem 3.2 的验收。\n(1) 定义要求 [D,X] 有内部元素，且每个内部 c 都有 D<U<V<X 两个可比补元；因此覆盖区间不能凭空满足该条件。\n(2) 设 R◁X，D≤U≤V≤X。R 正规保证 RU、DR 是子群，Dedekind 恒等式给 (DR∨U)∩V=(RU)∩V=U(R∩V)。又 DR∩V=D(R∩V)，故右端等于 U∨(DR∩V)。若 D<DR<X，取 DR 的可比补元 U<V，则左端为 X∩V=V，右端为 U∨D=U，矛盾。故 DR=D 或 X，即 R≤D 或 DR=X。相同等式在模格中对任意 c 成立，所以 fenced 非模。若 F◁X 且 F≤D，商映射把 [D,X] 同构到 [D/F,X/F]，结论可下传；不要求 D 正规。\n(3) 商去 F_X=core_X(D) 后假设底群 D core-free。任一非平凡正规子群不可能包含于 D，故由 (2) 补足 D。取极小正规 M：若 M 交换，对 U≥D 令 E=U∩M，则 U=D E，E 为 D-不变的 M 子群且含 D∩M；反向 E↦DE 是逆映射。D-不变交换子群的交与乘积构成模格，故 [D,X] 模，与 (2) 矛盾。\n(4) 若有两个不同极小正规 M,M′，其交为1且彼此交换。M′ 补足 D，故每个 D-不变子群 E≤M 同时被 D 与 M′ 正规化，也即被 X=DM′ 正规化。M 极小正规迫使 E=1 或 M。特别是 D∩M 不能等于 M（否则 M≤D），故为1；上述对应使 [D,X] 至多两个元素，与 fenced 有内部元素矛盾。因此极小正规子群唯一且非交换。\n(5) 有限极小正规子群为特征单群，即同构于 T^m，其中 T 非交换单群。若 X 在其简单直因子上有多个轨道，每轨道因子的乘积会给真非平凡正规子群，矛盾。唯一极小正规 M 包含于每个非平凡正规子群。C_X(M) 正规且与 M 交于 Z(M)=1，因此 C_X(M)=1；从而没有非平凡可解正规子群。由 X=DM、M 的内自同构分别保每个因子，D 与 X 在因子集上的置换像相同且传递。恢复 core 商即得到 Lemma 2.3 的全部所列结论。\n(6) Bottlenecks：D<B≤Z、[D,B] fenced 且 B 与 [D,Z] 中每点可比。若 R◁Z、R∩B≤D，则 B≤DR 会由 B=B∩DR=D(B∩R) 导致 B=D，故只可能 DR≤B，进而 R=R∩B≤D。逆否得 R不≤D 时 R∩B不≤D，(2) 给 B=D(R∩B)。其在 B/core_B(D) 中的非平凡正规像包含非交换 socle，所以 R 不可解。若 R,Q◁Z 且 [R,Q]≤F◁Z、F≤D，则 F≤core_B(D)；若 R,Q 均不在 D 内，其与 B 的交在该商中的像均包含 socle，却彼此交换，将使非交换 socle 交换，矛盾。\n上述局部论证未发现缺口。尤其这里不需要假设 D 正规，也没有把 core_B(D) 擅自视为 Z 的正规子群。核对通过只覆盖这些基础引理，不涉及后续分类、表示次数估计、统一有限池或链长常数 B。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "M1024-CHAIN-SCOPE",
+      "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/build/sections/classification.tex",
+      "locator": "classification.tex：Definition 3.1（T1–T5）；Theorem 3.2 及其前后量词和 subchain 说明",
+      "version": "稿面 2026-09-24；fixed commit adc7f1241b42e322a6451854ab7e4b4c146bf78a；classification.tex Git blob SHA 6044865a15f75edcfb9c2c2ce488912f36358569；本轮 2026-11-27（Asia/Shanghai）",
+      "subquestions": [
+        "主问题",
+        "主稿 Chain rigidity Theorem 3.2 的量词与假设"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅某子问",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "OpenAI",
+      "claim_date": "2026-09-24",
+      "note": "独立范围/量词核对：\nTheorem 3.2 声称存在同一个绝对整数 B，对每个有限群中的每条满足 Definition 3.1 全部测试条件的链，只要长度 N≥B，就有端点简单类型 T_a≅T_b。常数不得依赖群、格、Lie rank、特征、域扩张次数或链长。它不是“任意有限群的所有子群链”都有这种统一结论；前者有严格的附加测试。\nDefinition 3.1 的限制包括：同一底 D；所有 x_i 和 v_ij 的 [D,·] fenced；对每一对 i<j（不是仅相邻对）有 x_i≺v_ij≺x_j，且 cover 在整个区间中成立；每个 [x_i,x_j] fenced；以原始 [a,b] 为参照的 coatom-intersection 条件；对指定 U 中的每个 u，以原始 a 为底的 fence/coatom 条件和整个 [c_u,u]≅M_16；所有 x_i≤z≤x_j 还满足 fenced 或 labelled bottleneck 的 normal-test 条件。\n局部蕴含核对：对于任一这类 z，若 [D,z] fenced，则上一个证据的 Labels 适用；若有 labelled bottleneck z′，则 Bottlenecks 适用。因此 z 中可解正规子群都在 D 内；若两个正规子群的交换子在 F◁z、F≤D 内，则至少一个在 D 内。若取更高 labelled 顶点 Y 的 core F_Y，F_Y≤D 且在每个 z≤Y 内正规；商后对应保留 fence 与可比性，故相同局部结果成立。该步骤无需把 z 自己误称 labelled，也没有对未 labelled 的 bottleneck 声称任意正规子群都补足 D。\n两项防误判的小例：五元非模格 N_5 中有 0<c<1 的两条 cover，也同时有 0<a<b<1 的三条 cover，因此“有两边 shortcut”不使原区间高度必为2；不能单凭 T1 和长链存在宣告定义矛盾。反之 N_5 并不 fenced：a 的补元只有 c，没有两个可比补元。M_16 高度2，也不 fenced，但定义只要求较上方 [c_u,u] 是 M_16，而 [a,u] fenced 且 a<c_u，二者没有直接矛盾。\n删除链中点会保留原有对应 pair 的 shortcuts，但换一个起点 a′ 或终点 b′ 后，原 coatom-intersection、以 a 为底的 M_16/fence 测试不自动改为新底测试；稿件在 Theorem 3.2 后明确提醒“子链不是自动一条重新以其起点为底的 tested chain”。本轮未发现该提醒本身的逻辑错误，也未检查后面每一次抽取子链是否都守住它。\n结论边界：上述是定义与局部推论核对，不是 uniform bound B 存在性的证明。有限多个算例、某个固定 rank/field 的界，或一个依赖群的 B_G 均不能替代 ∃B∀有限群 的量词。需继续逐步核查后文如何从所有参数中抽出同一个绝对界。此次没有给出反例链，也没有证明 Theorem 3.2 被反驳。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000616",
+      "other_card_rev": "42d69b7a287b279a",
+      "relation": "待核",
+      "reason": "已读固定全文：F-次正规子群子格性质与任意有限格的全闭区间表示不是同一量词/对象；按较小编号负责规则，最终配对记录交 000616 侧。本题不启动对方查新。",
+      "positions": {
+        "self": "题面及完整区间定义",
+        "other": "17.54 题面与验收"
+      },
+      "note": "pair_key=QX-P-000616__QX-P-001024；D1024-C000616",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-000707",
+      "other_card_rev": "0dc37a3a08287cfd",
+      "relation": "待核",
+      "reason": "已读固定全文：15.74 的类 p 的 p-群正规子群格及交换群格嵌入，与 15.73 全部有限格/有限群区间同构不同；较小编号 000707 负责配对最终归类。本题不启动其查新。",
+      "positions": {
+        "self": "15.73 原文摘录/∀有限格",
+        "other": "15.74 题面/正规子群格/嵌入"
+      },
+      "note": "pair_key=QX-P-000707__QX-P-001024；D1024-C000707",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-001058",
+      "other_card_rev": "3c0f2d9bcc9c2dad",
+      "relation": "同源不同问",
+      "reason": "固定全文中的 Kourovka 1.20 是正规子群格在整个子群格中的一阶定义性；15.73 是任意有限格的有限群区间表示。对象、量词、验收均不同，无严格同题依据。",
+      "positions": {
+        "self": "15.73 题面/验收",
+        "other": "1.20 题面/验收"
+      },
+      "note": "pair_key=QX-P-001024__QX-P-001058；较小号 001024 负责；D1024-C001058",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "duplicate_relation": "related"
+      }
+    },
+    {
+      "other_id": "QX-P-001979",
+      "other_card_rev": "22150e30c616758a",
+      "relation": "待核",
+      "reason": "固定主正文与 metadata 要求全子群格，备注要求区间，内部冲突。原 MO 85724 问小 n 进展及图示特定 7 元格的区间表示，Correction 又限制 Pálfy–Pudlák 等价的全称范围；缺图与 n 量词未恢复前不得并为本题严格同题。",
+      "positions": {
+        "self": "对每个有限格L存在有限G,H≤G",
+        "other": "题面/验收/题面校准备注；MO 85724 的 Questions 1–2 与 Correction"
+      },
+      "note": "pair_key=QX-P-001024__QX-P-001979；较小号 001024 负责；D1024-C001979,D1024-MO1979",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "修正人话版",
+      "field": "card_text.人话版末句",
+      "old": "回答要么对某类格给出统一构造，要么找出一个无法这样实现的有限格并证明。",
+      "new": "肯定答案须对每个非空有限格 L 构造有限群 G 与 H≤G 并证明 L≅[H,G]；某类格的构造只算部分进展。否定答案须给出某个有限格并证明对所有有限 G 与 H≤G 都不能这样实现。",
+      "reason": "修复对原题全称范围的验收降格。",
+      "evidence_ids": [
+        "D1024-SELF",
+        "D1024-DEFINITIONS"
+      ],
+      "small_case_check": "全部有限链可用循环素数幂群实现；只覆盖链并未覆盖所有有限格。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text.形式化表述/边界与约定",
+      "old": "∀finite lattice L ∃G,H: Int(H;G)≅L ?",
+      "new": "∀非空有限格 L，∃有限群 G，∃H≤G，使 L≅{K≤G:H≤K≤G}，同构保持格序。允许 H=G；不要求 H 正规。",
+      "reason": "把有限 G、全闭区间与 singleton 边界显式化，防止将全子群格、任意子格或无限群结果混用。",
+      "evidence_ids": [
+        "D1024-SELF",
+        "D1024-DEFINITIONS"
+      ],
+      "small_case_check": "S3 中非正规阶 2 子群 H 给二元区间；H=G 给一元区间；整个 S3 子群格有 6 元。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "card_metadata.proposer / 原文摘录的提出人行",
+      "old": "21版未署名（见题面所引）",
+      "new": "P. P. Pálfy（该 Kourovka 条目署名；更早问题史另作出处说明）",
+      "reason": "同一题卡摘录末尾明署 P. P. Pálfy，与“未署名”矛盾；此修订不声称其首次提出整个 FLRP。",
+      "evidence_ids": [
+        "D1024-SELF"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text.已知结果与进展/Pálfy–Pudlák 等价说明",
+      "new": "Pálfy–Pudlák 1980 等价的是两个“每个有限格均可表示”的全称命题，不可直接解读为固定有限格或固定 n 的逐格等价。",
+      "reason": "原证明先使用辅助有限格 L′；MO 来源亦明确更正固定 n 误读。",
+      "evidence_ids": [
+        "D1024-PP1980",
+        "D1024-PALFY2018",
+        "D1024-MO1979"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "informal_status / 已知结果与进展 / ai_claims",
+      "old": "仅凭v50无解题标记及旧WebSearch记OPEN",
+      "new": "2026-09-24公开稿声称完整否定解；本轮已取得固定原稿并核定范围，但统一群链界与全部归约未获独立核验，登记完整证明/反例声明待核，闭合转二审。",
+      "reason": "新版题集未更新标记不能排除同期外部P0声明；不能把未核声明误当已经推翻。",
+      "evidence_ids": [
+        "O1024-V50",
+        "O1024-NEGATIVE",
+        "O1024-RAMSEY"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "formal_status / verification",
+      "new": "记彩色图等价、固定规模判定和coset桥的局部形式化，及L7特例GAP程序；本轮均已静态检查未复跑。",
+      "reason": "把固定size、小格构造、经典单向桥与全域FLRP结论分开。",
+      "evidence_ids": [
+        "C1024-02",
+        "C1024-03",
+        "C1024-04",
+        "C1024-07"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "reason": "完整否定稿的绝对统一界Theorem3.2及其群论支撑尚未独立核完；局部fence/label/Ramsey通过不足以认证主定理。",
+      "next_step": "二审固定adc7稿的Sections3–7，重点核统一类型/指数palette、被消去核及经典群链比较的量词独立性；再核Sections8–10从B到有限格与矛盾的全部传递。没有发现确定漏洞前不得宣称反驳该稿。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {}
+    },
+    {
+      "route": "其他：验收范围",
+      "reason": "现卡否定验收写“一个具体的有限格”；原稿以未知B选择构造参数，存在性结论若正确足以否定数学主问，但本轮尚无可逐项列出并检查的实例。",
+      "next_step": "在人工二审分别判断数学存在性证明与具体反例交付要求；若需可枚举反例，应取得足够的可验证B/参数值和完整格序数据，不将缺数值B本身当逻辑反例。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "companion只取得并读取5份scope相关原始TeX；其高秩路径、加权实现、计数及有效界结构章节未通读，L7过群表也未本轮GAP复跑。",
+      "next_step": "要升级不可判定或全部≤7格状态，分别核结构依赖与具体PSL2(64)完整过群计算；两稿与AI辅助博客不构成独立确认。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Tůma1989全文与Baddeley–Lucchini1997全文访问不畅，Baddeley1998和Snow2000仅定位到历史文献引用；已有一手作者重述足以限定范围。",
+      "next_step": "仅在需补历史原证时取合法全文，核具体定理编号；这些限制类/无限群文献不作为一般有限G问题关闭依据。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "定向2025–2026、标题精确撤回/勘误检索未取得可核的一手数学更正或独立认可；非MathSciNet/zbMATH全量枚举。",
+      "next_step": "保存固定稿版本及有限搜索范围；代码路线另核仓库后续版本。若出现一手勘误/撤回或明确独立审阅，再更新状态，勿以网页未命中宣称不存在。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮未独立构建Lean或运行#print axioms；只静态检查选定四个Universal模块，未完整审计FiniteLattice目录和所有传递依赖。",
+      "next_step": "若需要把局部形式化升级为本轮验证，按固定3344提交、Lean4.34.1及锁定mathlib构建graph_criterion/Coset/GraphDecidability并保存实际日志与axioms；即使通过，也不能据此认证原题否定或不可判定。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "GAP特例作者运行记录非本轮复跑；agda issue API跳转失败且web页不保证最新实现。",
+      "next_step": "特例若需计算复核，固定e8917834运行L10/verifyPSL264.g与latticeTests.g并核日志；Agda若出现新全解声明再追踪实际迁址/commit与最终定理，目前仅作研究计划线索。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "001979 固定正文、metadata 与源帖范围冲突，且源帖具体格只通过图示给出。",
+      "next_step": "由较小号 001024 侧保留 pair_key；在修订 001979 前读取源帖图格、补齐 n/给定格量词，确认其主问究竟是小 n 进展还是某个 7 元格，再分类特例/同意图但残缺；暂不合并。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "000616/000707 比本题编号小，已具固定正文比较但非本题配对责任。",
+      "next_step": "将本文具体差异留作较小编号侧的配对复核；本轮不开展对方查新，也不把“待核”误读为已发现严格同题。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {}
+    },
+    {
+      "route": "其他：独立数学二审",
+      "reason": "基础 normal-subgroup test、Labels 及 Bottlenecks 的局部推导核对通过，并未覆盖 Theorem 3.2 的绝对统一界、后续构格与主否定的全部依赖。",
+      "next_step": "以 fixed adc7f1241b42e322a6451854ab7e4b4c146bf78a 逐条复核 classification/growth/lifts/packets/rigidity 的常数依赖、子链抽取与 exceptional-case 控制，再核 tested-chain 构格到非表示结论的传递。既不能凭局部核对把主问报已反驳，也不能因核心尚待核便声称已找到反例或定理错误。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "ec089c286914f879",
+      "codes": {}
+    }
+  ]
+}

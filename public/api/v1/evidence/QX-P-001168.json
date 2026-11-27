@@ -1,0 +1,3309 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001168",
+  "card_rev": "6effbd921c990d1f",
+  "summary": {
+    "math_status": {
+      "value": "claimed_resolution",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-04"
+      ],
+      "parts": [
+        {
+          "subquestion": "奇素数版、全整数版和gcd版等价",
+          "value": "partial",
+          "note": "仅本行等价归约已核，不是Kurepa全称猜想已证。完整素数约化与2-adic边界已写证据。"
+        },
+        {
+          "subquestion": "有限计算界",
+          "value": "partial",
+          "note": "原作者原论文报告p<2^34及p<2^40无反例并给抽样交叉验证；本轮未全量重跑。展示公式少写的减1已在固定双实现静态定位，不能据文稿偏移否定数据，也不能因代码修正就声称本轮完整复现。"
+        },
+        {
+          "subquestion": "历史完整证明声明",
+          "value": "no_evidence_in_scope",
+          "note": "只指2004 Thm3及2209.12677两份旧声明：前者2011撤回该定理及证明，后者2022-09-30作者撤回，均不作为有效一般证明；不是主问题数学反驳。"
+        },
+        {
+          "subquestion": "Gallardo2022条件素数类",
+          "value": "partial",
+          "note": "假设β等式仅p3/10331有解，才能覆盖half-factorial等于Legendre(2/p)的子类；没有证明该假设、子类无限或所有奇素数。"
+        },
+        {
+          "subquestion": "等价归约和有限形式化",
+          "value": "partial",
+          "note": "FC已有全整数版↔奇素数版↔gcd版的证明体以及3≤n<50测试；AlphaProof PR535只解决归约。Aristotle文件给3≤n<2000有限声明，未本轮运行；其部分归约假设包含p=2而不可满足。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Paper/Kurepa.lean"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "partially_retracted",
+      "url": "https://jtnb.centre-mersenne.org/item/10.5802/jtnb.775.pdf",
+      "review": "key_steps_checked",
+      "by": "Daniel Barsky; Bénali Benzaghou",
+      "date": "2011"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "完整声明待核",
+      "scope_note": "绑定6effbd921c990d1f，∀奇素数p，p不整除L_p=Σ_{k=0}^{p−1}k!。1971原文与冻结核心题面一致。已取得2025正文的完整证明声明并核到循环/奇偶性推互素缺口；2026所引同余有明确小反例、r-Kurepa广义前提有另行限定的核查结果，均不能作为本主问反例或已解决证据。此标签用于保留完整声明并送二审，不表示证明通过；本轮未确认主问全证/反例。有效层次为等价归约、原作者p<2^40有限计算及带未证全局假设的Gallardo子类。历史撤回、AI归约/有限终点与数学全解逐项分开，不能沿用旧open-confirmed或difficulty标签定论。",
+      "evidence_ids": [
+        "E1168-ORIGIN-KUREPA1971",
+        "E1168-ORIGIN-ABRAMOV-WITHDRAWAL",
+        "E1168-ORIGIN-BB2011-ERRATUM",
+        "E1168-ACA-HOWARD25",
+        "E1168-ACA-HOWARD26",
+        "E1168-ACA-COUNTER26",
+        "E1168-ORIGIN-COMPUTATION2020",
+        "E1168-CODE-FC",
+        "E1168-CODE-ARISTOTLE",
+        "E1168-RK-SOURCE",
+        "E1168-RK-COUNTEREXAMPLE",
+        "E1168-RK-DEPENDENCY"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "奇素数版、全整数版和gcd版等价",
+      "math_status": "实质进展",
+      "scope_note": "仅本行等价归约已核，不是Kurepa全称猜想已证。完整素数约化与2-adic边界已写证据。",
+      "evidence_ids": [
+        "E1168-ORIGIN-EQUIVALENCE",
+        "E1168-DUP-GCD",
+        "E1168-DUP-DERANGEMENT",
+        "E1168-CODE-FC"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限计算界",
+      "math_status": "部分进展",
+      "scope_note": "原作者原论文报告p<2^34及p<2^40无反例并给抽样交叉验证；本轮未全量重跑。展示公式少写的减1已在固定双实现静态定位，不能据文稿偏移否定数据，也不能因代码修正就声称本轮完整复现。",
+      "evidence_ids": [
+        "E1168-ORIGIN-COMPUTATION2015",
+        "E1168-ORIGIN-COMPUTATION2020",
+        "E1168-ORIGIN-ART-INDEX",
+        "E1168-CODE-COMPUTE",
+        "E1168-CODE-OFFBYONE",
+        "E1168-ACA-HARVEY2026"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "历史完整证明声明",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "只指2004 Thm3及2209.12677两份旧声明：前者2011撤回该定理及证明，后者2022-09-30作者撤回，均不作为有效一般证明；不是主问题数学反驳。",
+      "evidence_ids": [
+        "E1168-ORIGIN-BB2004",
+        "E1168-ORIGIN-BB2011-ERRATUM",
+        "E1168-ORIGIN-ABRAMOV-WITHDRAWAL"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "2025原题完整证明声明与2026商环稿",
+      "math_status": "完整声明待核",
+      "scope_note": "2025Theorem16/17确覆盖原题；已取得全文并发现Lemma5循环/奇偶推互素缺口。2026KBW又有p5反例、Cor5有p3反例，A非零仍不同于全素数。此状态标记待二审声明，不表示这些证明已成立；具体错误范围均列明。",
+      "evidence_ids": [
+        "E1168-ACA-HOWARD25",
+        "E1168-ACA-HOWARD26",
+        "E1168-ACA-COUNTER26"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "Gallardo2022条件素数类",
+      "math_status": "条件性结果",
+      "scope_note": "假设β等式仅p3/10331有解，才能覆盖half-factorial等于Legendre(2/p)的子类；没有证明该假设、子类无限或所有奇素数。",
+      "evidence_ids": [
+        "E1168-ACA-GALLARDO"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "等价归约和有限形式化",
+      "math_status": "仅特例",
+      "scope_note": "FC已有全整数版↔奇素数版↔gcd版的证明体以及3≤n<50测试；AlphaProof PR535只解决归约。Aristotle文件给3≤n<2000有限声明，未本轮运行；其部分归约假设包含p=2而不可满足。",
+      "evidence_ids": [
+        "E1168-CODE-FC",
+        "E1168-CODE-ALPHAPROOF",
+        "E1168-CODE-ARISTOTLE"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "Kurepa 1971 left factorial conjecture 2209.12677 withdrawn",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "真实搜索返回已缓存；用于定位1971原扫描、撤稿与原计算文献。后续是否取得全文按各证据明确记录。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "Kurepa left factorial conjecture 1971 original 19 147 153 computation 2^40",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "真实搜索返回已缓存；用于定位1971原扫描、撤稿与原计算文献。后续是否取得全文按各证据明确记录。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/abs/2209.12677",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取官方版本记录/书目正文；不是单凭标题或撤稿标签判断。",
+      "url": "https://arxiv.org/abs/2209.12677",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Kurepa\" \"On the left factorial\" \"pdf\" 1971",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "真实搜索返回已缓存；用于定位1971原扫描、撤稿与原计算文献。后续是否取得全文按各证据明确记录。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Kurepa\" \"Math. Balkanica\" \"147\" 1971 original",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "真实搜索返回已缓存；用于定位1971原扫描、撤稿与原计算文献。后续是否取得全文按各证据明确记录。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/abs/1904.09196",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取官方版本记录/书目正文；不是单凭标题或撤稿标签判断。",
+      "url": "https://arxiv.org/abs/1904.09196",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/pdf/1904.09196",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取固定原论文相应页面；未把有限计算作者报告当本轮复跑。",
+      "url": "https://arxiv.org/pdf/1904.09196",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"On the left factorial function\" Kurepa 1971 pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "真实搜索返回已缓存；用于定位1971原扫描、撤稿与原计算文献。后续是否取得全文按各证据明确记录。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "Barsky Benzaghou 2011 erratum Kurepa 23 2011 2014 jtnb",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "真实搜索返回已缓存；用于定位1971原扫描、撤稿与原计算文献。后续是否取得全文按各证据明确记录。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Kurepa\" \"1971\" \"147\" \"153\" original",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "真实搜索返回已缓存；用于定位1971原扫描、撤稿与原计算文献。后续是否取得全文按各证据明确记录。 domains=mi.sanu.ac.rs,elibrary.matf.bg.ac.rs,math.bas.bg,eudml.org",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "已取PDF缓存",
+      "query": "open 〔原始工具引用已私有留存〕 line 100 〔私有记录编号：PR-002197〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取固定原论文相应页面；未把有限计算作者报告当本轮复跑。",
+      "url": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "jtnb.centre-mersenne.org",
+      "query": "open https://jtnb.centre-mersenne.org/item/10.5802/jtnb.432.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "本次web入口403、DisabledError或不可访问；后续公开HTTP成功情况另记。",
+      "url": "https://jtnb.centre-mersenne.org/item/10.5802/jtnb.432.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "oeis.org",
+      "query": "open https://oeis.org/A003422/a003422_1.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "本次web入口403、DisabledError或不可访问；后续公开HTTP成功情况另记。",
+      "url": "https://oeis.org/A003422/a003422_1.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "jtnb.centre-mersenne.org",
+      "query": "open https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.775/",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "本次web入口403、DisabledError或不可访问；后续公开HTTP成功情况另记。",
+      "url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.775/",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "jtnb.centre-mersenne.org",
+      "query": "open https://jtnb.centre-mersenne.org/item/10.5802/jtnb.775.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "本次web入口403、DisabledError或不可访问；后续公开HTTP成功情况另记。",
+      "url": "https://jtnb.centre-mersenne.org/item/10.5802/jtnb.775.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/pdf/2209.12677v2",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "本次web入口403、DisabledError或不可访问；后续公开HTTP成功情况另记。",
+      "url": "https://arxiv.org/pdf/2209.12677v2",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "www.numdam.org",
+      "query": "open https://www.numdam.org/item/JTNB_2011__23_2_527_0/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取官方版本记录/书目正文；不是单凭标题或撤稿标签判断。",
+      "url": "https://www.numdam.org/item/JTNB_2011__23_2_527_0/",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/abs/1409.0800",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取官方版本记录/书目正文；不是单凭标题或撤稿标签判断。",
+      "url": "https://arxiv.org/abs/1409.0800",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/pdf/1409.0800",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取固定原论文相应页面；未把有限计算作者报告当本轮复跑。",
+      "url": "https://arxiv.org/pdf/1409.0800",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "www.numdam.org",
+      "query": "open https://www.numdam.org/item/JTNB_2011__23_2_527_0.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "本次web入口403、DisabledError或不可访问；后续公开HTTP成功情况另记。",
+      "url": "https://www.numdam.org/item/JTNB_2011__23_2_527_0.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "已取PDF缓存",
+      "query": "open 〔原始工具引用已私有留存〕 line 202 〔私有记录编号：PR-002198〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取固定原论文相应页面；未把有限计算作者报告当本轮复跑。",
+      "url": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "www.sciencedirect.com",
+      "query": "open https://www.sciencedirect.com/science/article/pii/S0020019020301654",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "本次web入口403、DisabledError或不可访问；后续公开HTTP成功情况另记。",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0020019020301654",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Improved algorithms for left factorial residues\" \"doi\" \"2021\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "真实搜索返回已缓存；用于定位1971原扫描、撤稿与原计算文献。后续是否取得全文按各证据明确记录。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Improved algorithms for left factorial residues\" \"Information Processing Letters\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "真实搜索返回已缓存；用于定位1971原扫描、撤稿与原计算文献。后续是否取得全文按各证据明确记录。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/abs/2209.12677v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取官方版本记录/书目正文；不是单凭标题或撤稿标签判断。",
+      "url": "https://arxiv.org/abs/2209.12677v1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/abs/2209.12677v2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取官方版本记录/书目正文；不是单凭标题或撤稿标签判断。",
+      "url": "https://arxiv.org/abs/2209.12677v2",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "公开原站HTTP",
+      "query": "GET https://oeis.org/A003422/a003422_1.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "下载PDF并留哈希；实际阅读范围见证据。path=internal/p1168_kurepa1971.pdf SHA256=eaf6ace7c2b62ea077a8060f501ede35314cf84765b5ed0999095fc24e2bdcb6",
+      "url": "https://oeis.org/A003422/a003422_1.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "公开原站HTTP",
+      "query": "GET https://jtnb.centre-mersenne.org/item/10.5802/jtnb.432.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "下载PDF并留哈希；实际阅读范围见证据。path=internal/p1168_bb2004.pdf SHA256=f36ce51609e6c1cb03dc896cd68a9f54f50c11e6bf2f04b0ded243ff7e6c8309",
+      "url": "https://jtnb.centre-mersenne.org/item/10.5802/jtnb.432.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "公开原站HTTP",
+      "query": "GET https://jtnb.centre-mersenne.org/item/10.5802/jtnb.775.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "下载PDF并留哈希；实际阅读范围见证据。path=internal/p1168_bb2011.pdf SHA256=0ae59bd37e681957a626641b96a17dcf427316aecda81477c3ee2d104d87506f",
+      "url": "https://jtnb.centre-mersenne.org/item/10.5802/jtnb.775.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "公开原站HTTP",
+      "query": "GET https://arxiv.org/pdf/2209.12677v2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "下载PDF并留哈希；实际阅读范围见证据。path=internal/p1168_abramov_v2.pdf SHA256=af0a77d9f86b3f25b305a3d306dc836aa12d9bee2dc181b0c4cfd54820f266b8",
+      "url": "https://arxiv.org/pdf/2209.12677v2",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "公开原站HTTP",
+      "query": "GET https://arxiv.org/pdf/1904.09196v3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "下载PDF并留哈希；实际阅读范围见证据。path=internal/p1168_computation_v3.pdf SHA256=7869acd87750d5d20593dc0644e12eccecb1bcb85e6bed4b6fb2403c8a8d42c5",
+      "url": "https://arxiv.org/pdf/1904.09196v3",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地PDF渲染与正文读取",
+      "query": "pdftoppm: Kurepa1971 PDF pages2–8=printed147–153; Barsky–Benzaghou2011 PDFp2=printed527; 2004p13; 1904.09196v3p2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "1971正文7页均视觉读取；另含1页扫描封面。确认手写批注不是原文。2004仅读引言、Lemma10/Thm3及证明开端，不称全审17页。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本地Python与手算",
+      "query": "left factorial n=0..12; gcd(!n,n!); prime reduction and 2-adic boundary; matrix m=2,n=4,p=3; Q(z)=z+3 at n=3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "仅小例实际运算，输出internal/p1168_origin_smallchecks.json；一般等价性证明与局部反例已完整写入evidence.note。未运行大规模搜索或原作者源码。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system2_search_query",
+      "query": "\"Kurepa\" \"2026\" proof left factorial",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际请求及完整响应缓存p1168_acad_b1.json；核同题、Bell/商/计算及完整声明；未凭搜索未命中判定全球开放。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system2_search_query",
+      "query": "\"2604.09714\"",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际请求及完整响应缓存p1168_acad_b1.json；核同题、Bell/商/计算及完整声明；未凭搜索未命中判定全球开放。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system2_search_query",
+      "query": "\"Kurepa conjecture\" \"verification\" primes",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际请求及完整响应缓存p1168_acad_b1.json；核同题、Bell/商/计算及完整声明；未凭搜索未命中判定全球开放。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system2_search_query",
+      "query": "\"Kurepa\" \"Gertsch\" quotient",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际请求及完整响应缓存p1168_acad_b1.json；核同题、Bell/商/计算及完整声明；未凭搜索未命中判定全球开放。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system1_search_query",
+      "query": "\"Kurepa\" \"conjecture\" \"proof\" \"2026\"",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际请求及完整响应缓存p1168_acad_b2.json；核同题、Bell/商/计算及完整声明；未凭搜索未命中判定全球开放。 recency=365；各稿真实版本日期另读原站。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system1_search_query",
+      "query": "\"left factorial\" \"counterexample\" \"2026\"",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际请求及完整响应缓存p1168_acad_b2.json；核同题、Bell/商/计算及完整声明；未凭搜索未命中判定全球开放。 recency=365；各稿真实版本日期另读原站。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system1_search_query",
+      "query": "\"Kurepa\" \"Gertsch quotient\" error",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际请求及完整响应缓存p1168_acad_b2.json；核同题、Bell/商/计算及完整声明；未凭搜索未命中判定全球开放。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system2_search_query",
+      "query": "\"Kurepa\" \"Howard\" \"gcd\" 2025",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际请求及完整响应缓存p1168_acad_b4.json；核同题、Bell/商/计算及完整声明；未凭搜索未命中判定全球开放。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system2_search_query",
+      "query": "\"Gertsch\" \"quotient\" \"primes\" -researchgate -gist -scirate",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际请求及完整响应缓存p1168_acad_b4.json；核同题、Bell/商/计算及完整声明；未凭搜索未命中判定全球开放。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system2_search_query",
+      "query": "\"Bell numbers and Kurepa\" condition",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际请求及完整响应缓存p1168_acad_b4.json；核同题、Bell/商/计算及完整声明；未凭搜索未命中判定全球开放。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system1_search_query",
+      "query": "\"r-Kurepa numbers and Kurepa Conjecture\" Howard",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际请求及完整响应缓存p1168_acad_b5.json；核同题、Bell/商/计算及完整声明；未凭搜索未命中判定全球开放。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system1_search_query",
+      "query": "\"Kurepa\" \"infinitely many primes\" nonzero",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际请求及完整响应缓存p1168_acad_b5.json；核同题、Bell/商/计算及完整声明；未凭搜索未命中判定全球开放。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system1_search_query",
+      "query": "\"Howard\" \"Kurepa\" \"Binary GCD\"",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际请求及完整响应缓存p1168_acad_b5.json；核同题、Bell/商/计算及完整声明；未凭搜索未命中判定全球开放。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv原文",
+      "query": "open abs/2604.09714、html/2604.09714v2；find Theorem1/Theorem5/Lemma9；download51页PDF；逐读所列关键链、渲染第4页",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "主问及所引进展的关键同余/adele证明均直接核；v2实际2026-04-21，聚合站4月14不是该版日期。取得全文不等通审全部51页。",
+      "url": "https://arxiv.org/html/2604.09714v2",
+      "locator": "§2–4、§5.1、§6.2 Lemma9、§6.3–6.4、§7；PDF pp4/33/35/41渲染，主审目读第4页",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv原文",
+      "query": "open abs/2509.06077、html/2509.06077v1；find Lemma5/Theorem16/17/Binary/Conjecture2；download60页PDF；目读p27图",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "原稿摘要只说新等价，但正文Theorem16–18确声称全猜想；独立核主要论证，不依赖MathDB导航的“无解决声明”摘要。",
+      "url": "https://arxiv.org/html/2509.06077v1",
+      "locator": "§4.1定义；PDF pp23–24、27–31、35–36",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv错误版本入口",
+      "query": "open html/2509.06077v2",
+      "date": "2026-11-27",
+      "outcome": "档案或版本缺失",
+      "note": "该记录实际只有v1；请求失败未当作论文不可访问，改读确有v1。",
+      "url": "https://arxiv.org/html/2509.06077v2",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "UMCS正式原刊",
+      "query": "open article/view/14452；download14452/10060，完整7页逐读",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "读Theorem2完整条件、Remark3计算范围、§2–4证明及references；外部2014和Kahale输入未独立重证。",
+      "url": "https://journals.umcs.pl/a/article/download/14452/10060",
+      "locator": "Gallardo2022 76(1)17–23，全部7页",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "SIAM ICM2026正式全文",
+      "query": "open DOI10.1137/25M1803139；find§3.3；读L187–210含原模型/计算界/矩阵递推",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "原始作者综述而非运行日志；有限p<2^40和随机启发式分开，其他章节未全部审。",
+      "url": "https://epubs.siam.org/doi/full/10.1137/25M1803139",
+      "locator": "David Harvey §3.3",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "MDPI正式刊物",
+      "query": "open Axioms12(8)785；find Abstract；读摘要、引言研究范围和日期",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "首次页面211行后重读692行，实际只核摘要/引言，未审所有定理；新等价和继续研究，不是原题完整解决声明。",
+      "url": "https://www.mdpi.com/2075-1680/12/8/785",
+      "locator": "2023-08-12；摘要及引言",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本轮精确算术",
+      "query": "Python整数阶乘/Bell递推；核p3,5,7,11,13,17的G/W/Der；核half-factorial p3,10331；核shift4 gcd",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际结果p1168_academic_checks.json；仅验证声明的具体小例/边界，未新跑大范围Kurepa或改写历史2^40为自跑。",
+      "url": "https://arxiv.org/html/2604.09714v2",
+      "locator": "E1168-ACA-COUNTER26、E1168-ACA-SHIFT4、E1168-ACA-GALLARDO",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / Formal Conjectures",
+      "query": "\"Kurepa\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "topn=20，定位真实路径 FormalConjectures/Paper/Kurepa.lean，后固定全文读取。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / openai/math",
+      "query": "\"Kurepa\" OR \"left factorial\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "topn=20；后另实际扫描两份固定完整目录，不据空结果证明数学开放。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "Kurepa conjecture proof 2026 Lean GitHub",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回 Prove Together、其他 AI/Lean 成果索引；随后核同题端点，其他猜想不借用。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "\"cb-0042\" Kurepa",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "主要型号同名噪声，转 GitHub 定向库内源码检索。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "site:hexagonmath.org \"Kurepa\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未得到左阶乘同题完整解；出现 Kurepa families/set theory 与其他形式化索引，不将同姓不同对象混入。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / Formal Conjectures",
+      "query": "fetch_file FormalConjectures/Paper/Kurepa.lean @ ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全文145行；3个主猜想占位、2个等价归约完整证明体和2个n<50测试，逐一比量词。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Paper/Kurepa.lean",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / conjecture-bench",
+      "query": "\"cb-0042\" OR \"Kurepa\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "定位主JSON及3个FC发现记录；实际全文读cb0042及奇素数声明记录0756。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / Formal Conjectures PRs",
+      "query": "Kurepa state:all",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "topn=20；同题PR535为AlphaProof归约，另PR4213属于集合论分划关系同姓结果，排除。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S1",
+      "query": "\"Kurepa\" \"proof\" \"2026\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365；召回ICM2026算法综述、有限数值稿及AI trace等；学术和历史计算由主审/出处分支负责，本分支只跟进代码/AI端点。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S1",
+      "query": "\"Kurepa\" \"conjecture\" \"Lean\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；取得 Prove Together 原题及FC官方文档线索，没有据research open标签作最终数学判断。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S1",
+      "query": "\"Kurepa\" \"counterexample\" \"code\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回2019/2020计算论文与作者程序、aiXiv有误后更正的运行记录；随后精读相关程序和范围。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / conjecture-bench",
+      "query": "fetch_file problems/conjectures/cb-0042.json @ 8d494791ace5894b860585d67ba8e69dbfed6376",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整JSON：奇素数版、反例有限可查、2026-07-22状态观察、来源1904.09196。",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0042.json",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / conjecture-bench",
+      "query": "fetch_file problems/extended-catalog/formal-conjectures/fc-bench-v1-0756.json @ 8d494791ace5894b860585d67ba8e69dbfed6376",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "contains_placeholder=false只修饰去掉证明体后的Lean声明；同一固定FC原文件实际为by sorry。",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/formal-conjectures/fc-bench-v1-0756.json",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / milostatarevic/left-factorial",
+      "query": "GET commits?per_page=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "锁定当前head cf9aeb1389cab1134acc8653d8fc3a80a4b4004d，来源提交时间2019-04-22T07:01:00Z。",
+      "url": "https://api.github.com/repos/milostatarevic/left-factorial/commits?per_page=1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Prove Together",
+      "query": "open problems/210",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整58行；页面只提供题面、来源与formal target，无公共讨论/可复用引理记录。",
+      "url": "https://provetogether.ai/problems/210",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "research.muzz.in",
+      "query": "open topics/kurepa/",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "Web工具返回Internal Error / not accessible；后以官方网页索引获取有限摘要，并尝试一次直接HTTP。",
+      "url": "https://research.muzz.in/topics/kurepa/",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "aiXiv public trace",
+      "query": "open trace/66/view?page=2&view=raw",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "该页9785行，属于2026-10-03..04 Claude Sonnet5.5代理记录；本轮聚焦Kurepa段，不审其他题。",
+      "url": "https://aixiv.online/trace/66/view?page=2&view=raw",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / Formal Conjectures",
+      "query": "fetch PR535 with diff/metadata/comments",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "已合并2025-08-06；head2720eb1e72d85e540562388584e92deb16775e07，mergeab64c721d5b0641c589438e476c4682e9f5b0b38；只补两个API归约。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/535",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / Formal Conjectures",
+      "query": "fetch_file FormalConjectures/Paper/Kurepa.lean @ 7a41db3d761324599812d6ca6cb6a9f311046dc7",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整142行，和当前版实际diff只涉及module/public import/expose；数学声明、证明体与3个sorry保持一致。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/FormalConjectures/Paper/Kurepa.lean",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / milostatarevic/left-factorial",
+      "query": "GET git/trees/cf9aeb1389cab1134acc8653d8fc3a80a4b4004d?recursive=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整recursive tree，truncated=false；存在range/single源码和依赖，不包含计算全区间的out.remainders结果文件或形式化证书。未读全库所有算术实现。",
+      "url": "https://api.github.com/repos/milostatarevic/left-factorial/git/trees/cf9aeb1389cab1134acc8653d8fc3a80a4b4004d?recursive=1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "aiXiv trace 内定向查找",
+      "query": "find Kurepa; find Recheck",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取Kurepa相关原始命令与先后两次输出，定位旧total错误及更正后3..20000范围。",
+      "url": "https://aixiv.online/trace/66/view?page=2&view=raw",
+      "locator": "工具行269–291及1006",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "site:research.muzz.in/topics/kurepa/",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "官方索引说明1条关联review和38条source，只是导航，无专门synthesis，不是39个verified findings；没有取得该review正文。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "site:research.muzz.in \"Kurepa\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回同主题导航、methods/limits及其他主题；不能从review数量判本题解决。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Prove Together",
+      "query": "click formal target214; open targets/214",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整27行；精确目标为∀n>2，!n%n≠0，明说formal statement不是proof。",
+      "url": "https://provetogether.ai/targets/214",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / milostatarevic/left-factorial",
+      "query": "fetch_file README.md @ cf9aeb1389cab1134acc8653d8fc3a80a4b4004d",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全文说明single/range两算法，GMP/FLINT/NTL/NTT依赖，示例预期输出与范围延续；没有将示例当本轮复跑。",
+      "url": "https://github.com/milostatarevic/left-factorial/blob/cf9aeb1389cab1134acc8653d8fc3a80a4b4004d/README.md",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub global code search",
+      "query": "\"kurepa_conjecture\" \"proof\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "topn=20；定位Aristotle结果和mathdb目标，随后固定全文读取；其他benchmark prove/refute指令不是证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "research.muzz.in HTTP fallback",
+      "query": "GET https://research.muzz.in/topics/kurepa/ via urllib timeout25s",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "一次直接请求返回HTTP403，保存错误记录，不绕过访问限制。",
+      "url": "https://research.muzz.in/topics/kurepa/",
+      "locator": "internal/p1168_muzz_access.json",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / Aristotle public result",
+      "query": "fetch_file submissions/nu4_final/slot577_kurepa_conjecture_result.lean @ 2425339a625bf9e9edef22efee04471db6562bcb",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整493行，核定义、条件性归约和3≤n<2000终点；静态无sorry/admit/axiom，含native_decide，未编译/查axioms。",
+      "url": "https://github.com/kavanaghpatrick/aristotle-math-problems/blob/2425339a625bf9e9edef22efee04471db6562bcb/submissions/nu4_final/slot577_kurepa_conjecture_result.lean",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / mathdb-lean/problems",
+      "query": "fetch_file problems/370215/RKurepa_kurepa_conjecture.lean @ 4c3a9ececb405c5fb50d2682a4a4cd47c544efa0",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整142行；末尾只是abbrev Target，附带FC旧归约和n<50gcd特例，未含主猜想证明。",
+      "url": "https://github.com/mathdb-lean/problems/blob/4c3a9ececb405c5fb50d2682a4a4cd47c544efa0/problems/370215/RKurepa_kurepa_conjecture.lean",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / milostatarevic/left-factorial",
+      "query": "fetch_file single/lfr.cpp @ cf9aeb1389cab1134acc8653d8fc3a80a4b4004d",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全文静态阅读，main接收p并输出calc(p)；不自带p的素性证书，未构建依赖或执行。",
+      "url": "https://github.com/milostatarevic/left-factorial/blob/cf9aeb1389cab1134acc8653d8fc3a80a4b4004d/single/lfr.cpp",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / milostatarevic/left-factorial",
+      "query": "fetch_file range/main.c @ cf9aeb1389cab1134acc8653d8fc3a80a4b4004d",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全文静态阅读CLI、端点调整、余数收集调度；mpz_nextprime会改变输入端点，读取不等于全算法正确性复核。",
+      "url": "https://github.com/milostatarevic/left-factorial/blob/cf9aeb1389cab1134acc8653d8fc3a80a4b4004d/range/main.c",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / Formal Conjectures",
+      "query": "fetch_file lean-toolchain @ ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际Lean4.33.1；未安装或运行。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lean-toolchain",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / Formal Conjectures",
+      "query": "fetch_file lake-manifest.json @ ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际mathlibrev0df444a360eaa60ab8c11dca51a86af692955474及依赖清单；不等于依赖全部通过本轮审计。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lake-manifest.json",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Prove Together public accepted solutions",
+      "query": "click /api/v1/targets/214/solutions?limit=20",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "实际JSON items=[]，next_cursor=null；无后续页，不把target的accepted状态当解答。",
+      "url": "https://provetogether.ai/api/v1/targets/214/solutions?limit=20",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "openai/math 两份固定目录本地扫描",
+      "query": "Kurepa|left.factorial|factorial.{0,40}(residue|sum)",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "overview.tex865行、CONTENTS.md9262行实际逐行扫描均0；未全读所有稿件。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/CONTENTS.md",
+      "locator": "internal/p1168_oai_catalog_scan.json",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / milostatarevic/left-factorial",
+      "query": "fetch_file range/remainders.c @ cf9aeb1389cab1134acc8653d8fc3a80a4b4004d",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全文取到；定向核collect_remainders输出层L319–359，实际L345减1和无符号回绕修正；与single/lfr.cppL282–283对照，不复跑大型算法。",
+      "url": "https://github.com/milostatarevic/left-factorial/blob/cf9aeb1389cab1134acc8653d8fc3a80a4b4004d/range/remainders.c",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "internal/p1168_task.json / package/任务.jsonl / frozen GitHub",
+      "query": "核任务与包内同ID行、冻结text/meta内容、当前rev及Git blob SHA。",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-TASK",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001168.text.md",
+      "locator": "problems/001/QX-P-001168.text.md §§题面、人话、原文、边界；problems/001/QX-P-001168.meta.json card_rev/acceptance/provenance",
+      "result_count": 1,
+      "note": "当前rev 6effbd921c990d1f一致；旧novelty依rev 81ad8ea30db136f6，不把旧open标签算本轮数学核查。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "rg -n -i package/全库查重简索引.jsonl",
+      "query": "Kurepa|Kurelpa|左阶乘|left.?factorial|subfactorial|derangement|错排|Bell|贝尔|factorial|阶乘",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-INITIAL",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "2469行JSONL原始宽检索",
+      "result_count": 21,
+      "note": "包括Kurepa树、Bellman、labelling、阿贝尔簇和算子代数factorial等同词噪声；后续只对数学有价值的候选核正文。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl",
+      "query": "Kurepa|Kurelpa|left.?factorial|左阶乘|subfactorial|阶乘和|factorial.?sum|sum.*factorial|gcd.*factorial|!p|!n",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-INDEX-1",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "实际标题/英文标题/aliases召回见internal/p1168_index_scan.json",
+      "result_count": 2,
+      "note": "索引只作召回；未把同人名、同函数记号或有限群derangement关键词认作严格同题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl",
+      "query": "Wilson|威尔逊|Bell.?number|Bell数|贝尔数|Gertsch|derangement|错排",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-INDEX-2",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "实际标题/英文标题/aliases召回见internal/p1168_index_scan.json",
+      "result_count": 3,
+      "note": "索引只作召回；未把同人名、同函数记号或有限群derangement关键词认作严格同题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl",
+      "query": "factorial|阶乘",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-INDEX-3",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "实际标题/英文标题/aliases召回见internal/p1168_index_scan.json",
+      "result_count": 9,
+      "note": "索引只作召回；未把同人名、同函数记号或有限群derangement关键词认作严格同题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl",
+      "query": "B44|cb-0042|2209.12677|2604.09714",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-INDEX-4",
+      "outcome": "执行无命中",
+      "locator": "实际标题/英文标题/aliases召回见internal/p1168_index_scan.json",
+      "result_count": 0,
+      "note": "索引只作召回；未把同人名、同函数记号或有限群derangement关键词认作严格同题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen file fetch",
+      "query": "github_fetch_file(repository_full_name=qunxingmath-org/qunxing-data, ref=73290369a8dcc632e25e555aec525565ea6e08f8, path=problems/000/QX-P-000148.meta.json)；同前缀text.md也读取。",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-READ-QX-P-000148",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000148.text.md",
+      "locator": "problems/000/QX-P-000148.text.md §§题面、人话、原文、边界；problems/000/QX-P-000148.meta.json card_rev/acceptance/provenance",
+      "result_count": 2,
+      "note": "rev 030bd930755af3ee；meta SHA 80ac0df194f8ffc0f6e6bacb069855a4f20e3ec0；text SHA 054e15d8830ed634b63d0b198ba44d205b35668f。全部实际内容已缓存，逐项比量词与目标。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen file fetch",
+      "query": "github_fetch_file(repository_full_name=qunxingmath-org/qunxing-data, ref=73290369a8dcc632e25e555aec525565ea6e08f8, path=problems/000/QX-P-000174.meta.json)；同前缀text.md也读取。",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-READ-QX-P-000174",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000174.text.md",
+      "locator": "problems/000/QX-P-000174.text.md §§题面、人话、原文、边界；problems/000/QX-P-000174.meta.json card_rev/acceptance/provenance",
+      "result_count": 2,
+      "note": "rev 6d683205d4b04934；meta SHA 5e1e40bc8044907a178a69646e53942d35907c5c；text SHA 5004c164d5705939bafa3d3acaeeea5fdb7daac9。全部实际内容已缓存，逐项比量词与目标。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen file fetch",
+      "query": "github_fetch_file(repository_full_name=qunxingmath-org/qunxing-data, ref=73290369a8dcc632e25e555aec525565ea6e08f8, path=problems/001/QX-P-001168.meta.json)；同前缀text.md也读取。",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-READ-QX-P-001168",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001168.text.md",
+      "locator": "problems/001/QX-P-001168.text.md §§题面、人话、原文、边界；problems/001/QX-P-001168.meta.json card_rev/acceptance/provenance",
+      "result_count": 2,
+      "note": "rev 6effbd921c990d1f；meta SHA 7828e42057d204f0229d5851308e85b6402d7268；text SHA 1d8b65f2eef4c5f19965ec549e84dc563d00e405。全部实际内容已缓存，逐项比量词与目标。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen file fetch",
+      "query": "github_fetch_file(repository_full_name=qunxingmath-org/qunxing-data, ref=73290369a8dcc632e25e555aec525565ea6e08f8, path=problems/001/QX-P-001707.meta.json)；同前缀text.md也读取。",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-READ-QX-P-001707",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001707.text.md",
+      "locator": "problems/001/QX-P-001707.text.md §§题面、人话、原文、边界；problems/001/QX-P-001707.meta.json card_rev/acceptance/provenance",
+      "result_count": 2,
+      "note": "rev 223391beabc965fc；meta SHA 18853e915be577e8c73a411039b4a83533b1ed5c；text SHA dad03ac8ce8847e23723305751bdc5c343f570b1。全部实际内容已缓存，逐项比量词与目标。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen file fetch",
+      "query": "github_fetch_file(repository_full_name=qunxingmath-org/qunxing-data, ref=73290369a8dcc632e25e555aec525565ea6e08f8, path=problems/001/QX-P-001932.meta.json)；同前缀text.md也读取。",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-READ-QX-P-001932",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001932.text.md",
+      "locator": "problems/001/QX-P-001932.text.md §§题面、人话、原文、边界；problems/001/QX-P-001932.meta.json card_rev/acceptance/provenance",
+      "result_count": 2,
+      "note": "rev 362689db82c6930b；meta SHA e77e24d46544afb5da4e19251c681ab04ebf3d71；text SHA f6184a8cfa1f61390a323b4b9de48117fe1ccd3f。全部实际内容已缓存，逐项比量词与目标。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen file fetch",
+      "query": "github_fetch_file(repository_full_name=qunxingmath-org/qunxing-data, ref=73290369a8dcc632e25e555aec525565ea6e08f8, path=problems/002/QX-P-002043.meta.json)；同前缀text.md也读取。",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-READ-QX-P-002043",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002043.text.md",
+      "locator": "problems/002/QX-P-002043.text.md §§题面、人话、原文、边界；problems/002/QX-P-002043.meta.json card_rev/acceptance/provenance",
+      "result_count": 2,
+      "note": "rev 0ff7d690949d31ed；meta SHA 30aa57c3f26db06216e7448980ac4c588ea49d41；text SHA 5ded45e21a75fbb176984dd88cecbbfd9b70c81f。全部实际内容已缓存，逐项比量词与目标。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen file fetch",
+      "query": "github_fetch_file(repository_full_name=qunxingmath-org/qunxing-data, ref=73290369a8dcc632e25e555aec525565ea6e08f8, path=problems/002/QX-P-002320.meta.json)；同前缀text.md也读取。",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-READ-QX-P-002320",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002320.text.md",
+      "locator": "problems/002/QX-P-002320.text.md §§题面、人话、原文、边界；problems/002/QX-P-002320.meta.json card_rev/acceptance/provenance",
+      "result_count": 2,
+      "note": "rev 484b381f996d8641；meta SHA e798a8c9c634171adb68fe415326791cfd3fff26；text SHA b18f64d2d47cbdf0cd6c8294d0ac6ca5918413c5。全部实际内容已缓存，逐项比量词与目标。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen file fetch",
+      "query": "github_fetch_file(repository_full_name=qunxingmath-org/qunxing-data, ref=73290369a8dcc632e25e555aec525565ea6e08f8, path=problems/002/QX-P-002321.meta.json)；同前缀text.md也读取。",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-READ-QX-P-002321",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002321.text.md",
+      "locator": "problems/002/QX-P-002321.text.md §§题面、人话、原文、边界；problems/002/QX-P-002321.meta.json card_rev/acceptance/provenance",
+      "result_count": 2,
+      "note": "rev c258cd092cc7aa00；meta SHA 7fafe23b73a7362a3453700cdfcfc6467cd66246；text SHA 44cdf44b9dc6bb2178b10eb07de93056d905a7ef。全部实际内容已缓存，逐项比量词与目标。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本地Python整数算术及手工一般证明",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002199〕",
+      "date": "2026-11-27",
+      "request_id": "P1168-DUP-MATH",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001168.text.md",
+      "locator": "p1168_boundary_checks.json/.log；E1168-DUP-SMALL/GCD/DERANGEMENT完整note",
+      "note": "只算n=0..8和p=2,3,5,7，未重复主审大范围素数枚举；无限等价性由完整数学推导给出。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P1168-RK-Q01",
+      "route": "学术",
+      "site": "Zenodo",
+      "query": "open https://zenodo.org/records/17403337",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://zenodo.org/records/17403337",
+      "locator": "官方记录页",
+      "note": "网页工具返回 Internal Error；不能据此断言原稿不存在。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "P1168-RK-Q02",
+      "route": "学术",
+      "site": "ResearchGate 作者公开上传",
+      "query": "open author publication 396744573；find Conjecture；find 4 Classification；open near line910",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.researchgate.net/publication/396744573_r-Kurepa_numbers_and_Kurepa_Conjecture",
+      "locator": "书目、作者上传日期及§4",
+      "note": "得到全文转写；Conjecture命中，4 Classification未命中；摘要声称通过r-Kurepa证明r=0原猜想。",
+      "result_count": 1,
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P1168-RK-Q03",
+      "route": "学术",
+      "site": "ResearchGate 下载入口",
+      "query": "click publication page Download file PDF (link5)",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://www.researchgate.net/publication/profile/Francis-Atta-Howard/publication/396744573_r-Kurepa_numbers_and_Kurepa_Conjecture/links/68f82e22f3032e2b4beb09d8/r-Kurepa-numbers-and-Kurepa-Conjecture.pdf",
+      "locator": "下载链接解析",
+      "note": "该次工具生成带多余/publication/的地址并404；后续作者公开PDF正确地址成功。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "P1168-RK-Q04",
+      "route": "学术",
+      "site": "Zenodo 官方API",
+      "query": "urllib GET https://zenodo.org/api/records/17403337",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "url": "https://zenodo.org/api/records/17403337",
+      "locator": "官方记录API",
+      "note": "实际HTTP403；记录internal/p1168_rkurepa_access.json，未绕过权限。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "P1168-RK-Q05",
+      "route": "学术",
+      "site": "Web Search system1",
+      "query": "\"10.5281/zenodo.17403337\"; \"r-Kurepa numbers and Kurepa Conjecture\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://www.researchgate.net/publication/396744573_r-Kurepa_numbers_and_Kurepa_Conjecture",
+      "locator": "精确DOI及题名召回",
+      "note": "用于定位作者上传本；未以其他Kurepa/Bell搜索摘录代替本篇原文。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P1168-RK-Q06",
+      "route": "学术",
+      "site": "ResearchGate 作者公开PDF",
+      "query": "open correct direct author PDF; urllib GET same public URL",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.researchgate.net/profile/Francis-Atta-Howard/publication/396744573_r-Kurepa_numbers_and_Kurepa_Conjecture/links/68f82e22f3032e2b4beb09d8/r-Kurepa-numbers-and-Kurepa-Conjecture.pdf",
+      "locator": "16页全文；关键p5、p10–12",
+      "note": "网页工具成功读取16页；本地HTTP200 application/pdf，429219字节，SHA256 d4de06dde7285e27a6d41a87b55203c1c36429f62714b693c8b5fa0117f76cc9",
+      "result_count": 1,
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P1168-RK-Q07",
+      "route": "学术",
+      "site": "本地PDF文字及视觉核对",
+      "query": "pdftotext -layout；读取p5/6/10/11/12/13/14；pdftoppm p5,p10,p11,p12并view_image",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.researchgate.net/profile/Francis-Atta-Howard/publication/396744573_r-Kurepa_numbers_and_Kurepa_Conjecture/links/68f82e22f3032e2b4beb09d8/r-Kurepa-numbers-and-Kurepa-Conjecture.pdf",
+      "locator": "p5 Eq(3.3)，pp10–12 Conjecture1、Lemma1、Lemma2、Corollary4/5",
+      "note": "明确区分普通r-K_n与作者另设花体gcd符号；公式、n≥2条件及依赖关系均经实际页图核对；并未逐步验证整篇16页。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P1168-RK-Q08",
+      "route": "学术",
+      "site": "独立精确算术",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002200〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.researchgate.net/profile/Francis-Atta-Howard/publication/396744573_r-Kurepa_numbers_and_Kurepa_Conjecture/links/68f82e22f3032e2b4beb09d8/r-Kurepa-numbers-and-Kurepa-Conjecture.pdf",
+      "locator": "r=1,n=5 对广义断言及Lemma1的精确证书",
+      "note": "仅一个小例，无大范围枚举；整数算术证明gcd(153,720)=9及gcd(51,240)=3。",
+      "result_count": 1,
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本轮并行独立数学复核",
+      "query": "第二审阅者读2604v2 pp4/9/15/33及2509v1 pp27–30，独立核p5/p3小例、A商环范围和Lemma5逻辑",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "同轮交叉核对确认小例与关键漏洞诊断；不是题库正式结案二审，也未扩成全部文稿已审核。",
+      "url": "https://arxiv.org/html/2604.09714v2",
+      "locator": "E1168-ACA-COUNTER26；E1168-ACA-HOWARD25",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "r-Kurepa作者PDF，主审交叉阅读",
+      "query": "读取本地原PDF pp5/10–12，核S_r(n)定义及共同因子到gcd的推理",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "主审独立核r1n5的153/720与归一化51/240；r0 Cor4仍依赖失效的一般Lemma1–2，不把广义反例当原猜想反例。",
+      "url": "https://www.researchgate.net/publication/396744573_r-Kurepa_numbers_and_Kurepa_Conjecture",
+      "locator": "E1168-RK-SOURCE/COUNTEREXAMPLE/DEPENDENCY",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E1168-ORIGIN-KUREPA1971",
+      "url": "https://oeis.org/A003422/a003422_1.pdf",
+      "locator": "原刊pp147–153；定义§1 p147，素数归约Lemma1.3 p148，gcd定义§2.1及Main theorem2.4 p149；Received行p153",
+      "version": "Đuro Kurepa, On the left factorial function !n, Mathematica Balkanica1(1971),147–153；Received02.09.1970；本轮2026-11-27读OEIS托管扫描",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "review_status": "仅核关键步骤",
+      "note": "已下载完整8页PDF：1页后加扫描封面+7页原刊正文，并逐页视觉读取147–153。页边手写批注和数表更正不是原刊文字，不作为作者正式勘误。原文p147定义!n=Σ_{m<n}m!，0!=1；虽然还讨论基数/序数及复数延拓，本题猜想域明确为有限自然数。p149§2.3/2.4的H1是∀n>1，gcd(!n,n!)=2；H2是∀n>2，!n≢0(modn)，并列出奇素数p的版本。p148Lemma1.3说若有反例，最小反例必为奇素数，故冻结题卡的奇素数命题正确对应原猜想。p147脚注只称部分结果在Ohrid1970-09-14至19日会议报告；p153记收稿1970-09-02。这些不是足以确定该猜想首次公开日的证据，最早完整公开文献按1971记。p152§5.1回指1964的基数左阶乘函数，不能因此把本有限数论猜想自动前推至1964。未对复函数/无限基数旁支进行查新。原扫描本地internal/p1168_kurepa1971.pdf，SHA256 eaf6ace7c2b62ea077a8060f501ede35314cf84765b5ed0999095fc24e2bdcb6。",
+      "claim_state": "无声明",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1168-ORIGIN-EQUIVALENCE",
+      "url": "https://oeis.org/A003422/a003422_1.pdf",
+      "locator": "pp148–149 prime reduction/Main theorem2.4；本轮独立补足2-adic边界",
+      "version": "1971原文；2026-11-27本轮独立数学核对",
+      "subquestions": [
+        "原题等价表述与边界"
+      ],
+      "scope_match": "原题等价",
+      "role": "进展",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "令L(n)=Σ_{k=0}^{n−1}k!。若素数q<=n，则L(n)≡L(q)(modq)，因k>=q各项k!均为q倍数。对n>=2，L(n)为偶数；对n>=4，L(n)≡L(4)=10≡2(mod4)，因为k>=4的阶乘均被4整除，n=2,3另算gcd分别为2。故若所有奇素数q都有q∤L(q)，则任何n!与L(n)的公因子不能含奇素数，也不能含4，从而∀n>=2 gcd(L(n),n!)=2。反过来令n=q即得奇素数版。gcd版又推出∀n>2 n∤L(n)，因若n|L(n)则n|gcd(L(n),n!)=2矛盾；全整数不整除版取n为奇素数即回到素数版。这是全称命题之间的等价，不声称给定一个合数n的单个不整除断言足以单独推出其gcd恰2。n=0采用空和L(0)=0、n=1的gcd=1，均不在gcd猜想n>=2域；p=2时L(2)=2，必须排除。实际小算n0..12得到L(3)=4、L(5)=34、L(7)=874，模p余数依次1、4、6；所以非零不等于总为1，单纯奇偶性也不能替代模奇素数条件。",
+      "claim_state": "无声明",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1168-ORIGIN-ABRAMOV-WITHDRAWAL",
+      "url": "https://arxiv.org/abs/2209.12677",
+      "locator": "官方v1/v2/v3页面Submission history及v3 Comments；另v2原稿Thm2.1 pp2–3",
+      "version": "v1 2022-08-31 20:17:26 UTC；v2 2022-09-29 00:12:52；v3 2022-09-30 19:53:33 withdrawn",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "撤回",
+      "publication": "预印本",
+      "review_status": "核对发现漏洞",
+      "note": "Vyacheslav M. Abramov的Kurepa’s conjecture on the left factorial function is true。官方v3明确作者撤回，注记其想法有误并收到领域研究者批评。旧卡2022-08-31(v3)混淆初稿和撤稿日期；正确撤稿为2022-09-30。v1/v2旧摘要仍保留肯定证明的声明；不能忽略后续v3，也不能把作者撤回当猜想反例。本轮v2完整3页已下载和读完，主定理2.1宣称∀n>=3，!n/n非整数。p3由L_{3,n−1}(0)≠0跳到L_{3,n−1}(n)不可能被n整除，混淆多项式是否有因子z与整数取值是否被n整除：一般整数多项式Q(z)=z+3有Q(0)=3≠0，但取n=3时Q(3)=6被3整除。此小例只否定该推理，不是Kurepa反例；无须据此重审全部旧稿。v2全文哈希af0a77d9f86b3f25b305a3d306dc836aa12d9bee2dc181b0c4cfd54820f266b8；v1仅读官方版本元数据，未下载其正文。",
+      "claim_state": "完全撤回",
+      "claimant": "Vyacheslav M. Abramov",
+      "claim_date": "2022-09-30",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "fully_retracted",
+        "claim_review": "gap_found",
+        "scope_match": "equivalent",
+        "role": "retraction",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1168-ORIGIN-BB2004",
+      "url": "https://jtnb.centre-mersenne.org/item/10.5802/jtnb.432.pdf",
+      "locator": "JTNB16(1)(2004),1–17；引言§1.2 pp2–3；Lemma10及Théorème3 p13，证明从p14起",
+      "version": "Daniel Barsky and Bénali Benzaghou, Nombres de Bell et somme de factorielles, DOI10.5802/jtnb.432；其Thm3于2011勘误撤回",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "正式刊发",
+      "review_status": "已读未核关键步骤",
+      "note": "实际下载17页原刊；仅读引言、p13 Lemma10/Thm3及证明开端，p13另视觉核式，不声称重审全部17页。Thm3直接宣称对奇素数p，κ_p=0!+⋯+(p−1)!与p互素，故是本题曾正式刊发的完整解决声明，不是只邻题。Lemma10在前，陈述κ_p=0与相应正规基展开系数λ_{p−1}=0等价。必须连同2011作者勘误使用：Thm3及证明已撤回，不能继续作为主问题已证证据；前面结果被保留不意味着Thm3仍可用。",
+      "claim_state": "部分撤回",
+      "claimant": "Daniel Barsky; Bénali Benzaghou",
+      "claim_date": "2011",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "partially_retracted",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1168-ORIGIN-BB2011-ERRATUM",
+      "url": "https://jtnb.centre-mersenne.org/item/10.5802/jtnb.775.pdf",
+      "locator": "正文唯一页527（下载PDF第2页）；官方Numdam记录JTNB_2011__23_2_527_0",
+      "version": "Erratum à l’article Nombres de Bell et somme de factorielles, JTNB23(2)(2011),527；DOI10.5802/jtnb.775",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "撤回/勘误",
+      "publication": "正式刊发",
+      "review_status": "仅核关键步骤",
+      "note": "完整一页正式勘误已文本读取并视觉核对。作者称Farid Bencherif及Joseph Oesterlé指出2004文Thm3证明存在不可修复的计算错误，明确撤回Thm3及其证明，Kurepa猜想并未由该文证明；同时明确此前直到Lemma10（含）的一切结果保留有效。故应记“部分撤回”，不是整篇论文撤回，也不是猜想被反驳。官网页面另有2017-03-02上线时间；原刊卷年为2011，二者不能混用。原PDF及SHA2560ae59bd37e681957a626641b96a17dcf427316aecda81477c3ee2d104d87506f已缓存。",
+      "claim_state": "部分撤回",
+      "claimant": "Daniel Barsky; Bénali Benzaghou",
+      "claim_date": "2011",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "partially_retracted",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "retraction",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1168-ORIGIN-COMPUTATION2015",
+      "url": "https://arxiv.org/pdf/1409.0800",
+      "locator": "v3 pp1–7 §§1–5：历史表、递推/GPU算法、交叉验证、结果及广义k版本；参考文献相关条目p8",
+      "version": "v1 2014-09-02；v3 2015-07-29；正式Math.Comp.85(2016),3061–3068，DOI10.1090/mcom/3098",
+      "subquestions": [
+        "有限计算界",
+        "历史计算范围"
+      ],
+      "scope_match": "特例",
+      "role": "进展",
+      "publication": "正式刊发",
+      "review_status": "仅核关键步骤",
+      "note": "Andrejić–Tatarević原预印本正文已读上述范围；不是只读摘要。作者报告计算并保存全部p<2^34的!p modp，无奇素数反例；GPU OpenCL运行约240天。§3明确验证方式：随机抽取超过200000个结果，用CPU128-bit较慢精确算法复核；再随机重跑2000万个GPU值，均相符。这是作者自己的交叉验证报告，本轮未跑原代码或全量数据。§1历史表列1990年3×10^5、1991年10^6、1998年3×10^6、1999年2^23、2000年2^26、2004年1.44×10^8等界；本轮未逐一取得这些更早原件，且部分是学位论文、私信或论坛帖，不把历史表转述都提升为独立核验。§4把余数近似随机当启发式并倾向存在反例，不是数学反驳。§5对(0!)^k+⋯+((p−1)!)^k在2<=k<=99给反例，只涉及k≠1的广义问题，不能混作本题反例。",
+      "claim_state": "公开声称",
+      "claimant": "Vladica Andrejić; Milos Tatarevic",
+      "claim_date": "2014-09-02",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1168-ORIGIN-COMPUTATION2020",
+      "url": "https://arxiv.org/pdf/1904.09196v3",
+      "locator": "4页全文：§1矩阵阶乘、§2.1–2.6实现与验证、§3结果、§4历史说明；正式书目另由Elsevier官方索引核",
+      "version": "v1 2019-04-19；v2 2019-07-29；v3 2020-12-17；正式Information Processing Letters167(April2021),106078，DOI10.1016/j.ipl.2020.106078",
+      "subquestions": [
+        "有限计算界"
+      ],
+      "scope_match": "特例",
+      "role": "进展",
+      "publication": "正式刊发",
+      "review_status": "仅核关键步骤",
+      "note": "Vladica Andrejić、Alin Bostan、Milos Tatarevic。固定v3四页全文实际取得并读完；正式期刊页直接403，卷期/DOI/摘要由Elsevier官方索引核到，未冒充原刊PDF已读。作者报告全部奇素数p<2^40=1099511627776都不整除!p，新搜索区间为(2^34,2^40)；有限域的p界不是全部大整数n的逐个完整阶乘计算，更不是一般证明。实现用GMP/NTT、FLINT筛素数及积树/余数树；约33000 core hours。§2.5只说以另一O(p^{1/2+ε})单值算法和NTL复核一个子集，不能写成两种算法独立重算所有素数。本轮未复跑作者大型计算或读取全量残数证书。§4作者自报数据始于2017、2018塞尔维亚数学大会已报告；未另取那份摘要，首次可直接核的预印本日期是2019-04-19。本文公开代码URL已转代码支线。p2展示的叶子提取存在本轮发现的一步偏移，见独立E1168-ORIGIN-ART-INDEX；这不自动否定实际程序和表格。",
+      "claim_state": "公开声称",
+      "claimant": "Vladica Andrejić; Alin Bostan; Milos Tatarevic",
+      "claim_date": "2019-04-19",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1168-ORIGIN-ART-INDEX",
+      "url": "https://arxiv.org/pdf/1904.09196v3",
+      "locator": "p1矩阵M_n定义与p2 R_{i,j}定义/叶子结果句，已看PDF原式；本轮m=2,n=4,p=3小例",
+      "version": "2020-12-17 v3；2026-11-27独立检查，仅展示公式，不是正式勘误",
+      "subquestions": [
+        "历史算法展示公式"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "原稿定义C_k=[[k,1],[0,1]]，右乘递推即M_n=C1⋯Cn=[[n!,L(n)],[0,1]]，该不变量直接由L(n+1)=L(n)+n!证得。随后R_{i,j}=M_m∏_{0<=r<j}A_{i,r}(modP_{i,j})；对含单个素数p的叶子，这个乘积截止p−1，因此右上项为L(p−1)，而目标L(p)=L(p−1)+(p−1)!≡L(p−1)−1(modp)。例如m=2,n=4,p=3，叶S_{1,0}={3}，R=M2，右上2，但L(3) mod3=1。故原稿字面“右上项直接等于r_p”需补乘C_p或将右上项减1。此为本轮展示下标检查，不是作者正式勘误；未由此判定实际程序或2^40计算数据错误。并行代码支本轮已固定commit cf9aeb1389cab1134acc8653d8fc3a80a4b4004d，静态核到range/remainders.c的collect_remainders在输出前r_p-=1，single/lfr.cpp也先加mod.n−1再归模，故实现已经处理该偏移；详见同轮代码证据。本原题分工未独立复跑源码，也未全审ART/NTT或重跑2^40数据。保留的是预印本展示下标问题，不是代码层未查或已发现程序错误。",
+      "claim_state": "无声明",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1168-ACA-HOWARD26",
+      "url": "https://arxiv.org/html/2604.09714v2",
+      "locator": "§2 Theorems1/2、Cor1；§4 Definition2/Thm4–5/Prop6；§5.1 Cor5；§6.2 Lemma9；§6.3–6.4及§7；非全部51页通审",
+      "version": "Francis Atta Howard, arXiv2604.09714v2,2026-04-21；v1=2026-04-08；51页989262bytes SHA256a29d07e4c4d86a6ac2e8fee2e4044753db1c1df4140abdffb0993d5b04191c94",
+      "subquestions": [
+        "所引2026商与adele声明",
+        "主问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "核对发现漏洞",
+      "note": "该稿并非可直接登记为可靠“2026理论前沿”的同题已证进展。主Theorem1是(K_p mod p)_p在A=(∏Fp)/(⊕Fp)非零；这只等价无穷多个p上K_p非零，弱于所有奇素数均非零。Theorem2将G_p=(K_p−Bell_{p−1}+1)/p与W_p普遍等同modp，但p5具体失败（另证）。§6.3起步把仅模p的Bell关系写成整数等号，之后除p仍保留modp，缺少模p²输入；§6.4再从“没有已知Gertsch零素数”及有限Wilson列表推全称非零，没有完成所需无限论证。Lemma9把没有已知零坐标直接当A中非零证明也无效：A中非零要求无穷非零坐标，有限观察不足，且有限坏坐标本身也不能反驳A的等式。主审已核关键论证并列具体小反例，未据此声称原Kurepa为假，亦未逐条审完51页所有旁支。",
+      "claim_state": "关键步骤受质疑",
+      "claimant": "Francis Atta Howard",
+      "claim_date": "2026-04-21",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "step_disputed",
+        "claim_review": "gap_found",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1168-ACA-COUNTER26",
+      "url": "https://arxiv.org/html/2604.09714v2",
+      "locator": "本轮独立数学核对，对照PDF p4/9/15/33；外链为被核声明，不是作者发布本轮勘误",
+      "version": "2026-11-27；精确整数结果p1168_academic_checks.json",
+      "subquestions": [
+        "Theorem2 KBW与Prop6、Cor5的小反例"
+      ],
+      "scope_match": "同源不同问",
+      "role": "反例",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "按原文K_p=Σ_{k=0}^{p−1}k!，Bell为普通Bell数，W_p=((p−1)!+1)/p。p=5时K5=34、Bell4=15、W5=5、G5=(34−15+1)/5=4。Theorem2(KBW)左=(34+1)/5=7≡2，右=15/5+5=8≡3(mod5)，因此两边都是整数仍不等，排除了仅以“有理数同余约定”修复此例。Prop6即便加Wilson-prime条件也在p5失败：34≡9 mod25，15+(5·5−1)=39≡14 mod25。§6.3所用整数等号K5=Bell4+4!也失败：34≠39；其正确版本只有mod5，除5会损失模5信息。另Cor5把K_p换成D_{p−1}再除p：p3时K3=4、Bell2=2、D2=1，原G3=1，而(D2−Bell2+1)/3=0，甚至mod3不同。已用Bell递推B0=1、B(n+1)=ΣC(n,k)B(k)，整数阶乘和错排容斥独立复算p3,5,7,11,13,17；见p1168_academic_checks.json。p3的(K3+1)/3=5/3、B2/3=2/3不能在F3中分别取模；固定有理数可在A忽略有限分母素数，不等于允许每个坐标分母随p变化为p，稿未补此定义条件。这里有限p反例严格否定所写逐素数同余，不能仅凭有限坐标差断言A商环等式本身为假；后者证明依赖失效仍未确证。所有反例针对论文中间命题，p5实际K5mod5=4，绝非Kurepa反例。 同轮另一审阅者独立读对应原PDF并复核上述小例与量词边界，结论一致；题库一般结案仍须另行二审。",
+      "claim_state": "无声明",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1168-ACA-HOWARD25",
+      "url": "https://arxiv.org/html/2509.06077v1",
+      "locator": "§4.1，Lemma5 p27、Theorem16 pp28–29、Theorem17–18 pp30–31；定义pp22–24；p27原PDF目视核",
+      "version": "Francis Atta Howard, arXiv2509.06077v1,2025-09-07；唯一公开版本；60页823979bytes SHA256ba84f67100e2e8fedd487775973adb81703d22451182a5912179dcff617a59d8",
+      "subquestions": [
+        "主问题",
+        "2025完整证明声明核验"
+      ],
+      "scope_match": "原题等价",
+      "role": "完整证明",
+      "publication": "预印本",
+      "review_status": "核对发现漏洞",
+      "note": "摘要称新等价，但正文Theorem16明确声称∀n≥1 gcd(F_n,(n+1)!)=2，Theorem17说由此得到Kurepa，不可漏记完整证明声明。由定义S(n,1)=1(n≥1)，F_n=Σ_{k=0}^n k!=K_{n+1}；所以全称Theorem16确为原猜想重编号（含已核n2边界）。稿中F_n=K_n及gcd(K_n,K_n)=2的局部式错误，修正下标可保留最终等价，但不能补证明。真正缺口在Lemma5：r_n=F_n/2、T=(n+1)!/2，先从r_n奇且T偶推gcd为奇，然后以三个小例直接取为1；奇偶性一般只排除2，gcd(3,6)=3反驳该一般推理，未给本结构排除奇素因子的证明。后段使用r_n x+Ty=1本身已等价所欲证互素，构成循环；Binary GCD算法能计算个别输入，不保证全部此族最终gcd1。Theorem16–18继续引用同一Lemma5/已设结论，未修复缺口。主审取得全文而只审与主声明相关§4链，未审其物理/多项式等全部60页。没有提供本猜想反例，仅判该证明未成立；保留公开声明及具体漏洞供二审。 同轮另一审阅者独立读对应原PDF并复核上述小例与量词边界，结论一致；题库一般结案仍须另行二审。",
+      "claim_state": "关键步骤受质疑",
+      "claimant": "Francis Atta Howard",
+      "claim_date": "2025-09-07",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "step_disputed",
+        "claim_review": "gap_found",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1168-ACA-SHIFT4",
+      "url": "https://arxiv.org/html/2509.06077v1",
+      "locator": "本轮独立数学核对，针对§4.3 Lemma8及Conjecture2；不属于原题反例",
+      "version": "2026-11-27；p1168_academic_checks.json",
+      "subquestions": [
+        "同稿a4平移邻题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "反例",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "同稿p35 Lemma8及p36Conjecture2声称a4平移后连续项gcd至多2。按其K_n=Σ_{k<n}k!定义，K17=22324392524314，K18=378011820620314，K17mod17=13；故K17+4和K18+4均被17整除且均为偶数。精确Euclid得到gcd(K17+4,K18+4)=34>2。对F_n=K_{n+1}，同一个反例下标应是n16，不得直接混用K/F的n17。论文把两个同下标gcd写相等亦须修正，但无论按K17还是F16均否定a4的普遍界/对应Lemma8。只反驳附加平移猜想；原题a0在p17余数13，未被反驳。来源MathDB仅作为导航，不采用其“正文没有解决声明”的概括；本轮亲读Theorem16–18另存完整声明证据。",
+      "claim_state": "无声明",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1168-ACA-GALLARDO",
+      "url": "https://journals.umcs.pl/a/article/download/14452/10060",
+      "locator": "完整7页，Theorem2/Remark3 pp17–18；§2–4 pp19–21条件证明；外引引理未重新证明",
+      "version": "Luis H. Gallardo, Ann.Univ.M.Curie-Skłodowska Sect.A76(1)(2022)17–23；DOI10.17951/a.2022.76.1.17-23；PDF SHA25694a4f3d5254791cc048bdfce2d945261c13eccfe3a0a1d511e4dfd0fbfeb92ae",
+      "subquestions": [
+        "附加β条件下的half-factorial素数类"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "正式刊发",
+      "review_status": "仅核关键步骤",
+      "note": "Theorem2先假设β(p−1)=r^{c(p)}仅有p3、10331两解，才对满足((p−1)/2)!=(2/p)于Fp的素数推出!p≠0。这里r根于X^p−X−1，c(p)=1+2p+…+(p−1)p^{p−2}，β定义见§2；此“mild condition”是全素数未证条件，不应在摘要中省略。Remark3报告GP检验p<4000000、约64小时；亦明确不知所选素数类是否无限，本轮未重跑该范围。已读其迹公式与k归约：目标类使Bell(p−1)=k，若k1则由假设落p3/10331，两者不在目标类。本轮独立算两者half-factorial均1，Legendre(2/p)均−1，排除步骤成立。外引2014有限域β关系和Kahale输入按正式结果使用，未重证全基础。因此是有全局附加条件的子类结果，不是无条件无限素数类或原猜想全解。",
+      "claim_state": "无声明",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1168-ACA-HARVEY2026",
+      "url": "https://epubs.siam.org/doi/full/10.1137/25M1803139",
+      "locator": "§3.3 L187–210及参考文献；只核与本题相关段落、非全部20页",
+      "version": "David Harvey, ICM2026 Volume3 pp414–433；DOI10.1137/25M1803139",
+      "subquestions": [
+        "已有有限计算与算法",
+        "随机模型的适用范围"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "正式刊发",
+      "review_status": "仅核关键步骤",
+      "note": "正式作者综述给此前计算p<2^40≈1.1×10^12无Kurepa反例，追引原算法论文（出处支另核）。同时讨论假设各p以1/p概率失败的随机模型，模型预期至X约loglogX例外并趋无穷；这只是启发式，不能拿0.0405或作者倾向当反例证明/已校准可信度。实际计算与模型方向可相反但不逻辑冲突。§3.3给行向量V_n=(n!,!n)，V0=(1,0)，A_n=[[n,1],[0,1]]，V_n=V_{n−1}A_n，对每个p求积A1…A_p模p；递推按定义直接成立，是批量ART计算目标，不是非零不变量。未运行2^40，未以它排除更大反例。",
+      "claim_state": "无声明",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1168-ACA-EQUIV2023",
+      "url": "https://www.mdpi.com/2075-1680/12/8/785",
+      "locator": "正式摘要、引言及日期；未通读全部11页定理",
+      "version": "Petojević–Gordić–Mandić–Gorjanac Ranitović, Axioms12(8)(2023)785；DOI10.3390/axioms12080785；2023-08-12",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "正式刊发",
+      "review_status": "未读全文",
+      "note": "实际核到摘要/引言明确提供continued fractions、floor和序列形式的新等价及错排数关系，没有在这些已读声明中宣称解决原猜想。这里只作近邻检索排除，未核所有等价证明，不能把new equivalents标题转换成已证原题。",
+      "claim_state": "无声明",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1168-CODE-FC",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Paper/Kurepa.lean",
+      "locator": "当前全文L36定义；L50/57/96主猜想；L65/103归约；L133/141有限例；和bench-v1全文diff",
+      "version": "当前commit ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8，blob b4192663109f578040a34577533ebf578de53928；旧commit 7a41db3d761324599812d6ca6cb6a9f311046dc7",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "review_status": "仅核关键步骤",
+      "note": "left_factorial定义为Finset.range n上k!和，准确含0!且止n−1；奇素数版前提2<p与p.Prime准确。当前和旧版均有三个猜想占位，全整数版∀n>2与奇素数版、gcd版的等价归约则有实质证明体，两个finite tests仅3≤n<50。实际两版本diff只有module/public import/expose改动。局部手核prime桥：若n∣!n且n有奇素因子p，则!n≡!p(modp)矛盾；若仅有素因子2，则n>2为4倍数，而!n≡2(mod4)矛盾。归约不证其任一侧。完整主猜想的形式化状态是题面/占位，不能用这些sorry标签推导当前数学状态；也不能把归约/测试编译目标当主题已证。本轮没有Lean执行及导入闭包公理审核。",
+      "claim_state": "无声明",
+      "formal_status": "已静态检查未复跑",
+      "rerun": {
+        "commit": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+        "theorem": "Kurepa.kurepa_conjecture.variants.prime；prime_reduction；gcd_reduction；variants.first_cases",
+        "toolchain": "Lean4.33.1；mathlib0df444a360eaa60ab8c11dca51a86af692955474",
+        "cache": "internal/p1168_Kurepa_current.lean；p1168_Kurepa_pinned.lean；p1168_code_static_audit.json",
+        "axioms": "未执行#print axioms或编译；当前及旧主文件各3个sorry，分别对应三个猜想本体。"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1168-CODE-ALPHAPROOF",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/535",
+      "locator": "完整PR正文、diff、元数据及返回的2条review/comment",
+      "version": "PR535；head2720eb1e72d85e540562388584e92deb16775e07；mergeab64c721d5b0641c589438e476c4682e9f5b0b38；2025-08-06合并",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "仅子问",
+      "role": "形式化",
+      "publication": "PR",
+      "review_status": "仅核关键步骤",
+      "note": "标题明确AlphaProof solutions仅针对kurepa_conjecture.prime_reduction和gcd_reduction；diff以两个完整证明体替换TODO/sorry，没有移除主猜想的sorry。2025-08-06合并、1文件46增9删，不是2026首次解决主问题。评论为排版建议及APPROVED，不是新数学全解说明。本轮未复跑PR环境/CI，也不以merged标签替代核对；当前文件仍保有同逻辑归约。",
+      "claim_state": "公开声称",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "Formal Conjectures contributor smmercuri；adapted from AlphaProof",
+      "claim_date": "2025-08-04",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1168-CODE-CB",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0042.json",
+      "locator": "cb-0042全文；extended-catalog fc-bench-v1-0756全文",
+      "version": "commit 8d494791ace5894b860585d67ba8e69dbfed6376；cb0042 blob d156b024aa1f85469a013adb4ec0554b718c8086；0756 blob ac075854438250729b1931dc8de0fadf7d5058cd",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "代码仓库",
+      "review_status": "本轮独立数学核对",
+      "note": "主JSON精确为每个奇素数p不整除Σk!，只记录2026-07-22状态观察和1904.09196来源。counterexample.finite=true指给定反例p的素性及模递推可有限检查，不是整个无限问题已有限化。发现记录0756含Lean声明且contains_placeholder=false，但text截止命题，无 := by 证明体；同commit来源7a41db3d的真实Lean在声明后是sorry。该布尔值不能当无占位完整证明。",
+      "claim_state": "无声明",
+      "formal_status": "仅有形式化题面或骨架",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1168-CODE-ARISTOTLE",
+      "url": "https://github.com/kavanaghpatrick/aristotle-math-problems/blob/2425339a625bf9e9edef22efee04471db6562bcb/submissions/nu4_final/slot577_kurepa_conjecture_result.lean",
+      "locator": "完整493行；L91/120/154/160归约；L286–388模递推；L445–456有限终点",
+      "version": "commit 2425339a625bf9e9edef22efee04471db6562bcb；blob6862f2d053052d299ef2b5b11a294321af4c70c0；SHA256cace930bf14fd4e9a8830af7b098b68a140db76d5e8cd53fa3f17dfb1ded72c1",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "仅子问",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "review_status": "仅核关键步骤",
+      "note": "文件自述仅为n<2000的计算形式化，准确终点是∀n,2<n→n<2000→!n%n≠0，以模递推正确性引理加native_decide完成有限检查；未删上界。静态手核step保存(sum of前k阶乘 modm,k!modm)，先加fact再乘k+1符合左阶乘。注意kurepa_reduction等4个版本假设∀p,p.Prime→!p%p≠0，含p=2而!2%2=0，前提不可满足；这些条件命题虽形式上可证明，却不能充当原题仅奇素数的归约，也不影响另列有限终点的范围。源码无字面sorry并不代表主猜想被证明，native_decide实际可信闭包和构建未复核。没有借别人的验证描述报成本轮通过。",
+      "claim_state": "公开声称",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "Aristotle (Harmonic)；公开保存者kavanaghpatrick",
+      "rerun": {
+        "commit": "2425339a625bf9e9edef22efee04471db6562bcb",
+        "theorem": "kurepa_conjecture_bound_2000；Kurepa.efficient_left_factorial_mod_correct",
+        "toolchain": "源码头部Lean4.24.0；mathlibf897ebcf72cd16f89ab4577d0c826cd14afaafc7",
+        "cache": "internal/p1168_aristotle_result.lean；p1168_code_static_audit.json",
+        "axioms": "静态未见sorry/admit/axiom关键字；含native_decide及exact?。未编译、未运行#print axioms或审Mathlib导入闭包，不能报kernel-clean。"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1168-CODE-COMPUTE",
+      "url": "https://github.com/milostatarevic/left-factorial/blob/cf9aeb1389cab1134acc8653d8fc3a80a4b4004d/README.md",
+      "locator": "完整递归目录；README；single/lfr.cpp与range/main.c全文静态范围",
+      "version": "commit cf9aeb1389cab1134acc8653d8fc3a80a4b4004d（2019-04-22）；README blob12e4f51191f8873b43265aa008ac1298bd459ce8；single6759c15901e9726b8b99e7d8218204890ece7fa1；rangeec49d008abc1d6078c819cacb741662b4f6ebda5",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "仅子问",
+      "role": "证书",
+      "publication": "代码仓库",
+      "review_status": "已读未核关键步骤",
+      "note": "作者2019/2020算法稿的公开实现有单素数和区间两条路线，依赖GMP/FLINT/NTL和自带NTT。README提供p=1099508390819预期余数3851026的示例，以及延续区间命令；这些是作者示例，不是本轮输出。完整树没有作者全区间out.remainders数据/运行日志/形式化负证书。single主入口直接atoll→calc→打印，不自带输入素性证明；候选反例仍须独立素性核验。range主入口用mpz_nextprime调整两端点，故命令的数值端点不等同打印/覆盖的素数区间；需依实际输出和连续分段记录核范围。仅静态读README及两个入口完整实现，没有通审所有remainder tree/NTT依赖，更未构建/跑2^40计算。原文报告的p<2^40范围由出处/学术分支另行归档，不能由此代码存在就宣称本轮复跑通过。",
+      "claim_state": "公开声称",
+      "formal_status": "已静态检查未复跑",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1168-CODE-AIXIV",
+      "url": "https://aixiv.online/trace/66/view?page=2&view=raw",
+      "locator": "page2/2中Kurepa运行段：2026-10-04 08:15:09–08:15:21；web行269–291及1006",
+      "version": "aiXiv trace66；所列session claude-sonnet-5-5，2026-10-03..04；页面显示SHA256前缀8407f85c4d28e4ae",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "仅子问",
+      "role": "证书",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "原始日志第一次在total+=fact之前检测，实际total为!(n−1)，错报n=4,5,7；修订命令改为先加(n−1)!，再测total%n，输出!1..10=[1,2,4,10,34,154,874,5914,46234,409114]和n=3..20000无反例、用时0.6s。手核旧报错：!3=4可被4整除，并非!4=10；!4=10可被5整除，并非!5=34。因此错误输出不是Kurepa反例，修正后也只是有限范围的作者运行记录。没有在本轮执行该脚本，没有把其所在论文标题“28 Lean proofs”套给此子任务；仅审相关Kurepa段，未读9785行全部其他题轨迹。",
+      "claim_state": "有修订",
+      "formal_status": "未检到形式化",
+      "claimant": "公开Claude Code agent trace作者",
+      "claim_date": "2026-10-04",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "revised",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1168-CODE-PROVETOGETHER",
+      "url": "https://provetogether.ai/targets/214",
+      "locator": "problem210完整页；target214完整页；public accepted solutions API全1页",
+      "version": "2026-11-27实读；页面来源FC cd3d8db4634733a748b2380f80f77ba3e4b9dda0，检查日期2026-09-11",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "形式化",
+      "publication": "项目报告",
+      "review_status": "已读未核关键步骤",
+      "note": "Exact formal statement为∀n:Nat,2<n→!n%n≠0，目标页显式说明这是statement不是proof。Pinned Lean4.33.1/mathlib0df444a...和sourceSHA只是题面环境；公开解答API /api/v1/targets/214/solutions?limit=20返回items=[]、next_cursor=null，无需后翻。problem页亦无public讨论/复用引理。未把accepted target/available environment解读为主问题已证明；未读取其本地完整环境源码或运行verifier。",
+      "claim_state": "无声明",
+      "formal_status": "仅有形式化题面或骨架",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1168-CODE-MATHDB",
+      "url": "https://github.com/mathdb-lean/problems/blob/4c3a9ececb405c5fb50d2682a4a4cd47c544efa0/problems/370215/RKurepa_kurepa_conjecture.lean",
+      "locator": "完整142行；末尾L138–140 abbrev Target；同文件冻结的归约/测试",
+      "version": "commit 4c3a9ececb405c5fb50d2682a4a4cd47c544efa0；blobbd61794d8e23cbb083e00ac456fbb87867a5428c；上游source_version e04cc601840dd7a37f89b821a67f3a9e3c38d9c3",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "review_status": "本轮独立数学核对",
+      "note": "该文件没有主猜想sorry，原因是主目标仅定义为abbrev Target:Prop，而非提供该Prop的证明；辅助内容为冻结的两个FC归约与3≤n<50的gcd测试。header明确source_has_lean_proof=false、track=open，但本轮判断依实际声明结构而不是标签。不声称本轮构建通过，也不从该单文件判断mathdb全站没有其他新提交。",
+      "claim_state": "无声明",
+      "formal_status": "仅有形式化题面或骨架",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1168-CODE-MUZZ",
+      "url": "https://research.muzz.in/topics/kurepa/",
+      "locator": "官方题目导航的Web搜索全文摘要；Web直开失败及urllib403",
+      "version": "页面索引Public snapshot2026-11-09T07:59:44.645425+00:00；本轮2026-11-27访问",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "作者主页/个人索引",
+      "review_status": "未读全文",
+      "note": "可见官方摘要自称working notebook synthesis、AI reviews不等独立verification；显示1associated review+38sources，并说尚无dedicated synthesis。这些是导航关联计数，不是39个数学成果，也未形成可核主问题完整证明声明。Web直开not accessible、一次urllib请求403，未取得关联review正文及原稿，保持访问缺口；没有凭摘要宣布其中所有记录都已审完。",
+      "claim_state": "无声明",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E1168-CODE-COVERAGE",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/CONTENTS.md",
+      "locator": "所列FC/OAI/global code/Web查询及OAI两份固定完整目录扫描",
+      "version": "2026-11-27；OAI commit 3344da59991ed94f9ba711217b29c1d760badfa6",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "代码仓库",
+      "review_status": "已读未核关键步骤",
+      "note": "本轮代码/公开AI/社区检索未取得主问题的新完整证明或反例。OAI两目录共865+9262行实际扫描Kurepa/left factorial/factorial residues,sum均无命中；没有逐篇全文审全库。Hexagon定向搜索没有左阶乘完整解，Kurepa families/集合论及其他AI成果是不同问题；GitHub prove/refute benchmark任务文本也不是已经证明/反驳。2026 Gertsch稿与旧撤回证明由主审/出处分支另核，本文件不重复作数学总状态定论。没有运行Lean、C/C++算法、GMP/NTT或新增大范围计算；同会话最近环境无lean/lake/elan，本轮没有安装。",
+      "claim_state": "无声明",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1168-CODE-OFFBYONE",
+      "url": "https://github.com/milostatarevic/left-factorial/blob/cf9aeb1389cab1134acc8653d8fc3a80a4b4004d/range/remainders.c",
+      "locator": "collect_remainders L319–359，特别L343–349；single/lfr.cpp L282–283",
+      "version": "commit cf9aeb1389cab1134acc8653d8fc3a80a4b4004d；range/remainders.c blob4c7bc81596c6db269c4286bf794ca09d0dd314f1；single blob6759c15901e9726b8b99e7d8218204890ece7fa1",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "代码仓库",
+      "review_status": "仅核关键步骤",
+      "note": "出处分支指出1904.09196v3正文ART叶前缀按字面是M_(p−1)，其右上元为!(p−1)而非!p；本轮额外定向核固定实现，发现区间collect_remainders实际在读r_list后执行r_p-=1；若ulong下溢则if(r_p>p)r_p+=p，随后才打印。单值calc结尾亦a_1+=mod.n−1再模p。对素数p，Wilson给(p−1)!≡−1(modp)，故!p≡!(p−1)−1，正是所需修正。因此论文文字少一步不能推成最终代码同样少一步，更不能据此否定作者p<2^40报告。本轮仅静态确认两处末端修正及其数学意义，未全审ART前缀存储、NTT与所有数值分支，未编译或运行。缓存p1168_leftfactorial_remainders.c和实际工具返回并入p1168_code_source_cache.json。",
+      "claim_state": "无声明",
+      "formal_status": "已静态检查未复跑",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1168-DUP-SELF",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001168.text.md",
+      "locator": "problems/001/QX-P-001168.text.md §§题面、人话、原文、边界；problems/001/QX-P-001168.meta.json card_rev/acceptance/provenance",
+      "version": "frozen 73290369a8dcc632e25e555aec525565ea6e08f8；本轮独立核对 2026-11-27",
+      "subquestions": [
+        "Kurepa左阶乘猜想：∀奇素数p，p∤Σ_{k=0}^{p−1}k!"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "当前task、包内同行和冻结正文/meta一致，rev 6effbd921c990d1f。题面明确L_p=!p=Σ_{k=0}^{p−1}k!，只取奇素数p；acceptance允许全称证明或明确奇素数反例。旧novelty所依rev为81ad8ea30db136f6，其旧open/撤回/2026前沿标签不作为本支新状态结论；声称解及版本由主审另核。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1168-DUP-READSET",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001168.text.md",
+      "locator": "p1168_index_scan.json；p1168_duplicates_cache.json及verification；duplicates各定位",
+      "version": "frozen 73290369a8dcc632e25e555aec525565ea6e08f8；本轮独立核对 2026-11-27",
+      "subquestions": [
+        "Kurepa左阶乘猜想：∀奇素数p，p∤Σ_{k=0}^{p−1}k!"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "2469行简索引经宽检索和四组结构化召回，读取自身+7候选16份冻结text/meta。所有Git blob SHA重新计算吻合，全部rev与索引吻合，自身任务与包内原行一致。候选：QX-P-001707 rev 223391beabc965fc，problems/001/QX-P-001707.text.md，text SHA dad03ac8ce8847e23723305751bdc5c343f570b1，meta SHA 18853e915be577e8c73a411039b4a83533b1ed5c；QX-P-002043 rev 0ff7d690949d31ed，problems/002/QX-P-002043.text.md，text SHA 5ded45e21a75fbb176984dd88cecbbfd9b70c81f，meta SHA 30aa57c3f26db06216e7448980ac4c588ea49d41；QX-P-000148 rev 030bd930755af3ee，problems/000/QX-P-000148.text.md，text SHA 054e15d8830ed634b63d0b198ba44d205b35668f，meta SHA 80ac0df194f8ffc0f6e6bacb069855a4f20e3ec0；QX-P-000174 rev 6d683205d4b04934，problems/000/QX-P-000174.text.md，text SHA 5004c164d5705939bafa3d3acaeeea5fdb7daac9，meta SHA 5e1e40bc8044907a178a69646e53942d35907c5c；QX-P-001932 rev 362689db82c6930b，problems/001/QX-P-001932.text.md，text SHA f6184a8cfa1f61390a323b4b9de48117fe1ccd3f，meta SHA e77e24d46544afb5da4e19251c681ab04ebf3d71；QX-P-002320 rev 484b381f996d8641，problems/002/QX-P-002320.text.md，text SHA b18f64d2d47cbdf0cd6c8294d0ac6ca5918413c5，meta SHA e798a8c9c634171adb68fe415326791cfd3fff26；QX-P-002321 rev c258cd092cc7aa00，problems/002/QX-P-002321.text.md，text SHA 44cdf44b9dc6bb2178b10eb07de93056d905a7ef，meta SHA 7fafe23b73a7362a3453700cdfcfc6467cd66246。未发现严格同题；Kurepa树为同名异题，Wilson素数及阶乘/错排邻卡的量词和对象逐项排除。基于已读固定全文不提合并，不能把候选旧状态或本轮索引未召回当作全库唯一性的无条件证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1168-DUP-SMALL",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001168.text.md",
+      "locator": "check_p1168_boundaries.py；p1168_boundary_checks.json/.log，n=0..8及p=2,3,5,7",
+      "version": "frozen 73290369a8dcc632e25e555aec525565ea6e08f8；本轮独立核对 2026-11-27",
+      "subquestions": [
+        "Kurepa左阶乘猜想：∀奇素数p，p∤Σ_{k=0}^{p−1}k!"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "为避免常用!n记号歧义，记左阶乘为L_n=Σ_{k=0}^{n−1}k!，空和L_0=0。直接值L_0..L_7=0,1,2,4,10,34,154,874；p=3,5,7的L_p modp分别为1,4,6。p=2时L_2=2可被2整除，所以奇素数限定不可删除。gcd(L_0,0!)=gcd(0,1)=1，gcd(L_1,1!)=1，故gcd式必须从n>1开始。0!项也不能省略：p=3若误写Σ_{k=1}^{2}k!=3便被3整除，给的是改错定义后的反例。Wilson边界p=5：W_5=(4!+1)/5=5，故5是Wilson素数，而L_5=34不被5整除。这些只核定义与不同问题间的范围；有限小例未证明Kurepa全称断言。",
+      "rerun": {
+        "command": "python internal/check_p1168_boundaries.py > internal/p1168_boundary_checks.log",
+        "cache": "internal/p1168_boundary_checks.json",
+        "log_url": "internal/p1168_boundary_checks.log",
+        "toolchain": "Python标准库math.factorial/gcd/comb，精确整数",
+        "theorem": "仅定义小例；一般等价推理自包含于E1168-DUP-GCD和DERANGEMENT",
+        "axioms": "整数整除与容斥；没有外部大范围计算或概率假设。"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1168-DUP-GCD",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001168.text.md",
+      "locator": "problems/001/QX-P-001168.text.md §§题面、人话、原文、边界；problems/001/QX-P-001168.meta.json card_rev/acceptance/provenance",
+      "version": "frozen 73290369a8dcc632e25e555aec525565ea6e08f8；本轮独立核对 2026-11-27",
+      "subquestions": [
+        "Kurepa左阶乘猜想：∀奇素数p，p∤Σ_{k=0}^{p−1}k!"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "独立完整等价推导：命题A为∀奇素数p，p∤L_p；命题B为∀整数n>1，gcd(L_n,n!)=2。先核2进部分：n=2时gcd(2,2)=2，n=3时gcd(4,6)=2；n≥4时L_n≡0!+1!+2!+3!=10≡2(mod4)，因为k≥4的k!均被4整除，因此v2(L_n)=1，且n!偶，gcd的2进部分恰为2。若A成立，任取n≥2及奇素数p≤n，L_n−L_p=Σ_{k=p}^{n−1}k!被p整除，所以L_n≡L_p≠0(modp)。n!的每个奇素因子都≤n，因而gcd无奇素因子，结合2进部分得B。反向若B成立，对任意奇素数p取n=p：gcd(L_p,p!)=2不含奇素因子p，故p∤L_p，得到A。因此两表述严格等价，包括n=2,3边界；这里证明的是两个未知命题等价，不是证明其中任一个已经成立。证明不要求任何计算上界或新的文献假设。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1168-DUP-DERANGEMENT",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001168.text.md",
+      "locator": "本note容斥及有限域二项式推导；p1168_boundary_checks.json中primes项复算",
+      "version": "frozen 73290369a8dcc632e25e555aec525565ea6e08f8；本轮独立核对 2026-11-27",
+      "subquestions": [
+        "Kurepa左阶乘猜想：∀奇素数p，p∤Σ_{k=0}^{p−1}k!"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "设D_m为m个元素的无不动点排列数，D_0=1。容斥给D_m=Σ_{j=0}^m(−1)^j binom(m,j)(m−j)!。对任意素数p和0≤j≤p−1，binom(p−1,j)≡(−1)^j(modp)，因为分子各因子p−i≡−i、分母j!可逆。于是D_{p−1}≡Σ_{j=0}^{p−1}(p−1−j)!=L_p(modp)，故Kurepa等价于∀奇素数p，p∤D_{p−1}。注意下标是p−1：D_p本身满足D_p=Σ_{j=0}^p(−1)^j p!/j!≡(−1)^p≡−1(modp)，因为j<p各项含p，故把L_p错当D_p会把目标非整除命题变成一个已由该式立即证明的断言。两函数数值也不同，例如L_3=4而D_3=2；L_0=0而D_0=1。此转换只涉及全对称群中错排数的计数同余，不能转成候选148的任意有限单传递群中两个错排元素乘积覆盖问题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1168-RK-SOURCE",
+      "url": "https://www.researchgate.net/profile/Francis-Atta-Howard/publication/396744573_r-Kurepa_numbers_and_Kurepa_Conjecture/links/68f82e22f3032e2b4beb09d8/r-Kurepa-numbers-and-Kurepa-Conjecture.pdf",
+      "locator": "题名页；p5 Eq(3.3)；pp10–12 §4 Conjecture1、Lemmas1–2、Corollaries4–5",
+      "version": "作者 ResearchGate 上传 2025-10-22，16页；2026-11-27实际取得PDF；SHA256 d4de06dde7285e27a6d41a87b55203c1c36429f62714b693c8b5fa0117f76cc9",
+      "subquestions": [
+        "这份r-Kurepa预印本是否给出原Kurepa的有效完整证明"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "关键步骤受质疑",
+      "review_status": "核对发现漏洞",
+      "claimant": "Francis Atta Howard",
+      "claim_date": "2025-10-22",
+      "formal_status": "未检索形式化",
+      "note": "ResearchGate作者页列DOI10.5281/zenodo.17403337并显示2025-10-22作者上传；此日期是上传记录，不冒充独立核过的Zenodo版本日期。实际取得16页作者PDF，未取得官方Zenodo记录。p5 Eq(3.3)定义S_r(n)=Σ_{m=0}^{n−1}(m+r)!，r=0为普通左阶乘。§4的Conjecture1声称对所有r≥0、n≥2，gcd(S_r(n),(n+r)!)=r!(r+2)，Cor4专门声称r=0时gcd(!n,n!)=2，目标与本卡等价。一般式在r=1,n=5被精确小例否定，且原猜想子结论的证明依赖同一失效的Lemma1→Lemma2链，详见独立证据。版面左端的花体符号是作者定义的gcd量，不应将文字抽取中消失的字体差异误报为作者直接把S_r(n)与gcd相等。本轮审的是关键证明链，非全部16页的正式复核。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "step_disputed",
+        "claim_review": "gap_found",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1168-RK-COUNTEREXAMPLE",
+      "url": "https://www.researchgate.net/profile/Francis-Atta-Howard/publication/396744573_r-Kurepa_numbers_and_Kurepa_Conjecture/links/68f82e22f3032e2b4beb09d8/r-Kurepa-numbers-and-Kurepa-Conjecture.pdf",
+      "locator": "p5 Eq(3.3)；pp10–12 Conjecture1、Lemma1、Lemma2、Corollary5；本地单例证书internal/p1168_rkurepa_checks.json",
+      "version": "本轮独立整数算术 2026-11-27；对应PDF SHA256 d4de06dde7285e27a6d41a87b55203c1c36429f62714b693c8b5fa0117f76cc9",
+      "subquestions": [
+        "广义r-Kurepa全称gcd等式",
+        "Lemma1归一化两数互素"
+      ],
+      "role": "反例",
+      "publication": "项目报告",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "toolchain": "Python标准库整数、math.factorial、math.gcd；非形式化证明",
+        "command": "python internal/check_p1168_rkurepa.py",
+        "cache": "internal/check_p1168_rkurepa.py; internal/p1168_rkurepa_checks.json; internal/p1168_rkurepa_checks.log",
+        "theorem": "仅反驳一般r移位断言及Lemma1，不反驳r=0原Kurepa猜想"
+      },
+      "note": "严格采用p5 Eq(3.3)而非猜测Fn移位：取r=1,n=5，S_1(5)=1!+2!+3!+4!+5!=1+2+6+24+120=153，(n+r)!=6!=720，r!(r+2)=3。153=9·17，720=9·80，gcd(17,80)=1，故gcd(S_1(5),6!)=9≠3。对应Lemma1的两商A=153/3=51、B=720/3=240，gcd(A,B)=3≠1。这一对参数满足原稿r≥0,n≥2，且同一算式也直接反驳Cor5的∀n≥2、r=1断言。它仅是广义断言的反例；原卡r=0式和奇素数左阶乘猜想没有因此被否定。精确计算只核此单例，不声称其他r的完整分类。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1168-RK-DEPENDENCY",
+      "url": "https://www.researchgate.net/profile/Francis-Atta-Howard/publication/396744573_r-Kurepa_numbers_and_Kurepa_Conjecture/links/68f82e22f3032e2b4beb09d8/r-Kurepa-numbers-and-Kurepa-Conjecture.pdf",
+      "locator": "p11 Conjecture1 proof及Lemma1 Eq(4.1)；p12 Lemma2与Corollary4",
+      "version": "本轮独立关键步核查 2026-11-27；对应PDF SHA256 d4de06dde7285e27a6d41a87b55203c1c36429f62714b693c8b5fa0117f76cc9",
+      "subquestions": [
+        "r=0 Corollary4是否具有独立有效证明",
+        "共同因子能否升级为最大公因子"
+      ],
+      "role": "勘误",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "核对发现漏洞",
+      "note": "p11先正确得到r!(r+2)同时整除S_r(n)及(n+r)!，随后直接把这个共同因子当作最大公因子，缺少归一化互素性。Lemma1尝试补足：令A=S_r(n)/(r!(r+2))，可写A=1+(r+1)C；B=(n+r)!/(r!(r+2))=(r+1)∏_{j=r+3}^{n+r}j。即使善意将文中关于multiple的颠倒措辞改成r+1整除B，A≡1 mod(r+1)也只排除r+1自身的素因子，不能排除B的其余素因子。上例A=51=1+2·25，gcd(A,2)=1但gcd(A,240)=3，直接定位失效步。Lemma2明确依赖Lemma1。p12 Cor4设r=0后只重新展示!n与n!都为偶数，最终明确引用Lemma2才能断言最大公因子为2，因此没有修复该缺口；r=0时A=1+C只是模1的恒真式，无法排除任何奇素公因子。把一般r定理取r=0的形式归约本身有效，问题在所用一般定理的证明失效，不能仅以它包含原问题就笼统指控所有归约为循环。Cor4还援引作者另一篇[1]的先前声称，本支未复核该篇，故既不以该引用补齐本篇证明，也不声称已排除所有其他证明路线。这里的“勘误”是本轮审稿建议，非作者已发布更正。 合并说明：其所引另一篇2509.06077已由主审单独核到Lemma5/Theorems16–18，结果见E1168-ACA-HOWARD25；没有以本r1n5例代替对另一稿的检查。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "gap_found",
+        "scope_match": "equivalent",
+        "role": "retraction",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001707",
+      "other_card_rev": "223391beabc965fc",
+      "relation": "相关但不等价",
+      "reason": "1707问是否有无穷多个素数p满足p²|(p−1)!+1，亦即Wilson商W_p=((p−1)!+1)/p模p为0；1168问对所有奇素数p，阶乘和L_p=Σ_{k<p}k!模p非0。阶乘单项与阶乘和、模p²与模p、无穷存在与全称排除均不同。p=5是Wilson素数（W_5=5），但L_5=34≡4 mod5，不能将Wilson素数当作Kurepa反例；本轮不宣布两猜想之间有一般蕴含。",
+      "positions": {
+        "self": "problems/001/QX-P-001168.text.md §§题面、人话、原文、边界；problems/001/QX-P-001168.meta.json card_rev/acceptance/provenance；rev 6effbd921c990d1f",
+        "other": "problems/001/QX-P-001707.text.md §§题面、人话、原文、边界；problems/001/QX-P-001707.meta.json card_rev/acceptance/provenance；rev 223391beabc965fc"
+      },
+      "note": "双方固定提交全文/meta已实际读取；无严格同题，不触发较小ID主卡合并规则。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-002043",
+      "other_card_rev": "0ff7d690949d31ed",
+      "relation": "仅相似",
+      "reason": "2043的正文与acceptance问Cohen力迫扩张中是否存在高度ω1、可数层但至少ℵ2分支的Kurepa树；1168为整数阶乘和的素数整除。这里只有Kurepa人名相同，数学对象及量词均无同一性，不因姓名召回而合并。",
+      "positions": {
+        "self": "problems/001/QX-P-001168.text.md §§题面、人话、原文、边界；problems/001/QX-P-001168.meta.json card_rev/acceptance/provenance；rev 6effbd921c990d1f",
+        "other": "problems/002/QX-P-002043.text.md §§题面、人话、原文、边界；problems/002/QX-P-002043.meta.json card_rev/acceptance/provenance；rev 0ff7d690949d31ed"
+      },
+      "note": "双方固定提交全文/meta已实际读取；无严格同题，不触发较小ID主卡合并规则。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000148",
+      "other_card_rev": "030bd930755af3ee",
+      "relation": "相关但不等价",
+      "reason": "148问任意有限单传递置换群G中的每个元素是否为两个无不动点置换之积，derangement是相对于给定置换作用的元素类型。1168可等价改写为p∤D_{p−1}（D_m为全对称群S_m的错排数），但这是计数的模p性质，不是任意单群中两个元素乘积覆盖G；S_{p−1}也不是一般所要求的单群。且D_p与左阶乘L_p不是同一函数，不能靠常用!记号混同。",
+      "positions": {
+        "self": "problems/001/QX-P-001168.text.md §§题面、人话、原文、边界；problems/001/QX-P-001168.meta.json card_rev/acceptance/provenance；rev 6effbd921c990d1f",
+        "other": "problems/000/QX-P-000148.text.md §§题面、人话、原文、边界；problems/000/QX-P-000148.meta.json card_rev/acceptance/provenance；rev 030bd930755af3ee"
+      },
+      "note": "双方固定提交全文/meta已实际读取；无严格同题，不触发较小ID主卡合并规则。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000174",
+      "other_card_rev": "6d683205d4b04934",
+      "relation": "仅相似",
+      "reason": "174分类非平凡正整数解(a+b)!=a!b!c!，对应Pascal三角形内部哪些数是阶乘。1168是所有奇素数处左阶乘和的非整除，未涉及该乘法分解方程；两侧验收不同，不存在已给出的等价归约。",
+      "positions": {
+        "self": "problems/001/QX-P-001168.text.md §§题面、人话、原文、边界；problems/001/QX-P-001168.meta.json card_rev/acceptance/provenance；rev 6effbd921c990d1f",
+        "other": "problems/000/QX-P-000174.text.md §§题面、人话、原文、边界；problems/000/QX-P-000174.meta.json card_rev/acceptance/provenance；rev 6d683205d4b04934"
+      },
+      "note": "双方固定提交全文/meta已实际读取；无严格同题，不触发较小ID主卡合并规则。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001932",
+      "other_card_rev": "362689db82c6930b",
+      "relation": "仅相似",
+      "reason": "1932对每个正整数n问整系数多项式[n]_q!+1的不可约性，[n]_q!为几何和因子的乘积；1168是整数Σ_{k<p}k!的模p问题。即使令q=1得到n!+1，仍为单个阶乘加1而非左阶乘；多项式不可约性也不等同所有奇素数非整除。",
+      "positions": {
+        "self": "problems/001/QX-P-001168.text.md §§题面、人话、原文、边界；problems/001/QX-P-001168.meta.json card_rev/acceptance/provenance；rev 6effbd921c990d1f",
+        "other": "problems/001/QX-P-001932.text.md §§题面、人话、原文、边界；problems/001/QX-P-001932.meta.json card_rev/acceptance/provenance；rev 362689db82c6930b"
+      },
+      "note": "双方固定提交全文/meta已实际读取；无严格同题，不触发较小ID主卡合并规则。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-002320",
+      "other_card_rev": "484b381f996d8641",
+      "relation": "相关但不等价",
+      "reason": "2320问集合{p素数:p=n!+1或p=n!−1，对某n≥0}是否无限，且是两侧并集。1168问∀奇素数p，p不整除L_p；阶乘素数的n和素数p并非绑定为左阶乘上限p−1，p=n!±1的素性与阶乘和取模是不同命题。Wilson定理在候选中出现不构成等价。",
+      "positions": {
+        "self": "problems/001/QX-P-001168.text.md §§题面、人话、原文、边界；problems/001/QX-P-001168.meta.json card_rev/acceptance/provenance；rev 6effbd921c990d1f",
+        "other": "problems/002/QX-P-002320.text.md §§题面、人话、原文、边界；problems/002/QX-P-002320.meta.json card_rev/acceptance/provenance；rev 484b381f996d8641"
+      },
+      "note": "双方固定提交全文/meta已实际读取；无严格同题，不触发较小ID主卡合并规则。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-002321",
+      "other_card_rev": "c258cd092cc7aa00",
+      "relation": "仅相似",
+      "reason": "2321的原命题为∀n≥8，∀m,k≥2，|n!−m^k|>n，控制单个阶乘与完全幂的距离。1168控制阶乘和L_p的素数整除。不存在已给出的等价变换；普通阶乘、左阶乘、完全幂距离必须分别保留。",
+      "positions": {
+        "self": "problems/001/QX-P-001168.text.md §§题面、人话、原文、边界；problems/001/QX-P-001168.meta.json card_rev/acceptance/provenance；rev 6effbd921c990d1f",
+        "other": "problems/002/QX-P-002321.text.md §§题面、人话、原文、边界；problems/002/QX-P-002321.meta.json card_rev/acceptance/provenance；rev c258cd092cc7aa00"
+      },
+      "note": "双方固定提交全文/meta已实际读取；无严格同题，不触发较小ID主卡合并规则。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "proposer / first_published / sources",
+      "old": "proposer与first_published空，来源只有1971笼统书目/GuyB44",
+      "new": "Đuro Kurepa, On the left factorial function !n, Mathematica Balkanica1(1971),147–153；精确猜想见p149§§2.3–2.4，素数归约p148Lemma1.3。注明Received1970-09-02与部分结果1970会议报告，不冒充确定更早公开日。",
+      "reason": "已读原扫描而非仅沿用FC/Guy引文；函数的早期基数定义与本数论猜想分开。",
+      "evidence_ids": [
+        "E1168-ORIGIN-KUREPA1971"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "等价形式与边界",
+      "new": "原主命题保持∀奇素数p，p∤Σ_{k=0}^{p−1}k!；可补等价∀n>=2 gcd(!n,n!)=2及∀n>2 n∤!n。不要遗漏0!，也不要把非零简化为余数恒1。",
+      "reason": "量词和边界已独立证明；n=0,1不在gcd版域，p=2确为例外。",
+      "evidence_ids": [
+        "E1168-ORIGIN-EQUIVALENCE"
+      ],
+      "small_case_check": "!2=2；!3=4余1；!5=34余4；!7=874余6。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "sources[arXiv2209.12677].accessed / 开放状态证据表 / 相关声明",
+      "old": "2022-08-31(v3)声称证明自撤",
+      "new": "v1=2022-08-31；v2=2022-09-29；撤稿v3=2022-09-30 19:53:33 UTC。作者撤回其证明，非猜想被反驳。",
+      "reason": "官方Submission history与当前Comments已核，并读v2三页关键证明。",
+      "evidence_ids": [
+        "E1168-ORIGIN-ABRAMOV-WITHDRAWAL"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "历史已发表证明与勘误",
+      "new": "补Barsky–Benzaghou2004正式Thm3声明及2011 JTNB23(2)p527勘误：只撤回Thm3及证明，此前至Lemma10（含）保留。",
+      "reason": "不能漏正式刊发的旧完整声明，也不能把部分撤回扩大成整篇结果无效。",
+      "evidence_ids": [
+        "E1168-ORIGIN-BB2004",
+        "E1168-ORIGIN-BB2011-ERRATUM"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "核验范围 / 已知结果 / 独立验证建议",
+      "old": "核验至很大p；建议独立模幂实现核验",
+      "new": "明确原作者报告p<2^40无反例，arXiv1904.09196v3/正式IPL167(2021)106078；算法为模乘、矩阵积及积树/余数树。作者只抽样独立核验，本轮未重跑。预印本展示公式偏移已在固定代码确认末端减1修正，不能据此否定计算，也不把静态核代码当全量证书。",
+      "reason": "补可审计参数、版本、算法和读取层次，避免把作者数据或建议运行写成本轮已完成。",
+      "evidence_ids": [
+        "E1168-ORIGIN-COMPUTATION2015",
+        "E1168-ORIGIN-COMPUTATION2020",
+        "E1168-ORIGIN-ART-INDEX",
+        "E1168-CODE-OFFBYONE"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "已知结果与进展 / 相关进展与声称解决 / ai_claims之外的一般数学声明",
+      "old": "2604.09714为当前理论前沿；仅登记2022撤稿。",
+      "new": "新增2025 arXiv2509.06077v1正文的完整Kurepa声明及明确Lemma5缺口；2026v2关键KBW在p5失败、Cor5在p3失败，降级为关键步骤受质疑的声明。另列2022有全局附加条件的Gallardo子类和正式有限计算，不以摘要/年份自动升级。",
+      "reason": "P0需原文核查所有完整声明及具体漏洞，不能遗漏正文结论或把坏中间引理当原题反例。",
+      "small_case_check": "p5:7≢8(mod5)；p3:G3=1但Der替换商为0；平移a4 n17(K)/n16(F)gcd34仅驳邻题。",
+      "evidence_ids": [
+        "E1168-ACA-HOWARD25",
+        "E1168-ACA-HOWARD26",
+        "E1168-ACA-COUNTER26",
+        "E1168-ACA-SHIFT4",
+        "E1168-ACA-GALLARDO"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "formal_status、形式化与开放状态证据",
+      "old": "formal_status=none；research open条目以属性+sorry标记。",
+      "new": "主猜想已有精确Lean题面，FC固定文件中的三个等价版本仍为占位；等价归约及n<50特例有完整证明体。AlphaProof PR535只提供归约；其他有限AI形式化按精确上界另列。数学现状依学术证据，不能仅由属性或sorry判断。",
+      "reason": "none会漏掉已有形式化题面与归约；而无sorry也可能只是abbrev Target，并非主定理证明。",
+      "evidence_ids": [
+        "E1168-CODE-FC",
+        "E1168-CODE-ALPHAPROOF",
+        "E1168-CODE-CB",
+        "E1168-CODE-MATHDB"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "独立验证建议",
+      "old": "独立模幂实现核验!p mod p至更大p范围。",
+      "new": "固定给定素数p的基本核验应使用阶乘和的模递推：从(s,f)=(0,1)开始，对k=0..p−1更新s←(s+f)modp、f←f(k+1)modp；另独立核p的素性。扩大区间需比对已有计算界、记录全部分段覆盖和实际日志。",
+      "reason": "这不是仅靠模幂即可核验的量；更新顺序/止点错误会产生伪反例，已有AI轨迹恰发生此错误。",
+      "small_case_check": "p=3按0!,1!,2!得到s=4 mod3=1；p=5得到34 mod5=4；p=2得到0，必须排除。手核，未新增运行。",
+      "evidence_ids": [
+        "E1168-CODE-ARISTOTLE",
+        "E1168-CODE-AIXIV",
+        "E1168-CODE-CB"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "计算与公开AI记录",
+      "new": "作者2019算法仓库可取得固定源码，但本轮没有复跑p<2^40的历史搜索。公开Aristotle文件仅3≤n<2000，aiXiv更正后的Python记录仅3≤n≤20000；均不得升级为主问题已证或计算新纪录。Prove Together仅题面，公开accepted solutions为空。",
+      "reason": "需按实际终点/运行归属区分已有算法、作者记录、有限形式化与一般证明。",
+      "evidence_ids": [
+        "E1168-CODE-COMPUTE",
+        "E1168-CODE-ARISTOTLE",
+        "E1168-CODE-AIXIV",
+        "E1168-CODE-PROVETOGETHER"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与等价表述",
+      "new": "可记L_n=!n=Σ_{k<n}k!，并列严格等价形式∀n>1，gcd(L_n,n!)=2；说明L_0=0且n=0,1不属于gcd式。",
+      "reason": "明确记号和端点，给出奇素数式与全整数gcd式的完整双向桥；原主式无需改变。",
+      "evidence_ids": [
+        "E1168-DUP-SMALL",
+        "E1168-DUP-GCD"
+      ],
+      "small_case_check": "n=0,1的gcd为1；n=2,3分别gcd(2,2)=2、gcd(4,6)=2。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "错排数/左阶乘旁注",
+      "new": "若使用错排数表述，必须写D_{p−1}≡L_p(modp)，不可把!p按常见subfactorial记号解释为D_p。",
+      "reason": "D_p≡−1(modp)是平凡非整除，与未知左阶乘命题不是同一式。",
+      "evidence_ids": [
+        "E1168-DUP-DERANGEMENT"
+      ],
+      "small_case_check": "L_3=4，D_3=2，而D_2=1≡L_3(mod3)。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "合并/主卡归属",
+      "reason": "7候选均无严格同题，不提出较小ID主卡或合并建议。",
+      "evidence_ids": [
+        "E1168-DUP-READSET"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "公开声称及独立复核",
+      "new": "补记Howard《r-Kurepa numbers and Kurepa Conjecture》作者公开预印本的解题声称；标明关键步受质疑，并列r=1,n=5反驳广义等式及其互素性Lemma1。",
+      "reason": "已取得完整作者PDF并核关键链，不能只凭摘要“proved”认定原题已解；小例针对广义式而非原r=0式。",
+      "evidence_ids": [
+        "E1168-RK-SOURCE",
+        "E1168-RK-COUNTEREXAMPLE",
+        "E1168-RK-DEPENDENCY"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "原Kurepa主命题数学状态",
+      "reason": "本篇所给Cor4证明未闭合；一般r反例不是原卡反例。不据本篇把原题标成已证或已反驳；其余独立声明由主审另核。",
+      "evidence_ids": [
+        "E1168-RK-COUNTEREXAMPLE",
+        "E1168-RK-DEPENDENCY"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "novelty / informal_status / difficulty.note / 主问题结案",
+      "old": "旧novelty.card_rev=81ad8ea30db136f6；open且strength=confirmed；以“理论缺位、工作量型、2026前沿”描述。",
+      "new": "本次回执绑定6effbd921c990d1f，逐题粗查有缺口；保留完整证明声明并标关键步骤受质疑、待二审，不登记已证/已反驳。补已核实际来源、有限范围、条件进展和形式化终点；难度/可发表工作量不由搜索或有限计算自动断言。",
+      "reason": "旧哈希与状态观察不替代当前四路线核查；正文的新完整声明及具体漏洞不能遗漏。未直接修改题卡。",
+      "evidence_ids": [
+        "E1168-DUP-SELF",
+        "E1168-ACA-HOWARD25",
+        "E1168-ACA-HOWARD26",
+        "E1168-CODE-ALPHAPROOF",
+        "E1168-CODE-ARISTOTLE",
+        "E1168-RK-SOURCE",
+        "E1168-RK-COUNTEREXAMPLE",
+        "E1168-RK-DEPENDENCY"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "历史大规模计算原作者报告与算法原文已读；并行代码支已固定cf9aeb1389cab1134acc8653d8fc3a80a4b4004d静态确认输出减1，修复预印本展示偏移。仍未独立重跑原2^40数据或全审ART/NTT底层，也未取正式刊PDF对照展示公式。",
+      "next_step": "合并代码支固定commit的已完成静态核验，区分论文展示与实现；保留未运行原2^40和未全审底层算法的边界。需要完整计算认证时再取得全量数据、日志并独立运行，不把展示错误推广为全部数据错误。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "1971原稿记收稿及1970会议部分结果，尚不能确定本猜想绝对首次公开日；更早计算界只有2015原论文历史表转述，未逐一读早期私信、学位论文或已失效论坛。",
+      "next_step": "当前按1971原文为最早直接核到的完整公开提出，早期计算采用“2015作者历史表所引”层次；若需优先权/某一旧界独立认证再补相应原档。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "已核2025完整声明关键链存在循环和不成立推理；2026关键同余有明确小反例。尚无修订稿修复这些步骤，不据此判原猜想为假或数学上不可解。",
+      "next_step": "提交完整声明和定位给二审，要求作者级别的逐素数非零证明或真实反例；补证必须排除奇素因子并处理除p的模数损失，不能只增加有限表。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2026 51页与2025 60页只审核与主结论相关链，其他物理/多项式/伯努利旁支未逐条审核；Gallardo证明外引有限域输入未重证，2023等价稿只核摘要引言。",
+      "next_step": "这些缺口限制本轮覆盖而不阻塞记录已确认的关键漏洞。若后续引用未核旁支作为原题新证明输入，再针对该依赖补核，避免将整个论文标为全部已验证或全部被反驳。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮未运行Lean、#print axioms或C/C++算法；只有源码静态核与他人运行记录。",
+      "next_step": "只有需要采信具体形式化/反例时才在固定工具链审导入闭包与native_decide可信边界并重跑；当前不为有限上界重复构建大型环境或旧2^40计算。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "作者算法仓库完整树无全区间输出包；只阅读README、single/range入口及新取remainders.c的输出修正，未通审全部NTT/remainder-tree源码。",
+      "next_step": "若复核历史全区间结论，取得原作者分段输出/日志与素性、端点连续覆盖资料；现阶段按论文作者报告保存，不能写成本轮已验证。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "research.muzz.in原主题页直开失败/HTTP403，其关联review正文未得；OAI和公共检索覆盖亦非全网穷尽。",
+      "next_step": "保留访问缺口，不将导航数量视为解题结果；后续若公开可达的同题完整声明出现，再逐量词和关键证明复核。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "本轮全索引召回及7候选全文已完成；未确认任何严格同题。",
+      "next_step": "仅在二审提供新的明确同题候选时补取固定双方正文/meta并证明等价；不把姓名或术语重合当作同题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "官方Zenodo记录与API本轮不可访问，作者ResearchGate上传的完整16页PDF已取得并冻结SHA。",
+      "next_step": "若未来出现不同版本或正式刊发本，以具体版本核对§4是否修正；本轮只评价已取得作者上传本，不把访问失败当作缺少全文。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "r-Kurepa稿只核定义、广义gcd、Lemma1→Lemma2→Cor4关键链，未复核其全部r-Bell/r-Stirling分解；所引2509.06077已另行合并审核。",
+      "next_step": "不同定义及其余分解不能因关键gcd失败就一律判错；原题结案须独立有效证明，不能只引用已发现缺口的两稿互相支持。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "6effbd921c990d1f",
+      "codes": {}
+    }
+  ]
+}

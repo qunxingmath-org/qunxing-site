@@ -1,0 +1,2401 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001348",
+  "card_rev": "4b8e6d3728a7aff2",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-06"
+      ],
+      "parts": [
+        {
+          "subquestion": "恢复原始平方递推后的指数极限",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；L=exp(1/c)，其中 c>2 为 c log(2e/c)=1 的唯一根（约4.31107），L≈1.26107。实际依据是2002作者完整原稿、2003正式发表身份与明确式(10)/Lemma26；本轮核了同式、常数分支和取极限推论，非宣称整篇重证或形式化复跑。"
+        },
+        {
+          "subquestion": "相邻值比率极限",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；同一链的比率 p_{h+1}(1)/p_h(1) 单调下降至 exp(1/c)，严格强于根极限存在。2003对应论文 Lemma26 的无条件结论；其证明中调用已确立的主阶式(10)，不依赖后文 Hypothesis1。"
+        },
+        {
+          "subquestion": "更精细增长界",
+          "value": "partial",
+          "note": "已读原稿给 p_h(1)=exp(h/c+[3/(2(c−1))]log h+O(1))，即 Θ(exp(h/c) h^{3/[2(c−1)]})。将O(1)进一步换成固定D+o(1)在该稿Hypothesis1中另列条件；本轮不把这更强等价式的历史状态冒充原指数问题的未解决状态，也未追其2026状态。"
+        },
+        {
+          "subquestion": "错写递推与小阶边界",
+          "value": "statement_error",
+          "note": "真实链p1=1+x，p2=1+x+x²+x³/3，p3次数7且p3(1)=323/63。错写q_h prime=q_(h−1)会给Taylor截断sum x^j/j!，次数h、q_h(1)→e、h次根→1；反向p_(h−1) prime=p_h则p1=0与p1(0)=1冲突。卡的2h−1在h3为5而原式为7。以上只诊断错写，不是原Ponder题反例。"
+        },
+        {
+          "subquestion": "Shearer下界底数与极限",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；原记下界的底数max_(a>0)((a+1)/2)^(1/a)恰等于已知L。对数导数的唯一零点满足a/(a+1)=log((a+1)/2)，令c=a+1得到c log(2e/c)=1且c>2，极大值为e^(1/c)。点态严格下界与根极限等于下界底数相容；不应继续说真实指数严格介于两个不同未定底数之间。"
+        },
+        {
+          "subquestion": "常数分支与严格数值区间",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；c>2唯一支给L=e^(1/c)，等价于L=2e logL的1<L<2支，排除饱和层对应的另一根。依已发表定理识别L后，本轮精确有理数尾界认证1.261070486830678<L<1.261070486830680。有限多项式试算本身不证明渐近极限，此数值证书也不是Lean/Isabelle复跑。"
+        },
+        {
+          "subquestion": "精确极限的公开AI与形式化覆盖",
+          "value": "no_evidence_in_scope",
+          "note": "在已列官方AI目录、形式化目录/路径与社区搜索中未检到直接精确L的代码证书。已读Isabelle相关BST论文和AFP theory仅证约3/ln2≈4.328的期望高度对数上界，明确未形式化精确约4.311常数；与本题文献解区别记录。检索未命中不影响前述已知数学答案，也不等于证明公开空间无此形式化。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://isa-afp.org/browser_info/current/AFP/Random_BSTs/Random_BSTs.html"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://people.math.wisc.edu/~awmille1/res/fun-problem.pdf",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "当前固定卡4b8e6d3728a7aff2混用了漏平方的线性链、反向导数链与错误次数；它们不等价，需按原文修订。明确原Ponder链为p0=1、p_(h+1)(x)=1+∫_0^x p_h(t)^2dt、次数2^h−1。按此原定义，本卡所求h次根极限已有2002作者稿/2003已刊论文直接答案L=e^(1/c)，c>2满足c log(2e/c)=1；“精确值仍未知”已过时。下列原定义结论与当前错写状态分开记录，本回执不改原卡rev、不把错定义当作新问题求解。",
+      "evidence_ids": [
+        "OR-E01",
+        "OR-E02",
+        "OR-E03",
+        "OR-E04",
+        "Q1348-SCH-DRMOTA-II",
+        "Q1348-SCH-RATIO",
+        "Q1348-ROOT-CHECK"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "恢复原始平方递推后的指数极限",
+      "math_status": "原题已证明",
+      "evidence_ids": [
+        "Q1348-SCH-DRMOTA-II",
+        "Q1348-SCH-RATIO",
+        "Q1348-SCH-PUBLISH"
+      ],
+      "scope_note": "L=exp(1/c)，其中 c>2 为 c log(2e/c)=1 的唯一根（约4.31107），L≈1.26107。实际依据是2002作者完整原稿、2003正式发表身份与明确式(10)/Lemma26；本轮核了同式、常数分支和取极限推论，非宣称整篇重证或形式化复跑。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "相邻值比率极限",
+      "math_status": "原题已证明",
+      "evidence_ids": [
+        "Q1348-SCH-RATIO"
+      ],
+      "scope_note": "同一链的比率 p_{h+1}(1)/p_h(1) 单调下降至 exp(1/c)，严格强于根极限存在。2003对应论文 Lemma26 的无条件结论；其证明中调用已确立的主阶式(10)，不依赖后文 Hypothesis1。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "更精细增长界",
+      "math_status": "实质进展",
+      "evidence_ids": [
+        "Q1348-SCH-DRMOTA-II",
+        "Q1348-SCH-INRIA"
+      ],
+      "scope_note": "已读原稿给 p_h(1)=exp(h/c+[3/(2(c−1))]log h+O(1))，即 Θ(exp(h/c) h^{3/[2(c−1)]})。将O(1)进一步换成固定D+o(1)在该稿Hypothesis1中另列条件；本轮不把这更强等价式的历史状态冒充原指数问题的未解决状态，也未追其2026状态。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "错写递推与小阶边界",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "真实链p1=1+x，p2=1+x+x²+x³/3，p3次数7且p3(1)=323/63。错写q_h prime=q_(h−1)会给Taylor截断sum x^j/j!，次数h、q_h(1)→e、h次根→1；反向p_(h−1) prime=p_h则p1=0与p1(0)=1冲突。卡的2h−1在h3为5而原式为7。以上只诊断错写，不是原Ponder题反例。",
+      "evidence_ids": [
+        "OR-E01",
+        "OR-E02",
+        "OR-E03",
+        "OR-E04",
+        "Q1348-ROOT-CHECK"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "Shearer下界底数与极限",
+      "math_status": "原题已证明",
+      "scope_note": "原记下界的底数max_(a>0)((a+1)/2)^(1/a)恰等于已知L。对数导数的唯一零点满足a/(a+1)=log((a+1)/2)，令c=a+1得到c log(2e/c)=1且c>2，极大值为e^(1/c)。点态严格下界与根极限等于下界底数相容；不应继续说真实指数严格介于两个不同未定底数之间。",
+      "evidence_ids": [
+        "OR-E01",
+        "OR-E02",
+        "OR-E03",
+        "OR-E04",
+        "Q1348-SCH-DRMOTA-II",
+        "Q1348-ROOT-CHECK"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "常数分支与严格数值区间",
+      "math_status": "原题已证明",
+      "scope_note": "c>2唯一支给L=e^(1/c)，等价于L=2e logL的1<L<2支，排除饱和层对应的另一根。依已发表定理识别L后，本轮精确有理数尾界认证1.261070486830678<L<1.261070486830680。有限多项式试算本身不证明渐近极限，此数值证书也不是Lean/Isabelle复跑。",
+      "evidence_ids": [
+        "Q1348-SCH-DRMOTA-II",
+        "Q1348-ROOT-CHECK"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "精确极限的公开AI与形式化覆盖",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "在已列官方AI目录、形式化目录/路径与社区搜索中未检到直接精确L的代码证书。已读Isabelle相关BST论文和AFP theory仅证约3/ln2≈4.328的期望高度对数上界，明确未形式化精确约4.311常数；与本题文献解区别记录。检索未命中不影响前述已知数学答案，也不等于证明公开空间无此形式化。",
+      "evidence_ids": [
+        "E1348-CODE-01",
+        "E1348-CODE-02",
+        "E1348-CODE-03",
+        "E1348-CODE-04"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-06-1348-OR-001",
+      "route": "原题与出处",
+      "site": "Wisconsin-hosted original journal scan",
+      "query": "open https://people.math.wisc.edu/~awmille1/res/fun-maa.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得 Guy 1987 原刊扫描；OCR 丢失上标，随后用页面图像核公式。",
+      "url": "https://people.math.wisc.edu/~awmille1/res/fun-maa.pdf",
+      "locator": "printed p.966, PDF zero-based6",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-002",
+      "route": "原题与出处",
+      "site": "Wisconsin-hosted original journal scan",
+      "query": "screenshot Guy1987 PDF pageno6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "直接核平方递推与次数 2^h−1，识别 Shearer (wrc)。",
+      "url": "https://people.math.wisc.edu/~awmille1/res/fun-maa.pdf",
+      "locator": "printed p.966",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-003",
+      "route": "原题与出处",
+      "site": "Wisconsin host / Python urllib and Poppler",
+      "query": "GET https://people.math.wisc.edu/~awmille1/res/fun-maa.pdf; render PDF page7 to 3000-pixel image; view guy_p966.png",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定文件及高分辨率页面；1081623 bytes，SHA-256 fb79e83072a78e640adc895c8d9bd6cd6975a157c74af1991ee6d7d838861d36。放大核上下界确为 c1 λ1^h<p_h(1)<c2 λ2^h。",
+      "url": "https://people.math.wisc.edu/~awmille1/res/fun-maa.pdf",
+      "locator": "guy1987.pdf; guy_source_manifest.json; guy_p966.png",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-003",
+      "route": "原题与出处",
+      "site": "Web search / system1",
+      "query": "\"Ponder\" \"280\" \"1986\" polynomial",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 Guy 原刊扫描，同题原始式随后按原页核验。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-003",
+      "route": "原题与出处",
+      "site": "Web search / system1",
+      "query": "\"Shearer\" \"Ponder\" polynomials",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 Guy 同题记录；大量 IBM Ponder This 题库由同名词触发，已排除，未取得 Shearer 原通信的独立全文。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-004",
+      "route": "原题与出处",
+      "site": "Web search / system1",
+      "query": "\"Ponder\" \"Unsolved Problems\" \"1986\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 Guy 同题记录，继续精确定位原刊。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-004",
+      "route": "原题与出处",
+      "site": "Web search / system1",
+      "query": "\"American Mathematical Monthly\" \"1986\" \"280\" polynomials",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "取得卷93期4的期目线索和 Utah 目录；目录页不能代替原题正文。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-004",
+      "route": "原题与出处",
+      "site": "Drmota author site",
+      "query": "open https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "根代理提供线索后实际打开作者 2010 Banff 讲义；同平方递推，但初始下标为 y1=1。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "locator": "slides26 and38; title slide dates February1–5,2010",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-005",
+      "route": "原题与出处",
+      "site": "Drmota author PDF",
+      "query": "find patterns \"log y\", \"3c\", \"Drmota (\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "log y 查找返回范围较宽；3c 查找精确定位 slide38 的渐近公式及其同页逆关系，发现次阶系数不兼容。后用原论文核正。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "locator": "PDF zero-based37",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-005",
+      "route": "原题与出处",
+      "site": "Taylor & Francis publisher",
+      "query": "open https://www.tandfonline.com/toc/uamm20/93/4",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "期目页返回 403 Forbidden；随后只取一个合理的原文替代——Wisconsin 同刊原扫描，不穷尽尝试出版社镜像。",
+      "url": "https://www.tandfonline.com/toc/uamm20/93/4",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-005",
+      "route": "原题与出处",
+      "site": "University of Utah bibliography",
+      "query": "open https://ftp.math.utah.edu/pub/tex/bib/toc/amermathmonthly1980.html",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "读取公开书目目录，仅用于卷期定位；它未提供目标原题全文。",
+      "url": "https://ftp.math.utah.edu/pub/tex/bib/toc/amermathmonthly1980.html",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-006",
+      "route": "原题与出处",
+      "site": "Web search / system1",
+      "query": "\"Unsolved Problems\" \"1986\" \"279-280\" Ponder",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定向检索命中 Drmota 作者原稿 BSTVAR3.pdf 及其 Ponder 引用；搜索词页范围不完全准确，后以原扫描核为整篇279–281、Ponder部分280–281。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-006",
+      "route": "原题与出处",
+      "site": "Web search / system1",
+      "query": "\"Carl Ponder\" \"1986\" \"Monthly\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中原题扫描 fun-problem.pdf；同名人物/IBM谜题等旁支不作数学证据。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-006",
+      "route": "原题与出处",
+      "site": "Drmota author PDF",
+      "query": "screenshot Banff PDF pageno37,25,4",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "视觉核讲义递推、初始 y1=1、大根/小根数值及有误次阶。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "locator": "slides38,26,5",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-006",
+      "route": "其他：独立数学核对",
+      "site": "Local Python Fraction and mpmath",
+      "query": "independent convolution/integration for p0..p3; 80-digit numerical root calculation for c log(2e/c)=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "独立小例得 p_h(1)=1,2,10/3,323/63；浮点近似仅交叉检查分支，不作严格区间证明。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-007",
+      "route": "原题与出处",
+      "site": "Wisconsin-hosted original journal scan",
+      "query": "open https://people.math.wisc.edu/~awmille1/res/fun-problem.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "合理替代成功取得 1986 原题全文。原刊 April1986,AMM93(4),279–281，Ponder 为末个未编号问题，位于280–281。",
+      "url": "https://people.math.wisc.edu/~awmille1/res/fun-problem.pdf",
+      "locator": "Ponder paragraph pp.280–281; JSTOR stable2323678",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-007",
+      "route": "原题与出处",
+      "site": "Drmota author site",
+      "query": "open https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得34页作者稿，首页日期 April29,2002；Theorem1 的 y0=1 与本题完全同下标。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "Theorem1(3),p.3",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-008",
+      "route": "原题与出处",
+      "site": "Original PDFs",
+      "query": "screenshot Guy1986 pageno2,3; open BSTVAR3 at extracted lines245,2810; find \"Lemma 26.\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核原始公式和小阶表；读作者稿 Remark1式(10)直接点名 Ponder，Lemma26式(88)–(89)给比值收敛。原稿次阶为 3/[2(c−1)]，解决 Banff 的多 c 排版问题。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "Remark1,p.4; Lemma26,pp.28–29; original Guy pp.280–281",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-009",
+      "route": "其他：独立数学核对",
+      "site": "Local mathematical certificate review",
+      "query": "read exact_checks.py and exact_checks_result.json; derive atanh/log and exp geometric tails, endpoint signs and uniqueness",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "逐式静态复核根代理 Fraction 证书，未重跑该脚本。尾界、符号和单调性方向均正确；见 independent_review.json。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-1348-OR-009",
+      "route": "原题与出处",
+      "site": "Wisconsin host / Python urllib",
+      "query": "GET https://people.math.wisc.edu/~awmille1/res/fun-problem.pdf; save PDF and HTTP/hash metadata",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定456642 bytes原题扫描，SHA-256 7f9cbb8f7fe9505cfe1498d85825f029a162f3797fac9d875346f2e01602eed6。",
+      "url": "https://people.math.wisc.edu/~awmille1/res/fun-problem.pdf",
+      "locator": "guy1986.pdf; guy1986_source_manifest.json",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"Ponder\" \"Shearer\" polynomials",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1：主要是 IBM Ponder This 与 Shearer 同名干扰，未据此认定本题开放。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"1.26107\" polynomial",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1：本批没有新增同题后续原稿，数值搜索有无关价格/版本号噪声。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"Carl Ponder\" polynomials growth",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1：命中 Carl Ponder 计算机代数论文与作者索引，其乘法/幂运算算法不等于本题迭代链。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system2",
+      "query": "\"1.26107\" Shearer",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system2：结合其他检索命中 Guy 1987 扫描，后由原出处支线核平方递推和历史界。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system2",
+      "query": "\"Ponder\" \"Picard\" iteration",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system2：泛用 Picard 教材、非数学同名噪声，未把它们列为证据。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system2",
+      "query": "\"Ponder\" \"2 log 2\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system2：精确词/常数检索；本批直接相关来源为 Guy 扫描。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system2",
+      "query": "\"Ponder\" \"polynomial\" \"280\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system2：命中 1986 原题及 1987 汇总原始扫描；本学术支线以 audit_rules 核对出的真实递推继续。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1",
+      "query": "Drmota \"An analytic approach to the height of binary search trees\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1：在已确认 p_h′=p_{h−1}² 后搜索；命中作者机构全文 BSTVAR3、正式发表目录及 INRIA 报告。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1",
+      "query": "Drmota \"log\" \"y_k(1)\" height",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1：命中同式高度截断生成函数、根指数及更精细界。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"Ponder\" \"binary search trees\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1：追同题异名路线，后全文直接引用 Ponder 1986。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构讲义",
+      "query": "open https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "57 页作者原始报告；先核递推和主阶，后核正式对应原稿，发现讲义 log k 次阶系数与原稿不同。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "locator": "2010 Banff slides, pp.26,38",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构原稿",
+      "query": "open https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "34 页完整作者稿可访问；内部日期 2002-04-29，对应发表目录 JACM 50(3)(2003)333–374。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "Theorem 1; Remark 1; Lemma 26",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "INRIA 原始报告",
+      "query": "open https://algo.inria.fr/seminars/sem01-02/drmota.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "6 页报告，Drmota 2001-09-24 演讲、Brigitte Chauvin 记录，2003 编印；读取递推、Facts 1–2、bounds 与 Conjectures 区别。",
+      "url": "https://algo.inria.fr/seminars/sem01-02/drmota.pdf",
+      "locator": "pp.63–68, especially p.64",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构发表目录",
+      "query": "open https://www.geometrie.tuwien.ac.at/bibtexing/drmota.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核 2001 Algorithmica 第一篇与 2003 JACM 第二篇，不能混为同一版本。",
+      "url": "https://www.geometrie.tuwien.ac.at/bibtexing/drmota.html",
+      "locator": "items 70 and 81",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构讲义",
+      "query": "find \"log y\"; find \"Theorem\" in https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "定位第 38 页；讲义是原作者资料，但其次阶系数不优先于具体论文式(10)。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "locator": "PDF index 37",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构原稿",
+      "query": "find \"yk(1)\" in https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "文本抽取使用 yh 而非 yk，单个查找无命中不等于论文无结果。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构原稿",
+      "query": "find \"Theorem 3\"; find \"Theorem 1\"; find \"lim\" in https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "定位真正同题 Theorem1 的初值平方积分链，m-ary 泛化另分；Lemma26 直接给比值极限。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "pp.3–5,28–29",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构发表目录",
+      "query": "find \"An analytic approach\" in https://www.geometrie.tuwien.ac.at/bibtexing/drmota.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "同作者目录列 Algorithmica 29(2001)89–119 与 JACM50/3(2003)333–374，并给第二篇 PDF 链。",
+      "url": "https://www.geometrie.tuwien.ac.at/bibtexing/drmota.html",
+      "locator": "items 70,81",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构原稿",
+      "query": "open https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf at line 2650",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整读 Lemma26 (88)(89)及其证明：截断/平移比较函数给比值单调下降；由式(10)定极限。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "pp.28–29",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构原稿",
+      "query": "open https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf at line 55",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核 c 为 (2e/c)^c=e 的最大实根≈4.31107；饱和层用另一根 c′≈0.373365，不能混用。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "pp.1–2",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构原稿",
+      "query": "open https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf at line 3300",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "该位置是 m-ary 附录，不用于本题根极限。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "p.34",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "INRIA 原始报告",
+      "query": "open https://algo.inria.fr/seminars/sem01-02/drmota.pdf at line 70",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核 Y0=1、Y′_{k+1}=Yk²；xk 在正常数倍 α^k k^β 间，α=e^(1/c)、β=3/[2(c−1)]；当时进一步等价式列为猜想，不能反推根极限未定。",
+      "url": "https://algo.inria.fr/seminars/sem01-02/drmota.pdf",
+      "locator": "p.64, eq.(6), Facts 1–2, Conjectures 1–2",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构旧链接",
+      "query": "click publication item 81 title link (BSTVAR3.ps.gz)",
+      "date": "2026-11-27",
+      "outcome": "档案或版本缺失",
+      "note": "返回 404；同条 PDF 链成功，故不影响第二篇完整原稿读取。",
+      "url": "https://www.geometrie.tuwien.ac.at/drmota/BSTVAR3.ps.gz",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构旧链接",
+      "query": "click publication item 70 title link (bstree.ps.gz)",
+      "date": "2026-11-27",
+      "outcome": "档案或版本缺失",
+      "note": "返回 404；未把第一篇 2001 原稿当作已读。",
+      "url": "https://www.geometrie.tuwien.ac.at/drmota/bstree.ps.gz",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构原稿",
+      "query": "click publication item 81 [pdf]",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "作者发表目录直接连接到相同 34 页第二篇原稿。",
+      "url": "https://www.geometrie.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"An analytic approach to the height of binary search trees II\" DOI",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1：得到 DOI 10.1145/765568.765572 线索；发表卷页另由作者机构目录确认。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"Drmota\" \"Lemma 26\" \"binary\" correction",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1：检索所见未找到推翻此比值引理的同题勘误，不能据检索零相关命中证明不存在。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"height of binary search trees\" \"Drmota\" erratum",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1，recency=3650：命中另一作者被撤回的 2013 文献；随后读取出版社确认不涉及本题 Drmota 论文撤回。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构原稿",
+      "query": "open https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf at line 235",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "关键式(10)明确 y_h(1)=exp(h/c + 3/[2(c−1)] log h + O(1))，下一句直接指出 Ponder 的原问题；根极限已由这一式确定。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "p.4 Remark 1, eq.(10)",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构原稿",
+      "query": "open https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf at line 3040",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "后续 Theorem8 在 Hypothesis1 下描述高度矩的周期修正；不把这项更强条件性结果当成根极限的条件。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "pp.31–32",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "正式出版入口",
+      "query": "open https://doi.org/10.1145/765568.765572",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "DOI 入口 web tool 不可访问。 已读作者机构第二篇原稿单独标版本，不冒充已取出版商排印版。",
+      "url": "https://doi.org/10.1145/765568.765572",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "正式出版入口",
+      "query": "open https://dl.acm.org/doi/pdf/10.1145/765568.765572",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "ACM 正式版 PDF 返回 403 Forbidden。 已读作者机构第二篇原稿单独标版本，不冒充已取出版商排印版。",
+      "url": "https://dl.acm.org/doi/pdf/10.1145/765568.765572",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "正式出版入口",
+      "query": "open https://doi.org/10.1007/BF02679615",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "第一篇 Algorithmica DOI 入口不可访问；第一篇全文仍未读取。 已读作者机构第二篇原稿单独标版本，不冒充已取出版商排印版。",
+      "url": "https://doi.org/10.1007/BF02679615",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构原稿",
+      "query": "find \"[12]\"; find \"References\" in https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "p.4 明确 Ponder 同题连接，p.33 ref[12] 为 C.Ponder, Unsolved Problems (R.Guy ed.), AMM93(1986)280–281。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "p.4 and p.33 ref[12]",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构原稿",
+      "query": "find \"Hypothesis 1\" in https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "p.24 的 D+o(1) 精细前因子是假设；p.4 的 O(1) 界与 p.28–29 比值极限是无条件结果，足够解决 h-th-root。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "p.24, eq.(81), Theorem8",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构原稿截图",
+      "query": "screenshot https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf pages index 3 and 27",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "目视核式(10)的 log h 系数 3/[2(c−1)] 与 Lemma26 的比值、取根指数，排除 OCR 和讲义的额外 c。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "printed pp.4,28",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"Ponder\" \"Drmota\" asymptotic",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1：再确认同题引用链；命中作者另篇综述 Stochastic analysis of tree-like data structures 的索引，但未据二手全文摘录增加证明证据。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"765568.765572\" correction erratum retraction",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1：相关命中为引用 Drmota 的另一篇被撤回文献；未找到本题结论撤回记录，不作全面无撤回保证。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"Ponder\" \"polynomial\" asymptotic solution",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1，recency=730：近期检索仍主要返回原题与算法同名材料；当前判断来自已找到的明确历史定理，不以新文献零命中判开放。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Springer 出版社",
+      "query": "open https://link.springer.com/article/10.1186/1029-242X-2013-60",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "撤回属于 Peishu Chen–Weicai Peng 的 Strong limiting behavior in binary search trees（2013-08-30 撤回），研究节点/子树计数，只引用 Drmota；不构成本题论文撤回/数学冲突证据。",
+      "url": "https://link.springer.com/article/10.1186/1029-242X-2013-60",
+      "locator": "Article title, authors, retraction notice, abstract",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构原稿下载",
+      "query": "GET https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf; pdftotext -layout",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "下载 339787 bytes，SHA256 fc86247bb5dcdae064539e2f917d58b8dff734b568f16ad4e4e70661ffefa572；完整稿已取得，再读关键引理和参考文献，未独立逐页重证整篇。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "INRIA 原始报告下载",
+      "query": "GET https://algo.inria.fr/seminars/sem01-02/drmota.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "直接下载 HTTP503；此前 web 已成功读取完整 6 页报告文字，此次失败不抹去既有读取。",
+      "url": "https://algo.inria.fr/seminars/sem01-02/drmota.pdf",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者机构讲义下载",
+      "query": "GET https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "下载 235036 bytes，SHA256 a6822741fdafdcb0533a5f03dfcc0eefb33d0af353d5cd3375323c26bb42819e。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search system2",
+      "query": "\"Ponder\" \"Shearer\" \"1.26107\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "未检得可确认同题的公开代码或 AI 解声明；同姓/IBM Ponder This 噪声不计同题。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search system2",
+      "query": "\"Ponder\" \"polynomials\" Lean github",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回 IBM Ponder This 等索引；已追 Refactor 源文，见下方排除记录。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search system2",
+      "query": "\"1.26107\" polynomial code",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 Drmota 作者 Quicksort 讲义及软件版本等噪声。已将 https://www.dmg.tuwien.ac.at/drmota/tuwien.pdf 转学术路线，未将数值相同单独当同题证据。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search (default-branch index)",
+      "query": "repository_name=google-deepmind/formal-conjectures; query=Ponder; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "results=[]；搜索索引不固定 commit，另用固定树补充范围。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search (default-branch index)",
+      "query": "repository_name=openai/math; query=Ponder; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "results=[]；另读取固定版本完整成果目录和形式化目录。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search system1",
+      "query": "\"Verified Analysis of Random Binary Tree Structures\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://pruvisto.org/pdfs/random_trees_journal.pdf",
+      "locator": "§4.3, PDF p.8–10",
+      "note": "追作者站 30 页 PDF、AFP entry 和 theory。§4.3 仅证明预期高度的对数上界，明确未形式化 Reed 精确常数。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search system1",
+      "query": "\"Ponder\" \"polynomials\" \"Lean\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "Refactor 的 IBM Ponder This July 2010 是三次 Pisot 数及取整模算术题，不是 Carl Ponder 多项式链。其泛多项式 Lean 项目也未证明本题。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search system1",
+      "query": "\"Ponder\" \"1.26107\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "未取得可确认同题的公开代码或 AI 声明。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed tree API",
+      "query": "GET google-deepmind/formal-conjectures git/trees/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8?recursive=1; scan paths /Ponder|Shearer|Picard|Binary.*Tree|BST|QuickSort|Quicksort|Polynomial|ComputerScience/i",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/git/trees/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8?recursive=1",
+      "note": "返回 2490 个完整树条目，truncated=false；没有目标名、BST/Ponder/Picard 对应路径。Polynomial 命中为通用 Mathlib 补充及 Gromov 群增长。只做完整路径扫描，不声称逐个 Lean 正文通读。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub official OpenAI repository",
+      "query": "GET root contents and README.md at 3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/README.md",
+      "locator": "README: Navigating the collection",
+      "note": "官方入口明确不同结果验证阶段不同；只作项目范围与目录导航，不把仓库整体状态移植给本题。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub official OpenAI repository",
+      "query": "Read CONTENTS.md and lean/formalization.yaml @3344da59991ed94f9ba711217b29c1d760badfa6; scan /Ponder|Shearer|Picard|binary.search|quicksort|1\\.26107|Riccati|polynomial.chain/i",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/CONTENTS.md",
+      "locator": "全文检索；Picard 噪声在 lines 411,773,1597,1606",
+      "note": "完整取得目录：CONTENTS 648672 bytes，formalization 88016 bytes；仅无关的 Picard packets/K3/Fano 条目命中。未命中本题；不等于全仓正文逐文件检索。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Fixed OpenAI catalogue local fulltext",
+      "query": "scan CONTENTS.md and formalization.yaml /binary.{0,30}tree|tree.{0,30}height|random.{0,20}tree|Riccati|Picard.iter|1\\.26107|4\\.311|polynomial.{0,20}chain|successive.approx/i",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/CONTENTS.md",
+      "locator": "lines 2443,4823,4848,4884,4886,9188",
+      "note": "6 个目录行命中为 binary edit distance、FK 平面图/连续随机树、VP/VNP 电路；没有随机 BST 高度或平方积分链的精确常数条目。formalization.yaml 零命中。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search system2",
+      "query": "\"Ponder\" \"polynomial\" site:mathoverflow.net",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "未检得可确认同题讨论；使用 system1 交叉检索。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search system2",
+      "query": "\"1.26107\" site:math.stackexchange.com",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "此引擎未给可确认同题讨论；system1 后续给不同问题的同数值答案，见排除记录。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search system2",
+      "query": "\"Ponder\" \"Shearer\" github",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "返回 IBM Ponder This 等噪声；未取得目标代码。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search system2",
+      "query": "\"Picard\" \"binary search\" Lean",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "返回以 Star Trek Picard 作人物名的算法题等噪声；未取得同题证明。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search system1",
+      "query": "site:mathoverflow.net \"Ponder\" \"polynomial\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中一般动词 ponder、Lehmer 多项式、幂塔微分等，无目标链或 Carl Ponder 同题强候选。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search system1",
+      "query": "site:math.stackexchange.com \"1.26107\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://math.stackexchange.com/questions/1918083/find-all-positive-integers-x-and-y-that-satisy-xy2-yx/1918120",
+      "locator": "Claude Leibovici 答案，2016-09-07；网页 lines 95–98",
+      "note": "已打开 1918083 全帖；其 Lambert W 数值来自 x^(y²)=y^x 的实数分支，不证明 p_h(1) 的增长极限。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search system1",
+      "query": "\"Picard iteration\" \"polynomials\" \"blow-up\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中一般 Picard 局部存在教学、y′=y 的 Taylor 链及 y′=y² 的爆破讨论，没有 x=1 处迭代层数增长率的直接公开证书；未以这些题面相似内容代替本题。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search (default-branch index)",
+      "query": "repository_name=google-deepmind/formal-conjectures; query=\"binary search\"; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "results=[]；有界索引检索，不是全文不存在证明。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search (default-branch index)",
+      "query": "repository_name=[google-deepmind/formal-conjectures,openai/math]; query=1.26107; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "results=[]；完整固定目录扫描另列。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Author primary source",
+      "query": "Open random_trees_journal.html; follow Download preprint PDF; find §4.3 Height and Archive of Formal Proofs references",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://pruvisto.org/pdfs/random_trees_journal.pdf",
+      "locator": "§4.3 and references [8]–[10]",
+      "note": "取得作者站 30 页全文；重点核 §4.3 和对应 AFP 引用，未全文逐行复核全部算法证明。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Archive of Formal Proofs",
+      "query": "Open Random_BSTs entry → session → HTML Presentation; find expectation_height (no hit) and ln 2 (hit)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://isa-afp.org/browser_info/current/AFP/Random_BSTs/Random_BSTs.html",
+      "locator": "lines 527–635, especially 577–584",
+      "note": "静态查看 height_exp_approx、height_expectation_bound、height_expectation_bigo。正文注释明确满足于 3/ln2 上界，未形式化精确约 4.311 常数。未运行 Isabelle。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Refactor public formalization index",
+      "query": "Open refacte.com/verification (redirect refactor.press/verification); click IBM Ponder This July 2010 project notes",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://refactor.press/formalizations/ibm-ponder-this-2010/README.md",
+      "note": "索引与链接可读；README.md 首次点击只有页面头，再 open 得 tool inaccessible。未虚报读取其项目 README 或构建。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Refactor author exposition",
+      "query": "Click IBM Ponder This July 2010 article from verification index",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://refactor.press/notes/ibm-ponder-this-2010",
+      "locator": "Revised 2026-11-03; abstract and §§1–6",
+      "note": "取得 336 行 HTML；摘要和正文可确认是三次 Pisot 单位、迹及模 2/5 提升的取整题。网页抽取漏部分显示公式，未核其完整证明；问题范围已足以排除。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "parse all 2469 JSONL rows; regex Ponder|Shearer|Picard|1\\.26107|多项式链|迭代积分|polynomial chain|iterated integration|二叉|binary.*tree|quicksort|快速排序|迭代.*多项式|多项式.*迭代",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "locator": "bundle/全库查重简索引.jsonl 全部行",
+      "note": "指没有需进入全文关系比较的强候选；另 4 个词汇命中为 Picard 奇点、Picard 秩、青蛙游戏二叉树、二叉树超立方体嵌入。索引无全正文，不能当全库全文排重。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "GET problems/001/QX-P-001348.meta.json and .text.md @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001348.meta.json",
+      "locator": "meta id/card_rev；text 全文",
+      "note": "核 id=QX-P-001348, rev=4b8e6d3728a7aff2 与包内一致；meta/text blob 分别 0a690b611e96f7acaaca7c6c41b69755b0e79da3 / c655481e6611ce9a98d71e443f3f78426052b91a。固定全文也保留了需另纠正的错误递推。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "\"Ponder\" \"polynomials\" Shearer",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批检索命中Drmota作者讲义及BST高度原稿，实际定理另开原文核。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "\"Ponder\" \"binary search trees\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批检索命中Drmota作者讲义及BST高度原稿，实际定理另开原文核。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "\"1.26107\" polynomials",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批检索命中Drmota作者讲义及BST高度原稿，实际定理另开原文核。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "polynomials p_h derivative square asymptotics binary search tree height",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批检索命中Drmota作者讲义及BST高度原稿，实际定理另开原文核。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"An analytic approach to the height of binary search trees\" Drmota yk(1)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位正式论文身份、作者稿及不同树型；不以搜索摘要直接定值。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"Ponder\" \"Shearer\" \"polynomials\" solved [recency3650]",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位正式论文身份、作者稿及不同树型；不以搜索摘要直接定值。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"log\" \"yk(1)\" Drmota",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位正式论文身份、作者稿及不同树型；不以搜索摘要直接定值。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.open",
+      "query": "OPEN https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "2010讲义给同递推和主阶；次阶系数与其逆函数式不一致，改以2002作者原稿式(10)为准。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "locator": "slides26,38",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.open",
+      "query": "OPEN https://www.dmg.tuwien.ac.at/drmota/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "主页仅frames提示及/menu.html链接，不据此声称已读发表目录。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.open",
+      "query": "OPEN https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际取得34页作者稿；阅读Theorem1/Remark1、定义、直接Ponder引文及Lemma26，非全文每一步重证。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "2002-04-29 author manuscript; pp.3–7,28–29,33",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.find/open",
+      "query": "FIND Lemma 26 and Ponder; OPEN extracted line2730",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核根目标对应同递推，式(10)及Lemma26(88)(89)；[12]直引Ponder原题，非仅名称相似。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "Lemma26 pp.28–29; Remark1 p.4; ref12 p.33",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"Drmota\" \"765572\" correction erratum [recency10000]",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "本次精确查询未得结果；不等于已证明没有任何勘误/后续研究。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"Ponder\" \"1.26107\" solved [recency3650]",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "本次精确查询未得结果；不等于已证明没有任何勘误/后续研究。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.open",
+      "query": "OPEN BSTVAR3.pdf at extracted lines437 and2920",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核Lemma5交点论证供Lemma26使用；另读到Lemma28/30及Hypothesis1的条件引用，但未复证全部解析依赖。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "Lemma5 pp.6–7; later pp.29–32",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学复核",
+      "site": "local exact rational arithmetic",
+      "query": "RUN python3 research/QX-P-001348/exact_checks.py",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际执行Fraction小阶递推及log/exp尾项界认证；不是Lean/Isabelle形式化。",
+      "locator": "exact_checks_result.json",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学复核",
+      "site": "root independent mathematical reasoning",
+      "query": "derive unique polynomial identity p_h=y_h; deduce root limit from equation10 and ratio89; differentiate Shearer lower-bound optimization; audit wrong linear/reverse recurrence",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "基于已读作者原稿作独立同题映射及简单推论；不声称重证34页全部基础。",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "Theorem1(3); Remark1(10); Lemma26(89)",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "OR-E01",
+      "url": "https://people.math.wisc.edu/~awmille1/res/fun-problem.pdf",
+      "locator": "Ponder fourth unnumbered question, printed pp.280–281; article title/metadata on PDF cover",
+      "version": "Richard K. Guy, Any Answers Anent These Analytical Enigmas?, AMM93(4),April1986,279–281; JSTOR2323678; scan SHA-256 7f9cbb8f7fe9505cfe1498d85825f029a162f3797fac9d875346f2e01602eed6",
+      "subquestions": [
+        "主问题",
+        "真实递推与出处"
+      ],
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "原题问平方积分链在1处的渐近行为。真实定义 p0=1,p_h′=p_(h−1)²,p_h(0)=1，deg p_h=2^h−1；原页小阶多项式与独立计算一致。题卡仅取其中根指数目标，并错误转录定义。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "OR-E02",
+      "url": "https://people.math.wisc.edu/~awmille1/res/fun-maa.pdf",
+      "locator": "Ponder/Shearer paragraph printed p.966 (PDF zero-based6); wrc convention printed p.961",
+      "version": "Richard K. Guy,Monthly Unsolved Problems,1969–1987,AMM94(10),December1987,961–970; JSTOR2322602; scan SHA-256 fb79e83072a78e640adc895c8d9bd6cd6975a157c74af1991ee6d7d838861d36",
+      "subquestions": [
+        "主问题",
+        "Shearer历史进展"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "正确平方链的历史界为 c1 λ1^h<p_h(1)<c2 λ2^h，λ1=max_a((a+1)/2)^(1/a)≈1.26107，λ2=2ln2≈1.38629,c1=1,c2=2.12。记录称其方法能略改进上界并证根极限存在；Shearer标wrc即written communication，本页不是该通信的完整证明。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "OR-E03",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "Theorem1(3),printed p.3; Remark1(10),p.4; Lemma26(88)–(89),pp.28–29; ref.[12],p.33",
+      "version": "Michael Drmota,An Analytic Approach to the Height of Binary Search Trees II; author manuscript dated April29,2002; 34-page BSTVAR3.pdf",
+      "subquestions": [
+        "修复后的Ponder根极限",
+        "原题与BST同一性"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "作者稿使用 y0=1 与同一平方积分递推，故 p_h=y_h。式(10)给 log y_h(1)=h/c+3/[2(c−1)]log h+O(1) 并直接指出 Ponder 同题；c为c log(2e/c)=1的大根。Lemma26给相邻比值→e^(1/c)。本路线核定义、参数支、映射和根极限推论，未重证整篇深层定理。正式刊发身份由学术路线补并。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "OR-E04",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "locator": "Title slide; slides5,26,38 (PDF zero-based4,25,37)",
+      "version": "Michael Drmota,The Binary Search Tree Equation; BIRS Banff,February1–5,2010; 57-page author lecture",
+      "subquestions": [
+        "作者后续重述与索引约定"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "讲义 y1=1，故 p_h=y_(h+1)，与2002稿下标不同。slide38 的 log y_k 次阶多写一个c，与同页EH_n逆关系不兼容；2002稿正确式(10)消除疑点。最终定值不依赖此讲义误写。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q1348-SCH-DRMOTA-II",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "Theorem1 eq.(3) p.3; Remark1 eq.(10) and explicit Ponder reference p.4; Lemma2 eq.(14) p.5; reference[12] p.33",
+      "version": "Author manuscript dated 2002-04-29, 34 pp.; SHA256 fc86247bb5dcdae064539e2f917d58b8dff734b568f16ad4e4e70661ffefa572; author bibliography identifies corresponding JACM50(3)(2003),333–374, DOI10.1145/765568.765572",
+      "subquestions": [
+        "恢复原始平方递推后的指数极限",
+        "更精细增长界"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Michael Drmota",
+      "claim_date": "2002-04-29",
+      "note": "真实链 y0=1、y_{h+1}(x)=1+∫_0^x y_h(t)^2dt 与 Ponder 1986 完全一致，无索引平移；不是饱和层变体。式(10)给 log y_h(1)=h/c+3/[2(c−1)]log h+O(1)，c>2 是 c log(2e/c)=1 的唯一根，c≈4.31107。紧接式(10)作者明确指为 Ponder 问题，ref[12] 引 AMM93(1986)280–281。除以 h 即得 L=e^(1/c)≈1.26107；不是 2^h-th-root。该式由本篇 Theorem1 与 Reed 高度渐近结合。已取得完整作者原稿，核递推、常数、结果范围及极限推论，未声称独立重证全部树高解析定理。出版商排印版403；发表信息由作者目录核，不冒称已读出版商版本。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q1348-SCH-RATIO",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BSTVAR3.pdf",
+      "locator": "Lemma26, eqs.(88)–(89), complete proof on pp.28–29; Lemma5 crossing method pp.6–7",
+      "version": "Same fixed 2002-04-29 author manuscript / JACM2003 counterpart; SHA256 fc86247bb5dcdae064539e2f917d58b8dff734b568f16ad4e4e70661ffefa572",
+      "subquestions": [
+        "恢复原始平方递推后的指数极限",
+        "相邻值比率极限"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "严格蕴含",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "Lemma26 对同链无条件证明 y_{h+2}(1)/y_{h+1}(1)≤y_{h+1}(1)/y_h(1)，且比率极限为 e^(1/c)。本轮读完整引理证明并核其截断 z0、缩放 z_h(1)=y_h(1)/γ、单交点比较的逻辑，以及由式(10)确定比率极限；未把全篇技术定理都称作本轮独立重证。此处有单调比率和确定极限，比仅有 lim h-th-root 更强。与上一证据来自同一论文，不计为第二份独立来源。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "implies",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q1348-SCH-PUBLISH",
+      "url": "https://www.geometrie.tuwien.ac.at/bibtexing/drmota.html",
+      "locator": "Publication entries70 and81",
+      "version": "Author institutional publications page read 2026-11-27; lists Algorithmica29/1-2(2001)89–119 and JACM50/3(2003)333–374",
+      "subquestions": [
+        "出版身份与版本"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "作者目录确证第一篇与标题带 II 的第二篇是不同发表作品；entry81 的 PDF 直接指向已读 BSTVAR3.pdf。旧 .ps.gz 标题链接404不等于论文缺失。该目录只证明发表身份，数学结论依赖已读原稿。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q1348-SCH-INRIA",
+      "url": "https://algo.inria.fr/seminars/sem01-02/drmota.pdf",
+      "locator": "p.64 eq.(6), Facts1–2 and bounds; Conjectures1–2, footnote1",
+      "version": "Algorithms Seminar2001–2002, edited F.Chyzak, INRIA2003 pp.63–68; Drmota talk2001-09-24, summary by Brigitte Chauvin",
+      "subquestions": [
+        "恢复原始平方递推后的指数极限",
+        "更精细等价式与根极限的区别"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "直接会议报告的总结，核 Y0=1、Y′_{k+1}=Yk²，xk=Yk(1) 满足正常数倍 α^k k^β 上下界，α=e^(1/c)、β=3/[2(c−1)]。这已确定取根极限。更强 xk∼γα^k k^β 在当时列为 Conjecture1；比率存在的 Conjecture2 有脚注称已验证，与后来的 Lemma26一致。此历史猜想标签不表示 h-th-root 在2026仍开放，也不据此断言前因子猜想目前仍开放。web全文可读；随后直接下载503仅记下载失败。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q1348-SCH-BANFF",
+      "url": "https://www.dmg.tuwien.ac.at/drmota/BanffDrmota.pdf",
+      "locator": "pp.26 and38 (PDF indices25,37); p.40 history",
+      "version": "Author slides The Binary Search Tree Equation, BIRS Banff2010-02-01–05; SHA256 a6822741fdafdcb0533a5f03dfcc0eefb33d0af353d5cd3375323c26bb42819e",
+      "subquestions": [
+        "原题异名映射",
+        "讲义次阶系数复核"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "作者报告同平方递推，幻灯片起点写 y1=1，故此页与 p_h 相差一个索引。主阶 k/c 与根极限一致；但 p38 log y_k(1) 的 log k 系数印成 3c/[2(c−1)]，而正式对应原稿式(10)与 INRIA 给3/[2(c−1)]，且其自身 EHn 逆关系要求后者。本轮识别为讲义次阶不一致，不把它当根极限被反驳；引用精细界用已读原稿式(10)。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E1348-CODE-01",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/CONTENTS.md",
+      "locator": "完整 CONTENTS.md，配合 README.md 与 lean/formalization.yaml；检索词及命中位置见 queries",
+      "version": "openai/math commit 3344da59991ed94f9ba711217b29c1d760badfa6；CONTENTS blob 7d4a8770643439016a70f23a4524d0ebacc78900；formalization.yaml blob 94045f5f34d8f2bdf8da17fca9a06632170efa14",
+      "subquestions": [
+        "公开 AI 声明覆盖",
+        "精确极限的形式化证据"
+      ],
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "formal_status": "未检到形式化",
+      "note": "仅说明在官方 AI 成果目录和形式化目录的已列同义查询下未发现此链或 BST 精确常数成果。目录可疑同词项已按其摘要排除，不把未命中解释为数学仍开放，也不声称检查全仓每篇论文。5 个固定源码快照的 Git blob 均与工具返回一致。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "scope_match": "unconfirmed",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1348-CODE-02",
+      "url": "https://github.com/google-deepmind/formal-conjectures/tree/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "locator": "固定 git tree 完整 2490 条、truncated=false；另默认分支索引检索 Ponder、binary search、1.26107",
+      "version": "google-deepmind/formal-conjectures commit ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "subquestions": [
+        "精确极限的形式化证据"
+      ],
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "formal_status": "未检到形式化",
+      "note": "固定树只检查路径，未逐个 Lean 文件读全文；默认分支代码索引检索零返回。范围足以记录本轮未发现目标形式化，但不能推出整个仓库或全部公开仓库无目标证明。未进行 Lean 构建。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "scope_match": "unconfirmed",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1348-CODE-03",
+      "url": "https://pruvisto.org/pdfs/random_trees_journal.pdf",
+      "locator": "Eberl–Haslbeck–Nipkow, Verified Analysis of Random Binary Tree Structures, §4.3 Height, PDF p.8–10；references [8]–[10]",
+      "version": "作者站 30 页预印本，2026-11-27 获取；对应 2020 JAR 64:879–910, DOI 10.1007/s10817-020-09545-0",
+      "subquestions": [
+        "排除一般 BST 形式化被误认精确链极限证明"
+      ],
+      "role": "形式化",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Manuel Eberl, Max W. Haslbeck, Tobias Nipkow",
+      "note": "此 formal_status 只针对作者所述的相关 BST/算法结果，不针对本题 L。§4.3 引 Reed 精确 α≈4.311、二阶项与方差结果后，明确本工作仅证预期高度的对数上界，非精确 α。该上界不足以证明 p_h(1)^(1/h)=e^(1/c)。本轮仅核定范围，没有重跑 Isabelle。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1348-CODE-04",
+      "url": "https://isa-afp.org/browser_info/current/AFP/Random_BSTs/Random_BSTs.html",
+      "locator": "Random_BSTs.thy: height_exp_approx, height_expectation_bound, height_expectation_bigo；HTML lines 527–635",
+      "version": "AFP entry published 2017-04-04；current HTML 于 2026-11-27 读取，该展示未取得固定 commit",
+      "subquestions": [
+        "排除一般 BST 形式化被误认精确链极限证明"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "已核静态定理目标：finite nonempty A 下 E height(random_bst A)≤log₂(binomial(|A|+3,3)/4)+1，并证此界 O(log n)。紧邻注释明确精确常数约 4.311 的复杂证明未做。未取得/构建本题精确极限形式化证明；此处静态检查只覆盖上述相关定理目标与证明文本，不等于全依赖内核验证。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1348-CODE-05",
+      "url": "https://refactor.press/notes/ibm-ponder-this-2010",
+      "locator": "Abstract；§§1–6；由 Supplementary sources 的 IBM Ponder This July 2010 项点击",
+      "version": "Henry Shin，Revised 2026-11-03；2026-11-27 读取",
+      "subquestions": [
+        "同名公开 Lean 资料排除"
+      ],
+      "publication": "作者主页",
+      "scope_match": "尚未确认",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "note": "已读正文可抽取内容，部分数学显示公式被网页抽取漏掉。文章处理三次 Pisot 单位的取整及模算术，并非 Carl Ponder 平方递推链。只是误命中排除，不为该其他问题的完整证明/Lean 验证背书；项目 notes 访问失败，未取得并构建其 Lean 源码。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q1348-ROOT-CHECK",
+      "url": "urn:qunxing:private-material",
+      "locator": "QX-P-001348/exact_checks.py; exact_checks_result.json; root_mathematical_review.json; independent_review.json",
+      "version": "2026-11-27；Python3.12.14；scriptSHA256=446b680ca9e2f14120023317d15ee795e05ff1038135584719eccbee4a085d69",
+      "subquestions": [
+        "错写递推与小阶边界",
+        "恢复原始平方递推后的指数极限",
+        "常数分支与严格数值区间",
+        "Shearer下界底数与极限"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已有独立数学复核",
+      "note": "主代理精确Fraction执行p0..p5，另一路独立代理手算p0..p3相同；脚本用log的atanh正项尾界和exp正项几何尾界认证c∈(4.311070407001005,4.311070407001006)、L∈(1.261070486830678,1.261070486830680)。另一代理静态核尾界、符号和唯一性，未重跑脚本。两路还独立核正式作者稿同一递推和取根极限推论。此review_status仅覆盖这些写明的数学核对，不表示Drmota全篇重新证明；普通Python不是证明助手形式化。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_review_exists",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [],
+  "card_actions": [
+    {
+      "action": "修复公式",
+      "field": "人话版 / 原文摘录 / 边界与约定 / 完整定义",
+      "old": "p_h′=p_(h−1)；另处写p_(h−1)′=p_h；次数2h−1。",
+      "new": "p0(x)=1；对整数h≥1，p_h′(x)=p_(h−1)(x)²且p_h(0)=1，等价p_h(x)=1+integral_0^x p_(h−1)(t)²dt；次数2^h−1。",
+      "reason": "两原刊扫描和后续同题作者稿一致；漏平方或倒向导数改变对象。本回执保留被审card_rev，只提修订。若改核心定义、题面或验收须新card_rev并复核受影响路线；仅修正人话措辞则按包规不换版本。",
+      "evidence_ids": [
+        "OR-E01",
+        "OR-E02",
+        "OR-E03"
+      ],
+      "small_case_check": "正确p2=1+x+x²+x³/3、p3次数7且p3(1)=323/63；无平方线性链p2=1+x+x²/2且根极限1；倒向链p1=0与p1(0)=1矛盾。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "card_action": "fix_formula"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "sources / first_published / proposer",
+      "new": "首次原刊：Richard K. Guy编，Any Answers Anent These Analytical Enigmas?, AMM93(4),April1986,279–281，Ponder未编号问题见280–281；1987更新见Guy,AMM94(10),966。提出者Carl Ponder；Shearer为后续书面通信结果。",
+      "reason": "已取得真实1986原件，不能只沿用1987二次汇总或虚构E题号。",
+      "evidence_ids": [
+        "OR-E01",
+        "OR-E02"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "按真实原题修复后的题面 / informal_status / acceptance.criteria / 已知进展",
+      "old": "L精确值至今未知；1987之后无后续文献命中；open weak。",
+      "new": "正确对象的根极限已由既有Drmota结果确定：L=e^(1/c)，c>2唯一解c log(2e/c)=1；等价L为1<L<2内唯一解L=2e logL。补同题原稿的明确定位与学术路线核到的正式出版信息。",
+      "reason": "后续原作者稿直接点名Ponder，并给同式同初值的充分渐近定理。一次旧检索无命中不能维持开放结论。",
+      "evidence_ids": [
+        "OR-E03"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "Shearer上下界与L区间说明",
+      "old": "题面称L介于1.26107与2ln2之间，正文未区分有限h的严格夹界与极限端点。",
+      "new": "区分有限h的严格指数夹界和极限的非严格夹界；Shearer下界底数λ1本身等于最终L，不把四舍五入的1.26107当不同精确常数。标明原出处为written communication的刊载转述。",
+      "reason": "a>0上max log((a+1)/2)/a在a=c−1取值1/c；严格点态不等式取根极限后可以在端点取等。",
+      "evidence_ids": [
+        "OR-E02",
+        "OR-E03"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "可接受成果范围 / 超越或代数性质 / 更精细渐近",
+      "new": "把根极限定值与代数/超越性质、归一化振幅收敛等扩展问题分开。已知log p_h=h/c+3/[2(c−1)]logh+O(1)不能升级为固定乘性常数的渐近等价。",
+      "reason": "当前核心验收是根极限；1986原题更宽泛，后加属性问题也不能由本次定值自动关闭。",
+      "evidence_ids": [
+        "OR-E01",
+        "OR-E03"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "文献公式定位 / 若引用Banff2010讲义",
+      "new": "优先引BSTVAR3式(10)的3/[2(c−1)]logh；讲义slide38多一个c的次阶排版不沿用。作者稿y0=1，讲义y1=1，下标映射分别p_h=y_h与p_h=y_(h+1)。",
+      "reason": "已交叉核两版本，原稿消除了讲义局部不一致；主指数相同。",
+      "evidence_ids": [
+        "OR-E03",
+        "OR-E04"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展 / 相关进展 / informal_status",
+      "old": "Shearer只给不同底数上下界；真实指数、精确L至今未知；此后文献零命中。",
+      "new": "补Drmota2002作者稿/2003 JACM论文Theorem1(3)、Remark1(10)、Lemma26(89)，明确恢复平方递推后L=e^(1/c)，c>2解c log(2e/c)=1。保留更精细幅度及代数性质的范围边界。",
+      "reason": "直接已读同题后续不仅匹配关键词，原稿明确指向Ponder并给更强比值极限。主代理与原源/学术代理分别核同题映射和取根推论；卡修订及闭合状态仍按包规分别走新版本复核与结案二审。",
+      "evidence_ids": [
+        "Q1348-SCH-DRMOTA-II",
+        "Q1348-SCH-RATIO",
+        "Q1348-SCH-PUBLISH",
+        "Q1348-ROOT-CHECK"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "形式化表述 / acceptance.criteria / 边界与约定",
+      "new": "精确值任务固定为原平方递推的h次根极限；如保留L的代数/超越性质或收敛前因子，另列独立子问，不把“或给任意有效区间”与已精确定值等同。",
+      "reason": "这些是不同验收目标，不能用新卡补入的额外问题维持已知L的开放标签。核心验收条件变更需要新card_rev；仅补引文/进展不换版本。",
+      "evidence_ids": [
+        "Q1348-SCH-DRMOTA-II",
+        "Q1348-SCH-INRIA"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "formal / formal_status",
+      "new": "相关AFP Random_BSTs只覆盖期望高度的对数上界；本轮未取得精确L的证明助手代码，也未运行Isabelle/Lean。",
+      "reason": "不能用相关树算法形式化或普通高精度数值认证替代本题精确极限的内核验证。",
+      "evidence_ids": [
+        "E1348-CODE-03",
+        "E1348-CODE-04",
+        "Q1348-ROOT-CHECK"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "Guy1987只转述Shearer(wrc)，本路线未取得通信原件或其独立后续出版证明。",
+      "next_step": "若补全历史归属需要，再从作者档案核该通信；当前卡的根极限定值已有后续直接原稿，因此此档案缺口不构成把核心问题继续列open的理由。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {}
+    },
+    {
+      "route": "其他：结论范围",
+      "reason": "本路线未重证Drmota全部原论文及其Reed/Devroye依赖，未调查额外的代数/超越性或归一化振幅是否收敛。",
+      "next_step": "与学术路线合并真实证明阅读深度和正式版本。仅对原题所对应的根指数关闭；额外更精细目标如保留在卡内应分别标明本次未评估，不虚报已解决。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "ACM正式版 PDF403，已完整取得并固定作者机构稿，正式出版身份也已由作者发表目录核验。",
+      "next_step": "如二审要求排印页码或逐字版本比较，再取得 JACM50(3)(2003)333–374 正式版并对照式(3)(10)及Lemma26；这不妨碍当前依据明确作者原稿判定恢复原式的指数问题已有解。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "未取得2001第一篇全文；本轮已定位更强且直接引用Ponder的2002稿/2003发表第二篇，不能无证断定最早解决年份。",
+      "next_step": "仅在需要追最早优先权时再取 Algorithmica29(2001)89–119 原稿及 Devroye/Reed 早期引文；当前写“至少在2002作者稿、2003正式刊发已有明确解”，不要声称本轮证实最早。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "卡附加的精细前因子/代数超越性质不是确定h-th-root所必需，本轮未完成这些不同子问的现时文献调查。",
+      "next_step": "将原卡“极限精确值未知”删除；不要自动推断前因子、误差常数或超越性质已解决/仍开放。若另立子问，再单独核后续文献。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "所有未命中均有界于明确列出的关键词、官方目录、固定树路径、默认分支代码索引及 MO/MSE 公开搜索。当前没有可交付的本题精确极限证明助手证书。",
+      "next_step": "如后续需要形式化证书，针对已恢复的 p_h′=p_{h−1}² 与 BST 高度生成多项式同一性获取直接目标源码，固定 commit 后检查定理/依赖并实际重跑；不要将当前 AFP 对数上界视作此项已完成。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "简索引仅有题名、别名、版本和路径，可能遗漏用不同题名描述同一 BST 生成多项式的卡。",
+      "next_step": "若后续获得随机 BST 高度分布/平方 Picard 迭代的强候选，再按固定版本读取双方 meta/text，并由小号 owner 给出最终 pair 关系；本轮不把词汇相似卡硬凑为重复。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {}
+    },
+    {
+      "route": "其他：修订与闭合状态二审",
+      "reason": "本回执仍针对原card_rev，正文存在实质定义/次数错误；正确原定义下的根极限已有文献解，并已由独立代理核其同一性和简单推论。",
+      "next_step": "提交原文—现卡公式及小例对照；涉及核心定义或验收的修订生成新card_rev并复核受影响路线，闭合状态另走包规二审。不要覆盖旧回执或把当前错误题面直接改为已解决；仅改人话措辞按包规不换版本。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "4b8e6d3728a7aff2",
+      "codes": {}
+    }
+  ]
+}

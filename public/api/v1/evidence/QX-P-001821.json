@@ -1,0 +1,1864 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001821",
+  "card_rev": "da08ab950acc2591",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-02"
+      ],
+      "parts": [
+        {
+          "subquestion": "必要计数与区组交数",
+          "value": "partial",
+          "note": "六个原卡λ数正确，另λ6=1；总块数96965，每块含84个6子集，96965×84=8145060=C(45,6)。独立计算固定块的交数n0..5=10276,29970,32400,18648,4536,1134，全部二项矩与整数性通过。不能把这些数可行当作全设计可实现；也未发现可由这些条件直接推出的非存在矛盾。"
+        },
+        {
+          "subquestion": "已知派生设计与扩展障碍",
+          "value": "partial",
+          "note": "Kiermaier–Krčadinac–Wassermann的arXiv2509.23483v1(2025-09-27)和2026-07-07正式刊Thm2.3给显式S(3,6,42)。本轮独立验证其574块唯一覆盖全部三元组。论文fullAut=AGL(2,3)阶432是作者识别；本轮只独立核生成432阶自同构子群及18+24点轨道。Thm4.1仅要求该具体seed若延成S(4,7,43)，新增点稳定子平凡；它不要求整个Aut平凡，也未排平凡extension group。即使未来排除这一个seed的所有扩展，仍须处理其他可能S(3,6,42)。异参数Thm4.2不移植到本题。"
+        },
+        {
+          "subquestion": "派生关系与验收边界",
+          "value": "partial",
+          "note": "存在S(6,9,45)依次推出S(5,8,44)、S(4,7,43)、S(3,6,42)、S(2,5,41)、S(1,4,40)，反向不能只凭单个派生对象存在。正向验收可交完整96965个9区组或能确定展开该表的生成规则：核点合法、每块9不同点、逐块84个6子集均无重复，再由总数8145060推出全覆盖。不存在性证书须覆盖不预设群作用的全部可能设计；packing、covering、固定群搜索无解都不足。"
+        },
+        {
+          "subquestion": "Keevash 定理与固定 45 点",
+          "value": "partial",
+          "note": "1401.3665v4 Thm1.4及完全超图应用给固定q=9,r=6后充分大n>n0的可除参数设计存在性；p14明确不计算显式n0。本轮没有取得把45纳入保证区间的进一步阈值特化。应撤去旧备注中不加说明的“可能已覆盖”或绝对“不覆盖”，改为当前未建立该应用；未给显式阈值不等于本质ineffective，原稿还介绍随机化构造算法。FC722是同一渐近量词的sorry骨架，非45点证明。"
+        },
+        {
+          "subquestion": "区组传递对称类别的排除",
+          "value": "partial",
+          "note": "Huber arXiv0904.3239v1 MainTheorem排除非平凡block-transitive Steiner6，所余PΓL(2,p^e)例外按正文作用在v=p^e+1点。本题v=45要求q=44，连prime power也不是，故旧文已排此固定参数的区组传递设计。该推论依赖作者分类定理，未独立复核整个CFSG链。Wang–Huang–Liu arXiv2611.06081v1(2026-11-04)声称补完所有剩余区组传递例外，本轮只读主定理/定义/引言，未通审分类证明；对45点并非首次排除。区组传递性远强于存在非平凡自同构，原题并未要求它，故不能升格为一般S(6,9,45)不存。"
+        },
+        {
+          "subquestion": "公开代码与更宽问题的范围",
+          "value": "no_evidence_in_scope",
+          "note": "本轮公开AI、社区和代码定向检索没有取得固定S(6,9,45)完整构造、不存证或同目标形式化证明。FC Wikipedia/SteinerSystem与Epoch要求某个n>k>t>5且t<10,n<200的设计；本题阳性可给实例，反向不成立。FC主目标仍sorry；已实际读其定义与固定环境，但没有构建，Fano/Witt的小例与原题不同。FC722 solved标签对应充分大存在性且目标仍sorry，不据标签认定本题已解。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "statement_only",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Wikipedia/SteinerSystem.lean"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "有部分进展",
+      "scope_note": "当前数学问题忠实：在45点上是否有9元区组族，使每个6元子集恰好属于一块。本轮未取得全部96965区组或无条件不存在证明。已核必要派生S(3,6,42)的新构造，并从原文输入独立展开574块、验证全部11480个三元组；另有区组传递类的排除。必要计数与交数均通过，既不证明存在，也未产生不存矛盾。Keevash充分大点数结论、宽参数形式化任务和MSE0答案都不能闭合固定45点问题。",
+      "evidence_ids": [
+        "E1821-P1",
+        "E1821-A1",
+        "E1821-A2",
+        "E1821-M1",
+        "E1821-M2",
+        "E1821-R1",
+        "E1821-R2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "原题身份与历史记录",
+      "math_status": "有部分进展",
+      "scope_note": "本轮最早实际核得同参数明确提问是Joubarc于2012-12-21 09:51:27UTC发表的MSE263131；不宣称全球最早。官方API原题、0答案、全部6评论均取得且has_more=false。EdPegg在2012-12-27明确澄清其高对称性推测并非证明，不能排除缺乏对称性的设计。原帖2012年关于一般t≥6的背景不能直接作2026状态；卡中的2022转发未核，不能补作证明。",
+      "evidence_ids": [
+        "E1821-P1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "必要计数与区组交数",
+      "math_status": "条件性结果",
+      "scope_note": "六个原卡λ数正确，另λ6=1；总块数96965，每块含84个6子集，96965×84=8145060=C(45,6)。独立计算固定块的交数n0..5=10276,29970,32400,18648,4536,1134，全部二项矩与整数性通过。不能把这些数可行当作全设计可实现；也未发现可由这些条件直接推出的非存在矛盾。",
+      "evidence_ids": [
+        "E1821-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "已知派生设计与扩展障碍",
+      "math_status": "有部分进展",
+      "scope_note": "Kiermaier–Krčadinac–Wassermann的arXiv2509.23483v1(2025-09-27)和2026-07-07正式刊Thm2.3给显式S(3,6,42)。本轮独立验证其574块唯一覆盖全部三元组。论文fullAut=AGL(2,3)阶432是作者识别；本轮只独立核生成432阶自同构子群及18+24点轨道。Thm4.1仅要求该具体seed若延成S(4,7,43)，新增点稳定子平凡；它不要求整个Aut平凡，也未排平凡extension group。即使未来排除这一个seed的所有扩展，仍须处理其他可能S(3,6,42)。异参数Thm4.2不移植到本题。",
+      "evidence_ids": [
+        "E1821-A2",
+        "E1821-M2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "派生关系与验收边界",
+      "math_status": "条件性结果",
+      "scope_note": "存在S(6,9,45)依次推出S(5,8,44)、S(4,7,43)、S(3,6,42)、S(2,5,41)、S(1,4,40)，反向不能只凭单个派生对象存在。正向验收可交完整96965个9区组或能确定展开该表的生成规则：核点合法、每块9不同点、逐块84个6子集均无重复，再由总数8145060推出全覆盖。不存在性证书须覆盖不预设群作用的全部可能设计；packing、covering、固定群搜索无解都不足。",
+      "evidence_ids": [
+        "E1821-P1",
+        "E1821-A2",
+        "E1821-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Keevash 定理与固定 45 点",
+      "math_status": "有部分进展",
+      "scope_note": "1401.3665v4 Thm1.4及完全超图应用给固定q=9,r=6后充分大n>n0的可除参数设计存在性；p14明确不计算显式n0。本轮没有取得把45纳入保证区间的进一步阈值特化。应撤去旧备注中不加说明的“可能已覆盖”或绝对“不覆盖”，改为当前未建立该应用；未给显式阈值不等于本质ineffective，原稿还介绍随机化构造算法。FC722是同一渐近量词的sorry骨架，非45点证明。",
+      "evidence_ids": [
+        "E1821-A1",
+        "E1821-P3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "区组传递对称类别的排除",
+      "math_status": "条件性结果",
+      "scope_note": "Huber arXiv0904.3239v1 MainTheorem排除非平凡block-transitive Steiner6，所余PΓL(2,p^e)例外按正文作用在v=p^e+1点。本题v=45要求q=44，连prime power也不是，故旧文已排此固定参数的区组传递设计。该推论依赖作者分类定理，未独立复核整个CFSG链。Wang–Huang–Liu arXiv2611.06081v1(2026-11-04)声称补完所有剩余区组传递例外，本轮只读主定理/定义/引言，未通审分类证明；对45点并非首次排除。区组传递性远强于存在非平凡自同构，原题并未要求它，故不能升格为一般S(6,9,45)不存。",
+      "evidence_ids": [
+        "E1821-R1",
+        "E1821-R2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "公开代码与更宽问题的范围",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "本轮公开AI、社区和代码定向检索没有取得固定S(6,9,45)完整构造、不存证或同目标形式化证明。FC Wikipedia/SteinerSystem与Epoch要求某个n>k>t>5且t<10,n<200的设计；本题阳性可给实例，反向不成立。FC主目标仍sorry；已实际读其定义与固定环境，但没有构建，Fano/Witt的小例与原题不同。FC722 solved标签对应充分大存在性且目标仍sorry，不据标签认定本题已解。",
+      "evidence_ids": [
+        "E1821-P2",
+        "E1821-P3",
+        "E1821-P4"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-02-1821-1821_a1-open-1",
+      "route": "原题与出处",
+      "site": "math.stackexchange.com",
+      "query": "open https://math.stackexchange.com/questions/263131",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://math.stackexchange.com/questions/263131",
+      "note": "MSE 短 URL 直开失败，后续只有搜索缓存；同轮 public 代理另取得 canonical 全文/API。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a1-system2_search_query-1",
+      "route": "学术",
+      "site": "公开学术Web检索",
+      "query": "system2_search_query: \"Steiner\" \"6\" \"45\" \"9\" design existence",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中原帖及通用资料/数值误匹配，未取到固定参数证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a1-system2_search_query-2",
+      "route": "原题与出处",
+      "site": "公开学术Web检索",
+      "query": "system2_search_query: \"S(6,9,45)\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中本题和可见评论，仅搜索返回，不冒称此步打开全文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a1-system2_search_query-3",
+      "route": "学术",
+      "site": "公开学术Web检索",
+      "query": "system2_search_query: \"6-(45,9,1)\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "精确记法亦命中材料计算、2-design 数据等其他对象；不移用为本题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a2-open-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/abs/1401.3665",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/abs/1401.3665",
+      "note": "官方版本史：1401.3665v1 2014-01-15，v4 2024-11-27；一般充分大点数。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a2-open-2",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/pdf/1401.3665",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/1401.3665",
+      "note": "取得55页PDF，读引言、定义、Thm1.4及阈值说明，未通审证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a2-open-3",
+      "route": "学术",
+      "site": "web.math.pmf.unizg.hr",
+      "query": "open https://web.math.pmf.unizg.hr/~krcko/results/steiner3.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://web.math.pmf.unizg.hr/~krcko/results/steiner3.html",
+      "note": "读作者数据页42/6/574行及书目，该对象只是必要派生设计。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a2-system1_search_query-1",
+      "route": "学术",
+      "site": "公开学术Web检索",
+      "query": "system1_search_query: \"S(6,9,45)\" (construction OR nonexistence OR exists OR proof); recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "recency365 精确参数定向查完整构造/不存，只取得MSE线索。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a2-system1_search_query-2",
+      "route": "学术",
+      "site": "公开学术Web检索",
+      "query": "system1_search_query: \"Steiner 3-designs as extensions\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中2026正式Springer主文，后续实际定点读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a3-open-1",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "open https://link.springer.com/article/10.1007/s10623-026-01888-w",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s10623-026-01888-w",
+      "note": "正式主文已取得；后续定点读Thm2.3/4.1。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a3-open-2",
+      "route": "学术",
+      "site": "web.math.pmf.unizg.hr",
+      "query": "open 〔原始工具引用已私有留存〕 lineno=34 〔私有记录编号：PR-000722〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://web.math.pmf.unizg.hr/~krcko/results/steiner3.html",
+      "note": "作者页派生设计和数据链接，非原题解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a3-find-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=Theorem 1.4 〔私有记录编号：PR-000723〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/1401.3665",
+      "note": "Thm1.4 n>n0及完全超图应用仅充分大点数。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a3-find-2",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=sufficiently large 〔私有记录编号：PR-000724〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/1401.3665",
+      "note": "printed p14未计算显式n0；不等于证明本质无效。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a3-system2_search_query-1",
+      "route": "学术",
+      "site": "公开学术Web检索",
+      "query": "system2_search_query: \"S6945\" Steiner",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "S6945商品型号碰撞，不作数学命中。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a3-system2_search_query-2",
+      "route": "学术",
+      "site": "公开学术Web检索",
+      "query": "system2_search_query: \"Steiner 6\" \"45\" existence",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中Huber及2611.06081等对称性限制；交根读primary。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a4-find-1",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=Theorem 2.3 〔私有记录编号：PR-000725〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s10623-026-01888-w",
+      "note": "完整读Thm2.3两生成元/七base blocks，fullAut AGL(2,3)432；SL(2,3)24仅搜索extension group。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a4-find-2",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=Theorem 4.1 〔私有记录编号：PR-000726〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s10623-026-01888-w",
+      "note": "读Thm4.1及未完成trivial-group exact cover、异参数Thm4.2。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a4-find-3",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=Published 〔私有记录编号：PR-000727〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s10623-026-01888-w",
+      "note": "核三作者、卷94article157、2026-07-07正式发表。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a4-find-4",
+      "route": "学术",
+      "site": "web.math.pmf.unizg.hr",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=References 〔私有记录编号：PR-000728〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://web.math.pmf.unizg.hr/~krcko/results/steiner3.html",
+      "note": "作者书目给arXiv2509.23483及Zenodo17153238；不称运行GAP。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a5-open-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/abs/2509.23483",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/2509.23483",
+      "note": "官方abs实际读：唯一v1为2025-09-27，摘要明确S3构造；主文采用正式刊，未逐字比两版。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a5-open-2",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "open 〔原始工具引用已私有留存〕 lineno=31 〔私有记录编号：PR-000729〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s10623-026-01888-w",
+      "note": "正式文§1定义/派生/可除性，未将全领域状态句作为当前闭题证据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a5-open-3",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "open 〔原始工具引用已私有留存〕 lineno=172 〔私有记录编号：PR-000730〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s10623-026-01888-w",
+      "note": "§4完整关键范围：指定seed非平凡稳定子排除，trivialcase未算，表列上界不是已实现扩展。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a5-system1_search_query-1",
+      "route": "学术",
+      "site": "公开学术Web检索",
+      "query": "system1_search_query: \"S(6,9,45)\" (proof OR construction OR nonexistence); recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "精确近期查无取得全题完整可核证明，不等于全网无解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1821-1821_a5-system1_search_query-2",
+      "route": "原题与出处",
+      "site": "公开学术Web检索",
+      "query": "system1_search_query: \"S(6, 9, 45)\" design -site:math.stackexchange.com",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "排MSE查较早精确参数，只有通用资料；未取到早于2012本题原始段落。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地原题包",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000731〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全文核当前批次/题号/rev；正式题意和acceptance正确；旧novelty.rev不同不可当本轮结论。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "StackExchange官方API原始文件",
+      "query": "完整读取1821_source/mse_api_0.json、mse_api_1.json、mse_api_2.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.stackexchange.com/questions/263131/is-there-a-steiner-system-s6-9-45",
+      "locator": "question263131正文、answers=[]、全部6comments且has_more=false",
+      "note": "API由同题public代理实际请求，本代理另完整读其原始JSON。Joubarc2012-12-21同题；0答案不是无解证明；EdPegg comment580709澄清对称性意见非无条件证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web search system2",
+      "query": "\"Steiner\" \"6,9,45\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中MSE原题及相关参数资料；检索摘要不算整题存在/不存在证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web search system2",
+      "query": "\"S(6, 9, 45)\" existence",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中MSE原题及相关参数资料；检索摘要不算整题存在/不存在证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://math.stackexchange.com/questions/263131",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "裸URL打开失败；public随后经官方API完整读取问题、全部6评论与0答案，弥补此读取缺口。",
+      "url": "https://math.stackexchange.com/questions/263131",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system1，recency365",
+      "query": "\"2611.06081\" Steiner",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位2026-11-04预印本；后续下载官方完整稿核范围。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open",
+      "query": "https://arxiv.org/abs/2611.06081",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "DisabledError；不算全文覆盖，后续urllib官方源成功，未借镜像摘要下结论。",
+      "url": "https://arxiv.org/abs/2611.06081",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open",
+      "query": "https://arxiv.org/pdf/2611.06081v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "DisabledError；不算全文覆盖，后续urllib官方源成功，未借镜像摘要下结论。",
+      "url": "https://arxiv.org/pdf/2611.06081v1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open",
+      "query": "https://arxiv.org/html/2611.06081v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "DisabledError；不算全文覆盖，后续urllib官方源成功，未借镜像摘要下结论。",
+      "url": "https://arxiv.org/html/2611.06081v1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "Huber 2010 \"block-transitive Steiner 6-designs\" arxiv",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位Huber2009原稿0904.3239；相邻2010会议文涉及t7，未混作同文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "\"On the existence of block-transitive Steiner 6-designs\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位Huber2009原稿0904.3239；相邻2010会议文涉及t7，未混作同文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open",
+      "query": "https://arxiv.org/abs/0904.3239",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "官方元数据确认作者、2009-04-21v1及DOI10.1016/j.jcta.2009.04.004。",
+      "url": "https://arxiv.org/abs/0904.3239",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open",
+      "query": "https://arxiv.org/pdf/0904.3239v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "DisabledError；随后urllib官方PDF200成功取得，失败未作为覆盖。",
+      "url": "https://arxiv.org/pdf/0904.3239v1",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "官方arXiv，Python urllib.request",
+      "query": "GET https://arxiv.org/abs/2611.06081",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "HTTP200；实际读标题、版本、摘要、Introduction/Theorem1.1与定义；只涉及非平凡block-transitive Steiner6，不排一般系统，未审完整分类证明。",
+      "url": "https://arxiv.org/abs/2611.06081",
+      "locator": "1821_symmetry_source/download_log.json; source_0.html/source_1.pdf/source_2.html",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "官方arXiv，Python urllib.request",
+      "query": "GET https://arxiv.org/pdf/2611.06081v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "HTTP200；实际读标题、版本、摘要、Introduction/Theorem1.1与定义；只涉及非平凡block-transitive Steiner6，不排一般系统，未审完整分类证明。",
+      "url": "https://arxiv.org/pdf/2611.06081v1",
+      "locator": "1821_symmetry_source/download_log.json; source_0.html/source_1.pdf/source_2.html",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "官方arXiv，Python urllib.request",
+      "query": "GET https://arxiv.org/html/2611.06081v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "HTTP200；实际读标题、版本、摘要、Introduction/Theorem1.1与定义；只涉及非平凡block-transitive Steiner6，不排一般系统，未审完整分类证明。",
+      "url": "https://arxiv.org/html/2611.06081v1",
+      "locator": "1821_symmetry_source/download_log.json; source_0.html/source_1.pdf/source_2.html",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "官方arXiv，Python urllib.request + pdftotext",
+      "query": "GET https://arxiv.org/pdf/0904.3239v1; pdftotext -layout; read pp1–6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "HTTP200/165360bytes/SHA2564043a551bf6a3c80708c90507b2478c885674c3472d20c693a6ed4506a245e9c。实际读MainTheorem、§2定义、§3.3分类和§4.2 Case2的v=q+1。例外q=p^e，p2或3；v45⇒q44非primepower，所以对本固定参数的block-transitive排除已由旧文得出。该推论依赖文中定理/分类；未自行复核CFSG链。",
+      "url": "https://arxiv.org/pdf/0904.3239v1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl，2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000732〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "初始整个记录搜索包含card_rev，1940/2021仅hash含6945的噪声；后续限定title/title_en/aliases纠正，不据hash判断相似。索引不含全文，不代表全文全库零重复。",
+      "result_count": 3,
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl，2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000733〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "初始整个记录搜索包含card_rev，1940/2021仅hash含6945的噪声；后续限定title/title_en/aliases纠正，不据hash判断相似。索引不含全文，不代表全文全库零重复。",
+      "result_count": 3,
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl，2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000734〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "初始整个记录搜索包含card_rev，1940/2021仅hash含6945的噪声；后续限定title/title_en/aliases纠正，不据hash判断相似。索引不含全文，不代表全文全库零重复。",
+      "result_count": 0,
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl，2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000735〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "精确项仅本题；宽项有效候选306、2403，其余Witten/Witt向量词面噪声，未谎称读全部噪声题卡正文。306、2403已取固定全文。",
+      "result_count": 1,
+      "locator": "1821_local_index_corrected.json",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl，2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000736〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "精确项仅本题；宽项有效候选306、2403，其余Witten/Witt向量词面噪声，未谎称读全部噪声题卡正文。306、2403已取固定全文。",
+      "result_count": 7,
+      "locator": "1821_local_index_corrected.json",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/002/QX-P-002403.meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "2403要求范围内任意一个高阶Steiner系统；1821正解可解决2403，但反向不成立，具体参数不存在也不否定广任务。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002403.meta.json",
+      "locator": "blob a0cc36adfba154d12c25de474c57372e1db93222",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/002/QX-P-002403.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "2403要求范围内任意一个高阶Steiner系统；1821正解可解决2403，但反向不成立，具体参数不存在也不否定广任务。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002403.text.md",
+      "locator": "blob 3001b298c1984ea5451e54e2d3aac0e6120f7708",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/000/QX-P-000306.meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "306是图论终端Steiner树打包，非区组设计；pair QX-P-000306__QX-P-001821由较小编号306归属，此处仅筛选记录，不另提交同pair最终判定。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000306.meta.json",
+      "locator": "blob 136ea582ed487d252f850d9dccd8fb41934a344c",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/000/QX-P-000306.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "306是图论终端Steiner树打包，非区组设计；pair QX-P-000306__QX-P-001821由较小编号306归属，此处仅筛选记录，不另提交同pair最终判定。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000306.text.md",
+      "locator": "blob c7e96d598a65bf30c01c77647f7d06767498d0ad",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Springer Web open",
+      "query": "https://link.springer.com/article/10.1007/s10623-026-01888-w",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "root再读正式原稿Introduction与Thm2.3完整生成元和7基块；同题派生参数的部分进展，非S6945全解。",
+      "url": "https://link.springer.com/article/10.1007/s10623-026-01888-w",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "P1821-C1-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地原题包",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000737〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "确认当前card_rev da08ab950acc2591；固定目标是6-(45,9,1)，不假定区组有对称性。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P1821-C1-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "openai/math 固定overview本地缓存",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000738〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "实际复用先前固定3344da59991ed94f9ba711217b29c1d760badfa6的overview缓存并本题重新搜索；退出码1，只覆盖该overview。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "P1821-C1-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"S(6,9,45)\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一实际批次；核心命中MSE原帖，其余多为词串误匹配。Machina Mathematica索引泛称AI形式化结果，摘要未给出本题声明，随后打开原页。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P1821-C1-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Steiner\" \"45\" \"96965\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一实际批次；核心命中MSE原帖，其余多为词串误匹配。Machina Mathematica索引泛称AI形式化结果，摘要未给出本题声明，随后打开原页。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P1821-C1-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"S(6, 9, 45)\" (construction OR counterexample OR solved OR Lean)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一实际批次；核心命中MSE原帖，其余多为词串误匹配。Machina Mathematica索引泛称AI形式化结果，摘要未给出本题声明，随后打开原页。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P1821-C1-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub formal-conjectures",
+      "query": "repository=google-deepmind/formal-conjectures; query=Steiner; topn=20",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 16,
+      "note": "结果ref固定ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8，命中SteinerSystem与722及其他Steiner姓名/三元系邻题；随后读取两个直接相关文件。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P1821-C1-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/math",
+      "query": "repository=openai/math; query=Steiner; topn=20",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "result_count": 20,
+      "note": "返回20项的ref均为3344da59991ed94f9ba711217b29c1d760badfa6，实为Steiner对称化、Richard Steiner的高范畴论或Raphael Steiner姓名等；检索片段未匹配设计问题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "P1821-C1-5",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub conjecture-bench",
+      "query": "repository=bespokelabsai/conjecture-bench; query=Steiner; topn=20",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "result_count": 5,
+      "note": "返回5项ref8d494791ace5894b860585d67ba8e69dbfed6376，Kriesell Steiner树packing、universal triple systems及表格，均非6-(45,9,1)。未虚构本题CB路径。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "P1821-C2-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file google-deepmind/formal-conjectures FormalConjectures/Wikipedia/SteinerSystem.lean ref=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Wikipedia/SteinerSystem.lean",
+      "locator": "SteinerSystem; LargeSteinerSystemWitness; large_steiner_systems",
+      "note": "完整读取定义和目标，Gitblob e57ff36f646eb3cc71a522ec6bfaf9956b04a2c3；目标仅要求某个5<t<10,n<200的参数，非固定(6,9,45)。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "P1821-C2-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file google-deepmind/formal-conjectures FormalConjectures/ErdosProblems/722.lean ref=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/722.lean",
+      "locator": "erdos_722",
+      "note": "全文读取，blob647c61af68edd71036d9ed702a00a23abbee4bab；∀ᶠ n in atTop没有给v=45阈值。研究定理标solved但有sorry，不表示本轮Lean证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "P1821-C2-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "MSE原页",
+      "query": "open https://math.stackexchange.com/questions/263131/is-there-a-steiner-system-s6-9-45",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.stackexchange.com/questions/263131/is-there-a-steiner-system-s6-9-45",
+      "locator": "正文40–51；评论70–97；ref 〔原始工具引用已私有留存〕",
+      "note": "实际原页面文本119行；读问题及可见5评论，尚折叠1评论，随后用官方API补齐，非只看索引。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P1821-C2-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Machina Mathematica",
+      "query": "open https://lean.up.railway.app/",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://lean.up.railway.app/",
+      "note": "实际页面仅7行，泛称自主AI研究/Lean，正文停在loading the dossier；没有取得本题声明或源代码，不把全站泛称当S6945已解，也不假称已查看动态dossier。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "P1821-C2-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Steiner\" \"6,9,45\" (construction OR nonexistence OR proof OR AI OR 2026)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；核心仍为MSE原帖，另为Steiner一般资料或S(5,6,108)旧构造，未得到固定主题完整解。近期网页爬取时间未当论文新发表日期。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P1821-C2-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Steiner\" \"6-(45,9,1)\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；核心仍为MSE原帖，另为Steiner一般资料或S(5,6,108)旧构造，未得到固定主题完整解。近期网页爬取时间未当论文新发表日期。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P1821-C2-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/math",
+      "query": "repository=openai/math; query=96965; topn=10",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "result_count": 10,
+      "note": "10个结果均为固定3344…分析学数值证书中长整数的子串；无本题区组/设计证明，检索层级排除。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "P1821-C2-5",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub conjecture-bench",
+      "query": "repository=bespokelabsai/conjecture-bench; query=263131; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "题号精确查询返回0；未取得本题JSON，不能推断整个CB库从无相关记录。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "P1821-C3-0-Q",
+      "route": "代码、公开 AI 和社区",
+      "site": "StackExchange官方API",
+      "query": "GET https://api.stackexchange.com/2.3/questions/263131?site=math&filter=withbody",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.stackexchange.com/2.3/questions/263131?site=math&filter=withbody",
+      "locator": "items[0].body/answer_count；1821_source/mse_api_0.json",
+      "note": "公开无认证urllib请求HTTP200，完整题体4797字节，has_more=false，answer_count=0/is_answered=false；creation2012-12-21T09:51:27Z，last_edit2026-04-24T23:31:38Z。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P1821-C3-0-A",
+      "route": "代码、公开 AI 和社区",
+      "site": "StackExchange官方API",
+      "query": "GET https://api.stackexchange.com/2.3/questions/263131/answers?site=math&pagesize=100&sort=creation&order=asc&filter=withbody",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.stackexchange.com/2.3/questions/263131/answers?site=math&pagesize=100&sort=creation&order=asc&filter=withbody",
+      "result_count": 0,
+      "locator": "1821_source/mse_api_1.json",
+      "note": "HTTP200，items=[]且has_more=false，已取完答案分页；该网站无答案不等于数学已证明开放。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P1821-C3-0-C",
+      "route": "代码、公开 AI 和社区",
+      "site": "StackExchange官方API",
+      "query": "GET https://api.stackexchange.com/2.3/questions/263131/comments?site=math&pagesize=100&sort=creation&order=asc&filter=withbody",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.stackexchange.com/2.3/questions/263131/comments?site=math&pagesize=100&sort=creation&order=asc&filter=withbody",
+      "result_count": 6,
+      "locator": "1821_source/mse_api_2.json",
+      "note": "HTTP200，6评论、has_more=false；580709作者澄清对称性说法不是证明；第6条10025902仅2023年确认比利时背景，无2026新数学声明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P1821-C3-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Epoch AI",
+      "query": "open https://epoch.ai/frontiermath/open-problems/large-steiner-systems",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://epoch.ai/frontiermath/open-problems/large-steiner-systems",
+      "locator": "Prompt；ref 〔原始工具引用已私有留存〕",
+      "note": "页面135–172行实际读到Unsolved标签和提交任意n>q>r>5,r<10,n<200区组的任务；包括候选(45,9,6)却不与固定参数问题等价，不能用其他参数完成替代。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "P1821-C3-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"S(6,9,45)\" (GitHub OR code OR certificate OR AI OR Lean)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；命中2026正式期刊Steiner 3-designs as extensions的摘要和可下载数据线索，目标S(3,6,42)。已交academic核原稿，其存在不能倒推主6-design；本路线未把摘要当完整构造证书。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P1821-C3-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Steiner\" \"45\" \"6\" \"9\" \"construction\" \"2026\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365；命中2026正式期刊Steiner 3-designs as extensions的摘要和可下载数据线索，目标S(3,6,42)。已交academic核原稿，其存在不能倒推主6-design；本路线未把摘要当完整构造证书。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P1821-C3-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/math",
+      "query": "repository=openai/math; query=SteinerSystem; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "精确标识符定向搜索返回0，与前述宽词排除互补；不是全网无解证据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "P1821-C3-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地固定FC锁文件",
+      "query": "读取47_source/fc/lean-toolchain及lake-manifest.json并核Git blob；复制至1821_source/fc",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际复用同一ea8…源缓存，工具链v4.33.1，Mathlib0df444a360eaa60ab8c11dca51a86af692955474；锁文件blob分别a8afa7d1b02d96f0671eba854a8dc4b416beb473、fae5d498d3f9dc3f6d1efd7c2adc03dd5bb6c8d6。本题没有Lean执行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "1821-P-Q01",
+      "route": "学术",
+      "site": "独立proof_review实际执行",
+      "query": "1821_task.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读当前题干、六个λ值、验收与旧派生设计线索。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1821-P-Q02",
+      "route": "其他：独立数学与整数核验",
+      "site": "独立proof_review实际执行",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000739〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "exit0；精确Fraction/整数运算核λ0..6、五级派生、区组交数、二项矩、全局pair整数性、两种补设计和残余参数。输出1821_exact_counts.json。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1821-P-Q03",
+      "route": "学术",
+      "site": "独立proof_review实际执行",
+      "query": "https://math.stackexchange.com/questions/263131",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "本代理访问不可达，〔原始工具引用已私有留存〕；不把该失败算作已读原问，原题历史由academic/root另核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "1821-P-Q04",
+      "route": "学术",
+      "site": "独立proof_review实际执行",
+      "query": "https://doi.org/10.1007/s10623-026-01888-w",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "DOI跳转不可达，〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "1821-P-Q05",
+      "route": "学术",
+      "site": "独立proof_review实际执行",
+      "query": "对academic已取得的Springer原文turn637339888view0查Theorem2.3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "成功返回turn293935619view1及原期刊URL；实际读Thm2.3完整两置换/七基块与§3扩张定义、Thm4.1和未完成平凡群计算的说明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "1821-P-Q06",
+      "route": "其他：独立数学与整数核验",
+      "site": "独立proof_review实际执行",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000740〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "exit0；从原文转录生成元和基块独立生成432群/574区组，全部11480三元组恰一次；结果JSON包含完整574块。未求fullAut、未搜索extension。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立计算静态复核",
+      "site": "本题已取得的原始脚本与数据",
+      "query": "root静态完整读取1821_verify_derived_seed.py并对照Springer Thm2.3；assembler读取1821_exact_counts.json和1821_verify_derived_seed.json的输入、结果与SHA256",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "locator": "两置换、七基块、有限群闭包和全部11480三元组覆盖；非原题完整区组",
+      "note": "root实际完成脚本逐段静态核查并与原文核输入；本次组装不再运行Python求群，不冒称根另一次计算。两组置换循环及七基块已嵌入M2证据以免只依赖临时路径。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E1821-A1",
+      "url": "https://arxiv.org/pdf/1401.3665",
+      "locator": "§1定义和Theorem1.4 printed p2；printed p14关于n0未给显式数值；abs版本史",
+      "version": "Peter Keevash, The existence of designs, arXiv1401.3665v4（2024-11-27提交，PDF稿面2024-11-28）；初版2014-01-15",
+      "subquestions": [
+        "主问题",
+        "Keevash 定理与固定 45 点"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "参数(n,q,r)对应本题(45,9,6)。Thm1.4及完全超图应用保证固定q,r后n>n0的可除参数存在设计；本文明确未计算显式n0，且介绍随机化构造算法。本轮未取得将45放入保证区间的阈值特化；这不等于定理本质无效或45不可能被进一步分析覆盖。只核定义、定理与范围，未通审55页证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1821-A2",
+      "url": "https://link.springer.com/article/10.1007/s10623-026-01888-w",
+      "locator": "Theorem2.3及两置换/七基区组；§3搜索限制；§4Theorem4.1及紧接未完成的trivial-group计算",
+      "version": "Kiermaier–Krčadinac–Wassermann, Designs,Codes and Cryptography94,article157,version of record2026-07-07,DOI10.1007/s10623-026-01888-w；arXiv2509.23483v1为2025-09-27",
+      "subquestions": [
+        "主问题",
+        "已知派生设计与扩展障碍",
+        "派生关系与验收边界"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Michael Kiermaier, Vedran Krčadinac, Alfred Wassermann",
+      "claim_date": "2025-09-27（官方首版摘要明确S(3,6,42)构造；本轮正文用正式刊）",
+      "note": "Thm2.3给S(3,6,42)显式轨道构造574区组。论文称fullAut=AGL(2,3)阶432、点轨道18+24；SL(2,3)阶24仅搜索所用extension group。Thm4.1只说此具体三设计若延成S(4,7,43)，新点稳定子必须平凡；trivial-group exact cover未完成，也未分类所有S(3,6,42)。故不排一般S(4,7,43)或S(6,9,45)。Thm4.2的S(5,7,28)不扩展是其他参数。已读构造、方法、定理及限制，未运行作者GAP；同轮proof代理独立展开574块另记，不冒称独立求fullAut。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1821-R1",
+      "url": "https://arxiv.org/pdf/0904.3239v1",
+      "locator": "printed p2 MainTheorem; §2 block-transitive定义; §3.3(B)(2)及§4.2 Case2 v=q+1",
+      "version": "Michael Huber, On the Cameron-Praeger Conjecture, arXiv0904.3239v1,2009-04-21；关联DOI10.1016/j.jcta.2009.04.004",
+      "subquestions": [
+        "主问题",
+        "区组传递对称类别的排除"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "主定理排除非平凡block-transitive Steiner6，唯一未排例外PΓL(2,p^e)，p=2或3、e奇素数幂，按正文作用度v=p^e+1。本题v45给q44，不在例外，故旧结果已排本题block-transitive子类。这是由作者定理+作用度作的本轮范围推论，非独立复核其分类证明。没有区组传递性假设的一般系统、点轨道较弱对称以及无对称情形不受该结论排除；不得把Aut非平凡与block-transitive等同。PDF165360bytes SHA2564043a551bf6a3c80708c90507b2478c885674c3472d20c693a6ed4506a245e9c。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1821-R2",
+      "url": "https://arxiv.org/pdf/2611.06081v1",
+      "locator": "Introduction/Theorem1.1 printed p2; definitions §2",
+      "version": "Ximin Wang,Zheng Huang,Weijun Liu, On the Cameron-Praeger conjecture for Steiner 6-designs, arXiv2611.06081v1,2026-11-04 07:23:15UTC",
+      "subquestions": [
+        "主问题",
+        "区组传递对称类别的排除"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Ximin Wang, Zheng Huang, Weijun Liu",
+      "claim_date": "2026-11-04",
+      "note": "Theorem1.1声明不存在非平凡block-transitive Steiner6，旨在补完Huber剩余PΓL例外。root取得221640bytes官方PDF/SHA256f95f65e2112292c3dba3a7cad337f1b55b6d6c7426e38bf71483e145a177f7b0，只核定理范围/定义和引言，未通审新群论分类证明。固定v45的区组传递排除已由R1得出，因此不是本题全新一般不存在结论，也不声称首次排除45点对称子类。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1821-P1",
+      "url": "https://math.stackexchange.com/questions/263131/is-there-a-steiner-system-s6-9-45",
+      "locator": "Joubarc问题正文；官方API263131；评论580709及其上下文；全部6评论、0答案",
+      "version": "创建2012-12-21T09:51:27Z；末编辑2026-04-24T23:31:38Z；本轮API2026-11-27",
+      "subquestions": [
+        "主问题",
+        "原题身份与历史记录",
+        "派生关系与验收边界"
+      ],
+      "role": "原始提出",
+      "publication": "社区帖子",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "原帖确问固定S(6,9,45)存在性，列96965区组与逐次derived参数。API已完整取得所有公开答案和评论（均has_more=false），当前0答案仅为站点状态。Ed Pegg最初据高对称性猜测不存，随后明确不是证明，不能排除缺乏对称性的设计；不登记为主题不存证。2012年引用的t≥6一般开放说法不能原样作2026状态。原帖和卡片由API确认同一性，没有把单纯necessary divisibility当充分。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "E1821-P2",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Wikipedia/SteinerSystem.lean",
+      "locator": "SteinerSystems.SteinerSystem；LargeSteinerSystemWitness；large_steiner_systems；Fano/smallWitt邻题",
+      "version": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8；blob e57ff36f646eb3cc71a522ec6bfaf9956b04a2c3",
+      "subquestions": [
+        "主问题",
+        "公开代码与更宽问题的范围"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "结构blocks:Finset(Finset(Fin n))，每块card=k，每个card=t的R所含区组filter.card=1，故定义确为无重复块/唯一覆盖。实际待证是∃n,k,t满足n>k>t>5,t<10,n<200的一个系统，主题正解足以给该广义任务实例，反向不成立。large_steiner_systems仍sorry；文件另3处sorry分别大Witt及t4/t5无限性，Fano与小Witt用native_decide，它们均非45点6-design。本轮不复跑Lean，注释的历史性描述不当本题2026结果。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1821-P3",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/722.lean",
+      "locator": "Erdos722.erdos_722：∀r k,1≤r→r<k→∀ᶠn in atTop, divisibility→∃H,H.IsBlockDesign r k",
+      "version": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8；blob647c61af68edd71036d9ed702a00a23abbee4bab",
+      "subquestions": [
+        "主问题",
+        "Keevash 定理与固定 45 点",
+        "公开代码与更宽问题的范围"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "全文实际读取，solved标记指Keevash渐近存在性；量词仅充分大n，没有证明n0≤45。目标证明体为sorry，未继续遍历H.IsBlockDesign传递定义或构建，因为外层量词已足排除固定参数解。两FC文件环境同锁v4.33.1/mathlib0df444a360eaa60ab8c11dca51a86af692955474；不借前题运行状态。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1821-P4",
+      "url": "https://epoch.ai/frontiermath/open-problems/large-steiner-systems",
+      "locator": "About/Prompt：任意n>q>r>5，r<10，n<200；提交参数和全部区组",
+      "version": "2026页面；本轮读取2026-11-27",
+      "subquestions": [
+        "主问题",
+        "公开代码与更宽问题的范围"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "实际原页仍标Unsolved，任务是范围内找任意一个高阶Steiner系统；本题(45,9,6)只是其中一个候选参数。此页没有给本题96965区组或不存在证明，未用其宽泛状态替代精确问题查新结论，也没有把高对称性当定义必要条件。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1821-M1",
+      "url": "https://www.qunxingmath.org/p/QX-P-001821/",
+      "locator": "本轮独立双计数/区组交数计算；1821_exact_counts.py/json",
+      "version": "当前题卡rev da08ab950acc2591；2026-11-27本轮精确整数计算",
+      "subquestions": [
+        "主问题",
+        "必要计数与区组交数",
+        "派生关系与验收边界"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "command": "python 〔私有材料定位已省略〕",
+        "toolchain": "Python，Fraction及整数二项式；本轮未运行GAP/Lean/原题exact-cover",
+        "log_url": "urn:qunxing:private-material"
+      },
+      "note": "固定i点双计数得λ_i=C(45−i,6−i)/C(9−i,6−i)，0≤i≤6为96965,19393,3526,574,82,10,1。对固定区组B，两不同区组交至多5点；三角方程Σ_{s=j}^5 C(s,j)n_s=C(9,j)(λ_j−1)解为n0..5=10276,29970,32400,18648,4536,1134。全部二项矩、非负整数性、Σn_j=96964及全局对数整数性已实际通过，五层派生同类检查也通过。这些是必要条件，没有构造原题或得到不存矛盾。脚本SHA256=d83f0352afad3bb92ab49e2577089453af8680673c190e8528aa0c29534888be",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1821-M2",
+      "url": "https://link.springer.com/article/10.1007/s10623-026-01888-w",
+      "locator": "Theorem2.3输入；本轮1821_verify_derived_seed.py/json的独立展开与全部三元组核验",
+      "version": "正式刊2026-07-07；本轮独立计算2026-11-27",
+      "subquestions": [
+        "主问题",
+        "已知派生设计与扩展障碍"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "command": "python 〔私有材料定位已省略〕",
+        "toolchain": "Python精确置换、集合与整数计数；未运行GAP或Lean",
+        "log_url": "urn:qunxing:private-material"
+      },
+      "note": "从期刊实际转录两置换与七基块，以恒等置换起生成闭包，得到432个置换、点轨道18和24。七块轨道大小12,144,108,54,216,4,36，互不重叠，合为574个6区组。实际核42点全部11480个三元组计数均1；点复制数82、对复制数10。故这张明确表确为S(3,6,42)。规范区组表SHA256=f7494406ce0c28039f43c56abf489045e8cf467063cdf9c84aeced31291b944e；独立脚本SHA256=37abcf092f4d7bb14a64afd4de794cbd4627d283e0b23b0cb516e64538c1f0e9。只证明给定生成群是432阶自同构子群，未独立求fullAut或识别AGL抽象同构；没有分类全部三设计，没有搜索任何extension，更没有构造S(6,9,45)。 可复现输入（其余点固定，点标号1..42）：α=(1,2,4)(3,9,7)(5,6,8)(10,11,13)(12,18,16)(14,15,17)(19,38,34)(20,39,36)(21,37,35)(22,42,32)(23,40,31)(24,41,33)(28,30,29)；β=(1,10)(2,11)(3,12)(4,16)(5,17)(6,18)(7,13)(8,14)(9,15)(19,23)(20,24)(21,22)(25,35)(26,36)(27,34)(28,33)(29,31)(30,32)(38,39)(41,42)；七基块=[[1,2,3,10,11,12],[1,2,4,20,36,39],[1,2,13,17,31,34],[1,10,19,22,25,30],[1,11,20,21,29,34],[19,20,21,22,23,24],[19,22,31,36,38,42]]。从恒等置换起对α、β左复合求有限闭包，取七基块所有像去重；对所得块逐一枚举20个三元子集并核计数均1，即可重现验证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-002403",
+      "other_card_rev": "1fc78d1336f5797c",
+      "relation": "特例",
+      "reason": "1821固定(t,k,v)=(6,9,45)，2403要求∃n>k>t>5,t<10,n<200并提交全部区组。1821的存在性构造给2403一个实例；2403任意其他参数构造不解决1821，1821的非存在证明也不否定2403。因此仅特例关联，不能合并。",
+      "positions": {
+        "self": "1821_task.json card_text人话版与acceptance：45点/9元块/6元组唯一覆盖，存在或不存在",
+        "other": "固定commit73290369…的QX-P-002403.text.md形式化表述；meta.json card_rev/acceptance，完整正文已读"
+      },
+      "note": "pair QX-P-001821__QX-P-002403由较小编号1821负责；非严格同题，建议关系索引，不归并卡。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "duplicate_relation": "special_case"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "暂不改卡",
+      "field": "正式问题、点数/区组大小/覆盖强度及acceptance",
+      "new": "保留固定S(6,9,45)存在性；人话定义与六个λ值已核正确，当前没有完整肯定或否定答案。",
+      "reason": "本轮无须更改正式数学范围；回执锚定da08ab950acc2591，旧novelty中的06a95574afba2d62仅为历史记录。",
+      "evidence_ids": [
+        "E1821-P1",
+        "E1821-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "proposer、first_published、sources",
+      "new": "目前本轮最早直接核得：Joubarc，MSE263131，2012-12-21；保留社区问题身份与后来编辑日期，不称所有文献中最早。",
+      "reason": "已取得原正文及API时间字段，较早手册特定参数原页未核。",
+      "evidence_ids": [
+        "E1821-P1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "其他记录、novelty.hits、相关派生设计",
+      "old": "2025 S(3,6,42)构造仅搜索摘要未核，不采信。",
+      "new": "现有2026正式刊Thm2.3完整构造，且本轮独立从两置换/七基块生成574块、全核11480三元组唯一覆盖；只登记必要派生设计的实质进展。",
+      "reason": "已完成主源和明确对象核验，仍不反推三次扩展到45点。",
+      "evidence_ids": [
+        "E1821-A2",
+        "E1821-M2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "Keevash备注、对称性措辞、开放状态证据",
+      "old": "Keevash可能已覆盖/大v不覆盖45、无超对称构造、0答案等混合备注。",
+      "new": "本轮未验证45处于Keevash保证区间；对称性排除须写精确附加假设；MSE0答案仅站点状态，不是开放性证明。",
+      "reason": "避免将未给阈值或局部搜索、对称分类误作全题闭合。",
+      "evidence_ids": [
+        "E1821-P1",
+        "E1821-A1",
+        "E1821-R1",
+        "E1821-R2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "与QX-P-002403及宽参数任务关系",
+      "new": "本题是固定(6,9,45)特例；阳性构造蕴含较宽范围存在性目标，阴性答案不能否定其他参数；不提议合并。",
+      "reason": "对照双方固定完整题卡后，量词范围不同；重复关系由root证据记录。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "reason": "尚无固定参数全部区组或覆盖全部可能设计的不存在证明；必要计数、派生构造与对称类排除不充分。",
+      "next_step": "出现具体新声明时取得原稿及完整96965区组/可展开证书，或不预设对称性的完整非存在论证；按实际证明范围二审，勿从检索未命中反推仍开放。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Thm4.1的trivial extension group未完成；当前S(3,6,42)未被证明唯一，亦无独立扩展搜索。",
+      "next_step": "任何扩展排除须明确覆盖哪些seed和哪些群，尤其不能把一个seed或非平凡点稳定子下无解推广为一般45点不存。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "早于2012的具体参数表原页、卡内2022转发未核；Machina动态页没有可定位到本参数的完整声明。",
+      "next_step": "这些只保留为出处/访问边界；有明确原页或同题目标再补核，不将一般索引标签当成数学结论。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "da08ab950acc2591",
+      "codes": {}
+    }
+  ]
+}

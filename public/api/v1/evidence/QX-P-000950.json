@@ -1,0 +1,2183 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000950",
+  "card_rev": "39208d0f11618648",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-03"
+      ],
+      "parts": [
+        {
+          "subquestion": "固定k的判定复杂性及适用图类",
+          "value": "partial",
+          "note": "2610.01584v1 Thm3为k=1一般图，Cor4平面图，Cor5给1≤k≤4平面图，Thm8给k≥5平面图，Cor9合为每个固定正k的平面NP完全；输入含G与预算ℓ。Cor5的2≤k≤4部分依赖2606.22428构造，本轮未取得此前篇全文，不能登记完整独立复核。另2610.01796v1 Thm2强化k=1至2连通平面3正则图，未全面核其gadget。"
+        },
+        {
+          "subquestion": "一般结构界及capacitated domination关系",
+          "value": "partial",
+          "note": "官方前篇Thm3给ceil(n/(k+1))≤γ_k^L，且所有k≥Δ时γ_k^L=γ。Radić2610.01442v1 Thm4给τ_k≤γ_k^L，§3给严格不等例；Thm8在1≤k≤δ条件下给γ_k^L≤n−L_k。它们是结构界，未附解决当前完整近似/FPT分类的算法或归约。"
+        },
+        {
+          "subquestion": "可近似性：固定k与输入k的区分",
+          "value": "partial",
+          "note": "对任意可行D，N−|D|≤|E(D,V\\D)|≤k|D|，故γ≥ceil(N/(k+1))。输出V给(k+1)-近似，固定k为常数；K1,k上取等。可变k不能因此统一归入APX。此为本轮直接复核，不声称新定理。 空图单独输出空集，最优值0。若k≥Δ，问题等同普通支配数；尚未核到覆盖当前全部输入口径的最优近似阈值和配套困难性。"
+        },
+        {
+          "subquestion": "参数化复杂性：k、树宽w、预算ℓ及联合参数",
+          "value": "partial",
+          "note": "接受原文固定k=1的决策NP完全性，则以k为唯一参数是para-NP-hard（P≠NP时甚至非XP）。给定宽w nice树分解，袋中D点记0..k个已处理外邻，非D点记是否被支配；边引入更新、遗忘检查、join计数相加。每袋(k+3)^(w+1)状态，朴素join仍(k+3)^O(w)poly(N+|E|)，支持联合(k,w)的FPT纲要；当k属输入，同一方法对w单参只给XP。此算法未实现/复跑，不能据此宣称所有参数完整分类。预算ℓ下N>(k+1)ℓ可拒绝，否则至多(k+1)ℓ点，可得联合(k,ℓ)的有限核/子集枚举FPT。 给定树分解的DP为本轮可审阅数学纲要，未作为新发表或已实现算法；普通DomSet的W层级下界未在本轮原文核定，不填精确W分类。"
+        },
+        {
+          "subquestion": "同源旁支：Sierpiński 图上 γ_k^L 的全参数精确式（Conjecture 12）",
+          "value": "claimed_resolution",
+          "note": "trureturing 对 n≥1、m≥2、1≤k≤m−1 宣称 γ_k^L(S(n,m))=(m−k)m^(n−1)，已取得代码全文且静态确认定义及量词。发布者报告 Lean 通过；本轮未编译/未输出公理闭包，故不标独立形式化验证。相对于本卡主问属同源不同问的特定图族结果。 原稿Thm10/11的下界中间断言另发现局部反例；它不推翻该公式，也不自动否定新稿允许空fiber的证明。结案须按包内规则另行二审。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/the-omega-institute/trureturing/blob/4c81f1c70942cf885d6ce586e6d6786a795e5f9f/D5/S3/Combinatorics/Graph/SierpinskiLimitedDomination.lean"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面有误",
+      "scope_note": "主问题仍是当前卡要求的可近似性与参数化分类，不替换为同源Conj12。原稿§6并未明确提出当前“对照log-APX/完整FPT-W-hard分类”的验收；需先区分固定k和输入k、解预算ℓ、树宽t及联合参数。现卡k≥n“平凡”和S(n,2)“完全图型”有误。本学术路线未定位这一延伸的完整解声明；已知一般界和固定k困难性不能推出所有参数分类仍未知。 本轮数学推导另确认固定k的(k+1)近似、k唯一参数的para-NP困难性，以及联合参数算法纲要；这些均非整题完整分类。题面有误不等于主目标被反例推翻；不以同源公式取代验收。",
+      "evidence_ids": [
+        "e950-definition-source",
+        "e950-original-conclusion",
+        "e950-initial-bounds"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "固定k的判定复杂性及适用图类",
+      "math_status": "部分进展",
+      "scope_note": "2610.01584v1 Thm3为k=1一般图，Cor4平面图，Cor5给1≤k≤4平面图，Thm8给k≥5平面图，Cor9合为每个固定正k的平面NP完全；输入含G与预算ℓ。Cor5的2≤k≤4部分依赖2606.22428构造，本轮未取得此前篇全文，不能登记完整独立复核。另2610.01796v1 Thm2强化k=1至2连通平面3正则图，未全面核其gadget。",
+      "evidence_ids": [
+        "e950-fixed-k-complexity",
+        "e950-cubic-hardness"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "一般结构界及capacitated domination关系",
+      "math_status": "部分进展",
+      "scope_note": "官方前篇Thm3给ceil(n/(k+1))≤γ_k^L，且所有k≥Δ时γ_k^L=γ。Radić2610.01442v1 Thm4给τ_k≤γ_k^L，§3给严格不等例；Thm8在1≤k≤δ条件下给γ_k^L≤n−L_k。它们是结构界，未附解决当前完整近似/FPT分类的算法或归约。",
+      "evidence_ids": [
+        "e950-initial-bounds",
+        "e950-radic-bounds"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "可近似性：固定k与输入k的区分",
+      "math_status": "部分进展",
+      "scope_note": "对任意可行D，N−|D|≤|E(D,V\\D)|≤k|D|，故γ≥ceil(N/(k+1))。输出V给(k+1)-近似，固定k为常数；K1,k上取等。可变k不能因此统一归入APX。此为本轮直接复核，不声称新定理。 空图单独输出空集，最优值0。若k≥Δ，问题等同普通支配数；尚未核到覆盖当前全部输入口径的最优近似阈值和配套困难性。",
+      "evidence_ids": [
+        "e950-initial-bounds",
+        "e950-radic-bounds"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "参数化复杂性：k、树宽w、预算ℓ及联合参数",
+      "math_status": "部分进展",
+      "scope_note": "接受原文固定k=1的决策NP完全性，则以k为唯一参数是para-NP-hard（P≠NP时甚至非XP）。给定宽w nice树分解，袋中D点记0..k个已处理外邻，非D点记是否被支配；边引入更新、遗忘检查、join计数相加。每袋(k+3)^(w+1)状态，朴素join仍(k+3)^O(w)poly(N+|E|)，支持联合(k,w)的FPT纲要；当k属输入，同一方法对w单参只给XP。此算法未实现/复跑，不能据此宣称所有参数完整分类。预算ℓ下N>(k+1)ℓ可拒绝，否则至多(k+1)ℓ点，可得联合(k,ℓ)的有限核/子集枚举FPT。 给定树分解的DP为本轮可审阅数学纲要，未作为新发表或已实现算法；普通DomSet的W层级下界未在本轮原文核定，不填精确W分类。",
+      "evidence_ids": [
+        "e950-fixed-k-complexity",
+        "e950-cubic-hardness",
+        "e950-initial-bounds"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "同源旁支：Sierpiński 图上 γ_k^L 的全参数精确式（Conjecture 12）",
+      "math_status": "完整声明待核",
+      "scope_note": "trureturing 对 n≥1、m≥2、1≤k≤m−1 宣称 γ_k^L(S(n,m))=(m−k)m^(n−1)，已取得代码全文且静态确认定义及量词。发布者报告 Lean 通过；本轮未编译/未输出公理闭包，故不标独立形式化验证。相对于本卡主问属同源不同问的特定图族结果。 原稿Thm10/11的下界中间断言另发现局部反例；它不推翻该公式，也不自动否定新稿允许空fiber的证明。结案须按包内规则另行二审。",
+      "evidence_ids": [
+        "E950-F01",
+        "E950-F02",
+        "E950-F03",
+        "E950-F04",
+        "e950-original-conclusion",
+        "e950-sierpinski-gap"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-03-000950-academic-001",
+      "route": "原题与出处",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2610.01584",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2610.01584",
+      "note": "官方入口返回 DisabledError；本次没有取得官方页面。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-001",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2610.01442",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2610.01442",
+      "note": "官方入口返回 DisabledError；本次没有取得官方页面。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-002",
+      "route": "原题与出处",
+      "site": "Web search / system1",
+      "query": "{\"q\":\"\\\"2610.01584\\\"\",\"recency\":366}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索结果主要为同题原稿、相关论文及聚合索引；本请求未定位主问题的完整近似/FPT分类。仅将命中当线索，重要内容另追原稿；精确结果在950_academic_web_raw.json。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-002",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "{\"q\":\"\\\"2610.01442\\\"\",\"recency\":366}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Radić同日结构界稿及v1摘要；后续取得原稿，区别capacitated分配与实际外邻居限制。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-002",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "{\"q\":\"\\\"k-limited domination\\\" Bozovic approximation parameterized\",\"recency\":366}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索结果主要为同题原稿、相关论文及聚合索引；本请求未定位主问题的完整近似/FPT分类。仅将命中当线索，重要内容另追原稿；精确结果在950_academic_web_raw.json。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-003",
+      "route": "原题与出处",
+      "site": "arXiv",
+      "query": "{\"ref_id\":\"https://arxiv.org/pdf/2610.01584v1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/2610.01584v1",
+      "note": "官方入口返回 DisabledError；没有读取该页面。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-003",
+      "route": "原题与出处",
+      "site": "arXiv",
+      "query": "{\"ref_id\":\"https://arxiv.org/html/2610.01584v1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/html/2610.01584v1",
+      "note": "官方入口返回 DisabledError；没有读取该页面。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-003",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "{\"ref_id\":\"https://arxiv.org/pdf/2610.01442v1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/2610.01442v1",
+      "note": "官方入口返回 DisabledError；没有读取该页面。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-003",
+      "route": "学术",
+      "site": "Springer Nature Link",
+      "query": "{\"ref_id\":\"https://link.springer.com/article/10.1007/s40314-026-03902-2\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s40314-026-03902-2",
+      "note": "官方发表正文可读；核§1定义与边界、Prop1、Thm3、§6未来方向。2026-09-11 online，卷期标2027；未把年份差误作后续定理。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-004",
+      "route": "原题与出处",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"https://arxiv.cnoctave.top/pdf/2610.01584\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "读取带2610.01584v1页脚的原稿镜像；§2定义，§3–4固定k判定复杂性，§5 Sierpiński公式及§6 Conj12/未来方向。本卡近似/FPT延伸未在该稿明确提出；公式局部下界另列疑点。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-004",
+      "route": "原题与出处",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"https://borowiecki.dev/pdf/2610.01584\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://borowiecki.dev/pdf/2610.01584",
+      "note": "读取带2610.01584v1页脚的原稿镜像；§2定义，§3–4固定k判定复杂性，§5 Sierpiński公式及§6 Conj12/未来方向。本卡近似/FPT延伸未在该稿明确提出；公式局部下界另列疑点。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-004",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "{\"ref_id\":\"https://arxiv.org/html/2610.01442v1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/html/2610.01442v1",
+      "note": "官方入口返回 DisabledError；没有读取该页面。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-004",
+      "route": "学术",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"https://arxiv.cnoctave.top/pdf/2610.01442\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01442",
+      "note": "读取带2610.01442v1页脚的原稿镜像相关§1–5；只核定义、Thm4/Thm8范围和结论所列问题，未逐条审完全部证明。结构界不等于算法近似比。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-004",
+      "route": "学术",
+      "site": "已取得正文内查找",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"6 Concluding\"} 〔私有记录编号：PR-001154〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://link.springer.com/article/10.1007/s40314-026-03902-2",
+      "note": "在已取得正文文本中未找到字串 6 Concluding；结合§6阅读全文限定判断，不把字串缺失作为全球无结果证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-004",
+      "route": "学术",
+      "site": "已取得正文内查找",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Problem\"} 〔私有记录编号：PR-001155〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s40314-026-03902-2",
+      "note": "定位后阅读所引定义、定理或结论段落；仅此范围，详细页码见evidence。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-005",
+      "route": "原题与出处",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":70} 〔私有记录编号：PR-001156〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "读取带2610.01584v1页脚的原稿镜像；§2定义，§3–4固定k判定复杂性，§5 Sierpiński公式及§6 Conj12/未来方向。本卡近似/FPT延伸未在该稿明确提出；公式局部下界另列疑点。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-005",
+      "route": "原题与出处",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":140} 〔私有记录编号：PR-001157〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "读取带2610.01584v1页脚的原稿镜像；§2定义，§3–4固定k判定复杂性，§5 Sierpiński公式及§6 Conj12/未来方向。本卡近似/FPT延伸未在该稿明确提出；公式局部下界另列疑点。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-005",
+      "route": "原题与出处",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":225} 〔私有记录编号：PR-001158〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "读取带2610.01584v1页脚的原稿镜像；§2定义，§3–4固定k判定复杂性，§5 Sierpiński公式及§6 Conj12/未来方向。本卡近似/FPT延伸未在该稿明确提出；公式局部下界另列疑点。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-005",
+      "route": "原题与出处",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":345} 〔私有记录编号：PR-001159〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "读取带2610.01584v1页脚的原稿镜像；§2定义，§3–4固定k判定复杂性，§5 Sierpiński公式及§6 Conj12/未来方向。本卡近似/FPT延伸未在该稿明确提出；公式局部下界另列疑点。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-005",
+      "route": "原题与出处",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":440} 〔私有记录编号：PR-001160〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "读取带2610.01584v1页脚的原稿镜像；§2定义，§3–4固定k判定复杂性，§5 Sierpiński公式及§6 Conj12/未来方向。本卡近似/FPT延伸未在该稿明确提出；公式局部下界另列疑点。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-006",
+      "route": "原题与出处",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":104} 〔私有记录编号：PR-001161〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "读取带2610.01584v1页脚的原稿镜像；§2定义，§3–4固定k判定复杂性，§5 Sierpiński公式及§6 Conj12/未来方向。本卡近似/FPT延伸未在该稿明确提出；公式局部下界另列疑点。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-006",
+      "route": "原题与出处",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":159} 〔私有记录编号：PR-001162〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "读取带2610.01584v1页脚的原稿镜像；§2定义，§3–4固定k判定复杂性，§5 Sierpiński公式及§6 Conj12/未来方向。本卡近似/FPT延伸未在该稿明确提出；公式局部下界另列疑点。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-006",
+      "route": "原题与出处",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":377} 〔私有记录编号：PR-001163〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "读取带2610.01584v1页脚的原稿镜像；§2定义，§3–4固定k判定复杂性，§5 Sierpiński公式及§6 Conj12/未来方向。本卡近似/FPT延伸未在该稿明确提出；公式局部下界另列疑点。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-006",
+      "route": "原题与出处",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":500} 〔私有记录编号：PR-001164〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "读取带2610.01584v1页脚的原稿镜像；§2定义，§3–4固定k判定复杂性，§5 Sierpiński公式及§6 Conj12/未来方向。本卡近似/FPT延伸未在该稿明确提出；公式局部下界另列疑点。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-006",
+      "route": "学术",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":90} 〔私有记录编号：PR-001165〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01442",
+      "note": "读取带2610.01442v1页脚的原稿镜像相关§1–5；只核定义、Thm4/Thm8范围和结论所列问题，未逐条审完全部证明。结构界不等于算法近似比。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-007",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "{\"ref_id\":\"https://arxiv.org/abs/2606.22428\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2606.22428",
+      "note": "官方入口返回 DisabledError；没有读取该页面。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-007",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "{\"ref_id\":\"https://arxiv.org/pdf/2606.22428\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/2606.22428",
+      "note": "官方入口返回 DisabledError；没有读取该页面。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-007",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "{\"ref_id\":\"https://arxiv.org/abs/2606.22422\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2606.22422",
+      "note": "官方入口返回 DisabledError；没有读取该页面。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-007",
+      "route": "学术",
+      "site": "已取得正文内查找",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"capacitated\"} 〔私有记录编号：PR-001166〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01442",
+      "note": "定位后阅读所引定义、定理或结论段落；仅此范围，详细页码见evidence。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-007",
+      "route": "学术",
+      "site": "已取得正文内查找",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Conclusion\"} 〔私有记录编号：PR-001167〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01442",
+      "note": "定位后阅读所引定义、定理或结论段落；仅此范围，详细页码见evidence。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-007",
+      "route": "学术",
+      "site": "已取得正文内查找",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"approximation\"} 〔私有记录编号：PR-001168〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01442",
+      "note": "在已取得正文文本中未找到字串 approximation；结合§6阅读全文限定判断，不把字串缺失作为全球无结果证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-007",
+      "route": "学术",
+      "site": "已取得正文内查找",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"parameter\"} 〔私有记录编号：PR-001169〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s40314-026-03902-2",
+      "note": "定位后阅读所引定义、定理或结论段落；仅此范围，详细页码见evidence。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-008",
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "{\"q\":\"\\\"k-limited domination\\\" (approximation OR approximability OR parameterized OR treewidth)\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索结果主要为同题原稿、相关论文及聚合索引；本请求未定位主问题的完整近似/FPT分类。仅将命中当线索，重要内容另追原稿；精确结果在950_academic_web_raw.json。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-008",
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "{\"q\":\"\\\"k-limited domination\\\" (correction OR erratum OR withdrawn OR retraction)\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未定位可核实的同题撤回/勘误公告。聚合月表出现其它条目的 correction 片段，不能转记为本稿勘误；官方最新版本仍不可达，不能声称不存在修订。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-008",
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "{\"q\":\"\\\"2610.01584\\\" (correction OR erratum OR revised OR approximation)\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未定位可核实的同题撤回/勘误公告。聚合月表出现其它条目的 correction 片段，不能转记为本稿勘误；官方最新版本仍不可达，不能声称不存在修订。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-008",
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "{\"q\":\"\\\"2606.22428\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Tepeh前篇的官方索引/镜像摘要及v2索引；后续官方和两个镜像全文请求均失败，未把其归约当独立阅过。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-009",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "{\"q\":\"\\\"k-limited domination\\\" (\\\"approximation\\\" OR \\\"parameterized\\\" OR \\\"treewidth\\\" OR \\\"FPT\\\")\",\"recency\":366}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索结果主要为同题原稿、相关论文及聚合索引；本请求未定位主问题的完整近似/FPT分类。仅将命中当线索，重要内容另追原稿；精确结果在950_academic_web_raw.json。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-009",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "{\"q\":\"\\\"k-limited domination\\\" (\\\"erratum\\\" OR \\\"correction\\\" OR \\\"withdrawn\\\")\",\"recency\":366}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未定位可核实的同题撤回/勘误公告。聚合月表出现其它条目的 correction 片段，不能转记为本稿勘误；官方最新版本仍不可达，不能声称不存在修订。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-009",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "{\"q\":\"\\\"0, k\\\" \\\"pitchfork\\\" (approximation OR complexity OR parameterized)\",\"recency\":366}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "追官方前篇所列同义(0,k)-pitchfork domination，返回前篇等线索；未定位该特例的完整近似/FPT分类。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-009",
+      "route": "学术",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"https://arxiv.cnoctave.top/pdf/2606.22428\"}",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://arxiv.cnoctave.top/pdf/2606.22428",
+      "note": "工具返回 URL not accessible；只保留前序摘要/索引线索，未独立检查该稿归约。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-009",
+      "route": "学术",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"https://borowiecki.dev/abs/2606.22428\"}",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://borowiecki.dev/abs/2606.22428",
+      "note": "工具返回 URL not accessible；只保留前序摘要/索引线索，未独立检查该稿归约。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-009",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "{\"ref_id\":\"https://arxiv.org/abs/2610.01796\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2610.01796",
+      "note": "官方入口返回 DisabledError；没有读取该页面。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-010",
+      "route": "学术",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"https://borowiecki.dev/pdf/2606.22428\"}",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://borowiecki.dev/pdf/2606.22428",
+      "note": "工具返回 URL not accessible；只保留前序摘要/索引线索，未独立检查该稿归约。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-010",
+      "route": "学术",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"https://arxiv.cnoctave.top/pdf/2610.01796\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01796",
+      "note": "原稿镜像18页可读；仅核摘要、§1定义、§2归约目标及Thm2/Cor3，未全面检查12顶点归约gadget与后半篇Goldberg家族证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-010",
+      "route": "原题与出处",
+      "site": "原稿镜像",
+      "query": "{\"ref_id\":\"https://borowiecki.dev/abs/2610.01584\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://borowiecki.dev/abs/2610.01584",
+      "note": "镜像摘要及submission history可读，显示v1；不能代替本次官方最新版本检查。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-010",
+      "route": "原题与出处",
+      "site": "已取得正文内查找",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"approxim\"} 〔私有记录编号：PR-001170〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "在已取得正文文本中未找到字串 approxim；结合§6阅读全文限定判断，不把字串缺失作为全球无结果证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-010",
+      "route": "原题与出处",
+      "site": "已取得正文内查找",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"parameterized\"} 〔私有记录编号：PR-001171〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "在已取得正文文本中未找到字串 parameterized；结合§6阅读全文限定判断，不把字串缺失作为全球无结果证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-010",
+      "route": "原题与出处",
+      "site": "已取得正文内查找",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"treewidth\"} 〔私有记录编号：PR-001172〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "在已取得正文文本中未找到字串 treewidth；结合§6阅读全文限定判断，不把字串缺失作为全球无结果证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-010",
+      "route": "学术",
+      "site": "已取得正文内查找",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 8\"} 〔私有记录编号：PR-001173〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01442",
+      "note": "定位后阅读所引定义、定理或结论段落；仅此范围，详细页码见evidence。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-011",
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "{\"q\":\"\\\"On k-limited domination: complexity and Cartesian products\\\" pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索结果主要为同题原稿、相关论文及聚合索引；本请求未定位主问题的完整近似/FPT分类。仅将命中当线索，重要内容另追原稿；精确结果在950_academic_web_raw.json。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-011",
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "{\"q\":\"\\\"2606.22428\\\" \\\"Theorem\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Tepeh前篇的官方索引/镜像摘要及v2索引；后续官方和两个镜像全文请求均失败，未把其归约当独立阅过。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-011",
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "{\"q\":\"\\\"k-limited domination\\\" approximation -site:scirate.com -site:borowiecki.dev -site:arxiv.cnoctave.top\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索结果主要为同题原稿、相关论文及聚合索引；本请求未定位主问题的完整近似/FPT分类。仅将命中当线索，重要内容另追原稿；精确结果在950_academic_web_raw.json。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-011",
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "{\"q\":\"\\\"k-limited domination\\\" parameterized -site:scirate.com -site:borowiecki.dev -site:arxiv.cnoctave.top\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索结果主要为同题原稿、相关论文及聚合索引；本请求未定位主问题的完整近似/FPT分类。仅将命中当线索，重要内容另追原稿；精确结果在950_academic_web_raw.json。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-011",
+      "route": "学术",
+      "site": "已取得正文内查找",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem\"} 〔私有记录编号：PR-001174〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01796",
+      "note": "定位后阅读所引定义、定理或结论段落；仅此范围，详细页码见evidence。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-011",
+      "route": "学术",
+      "site": "已取得正文内查找",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"approx\"} 〔私有记录编号：PR-001175〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01796",
+      "note": "在已取得正文文本中未找到字串 approx；结合§6阅读全文限定判断，不把字串缺失作为全球无结果证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-011",
+      "route": "学术",
+      "site": "已取得正文内查找",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"2-connected\"} 〔私有记录编号：PR-001176〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01796",
+      "note": "定位后阅读所引定义、定理或结论段落；仅此范围，详细页码见evidence。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-012",
+      "route": "原题与出处",
+      "site": "PDF screenshot",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pageno\":7} 〔私有记录编号：PR-001177〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "工具返回引用及<<ImageDisplayed>>文本标记，未给可检查的image内容块；本轮不计为视觉阅页，不据此增加访问程度。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-012",
+      "route": "原题与出处",
+      "site": "PDF screenshot",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pageno\":8} 〔私有记录编号：PR-001178〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "note": "工具返回引用及<<ImageDisplayed>>文本标记，未给可检查的image内容块；本轮不计为视觉阅页，不据此增加访问程度。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000950-academic-012",
+      "route": "学术",
+      "site": "PDF screenshot",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pageno\":7} 〔私有记录编号：PR-001179〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01442",
+      "note": "工具返回引用及<<ImageDisplayed>>文本标记，未给可检查的image内容块；本轮不计为视觉阅页，不据此增加访问程度。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F01",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "互联网搜索 system2",
+      "query": "\"2610.01584\" code github",
+      "outcome": "仅标题/索引或摘要",
+      "note": "组合检索返回同源 Sierpiński 精确值的 trureturing 声明和原论文/相邻文献索引；本步骤仅检索结果，后续 F04–F14 单独访问。没有把摘要或网页标题计为全文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F01",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "互联网搜索 system2",
+      "query": "\"k-limited domination\" github",
+      "outcome": "仅标题/索引或摘要",
+      "note": "组合检索返回同源 Sierpiński 精确值的 trureturing 声明和原论文/相邻文献索引；本步骤仅检索结果，后续 F04–F14 单独访问。没有把摘要或网页标题计为全文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F01",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "互联网搜索 system2",
+      "query": "\"k-limited dominating set\" \"Lean\"",
+      "outcome": "仅标题/索引或摘要",
+      "note": "组合检索返回同源 Sierpiński 精确值的 trureturing 声明和原论文/相邻文献索引；本步骤仅检索结果，后续 F04–F14 单独访问。没有把摘要或网页标题计为全文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F01",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "互联网搜索 system2",
+      "query": "\"k-limited domination\" approximation FPT implementation",
+      "outcome": "仅标题/索引或摘要",
+      "note": "组合检索返回同源 Sierpiński 精确值的 trureturing 声明和原论文/相邻文献索引；本步骤仅检索结果，后续 F04–F14 单独访问。没有把摘要或网页标题计为全文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F02",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub 代码搜索",
+      "query": "\"k-limited\" \"domination\"",
+      "result_count": 20,
+      "outcome": "仅标题/索引或摘要",
+      "note": "GitHub 默认分支代码检索返回 20 项，含 trureturing 的文献/问题/Blueprint 文件、无关词片和其他 domination 变体；具体 Lean 模块由 F05 定位。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F03",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub 代码搜索",
+      "query": "\"2610.01584\"",
+      "result_count": 15,
+      "outcome": "仅标题/索引或摘要",
+      "note": "GitHub 返回 15 项；前三为 trureturing 同源旁支文件，另有 arXiv RSS 镜像及数字字串偶合。未把 RSS/数值数据当作解答代码。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F04",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "www.trureturing.org",
+      "query": "open https://www.trureturing.org/research/bozovic-2026-sierpinski-limited-domination/",
+      "url": "https://www.trureturing.org/research/bozovic-2026-sierpinski-limited-domination/",
+      "outcome": "原文已阅但范围不同",
+      "note": "全文已阅；三页均讨论 Sierpiński 特定图族的 Conjecture 12，明确 separate complexity theorems 不在 settlement 范围，非本卡近似/FPT 完整分类。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F04",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "the-omega-institute.github.io",
+      "query": "open https://the-omega-institute.github.io/trureturing-mdbook/Problems/bozovic-2026-sierpinski-limited-domination.html",
+      "url": "https://the-omega-institute.github.io/trureturing-mdbook/Problems/bozovic-2026-sierpinski-limited-domination.html",
+      "outcome": "原文已阅但范围不同",
+      "note": "全文已阅；三页均讨论 Sierpiński 特定图族的 Conjecture 12，明确 separate complexity theorems 不在 settlement 范围，非本卡近似/FPT 完整分类。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F04",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "the-omega-institute.github.io",
+      "query": "open https://the-omega-institute.github.io/trureturing-mdbook/Blueprint/D5/S3/Combinatorics/Graph/SierpinskiLimitedDomination.html",
+      "url": "https://the-omega-institute.github.io/trureturing-mdbook/Blueprint/D5/S3/Combinatorics/Graph/SierpinskiLimitedDomination.html",
+      "outcome": "原文已阅但范围不同",
+      "note": "全文已阅；三页均讨论 Sierpiński 特定图族的 Conjecture 12，明确 separate complexity theorems 不在 settlement 范围，非本卡近似/FPT 完整分类。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F05",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub 代码搜索",
+      "query": "SierpinskiLimitedDomination；repository_name=the-omega-institute/trureturing",
+      "result_count": 6,
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回 6 项并定位固定提交的 756 行 Lean 模块和冻结状态文件。此步骤只读搜索摘录，全文另在 F08。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F06",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub",
+      "query": "fetch https://github.com/the-omega-institute/trureturing/issues/12456",
+      "url": "https://github.com/the-omega-institute/trureturing/issues/12456",
+      "outcome": "原文已阅但范围不同",
+      "note": "Issue 正文已阅，作者报告 AI 生成/检验角色、定义、上下界证明路线和有限 ILP 实验。其历史查新与测试均仅作为发布者报告，未计本轮完成。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F07",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "互联网搜索 system1",
+      "query": "\"k-limited domination\" approximation FPT Lean proof",
+      "locator": "recency=90 天",
+      "outcome": "仅标题/索引或摘要",
+      "note": "三条组合请求返回论文与 trureturing 旁支；未见同题近似/FPT 完整声明。目标社区的阴性结果另以 F19/F20 独立请求确认。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F07",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "互联网搜索 system1",
+      "query": "\"k-limited dominating set\" site:mathoverflow.net",
+      "locator": "recency=365 天",
+      "outcome": "仅标题/索引或摘要",
+      "note": "三条组合请求返回论文与 trureturing 旁支；未见同题近似/FPT 完整声明。目标社区的阴性结果另以 F19/F20 独立请求确认。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F07",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "互联网搜索 system1",
+      "query": "\"k-limited domination\" site:math.stackexchange.com",
+      "locator": "recency=365 天",
+      "outcome": "仅标题/索引或摘要",
+      "note": "三条组合请求返回论文与 trureturing 旁支；未见同题近似/FPT 完整声明。目标社区的阴性结果另以 F19/F20 独立请求确认。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F08",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub",
+      "query": "fetch https://github.com/the-omega-institute/trureturing/blob/4c81f1c70942cf885d6ce586e6d6786a795e5f9f/D5/S3/Combinatorics/Graph/SierpinskiLimitedDomination.lean",
+      "url": "https://github.com/the-omega-institute/trureturing/blob/4c81f1c70942cf885d6ce586e6d6786a795e5f9f/D5/S3/Combinatorics/Graph/SierpinskiLimitedDomination.lean",
+      "outcome": "原文已阅但范围不同",
+      "note": "已取得固定提交 Lean 模块全文；定义、最终 claim/result 与直接依赖另核。仅静态检查；未编译，未执行 #print axioms。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F09",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub",
+      "query": "fetch https://api.github.com/repos/the-omega-institute/trureturing/issues/12456/comments",
+      "url": "https://api.github.com/repos/the-omega-institute/trureturing/issues/12456/comments",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得 issue 全部 3 条评论；仅作者的编译、冻结、合并报告，最后一条2026-10-03称已合并。此评论集合未出现撤回/质疑，不推断全网不存在争议。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F10",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub",
+      "query": "fetch https://api.github.com/repos/the-omega-institute/trureturing/contents?ref=4c81f1c70942cf885d6ce586e6d6786a795e5f9f",
+      "url": "https://api.github.com/repos/the-omega-institute/trureturing/contents?ref=4c81f1c70942cf885d6ce586e6d6786a795e5f9f",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得固定提交根目录清单，定位 lean-toolchain 和 lake-manifest.json。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F11",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub",
+      "query": "fetch https://api.github.com/repos/the-omega-institute/trureturing/pulls/12540",
+      "url": "https://api.github.com/repos/the-omega-institute/trureturing/pulls/12540",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得 PR 正文及元数据：merged=true，头 51bc7d3fef22710879c8ac7a6f1e382755fbed78、merge 0e3ac696d7d744f7a5202f36d37b416063a39aff。原报告列编译及 std3；非本轮复跑。当前取码提交不同，分开记载。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F12",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub",
+      "query": "fetch https://github.com/the-omega-institute/trureturing/blob/4c81f1c70942cf885d6ce586e6d6786a795e5f9f/D5/S3/ConceptDynamics/GraphColoring/GraphCoverDomination.lean",
+      "url": "https://github.com/the-omega-institute/trureturing/blob/4c81f1c70942cf885d6ce586e6d6786a795e5f9f/D5/S3/ConceptDynamics/GraphColoring/GraphCoverDomination.lean",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得直接本地依赖全文；IsDominating 定义为每个顶点在 D 中或与 D 中顶点相邻，无容量指派替换。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F13",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub",
+      "query": "fetch https://github.com/the-omega-institute/trureturing/blob/4c81f1c70942cf885d6ce586e6d6786a795e5f9f/lean-toolchain",
+      "url": "https://github.com/the-omega-institute/trureturing/blob/4c81f1c70942cf885d6ce586e6d6786a795e5f9f/lean-toolchain",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得当前固定提交 lean-toolchain：leanprover/lean4:v4.35.0。未安装/运行该工具链。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F14",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub",
+      "query": "fetch https://github.com/the-omega-institute/trureturing/blob/4c81f1c70942cf885d6ce586e6d6786a795e5f9f/lake-manifest.json",
+      "url": "https://github.com/the-omega-institute/trureturing/blob/4c81f1c70942cf885d6ce586e6d6786a795e5f9f/lake-manifest.json",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得当前固定提交依赖锁；mathlib rev 56a005855ea17e0b0958f73ec801ae140b0a1679、inputRev v4.35.0。与 PR 当时报告的 mathlib db584cd6...不同，不能移用旧编译日志。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F15",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub 代码搜索",
+      "query": "\"k-limited\" \"approximation\"",
+      "result_count": 20,
+      "outcome": "命中已排除",
+      "note": "返回 20 个搜索摘录，均为 rank-limited/jerk-limited 等词片或无关程序分析近似；未命中本题。因查询较宽，另用 F21 精确名称及目标词收敛。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F16",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub 代码搜索",
+      "query": "\"k-limited\" \"FPT\"",
+      "result_count": 20,
+      "outcome": "命中已排除",
+      "note": "返回 20 个摘录，多为 k-limited callstack/FPT 字串、网页语料和域名；普通 Dominating Set 的 W[2] 段落非本题，已排除。另用 F21 精确名称及目标词收敛。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F17",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "互联网搜索 system1",
+      "query": "\"SierpinskiLimitedDomination\" error correction withdrawn",
+      "locator": "recency=90 天",
+      "outcome": "仅标题/索引或摘要",
+      "note": "组合结果仍为原论文/前篇/同源形式化；未取得针对 SierpinskiLimitedDomination 的撤回/修正声明，也未取得本卡近似/FPT 完整解。仅索引级阴性线索，不作无争议保证。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F17",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "互联网搜索 system1",
+      "query": "\"k-limited domination\" \"AI\" \"approximation\"",
+      "locator": "recency=90 天",
+      "outcome": "仅标题/索引或摘要",
+      "note": "组合结果仍为原论文/前篇/同源形式化；未取得针对 SierpinskiLimitedDomination 的撤回/修正声明，也未取得本卡近似/FPT 完整解。仅索引级阴性线索，不作无争议保证。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F17",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "互联网搜索 system1",
+      "query": "\"k-limited dominating set\" \"parameterized\" code",
+      "locator": "recency=90 天",
+      "outcome": "仅标题/索引或摘要",
+      "note": "组合结果仍为原论文/前篇/同源形式化；未取得针对 SierpinskiLimitedDomination 的撤回/修正声明，也未取得本卡近似/FPT 完整解。仅索引级阴性线索，不作无争议保证。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F18",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "GitHub",
+      "query": "fetch https://api.github.com/repos/the-omega-institute/trureturing/issues/12540/comments",
+      "url": "https://api.github.com/repos/the-omega-institute/trureturing/issues/12540/comments",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "PR issue-comments 接口实际返回空数组；不等于已检查所有 review、checks、后续 issues。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F19",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "互联网搜索 system2",
+      "query": "site:mathoverflow.net \"k-limited domination\"",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "独立定向请求实际返回 Empty search results；仅覆盖所列检索范围。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F20",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "互联网搜索 system2",
+      "query": "site:math.stackexchange.com \"k-limited dominating set\"",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "独立定向请求实际返回 Empty search results；仅覆盖所列检索范围。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F21",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-26",
+      "site": "互联网搜索 system2",
+      "query": "site:github.com \"k-limited domination\" \"approximation\" OR \"FPT\" OR \"treewidth\"",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "独立定向请求实际返回 Empty search results；未发现与本卡近似/FPT/树宽目标匹配的 GitHub 网页索引。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-0950-F22",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地静态核查（下载自固定 Git 提交）",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-001180〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "主模块 756 行；直接依赖 GraphCoverDomination.lean 的 IsDominating",
+      "note": "两个取得的 .lean 文件扫描未见 sorry/admit/axiom 声明、unsafe、native_decide 或 run_tac；有 #print axioms 命令但本轮未运行。未静态审查整个 Mathlib 依赖闭包。主模块下界允许空 base clique，通过相邻 fiber 的 surplus 计数，不依赖每个 clique 必有无外链点。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-950-dedup-broad",
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "limited.*dominat|受限支配|Sierpi[nń]ski|2610[.]01584",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 4,
+      "note": "排除自身后命中4个Sierpinski同人名条目，其标题涉及数论或集合论。未据标题写正式查重关系，随后用图/支配术语重查。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-950-dedup-specific",
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "limited.*dominat|受限支配|2610[.]01584|dominat.*approximab|支配.*近似|Sierpi[nń]ski.*graphs?",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "实际按标题、中英文别名及来源号索引筛选；命中：QX-P-000950。未覆盖全库正文语义等价检索，索引无命中不代表无重复。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-950-root-original",
+      "route": "原题与出处",
+      "site": "arxiv.cnoctave.top 原稿镜像",
+      "query": "open https://arxiv.cnoctave.top/pdf/2610.01584；随后open 〔原始工具引用已私有留存〕 at line 369 〔私有记录编号：PR-001181〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "locator": "§2 p2；Cor9 p7；Thm10 p8；Thm11 pp8–9；§6 Conj12 p9；refs 〔原始工具引用已私有留存〕/〔原始工具引用已私有留存〕",
+      "note": "root独立核定义、固定k复杂性陈述、Sierpiński下界关键断言与原稿开放方向；取得的是v1镜像，未冒称arXiv官方入口恢复。实际主问近似/FPT属于题卡延伸，原稿§6没有逐字提出该验收。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-950-root-claim",
+      "route": "代码、公开 AI 和社区",
+      "site": "www.trureturing.org",
+      "query": "open https://www.trureturing.org/research/bozovic-2026-sierpinski-limited-domination/",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.trureturing.org/research/bozovic-2026-sierpinski-limited-domination/",
+      "locator": "〔原始工具引用已私有留存〕；The question、Evidence、Scope assessment、Unverified assumptions",
+      "note": "root独立读到完整项目说明，当前动态页面Release显示36b3c1e838a9；不同分工读取时标识有变，不能当固定源码版本。项目明确结果针对Conj12，独立于复杂性问题。编译、std3、25次ILP均为项目自报，本轮不当复跑。另静态阅读已取得Lean文件的sierAdj、isKLimited、gamma、claim、result，并扫描两文件的sorry/admit/axiom字样；未运行Lean。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "e950-definition-source",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "locator": "§2印刷p2：图类型、k-limited定义、S(n,m)的字符串邻接；对照官方前篇§1",
+      "version": "arXiv:2610.01584v1，2026-10-01；本轮通过两个10页镜像取得相同文本，官方入口失败",
+      "subquestions": [
+        "主问题",
+        "固定k的判定复杂性及适用图类",
+        "同源旁支：Sierpiński 图上 γ_k^L 的全参数精确式（Conjecture 12）"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "note": "有限简单无向图，正整数k，D必须支配G，且对每个u∈D有|N(u)\\D|≤k，计全部实际外邻居。不是给外部顶点施加邻居数限制，也不是可自由指派容量的capacitated domination。S(n,m)域n≥1,m≥2。实际读取：https://arxiv.cnoctave.top/pdf/2610.01584；第二镜像https://borowiecki.dev/pdf/2610.01584。官方内容/最新版本同一性需补核；正文定义获Springer官方前篇独立交叉支持。 官方追溯入口https://arxiv.org/abs/2610.01584v1本轮不可达；本条支持内容取自实际读取的原稿镜像URL，不把失效入口计作已读证据。 取得全文只用于定义/来源核对，不是主问完整解稿。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e950-original-conclusion",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "locator": "§6印刷p9，Conjecture12及相邻未来方向；§1–6正文查找approxim/parameterized/treewidth无匹配",
+      "version": "arXiv:2610.01584v1，2026-10-01",
+      "subquestions": [
+        "主问题",
+        "同源旁支：Sierpiński 图上 γ_k^L 的全参数精确式（Conjecture 12）"
+      ],
+      "role": "原始提出",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "原稿未来方向为其它受限图类的复杂性和Sierpiński公式γ_k^L(S(n,m))=(m−k)m^(n−1)，n≥1、m≥2、1≤k≤m−1。未在原稿发现当前卡要求的近似/FPT完整分类问题或其完整解声明。当前卡明确自称延伸，不能把原题Conj12偷换为当前主问题，也不能把未找到专门论文写成所有子参数都未定。读取路径为原稿镜像，不是官方abs直达。 官方追溯入口https://arxiv.org/abs/2610.01584v1本轮不可达；本条支持内容取自实际读取的原稿镜像URL，不把失效入口计作已读证据。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "original",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e950-fixed-k-complexity",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "locator": "§3 Thm3/Cor4，印刷pp3–5；§4 Cor5、Prop7、Thm8/Cor9，印刷pp5–7",
+      "version": "arXiv:2610.01584v1，2026-10-01",
+      "subquestions": [
+        "固定k的判定复杂性及适用图类"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "决策输入为G和正预算ℓ；k在每个困难性结论中固定，结论覆盖每个k≥1的平面图。k=1由Vertex Cover归约；k=2,3,4调用Tepeh2606.22428旧构造的平面性；k≥5由平面最大度≤3的Dominating Set归约。已读定理、构造和相关证明段落，未独立重建全部归约；2606.22428原文不可达，不能声称该依赖已核。这里不是对给定k判断是否存在任意大小D（D=V永远可行），也不是k参数FPT的肯定结果。 官方追溯入口https://arxiv.org/abs/2610.01584v1本轮不可达；本条支持内容取自实际读取的原稿镜像URL，不把失效入口计作已读证据。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e950-sierpinski-gap",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01584",
+      "locator": "§5 Thm10印刷p8下界、Thm11印刷p9下界；本轮950_small_checks.py/950_small_checks.json structural_check",
+      "version": "arXiv:2610.01584v1，2026-10-01；独立小例检查2026-11-26",
+      "subquestions": [
+        "同源旁支：Sierpiński 图上 γ_k^L 的全参数精确式（Conjecture 12）"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "关键步骤受质疑",
+      "review_status": "本轮独立数学核对",
+      "note": "原稿下界使用每个base clique存在唯一不接linking edge顶点，从而每个D必须与每base clique相交。按§2标准定义，S(3,3)的C={010,011,012}外邻依次为001、100、021，全部有外链接；D=V\\C的24个顶点仍为合法1-LDS（也为2-LDS），D中最大外邻数1。因此该中间断言本身不成立。只反驳此局部推理，不是数值公式反例：24并未小于声称最优18或9。本轮另核S(1,m),m=2,3,4及S(2,2),S(2,3)对应值均与公式相符，这些小例不证明全体公式。代码路线独立声明/修复须另审，不能自动转为原稿已勘误。 官方追溯入口https://arxiv.org/abs/2610.01584v1本轮不可达；本条支持内容取自实际读取的原稿镜像URL，不把失效入口计作已读证据。 实际仅对S(1,2)、S(1,3)、S(1,4)、S(2,2)、S(2,3)、P3、K1,3七张图枚举子集，最多9点；γ1(S(2,2))=2，γ1(S(2,3))=6，γ2(S(2,3))=3；P3,k=3最优1而全体大小3。另仅直接核S(3,3)指定C与D，未穷举27点最优。脚本950_small_checks.py及结果json由独立分工执行；不等于全体n≤10图穷举，不等于Lean或DP复跑。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "claim_state": "step_disputed",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e950-initial-bounds",
+      "url": "https://link.springer.com/article/10.1007/s40314-026-03902-2",
+      "locator": "§1定义及k≥Δ退化；Prop1(i)；§3 Thm3；§6计算复杂性与未来方向",
+      "version": "Version of record 2026-09-11；Computational and Applied Mathematics 46,43 (2027)，DOI10.1007/s40314-026-03902-2",
+      "subquestions": [
+        "主问题",
+        "一般结构界及capacitated domination关系"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "官方HTML正文直接可达。D支配且每u∈D实际外邻≤k；所有k≥Δ时γ_k^L=γ，不是强制D=V。Thm3在连通图和1≤k<Δ下给max{γ,ceil(n/(k+1))}≤γ_k^L≤n−k；计数下界本身适用于任意有限图。Prop1给P_n的γ_1^L=ceil(n/2)(n≥3)。§6只列复杂性、等号结构、图族/图积方向，未给当前卡的完整近似/FPT问题。由计数界可直接推出固定k的(k+1)-近似等边界，但该算法推论是本轮数学推导，不能冒充本篇明确算法定理。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "e950-radic-bounds",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01442",
+      "locator": "§1–2定义；§3 pp4–5 k-capacitated定义、严格例、Thm4；§4印刷p8 Thm8；§5印刷p11",
+      "version": "arXiv:2610.01442v1，2026-10-01；官方入口受阻，12页原稿镜像可读",
+      "subquestions": [
+        "一般结构界及capacitated domination关系"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "实际读取https://arxiv.cnoctave.top/pdf/2610.01442。capacitated domination只要求给每个中心分配至多k个其它顶点；本题限制全部实际外邻，因此两概念不同。Thm4给max{γ,ceil(n/(k+1))}≤τ_k≤γ_k^L；三角形abc加a的叶d在k=1有τ_1=2<γ_1^L=3。Thm8正文条件是1≤k≤δ(G)，给γ_k^L≤n−L_k(G)；结尾n−k等号刻画仍要求k<δ。这里没有多项式近似算法或FPT完整分类，不能转用capacitated文献算法当同题结论。未核全文所有证明。 官方追溯入口https://arxiv.org/abs/2610.01442v1本轮不可达；本条支持内容取自实际读取的原稿镜像URL，不把失效入口计作已读证据。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e950-cubic-hardness",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.01796",
+      "locator": "§1定义；§2 Prop1归约目标及Thm2/Cor3，印刷pp3–6",
+      "version": "arXiv:2610.01796v1，页脚2026-10-01；稿面日期2026-10-02；官方入口受阻",
+      "subquestions": [
+        "固定k的判定复杂性及适用图类"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "Goran Radić、Aleksandra Tepeh，On 1-limited and (1,2)-domination in cubic graphs。原稿镜像https://arxiv.cnoctave.top/pdf/2610.01796可读；Thm2声称1-LDS在2-connected planar cubic graphs上NP完全，Cor3转为该图类(1,2)-domination。已核目标和图类，未完整复核12顶点gadget、全部证明及后半篇Goldberg数值结果。只加强固定k=1的子类困难性，不解决主近似/FPT分类。 官方追溯入口https://arxiv.org/abs/2610.01796v1本轮不可达；本条支持内容取自实际读取的原稿镜像URL，不把失效入口计作已读证据。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E950-F01",
+      "url": "https://github.com/the-omega-institute/trureturing/blob/4c81f1c70942cf885d6ce586e6d6786a795e5f9f/D5/S3/Combinatorics/Graph/SierpinskiLimitedDomination.lean",
+      "locator": "sierAdj/sierGraph；isKLimited；gamma；claim；theorem result；local upper_bound、adjacent_empty_bonus、group_lower_bound、gamma_exact",
+      "version": "Git 4c81f1c70942cf885d6ce586e6d6786a795e5f9f；2026-11-26 取得",
+      "subquestions": [
+        "同源旁支：Sierpiński 图上 γ_k^L 的全参数精确式（Conjecture 12）"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "the-omega-institute/trureturing（PR #12540，ElonSG）",
+      "claim_date": "2026-10-03",
+      "rerun": {
+        "commit": "4c81f1c70942cf885d6ce586e6d6786a795e5f9f",
+        "theorem": "D5.S3.Combinatorics.Graph.SierpinskiLimitedDomination.result",
+        "toolchain": "已读锁定文件：leanprover/lean4:v4.35.0；mathlib 56a005855ea17e0b0958f73ec801ae140b0a1679；未运行",
+        "command": "未执行编译或 #print axioms；仅本地 rg 扫描与源文件静态阅读",
+        "cache": "未获取编译产物或使用缓存",
+        "axioms": "本轮未输出闭包；源文件末尾存在 #print axioms result；两个取得的 .lean 文件未见 sorry/admit/新 axiom 声明"
+      },
+      "note": "全文取得但非本卡主问解答。D 的定义含真实支配性，并对每个已选点计算整个开邻域差集；非容量分配模型。目标仅指定 Sierpiński 图族的精确值。下界允许空 base clique，通过 quotient 邻 clique 的额外所需顶点计数，未使用“每个 base clique 必有无外链点”。仅核定义、量词及关键结构，未逐行重建全部证明或依赖闭包。 root另读v1§2和Conj12并核对sierAdj、isKLimited、gamma及claim的n↦n−1重标，定义/参数域对应；这不替代内核构建。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E950-F02",
+      "url": "https://github.com/the-omega-institute/trureturing/pull/12540",
+      "locator": "Statement echo；Verification；#print axioms 表；Freeze and scope；Publication and boundary",
+      "version": "PR #12540；created 2026-10-03；updated 2026-10-12；reported head 51bc7d3fef22710879c8ac7a6f1e382755fbed78；merged commit 0e3ac696d7d744f7a5202f36d37b416063a39aff",
+      "subquestions": [
+        "同源旁支：Sierpiński 图上 γ_k^L 的全参数精确式（Conjecture 12）"
+      ],
+      "role": "形式化",
+      "publication": "PR",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "ElonSG / the-omega-institute/trureturing；文中披露 ChatGPT Pro、Codex 与 Claude Code 角色",
+      "claim_date": "2026-10-03",
+      "note": "PR 正文完整取得，报告头 51bc7d3… 的 lake env lean 通过、result 公理为 propext/Classical.choice/Quot.sound、25 组 ILP 相符。它们是该项目自己的测试报告，未由本轮独立复跑。PR 报告当时 Mathlib db584cd6d46c92f209a44c0f1c829460d327499d，与当前取得源码提交的依赖锁不同；旧测试不能自动证明当前提交可编译。API 显示 merged=true；PR issue-comments 返回空数组。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E950-F03",
+      "url": "https://www.trureturing.org/research/bozovic-2026-sierpinski-limited-domination/",
+      "locator": "The question；Scope assessment；Evidence；Unverified assumptions",
+      "version": "2026-11-26访问的动态项目页；分工初读显示Release36a49830636b，root复读显示36b3c1e838a9；固定代码以E950-F01所记Git提交为准",
+      "subquestions": [
+        "同源旁支：Sierpiński 图上 γ_k^L 的全参数精确式（Conjecture 12）"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "trureturing",
+      "claim_date": "2026-10-03（关联 issue/PR 日期）",
+      "note": "项目页面全文已阅，声称 Conjecture 12 精确式得到证明，明确单独的复杂性定理不在该成果范围。未声称一般图近似/FPT 分类；同项目 mdbook 页面为镜像说明，不计独立证据。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E950-F04",
+      "url": "https://github.com/the-omega-institute/trureturing/issues/12456",
+      "locator": "Quantified statement and settlement；Proof route；2026-10-03 09:43:36Z 最后一条评论",
+      "version": "Issue #12456；created/closed 2026-10-03；2026-11-26 正文及 3 条评论取得",
+      "subquestions": [
+        "同源旁支：Sierpiński 图上 γ_k^L 的全参数精确式（Conjecture 12）"
+      ],
+      "role": "完整证明",
+      "publication": "社区帖子",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "ElonSG / trureturing",
+      "claim_date": "2026-10-03",
+      "note": "含书面上下界路线及 AI 生产/复核角色披露；最后评论称已合并至 0e3ac696…。非独立于代码/PR 的第二份证明。其原稿阅读、文献查新和 ILP 都是历史作者报告，未当成本轮实际执行。所取评论没有撤回，不据此声称不存在后续争议。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "full_proof",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "E950-F05",
+      "url": "https://github.com/the-omega-institute/trureturing/blob/4c81f1c70942cf885d6ce586e6d6786a795e5f9f/D5/S3/ConceptDynamics/GraphColoring/GraphCoverDomination.lean",
+      "locator": "namespace SimpleGraph 内 def IsDominating",
+      "version": "Git 4c81f1c70942cf885d6ce586e6d6786a795e5f9f；2026-11-26 取得",
+      "subquestions": [
+        "同源旁支：Sierpiński 图上 γ_k^L 的全参数精确式（Conjecture 12）"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "仅用于核对直接依赖的支配性定义：每个顶点属于 D，或存在 D 中邻点。此文件的其他 graph-cover 定理不是本题结果，没有作迁移。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    }
+  ],
+  "duplicates": [],
+  "card_actions": [
+    {
+      "action": "补条件量词",
+      "field": "题面/形式化表述/acceptance.criteria",
+      "old": "k-limited 支配集 D：D 中每点在 D 外至多 k 个邻居。确定近似比上下界（对照log-APX界）、按k与树宽/参数的FPT/W[?]-hard分类。",
+      "new": "先固定有限简单无向图G、正整数k；D⊆V(G)必须支配G，且每个v∈D满足|N(v)\\D|≤k。优化目标为最小|D|；判定版另输入预算ℓ并问γ_k^L(G)≤ℓ。分别注明k固定还是随输入变化、图类、近似保证依赖n还是k，以及单参数k、树宽t或联合参数(k,t)、(k,ℓ)；对尚未明确的分类范围列待核，不以“完整分类”笼统验收。",
+      "reason": "原稿定义含支配性且NP完全判定含预算；当前算法扩展的输入/参数域和验收粒度不足。此为修订建议，不擅自替换为同源Conj12；采纳会改变题面/验收，应生成新card_rev后重查受影响路线。",
+      "evidence_ids": [
+        "e950-definition-source",
+        "e950-original-conclusion",
+        "e950-fixed-k-complexity"
+      ],
+      "small_case_check": "本轮spectral独立脚本950_small_checks.py及950_small_checks.json：P3在k=1时γ=2，k=2时γ=1；仅满足外邻数上界的D=∅并不支配非空P3。对S(2,3),k=1，预算ℓ=5应否、ℓ=6应是；大小上界问题不可与永远存在D=V的可行性混淆。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "题面纠错",
+      "field": "边界与约定",
+      "old": "k≥n 平凡（D=V）；孤立点必入 D（支配性）；k=1 为原文已闭主线。",
+      "new": "D=V对每个k≥0都可行；若扩展定义允许k=0，则唯一可行支配集为V，γ_0^L=|V|。k≥Δ(G)时外邻约束消失，γ_k^L(G)=γ(G)，所以一般优化问题没有因此变成平凡。孤立点必须进入D。原稿的k=1困难性是含预算的判定问题，不表示近似/FPT扩展已解决。",
+      "reason": "把普遍可行的全集解误作最优/复杂性平凡；k=0仅作明示扩展，不悄悄改原正k定义。",
+      "evidence_ids": [
+        "e950-definition-source",
+        "e950-initial-bounds",
+        "e950-radic-bounds"
+      ],
+      "small_case_check": "本轮spectral独立脚本950_small_checks.py及950_small_checks.json：P3的γ_0=3，γ_2=γ_3=1；K1,3的γ_1=3、γ_2=2、γ_3=γ_4=1。k≥n时D=V通常不是最小解。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "题面纠错",
+      "field": "边界与约定",
+      "old": "Sierpiński 图 S(n,m) 的 m=2 退化（S(n,2)≈完全图型）须单独口径。",
+      "new": "按原稿§2标准定义，S(1,m)=K_m，而S(n,2)=P_{2^n}；只有n=1,m=2同时是K2。原文及Conj12的参数为n≥1,m≥2，并在公式中限定1≤k≤m−1。",
+      "reason": "原卡把n=1的完全图性质误移到所有m=2情形，改变边界对象。",
+      "evidence_ids": [
+        "e950-definition-source",
+        "e950-initial-bounds"
+      ],
+      "small_case_check": "本轮spectral独立脚本950_small_checks.py及950_small_checks.json：S(2,2)仅3条边，顺序00—01—10—11，度序列1,1,2,2，γ_1=2；K4有6条边，γ_1=3，二者不能互换。S(1,2),S(1,3),S(1,4)对应γ_1为1,2,3。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版/开放状态证据",
+      "old": "剩下的延伸问题是：这个问题的近似难度……以及按 k、树宽等参数的 FPT 或 W-hard 分类还没有定论。",
+      "new": "本卡继续研究近似与参数化算法，但应先列具体输入与参数。原稿未明确提出这一整套扩展，更未证明每个分支都尚无结论；固定k的困难性、通用计数界和Sierpiński特例必须分别登记。本轮未找到完整覆盖该扩展的可验证解，不作全球开放断言。",
+      "reason": "“所有延伸无定论”的范围超过文献与检索证据；避免把结构界、常数因子直接推论或单一参数困难性忽略。",
+      "evidence_ids": [
+        "e950-original-conclusion",
+        "e950-initial-bounds",
+        "e950-fixed-k-complexity"
+      ],
+      "small_case_check": "本轮spectral独立脚本950_small_checks.py及950_small_checks.json：S(2,3)精确γ_1=6、γ_2=3不代表一般图算法分类；n≤(k+1)|D|与D=V给固定k一个(k+1)因子，至少表明不能笼统声称近似界全无结论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展/来源",
+      "old": "原文(2026-10)：NP-完全性闭合+γ_1^L(S(n,m))精确值+平面族 S(n,3)。",
+      "new": "分开标明固定k判定困难性、Sierpiński公式原稿声明及其下界局部缺口、同源Conj12后续形式化声明待独立复跑、以及Radić结构界。原稿Thm10/11所用“所有base clique均含无外链接顶点/均与D相交”被本轮小例否定；这不反驳数值公式。补官方前篇DOI10.1007/s40314-026-03902-2与同日更强2连通平面3正则图k=1困难性2610.01796v1。",
+      "reason": "避免在同一“精确值已给出”条目中抹掉原证明缺口，亦避免把代码声明或特例公式升级为主近似/FPT完成。",
+      "evidence_ids": [
+        "e950-sierpinski-gap",
+        "e950-original-conclusion",
+        "e950-initial-bounds",
+        "e950-radic-bounds",
+        "e950-cubic-hardness"
+      ],
+      "small_case_check": "本轮spectral独立脚本950_small_checks.py及950_small_checks.json：S(3,3)删去C={010,011,012}得到D大小24，合法1-LDS且与C不交，反驳原下界中间断言；24≥18且24≥9，未构成公式反例。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "相关进展与声称解决；formal evidence",
+      "new": "补记 trureturing 于2026-10-03声称并提供 Lean 代码证明同源 Sierpiński Conjecture 12 的精确式，注明只覆盖该图族。固定源码提交已静态核定义；发布者报告编译通过，本轮未独立复跑。主问题的近似与参数化分类不据此改为已解决。",
+      "reason": "找到真实可读的同源公开 AI/代码完整声明，但结论范围不同于本卡验收目标；需独立标记数学子问和形式化审查层级。",
+      "evidence_ids": [
+        "E950-F01",
+        "E950-F02",
+        "E950-F03",
+        "E950-F04"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展；近似与参数边界",
+      "old": "近似难度以及按k、树宽等参数的FPT或W-hard分类还没有定论。",
+      "new": "补固定k的(k+1)-近似直接推论；接受固定k=1的NPC结论可得k唯一参数para-NP-hard；明确给定树分解的联合(k,w)计数DP纲要、联合(k,ℓ)小实例界与w单参仅得XP的区分。均不作为全部参数完整分类。",
+      "reason": "对任意可行D，N−|D|≤|E(D,V\\D)|≤k|D|，故γ≥ceil(N/(k+1))。输出V给(k+1)-近似，固定k为常数；K1,k上取等。可变k不能因此统一归入APX。此为本轮直接复核，不声称新定理。 接受原文固定k=1的决策NP完全性，则以k为唯一参数是para-NP-hard（P≠NP时甚至非XP）。给定宽w nice树分解，袋中D点记0..k个已处理外邻，非D点记是否被支配；边引入更新、遗忘检查、join计数相加。每袋(k+3)^(w+1)状态，朴素join仍(k+3)^O(w)poly(N+|E|)，支持联合(k,w)的FPT纲要；当k属输入，同一方法对w单参只给XP。此算法未实现/复跑，不能据此宣称所有参数完整分类。预算ℓ下N>(k+1)ℓ可拒绝，否则至多(k+1)ℓ点，可得联合(k,ℓ)的有限核/子集枚举FPT。",
+      "evidence_ids": [
+        "e950-initial-bounds",
+        "e950-fixed-k-complexity"
+      ],
+      "small_case_check": "空图输出空集；K1,3在k=3时γ=1、N=4，计数下界和全体算法比4取等。S(2,3),k=1时γ=6，所以预算5拒绝、6接受。七图子集枚举不等于验证该DP实现。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "card_rev；正式主问题与验收",
+      "reason": "仅针对输入39208d0f11618648提出建议，没有离线换版或线上修改。定义、量词、参数域、验收若采纳修订，维护方须生成新card_rev并重查受影响路线。Sierpiński同源完整声明与局部证明缺口均不得关掉近似/FPT主问题。",
+      "evidence_ids": [
+        "e950-definition-source",
+        "e950-original-conclusion",
+        "E950-F01"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {
+        "card_action": "no_change"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "官方arXiv abs/PDF/HTML均返回DisabledError；原稿以两个镜像10页v1文本阅读，版本史镜像仅列v1。",
+      "next_step": "恢复官方访问后比对2610.01584v1原文件和最新版本史、撤回/勘误；确认镜像与官方内容一致。当前只可说本次未检到可核实撤回公告。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "已合并本轮计数、参数推导及原稿对照；当前验收仍未固定所有参数口径，尚无覆盖全部近似/FPT目标的完整解。",
+      "next_step": "维护方先明确固定/输入k、图类、预算ℓ、树宽w及参数组合。二审给定树分解的DP纲要和联合(k,ℓ)界；若需单参数w或ℓ的完整分类及最优近似阈值，再取得同定义的算法与困难性原文，不能转用容量指派模型。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Thm10/11的局部base-clique断言已被独立小例否定，但数值公式未被此反驳；后续代码作者据报有处理空fiber的独立下界。",
+      "next_step": "二审原稿印刷pp8–9及本轮结构反例，单独登记关键步骤受质疑；与代码路线的具体定理/commit核对，必要时固定依赖构建并查公理后才考虑公式结案，不升级主问题。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2606.22428v2目前只取得索引/摘要，官方与两个镜像全文不可达；2610.01796v1仅核相关定义和Thm2范围。",
+      "next_step": "如需将固定k平面NPC登记为本轮独立证成，补Tepeh旧稿归约和平面性，及更强cubic稿gadget的独立审阅；本次仅如实补文献范围。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "已取固定代码和工具链锁，但未执行编译及公理闭包；PR 的旧头与当前取码头不同。",
+      "next_step": "若要将同源 Sierpiński 声明升为本轮形式化验证，在所标固定提交和依赖锁下编译目标模块，保存日志并输出 result 的 #print axioms；不得沿用项目旧头的自报日志。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "GitHub 默认分支和公开网页索引均有限；没有检到主问完整解不等于全网无解。",
+      "next_step": "保留本次确切查询范围与日期；未来仅在出现具体近似/FPT 解答声明或代码线索时跟进定义、参数量词与证明，不据搜索静默作强开放结论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "精确图/支配术语索引只命中自身；人名检索另得001656、002133、002302、002463，尚未读取其全文，未作正式同/异题判断。",
+      "next_step": "若后续出现数学上相近候选，读取双方固定card_rev和正文，比较支配条件、局部计数方向及所问复杂性参数；编号较小者负责定关系，不能以Sierpinski人名判重复。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Sierpiński子问存在完整证明声明，本轮为静态核读而非独立构建；本轮独立数学小例仅击穿原稿局部论证。",
+      "next_step": "按包内闭合状态二审规则，独立检查新完整证明的空fiber下界、构造上界和定义映射，再与固定依赖的实际编译、公理闭包核验分别记录；未完成前保留完整声明待核。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "39208d0f11618648",
+      "codes": {}
+    }
+  ]
+}

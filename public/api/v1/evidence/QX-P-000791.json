@@ -1,0 +1,2845 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000791",
+  "card_rev": "7a3a28947ecc7ee0",
+  "summary": {
+    "math_status": {
+      "value": "claimed_proof",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-07"
+      ],
+      "parts": [
+        {
+          "subquestion": "等号图唯一性",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；同一Theorem1.1还证明等号仅为平衡完全二部图K_floor(n/2),ceil(n/2)，强于题卡只列该图达到等号。§3从对每一个极大匹配均饱和推到三角形自由，再用Mantel等号刻画；星图例外只作为中间分支，最终n=3的K1,2是平衡完全二部图，较大星图不达到该边数。"
+        },
+        {
+          "subquestion": "全n与奇数n取整",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；独立核算2e≤binom(n,2)+|M|≤binom(n,2)+floor(n/2)=2floor(n²/4)。对n=2k+1两端同为2k(k+1)，因此奇数n达到边数上界也强制每个极大匹配饱和；§3不存在只适用偶数n的附加条件。"
+        },
+        {
+          "subquestion": "历史充分大n及一般上界",
+          "value": "partial",
+          "note": "2019原刊引言重述Fan的旧全n一般界e<0.2532n²，以及n≤24或n=26的精确界；Füredi1992只给充分大n（阈值极大）的完整猜想。这些是2026完整解之前的历史进展，不是当前最强上界。1992原稿本路线未读，阈值只按原论文作者的明确重述记，不引搜索索引倒置的不等号。"
+        },
+        {
+          "subquestion": "支配边子类与更强非二部问题",
+          "value": "partial",
+          "note": "2019 Theorem4：非二部、存在支配边且不等于H5的D2C图有e≤floor(n²/4)−2。H5的n=6,e=8说明此加强式必须保留例外，但8≤9，未反驳原题。另一更强界floor((n−1)²/4)+1及其等号分类是不同问题，不能将相关旧例外当成本题反例或新稿勘误。"
+        },
+        {
+          "subquestion": "平衡完全二部图达界与小n",
+          "value": "partial",
+          "note": "对每个n≥3，K_floor(n/2),ceil(n/2)具有floor(n²/4)边，直径恰2且删任意跨边后端点距离变3或图断连，故达界。n=0,1,2的同名完全二部图虽满足边数公式，却不属直径2类；不用该退化情况否定原上界。独立手算和形式化sharpness均保留n≥3。"
+        },
+        {
+          "subquestion": "完整形式化及真实验证层级",
+          "value": "claimed_proof",
+          "note": "取得jtraverso/murty-simon-conjecture@adadd2fbd0ba9e9c71faadd105f357f7b12a814f，锁Lean4.35.0-rc3与Mathlib c55e6e786f49471c72fbddbec5415808896aec1e。主界、等号、sharpness及两引理均有完整源码；Solution不导入含sorry的Challenge，静态自有证明模块无sorry/自设axiom命中。作者/第三方Ford报告五定理构建及标准公理通过，实际同commit CI success；本轮仅静态检查和定义桥人工核对，未运行Lean/Comparator/#print axioms，不能记本轮独立复跑通过。"
+        },
+        {
+          "subquestion": "FC题面与新证明的diam/ediam对应",
+          "value": "partial",
+          "note": "固定Mathlib定义diam=ediam.toNat，因2>0，diamH=2⇔ediamH=2；删边扩展直径不减，因此原图diam=2时，删后diam≠2⇔删后ediam>2，断连∞也正确覆盖。此人工桥确认新代码表述覆盖现题，不把自然数diam断连为0误读成未满足临界性。Ford另称验证过复制FC定义的桥，未取得其辅助源码，未在本轮FC工程执行。"
+        },
+        {
+          "subquestion": "CB、FC与充分大n形式化的历史范围",
+          "value": "partial",
+          "note": "CB cb0148只有2026-07-23开放观察和Erdős742来源，没有固定旧FC引用。现FC@ea8e3e…主问仍sorry；已填完全二部边数公式不证明主问。其formal_proof链接plby@8822f7…的目标为∃n0,∀n≥n0，确为Füredi特例而非全n。旧索引open/sorry不能反驳更晚同题完整稿和另一完整工程。"
+        },
+        {
+          "subquestion": "n≤7独立枚举",
+          "value": "partial",
+          "note": "实际检查NetworkX3.5 atlas的1253个n≤7非同构简单图：n3…7的恰径2边临界图数1,2,3,5,10，边数最大2,4,6,9,12，等号分别仅平衡完全二部。21个临界图的全部208个极大匹配均通过Lemma1.2不等式。代码、数据hash和真实stdout嵌D0791-ATLAS；这是有限复算，不替代一般证明，也不是Lean内核验证。"
+        },
+        {
+          "subquestion": "原出处与旧开放记录",
+          "value": "not_assessed",
+          "note": "已亲读Erdős1981作者档案自编p15及ref67，确认主问和达界例；1975/1979原稿尚未取得。Erdős742当前入口访问失败，只取得较早搜索缓存，不以其open/decidable作为2026-11-27状态。现卡把2026CB策展日放first_published及无定位的Simonovits1968界须修或留待核。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/plby/lean-proofs/blob/8822f7ddef30fadbd92e1c6ab4ed897af356af5e/src/latest/ErdosProblems/Erdos742.lean"
+      ],
+      "note": "只覆盖：特例"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "math_status_proposed": {
+      "value": "proved",
+      "batch_id": "QX-R3-07",
+      "basis": [
+        "batch:QX-R3-07"
+      ],
+      "note": "按现卡核心题面“有限简单无向、直径恰2、每次删边使距离上限超过2（断连计∞）”，Das–Fox arXiv:2610.39032v1 Theorem1.1给所有n≥3的|E|≤floor(n²/4)，无充分大n、偶数或特殊图类限制。直径恰2自动使n≥3，小n为真空情形。已取得完整稿；root审完整数学链，另一路独立审§2上界及另一学术路线独立审§3等号，均未发现缺口，完成本轮人工数学二审。本状态依据原文与数学复核，不是仅据题名/AI声称/CI成功；出版状态仍为预印本，未声称正式期刊审定或本轮Lean复跑。人话括注的≤2歧义须修，但正式主问恰2未变。线上闭合按原流程另行验收，不在本轮直接改卡。"
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "原题已证明",
+      "scope_note": "按现卡核心题面“有限简单无向、直径恰2、每次删边使距离上限超过2（断连计∞）”，Das–Fox arXiv:2610.39032v1 Theorem1.1给所有n≥3的|E|≤floor(n²/4)，无充分大n、偶数或特殊图类限制。直径恰2自动使n≥3，小n为真空情形。已取得完整稿；root审完整数学链，另一路独立审§2上界及另一学术路线独立审§3等号，均未发现缺口，完成本轮人工数学二审。本状态依据原文与数学复核，不是仅据题名/AI声称/CI成功；出版状态仍为预印本，未声称正式期刊审定或本轮Lean复跑。人话括注的≤2歧义须修，但正式主问恰2未变。线上闭合按原流程另行验收，不在本轮直接改卡。",
+      "evidence_ids": [
+        "A0791-DF-PROOF",
+        "A0791-RECORD",
+        "O0791-MATH-REVIEW",
+        "D0791-LEMMA12-REVIEW",
+        "O0791-DEF",
+        "C0791-05"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "等号图唯一性",
+      "math_status": "原题已证",
+      "scope_note": "同一Theorem1.1还证明等号仅为平衡完全二部图K_floor(n/2),ceil(n/2)，强于题卡只列该图达到等号。§3从对每一个极大匹配均饱和推到三角形自由，再用Mantel等号刻画；星图例外只作为中间分支，最终n=3的K1,2是平衡完全二部图，较大星图不达到该边数。",
+      "evidence_ids": [
+        "A0791-DF-PROOF"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "全n与奇数n取整",
+      "math_status": "原题已证",
+      "scope_note": "独立核算2e≤binom(n,2)+|M|≤binom(n,2)+floor(n/2)=2floor(n²/4)。对n=2k+1两端同为2k(k+1)，因此奇数n达到边数上界也强制每个极大匹配饱和；§3不存在只适用偶数n的附加条件。",
+      "evidence_ids": [
+        "A0791-DF-PROOF"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "历史充分大n及一般上界",
+      "math_status": "部分进展",
+      "scope_note": "2019原刊引言重述Fan的旧全n一般界e<0.2532n²，以及n≤24或n=26的精确界；Füredi1992只给充分大n（阈值极大）的完整猜想。这些是2026完整解之前的历史进展，不是当前最强上界。1992原稿本路线未读，阈值只按原论文作者的明确重述记，不引搜索索引倒置的不等号。",
+      "evidence_ids": [
+        "A0791-DFH2019",
+        "A0791-DF-PROOF"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "支配边子类与更强非二部问题",
+      "math_status": "仅特例",
+      "scope_note": "2019 Theorem4：非二部、存在支配边且不等于H5的D2C图有e≤floor(n²/4)−2。H5的n=6,e=8说明此加强式必须保留例外，但8≤9，未反驳原题。另一更强界floor((n−1)²/4)+1及其等号分类是不同问题，不能将相关旧例外当成本题反例或新稿勘误。",
+      "evidence_ids": [
+        "A0791-DFH2019"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "平衡完全二部图达界与小n",
+      "math_status": "仅特例",
+      "scope_note": "对每个n≥3，K_floor(n/2),ceil(n/2)具有floor(n²/4)边，直径恰2且删任意跨边后端点距离变3或图断连，故达界。n=0,1,2的同名完全二部图虽满足边数公式，却不属直径2类；不用该退化情况否定原上界。独立手算和形式化sharpness均保留n≥3。",
+      "evidence_ids": [
+        "O0791-DEF",
+        "D0791-BOUNDARIES",
+        "C0791-04",
+        "C0791-05"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "完整形式化及真实验证层级",
+      "math_status": "完整证明声明",
+      "scope_note": "取得jtraverso/murty-simon-conjecture@adadd2fbd0ba9e9c71faadd105f357f7b12a814f，锁Lean4.35.0-rc3与Mathlib c55e6e786f49471c72fbddbec5415808896aec1e。主界、等号、sharpness及两引理均有完整源码；Solution不导入含sorry的Challenge，静态自有证明模块无sorry/自设axiom命中。作者/第三方Ford报告五定理构建及标准公理通过，实际同commit CI success；本轮仅静态检查和定义桥人工核对，未运行Lean/Comparator/#print axioms，不能记本轮独立复跑通过。",
+      "evidence_ids": [
+        "C0791-04",
+        "C0791-05",
+        "C0791-06",
+        "C0791-07"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "FC题面与新证明的diam/ediam对应",
+      "math_status": "实质进展",
+      "scope_note": "固定Mathlib定义diam=ediam.toNat，因2>0，diamH=2⇔ediamH=2；删边扩展直径不减，因此原图diam=2时，删后diam≠2⇔删后ediam>2，断连∞也正确覆盖。此人工桥确认新代码表述覆盖现题，不把自然数diam断连为0误读成未满足临界性。Ford另称验证过复制FC定义的桥，未取得其辅助源码，未在本轮FC工程执行。",
+      "evidence_ids": [
+        "C0791-05",
+        "C0791-06"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "CB、FC与充分大n形式化的历史范围",
+      "math_status": "部分进展",
+      "scope_note": "CB cb0148只有2026-07-23开放观察和Erdős742来源，没有固定旧FC引用。现FC@ea8e3e…主问仍sorry；已填完全二部边数公式不证明主问。其formal_proof链接plby@8822f7…的目标为∃n0,∀n≥n0，确为Füredi特例而非全n。旧索引open/sorry不能反驳更晚同题完整稿和另一完整工程。",
+      "evidence_ids": [
+        "C0791-01",
+        "C0791-02",
+        "C0791-03",
+        "A0791-DF-PROOF"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "n≤7独立枚举",
+      "math_status": "仅特例",
+      "scope_note": "实际检查NetworkX3.5 atlas的1253个n≤7非同构简单图：n3…7的恰径2边临界图数1,2,3,5,10，边数最大2,4,6,9,12，等号分别仅平衡完全二部。21个临界图的全部208个极大匹配均通过Lemma1.2不等式。代码、数据hash和真实stdout嵌D0791-ATLAS；这是有限复算，不替代一般证明，也不是Lean内核验证。",
+      "evidence_ids": [
+        "D0791-ATLAS"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "原出处与旧开放记录",
+      "math_status": "未作判断",
+      "scope_note": "已亲读Erdős1981作者档案自编p15及ref67，确认主问和达界例；1975/1979原稿尚未取得。Erdős742当前入口访问失败，只取得较早搜索缓存，不以其open/decidable作为2026-11-27状态。现卡把2026CB策展日放first_published及无定位的Simonovits1968界须修或留待核。",
+      "evidence_ids": [
+        "O0791-ER81",
+        "C0791-01"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "O0791-Q01",
+      "route": "原题与出处",
+      "site": "Erdős Problems live page",
+      "query": "open https://www.erdosproblems.com/742",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "实际403，不能声称读到当前原页或当前开放状态。",
+      "url": "https://www.erdosproblems.com/742",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "O0791-Q02",
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Murty\" \"Simon\" \"1968\" diameter critical",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "命中历史归属、旧界及新完整证明入口，随后分别核原文。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "O0791-Q03",
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"diameter 2-critical\" conjecture equality n 2026",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "命中2610.39032及形式化审计入口；转官方全文，代码交专路核。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "O0791-Q04",
+      "route": "原题与出处",
+      "site": "arXiv original HTML",
+      "query": "open https://arxiv.org/html/2610.39032v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "Theorem1.1明确所有n≥3的上界及唯一等号，不限充分大n或偶数n。",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "locator": "引言、Theorem1.1、Lemmas1.2–1.3、AI Statement",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "O0791-Q05",
+      "route": "原题与出处",
+      "site": "Erdős Problems alternate host",
+      "query": "open https://erdosproblems.com/742",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "未成功访问，不把别站转载算原页已阅。",
+      "url": "https://erdosproblems.com/742",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "O0791-Q06",
+      "route": "原题与出处",
+      "site": "Web system1 recency=365",
+      "query": "\"Murty Simon\" proof erratum correction Das Fox",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "命中新完整稿和报道，没有取得该稿实际撤回/勘误；报道的11月17日revision不是原稿修订日期。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "O0791-Q07",
+      "route": "原题与出处",
+      "site": "Web system1 recency=365",
+      "query": "\"742\" \"Murty\" site:erdosproblems.com",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "官方页面搜索缓存标约5个月前，引用访问日2026-06-23；其resolved up to finite check不能作2026-11-27live状态。",
+      "url": "https://www.erdosproblems.com/742",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "O0791-Q08",
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "Plesnik Critical graphs of given diameter 1975 71 93 pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "只取得引用与作者其它论文入口，目标1975原稿未得。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "O0791-Q09",
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "Erdos 1981 \"Murty\" \"Plesnik\"",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "定位Renyi作者档案，随后读正文。",
+      "url": "https://www.renyi.hu/~p_erdos/1981-16.pdf",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "O0791-Q10",
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Simonovits\" \"diameter\" \"1968\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "未取得支持卡片指定归属的一手原稿；非证明该结果不存在。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "O0791-Q11",
+      "route": "学术",
+      "site": "arXiv proof close reading",
+      "query": "open HTML lines106、168、232、234、265、298",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "逐段读完数学正文§2辅助二部图/分量/双出口计数及§3全体极大匹配等号链；独立核对见O0791-MATH-REVIEW。",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "locator": "§2 Lemmas2.2–2.14；§3 Lemmas3.1–3.3",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "O0791-Q12",
+      "route": "原题与出处",
+      "site": "Renyi author archive",
+      "query": "open https://www.renyi.hu/~p_erdos/1981-16.pdf; find Murty、[67]、Simonovits; open line680",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "自编p15题面/达界，p20 ref67为Murty unpublished并转引CaHa79。22页自编版本，不能把p15当原刊页码。",
+      "url": "https://www.renyi.hu/~p_erdos/1981-16.pdf",
+      "locator": "§VII，自编p15/PDF索引14；ref67自编p20",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "O0791-Q13",
+      "route": "原题与出处",
+      "site": "Elsevier historical original",
+      "query": "open https://www.sciencedirect.com/science/article/pii/0012365X79901298",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "403，未读1979 Conjecture1正文，不采抽取摘要作为证明。",
+      "url": "https://www.sciencedirect.com/science/article/pii/0012365X79901298",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "O0791-Q14",
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Plesník\" \"Critical graphs of given diameter\" filetype:pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "没有取得目标1975原文；tournaments文章不是本题出处。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "O0791-Q15",
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Caccetta\" \"Häggkvist\" \"On diameter critical graphs\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "出版社核元数据1979,28(3),223–229, DOI10.1016/0012-365X(79)90129-8；目标原稿访问失败。",
+      "url": "https://www.sciencedirect.com/science/article/pii/0012365X79901298",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "O0791-Q16",
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Erdos\" \"1981\" \"On the combinatorial problems\" 25 42",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位正式刊目，随后打开核实。",
+      "url": "https://www.renyi.hu/~cca/issues.htm",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "O0791-Q17",
+      "route": "原题与出处",
+      "site": "Combinatorica official issue index",
+      "query": "open https://www.renyi.hu/~cca/issues.htm",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核原刊Combinatorica1(1)(1981),25–42，DOI10.1007/BF02579174；不声称取得原刊18页扫描。",
+      "url": "https://www.renyi.hu/~cca/issues.htm",
+      "locator": "Volume1 Issue1 Erdős条目",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "O0791-Q18",
+      "route": "原题与出处",
+      "site": "arXiv version history",
+      "query": "open https://arxiv.org/abs/2610.39032",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "当前只列v1，提交2026-10-28 23:04:24 UTC；原稿封面2026-09-28。分别记录，不臆测是更正，未见撤回提示。",
+      "url": "https://arxiv.org/abs/2610.39032",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "O0791-Q19",
+      "route": "原题与出处",
+      "site": "Direct PDFs + Poppler",
+      "query": "urllib下载2610.39032v1.pdf与1981-16.pdf；pdftotext -layout",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "新稿325806B，SHA25653ebde9cbac038c013a3a6a67a7794c675f496ef1530dbb347570c85892a3ab4；旧稿312199B，SHA2564387d2868a46fdee206ab7e249de1c1f93407eb7ed65232ec674efb70001adee。提取有字体警告但成功。",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "O0791-Q20",
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"On diameter critical graphs\" Caccetta pdf repository",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "只得出版社与二手审读档案，不把二手所称已读算本轮亲读1979原稿。",
+      "url": "https://www.sciencedirect.com/science/article/pii/0012365X79901298",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "O0791-Q21",
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Critical graphs of given diameter\" \"pdf\" \"Plesnik\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "仍未取得目标1975原稿。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "O0791-Q22",
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"maximum number of edges\" \"minimal graph\" \"408\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位1988 IMA预印本/1992原刊的二手档案说明，本路线未取得原始408扫描；不混版本、阈值或页码。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "O0791-Q23",
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Simonovits\" \"diameter\" \"n\" \"1968\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回一般极值图/色临界/历史引用，未支持卡片指定界及归属。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "O0791-Q24",
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Murty\" \"Simonovits\" \"3/2\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "未取得支持Simonovits1968 n²/4+O(n^(3/2))这一同题归属的原稿。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "O0791-Q25",
+      "route": "原题与出处",
+      "site": "Web system1 recency=365",
+      "query": "\"diameter critical graphs\" \"correction\" \"Das\" \"Fox\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "未取得针对Das–Fox v1的实际关键错误/撤回/勘误稿；旧更强猜想反例不等于本题反例。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "O0791-Q26",
+      "route": "原题与出处",
+      "site": "Poppler + actual image inspection",
+      "query": "pdftoppm 1981-16.pdf page15和2610.39032v1.pdf page2；view_image两PNG",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际看图确认旧题取整和两部大小、新稿n≥3及任意maximal matching、完整等号。渲染有Type3 bounding-box警告但实际图页可读；未将其余页计作图像校勘。",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "locator": "旧稿自编p15；新稿p2",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "A0791-Q01",
+      "route": "学术",
+      "site": "web/search system1",
+      "query": "\"Murty\" \"Simon\" \"2610.39032\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "note": "命中 Das–Fox 官方 arXiv 记录，随后读取完整 HTML 数学正文，确为 all n 的同题解，不只依据搜索标题。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "A0791-Q02",
+      "route": "学术",
+      "site": "web/search system1（recency=1460）",
+      "query": "\"Murty-Simon\" (proof OR counterexample OR correction OR erratum) 2026",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/2610.39032",
+      "note": "取得新完整证明及公开形式化报道入口；原文由官方 arXiv 深读，社区和 AIProofWatch 仅作定位，不替代论文或代码复跑。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "A0791-Q03",
+      "route": "学术",
+      "site": "web/search system1",
+      "query": "\"Murty-Simon conjecture\" \"best\" bound",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://perso.limos.fr/ffoucaud/Publications/Papers/J31_Murty-Simon_DM_2019.pdf",
+      "note": "追到作者所存2019原刊 PDF，阅读摘要、引言及 Theorem 4；历史一般上界和已知子类均须加其适用范围，不能压过2026新完整证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A0791-Q04",
+      "route": "学术",
+      "site": "web/search system1（recency=90）",
+      "query": "\"2610.39032\" (correction OR erratum OR withdrawn OR gap)",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回证明报道、审计索引等，未取得以该稿为对象的撤回、勘误或数学漏洞原文。报道11月17日更新时间不是论文v2或勘误日。这里只报告限定词与时窗内未检到。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "A0791-Q05",
+      "route": "学术",
+      "site": "web/search system1（recency=90）",
+      "query": "\"Das\" \"Fox\" \"Murty\" \"Simon\" proof November 2026",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "note": "命中当前解答及第三方审计报道，官方当前记录仍为v1；公开 Lean 与 ProjectForty2 入口已转代码路线，本学术片段不将其报道写成本轮复跑。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "A0791-Q06",
+      "route": "学术",
+      "site": "web/search system1",
+      "query": "\"Füredi\" \"maximum number of edges\" \"diameter 2\" 1992 pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/jgt.3190160110",
+      "note": "取得1992论文出版元数据，但未读1992原稿全文。其充分大n结论只按2026与2019原论文明确的历史重述引用；不采用搜索索引中倒置的不等号，也不混用1988预稿与1992刊本的阈值。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A0791-Q07",
+      "route": "学术",
+      "site": "arxiv.org 官方记录",
+      "query": "OPEN https://arxiv.org/abs/2610.39032",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/2610.39032",
+      "locator": "Abstract; Submission history; Comments",
+      "note": "正式提交记录仅显示v1：2026-10-28 23:04:24 UTC；13页。当前条目没有journal reference，本轮未取得正式刊本。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "A0791-Q08",
+      "route": "学术",
+      "site": "arxiv.org 官方 HTML",
+      "query": "CLICK 官方记录的 HTML；OPEN https://arxiv.org/html/2610.39032v1；OPEN 正文后半部（web行203起）",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "locator": "§1 Theorem 1.1, Lemmas 1.2–1.3, AI use statement; §2 Lemmas 2.2–2.13, Corollary 2.14; §3 Lemmas 3.1–3.3",
+      "note": "已阅读全部数学正文；本路线重点独立核等号链、matching量词、四端点互异与奇数n取整。原稿封面日期2026-09-28与arXiv首次公开提交2026-10-28分记。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "A0791-Q09",
+      "route": "学术",
+      "site": "Florent Foucaud 作者主页 PDF",
+      "query": "OPEN https://perso.limos.fr/ffoucaud/Publications/Papers/J31_Murty-Simon_DM_2019.pdf；FIND Theorem 4；FIND − 2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://perso.limos.fr/ffoucaud/Publications/Papers/J31_Murty-Simon_DM_2019.pdf",
+      "locator": "印p3142–3145（PDF第1–4页），尤其Theorem 4与H5说明",
+      "note": "正文定理明确排除H5，摘要的简写不含该条件。未独立逐步审阅其18页全部证明；只用核实的定理陈述及范围。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file bespokelabsai/conjecture-bench problems/conjectures/cb-0148.json default branch",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整JSON只有erdosproblems.com/742状态来源，无FC旧版固定引用；随后固定当前commit重取。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file google-deepmind/formal-conjectures FormalConjectures/ErdosProblems/742.lean default branch",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际完整题面仍by sorry；其中formal_proof链接指向Füredi充分大n特例；随后固定版本重取。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "返回head ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8，2026-11-26T15:20:47Z；只固定代码版本，不把提交时间当数学状态刷新。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET https://api.github.com/repos/bespokelabsai/conjecture-bench/commits/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "返回head 8d494791ace5894b860585d67ba8e69dbfed6376，2026-10-25T09:20:54Z；cb-0148 status as_of仍2026-07-23。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET https://api.github.com/repos/jtraverso/murty-simon-conjecture/commits/adadd2f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "解析完整commit adadd2fbd0ba9e9c71faadd105f357f7b12a814f，2026-10-31T13:15:12Z，首次提交，无父提交。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET https://api.github.com/repos/jtraverso/murty-simon-conjecture/contents/?ref=adadd2f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际列出源码目录及Challenge/Solution、manifest、comparator配置；随后读取全部自有Lean证明模块。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file google-deepmind/formal-conjectures FormalConjectures/ErdosProblems/742.lean ref=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定文件blob f7120d44058202f533c2eebfdc22815306aaab84；本轮已下载并复核Git blob哈希。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file bespokelabsai/conjecture-bench problems/conjectures/cb-0148.json ref=8d494791ace5894b860585d67ba8e69dbfed6376",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定文件blob 3feb99e3de857310afdf63d4effa5d5d3e4ece3e；无FC provenance，不能制造所谓CB所引旧版FC。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web/system1",
+      "query": "\"Murty-Simon\" \"ProjectForty2\"; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Ford第三方审计索引；随后沿实际链接取得原始审计回执。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web/system1",
+      "query": "\"murty-simon-conjecture\" Lean axioms; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中固定完整Lean工程及相关索引；实际代码/证明范围另行读取，不据摘要判定。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web/system1",
+      "query": "\"PALOMAR-2026-11-01-000011\"; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中alphaXiv作者登记评论；未将评论当Palomar机械报告原文。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture README.md ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob 7bfd7ad5d41b1e0cb260f9e35c4cdd46ff2b7d1f，本地哈希匹配；用于静态核对声明、证明导入或依赖；未作本轮Lean构建。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/README.md",
+      "locator": "README.md",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture MurtySimon/Defs.lean ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob 4a4aa54ef9915ccc81184c7b05360a96e540af0a，本地哈希匹配；用于静态核对声明、证明导入或依赖；未作本轮Lean构建。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/MurtySimon/Defs.lean",
+      "locator": "MurtySimon/Defs.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture MurtySimon/Main.lean ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob 79911a8468eb9d2a27ac11389e4996725da729c7，本地哈希匹配；用于静态核对声明、证明导入或依赖；未作本轮Lean构建。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/MurtySimon/Main.lean",
+      "locator": "MurtySimon/Main.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture MurtySimon/Bound.lean ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob 6b274e12daf044204225ad3a2c3d496ef429ba23，本地哈希匹配；用于静态核对声明、证明导入或依赖；未作本轮Lean构建。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/MurtySimon/Bound.lean",
+      "locator": "MurtySimon/Bound.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture MurtySimon/Equality.lean ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob 438d81eae50fa9b34db146a80a083dfac0d0609f，本地哈希匹配；用于静态核对声明、证明导入或依赖；未作本轮Lean构建。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/MurtySimon/Equality.lean",
+      "locator": "MurtySimon/Equality.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture MurtySimon/Basic.lean ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob 4aacc2c4d9b0af79f15cfaa11fe42805c0f7b691，本地哈希匹配；用于静态核对声明、证明导入或依赖；未作本轮Lean构建。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/MurtySimon/Basic.lean",
+      "locator": "MurtySimon/Basic.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture MurtySimon/Components.lean ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob e4363e95ad4fc9b9f6076413a8eca8150a07ee99，本地哈希匹配；用于静态核对声明、证明导入或依赖；未作本轮Lean构建。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/MurtySimon/Components.lean",
+      "locator": "MurtySimon/Components.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture MurtySimon.lean ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob bb3a4653797907bf4cf4d7b4a7a30af589b782bd，本地哈希匹配；用于静态核对声明、证明导入或依赖；未作本轮Lean构建。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/MurtySimon.lean",
+      "locator": "MurtySimon.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture Challenge.lean ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob ce1a277e8a763228561e5f16aafc07b1c767f8e9，本地哈希匹配；5个sorry是题面占位，不进入Solution导入闭包。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/Challenge.lean",
+      "locator": "Challenge.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture Solution.lean ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob 8b6225774029640a48aa796f9529ac4efc397eab，本地哈希匹配；5个最终定理均调用MurtySimon.Main；不导入Challenge。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/Solution.lean",
+      "locator": "Solution.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture lake-manifest.json ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob dbc69c6c0ab26978049b855d6135bbab9538e1ae，本地哈希匹配；用于静态核对声明、证明导入或依赖；未作本轮Lean构建。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/lake-manifest.json",
+      "locator": "lake-manifest.json",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture lakefile.toml ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob f536dc11b372f4c07cdaf322a42a31ac1a67e4d3，本地哈希匹配；用于静态核对声明、证明导入或依赖；未作本轮Lean构建。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/lakefile.toml",
+      "locator": "lakefile.toml",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture lean-toolchain ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob f0e00b3338bac0d6f050d9a64e277314a9f7830f，本地哈希匹配；用于静态核对声明、证明导入或依赖；未作本轮Lean构建。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/lean-toolchain",
+      "locator": "lean-toolchain",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture formalization.yaml ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob c3e715b2630bb4b7e04d98b1ebe7eae8c2c66094，本地哈希匹配；明示Claude Opus5.5受作者指导编写，未有独立人工审阅；源码宣称与本轮实跑分开。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/formalization.yaml",
+      "locator": "formalization.yaml",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture comparator.json ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件已取得，blob 7fe740f87adc0b4f85bdda7c1dfe72276d2e5c2f，本地哈希匹配；用于静态核对声明、证明导入或依赖；未作本轮Lean构建。",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/comparator.json",
+      "locator": "comparator.json",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web/open",
+      "query": "https://projectforty2.ai/log",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "初次正文是动态日志外壳，给出/data/log.json的实际链接。",
+      "url": "https://projectforty2.ai/log",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web/open",
+      "query": "https://palomar-registry.org/entry?id=PALOMAR-2026-11-01-000011&version=1",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "web工具返回Internal Error/not accessible；登记页和机械报告未从此入口取得。",
+      "url": "https://palomar-registry.org/entry?id=PALOMAR-2026-11-01-000011&version=1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET https://api.github.com/repos/google-deepmind/formal-conjectures/commits?path=FormalConjectures%2FErdosProblems%2F742.lean&per_page=10",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "返回7次文件历史；2026-09-18 PR6068明确plby链接仅对应Füredi sufficiently-large-n，且声明仍by sorry；最近是10-29 Palomar linter变更。没有通过历史制造本题新全解。",
+      "result_count": 7,
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file google-deepmind/formal-conjectures lake-manifest.json ref=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "FC锁定Mathlib 0df444a360eaa60ab8c11dca51a86af692955474（v4.33.1）；与完整证明工程的Mathlib版本不同。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "search repository_name=leanprover-community/mathlib4 query='\"def diam\"' topn=10",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位Mathlib/Combinatorics/SimpleGraph/Diam.lean；随后在FC及证明工程各自锁定提交读取，而非直接使用搜索结果的main快照。",
+      "result_count": 2,
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web/click",
+      "query": "click https://projectforty2.ai/log link23 => https://projectforty2.ai/data/log.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际打开原站日志JSON，后续find定位742审计链接。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file leanprover-community/mathlib4 Mathlib/Combinatorics/SimpleGraph/Diam.lean ref=0df444a360eaa60ab8c11dca51a86af692955474",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取FC锁定的diam/ediam定义、断连与空对象约定、ediam_anti等；blob 101630ba2e883b87c14624fa9137360ca7d5d03e。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file leanprover-community/mathlib4 Mathlib/Combinatorics/SimpleGraph/Diam.lean ref=c55e6e786f49471c72fbddbec5415808896aec1e",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取完整证明工程锁定的同文件；核心diam/ediam定义一致；blob 8f437da1b6928c8453792f4ce8b2d9bddfa2d8eb。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file jtraverso/murty-simon-conjecture .github/workflows/palomar-preflight.yml ref=adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "流水线固定PalomarSubmission 14aa8d6b3c2f14a8540605e37144560b9a00e7e7；配置存在不等于已运行，随后读取实际run/jobs。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web/find",
+      "query": "find https://projectforty2.ai/data/log.json pattern=742",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "定位2026-10-31工作/11-01记录的Ford审计，并取得实际receipt链接。",
+      "url": "https://projectforty2.ai/data/log.json",
+      "locator": "L998–1017",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET https://api.github.com/repos/jtraverso/murty-simon-conjecture/commits?per_page=10",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "只返回固定首次commit；本次可见历史未见数学更正或撤回。",
+      "result_count": 1,
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET https://api.github.com/repos/jtraverso/murty-simon-conjecture/issues?state=all&per_page=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "返回空列表；只说明本仓库该入口无问题单，不代表公开所有渠道无质疑。",
+      "result_count": 0,
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET https://api.github.com/repos/jtraverso/murty-simon-conjecture/actions/runs?per_page=10",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "返回同commit的Palomar mechanical preflight run41205818633，2026-10-31 completed/success。",
+      "result_count": 1,
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地源码静态核查",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002901〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际检查全部自有Lean文件及关键声明；只有未被Solution导入的Challenge有5个sorry。文本搜索不是#print axioms或内核核验。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web/open",
+      "query": "https://projectforty2.ai/data/ford_receipts/erdos_742_murty_simon_lean_audit_20261031.txt",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "web工具返回not accessible；随后经同一公开URL直接HTTP取到完整正文，未把此次失败作无结果。",
+      "url": "https://projectforty2.ai/data/ford_receipts/erdos_742_murty_simon_lean_audit_20261031.txt",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET https://api.github.com/repos/jtraverso/murty-simon-conjecture/actions/runs/41205818633/jobs",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "2个job均成功；verify包含immutable-source、toolchain、comparator/provenance审计、报告上传及失败门步骤。仅已读步骤状态，尚未取得机械报告内容。",
+      "result_count": 2,
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET https://api.github.com/repos/jtraverso/murty-simon-conjecture/actions/runs/41205818633/artifacts",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "列出mechanical-report-murtysimon01（8639bytes），digest sha256:9bf209bc4da7c5be446a7d7bbf06d00ea912f1cb226eb96e9d9b01fe5f0b9e26；未过期，后续下载接口受限。",
+      "result_count": 1,
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file plby/lean-proofs src/latest/ErdosProblems/Erdos742.lean ref=8822f7ddef30fadbd92e1c6ab4ed897af356af5e",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整源文件取得并哈希匹配；主结论实际是∃n₀∀n≥n₀的Füredi旧定理，不能因theorem名erdos_742就当全部n。只核表述/首尾与引用范围，未全文件证明复核或复跑。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "公开源直接HTTP",
+      "query": "urllib.request GET https://projectforty2.ai/data/ford_receipts/erdos_742_murty_simon_lean_audit_20261031.txt",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "HTTP200，完整5820bytes；本轮已读，SHA256 5f0d1137bad598fa41e8ee028f4f6c39cd278ea101828eb9f98737b2739d825c。Ford报告重建、axioms、同型声明及742桥通过；辅助审计文件仅给哈希且需另索，不能冒称本轮已取/执行。",
+      "url": "https://projectforty2.ai/data/ford_receipts/erdos_742_murty_simon_lean_audit_20261031.txt",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET https://api.github.com/repos/jtraverso/murty-simon-conjecture/actions/artifacts/13043633763/zip",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "连接器返回HTTP400 INVALID_ARGUMENT：该路径不在其允许的公开资源端点范围；未取得机械报告压缩包，未绕过接口限制。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET https://api.github.com/repos/jtraverso/murty-simon-conjecture/actions/runs/41205818633/logs",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "返回成功外壳但content为空；未取得可核查stdout，不把空正文视为读过完整日志。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地静态核对",
+      "query": "读取Bound.lean card_Lt_le、Equality.lean cliqueFree_of_eqCase及两版Mathlib Diam.lean关键段；校验22份源码Git blob、9份Lean文件导入及占位文本",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "22份固定源码blob全部匹配；9份Lean共1911行，Challenge5个sorry而其余自有Lean文本为0。未核整个Mathlib闭包，未运行Lean或Comparator。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl（2469 条）",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002902〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 7,
+      "note": "实际命中：QX-P-000016、QX-P-000791、QX-P-000847、QX-P-001015、QX-P-001474、QX-P-001697、QX-P-001846。宽词 Simon、742 可命中不同主题或 card_rev 数字，不能仅凭命中认同题；下列五个相关候选另读固定全文/meta。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl（2469 条）",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002903〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 4,
+      "note": "实际命中：QX-P-000791、QX-P-000952、QX-P-001669、QX-P-001853。宽词 Simon、742 可命中不同主题或 card_rev 数字，不能仅凭命中认同题；下列五个相关候选另读固定全文/meta。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl（2469 条）",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002904〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 17,
+      "note": "实际命中：QX-P-000016、QX-P-000073、QX-P-000120、QX-P-000138、QX-P-000210、QX-P-000218、QX-P-000326、QX-P-000370、QX-P-000373、QX-P-000791、QX-P-000847、QX-P-000886、QX-P-000980、QX-P-001188、QX-P-001697、QX-P-002301、QX-P-002497。宽词 Simon、742 可命中不同主题或 card_rev 数字，不能仅凭命中认同题；下列五个相关候选另读固定全文/meta。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl（2469 条）",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002905〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 22,
+      "note": "实际命中：QX-P-000009、QX-P-000016、QX-P-000047、QX-P-000225、QX-P-000236、QX-P-000237、QX-P-000377、QX-P-000643、QX-P-000667、QX-P-000714、QX-P-000848、QX-P-000858、QX-P-000928、QX-P-000929、QX-P-000962、QX-P-001054、QX-P-001137、QX-P-001558、QX-P-001620、QX-P-001657、QX-P-001693、QX-P-002256。宽词 Simon、742 可命中不同主题或 card_rev 数字，不能仅凭命中认同题；下列五个相关候选另读固定全文/meta。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl（2469 条）",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002906〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 10,
+      "note": "实际命中：QX-P-000742、QX-P-000789、QX-P-000791、QX-P-001091、QX-P-001315、QX-P-001742、QX-P-001908、QX-P-002184、QX-P-002347、QX-P-002363。宽词 Simon、742 可命中不同主题或 card_rev 数字，不能仅凭命中认同题；下列五个相关候选另读固定全文/meta。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file path=problems/000/QX-P-000791.meta.json ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000791.meta.json",
+      "locator": "完整文件；Git blob SHA-1 已按 blob 长度头重算匹配",
+      "result_count": 1,
+      "note": "card_rev=7a3a28947ecc7ee0; blob_sha=62d8cdcd7b254a633a98df10c41f9d860dc8f084",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file path=problems/000/QX-P-000791.text.md ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000791.text.md",
+      "locator": "完整文件；Git blob SHA-1 已按 blob 长度头重算匹配",
+      "result_count": 1,
+      "note": "card_rev=7a3a28947ecc7ee0; blob_sha=2a2b280ed96820f2218345c1e62e5c64b6fe6239",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file path=problems/000/QX-P-000016.meta.json ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000016.meta.json",
+      "locator": "完整文件；Git blob SHA-1 已按 blob 长度头重算匹配",
+      "result_count": 1,
+      "note": "card_rev=2ddf7e5f4bc4f6b1; blob_sha=8369b2f339e709a6e4d1f5c418c341a8c02795dd",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file path=problems/000/QX-P-000016.text.md ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000016.text.md",
+      "locator": "完整文件；Git blob SHA-1 已按 blob 长度头重算匹配",
+      "result_count": 1,
+      "note": "card_rev=2ddf7e5f4bc4f6b1; blob_sha=a1e87ff15280c434bdf01125a7230489de930ee5",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file path=problems/000/QX-P-000847.meta.json ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000847.meta.json",
+      "locator": "完整文件；Git blob SHA-1 已按 blob 长度头重算匹配",
+      "result_count": 1,
+      "note": "card_rev=1fd252cf56f1f108; blob_sha=695a0325d53e71c44e34cdf3255038887e098611",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file path=problems/000/QX-P-000847.text.md ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000847.text.md",
+      "locator": "完整文件；Git blob SHA-1 已按 blob 长度头重算匹配",
+      "result_count": 1,
+      "note": "card_rev=1fd252cf56f1f108; blob_sha=ad26d3ec4e1e3e3c6df518ea35bc6bf0fff857a8",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file path=problems/000/QX-P-000886.meta.json ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000886.meta.json",
+      "locator": "完整文件；Git blob SHA-1 已按 blob 长度头重算匹配",
+      "result_count": 1,
+      "note": "card_rev=ab3582806d2d30f1; blob_sha=7d7eeb260369a4fb7a826585f93cc0a5bddd9ba7",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file path=problems/000/QX-P-000886.text.md ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000886.text.md",
+      "locator": "完整文件；Git blob SHA-1 已按 blob 长度头重算匹配",
+      "result_count": 1,
+      "note": "card_rev=ab3582806d2d30f1; blob_sha=077bfdfffd35c77e3d068aa9e932f0a1a294ddfa",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file path=problems/001/QX-P-001669.meta.json ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001669.meta.json",
+      "locator": "完整文件；Git blob SHA-1 已按 blob 长度头重算匹配",
+      "result_count": 1,
+      "note": "card_rev=9d18e43a1b7bebe7; blob_sha=4fb1bec68af192bd8388e3095f16d4209e1247c6",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file path=problems/001/QX-P-001669.text.md ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001669.text.md",
+      "locator": "完整文件；Git blob SHA-1 已按 blob 长度头重算匹配",
+      "result_count": 1,
+      "note": "card_rev=9d18e43a1b7bebe7; blob_sha=fa21c016bb9d893b510accd235398fc1d48d9ae3",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file path=problems/001/QX-P-001697.meta.json ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001697.meta.json",
+      "locator": "完整文件；Git blob SHA-1 已按 blob 长度头重算匹配",
+      "result_count": 1,
+      "note": "card_rev=e2a513bd7dc80144; blob_sha=077ceb1ee86cbf3fbd6218c8eef9fb25fb66b7a1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file path=problems/001/QX-P-001697.text.md ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001697.text.md",
+      "locator": "完整文件；Git blob SHA-1 已按 blob 长度头重算匹配",
+      "result_count": 1,
+      "note": "card_rev=e2a513bd7dc80144; blob_sha=6c1080325c4a424d144748b1d76f388ce35e307a",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：独立有限验证",
+      "site": "Python 3.12.14 + 本地安装 NetworkX 3.5 graph_atlas_g",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002907〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "实际遍历 atlas 全部1253个 n≤7 非同构代表，获得21个直径2边临界图，检查其全部208个极大匹配；目标是寻找上界、等号分类或Lemma1.2违反者，均未命中。最大匹配与极大匹配未混淆。源码和真实日志完整嵌入 D0791-ATLAS。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv 官方HTML",
+      "query": "open https://arxiv.org/html/2610.39032v1；HTML全文与§2.1–2.2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "locator": "HTML全文与§2.1–2.2",
+      "result_count": 1,
+      "note": "独立数学二审负责Lemma1.2及§2完整关键链；未以摘要代替正文，也未由有限枚举推一般结论。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv 官方HTML",
+      "query": "open https://arxiv.org/html/2610.39032v1；HTML§2.3，特别 Lemmas2.9–2.13、Corollary2.14",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "locator": "HTML§2.3，特别 Lemmas2.9–2.13、Corollary2.14",
+      "result_count": 1,
+      "note": "独立数学二审负责Lemma1.2及§2完整关键链；未以摘要代替正文，也未由有限枚举推一般结论。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv 官方PDF的本地文本",
+      "query": "读取 sources_000791/das_fox_2610.39032v1.txt 的 PDF页2–4、7–9，对照HTML中Lemma1.2及§2出口证明",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2610.39032v1",
+      "locator": "PDF页2–4、7–9；PDF SHA256=53ebde9cbac038c013a3a6a67a7794c675f496ef1530dbb347570c85892a3ab4",
+      "result_count": 1,
+      "note": "PDF转文本丢失部分上横线，涉及 E 的补集符号以HTML LaTeX核正；本分片未声称已做PDF图像审校。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O0791-ER81",
+      "url": "https://www.renyi.hu/~p_erdos/1981-16.pdf",
+      "locator": "§VII，自编p15/PDF索引14；自编p20 ref67；正式刊目另核",
+      "version": "Erdős1981作者档案22页自编版；原刊Combinatorica1(1)(1981),25–42, DOI10.1007/BF02579174；PDF SHA2564387d2868a46fdee206ab7e249de1c1f93407eb7ed65232ec674efb70001adee",
+      "subquestions": [
+        "主问题",
+        "达界例",
+        "原出处"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "核过关键步骤",
+      "note": "这是本轮已亲读同题原文中最早者，不说首次提出于1981。正文归属Murty/Plesník，ref67指Murty unpublished与1979 CaHa；现代Murty–Simon题名不必强改成唯一归属。原文量词及floor(n²/4)对应现卡，并给平衡完全二部达界。2026策展日不是原命题发表日期；1975/1979更早原稿本路线未得，Ore1960s仅有后人转述，保留来源层级。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "O0791-DEF",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "locator": "Theorem1.1及现卡题面/形式化/人话逐项比对；本轮小例",
+      "version": "2610.39032v1，2026-10-28；本轮2026-11-27",
+      "subquestions": [
+        "主问题",
+        "直径定义与n边界",
+        "等号例"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "review_status": "本轮独立数学核对",
+      "note": "逐项对照：有限n顶点图采用简单无向；直径恰2；每e删除后某点对距离>2，断连记∞；整数边数≤n²/4等价≤floor(n²/4)。现卡只给平衡完全二部达界，新稿另证唯一性，单列子结果。恰直径2自动要求n≥3，n≤2没有该类图；达界示例须限定n≥3。K_a,b在a,b≥1、a+b≥3时直径2，删跨边若两部≥2其端点距离3，若一部为1则断连，故边临界；ab≤floor((a+b)²/4)且平衡达界。n3的K1,2有2边，n5的K2,3有6边。K3直径1不属本题；若把现卡人话的括注误读为仅diam≤2且删边只须从1增到2，K3会伪装成3>floor(9/4)反例。应修人话，核心恰2题面和形式化不变。源稿的另一简述“所有点距≤2且删边破坏此性质”要求跨过阈值2，n≥3时等价恰径2临界；不能与上述错读混同。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "O0791-MATH-REVIEW",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "locator": "Theorem1.1、§2 Lemmas2.2–2.14及§3 Lemmas3.1–3.3；根节点人工核对记录",
+      "version": "arXiv:2610.39032v1，PDF SHA25653ebde9cbac038c013a3a6a67a7794c675f496ef1530dbb347570c85892a3ab4；2026-11-27",
+      "subquestions": [
+        "主问题",
+        "等号唯一性",
+        "人工数学二审"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "根节点读完数学正文并下载PDF，实际看p2；本条是人工复核，不是正式同行评审或Lean构建。\n重点核查记录：M为任意极大匹配，不是最大匹配；匹配不可能同时含一条2路的两边，因此I′每右点度1或2。连通性/右度计数使每左偏分量仅亏1，且为叶全在左的树。三角边必属临界2路保证孤立左点也有出口。2.11中1a或2a若不安全，另一已匹配端给首坐标不同的第二有序出口；余下1b从反切换恢复起始叶，2b从临界非边的唯一公共邻点恢复起始叶，两类反切换后边/非边不同。安全出口倍边不会令右度超2，因为另一端未匹配而反向出口不存在。于是双计数给左偏分量数≤非临界非边数；等号进一步排除右偏分量与平衡分量出口。这推出任意极大M的|E−M|≤|非边|。\n最终整数算式：n=2k时binom(n,2)+floor(n/2)=2k²；n=2k+1时=2k(k+1)，均为2floor(n²/4)。原边界等号迫使每个极大匹配的中间式饱和，能合法进入§3的全称匹配假设。\n§3中任一I分量若非左偏或含两条匹配边，延拓匹配会在I′制造右偏分量。取左叶uy和其邻临界非边xy；Case1/2的uy与xv四端点互异（v=y被xy非边排除）。删除唯一匹配左叶uy保持余树连通并令其平衡，(v,u)或(v,y)则切换至其中的边xu或临界非边xy，矛盾于平衡分量无出口。Case3的x仅邻u加直径2迫使u万能；有多余边即可删，故只能为星。于是等号图无三角，再接Mantel等号分类。根节点在全链未见缺口；另一路§2和学术路线§3独立复核分别记录在D/A证据。未将atlas有限检查当一般证明，也未声称本轮Lean运行。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "A0791-RECORD",
+      "url": "https://arxiv.org/abs/2610.39032",
+      "locator": "标题、摘要、Comments、Submission history",
+      "version": "arXiv:2610.39032v1；2026-10-28 23:04:24 UTC首次提交；2026-11-27检查时官方页只列v1",
+      "subquestions": [
+        "主问题",
+        "版本、出版与勘误"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "严格蕴含",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Sanjana Das; Jacob Fox",
+      "claim_date": "2026-10-28",
+      "note": "标题A proof of the Murty--Simon conjecture on diameter-2-critical graphs；摘要声明所有n及等号唯一性，当前页面无journal reference或撤回标记。正文封面日期为2026-09-28，不能据此改写arXiv首发日期。检索未取得反驳/勘误，只是有限范围阴性。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "implies",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "A0791-DF-PROOF",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "locator": "§1 Theorem 1.1、Lemmas 1.2–1.3与AI use statement；§2 Corollary 2.14；§3 Lemmas 3.1–3.3",
+      "version": "arXiv:2610.39032v1，官方HTML；正文日期2026-09-28，公开提交2026-10-28",
+      "subquestions": [
+        "主问题",
+        "等号图唯一性",
+        "全n与奇数n取整",
+        "数学核对范围"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "严格蕴含",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "claimant": "Sanjana Das; Jacob Fox",
+      "claim_date": "2026-10-28",
+      "note": "已读数学正文。核心上界：任意极大匹配M均满足|E\\M|≤|非边|。本路线重点独立核§3：等号强制I每分量左偏且任一匹配每分量至多一条G边；Case1/2选择的{uy,xv}端点互异，删左叶仍连通平衡，所造switch exit确满足定义；Case3强制星图。奇数n的取整恒等式亦成立。没有把极大匹配当最大匹配。结论为数学审阅层，不等于正式刊发或本路线Lean复跑。作者声明AI先取得边数上界，人类简化并扩展等号证明，不能把整篇一概归为AI原创。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "implies",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "A0791-DFH2019",
+      "url": "https://perso.limos.fr/ffoucaud/Publications/Papers/J31_Murty-Simon_DM_2019.pdf",
+      "locator": "Discrete Mathematics342(2019)3142–3159；引言p3143；H5说明p3144；Theorem4 p3145（PDF页4）",
+      "version": "正式刊本2019，DOI10.1016/j.disc.2019.06.023；作者网站所存PDF，2026-11-27读取",
+      "subquestions": [
+        "历史充分大n及一般上界",
+        "支配边子类",
+        "加强问题与原题区别"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "未读全文",
+      "claimant": "Antoine Dailly; Florent Foucaud; Adriana Hansberg",
+      "claim_date": "2019",
+      "note": "精读摘要、引言、Theorem4与例外说明，未逐步核其全证明。Theorem4要求非二部D2C、有支配边且G≠H5，才有e≤floor(n²/4)−2；H5有6顶点8边。历史Fan上界与Füredi大n定理为本文对旧工作的重述，未冒称取得其原证。更强非二部猜想的旧等号分类问题不构成原Murty–Simon界的反例。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "not_read",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "C0791-01",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0148.json",
+      "locator": "完整cb-0148.json",
+      "version": "commit 8d494791ace5894b860585d67ba8e69dbfed6376; blob 3feb99e3de857310afdf63d4effa5d5d3e4ece3e",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "CB原记录为n顶点直径恰2且删任意边增径⇒|E|≤n²/4，整数边数等价floor界。open是2026-07-23 maintainer-listed观察；唯一provenance URL为erdosproblems.com/742，根本没有固定旧版FC引用。不可把读取/仓库提交日期当数学开放状态刷新，或据此否认之后Das–Fox全解。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C0791-02",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/742.lean",
+      "locator": "IsDiameter2Critical; erdos_742; complete_bipartite_edge_count; variants.furedi_bound",
+      "version": "commit ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8; blob f7120d44058202f533c2eebfdc22815306aaab84",
+      "subquestions": [
+        "主问题题面形式化",
+        "充分大n特例",
+        "完全二部图边数"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "定义G.diam=2且每个删边图diam≠2；有限SimpleGraph、ℕ除法、无额外n下界。主定理仍by sorry且标open；plesnik_bound、fan_bound、furedi_bound也仍sorry。真正填好的complete_bipartite_edge_count只算a*b条边。formal_proof标签仅链接Füredi充分大n版本，不是全n证明。源码旧标签不是对新预印本的实质反驳。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C0791-03",
+      "url": "https://github.com/plby/lean-proofs/blob/8822f7ddef30fadbd92e1c6ab4ed897af356af5e/src/latest/ErdosProblems/Erdos742.lean",
+      "locator": "末尾theorem Erdos742.erdos_742及alias furedi_bound；约L4279",
+      "version": "commit 8822f7ddef30fadbd92e1c6ab4ed897af356af5e; blob 6d64991bbc9369c36a824294c9f1cc7ade371f60",
+      "subquestions": [
+        "充分大n的Füredi特例"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "实际目标∃n₀,∀有限G,n₀≤|V|→IsDiameter2Critical G→|E|≤|V|²/4。n₀由max 1000000 nLight构成；不是全部n。已取得完整196156字节文件并核blob，只读主声明/定义和末尾，不声称全证明审计。文件末尾的#print axioms是命令本身，非本轮运行输出。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C0791-04",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/blob/adadd2fbd0ba9e9c71faadd105f357f7b12a814f/Solution.lean",
+      "locator": "五个MurtySimonConjecture主定理；MurtySimon/Defs.lean与Main.lean，6个自有证明模块；formalization.yaml",
+      "version": "commit adadd2fbd0ba9e9c71faadd105f357f7b12a814f (2026-10-31T13:15:12Z); Solution blob 8b6225774029640a48aa796f9529ac4efc397eab",
+      "subquestions": [
+        "主问题：全n边数界",
+        "等号仅平衡完全二部图",
+        "n≥3时达界例",
+        "论文Lemmas1.2–1.3"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "Juan Pablo Traverso Gianini；公开说明Claude Opus5.5在其指导下编写",
+      "claim_date": "2026-10-31",
+      "rerun": {
+        "commit": "adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+        "theorem": "MurtySimonConjecture.murty_simon; murty_simon_equality; murty_simon_sharp; lemma_1_2; lemma_1_3",
+        "toolchain": "声明锁定leanprover/lean4:v4.35.0-rc3，Mathlib c55e6e786f49471c72fbddbec5415808896aec1e",
+        "command": "本轮未运行lake build/#print axioms/Comparator；只执行文件获取、blob校验与源码静态检查",
+        "cache": "本轮未下载或使用Mathlib编译缓存",
+        "axioms": "作者及Ford分别报告仅propext、Classical.choice、Quot.sound；本轮未产生axiom输出。"
+      },
+      "note": "完整声明为有限SimpleGraph，G.ediam=2且任意删边后ediam>2，边数≤Fintype.card V^2/4（ℕ取整）；等号得到平衡完全二部图同构，sharpness显式n≥3。Solution只导入Main；Main→Equality→Bound→Components→Basic→Defs→Mathlib，未导入5个sorry的Challenge。所有自有证明文件静态无sorry/axiom/native_decide等命中；关键边界和导入已核，但整个内核/Mathlib闭包未本轮复跑。作者声明没有独立人工审阅形式化、原论文作者未参与；不能把这一点和主回执对原论文的人工二审混写。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C0791-05",
+      "url": "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/Combinatorics/SimpleGraph/Diam.lean",
+      "locator": "ediam、diam、ediam_anti、ediam_eq_zero_of_subsingleton、ediam_eq_top_of_not_connected；本轮人工定义桥和小对象核对",
+      "version": "FC Mathlib 0df444a360eaa60ab8c11dca51a86af692955474；并对照证明工程c55e6e786f49471c72fbddbec5415808896aec1e同文件",
+      "subquestions": [
+        "FC题面与完整证明的径距/删边定义对应",
+        "n=0,1,2及达界例边界"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "已静态检查未复跑",
+      "note": "人工桥完整理由：Mathlib diam(H)=ediam(H).toNat，∞的toNat=0；因为2>0，diam(H)=2当且仅当ediam(H)=2。删边H≤G，ediam_anti给ediam(G)≤ediam(H)。在G.diam=2下，删后diam(H)≠2遂等价ediam(H)>2，包含断连∞，与新工程精确一致。n=0或1的ediam=0；n=2只可能1或∞，所以无径2图。平衡完全二部图边数等式全n成立，但n=0/1/2时直径为0/0/1，作为径2临界达界例必须n≥3。若误把diam=2改成≤2并仅要求删边增径，K3满足误读条件却3>floor(9/4)，故不可漏掉“存在距离恰2的点对”。这里是人工推导，不冒称已取得Ford桥源码或本轮Lean证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C0791-06",
+      "url": "https://projectforty2.ai/data/ford_receipts/erdos_742_murty_simon_lean_audit_20261031.txt",
+      "locator": "Ford完整审计回执：F1–F6、pins、caveats、reproduce",
+      "version": "审计2026-10-31；记录2026-11-01 America/Denver；2026-11-27 HTTP200取到5820bytes，SHA256 5f0d1137bad598fa41e8ee028f4f6c39cd278ea101828eb9f98737b2739d825c",
+      "subquestions": [
+        "完整形式化的第三方重建报告",
+        "与FC742定义的桥接报告"
+      ],
+      "role": "形式化",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "ProjectForty2/Ford（第三方AI研究代理）",
+      "claim_date": "2026-11-01",
+      "rerun": {
+        "commit": "adadd2fbd0ba9e9c71faadd105f357f7b12a814f",
+        "theorem": "五个MurtySimonConjecture定理；Ford自编isDiameter2Critical_iff与erdos_742桥",
+        "toolchain": "第三方使用原工程Lean4.35.0-rc3/Mathlib c55e6e786f49471c72fbddbec5415808896aec1e",
+        "command": "第三方报告lake exe cache get; lake build; lake env lean ../AuditAxioms.lean; lake env lean ../Erdos742Bridge.lean；不是本轮执行",
+        "log_url": "https://projectforty2.ai/data/ford_receipts/erdos_742_murty_simon_lean_audit_20261031.txt",
+        "cache": "第三方报告8943缓存文件；本轮未获取该缓存",
+        "axioms": "回执报告5定理均仅[propext, Classical.choice, Quot.sound]，无sorryAx；本轮只读取报告。"
+      },
+      "note": "完整回执报告构建8969 jobs成功、5定理标准公理、Challenge/Solution展开声明及定义一致，并建立复制的FC742定义到murty_simon的桥。它明确非P42原创、非同行评审，形式化无已知独立人工审阅；未做nanoda/lean4checker内核重放。桥不在FC原工程内运行；Erdos742Bridge.lean仅公布SHA256 1612a5ca0dd74a734b1d4a17cdb8fb4001e46ede5a628cdedf524813d900d9a0，辅助文件写available on request，实际未取得。本轮将其登记为第三方报告通过，不升级本轮独立复跑。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "C0791-07",
+      "url": "https://github.com/jtraverso/murty-simon-conjecture/actions/runs/41205818633",
+      "locator": "GitHub run41205818633及verify job124550658070；mechanical-report-murtysimon01 artifact元数据",
+      "version": "2026-10-31 run对应commit adadd2fbd0ba9e9c71faadd105f357f7b12a814f；pipeline14aa8d6b3c2f14a8540605e37144560b9a00e7e7",
+      "subquestions": [
+        "固定完整形式化的CI机械核查记录"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "实际GitHub API返回该固定commit的run及2个job均success；verify步骤含固定源码提取、工具链、Comparator/provenance审计与失败门。report artifact 8639bytes、SHA256 9bf209bc4da7c5be446a7d7bbf06d00ea912f1cb226eb96e9d9b01fe5f0b9e26。尚未读到报告内容：zip端点被连接器拒绝，logs端点content为空，Palomar登记页web访问失败。不能从配置enable_nanoda=true或workflow success单独推出本轮已核nanoda通过。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D0791-SELF",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000791.text.md",
+      "locator": "固定正文全文，重点 L7、L11、L17、L23–47；metadata.acceptance、external_refs、card_rev",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=7a3a28947ecc7ee0; text_sha=2a2b280ed96820f2218345c1e62e5c64b6fe6239; meta_sha=62d8cdcd7b254a633a98df10c41f9d860dc8f084",
+      "subquestions": [
+        "主问题",
+        "题面边界",
+        "库内查重"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "review_status": "已读未核关键步骤",
+      "note": "固定快照完整主卡与本包 current_task 的 id/card_rev 一致。当前主句要求直径为 2 且删任一边增大；人话括号只说距离不超过 2，须避免误解为直径可为 1。旧正文已列 arXiv:2610.39032v1 但仍写 OPEN，此旧状态不是本轮有效结论。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D0791-C000016",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000016.text.md",
+      "locator": "正文 L7、L11、L17；metadata.acceptance.criteria；完整 text/meta 均已读取",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=2ddf7e5f4bc4f6b1; text_sha=a1e87ff15280c434bdf01125a7230489de930ee5; meta_sha=8369b2f339e709a6e4d1f5c418c341a8c02795dd",
+      "subquestions": [
+        "主问题",
+        "库内查重"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "review_status": "已读未核关键步骤",
+      "note": "对侧在无三角形且直径 2 的图族中最小化最大度 Δ，问 f(n)/√n 的增长；本题在全部直径 2 边临界图中最大化边数。每个无三角形直径 2 图确属本题图族（删 uv 后不能有长 2 的替代路，否则原图有三角形），但极值函数和量词目标不同，不能合并；此为相关而非严格同题的候选。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D0791-C000847",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000847.text.md",
+      "locator": "正文 L7、L11、L17、L23；metadata.acceptance.criteria；完整 text/meta 均已读取",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=1fd252cf56f1f108; text_sha=ad26d3ec4e1e3e3c6df518ea35bc6bf0fff857a8; meta_sha=695a0325d53e71c44e34cdf3255038887e098611",
+      "subquestions": [
+        "主问题",
+        "库内查重"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "review_status": "已读未核关键步骤",
+      "note": "对侧只问 57 正则、直径 2、围长 5 的 Moore 图是否存在，即 SRG(3250,57,0,1)。若存在，它无三角形，故是本题图族的一员；但其边数为 3250×57/2=92625，远低于 floor(3250²/4)=2640625。本题一般边数上界不能决定该存在问，且本题不加正则性/围长条件。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D0791-C000886",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000886.text.md",
+      "locator": "正文 L7、L11、L17、L23；metadata.acceptance.criteria；完整 text/meta 均已读取",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=ab3582806d2d30f1; text_sha=077bfdfffd35c77e3d068aa9e932f0a1a294ddfa; meta_sha=7d7eeb260369a4fb7a826585f93cc0a5bddd9ba7",
+      "subquestions": [
+        "主问题",
+        "库内查重"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "review_status": "已读未核关键步骤",
+      "note": "对侧要在最小度至少 3 的图中让 girth−diameter 任意大；直径并不固定为 2，未要求每条边对直径临界，目标也不是边数上界。仅共享图距离术语。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D0791-C001669",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001669.text.md",
+      "locator": "正文 L7、L11–13；metadata.acceptance.criteria；完整 text/meta 均已读取",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=9d18e43a1b7bebe7; text_sha=fa21c016bb9d893b510accd235398fc1d48d9ae3; meta_sha=4fb1bec68af192bd8388e3095f16d4209e1247c6",
+      "subquestions": [
+        "主问题",
+        "库内查重"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "review_status": "已读未核关键步骤",
+      "note": "对侧双临界指删除任意相邻两顶点后色数由 k 降至 k−2，目标是 K_k 的分类；本题删除一条边并考察距离从恰 2 增到大于 2。临界的操作、被测不变量和结论均不同。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D0791-C001697",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001697.text.md",
+      "locator": "正文 L7、L11–13、L25；metadata.acceptance.criteria；完整 text/meta 均已读取",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=e2a513bd7dc80144; text_sha=6c1080325c4a424d144748b1d76f388ce35e307a; meta_sha=077ceb1ee86cbf3fbd6218c8eef9fb25fb66b7a1",
+      "subquestions": [
+        "主问题",
+        "库内查重"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "review_status": "已读未核关键步骤",
+      "note": "对侧研究强定向的有向直径极值函数 f(d)，并询问精确逐值；本题研究有限无向图的边临界性及边数。即使对侧卡的 f(d) 定义在正文仍不完整，现有正文与验收也足够排除严格同题；本轮不代其补全或查新。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D0791-BOUNDARIES",
+      "url": "https://www.qunxingmath.org/p/QX-P-000791/",
+      "locator": "本轮人工核对：直径恰2、删边断连、n=0/1/2、小图K3与P3、完全二部图达界构造",
+      "version": "2026-11-27；QX-P-000791 rev7a3a28947ecc7ee0 的独立定义审校",
+      "subquestions": [
+        "题面边界",
+        "平衡完全二部图达界"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅某子问",
+      "review_status": "本轮独立数学核对",
+      "note": "独立数学边界核对：取有限简单无向图、n≥3，diam(G)=2 必须是恰等于 2；等价地各对距离≤2且有一对距离=2。对每条 e 要求 diam(G−e)>2，并将断连距离/直径记∞。单点图直径0，K2直径1，空图直径通常不定义，均不在恰2图族。K3说明“所有距离≤2”本身不能解释“直径为2”：其直径1；若错误地只要求≤2且删边后相对原直径增大，则K3会被误纳入且3>floor(9/4)=2，这不是原猜想的反例。对n≥3，a=floor(n/2)≥1、b=ceil(n/2)≥2，K_{a,b}的直径确为2，边数ab=floor(n²/4)。删跨部边uv后两端不再相邻，二部图不可能有连接两部的长2路；a,b≥2时它们距离3，a=1时断连，所以均临界。星K_{1,n−1}也总满足临界性而仅有n−1条边，因此“每条边不可省，所以相当稠密”不是可用推论。此定义检查不独立声称一般极值上界已证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "D0791-ATLAS",
+      "url": "https://www.qunxingmath.org/p/QX-P-000791/",
+      "locator": "D0791_atlas_check.py / D0791_atlas_log.json；源码和真实执行日志均内嵌于 note，可脱离 scratch 复现",
+      "version": "2026-11-27; Python 3.12.14; NetworkX 3.5; atlas.dat.gz SHA256=73fc416df0164923607751cb759f4ae81deb5f6550bf25be59c86de3b747e41d",
+      "subquestions": [
+        "n≤7边数上界与等号类型",
+        "n≤7所有极大匹配的Lemma1.2"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "review_status": "本轮独立数学核对",
+      "note": "从官方 NetworkX 3.5 包的 graph_atlas_g 读取 Atlas（其本地docstring标明包含0至7点全部1253个图）；逐图 BFS 直径、逐边删除，断连记∞。对所得临界图枚举全部大小0至floor(n/2)的边子集，先验两两不交，再验每条边至少接触一个已匹配顶点，因而枚举的是全部极大匹配，而非只取一个最大匹配。n=3,4,5,6,7的临界图数为1,2,3,5,10，最大边数2,4,6,9,12，各仅平衡完全二部图达界；共208个极大匹配均满足Lemma1.2。只覆盖这些小阶非同构代表，不能用本日志推出任意n。\n\n实际 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "D0791-LEMMA12-REVIEW",
+      "url": "https://arxiv.org/html/2610.39032v1",
+      "locator": "Lemma1.2；§2.1–2.3，Lemmas2.2、2.4、2.5、2.7、2.9–2.13及Corollary2.14；PDF页3–9；Theorem1.1推导式(1.1)",
+      "version": "arXiv:2610.39032v1（2026-10-28）；独立复核2026-11-27；PDF SHA256=53ebde9cbac038c013a3a6a67a7794c675f496ef1530dbb347570c85892a3ab4",
+      "subquestions": [
+        "所有n≥3的边数上界",
+        "任意极大匹配的Lemma1.2",
+        "等号链所需Corollary2.14"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅某子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "本轮独立数学复核结论：在有限简单无向、n≥3、直径2且每条边删除后失去距离≤2性质的前提下，Lemma1.2及§2.1–2.3的关键链未发现逻辑缺口。M是任意极大匹配，不要求基数最大。以下记录我实际复算的易错点。\n1. 三角形中的临界边删去后，其自身两端仍有长2替代路；因此临界性见证只能是另一非邻接点对失去唯一长2路。构造I及删去M后的I′时，临界非边的两个相邻左顶点是共享端点的两条边，匹配至多删除其中一条，所以每个右顶点度为1或2，不会丢失一个孤立右顶点的计数。\n2. 对连通分量左右数a,b，有a+b−1≤e(C)≤2b；左多时只能a=b+1，并且C为树且每个右顶点度2。分量求和给 |E\\M|−|F|≤|C_l|−|F_nc|；等号等价于无右多分量。左侧单点分量也含于计数，并由Lemma2.10另行处理。\n3. 若左多分量中的边x*y经匹配端点切换成非边xy，而xy临界，则该右顶点在I′只余x*y一个邻点，违反上一步的右度2，所以该非边必非临界（Lemma2.9）。这给所有1a/1b/2a出口的合法性。单点边分量利用三角形边必在临界2路上，先排除切换所得边，得到非临界出口；另一端未匹配则安全，否则从另一端得到第二出口。\n4. Lemma2.11：起始叶uy的唯一右邻点xy为临界非边，唯一公共邻点为u；ux在同一分量且非M边。极大性迫使u或x被匹配。2b中若x*u为边，则x*y不可能为边（会给xy第二条长2路）；若x*y临界，则uy同时邻接xy与x*y，违反叶度1，因此(x*,y)是合法非临界出口。这里x*≠u，故两条邻接确实不同。\n5. “至少两个”未靠重复计数：若有1a出口(u*,x)，x未匹配即安全；否则Case2给首坐标x*的出口，而u*≠x*，所以有序出口不同。2a对称。若只剩b类，1b出口经切换直接确定起始叶；2b出口先确定临界非边xy，再由其唯一公共邻点确定u，故也唯一反推叶uy。不同叶不能产出相同有序出口；1b与2b出口也不会重合，因为切换后分别是边与非边。有限非单点树至少两叶，故所需双出口存在。\n6. 对非临界非边xy，有序方向(x,y)、(y,x)各至多属于一个分量。两端都匹配时两方向各计1；安全出口出现时另一端未匹配，反向出口不存在，可计重边2而总右度仍≤2。这是多重二部图J的计数，不是声称所有分量有互不相同的未标向非边。左多分量度≥2、所有右度≤2，得到|C_l|≤|F_nc|。等号时全部度预算已被左多分量用尽，其他（包括平衡）分量不可能再有出口；与步骤2合并正是Corollary2.14。\n7. 因M任意，Lemma1.2给2|E|≤binom(n,2)+|M|≤binom(n,2)+floor(n/2)=2floor(n²/4)，奇偶n均成立。这覆盖当前卡的上界验收；唯一等号类型还调用§3/Lemma1.3，本独立分片不将它计入已复核范围，须与负责§3的二审合并。上述为人工复核，不是Lean全证明复跑；n≤7计算另有独立证据，不参与一般推导。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000016",
+      "other_card_rev": "2ddf7e5f4bc4f6b1",
+      "relation": "待核",
+      "reason": "对侧在无三角形且直径 2 的图族中最小化最大度 Δ，问 f(n)/√n 的增长；本题在全部直径 2 边临界图中最大化边数。每个无三角形直径 2 图确属本题图族（删 uv 后不能有长 2 的替代路，否则原图有三角形），但极值函数和量词目标不同，不能合并；此为相关而非严格同题的候选。 对方编号较小，最终配对由小号侧负责，本题仅记录已核范围。",
+      "positions": {
+        "self": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; QX-P-000791 rev7a3a28947ecc7ee0 正文 L7、L11、L17 与 metadata.acceptance.criteria",
+        "other": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; QX-P-000016 rev2ddf7e5f4bc4f6b1 正文 L7、L11、L17；metadata.acceptance.criteria"
+      },
+      "note": "pair_key=QX-P-000016__QX-P-000791; owner=QX-P-000016; evidence=D0791-C000016",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-000847",
+      "other_card_rev": "1fd252cf56f1f108",
+      "relation": "相关但不等价",
+      "reason": "对侧只问 57 正则、直径 2、围长 5 的 Moore 图是否存在，即 SRG(3250,57,0,1)。若存在，它无三角形，故是本题图族的一员；但其边数为 3250×57/2=92625，远低于 floor(3250²/4)=2640625。本题一般边数上界不能决定该存在问，且本题不加正则性/围长条件。 本题编号较小，已完成双方固定全文比较。",
+      "positions": {
+        "self": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; QX-P-000791 rev7a3a28947ecc7ee0 正文 L7、L11、L17 与 metadata.acceptance.criteria",
+        "other": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; QX-P-000847 rev1fd252cf56f1f108 正文 L7、L11、L17、L23；metadata.acceptance.criteria"
+      },
+      "note": "pair_key=QX-P-000791__QX-P-000847; owner=QX-P-000791; evidence=D0791-C000847",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000886",
+      "other_card_rev": "ab3582806d2d30f1",
+      "relation": "仅相似",
+      "reason": "对侧要在最小度至少 3 的图中让 girth−diameter 任意大；直径并不固定为 2，未要求每条边对直径临界，目标也不是边数上界。仅共享图距离术语。 本题编号较小，已完成双方固定全文比较。",
+      "positions": {
+        "self": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; QX-P-000791 rev7a3a28947ecc7ee0 正文 L7、L11、L17 与 metadata.acceptance.criteria",
+        "other": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; QX-P-000886 revab3582806d2d30f1 正文 L7、L11、L17、L23；metadata.acceptance.criteria"
+      },
+      "note": "pair_key=QX-P-000791__QX-P-000886; owner=QX-P-000791; evidence=D0791-C000886",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001669",
+      "other_card_rev": "9d18e43a1b7bebe7",
+      "relation": "仅相似",
+      "reason": "对侧双临界指删除任意相邻两顶点后色数由 k 降至 k−2，目标是 K_k 的分类；本题删除一条边并考察距离从恰 2 增到大于 2。临界的操作、被测不变量和结论均不同。 本题编号较小，已完成双方固定全文比较。",
+      "positions": {
+        "self": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; QX-P-000791 rev7a3a28947ecc7ee0 正文 L7、L11、L17 与 metadata.acceptance.criteria",
+        "other": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; QX-P-001669 rev9d18e43a1b7bebe7 正文 L7、L11–13；metadata.acceptance.criteria"
+      },
+      "note": "pair_key=QX-P-000791__QX-P-001669; owner=QX-P-000791; evidence=D0791-C001669",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001697",
+      "other_card_rev": "e2a513bd7dc80144",
+      "relation": "仅相似",
+      "reason": "对侧研究强定向的有向直径极值函数 f(d)，并询问精确逐值；本题研究有限无向图的边临界性及边数。即使对侧卡的 f(d) 定义在正文仍不完整，现有正文与验收也足够排除严格同题；本轮不代其补全或查新。 本题编号较小，已完成双方固定全文比较。",
+      "positions": {
+        "self": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; QX-P-000791 rev7a3a28947ecc7ee0 正文 L7、L11、L17 与 metadata.acceptance.criteria",
+        "other": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; QX-P-001697 reve2a513bd7dc80144 正文 L7、L11–13、L25；metadata.acceptance.criteria"
+      },
+      "note": "pair_key=QX-P-000791__QX-P-001697; owner=QX-P-000791; evidence=D0791-C001697",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "proposer/first_published/sources",
+      "old": "见CB题述；CB策展快照2026-07-23",
+      "new": "补Erdős1981原文与ref67历史入口，CB仅为2026策展观察；更早Plesník1975/CaHa1979与Ore归属分层记录。",
+      "reason": "实际亲读作者原文并核正式刊目，策展时间不是命题首发。",
+      "evidence_ids": [
+        "O0791-ER81"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "边界与约定/形式化说明",
+      "old": "∀直径2边临界图G；平衡完全二部图达等号",
+      "new": "明确有限简单无向、恰直径2和断连距离∞；达界示例限定n≥3。完整等号唯一性为新稿补充子问。",
+      "reason": "澄清自然数diam与ediam约定及退化边界；若落实改变验收对象/参数域则生成新rev并复查原题、学术和代码。当前仍绑定原rev，不离线改卡。",
+      "evidence_ids": [
+        "O0791-DEF"
+      ],
+      "small_case_check": "n≤2无恰径2图；K1,2、K2,3分别n3/n5达界；删星图边断连，需∞约定。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版直径括注与稠密推断",
+      "old": "直径2（任意两点距离不超过2）；每条边不可省，因此看上去相当稠密",
+      "new": "任意两点距离至多2，且有点对距离恰2；每边都是维持这一距离上限所必需，研究的是这种不可删条件允许多少条边。",
+      "reason": "现括注漏恰2，易误纳K3；不可删也不推出稠密，星图只有线性条边。",
+      "evidence_ids": [
+        "O0791-DEF"
+      ],
+      "small_case_check": "K3的直径1，删边变2，虽满足错读却不满足原题；K1,n−1在n≥3时符合原题且仅n−1边。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "已知结果历史归属",
+      "old": "Ore1968→Murty–Simon精确界；Simonovits1968 n²/4+O(n^(3/2))",
+      "new": "删去或标待核缺原稿支持的精确年份/界归属，改列可定位的已核进展及2026完整稿。",
+      "reason": "实际定向查询与已读原稿未支持该特定归属；是证据不足，未证明历史结果不存在。",
+      "evidence_ids": [
+        "O0791-ER81"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "track / informal_status / novelty / 已知结果与进展 / 相关进展与声称解决 / 开放状态证据",
+      "old": "open；2026-11-21无公认解决/否定；arXiv2610.39032v1只被列为查新入口",
+      "new": "补入Das–Fox arXiv:2610.39032v1完整证明与本轮关键链数学核对，主问题改已证；保留预印本出版层，不将它写成仅充分大n进展。历史2026-07-23 CB open只保留为旧快照。",
+      "reason": "题卡已列稿件实际直接证明验收上界并给出更强等号唯一性；旧开放结论与已读全文不相容。",
+      "evidence_ids": [
+        "A0791-DF-PROOF",
+        "A0791-RECORD"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "补量词",
+      "field": "形式化表述 / 人话版 / 边界与约定",
+      "old": "未明有限简单图与n≥3；人话把直径2直接括注为距离不超过2",
+      "new": "明确有限简单图、n≥3、直径恰为2、每次删边后直径大于2（断开视为无穷）；极值图为K_floor(n/2),ceil(n/2)。",
+      "reason": "与Theorem1.1及原问题的量词严格对齐，排除n=1,2的退化直径措辞歧义。",
+      "small_case_check": "K1,2有3顶点2边，直径恰2且删边断开，达到floor(9/4)=2；K2直径为1，不属于恰直径2类。",
+      "evidence_ids": [
+        "A0791-DF-PROOF"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展",
+      "old": "未区分全n、充分大n和支配边子类；未列2019加强界的例外",
+      "new": "将Füredi1992充分大n结果列为历史；2019减2界只写非二部+支配边+G≠H5。当前完整一般界由2026稿提供。",
+      "reason": "按正文定理而非摘要省略版记录范围；H5与更强非二部问题的例外不反驳原题。",
+      "evidence_ids": [
+        "A0791-DFH2019",
+        "A0791-DF-PROOF"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "已知结果与进展 / 相关进展与声称解决",
+      "old": "Ore1968 → Murty–Simon精确界；Simonovits1968 n²/4+O(n^{3/2})；Mertzios等",
+      "new": "删除或标待原稿核实的无定位历史断言，改为可定位的一手论文与明确范围；不在未获原稿时断言该旧归属已经被数学反驳。",
+      "reason": "本轮已读关键原论文不能支持这组具体归属和年份；其真伪属于出处待核，与新完整证明是否成立分开。",
+      "evidence_ids": [
+        "A0791-DFH2019",
+        "A0791-DF-PROOF"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版/边界与约定",
+      "old": "直径是2（任意两点间距离不超过2）",
+      "new": "有限简单图的直径恰为2：任意两点距离不超过2，且存在距离恰为2的点对；删边导致断连时将直径视为∞，也算增大。",
+      "reason": "保证原题exactly2与Lean ediam=2一致，防止将必要条件≤2误作等价定义。",
+      "evidence_ids": [
+        "C0791-04",
+        "C0791-05"
+      ],
+      "small_case_check": "K3直径1，删任一边变成直径2，若误用≤2就会纳入，而其3条边超过floor(9/4)=2；故必须保留exactly2。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述/等号例",
+      "old": "K_{⌊n/2⌋,⌈n/2⌉}达等号（无n边界）",
+      "new": "对n≥3，平衡完全二部图是直径2边临界图并达到floor(n²/4)；n<3时没有直径恰2的简单图。",
+      "reason": "边数公式可全n成立，但小n图不属于该类；完整形式化sharpness同样显式n≥3。",
+      "evidence_ids": [
+        "C0791-04",
+        "C0791-05"
+      ],
+      "small_case_check": "n=0/1/2时平衡完全二部图的扩展直径分别为0/0/1。n=3的K2,1删边断连，正确计为∞。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "已知结果与进展/formal_status/sources",
+      "old": "formal-conjectures ErdosProblems/742.lean 已形式化；CB open快照",
+      "new": "区分FC主问题题面仍sorry、plby仅充分大n特例，以及jtraverso@adadd2f…全n完整形式化；记录作者/第三方报告通过、本轮静态未复跑。CB open观察仅截至2026-07-23，且CB条目无固定FC旧版引用。",
+      "reason": "避免把骨架、历史特例与本次完整代码混为一层，也不以旧状态遮盖新成果。",
+      "evidence_ids": [
+        "C0791-01",
+        "C0791-02",
+        "C0791-03",
+        "C0791-04",
+        "C0791-06",
+        "C0791-07"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text.题面/形式化表述/边界与约定",
+      "old": "∀直径-2边临界图G；平衡完全二部图达等号，未显式列图类别和n域。",
+      "new": "设G为n≥3顶点的有限简单无向图，diam(G)=2；对每条边e，要求diam(G−e)>2，断连时记∞。目标为|E(G)|≤floor(n²/4)，且n≥3的平衡完全二部图达界。",
+      "reason": "精确声明直径恰2及删除桥后的约定；n≤2不含符合恰2条件的图，不能把K1、K2列作本类的等号实现者。",
+      "evidence_ids": [
+        "D0791-SELF",
+        "D0791-BOUNDARIES",
+        "D0791-ATLAS"
+      ],
+      "small_case_check": "n0空图直径不定义；n1单点直径0；n2的K2直径1。n3的P3=K1,2直径2且删任一边断连，正确地在本类并有2条边。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "card_text.人话版",
+      "old": "直径是2（任意两点间距离不超过2）；每条边极不可省，因此看上去应该相当稠密。",
+      "new": "任意两点距离不超过2，并且至少一对距离恰为2；删去任何一条边后，某一对距离会超过2或变得不连通。临界性表示每条边都为维持这个距离性质所必需，边数可以从星图的n−1条到所述极值界。",
+      "reason": "括号原写法只描述diam≤2，不能替代恰2；临界性本身不意味着图稠密。",
+      "evidence_ids": [
+        "D0791-BOUNDARIES"
+      ],
+      "small_case_check": "K3距离全≤2却直径1；星K1,n−1对任意n≥3均临界，但边数仅线性。此处不将误读得到的K3当原题反例。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "card_text.独立有限验证",
+      "new": "2026-11-27本轮用NetworkX3.5 Atlas逐图穷尽0≤n≤7的1253个非同构简单图；21个满足直径2边临界条件，3≤n≤7最大边数依次2、4、6、9、12，等号各仅平衡完全二部图；其全部208个极大匹配均通过Lemma1.2不等式。",
+      "reason": "这是可复现的小范围证书，与一般证明人工审查分别记证据，不能由小图计算宣称任意n。",
+      "evidence_ids": [
+        "D0791-ATLAS"
+      ],
+      "small_case_check": "实际日志failures=[]；n=0,1,2的符合图数均为0。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "informal_status/已知结果与进展/开放状态证据",
+      "old": "open；2026-11-21无公认解决/否定记录；仅列2610.39032编号但未处理其完整声明",
+      "new": "登记Das–Fox2610.39032v1完整证明及本轮独立数学二审，主问原题已证明；另列唯一等号结论。新完整Lean工程、作者/第三方报告和本轮静态检查分层记录。正式线上闭合交原导入复核流程，不从旧CB open或FCsorry推翻新证据。",
+      "reason": "官方完整稿的定理和实际数学审阅均覆盖原题全量词；不能已经列出全解论文编号却继续只给旧open结论。原包要求闭合独立二审，本轮root全链及两路分工复核均留证。",
+      "evidence_ids": [
+        "A0791-DF-PROOF",
+        "O0791-MATH-REVIEW",
+        "D0791-LEMMA12-REVIEW",
+        "C0791-04",
+        "C0791-06"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "742 live入口403/不可达，open/decidable只是旧缓存；1975/1979目标原稿未得，旧卡Simonovits1968具体归属未核。",
+      "next_step": "后续补原页和历史原稿，核精确归属；旧缓存不得盖过已取得的新完整证明。这些历史缺口不缩小新稿已核的全n范围。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "旧卡Simonovits1968及n²/4+O(n^{3/2})的具体一手出处本轮未取得，亦未将其记作已反驳；不影响2026同题完整证明的验收。",
+      "next_step": "若编辑决定保留该历史句，补齐可读原论文及定理定位；否则删除无定位的具体归属，使用已核来源。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮PATH中没有lean/lake；只完成静态声明/导入与blob核对，未运行工具链。",
+      "next_step": "仅在需要升格为“本轮独立复跑通过”时，按adadd2f…、Lean4.35.0-rc3及Mathlib c55e6e…构建Solution，对5个定理运行#print axioms并保存实际日志；这一未复跑层级不改写主回执对原论文的数学二审结论。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "Ford桥及AuditAxioms辅助源码未公开附入；Palomar登记页失败、CI zip端点不受支持、logs正文为空。",
+      "next_step": "若需要核验第三方报告细节或独立内核重放，取得对应公开辅助文件/机械报告并校验已记录哈希；当前只能写第三方报告通过，不能写本轮已重建、已执行nanoda或已经在FC原工程验证桥。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "QX-P-000016编号更小。已读双方固定text/meta并确认目标分别为最小最大度与最大边数，族包含不等于严格同题。",
+      "next_step": "保留pair_key=QX-P-000016__QX-P-000791，由000016侧负责最终配对归类；本题不启动其查新。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "7a3a28947ecc7ee0",
+      "codes": {}
+    }
+  ]
+}

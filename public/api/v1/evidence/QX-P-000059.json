@@ -1,0 +1,2841 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000059",
+  "card_rev": "ac6c747c063c9e39",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "核心命题的域、重复子群与锋利性边界",
+          "value": "partial",
+          "note": "本题固定同一个群 G，k 是整数且 k≥2，H_i≤G 的指数 n_i 有限，左陪集 a_iH_i 两两不交。H_i 不要求正规，也不要求互异；不要求这些陪集覆盖 G。若 n_i=1，则该陪集是 G，与其余非空陪集不交不可能，所以合法输入自动 n_i≥2。若所有 H_i=H、[G:H]=m，则只能选至多 m 个不同陪集，故 k≤m 且每对 gcd=m≥k。下界 k 是锋利的：在 G=Z 中取 H_i=kZ、a_i=i−1（1≤i≤k），恰为 k 个不同余类，所有指数及所有 gcd 都等于 k；也可在 C_k 中取平凡子群的全部 k 个单点陪集。以上为手证，无程序枚举。"
+        },
+        {
+          "subquestion": "一般群问题严格归约为有限群问题，不需要剩余有限假设",
+          "value": "partial",
+          "note": "对每个有限指数 H_i，令 N_i=core_G(H_i)，即 G 在左陪集集合 G/H_i 上置换作用的核。于是 N_i⊲G、N_i⊆H_i，且 [G:N_i]≤n_i!。令 N=∩_iN_i，则 N⊲G、N⊆所有 H_i，Q=G/N 有限，|Q|≤∏_i n_i!。投影 π 满足 [Q:H_i/N]=[G:H_i]，并且 π^{-1}((a_iN)(H_i/N))=a_iH_i，所以投影后的陪集两两不交当且仅当原陪集两两不交。故任何反例都有保持 k 与全部指数的有限群反例，反向由有限群属于一般群即得；原题在一般群与有限群上等价。这里使用真实正规核后才形成商群，不能直接把非正规的 G/H_i 当商群。固定阶数上界的有限搜索只排除相应有限范围：上述上界依赖所有 n_i，未给只依 k 的群阶上界。"
+        },
+        {
+          "subquestion": "倒数和与 k=2 的完整初等证明",
+          "value": "partial",
+          "note": "用前述有限商 Q 计数，每个陪集有 |Q|/n_i 个元素，不交性给 Σ_i1/n_i≤1；等号恰为这些陪集覆盖 Q（从而覆盖 G），原问不要求等号。对两个子群 H,K，设 m=[G:H]、n=[G:K]、L=H∩K、d=[G:L]。左陪集集合的映射 gL↦(gH,gK) 是单射，故 d≤mn；指数乘法又给 m|d、n|d。若 gcd(m,n)=1，则 mn|d，从而 d=mn，该单射是满射，任意两左陪集 aH、bK 必有公共元素。因此不交两陪集必有 gcd(m,n)≥2。注意这里没有断言 d|mn，也没有要求 H,K 正规。密度约束自身不充分，例如指数列表 (2,3) 满足 1/2+1/3≤1，却因互素而不可能实现为不交两陪集。这一两陪集论证应用到任意 k 的每一对只给 gcd≥2，不会自动升级到 gcd≥k。"
+        },
+        {
+          "subquestion": "Zhu k=3 证明的本轮独立完整复核",
+          "value": "partial",
+          "note": "反设三个两两不交陪集的每对指数 gcd<3。由 k=2 结论，每对 gcd 恰为2，写 [G:H_i]=2q_i，则 q_1,q_2,q_3 两两互素。固定 i≠j，H_iH_j≠G，否则任意两相应左陪集相交。H_iH_j 含 [H_i:H_i∩H_j] 个 H_j 左陪集，所以 c_ij=[H_i:H_i∩H_j]<2q_j。另一方面 2q_i 和2q_j均整除 [G:H_i∩H_j]=2q_i c_ij，故 q_j|c_ij，得到 c_ij=q_j。在 H_i 内，H_i∩H_j 与 H_i∩H_k 的指数为互素的 q_j,q_k，前述互素指数论证给 H_i=(H_i∩H_j)(H_i∩H_k)，反序积也相等。于是 A=H_1∩H_2、B=H_1∩H_3、C=H_2∩H_3 两两可置换，H=ABC 是子群，且每个 H_iH_j=H；由指数计数 [G:H]=2。若 a_iH 与 a_jH 相交，则 a_i^{-1}a_j∈H_iH_j，写成 hk 即得到 a_i h=a_j k^{-1}∈a_iH_i∩a_jH_j，矛盾。故存在三个不同 H 左陪集，但 H 的指数只有2，最终矛盾。该复核只证明已知 k=3 子情形，不是本轮发现的新一般解。k=4 仅按准确的 Theorem1.1 引用，未在该项核查重核长证明。"
+        },
+        {
+          "subquestion": "最大指数为其余指数的公倍数：特例及p群范围",
+          "value": "partial",
+          "note": "把 n_i 升序排列。因为 Σ_{i<k}1/n_i<1，若 n_{k−1}≤k−1，则前 k−1 项各至少1/(k−1)，和至少1，矛盾。因此 n_{k−1}≥k。若 n_k 被每个 n_i（i<k）整除，则 gcd(n_{k−1},n_k)=n_{k−1}≥k。这个手证正核 Sun Remark1.5(b)，适用条件只是指数的整除关系，并不需要 G 为 p 群；所有指数为同一个素数的幂自然满足。不能仅由最大指数 n_k≥k 直接断言某对 gcd≥k，次大指数步骤是必要的。"
+        },
+        {
+          "subquestion": "一般阿贝尔群不能直接等同为整数剩余类配置",
+          "value": "statement_error",
+          "note": "当 G=Z 时，有限指数子群确为 nZ，其陪集是普通整数同余类；有限循环群可相应表示。但一般阿贝尔群不必循环。例如 C_2×C_2 有三个不同的指数2子群，而 Z 只有一个指数2子群。取 H=〈(1,0)〉与 K=〈(0,1)〉，任意 H 陪集与任意 K 陪集恰交一个点；这不是两个任意指定的整数模2剩余类所表达的同一结构。有限核归约在阿贝尔情形给有限阿贝尔商，它仍可能是多个循环群的直积。故旧卡“交换群（陪集=剩余类，退化为数论配置）”须限定循环群；这里没有声称任何更精细的阿贝尔到整数配置归约都不可能。"
+        },
+        {
+          "subquestion": "公开部分稿：Π 可分有限群中删除私有素因子的倒数和",
+          "value": "partial",
+          "note": "已独立核 README 前节的完整短证。设 Π 包含每个同时整除至少两个 n_i 的素数，且有限群有次正规列 G=G_0⊵G_1⊵…⊵G_m=1，每个因子 G_s/G_{s+1} 的阶完全由 Π 中或完全由 Π 外素数组成。逐层看左陪集树；在节点 xG_s 内，若原陪集 a_iH_i 存活，选交点 y，则其交集为 y(H_i∩G_s)，因此命中的子节点组成 Q_s=G_s/G_{s+1} 中某个左陪集。相对指数 c_is=[G_s:G_{s+1}]/[H_i∩G_s:H_i∩G_{s+1}] 是整数、与所处节点无关、整除 |Q_s|，且 ∏_s c_is=n_i。Π 层均匀选子节点，每个存活 i 的条件存活率为1/c_is。Π 外层各存活子群的相对指数两两互素：任何公共素因子都会是两个 n_i 的公共素因子而应在 Π 中。对任意有限个两两互素指数的子群 K_j≤Q_s，映射 Q_s/(∩K_j)→∏Q_s/K_j 单射，其左边大小被各指数整除且不超过指数之积，故因互素而等于该积，映射满射；于是所有指定左陪集同时相交，可选择一个保留全部存活 i 的子节点。到叶点时，每个原陪集的存活概率恰为 Π 层倒数的乘积，即1/(n_i)_Π；原陪集不交，事件互斥，得到 Σ_i1/(n_i)_Π≤1。有限可解群可用素数阶因子的列，故对任意 Π 满足群列前提。此为附加结构下的证明，不覆盖任意有限群。没有执行随机试验：概率是有限树上的严格数学构造。"
+        },
+        {
+          "subquestion": "公开部分稿：可解群且每对 gcd 至多一个不同素因子的特例",
+          "value": "partial",
+          "note": "已独立核 README 第二节。k=2 已处理；对 k≥3，反设每对 gcd<k。由不交性每对 gcd>1，又假设每对 gcd 至多一个不同素因子，故每对恰落在一个“共享素数块” B_p={i:p|n_i}。每块大小至少2，其素数 p<k，故块数严格少于 k。若没有全体 k 个点组成的块，每个点至少属于两个块，否则唯一块必须覆盖它与所有其他点的配对而成为全块。令 M 为点×块的0/1矩阵，点度 r_i≥2，则 MMᵀ=J+diag(r_i−1) 正定，秩为 k，与列数<k矛盾。因此有素数 p 整除全部指数；其他素数不能同时整除两个指数，否则其 gcd 有两个不同素因子。取 Π={p}，对 Π 可分群应用前条得到 Σ_i p^{-v_p(n_i)}≤1。把 p 部分 b_i=p^{v_p(n_i)} 排序，倒数和使 b_{k−1}≥k，而 gcd(n_{k−1},n_k)≥b_{k−1}≥k，矛盾。有限可解群满足该可分条件。因此该特例成立；任意群的同一 gcd 模式若有反例，必须有整除全部指数的素数 p，且某个非阿贝尔简单组成因子的阶被 p 整除（否则所有组成因子都是 p 群或阶与 p 互素，仍可应用前条）。本轮只核这两个 README 命题，不判新颖性，不把其他链接或 Lean 辅助引理视为该一般猜想的证明。"
+        },
+        {
+          "subquestion": "一个有限反例已经充分，且自动生成反例族",
+          "value": "partial",
+          "note": "否定原命题只需给出一个 k≥2、一个群 G、完整子群/陪集数据，并核各指数有限、全部两两交空以及每对 gcd<k。无需先构造无限族。由有限核归约可把任意反例变为有限 Q 的反例；随后对任意 m≥1 取 Q×C_m、子群 (H_i/N)×C_m 和代表 (a_iN,1)，指数和两两不交性保持不变。各群阶为 |Q|m，因而给出无穷多不同阶的有限反例。所以两卡 acceptance 中“一个反例族”与“反例”的字面区别不改变可解目标；为审核清楚，仍宜直接接受一个完整反例证书。仅给满足倒数和的指数列表、只核一部分陪集对、或在有界群阶范围未找到反例，均不构成反例或全题证明。"
+        },
+        {
+          "subquestion": "QX-P-000059 与 QX-P-002384 的独立第二次同题核对",
+          "value": "partial",
+          "note": "已实际读两份完整题面与 acceptance。059 revac6c747c063c9e39 的 card_text 第7/11/17行及原摘录25–28行，与2384 revd0c63b45dcc7a595 的 text.md 第7–15/20行，在 G任意、k>1、H_i≤G、各指数有限、同一群中的左陪集两两不交、存在同一对 i<j 的 gcd≥k 上逐项一致。两份均不要求 H_i 正规、G交换、陪集覆盖或有限G。acceptance 的反例/反例族区别由前条直积桥消除。结论：数学核心严格同题，建议由小号000059负责；这是主审之外的第二次正文与验收核对，未实施合并、未编辑任一源卡。2384旧状态、历史摘要和错误边界没有自动成为当前题证据；Herzog–Schönheim 的“覆盖且重复指数”是另一个目标，本条不替它查新。"
+        },
+        {
+          "subquestion": "任意群k=3,4",
+          "value": "partial",
+          "note": "Zhu2008提供完整稿；该项核查读核k3关键短链，k4仅准确核定理范围与不交性在证明中必需，未把长证明宣称全独立复核。"
+        },
+        {
+          "subquestion": "任意群k=5",
+          "value": "claimed_resolution",
+          "note": "Sun于2018创建的MO帖子当前正文与2026讲稿均报告Gong已证明一般群k5；本科论文原文未得，本轮不能登记独立已证。二者给2010与2009有书目年份差异；v50只列2,3,4是覆盖遗漏，不能称数学矛盾。"
+        },
+        {
+          "subquestion": "G=Z且k≤20",
+          "value": "partial",
+          "note": "O’Bryant固定v2 Theorem3；已读主要条件与CRT/密度归约，未重跑其有限枚举。此不等于任意有限阿贝尔群k≤20，更不等于任意群。"
+        },
+        {
+          "subquestion": "G=Z、任意k的2026渐近下界",
+          "value": "partial",
+          "note": "Fornal–Sun Theorem1.1给最大gcd ≫ k exp(-(2+o(1))sqrt(log k/loglog k))，接近k但仍不足精确≥k。固定官方全文取得、定理范围及归约已读，未独立审完长证明，不据此封闭一般群猜想。"
+        },
+        {
+          "subquestion": "Zhu Theorem3.1字面遗漏不交条件",
+          "value": "statement_error",
+          "note": "实际PDF页图所见局部陈述缺pairwise disjoint；取四个Gi=G会否定该无条件字面式。引言和原猜想没有缺该条件；修复仅此引文，不能将其误判为本卡正确核心或k4结果已反驳。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/nil-commits/Arithmetica4/blob/023f6441c22a9ca0db1670e351e8ac44f00555ea/RHDirect/PPL057_Main.lean"
+      ],
+      "note": "只覆盖：仅子问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://www.qunxingmath.org/p/QX-P-000059/",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "当前ac6c747c063c9e39的核心全称命题忠实于Sun原问：任意群、整数k>1、k个两两不交有限指数左陪集，存在一对指数gcd≥k；不另加覆盖、正规或子群互异条件。本轮定向原始文献、公开代码/AI与库内全文比对未取得覆盖所有G和k的完整证明或反例，不以检索阴性或Notebook在列证明开放。一般群k2/3/4为已知特例；Sun当前MO正文和2026讲稿报告Gong已证k5，但原学位论文未取得且年份2009/2010待核，单列证明声明待核。O’Bryant k≤20及Fornal–Sun2026近线性gcd界只覆盖整数剩余类，后者尚非精确≥k。固定Lean源码只给小k/整除链/p群等，未编译；公开AI稿前两节的Π可分/可解群素数幂gcd特例已独立手核，未判新颖性或全审扩展。当前核心不因背景错误判成题面有误；补2004出处、纠正k5最小开放和阿贝尔释义。002384固定全文严格同题，已作两次独立比较，仅提合并二审，不修改卡。",
+      "evidence_ids": [
+        "R0059-CARD",
+        "R0059-SUN2004",
+        "R0059-DUP",
+        "a0059_sun2006",
+        "a0059_zhu2008",
+        "a0059_mo2018",
+        "a0059_graz2026",
+        "a0059_obryant",
+        "a0059_fornal_sun2026",
+        "E059-C-PPL057",
+        "Q59-M-E5"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "核心命题的域、重复子群与锋利性边界",
+      "math_status": "仅特例",
+      "scope_note": "本题固定同一个群 G，k 是整数且 k≥2，H_i≤G 的指数 n_i 有限，左陪集 a_iH_i 两两不交。H_i 不要求正规，也不要求互异；不要求这些陪集覆盖 G。若 n_i=1，则该陪集是 G，与其余非空陪集不交不可能，所以合法输入自动 n_i≥2。若所有 H_i=H、[G:H]=m，则只能选至多 m 个不同陪集，故 k≤m 且每对 gcd=m≥k。下界 k 是锋利的：在 G=Z 中取 H_i=kZ、a_i=i−1（1≤i≤k），恰为 k 个不同余类，所有指数及所有 gcd 都等于 k；也可在 C_k 中取平凡子群的全部 k 个单点陪集。以上为手证，无程序枚举。",
+      "evidence_ids": [
+        "Q59-M-E1",
+        "Q59-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "一般群问题严格归约为有限群问题，不需要剩余有限假设",
+      "math_status": "部分进展",
+      "scope_note": "对每个有限指数 H_i，令 N_i=core_G(H_i)，即 G 在左陪集集合 G/H_i 上置换作用的核。于是 N_i⊲G、N_i⊆H_i，且 [G:N_i]≤n_i!。令 N=∩_iN_i，则 N⊲G、N⊆所有 H_i，Q=G/N 有限，|Q|≤∏_i n_i!。投影 π 满足 [Q:H_i/N]=[G:H_i]，并且 π^{-1}((a_iN)(H_i/N))=a_iH_i，所以投影后的陪集两两不交当且仅当原陪集两两不交。故任何反例都有保持 k 与全部指数的有限群反例，反向由有限群属于一般群即得；原题在一般群与有限群上等价。这里使用真实正规核后才形成商群，不能直接把非正规的 G/H_i 当商群。固定阶数上界的有限搜索只排除相应有限范围：上述上界依赖所有 n_i，未给只依 k 的群阶上界。",
+      "evidence_ids": [
+        "Q59-M-E1",
+        "Q59-M-E2",
+        "Q59-M-E5"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "倒数和与 k=2 的完整初等证明",
+      "math_status": "仅特例",
+      "scope_note": "用前述有限商 Q 计数，每个陪集有 |Q|/n_i 个元素，不交性给 Σ_i1/n_i≤1；等号恰为这些陪集覆盖 Q（从而覆盖 G），原问不要求等号。对两个子群 H,K，设 m=[G:H]、n=[G:K]、L=H∩K、d=[G:L]。左陪集集合的映射 gL↦(gH,gK) 是单射，故 d≤mn；指数乘法又给 m|d、n|d。若 gcd(m,n)=1，则 mn|d，从而 d=mn，该单射是满射，任意两左陪集 aH、bK 必有公共元素。因此不交两陪集必有 gcd(m,n)≥2。注意这里没有断言 d|mn，也没有要求 H,K 正规。密度约束自身不充分，例如指数列表 (2,3) 满足 1/2+1/3≤1，却因互素而不可能实现为不交两陪集。这一两陪集论证应用到任意 k 的每一对只给 gcd≥2，不会自动升级到 gcd≥k。",
+      "evidence_ids": [
+        "Q59-M-E2",
+        "Q59-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Zhu k=3 证明的本轮独立完整复核",
+      "math_status": "仅特例",
+      "scope_note": "反设三个两两不交陪集的每对指数 gcd<3。由 k=2 结论，每对 gcd 恰为2，写 [G:H_i]=2q_i，则 q_1,q_2,q_3 两两互素。固定 i≠j，H_iH_j≠G，否则任意两相应左陪集相交。H_iH_j 含 [H_i:H_i∩H_j] 个 H_j 左陪集，所以 c_ij=[H_i:H_i∩H_j]<2q_j。另一方面 2q_i 和2q_j均整除 [G:H_i∩H_j]=2q_i c_ij，故 q_j|c_ij，得到 c_ij=q_j。在 H_i 内，H_i∩H_j 与 H_i∩H_k 的指数为互素的 q_j,q_k，前述互素指数论证给 H_i=(H_i∩H_j)(H_i∩H_k)，反序积也相等。于是 A=H_1∩H_2、B=H_1∩H_3、C=H_2∩H_3 两两可置换，H=ABC 是子群，且每个 H_iH_j=H；由指数计数 [G:H]=2。若 a_iH 与 a_jH 相交，则 a_i^{-1}a_j∈H_iH_j，写成 hk 即得到 a_i h=a_j k^{-1}∈a_iH_i∩a_jH_j，矛盾。故存在三个不同 H 左陪集，但 H 的指数只有2，最终矛盾。该复核只证明已知 k=3 子情形，不是本轮发现的新一般解。k=4 仅按准确的 Theorem1.1 引用，未在该项核查重核长证明。",
+      "evidence_ids": [
+        "Q59-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "最大指数为其余指数的公倍数：特例及p群范围",
+      "math_status": "仅特例",
+      "scope_note": "把 n_i 升序排列。因为 Σ_{i<k}1/n_i<1，若 n_{k−1}≤k−1，则前 k−1 项各至少1/(k−1)，和至少1，矛盾。因此 n_{k−1}≥k。若 n_k 被每个 n_i（i<k）整除，则 gcd(n_{k−1},n_k)=n_{k−1}≥k。这个手证正核 Sun Remark1.5(b)，适用条件只是指数的整除关系，并不需要 G 为 p 群；所有指数为同一个素数的幂自然满足。不能仅由最大指数 n_k≥k 直接断言某对 gcd≥k，次大指数步骤是必要的。",
+      "evidence_ids": [
+        "Q59-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "一般阿贝尔群不能直接等同为整数剩余类配置",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "当 G=Z 时，有限指数子群确为 nZ，其陪集是普通整数同余类；有限循环群可相应表示。但一般阿贝尔群不必循环。例如 C_2×C_2 有三个不同的指数2子群，而 Z 只有一个指数2子群。取 H=〈(1,0)〉与 K=〈(0,1)〉，任意 H 陪集与任意 K 陪集恰交一个点；这不是两个任意指定的整数模2剩余类所表达的同一结构。有限核归约在阿贝尔情形给有限阿贝尔商，它仍可能是多个循环群的直积。故旧卡“交换群（陪集=剩余类，退化为数论配置）”须限定循环群；这里没有声称任何更精细的阿贝尔到整数配置归约都不可能。",
+      "evidence_ids": [
+        "Q59-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "公开部分稿：Π 可分有限群中删除私有素因子的倒数和",
+      "math_status": "条件性结果",
+      "scope_note": "已独立核 README 前节的完整短证。设 Π 包含每个同时整除至少两个 n_i 的素数，且有限群有次正规列 G=G_0⊵G_1⊵…⊵G_m=1，每个因子 G_s/G_{s+1} 的阶完全由 Π 中或完全由 Π 外素数组成。逐层看左陪集树；在节点 xG_s 内，若原陪集 a_iH_i 存活，选交点 y，则其交集为 y(H_i∩G_s)，因此命中的子节点组成 Q_s=G_s/G_{s+1} 中某个左陪集。相对指数 c_is=[G_s:G_{s+1}]/[H_i∩G_s:H_i∩G_{s+1}] 是整数、与所处节点无关、整除 |Q_s|，且 ∏_s c_is=n_i。Π 层均匀选子节点，每个存活 i 的条件存活率为1/c_is。Π 外层各存活子群的相对指数两两互素：任何公共素因子都会是两个 n_i 的公共素因子而应在 Π 中。对任意有限个两两互素指数的子群 K_j≤Q_s，映射 Q_s/(∩K_j)→∏Q_s/K_j 单射，其左边大小被各指数整除且不超过指数之积，故因互素而等于该积，映射满射；于是所有指定左陪集同时相交，可选择一个保留全部存活 i 的子节点。到叶点时，每个原陪集的存活概率恰为 Π 层倒数的乘积，即1/(n_i)_Π；原陪集不交，事件互斥，得到 Σ_i1/(n_i)_Π≤1。有限可解群可用素数阶因子的列，故对任意 Π 满足群列前提。此为附加结构下的证明，不覆盖任意有限群。没有执行随机试验：概率是有限树上的严格数学构造。",
+      "evidence_ids": [
+        "Q59-M-E5"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "公开部分稿：可解群且每对 gcd 至多一个不同素因子的特例",
+      "math_status": "仅特例",
+      "scope_note": "已独立核 README 第二节。k=2 已处理；对 k≥3，反设每对 gcd<k。由不交性每对 gcd>1，又假设每对 gcd 至多一个不同素因子，故每对恰落在一个“共享素数块” B_p={i:p|n_i}。每块大小至少2，其素数 p<k，故块数严格少于 k。若没有全体 k 个点组成的块，每个点至少属于两个块，否则唯一块必须覆盖它与所有其他点的配对而成为全块。令 M 为点×块的0/1矩阵，点度 r_i≥2，则 MMᵀ=J+diag(r_i−1) 正定，秩为 k，与列数<k矛盾。因此有素数 p 整除全部指数；其他素数不能同时整除两个指数，否则其 gcd 有两个不同素因子。取 Π={p}，对 Π 可分群应用前条得到 Σ_i p^{-v_p(n_i)}≤1。把 p 部分 b_i=p^{v_p(n_i)} 排序，倒数和使 b_{k−1}≥k，而 gcd(n_{k−1},n_k)≥b_{k−1}≥k，矛盾。有限可解群满足该可分条件。因此该特例成立；任意群的同一 gcd 模式若有反例，必须有整除全部指数的素数 p，且某个非阿贝尔简单组成因子的阶被 p 整除（否则所有组成因子都是 p 群或阶与 p 互素，仍可应用前条）。本轮只核这两个 README 命题，不判新颖性，不把其他链接或 Lean 辅助引理视为该一般猜想的证明。",
+      "evidence_ids": [
+        "Q59-M-E5"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "一个有限反例已经充分，且自动生成反例族",
+      "math_status": "部分进展",
+      "scope_note": "否定原命题只需给出一个 k≥2、一个群 G、完整子群/陪集数据，并核各指数有限、全部两两交空以及每对 gcd<k。无需先构造无限族。由有限核归约可把任意反例变为有限 Q 的反例；随后对任意 m≥1 取 Q×C_m、子群 (H_i/N)×C_m 和代表 (a_iN,1)，指数和两两不交性保持不变。各群阶为 |Q|m，因而给出无穷多不同阶的有限反例。所以两卡 acceptance 中“一个反例族”与“反例”的字面区别不改变可解目标；为审核清楚，仍宜直接接受一个完整反例证书。仅给满足倒数和的指数列表、只核一部分陪集对、或在有界群阶范围未找到反例，均不构成反例或全题证明。",
+      "evidence_ids": [
+        "Q59-M-E1",
+        "Q59-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "QX-P-000059 与 QX-P-002384 的独立第二次同题核对",
+      "math_status": "部分进展",
+      "scope_note": "已实际读两份完整题面与 acceptance。059 revac6c747c063c9e39 的 card_text 第7/11/17行及原摘录25–28行，与2384 revd0c63b45dcc7a595 的 text.md 第7–15/20行，在 G任意、k>1、H_i≤G、各指数有限、同一群中的左陪集两两不交、存在同一对 i<j 的 gcd≥k 上逐项一致。两份均不要求 H_i 正规、G交换、陪集覆盖或有限G。acceptance 的反例/反例族区别由前条直积桥消除。结论：数学核心严格同题，建议由小号000059负责；这是主审之外的第二次正文与验收核对，未实施合并、未编辑任一源卡。2384旧状态、历史摘要和错误边界没有自动成为当前题证据；Herzog–Schönheim 的“覆盖且重复指数”是另一个目标，本条不替它查新。",
+      "evidence_ids": [
+        "Q59-M-E1",
+        "Q59-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "任意群k=3,4",
+      "math_status": "仅特例",
+      "scope_note": "Zhu2008提供完整稿；该项核查读核k3关键短链，k4仅准确核定理范围与不交性在证明中必需，未把长证明宣称全独立复核。",
+      "evidence_ids": [
+        "a0059_zhu2008"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "任意群k=5",
+      "math_status": "完整证明或反例声明待核",
+      "scope_note": "Sun于2018创建的MO帖子当前正文与2026讲稿均报告Gong已证明一般群k5；本科论文原文未得，本轮不能登记独立已证。二者给2010与2009有书目年份差异；v50只列2,3,4是覆盖遗漏，不能称数学矛盾。",
+      "evidence_ids": [
+        "a0059_mo2018",
+        "a0059_graz2026",
+        "a0059_notebook"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "G=Z且k≤20",
+      "math_status": "仅特例",
+      "scope_note": "O’Bryant固定v2 Theorem3；已读主要条件与CRT/密度归约，未重跑其有限枚举。此不等于任意有限阿贝尔群k≤20，更不等于任意群。",
+      "evidence_ids": [
+        "a0059_obryant"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "G=Z、任意k的2026渐近下界",
+      "math_status": "部分进展",
+      "scope_note": "Fornal–Sun Theorem1.1给最大gcd ≫ k exp(-(2+o(1))sqrt(log k/loglog k))，接近k但仍不足精确≥k。固定官方全文取得、定理范围及归约已读，未独立审完长证明，不据此封闭一般群猜想。",
+      "evidence_ids": [
+        "a0059_fornal_sun2026"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Zhu Theorem3.1字面遗漏不交条件",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "实际PDF页图所见局部陈述缺pairwise disjoint；取四个Gi=G会否定该无条件字面式。引言和原猜想没有缺该条件；修复仅此引文，不能将其误判为本卡正确核心或k4结果已反驳。",
+      "evidence_ids": [
+        "a0059_zhu_statement_check",
+        "a0059_zhu2008"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "GitHub固定题库快照",
+      "query": "fetch_file problems/000/QX-P-000059.text.md 与 .meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000059.text.md",
+      "locator": "题面/原文摘录/边界/进展/acceptance/novelty",
+      "note": "当前rev ac6c747c063c9e39与包内内容一致；text blob dabacfe314a928b85865234a1380c71288870e95；meta blob 0854ebad90c439b34f1bf184eeb34a3fcbbf2cae。旧novelty的23482bd4c5d43769只作参考。",
+      "request_id": "QX-R3-11-000059-root-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "附件全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-004002〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "locator": "固定commit 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "note": "2469条简索引的title/title_en/aliases作不区分大小写正则匹配，仅筛候选。 精确主题命中本题与002384。",
+      "result_count": 2,
+      "request_id": "QX-R3-11-000059-root-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "附件全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-004003〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "locator": "固定commit 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "note": "2469条简索引的title/title_en/aliases作不区分大小写正则匹配，仅筛候选。 另含000826/000983/001125/001130；本轮只取主题强相关的000983全文，其他为索引层，不冒称完整查重。",
+      "result_count": 6,
+      "request_id": "QX-R3-11-000059-root-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "附件全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-004004〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "locator": "固定commit 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "note": "2469条简索引的title/title_en/aliases作不区分大小写正则匹配，仅筛候选。 Choi子串误匹配choice等噪声，随后加词边界收窄。",
+      "result_count": 12,
+      "request_id": "QX-R3-11-000059-root-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "附件全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-004005〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "locator": "固定commit 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "note": "2469条简索引的title/title_en/aliases作不区分大小写正则匹配，仅筛候选。 命中本题、000304（Cho–Choi图论噪声）、000517、000983；后两张已取全文对照。",
+      "result_count": 4,
+      "request_id": "QX-R3-11-000059-root-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定题库快照",
+      "query": "fetch_file problems/002/QX-P-002384.text.md 与 .meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002384.text.md",
+      "locator": "双方题面、原文摘录和meta.acceptance.criteria",
+      "note": "只为当前题查重；text blob 9ce1fa0f726476ec29f6ee7b29ece0ffbf5a5bbb；meta blob 567399479d39001d07ef2beab73a5e4583575784。未对其他题另起查新。002384由两条独立数学核对路线复比正文。",
+      "request_id": "QX-R3-11-000059-root-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定题库快照",
+      "query": "fetch_file problems/000/QX-P-000983.text.md 与 .meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000983.text.md",
+      "locator": "双方题面、原文摘录和meta.acceptance.criteria",
+      "note": "只为当前题查重；text blob 822644c1e6a0b7dcb952819f9a75e40de3c16fd6；meta blob 2726f7691704c9e8b6c0d67860265ed327e6f8fc。未对其他题另起查新。002384由两条独立数学核对路线复比正文。",
+      "request_id": "QX-R3-11-000059-root-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定题库快照",
+      "query": "fetch_file problems/000/QX-P-000517.text.md 与 .meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000517.text.md",
+      "locator": "双方题面、原文摘录和meta.acceptance.criteria",
+      "note": "只为当前题查重；text blob f4ae86df19382cd497be79e4f84785af79e62b87；meta blob 5119b20e522ae2883db083475934d103c914c46c。未对其他题另起查新。002384由两条独立数学核对路线复比正文。",
+      "request_id": "QX-R3-11-000059-root-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "\"Sun\" \"disjoint cosets\" gcd solved",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Sun本人的MO、Zhu0807.2207及2026论文线索；后实际读原文，不以二手聚合站支持证明。",
+      "request_id": "QX-R3-11-000059-root-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "\"disjoint cosets\" \"Gong\" Zhu",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Sun本人的MO、Zhu0807.2207及2026论文线索；后实际读原文，不以二手聚合站支持证明。",
+      "request_id": "QX-R3-11-000059-root-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "MathOverflow",
+      "query": "open https://mathoverflow.net/questions/316709/a-challenging-problem-on-disjoint-cosets",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://mathoverflow.net/questions/316709/a-challenging-problem-on-disjoint-cosets",
+      "locator": "Sun提问正文、现显示的一条评论和页面日期",
+      "note": "提问2018-12-02 11:28；页面只显示编辑Jan5 17:21而未给年份，不补猜编辑年份。作者报告2004提出、2007整数k≤20、Zhu2008 k3/4、Gong2010一般群k5；学位论文未取得。历史$200声明不当成当前可兑现保证。页面未显示答案，不把未显示等同完整API穷尽。",
+      "request_id": "QX-R3-11-000059-root-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/0807.2207",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/0807.2207",
+      "locator": "版本/作者/摘要/正式引文",
+      "note": "Wan-Jie Zhu，v1 2008-07-14T16:58:40Z，10页；Int.J.Modern.Math.3(2008)197–206，摘要明确一般群k3/4。此条仅摘要元数据，完整PDF及证明读取另有记录。",
+      "request_id": "QX-R3-11-000059-root-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv固定v50与本地实际PDF",
+      "query": "find 20.99.；PyMuPDF读取印刷p173/PDF173，另核p193交叉引用",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "20.99（p173）及21.93对20.99的交叉引用（p193）",
+      "note": "复用固定v50副本：1487532 bytes；SHA256 b7027dd8e29cc5b187304f4bb0f3bddb30839089c44967f5fadaa4c0e5e60dc7。正文列k2/3/4，没有断言k5未解；不把省略当成反对作者k5报告的数学证据。",
+      "request_id": "QX-R3-11-000059-root-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "\"On the problem of large gcd for disjoint residue classes\" ; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中arXiv2607.24655和Sun2026讲稿；检索日期不是论文日期。二手AI展开证明页及ResearchGate只作线索，未取代原稿。",
+      "request_id": "QX-R3-11-000059-root-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "\"Sun\" \"Gong\" \"disjoint cosets\" ; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中arXiv2607.24655和Sun2026讲稿；检索日期不是论文日期。二手AI展开证明页及ResearchGate只作线索，未取代原稿。",
+      "request_id": "QX-R3-11-000059-root-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2607.24655",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2607.24655",
+      "note": "浏览工具返回DisabledError；随后本地实际下载官方v1 PDF并阅读目标定理，不能记为原稿未取得。",
+      "request_id": "QX-R3-11-000059-root-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方PDF本地副本",
+      "query": "读取fornal_sun2607_v1.txt前约15500字符，核Theorem1.1/Corollary1.2及前段论证",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2607.24655v1",
+      "locator": "PDF pp1–6，Theorem1.1 p2",
+      "note": "19页完整稿已取得，454556 bytes，SHA256 33bffe0628027510d69a51ce5f39ab72541e5562f4fcd29dd1fe2903e8728b08。主定理对整数互斥剩余类给近线性gcd下界，允许模数重复且无共同模数上界；不是精确≥k，不覆盖任意群。只核范围和关键归约，未全核19页证明。",
+      "request_id": "QX-R3-11-000059-root-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者公开讲稿（Graz）",
+      "query": "open Slides_060526.pdf；find In 2009",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://imsc.uni-graz.at/AlgNTh/slides/Slides_060526.pdf",
+      "locator": "封面May6,2026；slide52/PDF52的k5报告，slide53有限商归约",
+      "note": "讲稿写2009 Z.Gong，MO写2010；年份差异保留待核，不擅断两个不同证明或命题冲突。OCR漏不等号，目标图像由学术路线另核。",
+      "request_id": "QX-R3-11-000059-root-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web search system2",
+      "query": "Sun \"disjoint cosets\" \"Conjecture 4.2\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "追到PPL057的作者综述链接及2004 arXiv math/0411289；不能把不同文献的猜想编号混作勘误。",
+      "request_id": "QX-R3-11-000059-root-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web search system2",
+      "query": "Sun \"Groups in Combinatorial Number Theory\" \"arxiv\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "追到PPL057的作者综述链接及2004 arXiv math/0411289；不能把不同文献的猜想编号混作勘误。",
+      "request_id": "QX-R3-11-000059-root-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Prize Problems List",
+      "query": "open https://prizeproblems.org/problems/057/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://prizeproblems.org/problems/057/",
+      "locator": "PPL057 Sun disjoint cosets，Conjecture4.2来源链接",
+      "note": "该二手索引标checked2026.07.27，链接作者Cover.pdf；网站不管理或保证奖金。只能追溯编号与历史奖金线索，不作数学证明。",
+      "request_id": "QX-R3-11-000059-root-021",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "作者主页",
+      "query": "click PPL057 link5；本地urllib GET https://maths.nju.edu.cn/~zwsun/Cover.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://maths.nju.edu.cn/~zwsun/Cover.pdf",
+      "locator": "Conjecture4.2拟查位置",
+      "note": "web超时，本地HTTP503，失败结果已记cover_download_result.json。未取得此综述，不断言4.2编号错误；2004/2006其他原稿已取得。",
+      "request_id": "QX-R3-11-000059-root-022",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/math/0411289；open https://arxiv.org/html/math/0411289v1；find disjoint left / Conjecture3.4 后定位Conjecture3.3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/math/0411289v1",
+      "locator": "§3末Conjecture3.3；摘要页版本时间2004-11-12T15:57:36Z",
+      "note": "Zhi-Wei Sun, Groups and Combinatorial Number Theory，23页、仅v1。当前目标在3.3，3.4是相邻HS相关定理。已实际读目标与周围语境，未逐字读全部23页。早稿该句未显式写k>1；2006与v50明确补足边界。此为本轮最早核得的同一实质猜想，不宣称绝对首发史。",
+      "request_id": "QX-R3-11-000059-root-023",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定源码本地复核",
+      "query": "读取ai_readme_fixed_README.md全文；rg定位PPL057_Main.lean全部导出theorem及假设；读取静态审计与13文件manifest",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/1337isnot1337/solved-conjectures/blob/b6a13c233d89265818adfd16b82c180504841360/research/sun-disjoint-cosets/README.md",
+      "locator": "README前两节及范围限制；Lean导出定理1653–1839行",
+      "note": "README明确partial，前两节给Π可分群去私有素因子不等式及可解群/成对gcd为素数幂特例；附链接中的其余声明未全核。数学路线独立手核前两节。Lean真群/陪集语义仅k2/3/4、整除链、有限p群；静态无sorry不等于本轮编译通过，实际无Lean/lake/GAP。",
+      "request_id": "QX-R3-11-000059-root-024",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地原题包/固定 Kourovka v50",
+      "query": "完整读取 work_000059_sources/task.json；在 work_001159_sources/kourovka_v50.pdf/.txt 查找并读取 20.99",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "本题 QX-P-000059，card_rev ac6c747c063c9e39；v50 为 2026-11-02，PDF/印刷 p173。原问 k>1、任意群、有限指数、两两不交左陪集。原册只列 k=2,3,4，不断言 k=5 未知。",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "20.99，p173",
+      "request_id": "QX-R3-11-000059-academic-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "作者网站/web open",
+      "query": "https://maths.nju.edu.cn/~zwsun/82f.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "直开返回 TimeoutError。之后通过 MO 文内链接点击同一 URL 再次超时；本地 urllib 请求返回 HTTP503。原论文后来从官方 arXiv 固定版本成功取得，故这只是入口失败。",
+      "url": "https://maths.nju.edu.cn/~zwsun/82f.pdf",
+      "request_id": "QX-R3-11-000059-academic-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv 官方记录/web open",
+      "query": "https://arxiv.org/abs/0807.2207",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取作者、标题、v1 提交史和刊载信息；Wan-Jie Zhu，2008-07-14，Int. J. Mod. Math.3(2008)197–206；记录仅列 v1。",
+      "url": "https://arxiv.org/abs/0807.2207",
+      "request_id": "QX-R3-11-000059-academic-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "Sun disjoint cosets gcd conjecture k 5 proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；命中 Sun 作者 MO、相关问题索引与进展线索，随后逐一核原文；不能把搜索摘要当 k=5 证明。",
+      "request_id": "QX-R3-11-000059-academic-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Sun\" \"disjoint cosets\" abelian",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；未命中足以证明本题任意阿贝尔群/一般群的完整同题论文；若干 coset cover/Hajós/HS 结果对象不同。",
+      "request_id": "QX-R3-11-000059-academic-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"82f.pdf\" Sun",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检得原论文及 PPL057 线索；PPL 的 Conjecture4.2 来自另一 Cover.pdf 链接，不能和 82f/2006 论文的 Conjecture1.2 混为一个定位。",
+      "request_id": "QX-R3-11-000059-academic-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv 官方 HTML/link click",
+      "query": "0807.2207 摘要页 HTML 链接；https://arxiv.org/html/0807.2207v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实读引言 Theorem1.1、§2 Theorem2.2 与证明、§3 Theorem3.1 及后续证明使用不交性的定位；没有独立审完 k=4 长分类。",
+      "url": "https://arxiv.org/html/0807.2207v1",
+      "locator": "Theorems1.1、2.2、3.1",
+      "request_id": "QX-R3-11-000059-academic-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "MathOverflow 作者原帖/web open",
+      "query": "https://mathoverflow.net/questions/316709/a-challenging-problem-on-disjoint-cosets",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全文与可见评论实际读取：Sun 于 2018-12-02 提问，报告 Zhu Gong 2010 本科论文证明 k=5，并给有限商归约及 US$200 历史承诺。当前页面编辑时间不用于重定原提问日期；具体编辑历史由代码路线核。",
+      "url": "https://mathoverflow.net/questions/316709/a-challenging-problem-on-disjoint-cosets",
+      "request_id": "QX-R3-11-000059-academic-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv HTML/find",
+      "query": "0807.2207v1: References",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "确认所引用 Sun 2006 原文为 Conjecture1.2；只核本题必要引文，不展开整个覆盖理论。",
+      "url": "https://arxiv.org/html/0807.2207v1",
+      "request_id": "QX-R3-11-000059-academic-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Sun\" \"Gong\" \"cosets\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中作者 MO、2026 Graz 讲稿，以及误配 arXiv-troller 线索；后者另按题名核排。",
+      "request_id": "QX-R3-11-000059-academic-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"On the problem of large gcd for disjoint residue classes\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 Jan Fornal–Yu-Chen Sun 2026 新稿及官方 arXiv2607.24655；随后取得固定官方全文。",
+      "request_id": "QX-R3-11-000059-academic-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"82f.pdf\" \"2004\" \"Sun\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "追作者原提问年份及同题书目，不能用后来的索引快照当最早提出。",
+      "request_id": "QX-R3-11-000059-academic-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv 官方记录/web open",
+      "query": "https://arxiv.org/abs/math/0501451",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "提交史 v1=2005-01-25，v2=2005-01-28，v3=2006-01-24，v4=2006-11-09；原刊 Int. J. Math.17(2006),1047–1064。",
+      "url": "https://arxiv.org/abs/math/0501451",
+      "request_id": "QX-R3-11-000059-academic-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv 官方记录/web open",
+      "query": "https://arxiv.org/abs/2607.24655",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "该直接网页入口返回 DisabledError；后用官方搜索 ref 得到可读 HTML，并成功本地下载官方摘要 HTML 与 PDF，版本史缺口已补。",
+      "url": "https://arxiv.org/abs/2607.24655",
+      "request_id": "QX-R3-11-000059-academic-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv 官方记录/web open",
+      "query": "https://arxiv.org/abs/2611.14127",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "直接入口 DisabledError；这是搜索结果混入的候选，不当同题全文证据。",
+      "url": "https://arxiv.org/abs/2611.14127",
+      "request_id": "QX-R3-11-000059-academic-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Graz 大学讲稿原档/web open",
+      "query": "https://imsc.uni-graz.at/AlgNTh/slides/Slides_060526.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整 62 页档案取得；只实读题名日期、slides52–53 本题段。讲稿题名 Covers of the Integers by Residue Classes and their Extensions to Groups，正文日期 2026-05-06。",
+      "url": "https://imsc.uni-graz.at/AlgNTh/slides/Slides_060526.pdf",
+      "locator": "slides52–53",
+      "request_id": "QX-R3-11-000059-academic-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Graz 原档/find",
+      "query": "Gong；200 US；disjoint cosets",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "Gong 与 disjoint cosets 命中 slide52；200 US 无匹配。讲稿报告 2009 年 Z.Gong 的 k=5 结果，与 MO 的 2010 年论文年份不同；不把没有奖金额文字当奖项撤销。",
+      "url": "https://imsc.uni-graz.at/AlgNTh/slides/Slides_060526.pdf",
+      "request_id": "QX-R3-11-000059-academic-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv 官方记录/link click",
+      "query": "math/0501451: HTML v4；v1 摘要链接及 PDF 链接",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "v4 全文已读取本题 Conjecture1.2、Remark1.5(b)、Remark2.2。v1 PDF 亦下载成功，但该项核查未逐字比对所有版本差异，不能声称 v1/v4 完全相同。",
+      "url": "https://arxiv.org/html/math/0501451v4",
+      "request_id": "QX-R3-11-000059-academic-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv 官方 HTML/web open",
+      "query": "https://arxiv.org/html/2607.24655v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "直接 HTML 入口 DisabledError；使用官方搜索结果 ref 后可读部分全文，显示公式仍有抽取损失，因此以实际下载 PDF 和页图核公式。",
+      "url": "https://arxiv.org/html/2607.24655v1",
+      "request_id": "QX-R3-11-000059-academic-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "arxiv 2611.14127",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "实际命中题名 Non-closed products in branch and weakly branch groups，D’Angeli/Rodaro，非本题 gcd 猜想。仅题名/摘要层排同一性；未升级成学术进展证据。",
+      "request_id": "QX-R3-11-000059-academic-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Zhu Gong\" \"Sun\" \"cosets\" thesis",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "得到作者报告等线索，未取得 Gong 本科论文原文或完整证明。不能以原稿缺失否定作者报告，但也不能登记本轮已复核 k=5。",
+      "request_id": "QX-R3-11-000059-academic-021",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "官方 PDF 本地下载/抽取",
+      "query": "https://arxiv.org/pdf/math/0501451v4；https://arxiv.org/pdf/0807.2207v1；https://arxiv.org/pdf/2607.24655v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "三个请求均 HTTP200，保存 PDF/TXT；分别 212478、87596、454556 bytes。Sun 实读 p7 原问/特例；Zhu 实读 k3 短证明和 k4 陈述范围；Fornal–Sun 实读 pp1–6 定理及证明归约，未审完19页全链。",
+      "locator": "work_000059_sources/sun0501451_v4.*；zhu0807_v1.*；fornal_sun2607_v1.*",
+      "request_id": "QX-R3-11-000059-academic-022",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv HTML/find",
+      "query": "math/0501451v4: Conjecture1.2；2004；Remark1.5",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "定位同题 Conjecture1.2 自注 Sun,2004；有限指数的密度不等式及最大指数整除其余的特例同页。2004 最早原稿另由主审实际取得，不把2006期刊当首提年份。",
+      "url": "https://arxiv.org/html/math/0501451v4",
+      "request_id": "QX-R3-11-000059-academic-023",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv 官方搜索结果/open ref",
+      "query": "2607.24655 官方搜索命中 ref 打开",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "进入官方原稿全文，网页抽取部分公式缺失；随后 PDF p2 实际渲染查看补足 Theorem1.1。",
+      "url": "https://arxiv.org/abs/2607.24655",
+      "request_id": "QX-R3-11-000059-academic-024",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv 官方记录/web open",
+      "query": "https://arxiv.org/abs/math/0604347",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "O’Bryant，On Z.-W.Sun’s Disjoint Congruence Classes Conjecture；v1=2006-04-15，v2=2006-04-19，刊载2007，10页。",
+      "url": "https://arxiv.org/abs/math/0604347",
+      "request_id": "QX-R3-11-000059-academic-025",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Sun\" \"disjoint cosets\" proof counterexample corrigendum",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；命中既有小 k、整数剩余类进展和作者问帖；本次返回范围未取得一般群全解/反例或撤回、更正文稿。有限检索不能证明全网不存在。",
+      "request_id": "QX-R3-11-000059-academic-026",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Zhu Gong\" \"disjoint\" group thesis",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中作者报告，仍未取得原始本科论文正文。",
+      "request_id": "QX-R3-11-000059-academic-027",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"disjoint cosets\" \"abelian\" conjecture solved",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；相关 abelian/subnormal covers 与 Herzog–Schönheim 命题的量词/目标不同，未取得本题一般阿贝尔群精确 gcd≥k 全解。",
+      "request_id": "QX-R3-11-000059-academic-028",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "官方/大学档案本地下载",
+      "query": "https://arxiv.org/pdf/math/0501451v1；https://imsc.uni-graz.at/AlgNTh/slides/Slides_060526.pdf；https://arxiv.org/abs/2607.24655",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "均成功保存。Sun v1 201336bytes；Graz396330bytes；Fornal官方摘要HTML37890bytes，提交史实际仅列 v1=2026-07-27 16:51:58UTC。已消除直接 abs 入口失败造成的版本史缺口。",
+      "request_id": "QX-R3-11-000059-academic-029",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv 官方 HTML/link click",
+      "query": "https://arxiv.org/html/math/0604347v2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实读引言、Theorem3、Conjecture4、Proposition2、Lemma5与Lemma6开头；没有重跑 Mathematica 穷举。动态 HTML 内文日期 August24,2026 不能替代固定 v2 的2006提交史。",
+      "url": "https://arxiv.org/html/math/0604347v2",
+      "request_id": "QX-R3-11-000059-academic-030",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"Groups in Combinatorial Number Theory\" Sun arxiv",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 math/0411289v1 与作者上传副本，显示2004早稿、Oct8,2004讲演回指。后续官方精确定位由主审独立读取，学术片段不凭索引代替其原文。",
+      "request_id": "QX-R3-11-000059-academic-031",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv 官方记录/PDF 批量 open",
+      "query": "https://arxiv.org/abs/math/0411289；https://arxiv.org/pdf/math/0411289v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "这两个请求与多张图片放在同一工具批次，整体结果超过上下文并被截断，该项核查当时未读取其内容，不能登记零命中或已读原稿。主审随后通过官方 HTML 实际读到 Conjecture3.3，最终出处缺口由主审片段补足。",
+      "request_id": "QX-R3-11-000059-academic-032",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地 PDF 真正页图核验",
+      "query": "pdftoppm + view_image: Zhu v1 p3；Sun Graz slide52；Fornal–Sun v1 p2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "先前合批图片结果被截断，本次重新逐项 view_image，确已看到像素。核出 Zhu Theorem3.1 独立句漏两两不交；Graz2009/Gong；Fornal–Sun k exp(-(2+o(1))sqrt(log k/loglog k)) 的公式。",
+      "locator": "work_000059_sources/zhu0807_v1_p3.png；sun_graz2026_p52.png；fornal_sun2607_v1_p2.png",
+      "request_id": "QX-R3-11-000059-academic-033",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原包任务记录",
+      "query": "完整读取 work_000059_sources/task.json，逐项核同一群、有限指数、k>1、左陪集两两不交、同一对指数 gcd≥k，以及接受反例的量词。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.qunxingmath.org/p/QX-P-000059/",
+      "locator": "card_text 全文及 card_metadata.acceptance.criteria",
+      "note": "源卡 revac6c747c063c9e39；旧卡 GAP 建议及旧检索记录不是本轮执行记录。该项核查未改源卡。",
+      "request_id": "QX-R3-11-000059-math-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Sun 原论文固定 v4 本地全文",
+      "query": "读取 sun0501451_v4.txt 的首页、Conjecture 1.2、Remark 1.5(b)、Lemma 2.1、Remark 2.2；独立核倒数和、最大指数整除条件及互素指数障碍。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/math/0501451v4",
+      "locator": "PDF p7 Conjecture 1.2/Remark 1.5；§2 Lemma 2.1/Remark 2.2",
+      "note": "本地 PDF 由学术路线取得，该项核查实际读文本。v4=2006-11-09，212478 bytes，SHA256 9e62667f0c4ae77051a4b3da162428f91853dd7e995f0e18fbb8713ea03318e2。未宣称重审整篇其他覆盖定理。",
+      "request_id": "QX-R3-11-000059-math-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv 官方 HTML 与固定 PDF 文本",
+      "query": "open https://arxiv.org/html/0807.2207v1；读取本地 zhu0807_v1.txt §1、§2 全部及 §3 定理/证明开头，逐步二审 Theorem 2.2 的 k=3 证明。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/0807.2207v1",
+      "locator": "Theorem 1.1；Lemma 2.1；Theorem 2.2；Theorem 3.1 及其证明首段",
+      "note": "该项核查成功网页 ref 。PDF 87596 bytes，SHA256 5f5b9a7172ec55ef7ffb629bf123de9538fcc821d24f499ee9a91c0e2e205c62。独立核 k=3 完整短证，未完整重审 k=4 长证明。",
+      "request_id": "QX-R3-11-000059-math-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定提交导出的重复题卡全文",
+      "query": "独立读取 duplicate_cards.json 中 002384 的 text.md/meta.json 全文，和当前 000059 的题面、原摘录及 acceptance 逐项比较；不按题名直接合并。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002384.text.md",
+      "locator": "059 card_text 第7、11、17、25–28行及 acceptance；2384 text.md 第7–15、20行及 meta.json acceptance.criteria",
+      "shared_with": [
+        "QX-P-002384"
+      ],
+      "match_reason": "两份核心均为任意群中 k>1 个有限指数两两不交左陪集，存在同一对指数 gcd≥k；没有正规、交换、覆盖或有限群附加前提。",
+      "note": "2384 revd0c63b45dcc7a595，固定提交73290369a8dcc632e25e555aec525565ea6e08f8。导出 bundle SHA256 e8efc93c09c8e496ef1b5a20dc4f14ae42821345b50921d7f32d7a4a9de8f9c4。仅做独立复核，不写库、不实施合并，也不迁移该卡旧进展错误。",
+      "request_id": "QX-R3-11-000059-math-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "公开同题仓库固定 README",
+      "query": "完整读取 work_000059_sources/ai_readme_README.md，并独立核前两节 Removing private prime factors 与 When the pairwise gcds are prime powers 的全部数学短链。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/1337isnot1337/solved-conjectures/blob/b6a13c233d89265818adfd16b82c180504841360/research/sun-disjoint-cosets/README.md",
+      "locator": "README 前两节；末段后续链接只读标题及范围，没有逐一打开或审证明",
+      "note": "固定 commit b6a13c233d89265818adfd16b82c180504841360；Git blob 73bdd4020bb1e080e3de8a4e6f4f67322ea6b706；6451 bytes；SHA256 d52462b3e10672465fc6981dc981c1d2c6f1cc6ff176e0284873f5fef20e9806。代码路线已复取固定副本并确认同字节；该项核查不声称运行 Lean 或 GAP。",
+      "request_id": "QX-R3-11-000059-math-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q59-C-openai_cosets",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "{\"repository_name\":\"openai/math\",\"query\":\"\\\"disjoint cosets\\\"\",\"topn\":20}",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "本次指定仓库精确短语检索返回0条；只说明该次默认分支索引范围，非全仓/全网无结果证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q59-C-fc_2099",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "{\"repository_name\":\"google-deepmind/formal-conjectures\",\"query\":\"\\\"20.99\\\"\",\"topn\":20}",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "本次按Notebook题号精确检索返回0条；另执行了同题英文短语检索。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q59-C-budden_2099",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "{\"repository_name\":\"maxvonhippel/budden-bench\",\"query\":\"\\\"20.99\\\"\",\"topn\":20}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 2,
+      "note": "2条：20.99问题JSON及21.93的交叉引用；21.93为陪集分割/重复指数问题，不能当20.99的全解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q59-C-web_claims",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system1",
+      "query": "\"Sun\" \"disjoint cosets\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一批三条实际检索，recency=730；命中Sun作者MO316709、Zhu0807.2207、Fornal–Sun新论文索引及Sun2025讲座；候选后分别核来源，不把本批摘要当全解证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q59-C-web_claims",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system1",
+      "query": "\"20.99\" \"Lean\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一批三条实际检索，recency=730；命中Sun作者MO316709、Zhu0807.2207、Fornal–Sun新论文索引及Sun2025讲座；候选后分别核来源，不把本批摘要当全解证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q59-C-web_claims",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system1",
+      "query": "\"gcd\" \"disjoint cosets\" \"2026\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一批三条实际检索，recency=730；命中Sun作者MO316709、Zhu0807.2207、Fornal–Sun新论文索引及Sun2025讲座；候选后分别核来源，不把本批摘要当全解证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q59-C-budden_problem",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"maxvonhippel/budden-bench\",\"path\":\"problems/kourovka/problem_20.99/problem.json\",\"ref\":\"66a10282fec151c6ca447e28cebf050e5a815fb8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/maxvonhippel/budden-bench/blob/66a10282fec151c6ca447e28cebf050e5a815fb8/problems/kourovka/problem_20.99/problem.json",
+      "note": "完整365-byte JSON读取，准确是任意群的有限指数两两不交左陪集；文本仅重述和k≤4旧进展。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q59-C-budden_dir",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/maxvonhippel/budden-bench/contents/problems/kourovka/problem_20.99?ref=66a10282fec151c6ca447e28cebf050e5a815fb8",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/maxvonhippel/budden-bench/contents/problems/kourovka/problem_20.99?ref=66a10282fec151c6ca447e28cebf050e5a815fb8",
+      "note": "固定commit目录实际仅problem.json一个文件；未列formalization.lean或proof。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q59-C-fc_cosets",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "{\"repository_name\":\"google-deepmind/formal-conjectures\",\"query\":\"\\\"disjoint cosets\\\"\",\"topn\":20}",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "同题英文短语检索返回0条；未取得可审的Formal Conjectures本题Lean文件。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q59-C-official_mo_open",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka官方AI Repository",
+      "query": "open https://kourovkanotebookorg.wordpress.com/repository/",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "note": "实际打开272行目录并针对20.99查找；本目录的AI论文自述不是独立验证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q59-C-official_mo_open",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka官方AI Repository",
+      "query": "open https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "note": "实际打开Version4/2026-09-19，92页报告，读首页/结果索引后按20.99全文find；未逐页审阅其余问题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q59-C-official_mo_open",
+      "route": "代码、公开 AI 和社区",
+      "site": "MathOverflow",
+      "query": "open https://mathoverflow.net/questions/316709/a-challenging-problem-on-disjoint-cosets",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://mathoverflow.net/questions/316709/a-challenging-problem-on-disjoint-cosets",
+      "note": "完整95行页已读：Sun发表于2018-12-02，k5为作者报告；当前显示Jan5编辑但本次API不能取精确年份。可见一条HJRW评论、没有回答正文；不升级为API穷尽结论。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q59-C-global_sun_cosets",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "{\"query\":\"\\\"Sun\\\" \\\"disjoint cosets\\\"\",\"topn\":20}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 20,
+      "note": "返回20条（topn=20，有界截取）：命中Arithmetica4 PPL057、solved-conjectures同题目录及Proof Pursuit；另有论文转录、Herzog–Schönheim近邻和无关字符串。对具体候选分别取原文件，不据索引标签结案。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q59-C-ppl_toolchain",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"nil-commits/Arithmetica4\",\"path\":\"lean-toolchain\",\"ref\":\"023f6441c22a9ca0db1670e351e8ac44f00555ea\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/nil-commits/Arithmetica4/blob/023f6441c22a9ca0db1670e351e8ac44f00555ea/lean-toolchain",
+      "note": "实际源码写leanprover/lean4:v4.33.1。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q59-C-ppl_manifest",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"nil-commits/Arithmetica4\",\"path\":\"lake-manifest.json\",\"ref\":\"023f6441c22a9ca0db1670e351e8ac44f00555ea\"}",
+      "date": "2026-11-27",
+      "outcome": "档案或版本缺失",
+      "url": "https://github.com/nil-commits/Arithmetica4/blob/023f6441c22a9ca0db1670e351e8ac44f00555ea/lake-manifest.json",
+      "note": "固定commit的lake-manifest.json请求404；随后实际lakefile.toml给出mathlib固定rev。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "request_id": "Q59-C-official_find",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka官方AI Repository",
+      "query": "find {\"ref_id\":\"\",\"pattern\":\"20.99\"}",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "20.99在此次页面/报告可搜索文本无匹配，仅此版本与字面范围；不能推出其他AI渠道不存在成果。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q59-C-ai_dir",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/1337isnot1337/solved-conjectures/contents/research/sun-disjoint-cosets?ref=research",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/1337isnot1337/solved-conjectures/contents/research/sun-disjoint-cosets?ref=research",
+      "note": "research分支目录14个文件已实际列出；counterexample文件名不是已发现反例，后续取README和实际脚本判范围。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q59-C-ppl_lean",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"nil-commits/Arithmetica4\",\"path\":\"RHDirect/PPL057_Main.lean\",\"ref\":\"023f6441c22a9ca0db1670e351e8ac44f00555ea\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/nil-commits/Arithmetica4/blob/023f6441c22a9ca0db1670e351e8ac44f00555ea/RHDirect/PPL057_Main.lean",
+      "note": "完整1839行/98315字节源已取得。实际阅读头部、所有导出定理类型、有限归约、整除链和p-group段；静态扫描全文件。k3/k4内部长证明未逐行独立数学重审，未编译。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q59-C-ai_readme",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"1337isnot1337/solved-conjectures\",\"path\":\"research/sun-disjoint-cosets/README.md\",\"ref\":\"research\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/1337isnot1337/solved-conjectures/blob/research/research/sun-disjoint-cosets/README.md",
+      "note": "完整README已读，明示partial：Π-separable去私人素因子、prime-power gcd条件特例；后续链接仅范围摘要，未逐一全审。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q59-C-ai_branch",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/1337isnot1337/solved-conjectures/commits/research",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/1337isnot1337/solved-conjectures/commits/research",
+      "note": "本次分支固定到b6a13c233d89265818adfd16b82c180504841360（committer 2026-11-27T00:34:59Z）；不是本题具体成果发布日期。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q59-C-formal_database",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"AlexenderSokolov/cross-theory-formal-database\",\"path\":\"editable-corpus/sources/206131/source0.tex\",\"ref\":\"3b9207c03d9dc146f393f68bcb683bbc4583979a\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/AlexenderSokolov/cross-theory-formal-database/blob/3b9207c03d9dc146f393f68bcb683bbc4583979a/editable-corpus/sources/206131/source0.tex",
+      "note": "取回完整TeX，但实际只读题名/作者/abstract/Theorem1.1定位：是Fornal–Sun2607.24655的整数同余类近线性界转录，不是Lean证明或任意群全解；学术原稿由另一分支核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q59-C-proofpursuit_cell",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"triborg0259/proof-pursuit\",\"path\":\"report/cells/p4_c6.tex\",\"ref\":\"c5f2b50ee82f5ee9703e0f7a122411200035fb48\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/triborg0259/proof-pursuit/blob/c5f2b50ee82f5ee9703e0f7a122411200035fb48/report/cells/p4_c6.tex",
+      "note": "完整报告已取得；实际读状态、目标、CRT模型、结论范围与代码/运行声明段。明确PARTIAL和自动Referee REJECT；k^(1/3)等界是整数同余类弱界，自述未解目标。未复跑其脚本/未逐条重证长稿。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q59-C-mo_api",
+      "route": "代码、公开 AI 和社区",
+      "site": "Stack Exchange API via web",
+      "query": "open https://api.stackexchange.com/2.3/questions/316709?site=mathoverflow&filter=withbody",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://api.stackexchange.com/2.3/questions/316709?site=mathoverflow&filter=withbody",
+      "note": "web返回Internal Error / not accessible。未取得API答案数和精确编辑时间，未以失败推断无回答。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q59-C-mo_api",
+      "route": "代码、公开 AI 和社区",
+      "site": "Stack Exchange API via web",
+      "query": "open https://api.stackexchange.com/2.3/questions/316709/answers?site=mathoverflow&filter=withbody",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://api.stackexchange.com/2.3/questions/316709/answers?site=mathoverflow&filter=withbody",
+      "note": "web返回Internal Error / not accessible。未取得API答案数和精确编辑时间，未以失败推断无回答。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q59-C-ai_coprime",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"1337isnot1337/solved-conjectures\",\"path\":\"research/sun-disjoint-cosets/CoprimeCosets.lean\",\"ref\":\"b6a13c233d89265818adfd16b82c180504841360\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/1337isnot1337/solved-conjectures/blob/b6a13c233d89265818adfd16b82c180504841360/research/sun-disjoint-cosets/CoprimeCosets.lean",
+      "note": "完整31行Lean辅助定理simultaneous_representative已静态读：有限指数且两两互素的子群，任意所选左陪集有公共代表。不要求normal；只支持归约，不是一般Sun全题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q59-C-ai_readme_fixed",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"1337isnot1337/solved-conjectures\",\"path\":\"research/sun-disjoint-cosets/README.md\",\"ref\":\"b6a13c233d89265818adfd16b82c180504841360\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/1337isnot1337/solved-conjectures/blob/b6a13c233d89265818adfd16b82c180504841360/research/sun-disjoint-cosets/README.md",
+      "note": "同README按完整commit再次读取，Git blob/SHA256与research分支内容相同，避免可变分支串版。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q59-C-ppl_lakefile",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"nil-commits/Arithmetica4\",\"path\":\"lakefile.toml\",\"ref\":\"023f6441c22a9ca0db1670e351e8ac44f00555ea\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/nil-commits/Arithmetica4/blob/023f6441c22a9ca0db1670e351e8ac44f00555ea/lakefile.toml",
+      "note": "实际lakefile.toml读取，mathlib=0df444a360eaa60ab8c11dca51a86af692955474；PPL057列为RHDirect根模块。另整项目依赖PrimeNumberTheoremAnd固定6c89d5699e16114be6ec6f1b4ae48818a5ec8cc3，但该文件直接imports均为Mathlib。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q59-C-ai_smallgroups",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"1337isnot1337/solved-conjectures\",\"path\":\"research/sun-disjoint-cosets/small-groups.md\",\"ref\":\"b6a13c233d89265818adfd16b82c180504841360\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/1337isnot1337/solved-conjectures/blob/b6a13c233d89265818adfd16b82c180504841360/research/sun-disjoint-cosets/small-groups.md",
+      "note": "完整有限搜索方法/作者运行报告已读。作者称六个有限群阶504个非幂零群、3755组signature未得反例；明确UNSAT没有独立proof log。本轮未复跑。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q59-C-ai_counterexample",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"1337isnot1337/solved-conjectures\",\"path\":\"research/sun-disjoint-cosets/counterexample.py\",\"ref\":\"b6a13c233d89265818adfd16b82c180504841360\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/1337isnot1337/solved-conjectures/blob/b6a13c233d89265818adfd16b82c180504841360/research/sun-disjoint-cosets/counterexample.py",
+      "note": "完整Python搜索和正证书检查已静态读；GAP数据、python-sat、CaDiCaL195依赖，gcd阈值由count决定。不是一个已有反例证书。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q59-C-ai_gapexport",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"1337isnot1337/solved-conjectures\",\"path\":\"research/sun-disjoint-cosets/counterexample.g\",\"ref\":\"b6a13c233d89265818adfd16b82c180504841360\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/1337isnot1337/solved-conjectures/blob/b6a13c233d89265818adfd16b82c180504841360/research/sun-disjoint-cosets/counterexample.g",
+      "note": "完整GAP/SmallGrp导出源码静态读，跳过nilpotent群，枚举子群共轭类、所有成员和右陪集。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q59-C-ai_gapreplay",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "fetch_file {\"repository_full_name\":\"1337isnot1337/solved-conjectures\",\"path\":\"research/sun-disjoint-cosets/replay.g\",\"ref\":\"b6a13c233d89265818adfd16b82c180504841360\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/1337isnot1337/solved-conjectures/blob/b6a13c233d89265818adfd16b82c180504841360/research/sun-disjoint-cosets/replay.g",
+      "note": "完整ReplayPacking静态读，以实际群运算重建右陪集与指数，反演成左陪集并检交空、max gcd；没有实际输入证书/程序执行可报告。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q59-C-local-static",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地固定源静态检查",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-004006〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "13份API源文本的Git blob均匹配；PPL057文件1839行，去注释后六类token均0。lean/lake/gap均None。仅字节及静态检查，没有Lean/GAP/SAT数学复跑。原始日志code_remote_log_v02.json，manifest和code_static_audit.json留存。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R0059-CARD",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000059.text.md",
+      "locator": "题面、形式化、原文摘录、边界、进展及同名meta.acceptance/novelty",
+      "version": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；card_rev ac6c747c063c9e39；text blob dabacfe314a928b85865234a1380c71288870e95；meta blob 0854ebad90c439b34f1bf184eeb34a3fcbbf2cae",
+      "subquestions": [
+        "主问题",
+        "背景校订",
+        "旧版记录"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "核心全称群、k>1、指数有限、两两不交左陪集及存在一对gcd≥k均与原文一致。k5最小开放/无新进展/2022首刊/交换群即Z剩余类属于背景需要校订；不因此把正确核心命题判成已反驳或题面缺条件。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R0059-SUN2004",
+      "url": "https://arxiv.org/html/math/0411289v1",
+      "locator": "§3末Conjecture3.3及相邻语境；摘要页版本记录",
+      "version": "math/0411289v1；2004-11-12T15:57:36Z；Zhi-Wei Sun, Groups and Combinatorial Number Theory",
+      "subquestions": [
+        "最早可核出处",
+        "主问题"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "同一一般群不交有限指数左陪集的gcd猜想；早稿未单独显式写k>1，后2006和v50将非平凡域写清。本轮比对实质命题与边界，不能把2022 Notebook收入年份当首次提出，也不把本文3.3、2006的1.2与未取得Cover.pdf的4.2混为编号冲突。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "R0059-DUP",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002384.text.md",
+      "locator": "双方题面/原文摘录和meta.acceptance.criteria；三候选完整正文对照",
+      "version": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；当前ac6c747c063c9e39；002384 d0c63b45dcc7a595；000983 e7d720f141b5084a；000517 eeb37513e2c42796",
+      "subquestions": [
+        "库内查重",
+        "验收对象"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "002384核心完全一致，根路线和独立数学路线各读双方当前全文复核。059反例族与2384单反例的验收措辞不改否定目标：任一有限反例与C_m直积给保指数、不交性的反例族。983/517另问覆盖群的陪集分划中存在相等指数，假设和结论均不同；不声称不同猜想在逻辑上无蕴含，只不作同题合并。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "a0059_notebook",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "20.99，印刷/PDF p173",
+      "version": "arXiv1401.0300v50，2026-11-02；本轮实际读取本地固定全文",
+      "subquestions": [
+        "一般群原问题的精确量词",
+        "小k进展登记"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "原始档案",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "k>1；任意群G；有限指数子群的k个两两不交左陪集；存在一对指数gcd≥k。署名Z.-W.Sun，列已知k=2,3,4。此列表没有宣称k=5未知，也不是截至今日全网开放性的证明。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "a0059_sun2006",
+      "url": "https://arxiv.org/pdf/math/0501451v4",
+      "locator": "Conjecture1.2与Remark1.5(b)，PDF p7；Remark2.2",
+      "version": "原论文 v1=2005-01-25，所读v4=2006-11-09；Int. J. Math.17(2006),1047–1064；本地212478bytes，SHA256 9e62667f0c4ae77051a4b3da162428f91853dd7e995f0e18fbb8713ea03318e2",
+      "subquestions": [
+        "一般群原命题",
+        "k=2与指数整除特例",
+        "原始出处书目"
+      ],
+      "scope_match": "原题等价",
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Zhi-Wei Sun",
+      "note": "题名Finite covers of groups by cosets or subgroups。Conjecture1.2自注2004，精确量词与v50相同。本文定位不是Conjecture4.2；其他Cover.pdf的4.2须分源核。Remark1.5证明sum_i1/n_i≤1；若最大指数被所有其余指数整除，即所有n_i整除n_max，则结论成立，特别适用于p幂指数。实际核短论证，未重审全篇关于covers的其他定理。2006写Z情形开放只是历史描述。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0059_zhu2008",
+      "url": "https://arxiv.org/pdf/0807.2207v1",
+      "locator": "Theorem1.1 p1；Theorem2.2 pp2–3；Theorem3.1 p3及§3后续证明",
+      "version": "唯一列出的v1=2008-07-14；Int. J. Mod. Math.3(2008),197–206；本地87596bytes，SHA256 5f5b9a7172ec55ef7ffb629bf123de9538fcc821d24f499ee9a91c0e2e205c62",
+      "subquestions": [
+        "任意群k=3,4",
+        "小k证明的条件完整性"
+      ],
+      "scope_match": "仅子问",
+      "role": "完整证明",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Wan-Jie Zhu",
+      "claim_date": "2008-07-14",
+      "note": "引言Theorem1.1明确两两不交及有限指数，证明k3、k4。k3短链已读：若gcd都≤2则全为2，写指数2q_i、利用交子群的指数得到共同指数2的H，三个不交H陪集矛盾。未独立核完k4全部分类。实际p3像素显示Theorem3.1独立句遗漏不交条件；引言与证明中有条件，不能把这个局部漏写当已知k4被反驳。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0059_mo2018",
+      "url": "https://mathoverflow.net/questions/316709/a-challenging-problem-on-disjoint-cosets",
+      "locator": "Sun原问题正文、k=5段、finite quotient归约、奖金段；可见评论",
+      "version": "帖子初建2018-12-02 11:28；本轮读取当前正文；可见编辑Jan5 17:21未给年份，API失败，未核各段首次出现时间",
+      "subquestions": [
+        "k=5完整证明报告",
+        "任意群向有限群归约",
+        "奖金与历史提出"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "社区帖子",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "claimant": "Zhi-Wei Sun（报告其学生Zhu Gong的论文）",
+      "note": "原帖全文已读，但所报告的Gong本科论文全文未取得，因此review_status专指该k5证明。Sun说2010本科论文证明一般群k5；不能继续把k5写成最小未知。还给取公共交的normal core得到有限商并保留指数/不交性的归约。US$200仅可登记2018创建帖子当前正文所载的作者历史承诺，没有本轮当前支付有效性确认。 初帖日期不能证明k5段落或奖金段落也在当日发表；各段修订史未取得。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "a0059_graz2026",
+      "url": "https://imsc.uni-graz.at/AlgNTh/slides/Slides_060526.pdf",
+      "locator": "题名页；slide52（PDF p52），slide53",
+      "version": "正文May6,2026，GrazUniversity；62页；396330bytes，SHA256 9e3b800d6e194f99b8790a929d3a7bda93cdbbdd3cc30c1c3fbe827146d5e2c1",
+      "subquestions": [
+        "k=5作者后续报告",
+        "小k及整数类范围",
+        "有限商归约"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "原始档案",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "claimant": "Zhi-Wei Sun",
+      "claim_date": "2026-05-06",
+      "note": "讲稿相关页实际已读并看见slide52像素，review_status指其引用的Gong完整证明尚未读。slide52报告2009年Z.Gong确认k5，而2018创建的MO帖子当前正文说2010本科论文，需书目核对年份；两处都报告同一数学k5范围。列k2/p群、Zhu3/4、O’Bryant整数k≤20。无依据将Gong结果升为本轮独立数学复核。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "a0059_obryant",
+      "url": "https://arxiv.org/html/math/0604347v2",
+      "locator": "引言、Theorem3、Conjecture4、Proposition2、Lemmas5–6",
+      "version": "v1=2006-04-15，v2=2006-04-19；Combinatorial number theory(2007),403–411；官方记录10页；动态HTML显示日期不作版本更新",
+      "subquestions": [
+        "G=Z的k≤20",
+        "整数剩余类及一般群范围区分"
+      ],
+      "scope_match": "仅子问",
+      "role": "完整证明",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Kevin O’Bryant",
+      "note": "Theorem3证明整数剩余类版本k≤20，并排除最小反例的k=24或30；后句不应脱离“最小反例”改写为无条件k24/30全族结果。Conjecture4单列一般群版本。实际读CRT交条件、Lemma5的密度短证及最小反例归约；未重跑Mathematica枚举，不能算本轮全面复核。引言把整数版回指2003年邮件列表，与一般群2004提出区分。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0059_fornal_sun2026",
+      "url": "https://arxiv.org/pdf/2607.24655v1",
+      "locator": "Theorem1.1 p2；Corollary1.2 p4；§2开头/Propositions2.1–2.2 pp5–6",
+      "version": "Jan Fornal–Yu-Chen Sun，On the problem of large gcd for disjoint residue classes；官方提交史仅v1=2026-07-27 16:51:58UTC；19页；454556bytes；SHA256 33bffe0628027510d69a51ce5f39ab72541e5562f4fcd29dd1fe2903e8728b08",
+      "subquestions": [
+        "G=Z的渐近接近k下界",
+        "近期声明是否全解"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Jan Fornal; Yu-Chen Sun",
+      "claim_date": "2026-07-27",
+      "note": "实际读取pp1–6，p2已渲染并看见像素。Theorem1.1：任意k个两两不交整数剩余类的最大两两gcd ≫ k exp(-(2+o(1))sqrt(log k/loglog k))，故≥k^(1-o(1))。不要求模数互异或统一上界；这些额外条件属于后面的Cor1.2。定理仅Z/整数同余类，仍有渐近损失，不是gcd≥k精确式，也不推广任意阿贝尔群。证明归约已读，19页全链及外用估计没有本轮完整独立复核。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a0059_zhu_statement_check",
+      "url": "https://arxiv.org/pdf/0807.2207v1",
+      "locator": "PDF p3 Theorem3.1，图片work_000059_sources/zhu0807_v1_p3.png；对照p1 Theorem1.1",
+      "version": "固定2008v1；2026-11-27本轮实际渲染页图并独立检查字面边界",
+      "subquestions": [
+        "引用定理的漏条件辨析"
+      ],
+      "scope_match": "有附加假设",
+      "role": "证书",
+      "publication": "原始档案",
+      "claim_state": "关键步骤受质疑",
+      "review_status": "本轮独立数学核对",
+      "note": "仅Theorem3.1字面独立句漏pairwise disjoint：若四个Gi=G且ai=1，则指数gcd=1<4，所以无不交条件的字面式不成立。正确引言Theorem1.1保留条件，§3证明也使用它。此为本轮局部条件核验，非作者正式勘误，非证明k4正确版本错误。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "step_disputed",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "certificate",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q59-M-E1",
+      "url": "https://www.qunxingmath.org/p/QX-P-000059/",
+      "locator": "原包完整任务记录、正文及 acceptance",
+      "version": "QX-P-000059 revac6c747c063c9e39",
+      "subquestions": [
+        "核心量词与边界",
+        "阿贝尔群释义",
+        "反例验收"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "原始档案",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "读的是附包 task.json，不声称打开群星网页。核心命题可明确识别；旧小 k 状态另由学术路线更新。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q59-M-E2",
+      "url": "https://arxiv.org/abs/math/0501451v4",
+      "locator": "Conjecture 1.2 (2004)、Remark 1.5(b)、Lemma 2.1、Remark 2.2",
+      "version": "arXiv:math/0501451v4，2006-11-09；Internat. J. Math. 17(2006),1047–1064",
+      "subquestions": [
+        "原始核心命题",
+        "密度与整除指数特例",
+        "k=2"
+      ],
+      "scope_match": "仅子问",
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "实际读取固定 PDF 文本中列出的段落；下列有限商、计数、互素指数及整除特例另给本轮自含手证。Remark 1.5(b)不是仅对 p 群的陈述。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q59-M-E3",
+      "url": "https://arxiv.org/html/0807.2207v1",
+      "locator": "§1 Theorem 1.1；§2 Theorem 2.2 及完整证明；§3 开头",
+      "version": "arXiv:0807.2207v1，2008-07-14；Int. J. Modern Math. 3(2008),197–206",
+      "subquestions": [
+        "k=3 的独立复核",
+        "k=4 结果引用范围"
+      ],
+      "scope_match": "仅子问",
+      "role": "完整证明",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "该项核查独立核完 k=3 的短证明，k=4 仅核 Theorem 1.1 的准确前提及 §3 证明使用不交性。§3 的独立定理句未重写 pairwise disjoint，不能据此删除假设；该项核查未独立核完整 k=4 证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q59-M-E4",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002384.text.md",
+      "locator": "text.md 题面/原文摘录，以及同提交的 QX-P-002384.meta.json acceptance.criteria",
+      "version": "commit73290369a8dcc632e25e555aec525565ea6e08f8，QX-P-002384 revd0c63b45dcc7a595",
+      "subquestions": [
+        "000059/002384 严格同题的第二次正文核对"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "读取主审固定导出全文。各自的旧搜索、状态和附属背景不作为本轮主命题的新证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q59-M-E5",
+      "url": "https://github.com/1337isnot1337/solved-conjectures/blob/b6a13c233d89265818adfd16b82c180504841360/research/sun-disjoint-cosets/README.md",
+      "locator": "README 的 Removing private prime factors / When the pairwise gcds are prime powers",
+      "version": "commit b6a13c233d89265818adfd16b82c180504841360；blob73bdd4020bb1e080e3de8a4e6f4f67322ea6b706",
+      "subquestions": [
+        "Π 可分群的共享素数倒数和",
+        "有限可解群的素数幂 gcd 模式特例"
+      ],
+      "scope_match": "有附加假设",
+      "role": "完整证明",
+      "publication": "代码仓库",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "仅指 README 前两节这两个部分命题的完整短证。作者明确 partial；本轮不判新颖性，不将后续 A5、正规子群、squarefree、有限搜索等链接中的全部结论算作已核，不声称该项核查运行仓库 Lean。固定6451字节的SHA256为d52462b3e10672465fc6981dc981c1d2c6f1cc6ff176e0284873f5fef20e9806。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "full_proof",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E059-C-BUDDEN",
+      "url": "https://github.com/maxvonhippel/budden-bench/blob/66a10282fec151c6ca447e28cebf050e5a815fb8/problems/kourovka/problem_20.99/problem.json",
+      "locator": "problem_20.99目录及problem.json完整内容",
+      "version": "commit 66a10282fec151c6ca447e28cebf050e5a815fb8；2026-11-27取回",
+      "subquestions": [
+        "任意群中k>1个有限指数子群的两两不交左陪集，是否存在一对指数gcd≥k"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "formal_status": "未检到形式化",
+      "note": "目录仅一份problem.json，无本题Lean或解题文件。完整JSON365字节，Git blob b5306d20684e7e7d3b8d8b02670e8a8cc63723c1，SHA256 ded4d6e2e3e4855d7cbe073a3876b47fa0a1182183643d8e194798d4d19c4cc4。其k=2,3,4旧备注只是快照，不可据此否认Sun后来报告的k5。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E059-C-PPL057",
+      "url": "https://github.com/nil-commits/Arithmetica4/blob/023f6441c22a9ca0db1670e351e8ac44f00555ea/RHDirect/PPL057_Main.lean",
+      "locator": "L68 finite_reduction；L1653 density；L1669 pairwise gcd≥2；L1685/1697/1721 k2/k3/k4；L1745 divisibility_chain；L1811 finite pgroup",
+      "version": "commit 023f6441c22a9ca0db1670e351e8ac44f00555ea",
+      "subquestions": [
+        "有限商归约",
+        "k=2,3,4任意群",
+        "指数按整除全序及有限p群特例"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "rerun": {
+        "commit": "023f6441c22a9ca0db1670e351e8ac44f00555ea",
+        "theorem": "PPL057.ppl057_finite_reduction; ppl057_k_eq_two/three/four; ppl057_divisibility_chain; ppl057_pgroup",
+        "toolchain": "leanprover/lean4:v4.33.1；lakefile.toml固定mathlib 0df444a360eaa60ab8c11dca51a86af692955474；lake-manifest.json请求404",
+        "command": "本轮未执行Lean；可复现入口为该固定仓库依赖就绪后 lake env lean RHDirect/PPL057_Main.lean",
+        "cache": "取得完整1839行原文件；没有编译缓存/构建日志。",
+        "axioms": "去注释后本文件sorry/admit/axiom/constant/unsafe/native_decide均0；直接imports全为Mathlib。未运行#print axioms，未穷尽Mathlib依赖闭包。"
+      },
+      "note": "实际类型是任意Group G，H:Fin k→Subgroup G，Finite(G/H_i)和左乘image两两Disjoint；不偷换成Z。一般k定理明确额外hchain，pgroup明确Fintype G及IsPGroup。全题不限k的定理未在这8个导出定理中出现。已静态读全部主定理类型和归约/链/p-group核心，k3/k4长内部证明未逐行外部重审。源码98315字节，Git blob abab2d3f6c4857bf95b42833b43b18282e1bd10a，SHA256 3dce4b892e4f0161e07e2f4eec2ea8b9eaad766bce507570f434587873eccb9c。文件自称verified不是本轮kernel通过；本机lean/lake均不存在。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E059-C-AIPARTIAL",
+      "url": "https://github.com/1337isnot1337/solved-conjectures/blob/b6a13c233d89265818adfd16b82c180504841360/research/sun-disjoint-cosets/README.md",
+      "locator": "Removing private prime factors；When the pairwise gcds are prime powers；末尾未解范围",
+      "version": "commit b6a13c233d89265818adfd16b82c180504841360，2026-11-27固定；源blob 73bdd4020bb1e080e3de8a4e6f4f67322ea6b706",
+      "subquestions": [
+        "Π-separable有限群去私人素因子密度界",
+        "有限可解群且两两gcd均为素数幂时的Sun结论"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "README开头明确following results are partial，末尾明确一般indices和混合shared/private素因子的非可解情况仍属原问题。前两节完整短论证：Π/Π'次正规列逐层选择给Σ1/(n_i)_Π≤1；pairwise gcd为素数幂时的点-块矩阵满秩论证迫共同素数，合前界推出结论。数学路线本轮独立手核前两节通过；本次代码路线也读完整README并核范围。未审完后续所有链接、未核新颖性，不把仓库solved名称当全解。6451字节，SHA256 d52462b3e10672465fc6981dc981c1d2c6f1cc6ff176e0284873f5fef20e9806；research分支和此固定commit字节一致。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E059-C-COPRIMELEAN",
+      "url": "https://github.com/1337isnot1337/solved-conjectures/blob/b6a13c233d89265818adfd16b82c180504841360/research/sun-disjoint-cosets/CoprimeCosets.lean",
+      "locator": "theorem SunDisjointCosets.simultaneous_representative（全文）",
+      "version": "commit b6a13c233d89265818adfd16b82c180504841360",
+      "subquestions": [
+        "两两互素指数的任意所选陪集有公共代表"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "真实类型为Group G、有限指标型ι、每H_i有限指数且indices pairwise Coprime，任意v_i∈G/H_i存在共同x；没有H_i正规假设。经交子群指数整除、quotientiInfEmbedding和有限集合基数双射完成，不是一般gcd≥k定理。全文无sorry/axiom声明；本轮未安装或运行Lean，未取得该仓库固定工具链闭包。1316字节，Git blob a2c0250288e0e8611783545cd97225a39354d7d0，SHA256 5fb0c0376d7df200485024c850c2f955ce267812c29a4af1acbd8bad23c150d5。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E059-C-SEARCHCODE",
+      "url": "https://github.com/1337isnot1337/solved-conjectures/blob/b6a13c233d89265818adfd16b82c180504841360/research/sun-disjoint-cosets/small-groups.md",
+      "locator": "small-groups.md全文；同目录counterexample.g、counterexample.py、replay.g完整源",
+      "version": "commit b6a13c233d89265818adfd16b82c180504841360",
+      "subquestions": [
+        "给定有限群及给定k的反例搜索/正证书验证"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "rerun": {
+        "commit": "b6a13c233d89265818adfd16b82c180504841360",
+        "theorem": "有限输入的pairwise-disjoint-coset/gcd检查；非一般群定理",
+        "toolchain": "GAP+SmallGrp；Python python-sat；CaDiCaL195。作者未在本段固定包版本。",
+        "command": "作者入口：gap -A -q -c 'orders:=[48,72];; Read(\"/path/to/counterexample.g\"); QUIT;'；python counterexample.py 7 48-*.dat 72-*.dat；ReplayPacking(order,id,entries)。本轮均未执行。",
+        "cache": "未取得该作者各次完整.dat输入、UNSAT证明日志或本轮运行输出。",
+        "axioms": "依赖GAP导出枚举与SAT实现；作者明确负结果未独立proof-logged。"
+      },
+      "note": "四个完整文件已静态读：GAP枚举非幂零SmallGroup的子群/右陪集；Python生成实际indices的候选multisets，约束每元素至多一个所选coset，正模型再核大小、交空、gcd；replay.g从群运算重建右陪集并反演为左陪集再验。作者报告k7、群阶48/72/96/108/120/144的504类3755组signature未得反例；PSL(2,7)/A6与k7/8/9、A6 k16另为有限范围。没有把作者运行当本轮复跑或全称无反例。Menon(6,6,6,10,15)仅positive control，k5而maxgcd6，符合Sun，不是反例。SHA256依次：small-groups.md 87e77cc7dd0e4bf5b53a17340962dd36da5ff3f1c62d233ac067b8bbc48cef21；counterexample.py fc511a71d3d0345b8ce6a7101dae0f2e61c73bb10f636610bf2abfb73d6b2802；counterexample.g a921301e09f01448f5dad6e505b4b4a3ebdf466f45ea7bfc3fbf11d61efc12ee；replay.g 16756d349f46359e6a5bfde413e19c5b2f0a9207157ac97b7e79ea25c45e2d48。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E059-C-PURSUIT",
+      "url": "https://github.com/triborg0259/proof-pursuit/blob/c5f2b50ee82f5ee9703e0f7a122411200035fb48/report/cells/p4_c6.tex",
+      "locator": "L17–105目标/状态/域；L450–487附程序与作者复跑声明",
+      "version": "commit c5f2b50ee82f5ee9703e0f7a122411200035fb48",
+      "subquestions": [
+        "整数同余类的较弱gcd下界"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "实际提交声明PARTIAL且自动Referee REJECT，声称由CRT递推得到k^(1/3)及约sqrt(k)/log k弱界，自述未达到全题/linear目标。这里有限同余类，非任意群k6证明。报告既有界的公式漏了平方根（写log k/loglog k），不能覆盖本轮学术已核Fornal–Sun原文。完整报告30875字节已取，但本轮只做范围/状态与代码尾段审阅，未全重证、未复跑附加程序；不能把文中的orchestrator re-ran当本轮执行。Git blob ec131c25cfd5c49e9c9e509137125ec1bd4e6015，SHA256 388be6b0fbc76e559d27167706cf927fd1a61f9c4d4d37a6a1fcf4e4ec61d390。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E059-C-TEXCOPY",
+      "url": "https://github.com/AlexenderSokolov/cross-theory-formal-database/blob/3b9207c03d9dc146f393f68bcb683bbc4583979a/editable-corpus/sources/206131/source0.tex",
+      "locator": "题名/作者/abstract及Theorem1.1",
+      "version": "commit 3b9207c03d9dc146f393f68bcb683bbc4583979a",
+      "subquestions": [
+        "整数同余类Fornal–Sun近线性界"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "此命中实际是Fornal–Sun论文的TeX转录：k exp(-(2+o(1))sqrt(log k/loglog k))，不是Lean源码、不是任意群一般k证明。仅读身份及主定理定位以排除代码库名称造成的误判；正式原稿由学术路线核。本地44307字节，Git blob742d0951f89e7a5e9be0216ca686200dc2c055a3，SHA256330aae7c3d21b62731aaa06e736cc20ae1011c0503d9e55ccc86ae4e474c213d。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "special_case",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-002384",
+      "other_card_rev": "d0c63b45dcc7a595",
+      "relation": "严格同题",
+      "reason": "双方均问任意群、任意k>1、k个两两不交有限指数左陪集中是否存在一对gcd至少k；无覆盖性、正规性或子群两两不同等新增条件。验收反例族/单反例差异可用直积有限循环群保持配置，实质否定目标一致。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000059.text.md：题面、形式化、原文摘录；同名meta.acceptance.criteria",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002384.text.md：题面、原文摘录；同名meta.acceptance.criteria"
+      },
+      "note": "pair_id=QX-P-000059__QX-P-002384；当前59为小号负责人，双方当前rev及全文已核。两条独立数学路线均认定严格同题；仅建议合并，正式二审须保留双方证据、旧编号与历史来源；本轮未改卡/合并。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "duplicate_relation": "same"
+      }
+    },
+    {
+      "other_id": "QX-P-000983",
+      "other_card_rev": "e7d720f141b5084a",
+      "relation": "同源不同问",
+      "reason": "983的21.93为Herzog–Schönheim：要求陪集分划覆盖G并求两指数相等；本题不要求覆盖，求gcd≥k。虽同书显式交叉引用20.99，假设、结论和验收对象均不同，不能据共用陪集语言合并。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000059.text.md：题面、形式化、原文摘录；同名meta.acceptance.criteria",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000983.text.md：题面、原文摘录；同名meta.acceptance.criteria"
+      },
+      "note": "pair_id=QX-P-000059__QX-P-000983；当前59为小号负责人，双方当前rev及全文已核。只作当前题查重对照，不迁移对方novelty或替对方查新。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "duplicate_relation": "related"
+      }
+    },
+    {
+      "other_id": "QX-P-000517",
+      "other_card_rev": "eeb37513e2c42796",
+      "relation": "仅相似",
+      "reason": "517针对有限非可解群的Herzog–Schönheim陪集分划和重复指数，当前59针对任意群不交陪集的gcd下界；有额外覆盖/群类别条件且目标性质不同，不是严格同题。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000059.text.md：题面、形式化、原文摘录；同名meta.acceptance.criteria",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000517.text.md：题面、原文摘录；同名meta.acceptance.criteria"
+      },
+      "note": "pair_id=QX-P-000059__QX-P-000517；当前59为小号负责人，双方当前rev及全文已核。只作当前题查重对照，不迁移对方novelty或替对方查新。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "proposer / first_published / sources",
+      "old": "2022年辑首刊/在列；Kourovka v50为original",
+      "new": "目前最早可核同一实质猜想为Sun 2004-11-12 math/0411289v1 §3 Conjecture3.3；另列Sun2006 Conjecture1.2和Notebook20.99为后续重述。Cover.pdf Conjecture4.2的准确版本和位置待原文取得。",
+      "reason": "已实际取得2004原始预印本；不同文章编号不必相同。补出处不改变当前核心命题。",
+      "evidence_ids": [
+        "R0059-SUN2004",
+        "R0059-CARD"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "建议主卡",
+      "field": "duplicates / provenance",
+      "old": "possible_duplicates为空",
+      "new": "提议pair QX-P-000059__QX-P-002384按严格同题进入合并二审，以000059为较小编号主卡；保留双方历史与来源。000983/000517保留各自题目。",
+      "reason": "固定版本全文及验收对象已由两条独立数学核对路线核同。回执仅提议，未执行合并或修改线上库。",
+      "evidence_ids": [
+        "R0059-DUP"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "card_action": "suggest_main"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "novelty / 开放状态证据 / formal_status",
+      "old": "旧novelty rev23482bd4c5d43769；k≤4、无新进展；formal none",
+      "new": "以当前ac6c747c063c9e39本轮实际查询为依据；记录作者k5报告、2026整数近线性下界与公开代码的有限覆盖。未取得匹配全体群/全体k的完整证明或反例；不由Notebook在列、无标记或搜索阴性宣布全网开放。",
+      "reason": "旧版深查标签不能代替当前回执；已命中同题特例与形式化材料，状态应按范围与核验深度分开。",
+      "evidence_ids": [
+        "R0059-CARD"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "边界与约定中的交换群解释",
+      "old": "交换群（陪集=剩余类，退化为数论配置）。",
+      "new": "在整数加法群及有限循环群中，可把有限指数陪集表示为普通同余类；一般阿贝尔群仍须处理非循环的有限阿贝尔商。",
+      "reason": "C_2×C_2 的指数2子群结构与 Z 不同。此项只纠正解释，不改变当前原题核心，按包规不自动要求新card_rev。",
+      "evidence_ids": [
+        "Q59-M-E1"
+      ],
+      "small_case_check": "C_2×C_2 有三个指数2子群；两条不同坐标轴的任意两陪集相交一个点。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "acceptance.criteria 与反例证书要求",
+      "old": "或给出一个反例族。",
+      "new": "或给出一个满足所有输入前提、且全部成对指数 gcd<k 的完整反例证书；有限群反例已经充分。",
+      "reason": "普遍命题由一个反例即可否定，且单个有限反例能用与 C_m 的直积扩成反例族。若实际调整验收字段，按包规生成新card_rev并复核受影响路线；该项核查只建议，未改卡。",
+      "evidence_ids": [
+        "Q59-M-E1",
+        "Q59-M-E4"
+      ],
+      "small_case_check": "Q×C_m 的相应陪集指数保持 n_i；(2,3)指数列表虽通过密度条件，但不能实现为不交两陪集。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "已知小 k 范围及公开部分证明",
+      "old": "k=5 是最小开放档；仅记录 k≤4；按 A 层易证明处理。",
+      "new": "小 k 的状态由本轮学术路线结合作者报告与可取得的原证明更新，不能只据旧卡或旧书注把 k=5 判为最小未决。另可补 Sun 的最大指数整除特例、本轮手核的 k=3 原证，以及固定公开稿的 Π 可分/素数幂 gcd 特例，并分别记录适用域。",
+      "reason": "该项核查不把未取得的 k=5 原证明写成本轮已审；一般有限群、任意 k 的核心仍不能由这些特例闭合。只改背景进展不自动改变核心版本。",
+      "evidence_ids": [
+        "Q59-M-E2",
+        "Q59-M-E3",
+        "Q59-M-E5"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "背景/已知进展/最小未知k",
+      "old": "只知k=2,3,4；k≥5仍未知或把k=5当最小未解",
+      "new": "补Sun两份作者资料报告Gong一般群k5已证明，同时明确原本科论文未取得、本轮尚待证明核验；不能继续肯定写k5未知。2009/2010仅作为待核书目日期，不影响报告的范围。",
+      "reason": "主问题仍全k；k5报告不闭合全题，v50所列2–4只是覆盖较少，不构成数学真假冲突。",
+      "evidence_ids": [
+        "a0059_mo2018",
+        "a0059_graz2026",
+        "a0059_notebook"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "学术进展/整数与阿贝尔分支",
+      "new": "补O’Bryant整数剩余类k≤20及Fornal–Sun2026的k^(1-o(1))下界；分别注明精确有限k和渐近近似、刊载与预印本、已读/未复算层级。",
+      "reason": "整数/cyclic quotient只是阿贝尔群子类；全阿贝尔群不能自动化成一维剩余类，2026近似也不能改写精确≥k。",
+      "evidence_ids": [
+        "a0059_obryant",
+        "a0059_fornal_sun2026"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "悬赏/奖金",
+      "old": "无日期地称现有US$200奖金",
+      "new": "注明来源为Sun于2018-12-02创建的MO帖子当前正文所载US$200历史承诺；本轮未核该段最早修订时间或当前履约有效性。",
+      "reason": "已核来源当前正文和初帖时间，未取得逐段修订史；不把二手索引刷新日期或页面仍在线当成重新承诺。",
+      "evidence_ids": [
+        "a0059_mo2018"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "Zhu2008定理引用",
+      "new": "引用Theorem1.1或明确在Theorem3.1前保留pairwise disjoint条件；记录v1 p3独立陈述局部漏条件。",
+      "reason": "本轮真页图与简单边界证书确认，非OCR噪声；作者正式勘误未取得，不扩大为正确k4结果失效。",
+      "evidence_ids": [
+        "a0059_zhu2008",
+        "a0059_zhu_statement_check"
+      ],
+      "small_case_check": "若漏不交性，取k4个Gi=G、ai=1，指数皆1，gcd1<4。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "formal_status、相关进展与声称解决",
+      "old": "未检到形式化/仅列Sun与Zhu旧文",
+      "new": "补引文、进展与核验等级本身不要求新card_rev；登记Arithmetica4的k2/k3/k4、finite reduction、divisibility-chain和finite-p-group部分Lean源，等级为固定源静态审未复跑；登记另一个coprime辅助Lean，禁止标全题已形式验证。",
+      "reason": "实际主定理类型与代码文件已读取，域忠实但结论只覆盖所列特例；源码无直接占位词不等于本轮kernel验证。 若另改变题面、定义、量词、参数域或验收，则依包规另生成新card_rev。",
+      "evidence_ids": [
+        "E059-C-PPL057",
+        "E059-C-COPRIMELEAN"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "公开AI部分成果",
+      "new": "补引文、进展与核验等级本身不要求新card_rev；列Π-separable去私人素因子密度界及finite-solvable+prime-power-gcd特例；注明本轮独立数学只复核README前两节，新颖性与后续扩展尚未核，原猜想一般情形不据此结案。",
+      "reason": "实际README明确partial，具有完整限定模型证明；仓库名不能替代数学范围。 若另改变题面、定义、量词、参数域或验收，则依包规另生成新card_rev。",
+      "evidence_ids": [
+        "E059-C-AIPARTIAL"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "关联验证卡",
+      "field": "建议独立验证方法、有限反例搜索",
+      "new": "如建立验证卡应使用新card_rev：可附固定GAP/Python/SAT输入接口与正证书重放，区分作者有限搜索报告、本轮未运行、负结果缺独立UNSAT日志；(6,6,6,10,15)为k5 maxgcd6的阳性流程控制，不登记Sun反例。",
+      "reason": "现有实际程序可追溯，然而没有本轮数学复跑，也不能从有限group-orders未命中推全称命题。",
+      "evidence_ids": [
+        "E059-C-SEARCHCODE"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {
+        "card_action": "link_verify"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "Cover.pdf网页超时、本地HTTP503；PPL057引用Conjecture4.2尚未直接核到。",
+      "next_step": "取得作者Cover.pdf的准确版本与目标页，核4.2编号和奖金原始措辞；现阶段保留未核，不改判编号错，也不将历史悬赏当今日履约保证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "002384已作严格同题建议与两次独立正文比对，但线上合并须按包规正式二审；其他弱命中仍仅索引层。",
+      "next_step": "复审pair QX-P-000059__QX-P-002384并保留双方证据和历史编号；若扩展查重，逐取000826/001125/001130等正文核参数、覆盖性与目标性质，不能把索引阴性当已排尽。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "next_step": "取得Gong本科论文或等价完整证明，核一般群k5全部步骤及2009/2010书目日期。",
+      "reason": "目前两份作者直接报告可信地证明存在该声明，但不等于取得其完整证明；未把它记为本轮独立已证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "next_step": "若将Fornal–Sun2026渐近下界升为本轮完全独立核验结果，另需审完19页证明与外用估计；当前只登记完整原稿声明、准确范围与已读归约。",
+      "reason": "本题有界查新已足区分其为Z分支近似进展而非全题精确解，不为此继续长审或扩大任务。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "next_step": "若需要重新验证O’Bryant≤20或Zhu k4的完整证明，分别复跑有限枚举/细核k4分类；当前仅读主要范围与关键短步骤。",
+      "reason": "不能把原刊完整稿取得与本轮全部数学核验混成一个状态。Zhu局部漏不交条件可按引言正确范围解释，但作者正式勘误本轮未取得。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本机lean/lake/gap缺失；PPL057仅静态源审，lake-manifest请求404；无编译/#print axioms记录。",
+      "next_step": "若将部分Lean成果升级为形式验证证据，按固定commit、Lean4.33.1和mathlib rev复跑准确模块并导出各主定理公理依赖；另辅助CoprimeCosets需先固定其真实工具链。当前查新可保留静态等级，不阻塞回执。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "有限SAT负结果由作者报告且明确无独立UNSAT proof log；本轮只核四个实际源文件。",
+      "next_step": "需要使用某一有限排除结论时，取该输入群/完整导出与日志，先核枚举覆盖再独立跑可验证UNSAT证书；不要为一般猜想无界扩枚举。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "公开AI README后续A5 composition factors、squarefree/few-primes/fixed-prime等扩展链接本轮未逐篇审，新颖性未核；Proof Pursuit是不同范围的弱界。",
+      "next_step": "仅把已手核前两节登记为特例进展；其余保持公开摘要/待复核，未经完整核验不提高全题或已形式化状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "FC的题号/短语、openai/math短语、全GitHub top20和一批三词web检索均为有界覆盖；MO API访问失败。",
+      "next_step": "不据本轮有限未命中写全网无证明。需要精确MO修订年份/答案总数时补可访问API或revision archive；Sun k5原论文与日期冲突由学术路线继续列待核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "ac6c747c063c9e39",
+      "codes": {}
+    }
+  ]
+}

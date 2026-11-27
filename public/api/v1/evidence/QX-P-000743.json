@@ -1,0 +1,2861 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000743",
+  "card_rev": "190a121f680a3a8d",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-02"
+      ],
+      "parts": [
+        {
+          "subquestion": "定义与小边界",
+          "value": "partial",
+          "note": "图为有限简单无向图，C_k是恰有k个不同顶点的普通非诱导圈，允许弦；红图中独立集n等价蓝补图含K_n。m=k的符号替换不改变原题；新稿内部k=m−1、a=n−1、t=ω(G)须分别处理。例外R(C3,K3)=6，而代入公式只得5：5圈及其补图均无三角形给下界，任意6顶点二色图的标准邻点论证给上界。新Lean的整数toNat由m≥n≥3保证无负数截断；Ramsey数用Nat sInf，已有目标N的上界见证确保集合非空，非空证明不可省。现代正式题面已正确排(3,3)，本轮不擅改域或加诱导条件。独立小例实际运行内容另按proof日志登记，不把手选例当全域穷举。"
+        },
+        {
+          "subquestion": "标准下界与有限反例目标",
+          "value": "partial",
+          "note": "在N−1=(k−1)(n−1)个顶点取n−1个不交K_{k−1}为红图，跨块全蓝。任一红连通分支只有k−1点，故无C_k；蓝团每块至多取一点，故无K_n。由此R≥N。全题只需再证所有N顶点图有C_k或n独立集。相反，任何合法参数对及一个N顶点无C_k且α<n的完整图证书都给R≥N+1，足以反驳等式；N−1上的标准下界构造本身不是反例。CB finite=true只说这种反例可有限验证，不说已知反例或无限全参数已算完。证明圈存在应检查恰长、顶点互异与末边，独立集应核所有内部非边。"
+        },
+        {
+          "subquestion": "已发表精确参数范围",
+          "value": "partial",
+          "note": "KLS正式Theorem1.1：存在绝对C≥1，对n≥3且k≥C log₂n/log₂log₂n给精确等式，不含额外n因子；它是精确值的参数范围定理，不仅渐近常数倍估计。Nikiforov原稿Thm1写团阶n≥4、圈长k≥4n+2；引言包含n=3已知边界，不能把前两页阅读说成通审23页证明。1978原刊引用Bondy–Erdős条件k≥n²−2，原1973证明本轮未重审。KLS全文已取得但只读主定理、证明路线、§2.2、§6.5末段归纳、§7及参考文献，未独立全核稳定性/吸收引理。2026固定奇圈下界论文及旧卡两篇三色/二部圈线索的范围排除见queries，不把圈关键词命中当本题进展。"
+        },
+        {
+          "subquestion": "有限余项与DECIDABLE",
+          "value": "partial",
+          "note": "由KLS阈值h(n)=C log₂n/log₂log₂n=o(n)，存在n0使n≥n0时k≥n自动满足k≥h(n)；每个3≤n<n0只留n≤k<h(n)的有限整数，故原题缩至有限余项。该推论不等于实际完成余项检查；§7明确C未显式计算，作者认为可望取小于20不是已证常数20。EP缓存DECIDABLE因此不能读成PROVED或本轮最新状态；FC sufficiently_large目标仍sorry也只是形式化文件未完成。新稿42个内部(k,t)对来自自身结构归约，不是把未知KLS常数代入得到的原(k,n)余项表；两种有限性来源必须分开。"
+        },
+        {
+          "subquestion": "新完整声明的数学归约",
+          "value": "claimed_resolution",
+          "note": "固定新稿以原圈长m设k=m−1、a=n−1，最小a反例有|V|=ka+1、α≤a且无C_{k+1}。对非空独立I删除闭邻域，较小a归纳给|N[I]|≥k|I|+1，故δ≥k；结构论证得到最大全团Q的阶t≥max(3,floor(k/2))。k=3,4直接处理。其余优化Q端点路径系统，先最大化外部内部点总量，再最小化路径条数；禁恰长圈迫出外路禁令、邻域分离及独立集装填。t≥9由结构/数值分类排除；t≤8则k≤17。根及proof路线分别核最小反例、树层/转路、短圈小例、size lemma、路径系统、增长、t≥9分类、有限规则及程序相应步骤；未把这些分段审查或两个实现同源正确性当作无需二审的全稿认证。有限推理仍依赖规则可靠性和归约覆盖全部反例，计算本身不能替代。"
+        },
+        {
+          "subquestion": "本轮有限模式计算",
+          "value": "partial",
+          "note": "本轮实际执行固定作者verify.py完整域：5≤k≤17、max(3,floor(k/2))≤t≤min(k,8)，42个内部(k,t)对、3099个参数模式；k=m−1，t是反例的最大全团阶而非n−1。检查器枚举路径链长度模式，非全部图/染色。Python3.12.14/Linux，子进程-I、未用-O，两个未修改实现分别26.501366253秒及66.291443543秒，均exit0、stderr空，stdout逐字匹配expected。3049 class1+50 class2，0未决；generated trace SHA256=a5646def0211a8b4393167d76aa09c30647fda73043756a362ede9773d3cab39，等于独立下载的4,253,650-byte预存trace；run.json SHA256=7dc0849add04787369ea3f4e747bbc12cea6eb581ecc904d41640f0750addc71。完整13行按k统计已嵌入E743-R2。这是本轮独立重跑作者有限计算，非本轮Lean/内核形式化通过；trace没有另经一个第三方最小证明验证器，程序正确性、规则声音性和结构归约仍是必须审的数学环节。cert-machine的F-338也明确限给定规则下的有限阶段。"
+        },
+        {
+          "subquestion": "形式化与第三方验证",
+          "value": "claimed_resolution",
+          "note": "固定OpenAI3344…的OAI.CycleClique.thm_main有证明体，目标∀m,n∈Z，m≥n≥3且非(3,3)时精确式，并附例外值6；Basic/Mathlib Copy证实普通injective graph hom，FiniteRange主调度有42对分支。配置Lean4.34.1、Mathlibd13f23b723b8a846827a245b89c10fc7d3f11612、当前59包；允许propext/Quot.sound/Classical.choice的配置不等于实际公理闭包。挑战文件sorry和当前FC两个sorry与真实主证明分离。MathVet旧fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb原日志报告Main编译及Lean default kernel接受，未见nanoda接受行；当前3344的CycleClique子树SHA与旧版相同8a1d33c6c9f2aac5fd767db892433cf7c59cc427，但目录外依赖和配置未由此全同。EPaDay报告旧1581d4cb的routeA182模块和fresh校验；实际桥源码/日志已读，只把FC定义和目标拷贝接到OAI，不能称FC环境中的实际常量已通过，也未复跑另一Construction routeB。其审读席位均自称Claude，不转述为人类全文referee。cert-machine本题13GiB内存上限OOM为REFUSED，不是数学反驳或双核通过。本轮未执行Lean/lake/Comparator/nanoda/fresh或#print axioms；第三方全部只标他人声称已形式化验证。"
+        },
+        {
+          "subquestion": "最小圈长与最小值附问",
+          "value": "partial",
+          "note": "1978§7及EP另问固定团阶n时首次达到线性公式的最小圈长，以及何种圈长使R最小。KLS Thm1.1–1.2把有关转变/最小化圈长尺度定位至Θ(log n/loglog n)，常数未定；Thm1.2在3≤k≤(1−ε)log n/loglog n、n充分大给超过线性值的下界，通常k<n，故不是现卡反例。当前新完整声明只解k≥n域，不自动给k<n精确Ramsey函数或两个附问的逐n最优值。固定奇圈、团阶趋无穷的2026下界同样处在另一参数区，不能据其超线性增长否定现卡。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/Ramsey/CycleClique/MainTheorem.lean"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/main.tex",
+      "review": "key_steps_checked",
+      "by": "OpenAI（机构作者，未猜测内部模型名）"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "完整证明或反例声明待核",
+      "scope_note": "现卡主要数学式忠实：∀k≥n≥3，排除(k,n)=(3,3)，R(C_k,K_n)=(k−1)(n−1)+1。已取得OpenAI稿面2026-09-25、固定3344da59991ed94f9ba711217b29c1d760badfa6的完整TeX与同一范围的Lean主目标，明确声称全题精确等式。根与独立数学路线核关键结构归约/规则，本轮又完整重跑作者两个Python有限检查器：42内部参数对、3099模式、0未决；另取得第三方Lean验证报告。上述强于旧CB开放快照与KLS部分结果，必须登记完整解决声明。仍按包规接收端二审，不把Python有限阶段通过或他人Lean报告写成本轮全题形式化认证，也不因FC仍sorry否认新声明。",
+      "evidence_ids": [
+        "E743-A2",
+        "E743-A4",
+        "E743-R1",
+        "E743-R2",
+        "E743-P2",
+        "E743-P3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "原题与历史出处",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "本行只修元数据和来源，不判主式错误。本轮最早实际核到提出为Erdős、Faudree、Rousseau、Schelp，J.GraphTheory2(1)(1978)53–64，DOI10.1002/jgt.3190020107，§7 Questions印刷p64(i)。原页已下载并真正渲染目视，条件是m≥n，不是OCR误识的m>n；该原段未显写(3,3)例外，现代KLS/EP明确补入。CB2026-07-23只是策展状态日期，不能作首提。KLS arXiv1807.06376v1=2018-07-17，先行出版2019-07-10，IMRN卷期2021；所读作者正式PDF自印277–302，官方检索书目275–300，按所读PDF定位且保留页码差，不猜为数学勘误。Nikiforov原arXivv1=2004-04-27，期刊2005，PDF内部2018日期不是新提交。",
+      "evidence_ids": [
+        "E743-A1",
+        "E743-A2",
+        "E743-A3",
+        "E743-P1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "定义与小边界",
+      "math_status": "有部分进展",
+      "scope_note": "图为有限简单无向图，C_k是恰有k个不同顶点的普通非诱导圈，允许弦；红图中独立集n等价蓝补图含K_n。m=k的符号替换不改变原题；新稿内部k=m−1、a=n−1、t=ω(G)须分别处理。例外R(C3,K3)=6，而代入公式只得5：5圈及其补图均无三角形给下界，任意6顶点二色图的标准邻点论证给上界。新Lean的整数toNat由m≥n≥3保证无负数截断；Ramsey数用Nat sInf，已有目标N的上界见证确保集合非空，非空证明不可省。现代正式题面已正确排(3,3)，本轮不擅改域或加诱导条件。独立小例实际运行内容另按proof日志登记，不把手选例当全域穷举。",
+      "evidence_ids": [
+        "E743-A1",
+        "E743-A4",
+        "E743-R1",
+        "E743-P1",
+        "E743-P3",
+        "E743-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "标准下界与有限反例目标",
+      "math_status": "有部分进展",
+      "scope_note": "在N−1=(k−1)(n−1)个顶点取n−1个不交K_{k−1}为红图，跨块全蓝。任一红连通分支只有k−1点，故无C_k；蓝团每块至多取一点，故无K_n。由此R≥N。全题只需再证所有N顶点图有C_k或n独立集。相反，任何合法参数对及一个N顶点无C_k且α<n的完整图证书都给R≥N+1，足以反驳等式；N−1上的标准下界构造本身不是反例。CB finite=true只说这种反例可有限验证，不说已知反例或无限全参数已算完。证明圈存在应检查恰长、顶点互异与末边，独立集应核所有内部非边。",
+      "evidence_ids": [
+        "E743-A2",
+        "E743-P1",
+        "E743-R1",
+        "E743-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "已发表精确参数范围",
+      "math_status": "有部分进展",
+      "scope_note": "KLS正式Theorem1.1：存在绝对C≥1，对n≥3且k≥C log₂n/log₂log₂n给精确等式，不含额外n因子；它是精确值的参数范围定理，不仅渐近常数倍估计。Nikiforov原稿Thm1写团阶n≥4、圈长k≥4n+2；引言包含n=3已知边界，不能把前两页阅读说成通审23页证明。1978原刊引用Bondy–Erdős条件k≥n²−2，原1973证明本轮未重审。KLS全文已取得但只读主定理、证明路线、§2.2、§6.5末段归纳、§7及参考文献，未独立全核稳定性/吸收引理。2026固定奇圈下界论文及旧卡两篇三色/二部圈线索的范围排除见queries，不把圈关键词命中当本题进展。",
+      "evidence_ids": [
+        "E743-A2",
+        "E743-A3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限余项与DECIDABLE",
+      "math_status": "有部分进展",
+      "scope_note": "由KLS阈值h(n)=C log₂n/log₂log₂n=o(n)，存在n0使n≥n0时k≥n自动满足k≥h(n)；每个3≤n<n0只留n≤k<h(n)的有限整数，故原题缩至有限余项。该推论不等于实际完成余项检查；§7明确C未显式计算，作者认为可望取小于20不是已证常数20。EP缓存DECIDABLE因此不能读成PROVED或本轮最新状态；FC sufficiently_large目标仍sorry也只是形式化文件未完成。新稿42个内部(k,t)对来自自身结构归约，不是把未知KLS常数代入得到的原(k,n)余项表；两种有限性来源必须分开。",
+      "evidence_ids": [
+        "E743-A2",
+        "E743-A4",
+        "E743-P2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "新完整声明的数学归约",
+      "math_status": "完整证明或反例声明待核",
+      "scope_note": "固定新稿以原圈长m设k=m−1、a=n−1，最小a反例有|V|=ka+1、α≤a且无C_{k+1}。对非空独立I删除闭邻域，较小a归纳给|N[I]|≥k|I|+1，故δ≥k；结构论证得到最大全团Q的阶t≥max(3,floor(k/2))。k=3,4直接处理。其余优化Q端点路径系统，先最大化外部内部点总量，再最小化路径条数；禁恰长圈迫出外路禁令、邻域分离及独立集装填。t≥9由结构/数值分类排除；t≤8则k≤17。根及proof路线分别核最小反例、树层/转路、短圈小例、size lemma、路径系统、增长、t≥9分类、有限规则及程序相应步骤；未把这些分段审查或两个实现同源正确性当作无需二审的全稿认证。有限推理仍依赖规则可靠性和归约覆盖全部反例，计算本身不能替代。",
+      "evidence_ids": [
+        "E743-R1",
+        "E743-P3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "本轮有限模式计算",
+      "math_status": "条件性结果",
+      "scope_note": "本轮实际执行固定作者verify.py完整域：5≤k≤17、max(3,floor(k/2))≤t≤min(k,8)，42个内部(k,t)对、3099个参数模式；k=m−1，t是反例的最大全团阶而非n−1。检查器枚举路径链长度模式，非全部图/染色。Python3.12.14/Linux，子进程-I、未用-O，两个未修改实现分别26.501366253秒及66.291443543秒，均exit0、stderr空，stdout逐字匹配expected。3049 class1+50 class2，0未决；generated trace SHA256=a5646def0211a8b4393167d76aa09c30647fda73043756a362ede9773d3cab39，等于独立下载的4,253,650-byte预存trace；run.json SHA256=7dc0849add04787369ea3f4e747bbc12cea6eb581ecc904d41640f0750addc71。完整13行按k统计已嵌入E743-R2。这是本轮独立重跑作者有限计算，非本轮Lean/内核形式化通过；trace没有另经一个第三方最小证明验证器，程序正确性、规则声音性和结构归约仍是必须审的数学环节。cert-machine的F-338也明确限给定规则下的有限阶段。",
+      "evidence_ids": [
+        "E743-R1",
+        "E743-R2",
+        "E743-P6",
+        "E743-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "形式化与第三方验证",
+      "math_status": "完整证明或反例声明待核",
+      "scope_note": "固定OpenAI3344…的OAI.CycleClique.thm_main有证明体，目标∀m,n∈Z，m≥n≥3且非(3,3)时精确式，并附例外值6；Basic/Mathlib Copy证实普通injective graph hom，FiniteRange主调度有42对分支。配置Lean4.34.1、Mathlibd13f23b723b8a846827a245b89c10fc7d3f11612、当前59包；允许propext/Quot.sound/Classical.choice的配置不等于实际公理闭包。挑战文件sorry和当前FC两个sorry与真实主证明分离。MathVet旧fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb原日志报告Main编译及Lean default kernel接受，未见nanoda接受行；当前3344的CycleClique子树SHA与旧版相同8a1d33c6c9f2aac5fd767db892433cf7c59cc427，但目录外依赖和配置未由此全同。EPaDay报告旧1581d4cb的routeA182模块和fresh校验；实际桥源码/日志已读，只把FC定义和目标拷贝接到OAI，不能称FC环境中的实际常量已通过，也未复跑另一Construction routeB。其审读席位均自称Claude，不转述为人类全文referee。cert-machine本题13GiB内存上限OOM为REFUSED，不是数学反驳或双核通过。本轮未执行Lean/lake/Comparator/nanoda/fresh或#print axioms；第三方全部只标他人声称已形式化验证。",
+      "evidence_ids": [
+        "E743-P2",
+        "E743-P3",
+        "E743-P4",
+        "E743-P5",
+        "E743-P6"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "最小圈长与最小值附问",
+      "math_status": "有部分进展",
+      "scope_note": "1978§7及EP另问固定团阶n时首次达到线性公式的最小圈长，以及何种圈长使R最小。KLS Thm1.1–1.2把有关转变/最小化圈长尺度定位至Θ(log n/loglog n)，常数未定；Thm1.2在3≤k≤(1−ε)log n/loglog n、n充分大给超过线性值的下界，通常k<n，故不是现卡反例。当前新完整声明只解k≥n域，不自动给k<n精确Ramsey函数或两个附问的逐n最优值。固定奇圈、团阶趋无穷的2026下界同样处在另一参数区，不能据其超线性增长否定现卡。",
+      "evidence_ids": [
+        "E743-A1",
+        "E743-A2",
+        "E743-A4"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "本地原题包",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000648〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整题面、metadata、验收与旧记录已读；固定rev190a121f680a3a8d，不把旧novelty的c1731a328b79b060状态直接迁移。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "open https://www.erdosproblems.com/551",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "主URL返回403；之后仅取得官方检索缓存，不冒称原页当前正文直开成功。",
+      "url": "https://www.erdosproblems.com/551",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web DOI open",
+      "query": "open https://doi.org/10.1093/imrn/rnz119",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "跳转oup.silverchair-cdn.com/article-minimal/5530320不可访问；作者站正式PDF随后成功。",
+      "url": "https://doi.org/10.1093/imrn/rnz119",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方open",
+      "query": "open https://arxiv.org/abs/2611.11187",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "DisabledError，未取得官方原摘要；后续检索仅返回镜像缓存，不能冒称原文阅读全文。",
+      "url": "https://arxiv.org/abs/2611.11187",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方open",
+      "query": "open https://arxiv.org/abs/2610.29813",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "DisabledError，未取得官方原摘要；后续检索仅返回镜像缓存，不能冒称原文阅读全文。",
+      "url": "https://arxiv.org/abs/2610.29813",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "site:erdosproblems.com \"551\" \"Bondy\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "官方主/latex缓存明确k≥n≥3排(3,3)、四作者、KLS及DECIDABLE文字；缓存约5个月前，状态不作为2026-11-27实时结论。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"rnz119\" Ramsey cycles complete graphs",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位OUP原出版信息和Keevash作者站正式稿；OUP索引页码275–300，已读取PDF自印277–302，保留来源差异。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1 recency365",
+      "query": "\"cycle-complete\" \"Ramsey\" proof 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2026固定奇圈渐近下界论文；后读其正式原页主定理，范围排除不作本题全解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"2611.11187\" OR \"2610.29813\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "仅第三方arXiv镜像缓存：前者三色边染色要求圈至多两色，后者三色K_N,N偶圈；均非本题二色cycle-vs-clique定义。官方原文尚未取得，按索引暂排除，不转写其数学定理为已核证据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Keevash作者站正式刊PDF",
+      "query": "open https://people.maths.ox.ac.uk/keevash/papers/ccr-journal.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "26页正式稿可取，实际读首页、§1定义/主定理及证明路线、§2.2短下界段；后定位§6.5、§7和参考文献。未通审全部稳定性/吸收证明。",
+      "url": "https://people.maths.ox.ac.uk/keevash/papers/ccr-journal.pdf",
+      "locator": "印刷pp277–280，Theorems1.1–1.2；§2.2",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "OUP原站open",
+      "query": "open https://academic.oup.com/imrn/article/2021/1/275/5530320",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "重定向article-minimal失败；出版元数据来自官方检索缓存，不说这次全文已读。",
+      "url": "https://academic.oup.com/imrn/article/2021/1/275/5530320",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "EP官方latex open",
+      "query": "open https://www.erdosproblems.com/latex/551",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "restricted URL；搜索返回原站缓存另记。",
+      "url": "https://www.erdosproblems.com/latex/551",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方html open",
+      "query": "open https://arxiv.org/html/2611.11187v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "第二种官方入口仍DisabledError，未阅读全文；不重复更多失败入口。",
+      "url": "https://arxiv.org/html/2611.11187v1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方html open",
+      "query": "open https://arxiv.org/html/2610.29813v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "第二种官方入口仍DisabledError，未阅读全文；不重复更多失败入口。",
+      "url": "https://arxiv.org/html/2610.29813v1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "KLS正式PDF find",
+      "query": "find 〔原始工具引用已私有留存〕 \"References\" 〔私有记录编号：PR-000649〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "原文标题是Reference单数，随后实际定位参考文献段；这次无命中不表示文献缺失。",
+      "url": "https://people.maths.ox.ac.uk/keevash/papers/ccr-journal.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "KLS正式PDF find",
+      "query": "find 〔原始工具引用已私有留存〕 \"Ramsey numbers for pairs\" 〔私有记录编号：PR-000650〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "返回参考文献邻近段，实际核ref[21]1978JGT2:53–64、ref[40]Nikiforov2005及其他范围；随后取得原1978与Nikiforov稿。",
+      "url": "https://people.maths.ox.ac.uk/keevash/papers/ccr-journal.pdf",
+      "locator": "pp300–302，references[21]/[40]",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "KLS正式PDF find",
+      "query": "find 〔原始工具引用已私有留存〕 \"Proof of Theorem 1.1.\" 〔私有记录编号：PR-000651〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "定位§6.5并读最终归纳，完整上界还依赖前文稳定性/吸收引理，本轮未逐一通审。",
+      "url": "https://people.maths.ox.ac.uk/keevash/papers/ccr-journal.pdf",
+      "locator": "印刷p299，§6.5",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "KLS正式PDF open",
+      "query": "open 〔原始工具引用已私有留存〕 lineno1120 〔私有记录编号：PR-000652〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读结论与参考文献邻近段，不以网页默认返回范围推称全稿数学复核。",
+      "url": "https://people.maths.ox.ac.uk/keevash/papers/ccr-journal.pdf",
+      "locator": "印刷p300",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "Erdos Faudree Rousseau Schelp 1978 cycles complete Ramsey numbers 551",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位1978原PDF/Wiley DOI、KLS arXiv、Nikiforov原稿；发现OpenAI全题候选，交root/public/proof核，不因本路线未重复读而忽略。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Cycle-Complete Ramsey Numbers\" \"erratum\" OR \"correction\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回原论文与其他Ramsey文献，未取得针对rnz119的明确撤回/勘误；仅本次查询范围，无全网不存在断言。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Rényi作者文献档案PDF",
+      "query": "open https://static.renyi.hu/~p_erdos/1978-18.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得12页原刊；实际读首页定义、§2简单无向图约定、§5/§6相关但不同的短圈族参数，后读§7 Questions原题。PDF OCR不等号受损，另下载最后页真正目视核。",
+      "url": "https://static.renyi.hu/~p_erdos/1978-18.pdf",
+      "locator": "印刷pp53–54、61–64",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方abstract/history",
+      "query": "open https://arxiv.org/abs/1807.06376",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际原页只列v1=2018-07-17 12:17:40 UTC；19页预印本。正式期刊为2021卷期、2019-07-10先行出版，不混淆三个日期。未逐字比较预印本与正式稿。",
+      "url": "https://arxiv.org/abs/1807.06376",
+      "locator": "abstract、Submission history",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Nikiforov原稿arXiv PDF",
+      "query": "open https://arxiv.org/pdf/math/0404501",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得23页v1，实际读pp1–2定义/引言/Thm1：团阶r≥4、圈长p≥4r+2；引言把r=3已知边界纳入。未读全部saw证明。PDF内部June20,2018不是arXiv提交日期。",
+      "url": "https://arxiv.org/pdf/math/0404501",
+      "locator": "pp1–2，Theorem1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "KLS正式PDF open",
+      "query": "open 〔原始工具引用已私有留存〕 lineno1088 〔私有记录编号：PR-000653〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读§6.5最终归纳和§7：C未显式计算，less than20只是作者认为可望改进的措辞，不能设置C=20。归纳末步依赖Lemma5.1/6.1/6.4，未通审这些证明。",
+      "url": "https://people.maths.ox.ac.uk/keevash/papers/ccr-journal.pdf",
+      "locator": "印刷pp299–300，§6.5/§7",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Combinatorica2026原刊全文HTML",
+      "query": "open https://link.springer.com/article/10.1007/s00493-026-00226-x",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读摘要、§1及Theorem1.1：固定奇圈长ℓ>7、团阶k→∞的多项式下界提升，渐近进入k>ℓ，与本卡圈长≥团阶不同。未读后续完整证明，不登记为本题精确公式进展。",
+      "url": "https://link.springer.com/article/10.1007/s00493-026-00226-x",
+      "locator": "abstract、Theorem1.1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "1978原刊PDF find",
+      "query": "find 〔原始工具引用已私有留存〕 \"PROBLEMS\" 〔私有记录编号：PR-000654〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "原PDF OCR/标题词不匹配；随后实际open§7 Questions成功，不能凭find零命中否认原问题存在。",
+      "url": "https://static.renyi.hu/~p_erdos/1978-18.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "1978原刊PDF find",
+      "query": "find 〔原始工具引用已私有留存〕 \"conjecture\" 〔私有记录编号：PR-000655〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "原PDF OCR/标题词不匹配；随后实际open§7 Questions成功，不能凭find零命中否认原问题存在。",
+      "url": "https://static.renyi.hu/~p_erdos/1978-18.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "1978原刊PDF find",
+      "query": "find 〔原始工具引用已私有留存〕 \"53-64\" 〔私有记录编号：PR-000656〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核首页作者和原刊JGT2(1978)53–64。",
+      "url": "https://static.renyi.hu/~p_erdos/1978-18.pdf",
+      "locator": "印刷p53",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "KLS正式PDF find",
+      "query": "find 〔原始工具引用已私有留存〕 \"20, say\" 〔私有记录编号：PR-000657〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "准确定位常数未显式计算的限定；不把作者预期数值当可执行有限余项上限。",
+      "url": "https://people.maths.ox.ac.uk/keevash/papers/ccr-journal.pdf",
+      "locator": "印刷p299，§7",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "1978原刊PDF open",
+      "query": "open 〔原始工具引用已私有留存〕 lineno320 〔私有记录编号：PR-000658〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "读§5 r(≤C_m,K_n)的精确结果与§6短圈族上界；此参数允许某个长度≤m，不等于恰长C_m的本题。",
+      "url": "https://static.renyi.hu/~p_erdos/1978-18.pdf",
+      "locator": "印刷pp61–63",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Nikiforov官方abstract/history",
+      "query": "open https://arxiv.org/abs/math/0404501",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "官方只列v1=2004-04-27 21:26:30 UTC，comments称accepted CPC；与PDF内部2018日期分开。正式2005CPC14:349–370由KLS参考文献核。",
+      "url": "https://arxiv.org/abs/math/0404501",
+      "locator": "abstract、Submission history",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "1978原刊PDF open",
+      "query": "open 〔原始工具引用已私有留存〕 lineno390 〔私有记录编号：PR-000659〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "成功读§7 Questions末页：最小m/最小Ramsey值两附问及等式猜想；OCR把≥识别为>，随后实际页图纠正。",
+      "url": "https://static.renyi.hu/~p_erdos/1978-18.pdf",
+      "locator": "印刷p64/PDFindex11",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "site:static.renyi.hu/~p_erdos/1978-18.pdf \"m\" \"n\" \"questions\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "原PDF缓存命中Questions；不替代随后页图核不等号。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"On cycle-complete graph Ramsey numbers\" \"1978\" conjecture",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "Wiley官方书目标Spring1978，JGT2(1)53–64、DOI10.1002/jgt.3190020107；历史年份另由实际原刊页脚核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Cycle-complete Ramsey numbers\" \"rnz119\" correction erratum",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回原稿/正式书目及旁系论文，未取得明确rnz119勘误或撤回；检索有限，不用来断言没有。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地urllib与Poppler",
+      "query": "urllib.request.urlopen('https://static.renyi.hu/~p_erdos/1978-18.pdf',timeout=25); pdftoppm -f 12 -singlefile -scale-to 1800 -png 743_EFRS1978.pdf 743_EFRS1978_p64",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际下载1516977 bytes、PDF头核实，渲染命令exit0；随后通过view_image真正输出并读取图像。",
+      "url": "https://static.renyi.hu/~p_erdos/1978-18.pdf",
+      "locator": "本地743_EFRS1978.pdf，印刷p64",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地页图目视核对",
+      "query": "view_image 〔私有材料定位已省略〕 〔私有记录编号：PR-000660〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "工具实际返回图像，已目视确认§7(i)原文是m≥n，非OCR的m>n；同页旧Bondy条件为m≥n²−2。页64没有显写(3,3)例外，现代KLS/EP明确补此必要边界。",
+      "url": "https://static.renyi.hu/~p_erdos/1978-18.pdf",
+      "locator": "印刷p64，§7(i)",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1 recency365",
+      "query": "Erdős problem 551 cycle clique Ramsey Keevash Long Skokan 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中KLS、OpenAI family189完整声明及第三方复核线索；2026固定奇圈对增长团下界不覆盖k≥n域。后续读取固定主源。",
+      "request_id": "r743_root_search1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1 无日期限制",
+      "query": "\"R(C\" \"k\" \"n\" \"rnz119\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中KLS、OpenAI family189完整声明及第三方复核线索；2026固定奇圈对增长团下界不覆盖k≥n域。后续读取固定主源。",
+      "request_id": "r743_root_search1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1 recency730",
+      "query": "\"cycle-complete\" \"Ramsey\" conjecture 2025 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中KLS、OpenAI family189完整声明及第三方复核线索；2026固定奇圈对增长团下界不覆盖k≥n域。后续读取固定主源。",
+      "request_id": "r743_root_search1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "附件全库查重简索引.jsonl，2469卡，Python re.I",
+      "query": "551|cb-0143",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "第一项7命中中仅self是真题号，其余是卡号/哈希数字巧合；第二项4命中含self、215及明显异问220/1711；第三项0。对215另取固定meta/text全读；索引未命中不等于穷尽无重复。",
+      "request_id": "r743_root_duplicate_index",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "附件全库查重简索引.jsonl，2469卡，Python re.I",
+      "query": "R\\(C|cycle.?clique|cycle.*complete|圈.*团|圈.*完全图",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "第一项7命中中仅self是真题号，其余是卡号/哈希数字巧合；第二项4命中含self、215及明显异问220/1711；第三项0。对215另取固定meta/text全读；索引未命中不等于穷尽无重复。",
+      "request_id": "r743_root_duplicate_index",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "附件全库查重简索引.jsonl，2469卡，Python re.I",
+      "query": "rnz119|Erd.s.*Faudree.*Rousseau.*Schelp",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "第一项7命中中仅self是真题号，其余是卡号/哈希数字巧合；第二项4命中含self、215及明显异问220/1711；第三项0。对215另取固定meta/text全读；索引未命中不等于穷尽无重复。",
+      "request_id": "r743_root_duplicate_index",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fixed qunxingmath-org/qunxing-data",
+      "query": "GET problems/000/QX-P-000215.meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整正文/元数据取得且rev=a0ad14642b0f3e67。固定C4、n→∞的幂次上界，与743 k≥n的精确等式参数域不等价。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fixed qunxingmath-org/qunxing-data",
+      "query": "GET problems/000/QX-P-000215.text.md @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整正文/元数据取得且rev=a0ad14642b0f3e67。固定C4、n→∞的幂次上界，与743 k≥n的精确等式参数域不等价。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET openai/math docs/189.md @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "路径404；随后public线定位lean/docs/189.md。不能把错误路径无结果当无形式化。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub API",
+      "query": "GET contents/preprints/Cycle-clique-Ramsey-numbers-September-25-2026?ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "目录明确README、build、verification与PDF；PDF blob a17d31158e920c2266722728e778b37c986601bb，611068 bytes；该步未读PDF内容。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub API",
+      "query": "GET git/trees/a34996bda7b88eaf604a869af0cda69b6f905d20?recursive=1",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "完整build树，truncated=false；包含18个文本文件，七份由proof线取，其余root取；随后在同一本地目录实际阅读关键主干。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET git/trees/fa22af91964b3b8c74944814b841163880e4f201?recursive=1",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "完整verification树，truncated=false；三脚本、expected、summary、4253650-byte traces。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/README.md @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "作者要求普通Python3、不用-O，verify.py跑两个完整检查器。明确traces不是额外独立minimal validator的证明对象。blob20197bff6dd61bff9f204e99911a7f87fceec0b9。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/main.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob a6f77dbf056d645440ba6b836fff56aff4d74669；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/references.bib @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob 7a676761c798ac3523ae8220db6cbfce6959f380；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/05-size.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob 7ecf164bf3a1c654dc9fd3f639bf0579dcf78735；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/06-paths.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob 0c2a1951f7265e66dfb2d29e55c0bc735c598baa；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/07-growth.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob aeb2793d06c5959ffe9c63eeabba7ca38772f12f；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/08-terminal.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob 8fe4f1a1a0311d3930c5dca4b49ff53474a6f66e；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/09-finite-packing.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob af4d39006369af48aab120d36f27f8baddc5a1d8；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/09-finite-rules.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob 5c71b776596f99c929d8377236582fb6604d0099；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/10-implementation.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob bd9c828aa9e82ad41716e864a2bce4068eca956b；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/clique-figure.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob b4d89cdbc210af42c02106c5a79a11b8a451b2f8；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/representative-figure.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob 20a0ce889720f7f789522722ee00c690d417c685；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/verification/code/independent_checker.py @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob 235d9dce705b50e1d85a35308c801cae84bdb6c6；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/verification/code/original_checker.py @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob aced74b868ee979f8ecbaec2ac879c647ab4876c；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/verification/code/verify.py @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob 8f5e3f4cbfced00ed78147657c47c89c833cafad；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/verification/data/certificates.jsonl @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "API仅返回sha而content为空；当时未取得正文，后由公共raw实际下载并双哈希核验。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/verification/data/expected-output.txt @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob b8dc9e2c9679d0fed786989cff7a88cfc01e5371；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "GET preprints/Cycle-clique-Ramsey-numbers-September-25-2026/verification/data/summary.json @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定blob 911a004af3f47e0636368e2a0b3d62d0f9a2a3e6；完整文本落盘。root实读对应脚本/章节，图只读TikZ源码和图注未渲染；完整TeX已取得不等于PDF页图已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open",
+      "query": "https://raw.githubusercontent.com/openai/math/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/Cycle-clique-Ramsey-numbers-September-25-2026.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "DisabledError。完整稿改由固定TeX取得；不报PDF视觉检查。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "https://api.github.com/repos/openai/math/git/blobs/6df8b8b041c24fdba28f477c9a27f2b57f9af2ad",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "Transport closed；该次未获得4.25MB正文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "https://raw.githubusercontent.com/openai/math/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/verification/data/certificates.jsonl",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "返回error/error_code；该次未取得正文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Python urllib.request 公共原始文件下载",
+      "query": "https://raw.githubusercontent.com/openai/math/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/verification/data/certificates.jsonl",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际下载4253650 bytes；Git blob=6df8b8b041c24fdba28f477c9a27f2b57f9af2ad，SHA256=a5646def0211a8b4393167d76aa09c30647fda73043756a362ede9773d3cab39，两者与固定目录/summary一致。不是以本轮生成结果冒充预存对照。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本轮本地实际执行Python",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000661〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定原始三脚本未改，普通Python3.12.14；两子进程-I无-O，全域运行exit0，标准输出逐字一致且stderr空；42对3099模式/0未决，trace逐字哈希匹配预先下载原文件。仅验证有限计算，不称Lean构建或完整数学证明认证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://www.erdosproblemaday.com/day/551-openai-cycle-clique-ramsey-refereed",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "原报告实际读取，明确routeA 182模块、routeB未replay，第三方Lean核验细节另交public。第三方称kernel通过不能升级本轮Lean复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open",
+      "query": "https://people.maths.ox.ac.uk/keevash/papers/ccr-journal.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "Root读正式稿封面、Theorem1.1/1.2及旧范围，实际对数阈值无乘n；base2；PDF页眉277–302，先行发表2019-07-10。全文其它深层结构由academic记录阅读限度。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地view_image，原刊页图",
+      "query": "743_EFRS1978_p64.png，来自https://static.renyi.hu/~p_erdos/1978-18.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "Root真实图像查看p64(i)，m≥n；原OCR误把≥化成>。现代排除(3,3)条款另由准确题面/小例支持；本轮最早已读1978而非CB快照日。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P01",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/bespokelabsai/conjecture-bench/commits/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/commit/8d494791ace5894b860585d67ba8e69dbfed6376",
+      "note": "固定实际 main=8d494791ace5894b860585d67ba8e69dbfed6376，commit date 2026-10-25T09:20:54Z；不是拿 7 月状态观察日期当提交版本。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P02",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET FormalConjectures/ErdosProblems/551.lean ref=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/551.lean",
+      "note": "全文静态读取；主目标全部 k≥n≥3 且排除3,3，另有 sufficiently_large；两个 theorem 都是 sorry。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P03",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector search",
+      "query": "Erdos551 cycle clique Ramsey; repositories openai/math, google-deepmind/formal-conjectures; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "此复合仓库索引查询无命中，随后 web 与固定 overview 发现完整声明；不把一次无命中当无解。",
+      "result_count": 0,
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "743-P04",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "\"Erdős 551\" proof solved",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 OpenAI family189 全题稿与 docs189、FC/qed 旧题面记录、EPaDay 第三方 replay 声明；原文读取另记。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "743-P05",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "\"Erdos551\" Lean",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 OpenAI family189 全题稿与 docs189、FC/qed 旧题面记录、EPaDay 第三方 replay 声明；原文读取另记。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "743-P06",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "\"cycle-clique\" \"OpenAI\" Ramsey",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 OpenAI family189 全题稿与 docs189、FC/qed 旧题面记录、EPaDay 第三方 replay 声明；原文读取另记。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "743-P07",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地复用固定来源",
+      "query": "读取已取得 p562_c3_0 overview.tex at 3344da59991ed94f9ba711217b29c1d760badfa6; scan 551 / cycle.*clique / clique.*cycle / Ramsey.*cycle",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/overview.tex",
+      "note": "固定 blob 1a56184b1f28a8750722dc2dd6306af8424da0b6，第463行 family189 声称全范围；如实记复用，非新网络请求。",
+      "shared_with": [
+        "QX-P-000562"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P08",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET problems/conjectures/cb-0143.json ref=8d494791ace5894b860585d67ba8e69dbfed6376",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0143.json",
+      "note": "blob 7b2d71d825763fcc451651ea9a788ca4e63d641c；finite=true 是有限反例见证性质，status_observation open/as_of2026-07-23 是策展观察。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P09",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET lean/docs/189.md ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/docs/189.md",
+      "note": "作者 scope note 声称全部参数+例外6，随后读实际目标/定义。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P10",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET lean/ComparatorChallenges/CycleCliqueRamsey.lean ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/ComparatorChallenges/CycleCliqueRamsey.lean",
+      "note": "挑战题面含 sorry，定义 RamseyProperty/cycleCliqueRamsey 和全目标；不是解决文件。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P11",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET lean/OAI/Combinatorics/Ramsey/CycleClique/Main.lean ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/Ramsey/CycleClique/Main.lean",
+      "note": "导入 MainTheorem 及 Construction 路线；后者三个 unconditional 定理有证明体，未编译。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P12",
+      "route": "代码、公开 AI 和社区",
+      "site": "web open",
+      "query": "open https://www.erdosproblemaday.com/day/551-openai-cycle-clique-ramsey-refereed",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.erdosproblemaday.com/day/551-openai-cycle-clique-ramsey-refereed",
+      "note": "〔原始工具引用已私有留存〕 实际原作者报告：182模块 route A、FC题面拷贝桥；第三方报告，不是本轮验证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P13",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1",
+      "query": "\"CycleCliqueRamsey\" \"MathVet\"; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 MathVet full/PASS 及 cert-machine REFUSED；后续原日志证明后者为资源受限，并非数学反驳。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "743-P14",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1",
+      "query": "\"189\" \"Ramsey\" \"cert-machine\"; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 MathVet full/PASS 及 cert-machine REFUSED；后续原日志证明后者为资源受限，并非数学反驳。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "743-P15",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET lean/OAI/Combinatorics/Ramsey/CycleClique/MainTheorem.lean ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/Ramsey/CycleClique/MainTheorem.lean",
+      "note": "thm_main 的实际有体证明把整数目标归约至自然数 main，例外用 exceptional；未 build。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P16",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET lean/OAI/Combinatorics/Ramsey/CycleClique/RamseyNumbers.lean ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/Ramsey/CycleClique/RamseyNumbers.lean",
+      "note": "IsRamseyNumber=forcing property 与所有更小 N 不满足；sInf 归一化证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P17",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET lean/OAI/Combinatorics/Ramsey/CycleClique/Basic.lean ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/Ramsey/CycleClique/Basic.lean",
+      "note": "实际定义：∀G:SimpleGraph(Fin N)，cycleGraph m⊑G 或 completeGraph n⊑补图；minimum 用 sInf。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P18",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET lean/lean-toolchain ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/lean-toolchain",
+      "note": "实际 leanprover/lean4:v4.34.1；blob ba8ebf2dbaf6a668cd2a0e086186d6d569b69ff5。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P19",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET lean/lake-manifest.json ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/lake-manifest.json",
+      "note": "实际59包锁，mathlib d13f23b723b8a846827a245b89c10fc7d3f11612，manifest blob96a8aea368379c8c445bd622c6b98fde7659f45e。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P20",
+      "route": "代码、公开 AI 和社区",
+      "site": "web click",
+      "query": "click 〔原始工具引用已私有留存〕 link12 (MathVet fidelity review) 〔私有记录编号：PR-000662〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/mathvet/mathvet",
+      "note": "〔原始工具引用已私有留存〕 仅到项目主页；随后用 GitHub API 定位实际日志。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "743-P21",
+      "route": "代码、公开 AI 和社区",
+      "site": "web open",
+      "query": "open https://carlostoledo.co/reports/openai-math.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://carlostoledo.co/reports/openai-math.html",
+      "note": "〔原始工具引用已私有留存〕 原报告，后 find 定位本题；初始全文窗口未直接显示目标行，不假称在首窗已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P22",
+      "route": "代码、公开 AI 和社区",
+      "site": "web open",
+      "query": "open https://www.erdosproblemaday.com/day/551-openai-cycle-clique-ramsey-refereed lineno=42",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.erdosproblemaday.com/day/551-openai-cycle-clique-ramsey-refereed",
+      "note": "〔原始工具引用已私有留存〕：桥只验证FC定义/题面拷贝，不是FC常量；route B未replay；所有referee均Claude Opus5.5；声明无已知人类全文审稿。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P23",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET lean/OAI/Combinatorics/Ramsey/CycleClique/FiniteRange.lean ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/Ramsey/CycleClique/FiniteRange.lean",
+      "note": "全文读取实际 finite_range_verified→finite_verification→reduced_counterexample_impossible→ramsey_upper→main；上界提供 sInf 非空见证，再接一般下界。有限pattern被数学归约覆盖，不是只测试小图。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P24",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector search",
+      "query": "CycleCliqueRamsey; repository mathvet/mathvet; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "索引无命中，随后实际目录树取到原日志，不能仅凭索引作负面结论。",
+      "result_count": 0,
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "743-P25",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector search",
+      "query": "CycleCliqueRamsey; repository openai/math; topn=5",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回 Challenge、config、docs、Basic、MainTheorem；据真实路径读取config。",
+      "result_count": 5,
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "743-P26",
+      "route": "代码、公开 AI 和社区",
+      "site": "web find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern CycleCliqueRamsey 〔私有记录编号：PR-000663〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://carlostoledo.co/reports/openai-math.html",
+      "note": "〔原始工具引用已私有留存〕 L373：REFUSED因13GiB OOM、896秒、build阶段；L422 F-338 是3099 traces按给定规则被排除的有限组件，非规则可靠性/整体归约证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P27",
+      "route": "代码、公开 AI 和社区",
+      "site": "web click",
+      "query": "click 〔原始工具引用已私有留存〕 link24 (EPaDay verification bundle) 〔私有记录编号：PR-000664〕",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://github.com/pw/erdosproblemaday-verification/tree/main/551/cycle-clique-refereed",
+      "note": "〔原始工具引用已私有留存〕 restricted URL；后由 GitHub connector 成功读取，不隐去该失败。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "743-P28",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/mathvet/mathvet/contents",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/mathvet/mathvet",
+      "note": "定位 〔私有材料定位已省略〕 目录，非完整验证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "743-P29",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "GET pw/erdosproblemaday-verification tree/main/551/cycle-clique-refereed",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/pw/erdosproblemaday-verification/tree/main/551/cycle-clique-refereed",
+      "note": "实际取得 README/bridge/replay/seats 等目录；web受限后成功fallback。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "743-P30",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET lean/ComparatorChallenges/CycleCliqueRamsey.json ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/ComparatorChallenges/CycleCliqueRamsey.json",
+      "note": "solution_module=Main；theorem_names=[OAI.CycleClique.thm_main]；definition_names=[]；标准三 permitted axioms；enable_nanoda=false。这些是配置，非运行结果。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P31",
+      "route": "代码、公开 AI 和社区",
+      "site": "web open",
+      "query": "open https://math.vet/openai-math/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.vet/openai-math/",
+      "note": "〔原始工具引用已私有留存〕：表版本4eaee875、pre-referee/model-assisted，需原JSON/日志核189。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P32",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/mathvet/mathvet/commits/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/mathvet/mathvet/commit/7d7438c4fc22862311d6f518dd2dc34144b8b8af",
+      "note": "固定审计仓库 7d7438c4fc22862311d6f518dd2dc34144b8b8af；date2026-11-25T12:31:12Z。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P33",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "GET mathvet/mathvet tree/main/dataset",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/mathvet/mathvet/tree/main/dataset",
+      "note": "该目录无本题原日志，后在 reviews 树找到。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "743-P34",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET 551/cycle-clique-refereed/README.md ref=main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/pw/erdosproblemaday-verification/blob/main/551/cycle-clique-refereed/README.md",
+      "note": "实际 blob c9a44a48e861763e008c500d3dd0f2da5b089c6e；报告openai1581d4cb、routeA182模块、Mathlib cache后fresh kernel；routeB未跑。之后固定bundle仓库提交。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P35",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "GET pw/erdosproblemaday-verification tree/main/551/cycle-clique-refereed/bridge",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/pw/erdosproblemaday-verification/tree/main/551/cycle-clique-refereed/bridge",
+      "note": "实际定位 Bridge551.lean、bridge.log、两项negative control。只取主桥/主日志，不声称独立运行controls。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "743-P36",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/mathvet/mathvet/git/trees/3e2931c6ca1fdb48b7e9f696b48e8ceb2444d819?recursive=1",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/mathvet/mathvet/tree/7d7438c4fc22862311d6f518dd2dc34144b8b8af/reviews",
+      "note": "reviews树未截断；仅筛本题文件、fidelity-table，未读取其他题内容。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "743-P37",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/pw/erdosproblemaday-verification/commits/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/pw/erdosproblemaday-verification/commit/423a263a8d5c903d94c461ed8b6fa33ea7f3463b",
+      "note": "实际固定bundle仓库 423a263a8d5c903d94c461ed8b6fa33ea7f3463b，date2026-11-26T10:33:49Z。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P38",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Ramsey.lean ref=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Ramsey.lean",
+      "note": "读取实际 graphRamsey 定义，与OpenAI是同一∀graph/补图/包含的Nat sInf；不是用名字相似代替目标核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P39",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET 〔私有材料定位已省略〕 ref=7d7438c4fc22862311d6f518dd2dc34144b8b8af 〔私有记录编号：PR-000665〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/mathvet/mathvet/blob/7d7438c4fc22862311d6f518dd2dc34144b8b8af/reviews/openai-math/fidelity-table.json",
+      "note": "实际 family189=full、comparator-sandboxed-pass；表upstream4eaee875，run原日志另用fd4；不能把投影表当新提交复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P40",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET 〔私有材料定位已省略〕 ref=7d7438c4fc22862311d6f518dd2dc34144b8b8af 〔私有记录编号：PR-000666〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/mathvet/mathvet/blob/7d7438c4fc22862311d6f518dd2dc34144b8b8af/reviews/openai-math/evidence/cloud/CycleCliqueRamsey.comparator.txt",
+      "note": "原日志upstreamfd4aeeb2…，2026-10-19 04:49–05:54，build Main成功、Lean default kernel accepts、exit0。虽然列nanoda版本，实际没有nanoda replay PASS行；不称双核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P41",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET 551/cycle-clique-refereed/bridge/Bridge551.lean ref=423a263a8d5c903d94c461ed8b6fa33ea7f3463b",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/pw/erdosproblemaday-verification/blob/423a263a8d5c903d94c461ed8b6fa33ea7f3463b/551/cycle-clique-refereed/bridge/Bridge551.lean",
+      "note": "实际桥拷贝FC90d18f666…的graphRamsey和目标，rw/rfl接OAI.main；sufficiently_large阈值4。源码有体，未本轮编译。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P42",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET 551/cycle-clique-refereed/bridge/bridge.log ref=423a263a8d5c903d94c461ed8b6fa33ea7f3463b",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/pw/erdosproblemaday-verification/blob/423a263a8d5c903d94c461ed8b6fa33ea7f3463b/551/cycle-clique-refereed/bridge/bridge.log",
+      "note": "作者保留日志两目标公理[propext, Classical.choice, Quot.sound]；读取日志不等于本轮复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P43",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/openai/math/contents/lean/OAI/Combinatorics/Ramsey?ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/tree/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/Ramsey",
+      "note": "实际 CycleClique 子树 SHA 均8a1d33c6c9f2aac5fd767db892433cf7c59cc427，故此整个目录在两pin字节同一；目录之外环境/config未由这项比较覆盖，亦不是重跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P44",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/openai/math/contents/lean/OAI/Combinatorics/Ramsey?ref=fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/tree/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/OAI/Combinatorics/Ramsey",
+      "note": "实际 CycleClique 子树 SHA 均8a1d33c6c9f2aac5fd767db892433cf7c59cc427，故此整个目录在两pin字节同一；目录之外环境/config未由这项比较覆盖，亦不是重跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P45",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地复用固定来源",
+      "query": "复用 p193_c2_1/p193_c2_2：FC ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8 的 lean-toolchain/lake-manifest.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lake-manifest.json",
+      "note": "前题本轮已实际取得同一固定提交：Lean4.33.1、mathlib0df444a360eaa60ab8c11dca51a86af692955474；与OAI环境不同，所以第三方桥只导入拷贝，不是FC常量。",
+      "shared_with": [
+        "QX-P-000193"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "743-P46",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "GET Mathlib/Combinatorics/SimpleGraph/Copy.lean ref=d13f23b723b8a846827a245b89c10fc7d3f11612",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/leanprover-community/mathlib4/blob/d13f23b723b8a846827a245b89c10fc7d3f11612/Mathlib/Combinatorics/SimpleGraph/Copy.lean",
+      "locator": "Copy L84–87; IsContained L239; ⊑ L241",
+      "note": "实际依赖定义为 injective graph hom，不要求诱导副图；排除了把 ordinary Ramsey 改成 induced Ramsey 的语义风险。全文取得，仅定义/相关说明静态阅读，未build。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "汇总审校/本地固定主稿与Lean入口",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000667〕",
+      "outcome": "原文已阅且同题",
+      "note": "一次正则定位及随后局部正文读取；确认稿内k=m−1、a=n−1，而t为最大全团阶，不是n−1。42对(k,t)是结构归约参数；3099是参数化路径模式，不是直接穷举原图或染色。读02的独立集删除短证，未把这次局部读取记为全文数学认证。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/02-reduction.tex",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "独立数学审查/本地",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000648〕",
+      "outcome": "原文已阅且同题",
+      "note": "独立proof代理完整读取当前卡，核量词、例外、标准下界和有限反例验收。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "独立数学审查/GitHub固定目录",
+      "query": "fetch openai/math contents preprints/Cycle-clique-Ramsey-numbers-September-25-2026、build及build/sections @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "url": "https://api.github.com/repos/openai/math/contents/preprints/Cycle-clique-Ramsey-numbers-September-25-2026?ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际读取固定目录清单及精确TeX文件名，随后分别fetch_file读取全文；目录本身不是证明。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "独立数学审查/GitHub固定TeX",
+      "query": "fetch_file 01-introduction.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/01-introduction.tex",
+      "outcome": "原文已阅且同题",
+      "note": "完整该分节实际读取；Git blob=1ef9b8a5a4505556842a5e21a05f4779e2fbd924。对应最小反例、分层/转路大团引理、小参数与模式覆盖分节逐步核；未把本次七节审阅冒称所有packing/growth/有限排除规则已由本代理核完。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "独立数学审查/GitHub固定TeX",
+      "query": "fetch_file 02-reduction.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/02-reduction.tex",
+      "outcome": "原文已阅且同题",
+      "note": "完整该分节实际读取；Git blob=b6d597295580bd533e9af0935ce3473fa5a9067d。对应最小反例、分层/转路大团引理、小参数与模式覆盖分节逐步核；未把本次七节审阅冒称所有packing/growth/有限排除规则已由本代理核完。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "独立数学审查/GitHub固定TeX",
+      "query": "fetch_file 03-clique-layers.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/03-clique-layers.tex",
+      "outcome": "原文已阅且同题",
+      "note": "完整该分节实际读取；Git blob=988e93891e00b5d9098b779c53a2b6abdf88e6d3。对应最小反例、分层/转路大团引理、小参数与模式覆盖分节逐步核；未把本次七节审阅冒称所有packing/growth/有限排除规则已由本代理核完。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "独立数学审查/GitHub固定TeX",
+      "query": "fetch_file 03-clique-rotations.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/03-clique-rotations.tex",
+      "outcome": "原文已阅且同题",
+      "note": "完整该分节实际读取；Git blob=31a75c31be8eb502ab51a0bf6c62458e8ea0bdb4。对应最小反例、分层/转路大团引理、小参数与模式覆盖分节逐步核；未把本次七节审阅冒称所有packing/growth/有限排除规则已由本代理核完。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "独立数学审查/GitHub固定TeX",
+      "query": "fetch_file 04-small.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/04-small.tex",
+      "outcome": "原文已阅且同题",
+      "note": "完整该分节实际读取；Git blob=58f712a410b565c9fe504f020061d0cf770c9c6b。对应最小反例、分层/转路大团引理、小参数与模式覆盖分节逐步核；未把本次七节审阅冒称所有packing/growth/有限排除规则已由本代理核完。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "独立数学审查/GitHub固定TeX",
+      "query": "fetch_file 09-finite-patterns.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/09-finite-patterns.tex",
+      "outcome": "原文已阅且同题",
+      "note": "完整该分节实际读取；Git blob=cb6239ede332e4b12375dc5e4db234465b5935ee。对应最小反例、分层/转路大团引理、小参数与模式覆盖分节逐步核；未把本次七节审阅冒称所有packing/growth/有限排除规则已由本代理核完。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "独立数学审查/GitHub固定TeX",
+      "query": "fetch_file 09-finite-results.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/sections/09-finite-results.tex",
+      "outcome": "原文已阅且同题",
+      "note": "完整该分节实际读取；Git blob=66f15350a206a658a167b6c420cbf598c9ebf468。对应最小反例、分层/转路大团引理、小参数与模式覆盖分节逐步核；未把本次七节审阅冒称所有packing/growth/有限排除规则已由本代理核完。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "独立数学审查/本地固定Lean源",
+      "query": "读取743_source/Basic.lean、MainTheorem.lean、FiniteRange.lean",
+      "outcome": "原文已阅且同题",
+      "note": "实际静态核目标、sInf非空见证、自然数减法及整数toNat桥；未构建。Mathlib Copy的锁定源语义由public实际读取另记，不冒称此次本地已取得。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本地Python整数/组合DP",
+      "query": "执行 〔私有材料定位已省略〕 〔私有记录编号：PR-000668〕",
+      "outcome": "原文已阅且同题",
+      "note": "独立自写正整数组合反转规范+多重集背包DP核42对3099模式；另核7个明确图、K4带弦C4，以及仅N=6全部32768标号图的R33边界。没有调用作者两份排除checker；清单计数不等于排除证明。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立源完整性核验",
+      "site": "本地UTF8/Git blob与SHA256",
+      "query": "把七份connector原始TeX内容精确写入743_paper/build/sections并核Git blob SHA及SHA256，记录743_proof_sources.json",
+      "outcome": "原文已阅且同题",
+      "note": "七份字节均与固定GitHub blob元数据匹配；不是数学证明或Lean构建。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E743-A1",
+      "url": "https://static.renyi.hu/~p_erdos/1978-18.pdf",
+      "locator": "原刊p53定义/作者/年份，p54简单无向图约定，§7 Questions p64(i)；最后页已实际渲染目视",
+      "version": "P.Erdős–R.J.Faudree–C.C.Rousseau–R.H.Schelp, On Cycle-Complete Graph Ramsey Numbers, Journal of Graph Theory2(1)(1978)53–64；DOI10.1002/jgt.3190020107",
+      "subquestions": [
+        "原题与历史出处",
+        "定义与小边界",
+        "最小圈长与最小值附问"
+      ],
+      "role": "最早可核实出处",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "取得12页原刊并读指定段，p64图像实际可见而非占位，确认原猜想m≥n；原段未显写(3,3)例外，现卡按现代KLS/EP补此必要例外，因此不把原段逐字谓词标成完全同一。最早本轮可核原始提出1978，四作者明确；不是CB快照2026、不是2019KLS首提。§5–6的r(≤C_m,K_n)允许某一短圈，不是本卡恰长C_m；未通审该旧文全部证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E743-A2",
+      "url": "https://people.maths.ox.ac.uk/keevash/papers/ccr-journal.pdf",
+      "locator": "§1 Theorems1.1–1.2，印刷p279；§6.5与§7印刷pp299–300；ref[21]/[40]",
+      "version": "Keevash–Long–Skokan, Cycle-Complete Ramsey Numbers, IMRN2021(1)；所读正式PDF自印pp277–302，AdvanceAccess2019-07-10，DOI10.1093/imrn/rnz119；arXiv1807.06376v1=2018-07-17",
+      "subquestions": [
+        "主问题",
+        "已发表精确参数范围",
+        "有限余项与DECIDABLE",
+        "原题与历史出处",
+        "标准下界与有限反例目标",
+        "最小圈长与最小值附问"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "已取得完整稿",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "原正式主定理：∃绝对C≥1，∀n≥3及圈长k≥C log₂n/log₂log₂n，精确R=(k−1)(n−1)+1；显然在k≥n域覆盖充分大n，再每个小n只留有限k，故剩有限对，但没完成那些对的检验。§7明确C未显式计算，‘小于20’仅可望经更多工作获得，绝不能取C=20。实际读定义/定理、证明路线、§6.5末段归纳及结论，未全审稳定性/吸收链。Thm1.2固定ε、n充分大、k≤(1−ε)log n/loglog n给超线性下界，通常k<n，非本猜想反例。OUP官方检索页码275–300与本PDF277–302不同，按所读PDF定位保留差异，未判定为数学勘误。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "not_read",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E743-A3",
+      "url": "https://arxiv.org/pdf/math/0404501",
+      "locator": "pp1–2，Theorem1及引言",
+      "version": "V.Nikiforov, The Cycle-Complete graph Ramsey numbers, arXiv math/0404501v1，2004-04-27；CPC14(2005)349–370（期刊书目由KLSref[40]核）",
+      "subquestions": [
+        "已发表精确参数范围",
+        "原题与历史出处"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "已取得完整稿",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "实际读取23页原稿的pp1–2，Thm1写团阶r≥4、圈长p≥4r+2；引言亦说明已知r=3边界，故常用简写n≥3,k≥4n+2应注明n=3另由旧结果。本文是精确等式的部分参数区，不是仅常数倍估计，也不是全部k≥n。未通审saw及引理证明。PDF内部June20,2018与官方v1提交2004不同，不把内部日期冒作新版本。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "not_read",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E743-A4",
+      "url": "https://www.erdosproblems.com/551",
+      "locator": "官方主页面及/latex/551检索缓存的题面、归属与DECIDABLE说明；原页直开403",
+      "version": "本轮2026-11-27取到约5个月前索引缓存；非当前主URL直开正文",
+      "subquestions": [
+        "主问题",
+        "定义与小边界",
+        "有限余项与DECIDABLE",
+        "最小圈长与最小值附问"
+      ],
+      "role": "重述",
+      "publication": "个人索引",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "缓存题面恰k≥n≥3排(3,3)，与卡主式一致；缓存DECIDABLE只表示缩为有限检查，不等于PROVED，也不是本轮当前状态确证。原URL403、latex restricted，实际访问层级在queries留存；新的OpenAI完整声明已另交root/public/proof核，不能用旧缓存覆盖新证据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E743-R1",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/build/main.tex",
+      "locator": "完整build TeX；§§2–9及Appendix；根主稿Theorem1.1范围另见proof审校",
+      "version": "OpenAI，Cycle--clique Ramsey numbers，稿面日期2026-09-25；固定3344da59991ed94f9ba711217b29c1d760badfa6，main blob a6f77dbf056d645440ba6b836fff56aff4d74669；PDF目录blob a17d31158e920c2266722728e778b37c986601bb但本轮PDF web访问失败，以完整TeX核",
+      "subquestions": [
+        "主问题",
+        "新完整声明的数学归约",
+        "本轮有限模式计算",
+        "定义与小边界",
+        "标准下界与有限反例目标"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "claimant": "OpenAI（机构作者，未猜测内部模型名）",
+      "note": "主稿声称全m≥n≥3、(m,n)≠(3,3)公式并例外6，k=m−1仅内部符号。Root核05独立数≤2的Hamilton/shortening与size test，06最优path-system/禁长度区间/球分离，07代表替换和短外路，08 t≥9三配置排除，09 extension/required-path/继承/packing/新增边或1顶点的可靠性，及两程序相应实现；proof线核02–04及pattern归约。没有把未知KLS常数C当显式数字，42对结构归约是新稿自身的。图只读源码/图注；本轮未完整构建Lean或审完其依赖公理闭包。主数学状态建议完整证明或反例声明待核、接收端二审，不自动闭合。 2026-09-25是稿面署名日期，非本轮已核首次公开时间；EPaDay报告目录2026-10-06首次公开，本轮未独立取得最早commit时间。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E743-R2",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Cycle-clique-Ramsey-numbers-September-25-2026/verification/code/verify.py",
+      "locator": "verify.py完整域；original_checker.py/independent_checker.py；预存data与本轮743_full_check/run.json、stdout、trace；核心实际日志也写入本审计供嵌入回执",
+      "version": "固定3344da59991ed94f9ba711217b29c1d760badfa6；verify blob8f5e3f4cbfced00ed78147657c47c89c833cafad，original aced74b868ee979f8ecbaec2ac879c647ab4876c，independent235d9dce705b50e1d85a35308c801cae84bdb6c6；本轮2026-11-27 Asia/Shanghai运行",
+      "subquestions": [
+        "主问题",
+        "本轮有限模式计算"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "已取得完整稿",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "commit": "3344da59991ed94f9ba711217b29c1d760badfa6",
+        "theorem": "Python有限阶段：5≤k≤17，max(3,floor(k/2))≤t≤min(k,8)，42参数对，3099模式；不是Lean theorem",
+        "toolchain": "Python3.12.14，Linux6.18.57 x86_64/glibc2.41，stdlib；子进程-I，不用-O",
+        "command": "python3 verification/code/verify.py --output 〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material",
+        "cache": "固定作者文件按Git blob核验；4253650-byte原始traces在运行前已独立从公共raw下载。两检查器均全量重新运行。",
+        "axioms": "不适用：本项为Python整数/有限集合计算，不是Lean内核或#print axioms；形式化他人报告另列。"
+      },
+      "note": "作者提供的两种实现均本轮执行，无修改；original26.501366253秒、independent66.291443543秒，均exit0、stderr空。两stdout SHA256=4cc194d9611dc742e09672bb9cd714ae0bb5005fdd52187d002f9db383ddb285，逐字等于原expected。wrapper确认42对、3099唯一模式、0未决，3049 class1+50 class2；generated trace SHA256=a5646def0211a8b4393167d76aa09c30647fda73043756a362ede9773d3cab39=预存原文件。run.json SHA2567dc0849add04787369ea3f4e747bbc12cea6eb581ecc904d41640f0750addc71。trace不是额外独立minimal validator的证明对象；两个程序的结论仍依赖§9推理规则与全题结构归约，本项不单独证明Ramsey原题。 完整13行stdout按k/未决/class1/class2：5 0 4 3；6 0 8 6；7 0 21 5；8 0 30 4；9 0 57 6；10 0 71 4；11 0 134 8；12 0 161 3；13 0 305 6；14 0 315 0；15 0 597 4；16 0 468 0；17 0 878 1。这些class计数按内部k=m−1分组，不是原题全部参数或原图个数。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E743-P1",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0143.json",
+      "locator": "statement; counterexample; status_observation; provenance",
+      "version": "commit 8d494791ace5894b860585d67ba8e69dbfed6376; blob 7b2d71d825763fcc451651ea9a788ca4e63d641c; status observation 2026-07-23",
+      "subquestions": [
+        "标准下界与有限反例目标",
+        "原题与历史出处",
+        "定义与小边界"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "实际 statement 是 k≥n≥3 except33。finite=true 指给出一对参数及 N=(k−1)(n−1)+1 顶点图可形成有限反例；不等于已有反例、全参数已算完或旧open状态对新声明的否证。 本项是策展数据的逐项读取和反例方向核对，不是其提供了证明关键步骤。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E743-P2",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/551.lean",
+      "locator": "Erdos551.erdos_551; erdos_551.variants.sufficiently_large; graphRamsey definition in FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Ramsey.lean",
+      "version": "FC ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8; 551 blob fd0b241a4b875c23359fba0d479bf919aa61431e; Ramsey blob9ad9e73d898e9b0cca1db96f1c537466bc07f385",
+      "subquestions": [
+        "主问题",
+        "形式化与第三方验证",
+        "有限余项与DECIDABLE"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "rerun": {
+        "commit": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+        "theorem": "Erdos551.erdos_551",
+        "toolchain": "Lean v4.33.1; mathlib0df444a360eaa60ab8c11dca51a86af692955474（本轮同固定提交来源复用）",
+        "command": "未运行"
+      },
+      "note": "两 theorem 均 sorry；充分大版本的 research solved 是数学状态标签，不是该Lean文件内证明。graphRamsey 实际用∀SimpleGraph(Fin N)的普通副图或补图副图之 sInf。旧open不能压过9月全题新声明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E743-P3",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/Ramsey/CycleClique/MainTheorem.lean",
+      "locator": "Basic RamseyProperty/cycleCliqueRamsey; MainTheorem.thm_main; FiniteRange.main/ramsey_upper/reduced_counterexample_impossible; ComparatorChallenges/CycleCliqueRamsey.{lean,json}",
+      "version": "OAI 3344da59991ed94f9ba711217b29c1d760badfa6; MainTheorem blobd88afce3904260ef999b3928fbc43fd77286bdb4; Basic blob51967831f1a3949f51daf24f2c0090dfbd7fb67d; FiniteRange blob01295342c074fb947fe1e4f9da65e4ae9083b8b4",
+      "subquestions": [
+        "主问题",
+        "形式化与第三方验证",
+        "定义与小边界",
+        "新完整声明的数学归约"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "公开声称",
+      "claimant": "OpenAI",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "rerun": {
+        "commit": "3344da59991ed94f9ba711217b29c1d760badfa6",
+        "theorem": "OAI.CycleClique.thm_main",
+        "toolchain": "Lean v4.34.1; mathlib d13f23b723b8a846827a245b89c10fc7d3f11612; current manifest59packages",
+        "command": "本轮未执行 Lean/lake/Comparator/nanoda/#print axioms",
+        "axioms": "配置允许 propext/Quot.sound/Classical.choice；配置不是实际闭包审计；本轮仅静态关键源码"
+      },
+      "note": "主定理有体且整数toNat受m≥n≥3限制；cycleCliqueRamsey是全有限图普通包含性质的Nat sInf。Mathlib固定Copy.lean实读：⊑是injective hom的非诱导copy。FiniteRange上界给非空见证，再sInf_mem接下界，未见空集inf漏洞。所有42参数对被 finite_range_verified调用；本轮未遍读182/443模块及所有证书。挑战题面sorry与实际有体MainTheorem分离；Main另含Construction路线。Comparator配置以Main为入口、目标thm_main、definition_names=[]、enable_nanoda=false。 2026-09-25是稿面署名日期，非本轮已核首次公开时间；EPaDay报告目录2026-10-06首次公开，本轮未独立取得最早commit时间。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E743-P4",
+      "url": "https://github.com/mathvet/mathvet/blob/7d7438c4fc22862311d6f518dd2dc34144b8b8af/reviews/openai-math/evidence/cloud/CycleCliqueRamsey.comparator.txt",
+      "locator": "CycleCliqueRamsey comparator start/end; Main build; Lean default kernel accepts; family189 row in fidelity-table.json",
+      "version": "MathVet repo 7d7438c4fc22862311d6f518dd2dc34144b8b8af; log blobd3ea6354d61422435b6abb8bb82397c103f74dfc; actual run2026-10-19 on OAI fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+      "subquestions": [
+        "形式化与第三方验证"
+      ],
+      "role": "形式化",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "公开声称",
+      "claimant": "MathVet",
+      "claim_date": "2026-10-19",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "rerun": {
+        "commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+        "theorem": "OAI.CycleClique.thm_main",
+        "toolchain": "reported Lean4.34.1; Comparator ca04cfc; lean4export v4.34.0",
+        "log_url": "https://github.com/mathvet/mathvet/blob/7d7438c4fc22862311d6f518dd2dc34144b8b8af/reviews/openai-math/evidence/cloud/CycleCliqueRamsey.comparator.txt",
+        "command": "他人日志：Comparator build+export+Lean default kernel；本轮未运行"
+      },
+      "note": "实际日志报告Main build成功、Lean default kernel接受、exit0。虽环境头列nanoda版本，未见运行nanoda接受行，不称双核通过。当前fidelity表upstream4eaee875、verdict full、pre-referee/model-assisted；它不是该新pin的一次新日志。我们实际比较fd4与3344的CycleClique子树SHA相同8a1d33c6c9f2aac5fd767db892433cf7c59cc427，仅证明该目录字节同一，目录外配置/环境未由此全部比对。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E743-P5",
+      "url": "https://www.erdosproblemaday.com/day/551-openai-cycle-clique-ramsey-refereed",
+      "locator": "Lean replay paragraphs; Formal Conjectures bridge; verification bundle README/bridge/Bridge551.lean/bridge.log",
+      "version": "report2026-10-20/21; source says OAI1581d4cb and FC90d18f666eb98adec4eee4d12f1d37e30b4eb204; bundle repo 423a263a8d5c903d94c461ed8b6fa33ea7f3463b",
+      "subquestions": [
+        "形式化与第三方验证"
+      ],
+      "role": "形式化",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "公开声称",
+      "claimant": "Erdős Problem a Day（Patrick White/Claude；文中声明全部审读席位Claude Opus5.5）",
+      "claim_date": "2026-10-20",
+      "review_status": "仅核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "rerun": {
+        "commit": "1581d4cb（报告的OpenAI源短SHA）；bundle423a263a8d5c903d94c461ed8b6fa33ea7f3463b",
+        "theorem": "OAI.CycleClique.thm_main; Bridge551.Erdos551.erdos_551",
+        "toolchain": "reported Lean4.34.1; Mathlibd13f23b7",
+        "command": "他人报告182-module routeA replay、pp.all匹配、leanchecker --fresh；本轮未运行",
+        "log_url": "https://github.com/pw/erdosproblemaday-verification/blob/423a263a8d5c903d94c461ed8b6fa33ea7f3463b/551/cycle-clique-refereed/bridge/bridge.log",
+        "axioms": "所读桥日志报告 propext, Classical.choice, Quot.sound；fresh全日志本轮未取"
+      },
+      "note": "原页与bundle README实读；报告routeA182模块，明确未replay另一Construction routeB。实际Bridge551源码使用FC定义与两目标拷贝，rw/rfl接OAI.main，阈值4给充分大版本；本轮静态与当前FC目标语义一致。因为工具链不同，该桥不导入FC常量，不能记为FC环境已通过。桥日志已读但未本轮复跑；所有AI审读席位非人类全文referee。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E743-P6",
+      "url": "https://carlostoledo.co/reports/openai-math.html",
+      "locator": "§4 CycleCliqueRamsey family189 REFUSED; §5 F-338 finite component",
+      "version": "audit pin fd4aeeb2; initial2026-10-10; current report read2026-11-27",
+      "subquestions": [
+        "形式化与第三方验证",
+        "本轮有限模式计算"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "claimant": "Carlos Toledo / cert-machine",
+      "review_status": "已读未核关键步骤",
+      "note": "本题形式化运行原报告为REFUSED，13GiB内存上限在build阶段896秒触发OOM；不是数学反驳，也没有本题双核PASS。另F-338宣称独立检查3099 traces按论文给定规则排除所有模式，明确不验证推理规则数学可靠性或把全题归约到模式的论证。本轮只读报告，未读其decider源码、未独立运行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E743-M1",
+      "url": "urn:qunxing:private-material",
+      "locator": "独立多重集DP清单计数；7个明确图、K4普通C4、N6全图例外核查；关键结果完整写入本回执",
+      "version": "本轮2026-11-27；代码SHA256=88ad6732c495a03d1acdb40edf287cc9055f649dca9705b66b30adf0d77ff0d1；结果SHA256=fbea5d75827d881ec88c563cc2e00657126abfcc27997e7a674a5d1a244dd008",
+      "subquestions": [
+        "定义与小边界",
+        "标准下界与有限反例目标",
+        "本轮有限模式计算"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "已取得完整稿",
+      "review_status": "本轮独立数学核对",
+      "note": "不调用作者patternChoices或排除checker的独立多重集DP：42对、3099模式，按内部k=5..17计数依次7,14,26,34,63,75,142,164,311,315,601,468,879。只验证清单覆盖计数，非排除规则。7个明确图最大15顶点，未遍历该阶全部图；唯全图穷举N6=32768，用于排除的R33边界：triangle_only5789，independent_triple_only5789，both21190，neither0。没有Lean运行；本回执保留边界和计数，不依赖临时JSON才可理解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000215",
+      "other_card_rev": "a0ad14642b0f3e67",
+      "relation": "仅相似",
+      "reason": "215固定圈长4、n无界，要求统一R(C4,K_n)≤C n^(2−c)的幂次改进；743仅k≥n域的精确等式，取k=4只涉及n=3,4，不给215的渐近界，亦不能由215推出743。即使两者文献涉及EFRS78也不等价。",
+      "positions": {
+        "self": "743_task.json当前完整meta/text，rev190a121f680a3a8d；题面/acceptance k≥n≥3除3,3",
+        "other": "固定73290369a8dcc632e25e555aec525565ea6e08f8的problems/000/QX-P-000215.meta.json与.text.md完整读，题面/acceptance；meta blob46dfb95615fb0427caeee624896450a2308ec55a，text blobd6b8f8fba259cce5e5bb21af12766a8f399ff1b3"
+      },
+      "note": "仅查重排除，不另做215查新；无合并建议。对编号QX-P-000215__QX-P-000743，小号215拥有后续统一关系记录责任。220/1711等索引误中未完整读，不捏造额外关系。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补声明",
+      "field": "相关进展与声称解决、ai_claims、novelty",
+      "old": "CB2026-07-23 open；2026-11-20无公认解决/否定，出现声明统一记DISPUTED。",
+      "new": "登记OpenAI稿面日期2026-09-25的完整全题证明声明、固定3344…主稿/Lean、关键数学核对、本轮42对3099模式双Python检查器全量复跑以及两份第三方形式化报告；整体完整声明待核，转接收端二审。稿面日期不冒作已核首次公开日期。",
+      "reason": "旧策展标签、FC占位或泛化的DISPUTED不能覆盖已找到的具体完整声明；必须分别记录论文、数学审读、计算复跑与形式化报告层级。",
+      "evidence_ids": [
+        "E743-R1",
+        "E743-R2",
+        "E743-P1",
+        "E743-P3",
+        "E743-P4",
+        "E743-P5"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "informal_status、主问题状态、search_summary",
+      "new": "从旧partial/no full hit更新为完整证明或反例声明待核，保留已发表参数范围为独立子项；接收端完成二审后再决定正式闭合。",
+      "reason": "本轮有全参数等价声明及实质验证，不能继续仅写部分；也不能把Python或他人Lean日志当本轮全题内核认证。主数学对象/量词不变，此次补来源和状态不自动要求新rev。",
+      "evidence_ids": [
+        "E743-R1",
+        "E743-R2",
+        "E743-P3",
+        "E743-P4",
+        "E743-P5"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "proposer、first_published、sources",
+      "old": "提出者见CB；首次发布为CB2026-07-23快照。",
+      "new": "Erdős、Faudree、Rousseau、Schelp，1978《On Cycle-Complete Graph Ramsey Numbers》§7 p64(i)，JGT2(1)53–64，DOI10.1002/jgt.3190020107；CB单列2026状态观察。",
+      "reason": "原刊题段和m≥n符号已真实页图核验；现代排(3,3)例外有KLS/EP依据。KLS2018/2019/2021三个日期不混为猜想首提。",
+      "evidence_ids": [
+        "E743-A1",
+        "E743-A2",
+        "E743-A4",
+        "E743-P1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已发表结果、IMRN2019(rnz119)注记",
+      "old": "源IMRN2019(rnz119)，未写实际条件。",
+      "new": "写KLS Thm1.1：n≥3、k≥C log₂n/log₂log₂n时精确公式，C为绝对常数且未显式计算；因此k≥n域剩有限余项，非已完成有限检查。先行2019-07-10、卷期2021；按所读PDF页码定位。",
+      "reason": "不能省略参数区，不能漏掉loglog或误加n因子，不能把C<20展望当具体阈值。新稿42内部模式参数归约另列，非KLS未知常数余项表。",
+      "evidence_ids": [
+        "E743-A2",
+        "E743-A3",
+        "E743-R1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "形式化表述、验证建议、CB反例解释",
+      "old": "形式化只写圈对团精确公式；建议n≤10穷举/数值。",
+      "new": "明确图有限简单、圈为恰长非诱导copy，补图团等价独立集；反例须合法参数及恰N=(k−1)(n−1)+1顶点的完整图、无C_k与α<n验证。有限小例、作者3099模式检查与Lean闭包各自列方法/命令/范围。",
+      "reason": "仅n≤10仍有无界k；即使同时限k≤10，N最高82，不能暗示已经穷尽所有图。N−1的标准构造只证下界。本回执始终绑定190a121f680a3a8d；只改人话说明或验证建议不必改版，但若接收端据本项补写正式题面/形式化表述、定义或验收，须生成新card_rev并重核受影响路线，不能以原意相同为由沿用旧哈希。",
+      "evidence_ids": [
+        "E743-P1",
+        "E743-R1",
+        "E743-R2",
+        "E743-P3"
+      ],
+      "small_case_check": "R(C3,K3)=6而公式值5，解释排除的必要性；明确N−1块图无C_k/无n独立集，不能当作N顶点反例。实际其他小例以proof日志为准。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "formal_status、third_party_verification",
+      "new": "OpenAI关键源码已静态检查未Lean复跑；MathVet与EPaDay仅他人声称已形式化验证，保留历史提交、当前同子树及外部依赖未全比对。cert-machine本题OOM只记资源拒收；Python实跑另列且不标本轮形式化通过。",
+      "reason": "proof依赖闭包、目标与定义、配置允许公理、实际公理输出、不同路线和不同版本不能混同。FC里的两个sorry不是OpenAI主证明的sorry。",
+      "evidence_ids": [
+        "E743-P2",
+        "E743-P3",
+        "E743-P4",
+        "E743-P5",
+        "E743-P6",
+        "E743-R2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "近期文献线索与查重关系",
+      "new": "2611.11187、2610.29813只保留访问失败/镜像索引的范围排除；固定奇圈下界、三色/二部圈和原题k≥n精确值分开。QX-P-000215仅相似不合并。",
+      "reason": "215为固定C4、团阶n无界的幂次上界改进；本题取k=4只涵盖n=3,4。不能凭cycle关键字或共同EFRS78文献迁移状态。新完整声明也不自动解决k<n和最优圈长附问。",
+      "evidence_ids": [
+        "E743-A2",
+        "E743-R1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "其他：接收端二审",
+      "reason": "完整稿、语义相符形式化目标与关键数学审查已取得，有限双检查器已独立全量重跑，但整题仍须按包规审定。",
+      "next_step": "以固定3344…为锚复核结构归约覆盖、有限推理规则的数学可靠性、程序实现与总体拼接；不能仅凭3099模式通过闭合全题。决定正式状态时保留本回执及原190a121f680a3a8d。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮没有Lean/lake/Comparator/nanoda/fresh内核或公理闭包实跑；第三方历史版本只部分建立与当前的字节对应。",
+      "next_step": "若提升至本轮独立形式化通过，在固定提交和完整依赖闭包下重新构建目标，审定义、实际公理和独立内核日志；核MathVet/EPaDay历史pin与当前目录外配置/依赖，别把FC定义拷贝桥当FC实际工程通过。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "KLS旧文只核指定段、常数未显式；1978首提页已目视，但旧文与Nikiforov全证明未通审。",
+      "next_step": "如需旧结果独立认证再补稳定性/吸收及saw依赖；不把C<20展望或有限余项存在性当已完成验证。OUP与作者PDF页码差保留来源信息，无需据此猜测数学勘误。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "旧卡2611.11187/2610.29813官方abs/html均Disabled，只取到三色/二部圈镜像索引；另2611.14160无已核定理段。",
+      "next_step": "后续若可读官方原文，再补精确范围；目前不将这些ID作为本题结果、反例或完整解决依据，不为它们延迟已取得的同题完整声明审查。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "190a121f680a3a8d",
+      "codes": {}
+    }
+  ]
+}

@@ -1,0 +1,2444 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000537",
+  "card_rev": "acf0dea7ebebf9fe",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-03"
+      ],
+      "parts": [
+        {
+          "subquestion": "a) 因子 ⇒ 乘积的正向",
+          "value": "partial",
+          "note": "经典有限产品判定归约在纯群语言下适用；本轮给出完整有效分离公式递归。该方向无需有限生成。这里只登记原题的一个已知方向，不新增主问题结案行；按工作流保留指定二审。"
+        },
+        {
+          "subquestion": "b) 因子 ⇒ 乘积的正向",
+          "value": "partial",
+          "note": "给出量词自由矩阵之否定 DNF、逐不等式选择坐标、由因子全称判定器调用存在句的有限算法，双向正确性已核。无需有限生成；不是简单理论交集，也没有证明反向。"
+        },
+        {
+          "subquestion": "a) 反向的非平凡 domain 因子子类",
+          "value": "partial",
+          "note": "KMR 作者稿 Theorem A、Corollary 1(1) 及 Artin v2 Fact 1.1(iv) 支持有限个非平凡 domain 因子的完整初等理论双向，解释中的参数以非空可定义范围消去。不能去掉 domain 条件，不能用这一 full-theory 解释证明 b) 反向。"
+        },
+        {
+          "subquestion": "a)、b) 反向的互素有界指数子类",
+          "value": "partial",
+          "note": "当两个因子指数分别整除互素 m,n 时，用 x^m=1 与 x^n=1 的无参数无量词定义有效归约，两个反向均成立。小例 C2×C3 与平凡因子已核；附加假设不可推广至一般有限生成直积。"
+        },
+        {
+          "subquestion": "a) 一般有限生成群的乘积 ⇒ 因子反向",
+          "value": "no_evidence_in_scope",
+          "note": "本轮没有一般反向完整证明或反例。因子虽有限生成，普通中心化子仍为G1×Z(G2)；即使中心平凡，任意指定参数也不能无说明地加入已知可判定纯理论。domain子类通过非空可定义且同理论的参数范围有效处理，不代表所有因子都可如此解释。"
+        },
+        {
+          "subquestion": "b) 一般有限生成群的全称理论乘积 ⇒ 因子反向",
+          "value": "no_evidence_in_scope",
+          "note": "本轮没有一般反向完整证明或反例。Th∀(G)⊆Th∀(Gi)只是真值对子群的保留，不能从可判定子集推出可判定超集；任意完整一阶解释不必保持全称片段。C2与C2²小例只否定理论交集捷径，二者理论都可判定，不是原问反例。互素有界指数是另列附加条件。"
+        },
+        {
+          "subquestion": "a)有限生成几乎可解子类",
+          "value": "partial",
+          "note": "Kourovka明确记录该子类由Noskov推出；原文主定理刻画为almost Abelian，有限生成和almost soluble条件不可删除。原文L_G常量约定已明示，本分工没有独立重证该定理及语言转换，不把它当b)或一般群结论。"
+        },
+        {
+          "subquestion": "统一分解判定问题与固定群理论问题的区分",
+          "value": "no_evidence_in_scope",
+          "note": "该官方摘要对应另一种算法输入与判定对象，本轮只作范围排除；它不是20.104任何一个方向的群反例。"
+        },
+        {
+          "subquestion": "公开代码与形式化命中的算法含义",
+          "value": "no_evidence_in_scope",
+          "note": "已查公开范围未取得20.104同题完整算法/证明证书。历史Zulip为项目讨论；两份近题Lean主声明含sorry且对象不同。必须核可计算语法编码和任意句子输入的统一判定过程，不能用Classical.propDecidable或作者编译标签替代。此结论仅限实际搜索和已读固定文件。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "statement_only",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/tadamcz/autoformalization-results/blob/2f3747e0233049f1695dbd725e42e1b19a6ec3ff/data/entries/kourovka-7.23.json"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "原问题为有限生成G=G1×G2，在纯群语言下分别问完整初等理论与全称理论可判定性的四个方向。本轮核两条因子到直积的有效正向归约，以及domain、互素有界指数等严格子类；一般a)反向和b)反向均未取得可验收的完整证明或具体反例。原册在列及有界检索阴性不是全球未解证明。Artin引文的旧进展说明有误，原20.104命题本身不因此被反驳。",
+      "evidence_ids": [
+        "0537-SA-01",
+        "0537-SA-02",
+        "0537-SA-03",
+        "0537-SA-04",
+        "0537-SA-05",
+        "0537-SA-06",
+        "0537-SA-07",
+        "E0537-MATH-FV",
+        "E0537-MATH-UNIV",
+        "E0537-MATH-COPRIME",
+        "E0537-MATH-REVERSE-BOUNDARY"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "a) 因子 ⇒ 乘积的正向",
+      "math_status": "部分进展",
+      "scope_note": "经典有限产品判定归约在纯群语言下适用；本轮给出完整有效分离公式递归。该方向无需有限生成。这里只登记原题的一个已知方向，不新增主问题结案行；按工作流保留指定二审。",
+      "evidence_ids": [
+        "E0537-MATH-FV",
+        "0537-SA-05"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "b) 因子 ⇒ 乘积的正向",
+      "math_status": "部分进展",
+      "scope_note": "给出量词自由矩阵之否定 DNF、逐不等式选择坐标、由因子全称判定器调用存在句的有限算法，双向正确性已核。无需有限生成；不是简单理论交集，也没有证明反向。",
+      "evidence_ids": [
+        "E0537-MATH-UNIV",
+        "E0537-MATH-SMALL"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "a) 反向的非平凡 domain 因子子类",
+      "math_status": "条件性结果",
+      "scope_note": "KMR 作者稿 Theorem A、Corollary 1(1) 及 Artin v2 Fact 1.1(iv) 支持有限个非平凡 domain 因子的完整初等理论双向，解释中的参数以非空可定义范围消去。不能去掉 domain 条件，不能用这一 full-theory 解释证明 b) 反向。",
+      "evidence_ids": [
+        "E0537-MATH-KMR",
+        "E0537-MATH-ARTIN",
+        "0537-SA-06",
+        "0537-SA-07",
+        "E0537-ROOT-KMR-PARAM"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "a)、b) 反向的互素有界指数子类",
+      "math_status": "条件性结果",
+      "scope_note": "当两个因子指数分别整除互素 m,n 时，用 x^m=1 与 x^n=1 的无参数无量词定义有效归约，两个反向均成立。小例 C2×C3 与平凡因子已核；附加假设不可推广至一般有限生成直积。",
+      "evidence_ids": [
+        "E0537-MATH-COPRIME"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "a) 一般有限生成群的乘积 ⇒ 因子反向",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "本轮没有一般反向完整证明或反例。因子虽有限生成，普通中心化子仍为G1×Z(G2)；即使中心平凡，任意指定参数也不能无说明地加入已知可判定纯理论。domain子类通过非空可定义且同理论的参数范围有效处理，不代表所有因子都可如此解释。",
+      "evidence_ids": [
+        "E0537-MATH-REVERSE-BOUNDARY",
+        "E0537-MATH-SMALL"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "b) 一般有限生成群的全称理论乘积 ⇒ 因子反向",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "本轮没有一般反向完整证明或反例。Th∀(G)⊆Th∀(Gi)只是真值对子群的保留，不能从可判定子集推出可判定超集；任意完整一阶解释不必保持全称片段。C2与C2²小例只否定理论交集捷径，二者理论都可判定，不是原问反例。互素有界指数是另列附加条件。",
+      "evidence_ids": [
+        "E0537-MATH-REVERSE-BOUNDARY",
+        "E0537-MATH-SMALL"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "a)有限生成几乎可解子类",
+      "math_status": "仅特例",
+      "scope_note": "Kourovka明确记录该子类由Noskov推出；原文主定理刻画为almost Abelian，有限生成和almost soluble条件不可删除。原文L_G常量约定已明示，本分工没有独立重证该定理及语言转换，不把它当b)或一般群结论。",
+      "evidence_ids": [
+        "0537-SA-01",
+        "0537-SA-04"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "统一分解判定问题与固定群理论问题的区分",
+      "math_status": "本次范围未发现确证",
+      "evidence_ids": [
+        "E0537-ROOT-PROFINITE-EXCLUDED"
+      ],
+      "scope_note": "该官方摘要对应另一种算法输入与判定对象，本轮只作范围排除；它不是20.104任何一个方向的群反例。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "公开代码与形式化命中的算法含义",
+      "math_status": "本次范围未发现确证",
+      "evidence_ids": [
+        "E537-CODE-ZULIP",
+        "E537-CODE-723",
+        "E537-CODE-1053"
+      ],
+      "scope_note": "已查公开范围未取得20.104同题完整算法/证明证书。历史Zulip为项目讨论；两份近题Lean主声明含sorry且对象不同。必须核可计算语法编码和任意句子输入的统一判定过程，不能用Classical.propDecidable或作者编译标签替代。此结论仅限实际搜索和已读固定文件。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "0537-SA-W1-1",
+      "route": "原题与出处",
+      "site": "system1_search_query",
+      "query": "\"Kourovka\" \"20.104\" decidable",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "本次合并检索未返回20.104的完整解决声明；原题后续直接读取官方原册。 recency=365天。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "0537-SA-W1-2",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "\"2507.21575\" Artin",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Artin论文机构v1及v2线索；以随后官方arXiv版本为准。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0537-SA-W1-3",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "Noskov \"elementary theory\" \"solvable\" 1983",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Noskov正式书目及英文原稿入口。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0537-SA-W2-1",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://arxiv.org/abs/2507.21575",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "官方arXiv版本史：v1为2025-07-29，当前v2为2026-10-29，Comments为To appear IJAC；未据此称正式刊发。",
+      "url": "https://arxiv.org/abs/2507.21575",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0537-SA-W2-2",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://arxiv.org/html/2507.21575v2",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "官方v2 HTML为DisabledError。",
+      "url": "https://arxiv.org/html/2507.21575v2",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0537-SA-W2-3",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://www.mathnet.ru/links/79ada0433650c13a49c82efa487e6b3a/im1412_eng.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "Noskov英文PDF首次直开超时；后续从检索ref取得全文。",
+      "url": "https://www.mathnet.ru/links/79ada0433650c13a49c82efa487e6b3a/im1412_eng.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0537-SA-W3-1",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://arxiv.org/pdf/2507.21575v2",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "官方v2 PDF网页工具DisabledError，后续urllib取得本地PDF。",
+      "url": "https://arxiv.org/pdf/2507.21575v2",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0537-SA-W3-2",
+      "route": "学术",
+      "site": "open",
+      "query": "open 〔原始工具引用已私有留存〕 〔私有记录编号：PR-001466〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "Noskov原稿全文文本可读；定点读p465定理、almost定义及§1.1–1.9，未通审后续证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0537-SA-W3-3",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "Feferman Vaught 1959 \"first order properties of products\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "找到FVM正式刊物、作者书目和扫描入口；后续作者实际链接为fm4715.pdf。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0537-SA-W4-1",
+      "route": "原题与出处",
+      "site": "open",
+      "query": "open https://arxiv.org/abs/1401.0300",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "官方当前版本仍v50，2026-11-02；读取版本史、AI标记说明和更新摘要。",
+      "url": "https://arxiv.org/abs/1401.0300",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0537-SA-W4-2",
+      "route": "原题与出处",
+      "site": "open",
+      "query": "open https://arxiv.org/pdf/1401.0300v50",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定v50全文已取得，先核封面/目录；20.104随后以find定位p174。",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0537-SA-W4-3",
+      "route": "原题与出处",
+      "site": "open",
+      "query": "open https://alglog.org/21tkt.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "alglog.org/21tkt.pdf返回502，不据此否定存在。",
+      "url": "https://alglog.org/21tkt.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0537-SA-W4-4",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://matwbn.icm.edu.pl/ksiazki/fm/fm47/fm4714.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "检索索引的fm4714.pdf网页403；随后使用作者书目链接的fm4715.pdf。",
+      "url": "https://matwbn.icm.edu.pl/ksiazki/fm/fm47/fm4714.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0537-SA-W5-1",
+      "route": "原题与出处",
+      "site": "find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=20.104 〔私有记录编号：PR-001467〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定v50：20.104在印刷p174/PDF P173，完整a/b双向、fg、Noskov注和Timoshenko署名；没有该题的解题标记或新评论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0537-SA-W5-2",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://virtualmath1.stanford.edu/~feferman/papers.html",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "Feferman作者书目第2项给正式引文和公开扫描链接。",
+      "url": "https://virtualmath1.stanford.edu/~feferman/papers.html",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0537-SA-W5-3",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://www.impan.pl/en/publishing-house/journals-and-series/fundamenta-mathematicae/all/47/1/94418/the-first-order-properties-of-products-of-algebraic-systems",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "IMPAN正式刊物书目确认Fundamenta Mathematicae47(1959),57–103及DOI。",
+      "url": "https://www.impan.pl/en/publishing-house/journals-and-series/fundamenta-mathematicae/all/47/1/94418/the-first-order-properties-of-products-of-algebraic-systems",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0537-SA-W6-1",
+      "route": "学术",
+      "site": "find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=download 〔私有记录编号：PR-001468〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "找到原刊官方下载按钮，后续单独点击。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0537-SA-W6-2",
+      "route": "学术",
+      "site": "click",
+      "query": "click 〔原始工具引用已私有留存〕 link_id=1 〔私有记录编号：PR-001469〕",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "作者实际链接fm4715.pdf在网页工具中403；随后本地HTTP200取得。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0537-SA-W7-1",
+      "route": "学术",
+      "site": "click",
+      "query": "click 〔原始工具引用已私有留存〕 link_id=67 〔私有记录编号：PR-001470〕",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "原刊官方下载按钮网页403；未绕过登录或付费。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0537-SA-W7-2",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "\"Kvaschuk\" \"Algebraic geometry over groups III\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中KMR作者原稿、正式Journal of Algebra条目和DOI。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0537-SA-W7-3",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "\"First-order aspects of Artin groups\" \"2026\" correction",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "近365天题名/更正定向检索命中作者和机构资料、2026-11-12报告；未取得该稿撤回或针对Fact1.1的勘误声明。 recency=365天。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0537-SA-W8-1",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://web.stevens.edu/algebraic/alexeim/Publications/All_files_temp/algeom3_final_89.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "KMR2002作者原稿26页可读；已阅§1.1语言/解释定义、TheoremA/CorA；定点证明随后find。",
+      "url": "https://web.stevens.edu/algebraic/alexeim/Publications/All_files_temp/algeom3_final_89.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0537-SA-W8-2",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://www.sciencedirect.com/science/article/pii/S0021869304004545",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "ScienceDirect正式刊物入口403；不能声称已比对刊发全文。",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0021869304004545",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0537-SA-W8-3",
+      "route": "原题与出处",
+      "site": "open",
+      "query": "open https://kourovkanotebookorg.wordpress.com",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "编辑官网最新页为2026-11-02更新，读取更新机制并定位独立更新文件。",
+      "url": "https://kourovkanotebookorg.wordpress.com",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0537-SA-W9-1",
+      "route": "学术",
+      "site": "find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=decidable 〔私有记录编号：PR-001471〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "KMR p17 Cor1明确有限domain直积的初等理论可判定性双向；正向援引FV。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0537-SA-W9-2",
+      "route": "学术",
+      "site": "find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=Proof of Theorem A 〔私有记录编号：PR-001472〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "已读KMR pp16–17 TheoremA证明的有限区分句与可定义参数集合；未将任意参数解释当无参数归约。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0537-SA-W9-3",
+      "route": "原题与出处",
+      "site": "click",
+      "query": "click 〔原始工具引用已私有留存〕 link_id=6 〔私有记录编号：PR-001473〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得2026-11独立更新文件39页；本题号随后全文find。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0537-SA-W9-4",
+      "route": "原题与出处",
+      "site": "open",
+      "query": "open https://arxiv.org/pdf/1401.0300v23",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得固定v23、20版2022原册，封面日期2022-02-07；题文随后find。",
+      "url": "https://arxiv.org/pdf/1401.0300v23",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0537-SA-W10-1",
+      "route": "原题与出处",
+      "site": "find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=20.104 〔私有记录编号：PR-001474〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "2022原册印刷p160/PDF P159的20.104与v50本题文及Noskov注一致。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0537-SA-W10-2",
+      "route": "原题与出处",
+      "site": "find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=20.104 〔私有记录编号：PR-001475〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "2026-11独立更新文件全文未匹配20.104；只认证该文件未列题号，不认证全球开放。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "0537-SA-W11-1",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "\"20.104\" \"decidable\" solution",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "近365天定点完整解词组未命中20.104的完整证明/反例。 recency=365天。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "0537-SA-W11-2",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "\"Noskov\" \"elementary theory\" \"correction\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "合并返回Noskov原文/书目及邻近题；没有同稿勘误命中，不称已穷尽。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "0537-SA-W11-3",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "\"Algebraic geometry over groups III\" erratum",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "命中KMR正式刊物和作者原稿；关于Tarski的其他论文争议不是本稿勘误，未采用。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "0537-SA-L34",
+      "route": "原题与出处",
+      "site": "本地文件检索",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-001476〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "没有找到此前Kourovka完整PDF/text缓存；仅有其他题号的旧JSON。按实际缺缓存补取固定原文，不把本包既有回执视为未查。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "0537-SA-L35",
+      "route": "学术",
+      "site": "Python urllib.request + pdftotext",
+      "query": "GET https://arxiv.org/pdf/2507.21575v2; timeout=25",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整PDF已取得并pdftotext；SHA256=7a3814aa4fca2d6027f14f437064af3385bd4d4f00f38a3a3da653f6f19bd7cf；实际读取深度见证据，下载不等于通读。",
+      "url": "https://arxiv.org/pdf/2507.21575v2",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0537-SA-L36",
+      "route": "学术",
+      "site": "Python urllib.request + pdftotext",
+      "query": "GET https://arxiv.org/pdf/2507.21575v1; timeout=25",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整PDF已取得并pdftotext；SHA256=11c0d1e09f466458280b1d6d91fdd6e9a42438e325d10369d2d14285ebd5011f；实际读取深度见证据，下载不等于通读。",
+      "url": "https://arxiv.org/pdf/2507.21575v1",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0537-SA-L37",
+      "route": "学术",
+      "site": "Python urllib.request + pdftotext",
+      "query": "GET https://www.mathnet.ru/links/79ada0433650c13a49c82efa487e6b3a/im1412_eng.pdf; timeout=25",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "实际下载失败：<HTTPError 503: 'Service Unavailable'>",
+      "url": "https://www.mathnet.ru/links/79ada0433650c13a49c82efa487e6b3a/im1412_eng.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0537-SA-L38",
+      "route": "原题与出处",
+      "site": "Python urllib.request + pdftotext",
+      "query": "GET https://arxiv.org/pdf/1401.0300v50; timeout=25",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整PDF已取得并pdftotext；SHA256=b7027dd8e29cc5b187304f4bb0f3bddb30839089c44967f5fadaa4c0e5e60dc7；实际读取深度见证据，下载不等于通读。",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0537-SA-L39",
+      "route": "学术",
+      "site": "Python urllib.request + pdftotext",
+      "query": "GET https://matwbn.icm.edu.pl/ksiazki/fm/fm47/fm4715.pdf; timeout=25",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整PDF已取得并pdftotext；SHA256=2c504c89902fb91ceecdd3a12243b31aa15481b9195c894a693cd1b0a259d1a7；实际读取深度见证据，下载不等于通读。",
+      "url": "https://matwbn.icm.edu.pl/ksiazki/fm/fm47/fm4715.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0537-SA-L40",
+      "route": "学术",
+      "site": "Python urllib.request + pdftotext",
+      "query": "GET https://web.stevens.edu/algebraic/alexeim/Publications/All_files_temp/algeom3_final_89.pdf; timeout=20",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整PDF已取得并pdftotext；SHA256=c145c975fe175ff7b8729458c7cf13ebdefbf7cc7379a99144bf4e978c5b47f1；实际读取深度见证据，下载不等于通读。",
+      "url": "https://web.stevens.edu/algebraic/alexeim/Publications/All_files_temp/algeom3_final_89.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0537-SA-L41",
+      "route": "学术",
+      "site": "本地官方PDF文本",
+      "query": "read Artin_v1.txt / Artin_v2.txt: Fact1.1 on p2; v2 pp1–4 and references[38]; compare exact Fact1.1 blocks",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "两版(iv)均是domain子类的双向，不是只引正向。v2加入nontrivial及适当重排措辞；实际读取限导言/主结论/本题引用链，未通审Artin群所有新证明。",
+      "url": "https://arxiv.org/pdf/2507.21575v2",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0537-SA-L42",
+      "route": "学术",
+      "site": "本地原刊扫描视觉读取",
+      "query": "pdftoppm FVM_1959.pdf pages1–3; view_image FVM_first.png / FVM_spread2.png / FVM_spread3.png",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "此24页PDF是双页扫描，pdftotext为空。亲看印刷pp57–61：p58明述有限产品决策归约到因子理论，pp60–61说明共同有效语言及decidable=recursive；未读§3/§5完整证明。",
+      "url": "https://matwbn.icm.edu.pl/ksiazki/fm/fm47/fm4715.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "code537-internal-index-1",
+      "route": "库内查重",
+      "site": "原题包全库查重简索引（本地固定包）",
+      "date": "2026-11-27",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-001477〕",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际对 2469 条全索引执行，检索题号/名称/别名字段与数学关键词；索引不是完整题卡。最相关候选 001154 后续已获取双方固定 commit 的全部 metadata 和正文。其余 direct-product、decidable、elementary 近词多数为嵌入、同构、子群隶属、初等可和等异题，不据词面合并。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"query\": \"kourovka 20.104\", \"repository_name\": [\"google-deepmind/formal-conjectures\", \"tadamcz/autoformalization-results\"], \"topn\": 10}",
+      "outcome": "执行无命中",
+      "note": "已对明确的两个真实仓库执行；没有返回 20.104 同题文件。仅是本次关键词搜索的无命中，不表示两个仓库全部文件穷尽排除。",
+      "result_count": 0,
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "code537-q2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"query\": \"\\\"direct product\\\" \\\"decidable\\\"\", \"repository_name\": [\"google-deepmind/formal-conjectures\", \"tadamcz/autoformalization-results\"], \"topn\": 10}",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回 Reid 类 10.53 的 entries/alts 与群恒等式 8.25 的 entries/alts 共 4 个文件。10.53 后续固定 commit 完整读取；不是有限生成群初等/全称理论传导。8.25 仅以搜索片段排除主题。",
+      "result_count": 4,
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q3-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "date": "2026-11-27",
+      "query": "\"Kourovka\" \"20.104\"",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一次四词请求返回合并结果，主要为 Kourovka 原题、Romanovskii–Timoshenko 的不同群论题、Lean Zulip 项目讨论及社区子群隶属/生成问题；这些后两种算法题不等于完整 FO/全称理论判定。本记录只说明检索范围，相关社区讨论另取全文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q3-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "date": "2026-11-27",
+      "query": "\"Timoshenko\" \"direct product\" \"decidable\"",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一次四词请求返回合并结果，主要为 Kourovka 原题、Romanovskii–Timoshenko 的不同群论题、Lean Zulip 项目讨论及社区子群隶属/生成问题；这些后两种算法题不等于完整 FO/全称理论判定。本记录只说明检索范围，相关社区讨论另取全文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q3-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "date": "2026-11-27",
+      "query": "site:mathoverflow.net \"direct product\" \"theory\" \"decidable\"",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一次四词请求返回合并结果，主要为 Kourovka 原题、Romanovskii–Timoshenko 的不同群论题、Lean Zulip 项目讨论及社区子群隶属/生成问题；这些后两种算法题不等于完整 FO/全称理论判定。本记录只说明检索范围，相关社区讨论另取全文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q3-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "date": "2026-11-27",
+      "query": "\"Feferman Vaught\" \"Lean\"",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一次四词请求返回合并结果，主要为 Kourovka 原题、Romanovskii–Timoshenko 的不同群论题、Lean Zulip 项目讨论及社区子群隶属/生成问题；这些后两种算法题不等于完整 FO/全称理论判定。本记录只说明检索范围，相关社区讨论另取全文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q7",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"query\": \"20.104\", \"repository_name\": [\"google-deepmind/formal-conjectures\", \"tadamcz/autoformalization-results\"], \"topn\": 10}",
+      "outcome": "执行无命中",
+      "note": "精确编号再次搜索为零，保留实际请求，与第一次含 kourovka 的查询不同。",
+      "result_count": 0,
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "code537-q8",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"query\": \"\\\"elementary theory\\\" \\\"decidable\\\"\", \"repository_name\": [\"google-deepmind/formal-conjectures\", \"tadamcz/autoformalization-results\"], \"topn\": 10}",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回 Tarski 实指数域、wp-decidable 域理论、Kourovka 7.23 群簇输入问题等 4 个文件；7.23 后续全文核，其他仅索引片段。没有将一般 Decidable 字样视为图灵可判定。",
+      "result_count": 4,
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q9",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"query\": \"Feferman Vaught\", \"topn\": 10}",
+      "outcome": "仅标题/索引或摘要",
+      "note": "全 GitHub 返回 10 个文件，主要是 Feferman–Vaught 百科文本副本，以及 leanprover-community/archive 的真实讨论。百科/LLM 数据集路径不是证明源码；后续完整读取社区 13 条讨论。topn=10 是有界搜索，未穷尽全 GitHub。",
+      "result_count": 10,
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q10-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1_search_query",
+      "date": "2026-11-27",
+      "query": "\"Kourovka\" \"20.104\" proof Lean",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一次 system1 三词请求（前两词 recency=730）返回合并结果。公开 AI 聚合页谈其他 Kourovka 问题，未构成本题完整证明；Lean 社区命中随后追固定 commit 原始讨论。聚合/二手摘要不作为数学证明证据。 实际 recency=730 天。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q10-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1_search_query",
+      "date": "2026-11-27",
+      "query": "\"elementary theory\" \"direct product\" \"AI\" decidability",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一次 system1 三词请求（前两词 recency=730）返回合并结果。公开 AI 聚合页谈其他 Kourovka 问题，未构成本题完整证明；Lean 社区命中随后追固定 commit 原始讨论。聚合/二手摘要不作为数学证明证据。 实际 recency=730 天。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q10-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1_search_query",
+      "date": "2026-11-27",
+      "query": "\"Feferman–Vaught\" site:leanprover-community.github.io/archive/stream/116395-maths/topic/",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一次 system1 三词请求（前两词 recency=730）返回合并结果。公开 AI 聚合页谈其他 Kourovka 问题，未构成本题完整证明；Lean 社区命中随后追固定 commit 原始讨论。聚合/二手摘要不作为数学证明证据。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q11",
+      "route": "库内查重",
+      "site": "原题包全库查重简索引（本地固定包）",
+      "date": "2026-11-27",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-001478〕",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际对 2469 条全索引执行，检索题号/名称/别名字段与数学关键词；索引不是完整题卡。最相关候选 001154 后续已获取双方固定 commit 的全部 metadata 和正文。其余 direct-product、decidable、elementary 近词多数为嵌入、同构、子群隶属、初等可和等异题，不据词面合并。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q12",
+      "route": "库内查重",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/000/QX-P-000537.meta.json\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000537.meta.json",
+      "locator": "problems/000/QX-P-000537.meta.json；全文件",
+      "outcome": "原文已阅且同题",
+      "note": "固定 commit 73290369a8dcc632e25e555aec525565ea6e08f8；Git blob 924e4f690710196cd7894c6fc37f328c7517bb54；已保存全文并校验 Git blob SHA1，未运行该文件。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "code537-q13",
+      "route": "库内查重",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/000/QX-P-000537.text.md\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000537.text.md",
+      "locator": "problems/000/QX-P-000537.text.md；全文件",
+      "outcome": "原文已阅且同题",
+      "note": "固定 commit 73290369a8dcc632e25e555aec525565ea6e08f8；Git blob 139a52df652aad0b4d5fdeac72e2ece9b6df8ab4；已保存全文并校验 Git blob SHA1，未运行该文件。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "code537-q14",
+      "route": "库内查重",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/001/QX-P-001154.meta.json\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001154.meta.json",
+      "locator": "problems/001/QX-P-001154.meta.json；全文件",
+      "outcome": "原文已阅但范围不同",
+      "note": "固定 commit 73290369a8dcc632e25e555aec525565ea6e08f8；Git blob 3788359e42f84602862d315f429bf54d7f0f7387；已保存全文并校验 Git blob SHA1，未运行该文件。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "code537-q15",
+      "route": "库内查重",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/001/QX-P-001154.text.md\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001154.text.md",
+      "locator": "problems/001/QX-P-001154.text.md；全文件",
+      "outcome": "原文已阅但范围不同",
+      "note": "固定 commit 73290369a8dcc632e25e555aec525565ea6e08f8；Git blob 81a47eaf5fd84e96127f4cd0a243130aa2378fe6；已保存全文并校验 Git blob SHA1，未运行该文件。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "code537-q16",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"repository_full_name\": \"leanprover-community/archive\", \"path\": \"zulip_json/116395-maths/Feferman.E2.80.93Vaught.json\", \"ref\": \"4a4a212bfcfdc1bd0bc5c675224bb8476fc6a5b7\"}",
+      "url": "https://github.com/leanprover-community/archive/blob/4a4a212bfcfdc1bd0bc5c675224bb8476fc6a5b7/zulip_json/116395-maths/Feferman.E2.80.93Vaught.json",
+      "locator": "zulip_json/116395-maths/Feferman.E2.80.93Vaught.json；全文件",
+      "outcome": "原文已阅但范围不同",
+      "note": "固定 commit 4a4a212bfcfdc1bd0bc5c675224bb8476fc6a5b7；Git blob 4dae5cbb4ddce202d5068524225c24eb52018ad5；已保存全文并校验 Git blob SHA1，未运行该文件。 全部 13 条消息已读，时间 2025-10-27—2025-11-03；仅开展 formalization 的讨论，无本题证书。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "code537-q17",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"query\": \"Feferman\", \"repository_name\": \"leanprover-community/mathlib4\", \"topn\": 10}",
+      "outcome": "仅标题/索引或摘要",
+      "note": "当前索引 commit b108da25f50641d5449257791381d6d9fa8b67c2 返回 Veblen.lean 中 Feferman–Schütte 序数和 docs/1000.yaml 的 Feferman–Vaught 标题。只核搜索片段；标题出现在目录不能当作已有正式定理实现。",
+      "result_count": 2,
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q18",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"query\": \"20.104\", \"repository_name\": \"openai/math\", \"topn\": 10}",
+      "outcome": "执行无命中",
+      "note": "对 OpenAI 官方公开 math 仓库执行精确编号无返回；不等于扫描完整仓库。",
+      "result_count": 0,
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "code537-q19",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"query\": \"\\\"direct product\\\" \\\"decidable\\\"\", \"repository_name\": \"openai/math\", \"topn\": 10}",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回 8 个文件，主要涉及 Boone–Higman、有限合同格、Lie、polycyclic 与 RAAG 的其他结果；TwistedSimplicity.lean 的命中只是一处 Classical.propDecidable 与群直积构造，未出现句子编码及统一理论判定算法。只核这些搜索片段，没有依赖闭包审计/编译，不为它们或本题报告形式化通过。",
+      "result_count": 8,
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q20-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "date": "2026-11-27",
+      "query": "\"Feferman-Vaught\" github Lean",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一次四词请求返回合并结果。社区结果主要是隶属/同构/中心扩张与一般 FO 命题，未见本题完整声明；另出现 2021 课程项目 Feferman–Vaught reduction sequence 报告入口，后续打开无可读正文，保留该访问缺口。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q20-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "date": "2026-11-27",
+      "query": "\"20.104\" \"Kourovka\" \"AI\"",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一次四词请求返回合并结果。社区结果主要是隶属/同构/中心扩张与一般 FO 命题，未见本题完整声明；另出现 2021 课程项目 Feferman–Vaught reduction sequence 报告入口，后续打开无可读正文，保留该访问缺口。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q20-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "date": "2026-11-27",
+      "query": "site:mathoverflow.net \"decidability\" \"direct factors\"",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一次四词请求返回合并结果。社区结果主要是隶属/同构/中心扩张与一般 FO 命题，未见本题完整声明；另出现 2021 课程项目 Feferman–Vaught reduction sequence 报告入口，后续打开无可读正文，保留该访问缺口。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q20-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "date": "2026-11-27",
+      "query": "site:math.stackexchange.com \"theory\" \"decidable\" \"direct product\"",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一次四词请求返回合并结果。社区结果主要是隶属/同构/中心扩张与一般 FO 命题，未见本题完整声明；另出现 2021 课程项目 Feferman–Vaught reduction sequence 报告入口，后续打开无可读正文，保留该访问缺口。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q21",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"repository_full_name\": \"tadamcz/autoformalization-results\", \"path\": \"data/entries/kourovka-7.23.json\", \"ref\": \"2f3747e0233049f1695dbd725e42e1b19a6ec3ff\"}",
+      "url": "https://github.com/tadamcz/autoformalization-results/blob/2f3747e0233049f1695dbd725e42e1b19a6ec3ff/data/entries/kourovka-7.23.json",
+      "locator": "data/entries/kourovka-7.23.json；全文件",
+      "outcome": "原文已阅但范围不同",
+      "note": "固定 commit 2f3747e0233049f1695dbd725e42e1b19a6ec3ff；Git blob 0bda3c75d137472a2123a410880b1b41773c8eb4；已保存全文并校验 Git blob SHA1，未运行该文件。 完整 JSON 与 92 行嵌入 Lean 已读，主声明位于第 72—73 行，answer(sorry) 与 by sorry；2 个边界 test 不能填补主证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "code537-q22",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"repository_full_name\": \"tadamcz/autoformalization-results\", \"path\": \"data/entries/kourovka-10.53.json\", \"ref\": \"2f3747e0233049f1695dbd725e42e1b19a6ec3ff\"}",
+      "url": "https://github.com/tadamcz/autoformalization-results/blob/2f3747e0233049f1695dbd725e42e1b19a6ec3ff/data/entries/kourovka-10.53.json",
+      "locator": "data/entries/kourovka-10.53.json；全文件",
+      "outcome": "原文已阅但范围不同",
+      "note": "固定 commit 2f3747e0233049f1695dbd725e42e1b19a6ec3ff；Git blob 67abe5ad208c0bb22ff3bdacaba4faa925b22478；已保存全文并校验 Git blob SHA1，未运行该文件。 完整 JSON 与 92 行嵌入 Lean 已读，主声明第 87—90 行保留 answer(sorry) 与 by sorry；三个 Reid 类 test 不证明本题。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "code537-q23",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"query\": \"\\\"universal theory\\\"\", \"repository_name\": [\"google-deepmind/formal-conjectures\", \"tadamcz/autoformalization-results\", \"openai/math\"], \"topn\": 10}",
+      "outcome": "执行无命中",
+      "note": "三个明确仓库的精确 universal theory 短语搜索为零；仅本次有界索引请求。",
+      "result_count": 0,
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "code537-q24",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "date": "2026-11-27",
+      "query": "{\"query\": \"\\\"elementary theory\\\"\", \"repository_name\": \"openai/math\", \"topn\": 10}",
+      "outcome": "仅标题/索引或摘要",
+      "note": "只返回 Quaternionic-Division-Points 文献表中 restricted analytic fields 的 elementary theory 引文，按主题排除；没有拿文献表当群论解答。",
+      "result_count": 1,
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "code537-q25",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者课程项目公开报告入口（Web open）",
+      "date": "2026-11-27",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://kumom.io/assets/articles/feferman-vaught-reduction-sequence/report.pdf 〔私有记录编号：PR-001479〕",
+      "url": "https://kumom.io/assets/articles/feferman-vaught-reduction-sequence/report.pdf",
+      "outcome": "全文不可访问",
+      "note": "实际打开返回 content-type text/html、Total lines:0，无可读行；没有取得 PDF 正文或配套源码，不能评价算法实现，也不宣称已完整读稿。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "q0537-math-card-read",
+      "route": "原题与出处",
+      "site": "本地题包任务文件",
+      "query": "完整读取 〔私有材料定位已省略〕，核 id、card_rev、Kourovka 20.104 原文、formal、人话及已有进展；区分 a)、b) 与各自两个方向 〔私有记录编号：PR-001480〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.qunxingmath.org/p/QX-P-000537/",
+      "locator": "QX-P-000537@acf0dea7ebebf9fe；本地 task.json 全文",
+      "note": "实际执行本地完整读取，未把卡中旧 novelty.card_rev 当作当前 card_rev；本组件不做库内查重、不替代其他路线。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "q0537-math-kourovka-read",
+      "route": "原题与出处",
+      "site": "Kourovka Notebook v50 主源本地下载",
+      "query": "在 Kourovka_v50.txt 定位 20.104.，完整读取该条 a)、b)、finitely generated 与 Noskov 附注",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "印刷 p174，20th Issue (2022)，20.104",
+      "note": "只据该条确认题意与已列的几乎可解子类附注；条目仍出现本身不作为截至今日无人解决的证明。PDF SHA256 b7027dd8e29cc5b187304f4bb0f3bddb30839089c44967f5fadaa4c0e5e60dc7。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "q0537-math-fv-local-images",
+      "route": "学术",
+      "site": "Fundamenta Mathematicae 原刊扫描，本地已下载图像",
+      "query": "查看 FVM_first.png 与 FVM_spread2.png，核原题名、作者及导言关于 finite product 的 decision problem 归约；有限二因子情形另给自足有效递归",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://matwbn.icm.edu.pl/ksiazki/fm/fm47/fm4715.pdf",
+      "locator": "S. Feferman and R. L. Vaught, The first order properties of products of algebraic systems；印刷 pp57–58，尤其 p58 导言中 finite product 句",
+      "note": "实际查看扫描首两幅，不声称逐页审过全篇或 §5 全证明。pdftotext 文本为空；本轮复用来源组已下载文件，未伪报网络搜索成功。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "q0537-math-artin-v2-local-read",
+      "route": "学术",
+      "site": "arXiv 作者稿本地下载",
+      "query": "读取 Artin_v2.txt pp1–3，并定点检索 Fact 1.1、domain、decidable、interpretable，核 (ii)、(iv) 与 Theorem 1.3 的范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2507.21575v2",
+      "locator": "First-order aspects of Artin groups；p2 §1.1、Fact 1.1(ii)(iv)，p3 Theorem 1.3/Corollary 1.4",
+      "note": "v2 arXiv 页眉为 29 Oct 2026，稿内 Date 为 October 30, 2026；不能沿用卡内‘2025 文献仅引正向’作为当前版本陈述。只核相关定理与适用条件，不声称核完全篇 Artin 分类。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "q0537-math-kmr-local-read",
+      "route": "学术",
+      "site": "作者主页原稿本地下载",
+      "query": "对 KMR_author_2002.txt 定点读取 §1.1 的 interpretation/0-code 定义、pp15–17 Lemma 4、Theorem A 与 Corollary 1 的证明；核参数范围与有效翻译",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://web.stevens.edu/algebraic/alexeim/Publications/All_files_temp/algeom3_final_89.pdf",
+      "locator": "Kvaschuk–Myasnikov–Remeslennikov, Algebraic geometry over groups III: Elements of model theory，作者稿 19 March 2002；§1.1 pp3–5、Theorem A p16、Corollary 1 p17",
+      "note": "实际复用来源组下载原稿并阅读关键证明；PDF SHA256 c145c975fe175ff7b8729458c7cf13ebdefbf7cc7379a99144bf4e978c5b47f1。其域因子附加假设不可删，full elementary theory 的结论不自动变成 universal theory 结论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0537-ROOT-01",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"decidable\" \"direct factors\" \"finitely generated\" groups; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "同批搜索命中profinite直因子判定、初等等价及metabelian表示等近词结果；日期筛选仍返回旧论文，不据其搜索发布时间当新进展。后续只核具体范围。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QXR303-0537-ROOT-02",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Timoshenko\" \"20.104\"; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "同批命中alglog的21tkt.pdf题目节选；该索引段分页与固定v50不同，原题和当前版定位由原出处组件以实际v50核对，不据索引分页混版。",
+      "url": "https://alglog.org/21tkt.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QXR303-0537-ROOT-03",
+      "route": "学术",
+      "site": "arXiv官方 / web open",
+      "query": "open https://arxiv.org/abs/0810.0399",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "亲读官方摘要与版本记录：问题是从有限表示/有限生成正规子群输入判定某子群是否成为有限指数子群的直因子，涉及profinite completion。不是固定G的完整FO或全称句真值算法传导；未读其证明。",
+      "url": "https://arxiv.org/abs/0810.0399",
+      "locator": "Abstract; submission history v1 2008-10-02",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QXR303-0537-ROOT-04",
+      "route": "学术",
+      "site": "DOI / web open",
+      "query": "open https://doi.org/10.1016/j.jalgebra.2014.07.006",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "note": "实际403。搜索标题为Direct products and elementary equivalence of polycyclic-by-finite groups；未取得全文，不从初等等价或直积分解结果猜测可判定性反向。",
+      "url": "https://doi.org/10.1016/j.jalgebra.2014.07.006",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QXR303-0537-ROOT-05",
+      "route": "学术",
+      "site": "官方arXiv原PDF本地全文 / read",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-001481〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "根亲读p2 domain定义、Fact1.1四项及p3 Theorem1.3/Cor1.4/1.5。Fact1.1(iv)在每个因子为nontrivial domain时确实是双向。稿内Date为2026-10-30，不与arXiv提交日混用；未通审后续全部Artin证明。",
+      "url": "https://arxiv.org/pdf/2507.21575v2",
+      "locator": "pp1–5，重点p2 Fact1.1(iv)",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0537-ROOT-06",
+      "route": "学术",
+      "site": "arXiv官方 / web open",
+      "query": "open https://arxiv.org/abs/2507.21575v2",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "官方历史v1=2025-07-29、v2=2026-10-29；Comments为To appear in Internat. J. Algebra Comput，不能据此记已正式刊发。此条只核元数据，全文阅读另列。",
+      "url": "https://arxiv.org/abs/2507.21575v2",
+      "locator": "Submission history; Comments",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QXR303-0537-ROOT-07",
+      "route": "学术",
+      "site": "DOI搜索结果 / web open",
+      "query": "open 〔原始工具引用已私有留存〕 (DOI 10.1016/j.jalgebra.2014.07.006) 〔私有记录编号：PR-001482〕",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "note": "从已返回搜索结果再开仍403，未取得全文；这是同一入口重复尝试，不作第二份独立证据。",
+      "url": "https://doi.org/10.1016/j.jalgebra.2014.07.006",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QXR303-0537-ROOT-08",
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"elementary theory\" \"direct product\" \"decidability\" \"converse\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "同批多为逻辑书目录、二级论文索引与不同结构的决策问题；没有由这些摘要取得覆盖20.104一般反向的完整证明。二级站只作线索，未作数学支持。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QXR303-0537-ROOT-09",
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"universal theory\" \"direct factors\" decidable",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "同批命中residually free、partially commutative群及产品保持性社区讨论；没有将子类、普遍理论集合保持性或均匀表示算法换成本题一般因子可判定性。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QXR303-0537-ROOT-10",
+      "route": "学术",
+      "site": "已取得作者原稿 / 本地read",
+      "query": "read KMR_author_2002.txt form-feed pages 5,16,17",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "定点核理论的interpretability定义、TheoremA构造P_ki及Cor1。每一目标因子的有限区别句用于筛选同理论组件；原文参数译码可闭合成无参数存在句。非所有任意参数都能直接加入已知可判定理论。",
+      "url": "https://web.stevens.edu/algebraic/alexeim/Publications/All_files_temp/algeom3_final_89.pdf",
+      "locator": "作者稿§1.1 p5、TheoremA pp16–17、Corollary1 p17",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0537-ROOT-11",
+      "route": "学术",
+      "site": "作者原稿 / web open",
+      "query": "open https://web.stevens.edu/algebraic/alexeim/Publications/All_files_temp/algeom3_final_89.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "26页原稿，封面19 March2002。根读标准无系数群语言定义与后续目标段，未宣称通审全26页或比对正式2005刊发版。",
+      "url": "https://web.stevens.edu/algebraic/alexeim/Publications/All_files_temp/algeom3_final_89.pdf",
+      "locator": "封面、§1.1",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0537-ROOT-12",
+      "route": "学术",
+      "site": "作者原稿 / web find",
+      "query": "find Corollary 1 in algeom3_final_89.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "定位TheoremA/Cor1及Remark1。Cor1仅说完整初等理论可判定性双向，不能自动降成全称理论的逆向定理。",
+      "url": "https://web.stevens.edu/algebraic/alexeim/Publications/All_files_temp/algeom3_final_89.pdf",
+      "locator": "作者稿pp16–18",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0537-ROOT-13",
+      "route": "学术",
+      "site": "作者原稿 / web find",
+      "query": "find interpretation of theories in algeom3_final_89.pdf",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "该精确英文短语在工具抽取文本中无匹配；定义已经从实际p5文本读到。本条无命中不说明该概念或定理不存在。",
+      "url": "https://web.stevens.edu/algebraic/alexeim/Publications/All_files_temp/algeom3_final_89.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "0537-SA-01",
+      "url": "https://arxiv.org/pdf/1401.0300v23",
+      "locator": "No.20(2022)，20.104，印刷p160/PDF P159",
+      "version": "arXiv1401.0300v23，2022-02-07",
+      "subquestions": [
+        "主问题",
+        "原题出处及量词"
+      ],
+      "role": "原始提出",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "claimant": "E. I. Timoshenko（本条署名，条首标Well-known questions）",
+      "claim_date": "2022-02-07",
+      "note": "原条分别询问初等理论和全称理论的两个方向，G=G1×G2且G有限生成，并给几乎可解情形a)的Noskov注。这里只定位本编号2022版出处，不将well-known问题宣称为2022历史首次提出；原题未规定因子必须非平凡。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "0537-SA-02",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "No.21(2026)，20.104，印刷p174/PDF P173；当前abs版本史",
+      "version": "arXiv1401.0300v50，2026-11-02 10:50:33 UTC；本次官方abs仍为v50",
+      "subquestions": [
+        "主问题",
+        "最新原册标注"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "note": "题文、署名、Noskov注与v23一致；该条未见*或♯及新增解题评论。已核原条上下文与固定版本，不能由未标注推出全球仍开放。全文已下载，未重读其他题。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "0537-SA-03",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21upd.pdf",
+      "locator": "编辑官网2026-11-02更新及该39页独立更新文件，全文find20.104",
+      "version": "November2026 update，2026-11-02",
+      "subquestions": [
+        "主问题",
+        "编辑更新与声明"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "官网称本月变化已并入主PDF；独立更新文件不匹配20.104。仅为该版编辑更新范围的阴性记录，不替代论文查新或全球解题状态确认。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "0537-SA-04",
+      "url": "https://www.mathnet.ru/links/79ada0433650c13a49c82efa487e6b3a/im1412_eng.pdf",
+      "locator": "G.A.Noskov，英文p465主定理及§1.1–1.9，pp465–466；俄文1983,47(3),498–517；英译1984,22(3),465–482",
+      "version": "Math.USSR-Izvestiya22(1984),465–482，DOI10.1070/IM1984v022n03ABEH001453",
+      "subquestions": [
+        "a)几乎可解子类",
+        "语言及参数约定"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "G. A. Noskov",
+      "claim_date": "1984",
+      "note": "主定理在有限生成almost solvable群中给初等理论可判定当且仅当almost Abelian；almost明确为含相应性质的有限指标正规子群。原文§1.3用含各群元素常量的L_G，§1.5讨论可定义子群/商；本轮未重证去参数或后续技术依赖。Kourovka本条明确援引该文支持a)几乎可解子类，不能外推一般群或全称理论。网页工具已取得全文，局限于上述关键段阅读；本地直接下载503。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "0537-SA-05",
+      "url": "https://matwbn.icm.edu.pl/ksiazki/fm/fm47/fm4715.pdf",
+      "locator": "S.Feferman,R.L.Vaught, The first order properties of products of algebraic systems，Fundamenta Mathematicae47(1959),57–103；实读pp57–61，尤其p58",
+      "version": "DOI10.4064/fm-47-1-57-103；原刊双页扫描，24页PDF",
+      "subquestions": [
+        "a)因子到有限直积的正向",
+        "全称片段适用范围"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Solomon Feferman、Robert L. Vaught",
+      "claim_date": "1959",
+      "note": "p58导言明述有限产品理论决策可归约至因子理论；pp60–61设共同有效语法及非空结构。它适用于本题纯群语言的有限直积，不需要有限生成。原稿追溯Mostowski方法。完整扫描已取得，实际只阅导言/定义；未独立核§3/§5。该完整FO结论本身不自动说明归约保持全称片段，b)正向需另给相应有效转换。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "0537-SA-06",
+      "url": "https://web.stevens.edu/algebraic/alexeim/Publications/All_files_temp/algeom3_final_89.pdf",
+      "locator": "Kvaschuk–Myasnikov–Remeslennikov，作者稿§1.1 pp2–5；TheoremA/CorollaryA pp6–7；TheoremA证明pp16–17、Corollary1 p17",
+      "version": "作者稿封面19March2002，26页；正式Journal of Algebra288(1)(2005-06-01),78–98，DOI10.1016/j.jalgebra.2004.07.038；正式全文403未比对",
+      "subquestions": [
+        "a)有限domain直积子类的双向",
+        "有条件参数解释与有效归约"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Alexei Kvaschuk、Alexei Myasnikov、Vladimir Remeslennikov",
+      "claim_date": "2002-03-19",
+      "note": "在纯群语言中，有限domain直积的每个因子理论可解释，Cor1给初等可判定性双向。其解释选择非空可定义参数范围，所有候选解释与目标因子同理论；证明用有限个区别句筛选目标理论，可固定硬编码而非宣称由任意呈示统一算出。已核这段处理与Cor1，未通审正交系统全部引理。该方法不允许无条件从任意带参数解释推出纯理论可判定，也未给一般fg因子的反向。正式出版元数据由publisher检索返回核到。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "0537-SA-07",
+      "url": "https://arxiv.org/pdf/2507.21575v2",
+      "locator": "Cassella、Gianluca Paolini、Giovanni Paolini，First-order aspects of Artin groups；v1/v2 p2 Fact1.1；v2 p3 Thm1.3、Cor1.4/1.5及reference[38]",
+      "version": "v1提交2025-07-29；v2提交2026-10-29 14:37:30 UTC，稿内Date2026-10-30；官方Comments为To appear in Internat.J.Algebra Comput",
+      "subquestions": [
+        "a)domain/特定Artin群子类",
+        "题卡2025引文纠错",
+        "版本更新"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Alberto Cassella、Gianluca Paolini、Giovanni Paolini",
+      "claim_date": "2026-10-29",
+      "note": "两版Fact1.1(iv)均给有限domain因子的初等可判定性双向；v2明确非平凡因子并加适当重排，故题卡“只引正向”不准。domain要求任意非单位x,y有共轭使交换子非平凡，不等同一般无挠或中心平凡。Thm1.3适用acylindrically hyperbolic且无非平凡有限正规子群；Cor1.4对满足无挠/AH条件的Artin不可约因子应用该结果。并非所有Artin群或一般fg群的解；只读相关导言/主结论和引用链，未通审所有证明，未取得正式刊稿。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E537-CODE-ZULIP",
+      "url": "https://github.com/leanprover-community/archive/blob/4a4a212bfcfdc1bd0bc5c675224bb8476fc6a5b7/zulip_json/116395-maths/Feferman.E2.80.93Vaught.json",
+      "locator": "Feferman–Vaught 话题完整 13 条消息；消息 547344983—553340059",
+      "version": "commit 4a4a212bfcfdc1bd0bc5c675224bb8476fc6a5b7；消息日期 2025-10-27—2025-11-03；2026-11-27 读取",
+      "subquestions": [
+        "代码/社区线索；因子到积正向所需 Feferman–Vaught 背景"
+      ],
+      "publication": "社区帖子",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "Aaron Anderson 当时表示未见人在 Lean 尝试该定理，并建议建立 Boolean-algebra 一阶结构；Flypitch 仅作为 Boolean-valued model 设计参考。Keith Bauer 表示将开展项目，末条欢迎移植到 Lean4。该历史线程没有证明文件/可执行算法/完整本题解决声称；不能将 2025 讨论推成截至今天全球未有形式化。Git blob 4dae5cbb4ddce202d5068524225c24eb52018ad5。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "E537-CODE-723",
+      "url": "https://github.com/tadamcz/autoformalization-results/blob/2f3747e0233049f1695dbd725e42e1b19a6ec3ff/data/entries/kourovka-7.23.json",
+      "locator": "完整 JSON 的 lean 字段，第 45—58 行定义输入恒等式/IsAbelianVariety，第 72—73 行主声明；checks/fc/claims/reviewer_notes",
+      "version": "autoformalization-results commit 2f3747e0233049f1695dbd725e42e1b19a6ec3ff；内嵌 FC commit 9cbe1d3c12998c786b7c2cd99ce28a21b6631f66（2026-08-21）；Git blob 0bda3c75d137472a2123a410880b1b41773c8eb4",
+      "subquestions": [
+        "排除近词命中；图灵可判定编码与普通 Decidable 的区分"
+      ],
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "核过关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "这是 Kourovka7.23：输入有限列表的群恒等式，问其所定义的群簇是否交换的 ComputablePred；不是固定群 G=G1×G2 的理论传导。主 theorem 含 answer(sorry) 与 by sorry。元数据 checks.compiled=true、sorry_lines=[72] 只是作者报告；静态核完整嵌入 Lean，未复跑、未核进口依赖闭包。两个真正 test 仅覆盖空列表和交换律。作者关于 mathlib 句子编码缺失的 reviewer note 是该版本作者说明，本轮未验证其作为最新全局事实。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E537-CODE-1053",
+      "url": "https://github.com/tadamcz/autoformalization-results/blob/2f3747e0233049f1695dbd725e42e1b19a6ec3ff/data/entries/kourovka-10.53.json",
+      "locator": "完整 JSON 的 lean 字段，第 49—60 行 ReidClass 定义，第 87—90 行主声明；checks/fc/claims",
+      "version": "autoformalization-results commit 2f3747e0233049f1695dbd725e42e1b19a6ec3ff；内嵌 FC commit 9cbe1d3c12998c786b7c2cd99ce28a21b6631f66（2026-08-21）；Git blob 67abe5ad208c0bb22ff3bdacaba4faa925b22478",
+      "subquestions": [
+        "排除 direct-product/Decidable 近词命中"
+      ],
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "核过关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "这是 Kourovka10.53 的 Reid 类对直和因子是否封闭。任意指标直和/直积上的阿贝尔群类，与有限生成群 FO/全称理论算法问题不同。主 theorem 含 answer(sorry) 与 by sorry。checks.compiled=true、sorry_lines=[87] 是仓库元数据；三个类成员 test 不补全主 theorem。本轮仅静态检查完整嵌入 Lean，未构建、未核依赖闭包。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E537-DUP-SELF",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000537.text.md",
+      "locator": "正文 §§题面、形式化表述、人话版、原文摘录、已知结果与进展；同 commit 配套 QX-P-000537.meta.json 的 id/card_rev/acceptance",
+      "version": "题库 commit 73290369a8dcc632e25e555aec525565ea6e08f8；card_rev acf0dea7ebebf9fe；正文 Git blob 139a52df652aad0b4d5fdeac72e2ece9b6df8ab4；meta blob 924e4f690710196cd7894c6fc37f328c7517bb54",
+      "subquestions": [
+        "库内查重的本题范围和量词"
+      ],
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "review_status": "核过关键步骤",
+      "note": "完整 meta 和正文与当前 〔私有材料定位已省略〕 的 card_metadata/card_text 逐对象/逐字符一致。有限生成群 G=G1×G2；初等理论与全称理论各问两个方向。已知结果段中的 2025 Artin 只引正向说法交原文/数学分工核实，本组件不据旧卡断言反向全部开放。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E537-DUP-1154",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001154.text.md",
+      "locator": "正文 §§题面、人话版、原文摘录；同 commit 配套 QX-P-001154.meta.json 的 card_rev/acceptance",
+      "version": "题库 commit 73290369a8dcc632e25e555aec525565ea6e08f8；card_rev a6d555ef5d452da2；正文 Git blob 81a47eaf5fd84e96127f4cd0a243130aa2378fe6；meta blob 3788359e42f84602862d315f429bf54d7f0f7387",
+      "subquestions": [
+        "库内候选同一性核对"
+      ],
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "review_status": "核过关键步骤",
+      "note": "全文问每个有限图 Γ 所给的部分交换 metabelian 群 SΓ 的全称理论是否可判定；没有要求/量化 G1×G2 分解，未讨论理论传导双向。与本题只同用全称理论和提出人；不能把“该特定群可判定”与“任意分解的传导等价”视同或直接强弱化。本轮只作同一性比较，未启动1154查新。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E0537-MATH-FV",
+      "url": "https://matwbn.icm.edu.pl/ksiazki/fm/fm47/fm4715.pdf",
+      "locator": "印刷 p58 导言 finite product 的 decision problem 段；本条 note 给出二因子群的完整有限分离公式递归",
+      "version": "原刊扫描，1959；本轮 2026-11-27 查看 pp57–58，有限二因子特例独立解析核对",
+      "subquestions": [
+        "a) 两因子初等理论可判定 ⇒ 直积初等理论可判定"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "原刊导言明确将有限产品理论的判定归约到因子理论。二因子群的自足核验如下：在纯群语言 {乘法、逆元、1} 中，为每个公式 φ(x̄) 有效构造有限个公式对 (α_j(x̄_A),β_j(x̄_B))，使 A×B 上 φ 等价于有限析取 ∨_j(α_j∧β_j)。这是在元语言中描述两个坐标的真值，不声称投影或因子在乘积内可定义。原子等式 t=s 分解为两坐标同一等式。析取取列表并；合取取列表笛卡尔积并分别合取。否定时，将 ¬∨_j(α_j∧β_j)=∧_j(¬α_j∨¬β_j) 有限分配成相同形式。存在量词时，一个乘积变量 x=(a,b)，故 ∃x∨_j(α_j(a,…)∧β_j(b,…)) 等价于 ∨_j((∃a α_j)∧(∃b β_j))；全称量词用否定与存在处理。每一步均为有限、可计算的语法操作；即使公式膨胀也不影响可判定性。若 φ 是句子，得到的 α_j、β_j 亦是句子，调用两个因子判定器并求有限布尔组合即给出乘积判定器。该方向不需要有限生成，也覆盖平凡因子。这里只核已知正向，不处理原题反向或把本轮重写当新成果；未声称形式化工具验证。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E0537-MATH-UNIV",
+      "url": "https://www.qunxingmath.org/p/QX-P-000537/",
+      "locator": "本轮对 b) 正向的自足解析证书；完整算法与双向正确性论证见本条 note",
+      "version": "QX-P-000537@acf0dea7ebebf9fe；2026-11-27 本轮核验",
+      "subquestions": [
+        "b) 两因子全称理论可判定 ⇒ 直积全称理论可判定"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "此 URL 仅作题卡身份锚点，以下是本轮附带的手工证明，并非宣称题卡或外部论文已发表此段。给定全称句 σ=∀x̄ θ(x̄)，其中 θ 无量词。它为假当且仅当 ∃x̄¬θ。将 ¬θ 有效化为有限 DNF，每个合取子句写作 ∧_{e∈E}e(x̄)=1 ∧ ∧_{r=1}^s w_r(x̄)≠1（t=u 可改写为 tu⁻¹=1）。在 A×B 中，每条等式必须在两坐标都成立，而每条不等式只需至少一个坐标非平凡。枚举全部 2^s 个映射 f:{1,…,s}→{A,B}；对每个 f，分别问 A 是否满足 ∃ā(∧E(ā)=1 ∧ ∧_{f(r)=A}w_r(ā)≠1)，B 是否满足相应的 B 子句。因子的任意存在句可用其全称否定的判定结果取反来判定。若某个 DNF 子句及某个 f 的两个因子存在句都为真，则组合见证给出乘积中的反例；反过来，乘积见证对每个不等式至少有一个非平凡坐标，选取这些坐标便得到一个被枚举的 f。因此该过程恰好判定 σ 的真假。没有给不等式分配到的另一坐标添加‘等于1’要求，允许同一词两坐标都非平凡。s=0 时只有一个空分配，空合取按真处理，故纯等式与平凡因子边界也覆盖。全过程不需有限生成。该已知形式的正向归约不处理 b) 反向，不应写成全称理论简单取交集。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E0537-MATH-SMALL",
+      "url": "https://www.qunxingmath.org/p/QX-P-000537/",
+      "locator": "本轮 C2 与 C2×C2 的解析小例，以及平凡因子边界",
+      "version": "QX-P-000537@acf0dea7ebebf9fe；2026-11-27 手算真值证书，无程序枚举或形式化声称",
+      "subquestions": [
+        "全称理论的定义与直积真值边界",
+        "平凡因子与有限群小例"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "令 C2={1,a}。全称句 χ=∀x∀y(x=1∨y=1∨x=y) 在 C2 为真：若 x,y 均非单位，则二者只能都是 a。在 C2×C2，取 x=(a,1)、y=(1,a)，则 x,y 都非单位且不等，故 χ 为假。这精确排除了 Th∀(A×B)=Th∀(A)∩Th∀(B) 的一般等式，也说明不能把全称 Horn 的乘积保真推广到任意全称句。它没有反驳任何可判定性传导：两个群都是有限群，其全称与完整初等理论均可通过有限域上逐量词计算判定。另 G×1≅G，原题不要求两因子非平凡，因此平凡因子是直接成立边界，不应为配合 domain 定理而补成原题条件。本条没有运行代码，证书是上述穷尽两种非单位情形的解析论证。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E0537-MATH-REVERSE-BOUNDARY",
+      "url": "https://www.qunxingmath.org/p/QX-P-000537/",
+      "locator": "本轮反向候选论证检查：有限生成、全称句对子群保真、中心化子、解释与参数",
+      "version": "QX-P-000537@acf0dea7ebebf9fe；2026-11-27 数学范围审查",
+      "subquestions": [
+        "a) 直积可判定 ⇒ 两因子可判定的证明门槛",
+        "b) 直积全称可判定 ⇒ 两因子全称可判定的证明门槛"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "(1) 若 G 有有限生成集，投影像分别生成 G1、G2，因此原题有限生成确实传给两因子；但这个事实本身没有给出任何理论判定器。(2) Gi 嵌入 G，所以 Th∀(G)⊆Th∀(Gi)，这是全称真值对子结构的保留，不能由一个可判定子集推出其超集可判定。商群或收缩映射也不自动给出任意一阶语句的判定归约。(3) 若 S2 是 G2 的有限生成集，则在 G=G1×G2 中 C_G(1×S2)=G1×Z(G2)。证明：坐标 (a,b) 与全部 (1,s) 对易等价于 b 与 S2 对易，进而与全部 G2 对易。若 G2 交换，则该中心化子是整个 G；例如 C2×C2。仅当 Z(G2)=1 时这一中心化子才恰是 G1×1，且定义仍用了 S2 的参数。不能未经论证把无参数 Th(G) 的判定器当成带任意指定参数扩张 Th(G,S2) 的判定器；本条没有声称已给出参数扩张不可判定的具体反例。(4) 若另有到 G 的有效无参数一阶解释，则完整理论可沿公式翻译归约；若使用参数，必须给出可判的相关扩张，或可定义且非空、每个参数都解释同一目标理论的参数范围。对于全称理论，任意一阶解释可能引入新量词交替，不能只引用完整理论解释定理；需要保全称片段的有效翻译，例如无参数、无量词定义的子群及继承的群运算。(5) ‘没有找到明显的因子定义’只指出某一证明路线尚缺步骤，不构成原题反例。以上均为候选证明的适用范围审查，不声称已证一般反向或证明它不成立。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E0537-MATH-COPRIME",
+      "url": "https://www.qunxingmath.org/p/QX-P-000537/",
+      "locator": "本轮互素有界指数子类的无参数无量词定义证书",
+      "version": "QX-P-000537@acf0dea7ebebf9fe；2026-11-27 自足条件性推导",
+      "subquestions": [
+        "a)、b) 反向在因子指数分别整除互素 m,n 时的充分条件"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "设所有 a∈A 有 a^m=1，所有 b∈B 有 b^n=1，m,n 为正整数且 gcd(m,n)=1。在 A×B 中，x^m=1 恰定义 A×1：若 x=(a,b) 且 x^m=1，则 b^m=b^n=1；取整数 u,v 使 um+vn=1，得 b=(b^m)^u(b^n)^v=1。反向显然。类似 x^n=1 恰定义 1×B。因而 A×1、1×B 都有固定的、无参数无量词定义。完整一阶句可有效把量词相对化到 x^m=1 或 x^n=1；若目标句是 ∀x̄ θ，则其 A 翻译为 ∀x̄((∧_i x_i^m=1)→θ)，仍是全称句。因此乘积相应理论的判定器给出两因子相应理论的判定器；结合两条正向，a)、b) 在此子类均双向成立。解析小例 A=C2、B=C3：平方等于1恰选出 C2 因子，立方等于1恰选出 C3 因子。m=1 或 n=1 时对应平凡因子，也与定义相容。此论证无需有限生成，但附加了原题没有的互素指数假设；只可列条件性核验，不是原题全解或新文献成果。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E0537-MATH-KMR",
+      "url": "https://web.stevens.edu/algebraic/alexeim/Publications/All_files_temp/algeom3_final_89.pdf",
+      "locator": "§1.1 pp3–5 的 theory interpretation；Lemma 4 pp15–16；Theorem A p16 与 Corollary 1(1) p17",
+      "version": "作者稿封面 19 March 2002；SHA256 c145c975fe175ff7b8729458c7cf13ebdefbf7cc7379a99144bf4e978c5b47f1；2026-11-27 关键证明复核",
+      "subquestions": [
+        "a) 有限个非平凡 domain 因子的直积：初等理论可判定双向"
+      ],
+      "role": "进展",
+      "publication": "作者主页",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "原稿 Corollary 1(1) 明确给有限个非平凡 domain 的直积 Th(G) 可判定当且仅当每个 Th(Gi) 可判定；这一子类结论不要求有限生成。关键反向不是随意命名一个参数：Lemma 4 用 P_k(p) 识别属于单个因子的非平凡参数，并用 Comp_k(x,p) 定义相应因子；固定目标 Gi 后，对有限个与其理论不同的 Gj 各选择一个在 Gi 真、Gj 假的区分句 φ_ij，合成 ψ_i，令 P_ki(p)=P_k(p)∧T_C(ψ_i)(p)。P_ki 的真值集非空，且任一满足参数所解释的因子都与 Gi 初等等价。因此对任意句 φ，可用无参数句 ∃p(P_ki(p)∧T_C(φ)(p)) 判定 Gi⊨φ；也可等价采用 ∀p(P_ki(p)→T_C(φ)(p))。这里有限的区分句与固定解释代码可硬编码进针对该固定因子理论的判定程序；没有声称能统一地从任意群呈示找出它们。此解释消除了从任意参数扩张到纯理论的未经证明跳步。domain 定义为任意 x,y≠1 存在 g 使 [x,y^g]≠1，不能只替换为中心平凡或直接不可分解；这些仅是必要条件。解释公式及参数范围含量词，故没有由此证明 b) 的全称理论反向。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E0537-MATH-ARTIN",
+      "url": "https://arxiv.org/pdf/2507.21575v2",
+      "locator": "p2 §1.1 domain 定义、Fact 1.1(ii)(iv)；p3 Theorem 1.3 与 Corollary 1.4",
+      "version": "arXiv:2507.21575v2，页眉 29 Oct 2026，稿内 Date October 30, 2026；SHA256 7a3814aa4fca2d6027f14f437064af3385bd4d4f00f38a3a3da653f6f19bd7cf",
+      "subquestions": [
+        "卡内‘Artin 文献仅引正向’陈述的版本与范围纠正",
+        "a) 非平凡 domain 因子子类"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "Cassella–Paolini–Paolini 的当前 v2 Fact 1.1(iv) 对 A=A1×…×An 且每个 Ai 为非平凡 domain 明确写完整初等理论可判定的双向，而 (ii) 写的是 Th(Ai) 可解释于 A。其引用 [38] 的原稿关键证明已另核。因此卡内泛称‘2025 Artin 文献确认只引正向’须修订为版本明确的附加条件结论，不能说本文证明一般反向。Theorem 1.3 的 acylindrically hyperbolic 群还要求没有非平凡有限正规子群才推出 domain；Corollary 1.4 另有 Artin 类的不可约成员无挠且 acylindrically hyperbolic 条件。没有把任意 Artin 群、任意中心平凡群、mod-center 因子或任意有限生成群视为同一范围，也没有把 elementary 结论外推为 universal 结论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E0537-ROOT-KMR-PARAM",
+      "url": "https://web.stevens.edu/algebraic/alexeim/Publications/All_files_temp/algeom3_final_89.pdf",
+      "locator": "Kvaschuk–Myasnikov–Remeslennikov, Algebraic geometry over groups III；作者稿§1.1 p5、TheoremA pp16–17、Corollary1 p17",
+      "version": "作者托管稿，封面19 March2002，26页；2026-11-27读取；正式2005出版版未由根比对",
+      "subquestions": [
+        "a) domain子类中解释参数与可判定性的关系",
+        "全称理论逆向不能由初等解释自动推出"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "原稿对象为有限个非平凡domain的直积。TheoremA并非断言每个具体因子均可无参数定义：它给群码C、有效公式翻译T_C及非空可定义参数集P_ki，使所有满足P_ki的参数解释出与目标G_i同初等理论的群。P_ki=Pk∧T_C(ψ_i)，ψ_i是有限个区别于其他不同理论因子的句子的合取；若没有不同理论因子，可取空合取真。根核参数封闭：令χ_φ=∃p(P_ki(p)∧T_C(φ)(p))，则G_i⊨φ当且仅当G⊨χ_φ，因P_ki非空且其所有候选都给相同理论。固定G及i后有限ψ_i、P_ki可硬编码，φ↦χ_φ有效，故Th(G)的判定器给Th(G_i)判定器。这是逐个固定群理论可判定的推论，不是从任意群表示或因子列表均匀提取区别句的算法声明。该翻译一般引入额外量词，不能据此宣称仅Th_∀(G)可判便能判Th_∀(G_i)。已核这段逻辑连接，未重证前置正交系统/Lemma4或全部作者稿。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E0537-ROOT-PROFINITE-EXCLUDED",
+      "url": "https://arxiv.org/abs/0810.0399v1",
+      "locator": "Martin R. Bridson, Direct factors of profinite completions and decidability；官方Abstract及版本历史",
+      "version": "arXiv:0810.0399v1，submitted2008-10-02；2026-11-27只读摘要/元数据",
+      "subquestions": [
+        "统一分解判定问题与固定群理论问题的区分"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "note": "摘要中的不可判定结论涉及给定有限表示群及有限生成正规子群，判定该子群是否为某有限指数子群的直因子，并涉及profinite completion的直因子。它不是在已经给定G=G1×G2分解下比较三个固定群的初等/全称理论可判定性。本轮只用官方摘要排除该具体命中作为原题完整解的依据，不审核其不可判定性证明，也不以这个异题结果反驳20.104。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001154",
+      "other_card_rev": "a6d555ef5d452da2",
+      "relation": "仅相似",
+      "reason": "双方固定 commit 全文及 metadata 已核：本题量化有限生成群的二因子直积分解，分别问 FO/全称理论可判定的双向传导；001154 量化有限图 Γ 的特定部分交换 metabelian 群 SΓ，问其全称理论本身可判定。共同提出人/关键词不构成同题，不提出合并。",
+      "positions": {
+        "self": "QX-P-000537.text.md §§题面、人话版、原文摘录；meta.acceptance.criteria；card_rev acf0dea7ebebf9fe",
+        "other": "QX-P-001154.text.md §§题面、人话版、原文摘录；meta.acceptance.criteria；card_rev a6d555ef5d452da2"
+      },
+      "note": "pair_key=QX-P-000537|QX-P-001154；固定commit 73290369a8dcc632e25e555aec525565ea6e08f8，较小编号537在本包，本轮负责该对并按双方实际正文判为相关但不等价（规范标签：仅相似），不建议合并。全库简索引的更低号141/533等仅作词面初筛，未向包外题启动新查新，也不冒称已全文复核它们。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "修正人话版",
+      "field": "human_text / 全称理论定义与语言约定",
+      "old": "全称理论是只取形如 ∀x₁…∀x_n φ 的语句。",
+      "new": "固定纯群语言（乘法、逆元和单位元）。全称理论由全部在群中为真的 ∀x₁…∀x_n θ 组成，其中 θ 是无量词公式；允许等式、否定及有限布尔组合。不另加任意群元素命名常量。",
+      "reason": "若不限制矩阵无量词，任意一阶句都可添一个不出现的新全称变量，导致所谓‘全称片段’失去区分。带任意参数的语言与原纯语言判定问题也不能未经说明混同。此属解释文字补精确，不是原标准研究问被反驳。",
+      "evidence_ids": [
+        "E0537-MATH-UNIV",
+        "E0537-MATH-REVERSE-BOUNDARY"
+      ],
+      "small_case_check": "χ=∀x∀y(x=1∨y=1∨x=y) 的矩阵确实无量词，在 C2 真、C2² 假；两群相应理论仍都可判定。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述／全称理论定义",
+      "old": "decidability传导双向；全称句只写∀x1…∀xnφ。",
+      "new": "写明纯群语言{·,inverse,1}中的句子判定，∀句的矩阵φ为无量词；将a/b及正反方向分别列出，G1和G2均须有相应判定算法。",
+      "reason": "明确标准纯群语言、无量词矩阵和四个方向；不把带任意参数理论或从群呈示均匀提取算法换入原问。若实际修改正式定义、量词、参数域或验收条件，按包规必须生成新card_rev；本回执只提出建议，不改题卡。",
+      "evidence_ids": [
+        "0537-SA-01",
+        "0537-SA-05",
+        "0537-SA-06",
+        "E0537-MATH-UNIV",
+        "E0537-MATH-SMALL"
+      ],
+      "small_case_check": "C2上的∀x∀y(x=1∨y=1∨x=y)为真而C2²为假，两群理论均可判定；说明全称布尔矩阵须保留且理论不能简单取交集。G×1≅G，原题不排除平凡因子。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "known_progress / 分清 a)、b) 的正向",
+      "new": "a) 因子初等理论可判定推出有限直积初等理论可判定，是 Feferman–Vaught 有限产品归约的适用情形。b) 因子全称理论可判定推出有限直积全称理论可判定，可用否定的 DNF 与不等式坐标分配有效归约。两方向均无需有限生成；一般反向须另查。",
+      "reason": "明确已经有算法的方向与尚须核验的反向，避免把‘双向’作为不可拆分的单句，或用错误的全称理论交集法替代有效证明。这里只建议补已知方向及本轮复核，按原队列规则经二审再更新状态。",
+      "evidence_ids": [
+        "E0537-MATH-FV",
+        "E0537-MATH-UNIV",
+        "E0537-MATH-SMALL"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展／2025 Artin文献",
+      "old": "2025 Artin群一阶理论文献确认只引正向。",
+      "new": "v1与v2 Fact1.1(iv)均援引KMR的有限domain直积双向结论；仅在明确的domain/Artin条件下适用，主问一般反向未由此解决。 domain须保持其原共轭交换子定义；参数范围筛选只给完整初等理论归约，不能据此直接推出全称理论反向。",
+      "reason": "与两版实际原文不符；错误位于进展引文，不应判主命题被反驳。",
+      "evidence_ids": [
+        "0537-SA-06",
+        "0537-SA-07",
+        "E0537-MATH-KMR",
+        "E0537-MATH-ARTIN",
+        "E0537-ROOT-KMR-PARAM"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "proposer／first_published／原文定位",
+      "old": "2022辑首刊/在列；原文引用缺具体页。",
+      "new": "本编号在2022 No.20 v23 p160、现v50 p174；署E.I.Timoshenko且标Well-known questions，2022仅作本册入录年，不断言历史首次提出。",
+      "reason": "固定两版实际原页与条首措辞一致。",
+      "evidence_ids": [
+        "0537-SA-01",
+        "0537-SA-02"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "Noskov引文与条件",
+      "old": "Noskov引文在47,…处截断。",
+      "new": "补俄文1983,47(3),498–517及英译1984,22(3),465–482/DOI；限定a)有限生成几乎可解子类，并区分原文常量语言与现卡纯群语言的引用层级。",
+      "reason": "原定理条件不能省略或外推全称理论。",
+      "evidence_ids": [
+        "0537-SA-04"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "Artin版本／刊发状态",
+      "old": "仅列arXiv2507.21575，未注明版本。",
+      "new": "以已核v2提交2026-10-29为当前稿，稿内Date为2026-10-30；官方标To appear in IJAC，尚不报为本轮读到正式刊发版。",
+      "reason": "区分提交时间、稿内日期及刊发层级，保留v1对照。",
+      "evidence_ids": [
+        "0537-SA-07"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "开放状态证据／本轮结论",
+      "old": "无标记、旧WebSearch即确认反向开放。",
+      "new": "本轮范围内未取得一般反向完整确证；记录正向与受限子类，原册无新注仅作一项来源事实。",
+      "reason": "未命中不等于证明全球未解，且受限双向进展已实际找到。",
+      "evidence_ids": [
+        "0537-SA-02",
+        "0537-SA-03",
+        "0537-SA-06",
+        "0537-SA-07"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "主问题、formal 主量词、card_rev 及结案状态",
+      "new": "保留有限生成 G=G1×G2 与 a)、b) 原双向问题；人话定义和 known_progress 可按证据建议修订。任何实际改变正式题面、假设或量词的操作须按原版本规则生成新 card_rev；本回执持续绑定 acf0dea7ebebf9fe。",
+      "reason": "本轮各个小例、充分条件与候选证明障碍均没有证成一般反向失败。不得为套用 domain 或互素指数定理而把这些附加条件写入原主问，也不得把原形式化短语的占位性当作研究命题反例。",
+      "evidence_ids": [
+        "E0537-MATH-REVERSE-BOUNDARY",
+        "E0537-MATH-COPRIME",
+        "E0537-MATH-KMR"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {
+        "card_action": "no_change"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "reason": "FVM长篇证明与Noskov后续技术证明未通审；Noskov§1.3明确采用带群元素常量语言。",
+      "next_step": "若升级这些经典定理为本轮独立验证，另核完整依赖与纯语言/常量语言转换；当前保留原文及Kourovka自带注的阅读层级，不把有参数定义自动当一般反向算法。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "KMR已读2002作者稿关键解释证明及2005正式出版元数据，正式刊稿全文未比对；Artin只读v1/v2相关部分，未取得正式刊稿。",
+      "next_step": "引用子类结果时保留domain、非平凡因子、有效解释范围和版本；需要二审其全部证明时取正式版本并复核正交系统/Artin条件，不能据导言宣称所有fg群双向已解。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "精确近期检索和编辑更新检查未取得一般反向的完整证明/反例；没有穷尽所有作者后续稿或非公开更正。",
+      "next_step": "后续若出现同题完整声明，分别核a/b方向、有限生成、普通纯群语言及真正可判定性，不把理论等价、有限片段或受限类结果当全解。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮是有界精确编号/关键词检索和若干命中的全文静态审计；未取得20.104同题证明程序。Zulip为2025历史项目讨论，当前搜索不是所有分支/私有仓库穷举。",
+      "next_step": "若出现同题代码，先核 G 有限生成、无新增中心/域/解释性假设，检查有效群语言句子编码与统一输入的可计算算法/递归性；分别核 FO 与全称两问、两方向。Classical.propDecidable、不可计算 Decidable、有限类型逐句穷举和群字/隶属判定都不足。随后锁 commit，核完整依赖/axiom/sorry 与构建日志，再决定是否独立复跑。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "2021 Feferman–Vaught reduction-sequence 课程项目报告入口 https://kumom.io/assets/articles/feferman-vaught-reduction-sequence/report.pdf 实际打开返回 HTML 0 行，未取得报告/源码。",
+      "next_step": "如需要补具体有效正向变换的实现线索，可向该公开项目的可访问正规入口追全文与源码；先核关系结构/函数符号、有限或无限积、语法输入与输出规格。该缺口不影响已核经典/其他来源数学证明，也不能当成逆向算法。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {}
+    },
+    {
+      "route": "其他：指定二审",
+      "reason": "本组件核了 a)、b) 正向与两个附加条件子类，没有原一般反向的完整解决证据。",
+      "next_step": "由主审合并其他路线后，分别对 a) 一般反向与 b) 一般反向保留独立状态；若出现完整解声明，二审必须逐条确认有限生成、纯群语言、因子范围与公式翻译的片段，不以子群真值保留或任意带参数解释直接结案。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "来源组已读Noskov主定理及§1.3的L_G常量约定，并核Kourovka原条附注；完整技术证明和纯语言/常量语言转换未由本轮独立重证。",
+      "next_step": "目前按Kourovka已刊附注记录a)几乎可解子类，并保留Noskov原文具体语言层级；若升级为本轮独立验证，须另核完整语言转换，不能把任意参数扩张直接交给纯理论判定器。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "KMR作者稿的参数筛选与句子归约已定点核，尚未独立复核全部正交系统技术和正式2005版本；归约不承诺保全全称量词层级。",
+      "next_step": "按已取得作者稿限定domain子类的a)结论；如果后续要据该技术解决b)反向，必须另证量词复杂度与有效性，不能复用完整初等理论判定器的假设。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "acf0dea7ebebf9fe",
+      "codes": {}
+    }
+  ]
+}

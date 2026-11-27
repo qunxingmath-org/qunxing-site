@@ -1,0 +1,2713 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000038",
+  "card_rev": "7defea2ace9c056c",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-03"
+      ],
+      "parts": [
+        {
+          "subquestion": "Giuga与Carmichael交集的结构刻画",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；这是文献已知等价子问，本轮复核一般推导。n>1且p|n时，按模p剩余类分组S(n)≡(n/p)Σ(a=0..p−1)a^(n−1)。有限域幂和只有在p−1|n−1时等于−1，否则为0；S≡−1故强制该整除及n/p≡1(modp)。后者排除p²|n，所以平方自由；反方向由各p的同余及CRT得模n同余。限定合数即Giuga∩Carmichael。只刻画反例，不证明交集空。对应Lean源码仅静态核读，指定二审仍待完成。"
+        },
+        {
+          "subquestion": "反例的已知排除界",
+          "value": "partial",
+          "note": "亲读2013原刊Theorem12：任何反例为奇平方自由数，至少4771个素因子，n>10^19907（至少19908位）。1996正文给至少13887位；卡>10^13800和≥14本身可作弱界，但归属与对象混用、遗漏更强结果。2013大型normal-set树计算未独立重跑。Samuel仓库10^13800目标的B4000必要步仍sorry，B20和乘积native_decide不能补此缺口；数学发表结果与形式化完成度分开。"
+        },
+        {
+          "subquestion": "所列13个数均不构成反例",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；仅对已取得2012列表的13个具体整数成立。全部n>2且偶；本轮逐个执行gcd(n−1,n)=1和pow(n−1,n−1,n)=n−1≠1，排除Carmichael，故排除原题反例。列表为30,858,1722,66198,2214408306,24423128562,432749205173838,14737133470010574,550843391309130318,244197000982499715087866346,554079914617070801288578559178,1910667181420507984555759916338506,4200017949707747062038711509670656632404195753751630609228764416142557211582098432545190323474818。最大项97位，第二项858；870在p=5条件失败。没有独立认证全部13数的Giuga身份，没有证明Giuga数总共只有13个，也未作完整反例搜索。脚本SHA256=3891f7f8eeb364943c89fee8165790d7c0fb1c7ac899393a08c9d3f05b01db38，实际12个小参数和13个见证断言通过；数学子问闭合提议交指定二审。"
+        },
+        {
+          "subquestion": "Bernoulli与幂和表述等价",
+          "value": "claimed_proof",
+          "note": "Kellner2004 Theorem2.3及后文给Agoh的Bernoulli形式与Giuga幂和形式的等价，已读并核关键范围。这不意味着两个表达式对所有n逐点简单相等；n≡2(mod4)、n>2有n/2差项，原文分别处理。只证明猜想等价，不证明猜想成立。"
+        },
+        {
+          "subquestion": "OEIS A309132命题与Agoh–Giuga猜想等价",
+          "value": "claimed_proof",
+          "note": "Epoch固定提交61137ec99283566981fab4c91c9ce5e4358bc272，836行Spec中最终oeis_309132_conjecture_2只证A309132_conjecture↔agoh_giuga_conjecture。已核定义和目标、文件未见sorry/axiom等，但未完整审计依赖闭包、未build或#print axioms。这个等价子结果不能关闭任何一边的开放猜想。"
+        },
+        {
+          "subquestion": "弱Giuga的逐素因子刻画",
+          "value": "claimed_proof",
+          "note": "mo271固定源码isWeakGiuga_iff_prime_dvd有证明体，目标将指数φ(n)的弱Giuga与逐素因子条件等价；本轮仅静态读，未构建/公理检查。它不排除指数n−1的强Giuga反例；不同作者的Giuga/weak术语须注明定义。"
+        },
+        {
+          "subquestion": "奇Giuga数的素因子下界",
+          "value": "claimed_resolution",
+          "note": "2012原刊报告任意奇Giuga数至少14个素因子；2026 Arevalo笔记另报告AI辅助的有限因子数计算。后者的完整程序/证书本轮未复跑，CERTIFIED只是作者标签。对象是全部奇Giuga数，包含但不限于还需Carmichael的主猜想反例，不能用这一较弱结果代替2013的4771界或一般不存在证明。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/Structural.lean"
+      ],
+      "note": "只覆盖：仅子问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "fully_retracted",
+      "url": "https://arxiv.org/html/1106.1627v2",
+      "review": "read_unchecked",
+      "by": "Thomas Sauvaget",
+      "date": "2011-06-09"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "正式目标仍为不存在满足Σ(k=1..n−1)k^(n−1)≡−1(mod n)的合数。本轮取得结构定理、公开计算界及13数独立排除；没有全体合数的不存在证明或具体合数反例确证。Sauvaget2011完整证明声明次日撤回，不能作有效解决；精确Lean主目标仍sorry。原卡年代、已知数、定义说明和形式化完成措辞需修订，但主合数域命题本身有效。有限边界和等价形式均单列，不能迁移为主问题已解。",
+      "evidence_ids": [
+        "e038-a-2013",
+        "e038-a-retract",
+        "038-FE1",
+        "038-FE2",
+        "038-FE4",
+        "E038-M-list13"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Giuga与Carmichael交集的结构刻画",
+      "math_status": "原题已证",
+      "scope_note": "这是文献已知等价子问，本轮复核一般推导。n>1且p|n时，按模p剩余类分组S(n)≡(n/p)Σ(a=0..p−1)a^(n−1)。有限域幂和只有在p−1|n−1时等于−1，否则为0；S≡−1故强制该整除及n/p≡1(modp)。后者排除p²|n，所以平方自由；反方向由各p的同余及CRT得模n同余。限定合数即Giuga∩Carmichael。只刻画反例，不证明交集空。对应Lean源码仅静态核读，指定二审仍待完成。",
+      "evidence_ids": [
+        "e038-a-1996",
+        "e038-a-2013",
+        "E038-M-equivalence",
+        "038-FE3",
+        "038-FE7"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "反例的已知排除界",
+      "math_status": "部分进展",
+      "scope_note": "亲读2013原刊Theorem12：任何反例为奇平方自由数，至少4771个素因子，n>10^19907（至少19908位）。1996正文给至少13887位；卡>10^13800和≥14本身可作弱界，但归属与对象混用、遗漏更强结果。2013大型normal-set树计算未独立重跑。Samuel仓库10^13800目标的B4000必要步仍sorry，B20和乘积native_decide不能补此缺口；数学发表结果与形式化完成度分开。",
+      "evidence_ids": [
+        "e038-a-2013",
+        "e038-a-1996",
+        "038-FE2"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "所列13个数均不构成反例",
+      "math_status": "原题已证",
+      "scope_note": "仅对已取得2012列表的13个具体整数成立。全部n>2且偶；本轮逐个执行gcd(n−1,n)=1和pow(n−1,n−1,n)=n−1≠1，排除Carmichael，故排除原题反例。列表为30,858,1722,66198,2214408306,24423128562,432749205173838,14737133470010574,550843391309130318,244197000982499715087866346,554079914617070801288578559178,1910667181420507984555759916338506,4200017949707747062038711509670656632404195753751630609228764416142557211582098432545190323474818。最大项97位，第二项858；870在p=5条件失败。没有独立认证全部13数的Giuga身份，没有证明Giuga数总共只有13个，也未作完整反例搜索。脚本SHA256=3891f7f8eeb364943c89fee8165790d7c0fb1c7ac899393a08c9d3f05b01db38，实际12个小参数和13个见证断言通过；数学子问闭合提议交指定二审。",
+      "evidence_ids": [
+        "e038-a-jis",
+        "e038-a-oeis",
+        "E038-M-list13"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "Bernoulli与幂和表述等价",
+      "math_status": "完整证明声明",
+      "scope_note": "Kellner2004 Theorem2.3及后文给Agoh的Bernoulli形式与Giuga幂和形式的等价，已读并核关键范围。这不意味着两个表达式对所有n逐点简单相等；n≡2(mod4)、n>2有n/2差项，原文分别处理。只证明猜想等价，不证明猜想成立。",
+      "evidence_ids": [
+        "e038-a-kellner"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "OEIS A309132命题与Agoh–Giuga猜想等价",
+      "math_status": "完整证明声明",
+      "scope_note": "Epoch固定提交61137ec99283566981fab4c91c9ce5e4358bc272，836行Spec中最终oeis_309132_conjecture_2只证A309132_conjecture↔agoh_giuga_conjecture。已核定义和目标、文件未见sorry/axiom等，但未完整审计依赖闭包、未build或#print axioms。这个等价子结果不能关闭任何一边的开放猜想。",
+      "evidence_ids": [
+        "038-FE6"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "弱Giuga的逐素因子刻画",
+      "math_status": "完整证明声明",
+      "scope_note": "mo271固定源码isWeakGiuga_iff_prime_dvd有证明体，目标将指数φ(n)的弱Giuga与逐素因子条件等价；本轮仅静态读，未构建/公理检查。它不排除指数n−1的强Giuga反例；不同作者的Giuga/weak术语须注明定义。",
+      "evidence_ids": [
+        "038-FE5",
+        "E038-M-nomenclature"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "奇Giuga数的素因子下界",
+      "math_status": "完整声明待核",
+      "scope_note": "2012原刊报告任意奇Giuga数至少14个素因子；2026 Arevalo笔记另报告AI辅助的有限因子数计算。后者的完整程序/证书本轮未复跑，CERTIFIED只是作者标签。对象是全部奇Giuga数，包含但不限于还需Carmichael的主猜想反例，不能用这一较弱结果代替2013的4771界或一般不存在证明。",
+      "evidence_ids": [
+        "e038-a-jis",
+        "038-FE8"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-03-038-origin-01-system1_search_query-1",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"Giuga conjecture Borwein 2013 13800 36067 13 Giuga numbers\",\"recency\":3650}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "检索命中2013原刊A67、1996原刊副本、Giuga数索引；命中结果只作定位，后续分别访问。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-01-system1_search_query-2",
+      "route": "原题与出处",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"Agoh Giuga conjecture 1950 1990 Sauvaget 2011 13800\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "检索命中Giuga1950、Agoh1990/1995、Sauvaget2011撤回和相关综述；不把二手摘要当最早原文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-02-open-1",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://math.colgate.edu/~integers/n67/n67.pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "note": "2013正式原刊14页可达；已读定义、算法范围、Theorem12、运算报告及书目。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-02-open-2",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://carmamaths.org/jon/giuga2013.pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://carmamaths.org/jon/giuga2013.pdf",
+      "note": "题卡URL转向resources/jon/giuga2013.pdf；作者存档稿与正式原刊同研究，发布日期栏为空，优先采用期刊正式版。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-02-open-3",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/abs/1106.1627\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/1106.1627",
+      "note": "arXiv官方摘要与版本历史已读：v2明确撤回v1。撤回全文另经HTML取得。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-02-system2_search_query-1",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"Giuga numbers thirteen 97 digits 2017 Wong Laerte Sorini primary\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位2012JIS原刊十三数列表及其他索引；后续访问原刊，不依赖百科数学断言。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-02-system2_search_query-2",
+      "route": "原题与出处",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"Giuseppe Giuga Su una presumibile proprietà caratteristica dei numeri primi 1950 511 528 Agoh 1995\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位Giuga1950书目、Agoh1995出版页与原刊引文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-03-find-1",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"4771\"} 〔私有记录编号：PR-001244〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "note": "指定字符串4771在PDF解析文本无匹配；后来使用带逗号4,771找到，不能解释为定理不存在。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-03-find-2",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 9\"} 〔私有记录编号：PR-001245〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "note": "指定字符串Theorem 9无匹配；原文相应标签是Example 9。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-03-find-3",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"References\"} 〔私有记录编号：PR-001246〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "note": "原刊§3与References：计算j311=4,771，P311>10^19907；Giuga1950和Agoh1995书目。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-03-open-1",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://cs.uwaterloo.ca/journals/JIS/VOL15/Oller/oller5.pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://cs.uwaterloo.ca/journals/JIS/VOL15/Oller/oller5.pdf",
+      "note": "JIS2012原刊全文取得，已读§1.2定义及13个Giuga数；其主定理为算术导数等价，不是本主问题已证。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-03-open-2",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/pdf/1106.1627v2\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/1106.1627v2",
+      "note": "Sauvaget v2 PDF返回DisabledError，稍后HTML成功；两种入口分记。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-03-open-3",
+      "route": "原题与出处",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://doi.org/10.1007/BF02570490\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://doi.org/10.1007/BF02570490",
+      "note": "DOI跳转入口工具不可访问，后续Springer直接出版页可读但正文订阅限制。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-03-open-4",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://oeis.org/A007850\"}",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://oeis.org/A007850",
+      "note": "OEIS主条目直接访问403。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-04-system1_search_query-1",
+      "route": "原题与出处",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"\\\"Agoh\\\" \\\"On Giuga's conjecture\\\" 1995 1990\",\"domains\":[\"link.springer.com\",\"arxiv.org\"]}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中GDZ原刊扫描索引及Kellner等价性论文；按实际返回记录，不声称所有引擎域过滤完全生效。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-04-system1_search_query-2",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"\\\"Giuga\\\" (\\\"proof\\\" OR \\\"counterexample\\\" OR \\\"retraction\\\" OR \\\"erratum\\\")\",\"recency\":730}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "带730日检索范围执行，但返回旧研究/撤回；搜索范围未发现可据此确证的主问题新解，不作全局不存在声明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-04-system1_search_query-3",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"\\\"Giuga\\\" \\\"numbers\\\" \\\"thirteen\\\" \\\"Schneider\\\"\",\"recency\":730}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "返回旧13个数报告与相关索引；日期过滤并未保证返回皆为新发表。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-04-system1_search_query-4",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"\\\"Borwein\\\" \\\"Giuga\\\" \\\"erratum\\\" \\\"19908\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "本批未获与2013下界对应的明确勘误条目，其他命中须与主问题范围分开；不把检索视作未有勘误的证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-04-open-1",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":180} 〔私有记录编号：PR-001247〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "note": "阅读2013§2的normal-set定义、j_d下界和Theorem10剪枝；局部数值下界不能推出完全无反例。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-04-open-2",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/abs/1106.1627v1\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/1106.1627v1",
+      "note": "Sauvaget v1官方摘要明确完整证明声明，版本2011-06-08；未取得v1正文，不独立诊断其漏洞。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-04-open-3",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/html/1106.1627v2\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/1106.1627v2",
+      "note": "Sauvaget v2撤回全文已读，2011-06-09；作者撤回全文，指出Corollary2.2有初等缺口。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-05-open-1",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/abs/math/0409259\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/math/0409259",
+      "note": "Kellner官方摘要与版本信息；后续点击PDF全文成功。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-05-open-2",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/html/math/0409259\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/html/math/0409259",
+      "note": "旧arXivHTML入口DisabledError；PDF入口后来成功。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-05-open-3",
+      "route": "原题与出处",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://gdz.sub.uni-goettingen.de/id/PPN365956996_0087?tify=%7B%22pages%22%3A%5B504%5D%7D\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://gdz.sub.uni-goettingen.de/id/PPN365956996_0087?tify=%7B%22pages%22%3A%5B504%5D%7D",
+      "note": "GDZ页面只回导航壳，扫描正文没有暴露到可读文本；不能称Agoh原稿全文已阅。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-05-open-4",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://oeis.org/A007850/internal\"}",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://oeis.org/A007850/internal",
+      "note": "OEIS internal直接访问403；后续搜索索引返回该版本文本，访问级别分开。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-05-open-5",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://oeis.org/A007850/b007850.txt\"}",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://oeis.org/A007850/b007850.txt",
+      "note": "OEIS b-file直接访问403。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-05-system2_search_query-1",
+      "route": "原题与出处",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"\\\"Giuga\\\" \\\"1950\\\" \\\"pdf\\\" \\\"Giuseppe\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "得到Giuga原始书目和可读后续原刊；未取得1950原始扫描正文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-05-system2_search_query-2",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"\\\"Giuga\\\" \\\"13800\\\" \\\"Sauvaget\\\" proof\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "结果包含旧来源，未提供Sauvaget2011的1000位排除定理；反而官方版本证据表明其撤回。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-05-system2_search_query-3",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"\\\"Giuga\\\" \\\"2025\\\" \\\"2026\\\" \\\"known\\\" \\\"13\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中Fabian Arevalo个人页2026-08-23奇Giuga至少14因子声明、SiRate索引2610.09129v2；已交代码分工，不把仅标题转作确证。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-06-click-1",
+      "route": "学术",
+      "site": "web:click",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"id\":6} 〔私有记录编号：PR-001248〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/math/0409259",
+      "note": "Kellner2004v1 PDF全文可达，阅读§2等价定理与§3结构及历史说明；不是主猜想证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-06-open-1",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://www.math.stonybrook.edu/~moira/mat331-spr10/papers/1996%20BorweinGiuga%27s%20Conjecture%20on%20Primality.pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.math.stonybrook.edu/~moira/mat331-spr10/papers/1996%20BorweinGiuga%27s%20Conjecture%20on%20Primality.pdf",
+      "note": "1996原刊扫描全文可达，已读Theorem1证明、§2下界及normal-set方法上限；p44给出13887位，p42引言笼统13800。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-06-open-2",
+      "route": "原题与出处",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://link.springer.com/article/10.1007/BF02570490\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://link.springer.com/article/10.1007/BF02570490",
+      "note": "Springer官方出版页可读：Takashi Agoh，1995-12，87:501–510，收稿1995-04-11；正文订阅限制。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-06-system1_search_query-1",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"\\\"Giuga\\\" \\\"Sauvaget\\\" \\\"proof\\\" \\\"2026\\\"\",\"recency\":365}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "此次两条搜索与访问合批响应没有返回任何search结果条目；只表示该实际查询响应，非全局无声明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-06-system1_search_query-2",
+      "route": "原题与出处",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"\\\"Giuga\\\" \\\"Su una\\\" \\\"pdf\\\" \\\"1950\\\"\",\"domains\":[\"eudml.org\",\"numdam.org\",\"lombardo.it\",\"gdz.sub.uni-goettingen.de\"]}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "限定所列档案域的该次响应没有搜索结果条目，1950原刊正文仍未取得。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-07-open-1",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":0} 〔私有记录编号：PR-001249〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/math/0409259",
+      "note": "Kellner全文首节：Bernoulli约定B1=-1/2，准备等价证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-07-find-1",
+      "route": "原题与出处",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"1990\"} 〔私有记录编号：PR-001250〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/math/0409259",
+      "note": "Kellner§2记Giuga约1950、Agoh约1990及1993建立联系；这是后续作者历史回述，Agoh正式出版1995由出版页核实。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-07-find-2",
+      "route": "原题与出处",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"1950\"} 〔私有记录编号：PR-001251〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/math/0409259",
+      "note": "Kellner§2–3和书目：Giuga1950与历史界；本轮未得1950原文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-07-find-3",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"4,771\"} 〔私有记录编号：PR-001252〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "note": "2013Theorem12印刷p8：奇、平方自由、至少4771素因子，n>10^19907；§2.2算法上限8135因子。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-07-find-4",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"13887\"} 〔私有记录编号：PR-001253〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.math.stonybrook.edu/~moira/mat331-spr10/papers/1996%20BorweinGiuga%27s%20Conjecture%20on%20Primality.pdf",
+      "note": "1996印刷p44：i135=3459，至少13887位；不是2013所得界。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-07-find-5",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"3,456\"} 〔私有记录编号：PR-001254〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://www.math.stonybrook.edu/~moira/mat331-spr10/papers/1996%20BorweinGiuga%27s%20Conjecture%20on%20Primality.pdf",
+      "note": "字面字符串3,456无匹配，原文实际3459；只记文本查找未命中。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-08-system2_search_query-1",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"site:oeis.org/A007850 \\\"13\\\" \\\"Giuga\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "OEIS搜索索引返回A007850详细摘录：12项+额外97位数，2006Schneider报告；无法据此声称直接访问原页成功。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-08-system2_search_query-2",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"site:oeis.org/A007850 \\\"2026\\\" \\\"Giuga\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "索引显示A007850/internal版本#181，2026-10-27 09:16:05；仍12+1记录，给十个因素分解。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-08-system2_search_query-3",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"\\\"Giuga\\\" \\\"19908\\\" \\\"erratum\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "本批返回OEIS相关索引，没有与19908对应的明确勘误；合批结果不提供逐查询命中数，故不编造计数。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-origin-09-screenshot-1",
+      "route": "学术",
+      "site": "web:screenshot",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pageno\":2} 〔私有记录编号：PR-001255〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://cs.uwaterloo.ca/journals/JIS/VOL15/Oller/oller5.pdf",
+      "note": "对JIS印刷p3请求截图核数字排版，返回截图引用turn594000105view0；本条不独立确认提取分解正确，交数学分工按整数乘积核对。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F1",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "\"Agoh\" \"Giuga\" \"Lean\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批3查询，第一和第三查询recency=365；组合结果提供Samuel、DeepMind、Prove2Me、arXiv论文索引等线索，未提供逐查询命中计数。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F1",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "\"2610.09129\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批3查询，第一和第三查询recency=365；组合结果提供Samuel、DeepMind、Prove2Me、arXiv论文索引等线索，未提供逐查询命中计数。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F1",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "\"Agoh Giuga\" proof formalization Isabelle Coq ACL2 AI",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批3查询，第一和第三查询recency=365；组合结果提供Samuel、DeepMind、Prove2Me、arXiv论文索引等线索，未提供逐查询命中计数。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F1",
+      "route": "代码、公开 AI 和社区",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/abs/2610.09129",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "note": "DisabledError；未读官方摘要页或论文全文。",
+      "url": "https://arxiv.org/abs/2610.09129",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "038-F2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST",
+      "query": "GET /repos/SamuelSchlesinger/agoh-giuga-conjecture/commits/main",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "取得默认分支固定提交529aa6f8ddb256ab30c7e92fdfa01fff86d710d6，提交日期2026-02-26；提交说明自称B4000计算仍sorry。未将提交成功状态视为Lean验证。",
+      "url": "https://api.github.com/repos/SamuelSchlesinger/agoh-giuga-conjecture/commits/main",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "AgohGiuga; repository_name=google-deepmind/formal-conjectures; topn=15",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回AgohGiuga.lean和FC100SolvedSet1.lean；后者是解决子问清单，不能替代主猜想。",
+      "result_count": 2,
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "Giuga; repository_name=leanprover-community/mathlib4; topn=15",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "本次默认分支限定关键词查询返回空数组；不推断Mathlib没有所有相关工具。",
+      "result_count": 0,
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "038-F5",
+      "route": "代码、公开 AI 和社区",
+      "site": "arxiv.org/export.arxiv.org",
+      "query": "open https://arxiv.org/html/2610.09129v2",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "note": "DisabledError；未读原文。",
+      "url": "https://arxiv.org/html/2610.09129v2",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "038-F5",
+      "route": "代码、公开 AI 和社区",
+      "site": "arxiv.org/export.arxiv.org",
+      "query": "open https://arxiv.org/pdf/2610.09129",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "note": "DisabledError；未读原文。",
+      "url": "https://arxiv.org/pdf/2610.09129",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "038-F5",
+      "route": "代码、公开 AI 和社区",
+      "site": "arxiv.org/export.arxiv.org",
+      "query": "open https://export.arxiv.org/abs/2610.09129",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "note": "工具报告URL不可访问；未读原文。",
+      "url": "https://export.arxiv.org/abs/2610.09129",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "038-F5",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system2",
+      "query": "\"Agoh\" \"Giuga\" \"Isabelle\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "3查询组合返回跨题目录、讲座列表等索引，未取得本题Isabelle/Coq/ACL2证明文件；不能把含证明器名的网页当实际形式化。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F5",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system2",
+      "query": "\"Agoh\" \"Giuga\" \"Coq\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "3查询组合返回跨题目录、讲座列表等索引，未取得本题Isabelle/Coq/ACL2证明文件；不能把含证明器名的网页当实际形式化。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F5",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system2",
+      "query": "\"Agoh\" \"Giuga\" \"ACL2\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "3查询组合返回跨题目录、讲座列表等索引，未取得本题Isabelle/Coq/ACL2证明文件；不能把含证明器名的网页当实际形式化。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F6",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/README.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "README原文已阅：主问题与B4000均明示sorry，结构等价及B20另列。",
+      "url": "https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/README.md",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F7",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/Reduction.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "Reduction.lean 69行全文已阅；L61主猜想sorry，L66–68最终结论依赖它。",
+      "url": "https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/Reduction.lean",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "038-F8",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/BorweinBound.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "BorweinBound.lean 1083行已取得，核关键声明、占位及目标依赖；L1079的4000下界sorry，非完整形式化。未逐行人工复核全体辅助引理。",
+      "url": "https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/BorweinBound.lean",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F9",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/lean-toolchain",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际lean-toolchain文件为leanprover/lean4:v4.28.0；未安装或构建。",
+      "url": "https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/lean-toolchain",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F10",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/lake-manifest.json",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际lake-manifest.json列Mathlib固定rev 8f9d9cff6bd728b17a24e163c9402775d9e6a365等；未下载依赖或复跑。",
+      "url": "https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/lake-manifest.json",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F11",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/google-deepmind/formal-conjectures/blob/f743e2f2fdf4331b0f64b6a080fde80458815edc/FormalConjectures/Wikipedia/AgohGiuga.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "DeepMind 272行全文已阅；主目标AgohGiugaCongr和AgohGiugaSum均sorry；research solved子问标签不等于源文件有证明。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/f743e2f2fdf4331b0f64b6a080fde80458815edc/FormalConjectures/Wikipedia/AgohGiuga.lean",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "038-F12",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/Defs.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "Defs.lean全文核：合数n>1、Carmichael全体互素剩余类、Giuga逐素因子整除条件。",
+      "url": "https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/Defs.lean",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F13",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/Structural.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "Structural.lean 354行取得，核forward/backward目标及关键桥接，文件文本未见sorry/axiom；依赖未全审，未build。",
+      "url": "https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/Structural.lean",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F14",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/mo271/formal-conjectures/blob/2663234a28260853790aa5752d8d4550ff0ab1ca/FormalConjectures/Wikipedia/AgohGiuga.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "固定mo271文件取得并核目标：弱Giuga（φ(n)次幂）判据有证明体，其他主目标仍sorry；本轮未build。",
+      "url": "https://github.com/mo271/formal-conjectures/blob/2663234a28260853790aa5752d8d4550ff0ab1ca/FormalConjectures/Wikipedia/AgohGiuga.lean",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F17",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/Basic.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "Basic.lean全文核：giugaSum范围1..n−1、指数n−1，正向素数⇒同余证明体；不证明合数不存在。",
+      "url": "https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/Basic.lean",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F19",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/epoch-research/LeanOpenProblems-results/blob/61137ec/runs/oeis-full-50usd-ant-j0j0g4uzligm1k41/oeis_309132_conjecture_2/Submission/Spec.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "Epoch Spec.lean 836行取得并核定义、core与最终目标；最终仅OEIS A309132猜想等价。单文件文本未见sorry/admit/axiom/unsafe/native_decide；未做依赖闭包审计或build。",
+      "url": "https://github.com/epoch-research/LeanOpenProblems-results/blob/61137ec/runs/oeis-full-50usd-ant-j0j0g4uzligm1k41/oeis_309132_conjecture_2/Submission/Spec.lean",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F15",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "\"Agoh Giuga\" \"proved\" \"AI\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批3查询；前2条recency=365。命中AI等价证明、giuga判据与审计基础设施，未发现可在本轮确认的完整主猜想证明；不把缺失检索结果当全网不存在。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F15",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "\"Agoh-Giuga\" \"proof\" \"2026\" \"Lean\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批3查询；前2条recency=365。命中AI等价证明、giuga判据与审计基础设施，未发现可在本轮确认的完整主猜想证明；不把缺失检索结果当全网不存在。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F15",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "\"2610.09129\" \"Lean\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批3查询；前2条recency=365。命中AI等价证明、giuga判据与审计基础设施，未发现可在本轮确认的完整主猜想证明；不把缺失检索结果当全网不存在。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F15",
+      "route": "代码、公开 AI 和社区",
+      "site": "fabianarevalo.com",
+      "query": "open /math",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "阅读个人研究索引，发现odd Giuga至少14因子计算子结果；后续打开具体原笔记。",
+      "url": "https://fabianarevalo.com/math",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F15",
+      "route": "代码、公开 AI 和社区",
+      "site": "Prove2Me",
+      "query": "open theorem f47cdc6e-0596-4812-b182-8dac3e22e880",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "原页完整60行；Proved是平台声明，公开Formal statement以by sorry展示，未取得实际证明体或运行日志。命题是判据，不是合数不存在。",
+      "url": "https://beta.prove2.me/theorems/f47cdc6e-0596-4812-b182-8dac3e22e880",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F15",
+      "route": "代码、公开 AI 和社区",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/html/2610.09129v1",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "note": "DisabledError；未读原论文。",
+      "url": "https://arxiv.org/html/2610.09129v1",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "038-F16",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "site:arxiv.org \"2610.09129\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "组合结果有非arXiv域转载、SciRate摘要及MathWorld链接；未得到2610.09129 primary全文；Epoch具体源码链接后续追取。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F16",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "site:epoch.ai Agoh Giuga Adamczewski",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "组合结果有非arXiv域转载、SciRate摘要及MathWorld链接；未得到2610.09129 primary全文；Epoch具体源码链接后续追取。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F16",
+      "route": "代码、公开 AI 和社区",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/abs/2610.09129v2",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "note": "DisabledError；原论文版本与形式化声称仍待核。",
+      "url": "https://arxiv.org/abs/2610.09129v2",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "038-F16",
+      "route": "代码、公开 AI 和社区",
+      "site": "ProofAtlas",
+      "query": "open /collaboration/agoh-giuga-conjecture/",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "核原页问题、status与version9范围：明确open/research question，conditional A=71分支，不声称主猜想证明；未复核其全部5996行工作档案。",
+      "url": "https://www.proofatlas.ai/collaboration/agoh-giuga-conjecture/",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "038-F16",
+      "route": "代码、公开 AI 和社区",
+      "site": "fabianarevalo.com",
+      "query": "find /math pattern=Giuga",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "定位索引具体14因子子结果链接。",
+      "url": "https://fabianarevalo.com/math",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F18",
+      "route": "代码、公开 AI 和社区",
+      "site": "fabianarevalo.com",
+      "query": "click /math link22 => /odd-giuga",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "读取作者计算笔记主体，明示Claude Code辅助、m≤12枚举加奇偶性、主问题仍开放；没有运行作者程序。",
+      "url": "https://fabianarevalo.com/odd-giuga",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F18",
+      "route": "代码、公开 AI 和社区",
+      "site": "MathWorld",
+      "query": "open /AgohsConjecture.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "用于定位Epoch原代码：声称的是A309132等价，不是原猜想已解；数学结论以之后的primary代码目标为准。",
+      "url": "https://mathworld.wolfram.com/AgohsConjecture.html",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F20",
+      "route": "代码、公开 AI 和社区",
+      "site": "fabianarevalo.com",
+      "query": "open /odd-giuga at line144",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "续读至末尾：AI披露、复现命令、作者自己声明文献仅摘要及PRP依赖。未把作者的复跑记录登记为本轮独立复跑。",
+      "url": "https://fabianarevalo.com/odd-giuga",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "038-F20",
+      "route": "代码、公开 AI 和社区",
+      "site": "arxiv-troller.com",
+      "query": "open /paper/3333470/",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "页面是二手论文索引，实际读到标题、作者及摘要；不是论文全文，也不支持Lean/10^13800已验证的结论。",
+      "url": "https://arxiv-troller.com/paper/3333470/",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "038-F21",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST",
+      "query": "GET /repos/epoch-research/LeanOpenProblems-results/git/commits/61137ec",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "Git data API短SHA入口404；随后普通commits入口成功扩展为完整SHA。",
+      "url": "https://api.github.com/repos/epoch-research/LeanOpenProblems-results/git/commits/61137ec",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "038-F22",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "agoh; repositories=[isabelle-prover/mirror-afp-devel, coq-community/coqprime, acl2/acl2]; topn=15",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "本次限定3库、默认分支和关键词agoh返回空数组；不代表穷尽Isabelle/Coq/ACL2或所有同义名称。",
+      "result_count": 0,
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "038-F23",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST",
+      "query": "GET /repos/epoch-research/LeanOpenProblems-results/commits/61137ec",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "成功固定完整提交61137ec99283566981fab4c91c9ce5e4358bc272，提交2026-08-23；提交信息不是构建日志。",
+      "url": "https://api.github.com/repos/epoch-research/LeanOpenProblems-results/commits/61137ec",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-math-01",
+      "route": "学术",
+      "site": "web system2_search_query",
+      "query": "Giuga Carmichael numbers equivalent sum powers conjecture squarefree 13 Giuga numbers primary",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "批请求子查询1；命中 Tipu 2007、Luca–Pomerance–Shparlinski 2009 等原始论文线索。没有将搜索摘要作为全文或复跑。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-math-02",
+      "route": "学术",
+      "site": "web system2_search_query",
+      "query": "Agoh Giuga 1850 prime factors 10000 digits lower bound paper",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "批请求子查询2；与上项合并返回，命中2013正式刊稿及当前代码索引，后者由formal分工核查。未编造子查询命中数。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-math-03",
+      "route": "学术",
+      "site": "cs.uwaterloo.ca",
+      "query": "open https://cs.uwaterloo.ca/journals/JIS/VOL15/Oller/oller5.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "〔原始工具引用已私有留存〕；取得5页全文，核§1.2的定义和13数清单。Giuga性质不是主猜想完整解决。",
+      "url": "https://cs.uwaterloo.ca/journals/JIS/VOL15/Oller/oller5.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-math-04",
+      "route": "学术",
+      "site": "math.colgate.edu",
+      "query": "open https://math.colgate.edu/~integers/n67/n67.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；读取正式全文中§1.1 Theorems3–4等前部，核同余等价的条件。未重算作者的大范围排除界。",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-math-05",
+      "route": "学术",
+      "site": "cs.uwaterloo.ca",
+      "query": "screenshot 〔原始工具引用已私有留存〕 pageno=1 〔私有记录编号：PR-001256〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "〔原始工具引用已私有留存〕；工具只回图像占位信息，未取得可检查像素。因此不能声称已视觉核实PDF排版；原刊因子串/Prop3(ii)文本异常保留待视觉复核。",
+      "url": "https://cs.uwaterloo.ca/journals/JIS/VOL15/Oller/oller5.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-math-06",
+      "route": "学术",
+      "site": "cs.uwaterloo.ca",
+      "query": "screenshot 〔原始工具引用已私有留存〕 pageno=2 〔私有记录编号：PR-001257〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "〔原始工具引用已私有留存〕；同批截图仅有占位信息，未将文字抽取异常升格为原刊勘误。",
+      "url": "https://cs.uwaterloo.ca/journals/JIS/VOL15/Oller/oller5.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-math-07",
+      "route": "学术",
+      "site": "math.dartmouth.edu",
+      "query": "open https://math.dartmouth.edu/~carlp/giugafinal.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；取得作者站完整刊稿，核§1.1强Giuga/weakGiuga命名和平方自由条件；没有审计整篇计数上界证明。",
+      "url": "https://math.dartmouth.edu/~carlp/giugafinal.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-math-08",
+      "route": "学术",
+      "site": "oeis.org",
+      "query": "open https://oeis.org/A007850/internal",
+      "date": "2026-11-26",
+      "outcome": "限流或权限",
+      "note": "〔原始工具引用已私有留存〕；实际403，未读页面全文。origin分工搜索索引所列修正因子仅作本地精确乘积比较，本请求不记录为已获取OEIS全文。",
+      "url": "https://oeis.org/A007850/internal",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-dedup-index",
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "Agoh|Giuga|朱加|朱伽|卡迈克尔|Carmichael|Bernoulli.*congruence|幂和同余",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 5,
+      "note": "含本卡和直接同题候选000601，以及仅Carmichael词命中的000206/001172(φ前像)、000666(群Y(m,n))。后三者仅作索引噪声保留，未读正文、未作正式关系判定。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-dedup-fixed-text.md",
+      "route": "库内查重",
+      "site": "GitHub固定快照",
+      "query": "fetch https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000601.text.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000601.text.md",
+      "note": "完整正文/元数据已读取并与snapshot_tree.json的Git blob SHA一致；other_card_rev=4f4bd34d0035c893。用于当前题查重，不是601独立查新。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-dedup-fixed-meta.json",
+      "route": "库内查重",
+      "site": "GitHub固定快照",
+      "query": "fetch https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000601.meta.json",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000601.meta.json",
+      "note": "完整正文/元数据已读取并与snapshot_tree.json的Git blob SHA一致；other_card_rev=4f4bd34d0035c893。用于当前题查重，不是601独立查新。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-root-01",
+      "route": "学术",
+      "site": "INTEGERS原刊",
+      "query": "open https://math.colgate.edu/~integers/n67/n67.pdf",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "note": "全文及Thm3/4/12、算法限制亲读。只给已知结构等价及排除界；不证明主猜想，也不是本轮复算其大型计算。",
+      "date": "2026-11-26",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-root-02",
+      "route": "学术",
+      "site": "arXiv官方版本史",
+      "query": "open https://arxiv.org/abs/1106.1627",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/1106.1627",
+      "note": "亲读v2官方撤回声明和版本史，v1原证明关键Cor2.2有缺口；此为撤回声明原文，不声称已重新审计原证明全文。",
+      "date": "2026-11-26",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-root-03",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Agoh\" \"Giuga\" conjecture proof 2026 2025 [recency:730]",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际结果包括Samuel仓库、ProofAtlas、MathWorld和2025讲义。只作入口线索；正式支持以原刊、官方撤回和固定源码为准。形式化等价不覆盖主猜想。",
+      "date": "2026-11-26",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-root-04",
+      "route": "学术",
+      "site": "INTEGERS PDF文本定位",
+      "query": "find n67/n67.pdf: 4771",
+      "outcome": "执行无命中",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "note": "无命中仅指此未带千位逗号的字符串，不能解释为论文没有该界；后续Thm12定位成功。",
+      "date": "2026-11-26",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-root-05",
+      "route": "学术",
+      "site": "INTEGERS PDF文本定位",
+      "query": "find n67/n67.pdf: 19,908",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "note": "摘要明确至少19,908十进制位；不是逐个穷举至该界。",
+      "date": "2026-11-26",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-root-06",
+      "route": "原题与出处",
+      "site": "INTEGERS PDF文献定位",
+      "query": "find n67/n67.pdf: References",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "note": "[1]Agoh1995、[6]Borwein等1996、[9]Giuga1950；引用表不等于亲读全部原文。",
+      "date": "2026-11-26",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-038-root-07",
+      "route": "学术",
+      "site": "INTEGERS PDF定理定位",
+      "query": "find n67/n67.pdf: Theorem 12",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "note": "印刷p8 Thm12：odd squarefree、至少4,771prime factors、n>10^19907；p7特定normal-prime-set算法上限8,135不等于一切CRT方法不可能解题。",
+      "date": "2026-11-26",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "e038-a-2013",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "locator": "§1定义与Theorem3；§2.2算法上限；Theorem12（印刷p8）；§3计算记录pp8–10；参考文献[1][6][9]",
+      "version": "Integers13(2013),#A67；2013-10-10正式发表；2026-11-26访问",
+      "subquestions": [
+        "主问题",
+        "Giuga与Carmichael交集的结构刻画",
+        "反例的已知排除界"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Jonathan Borwein; Christopher Maitland; Matthew Skerritt",
+      "claim_date": "2013-10-10",
+      "note": "原刊至少19908位；Theorem12明确4771因子及n>10^19907。已读normal-set下界逻辑及报告，未复跑j311全树。§2.2说明其特定算法不能给出超过8135因子的排除界，不应扩大成任何CRT方法永不能解决。作者存档URL可达但无正式发表日期栏，使用期刊版。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "e038-a-1996",
+      "url": "https://www.math.stonybrook.edu/~moira/mat331-spr10/papers/1996%20BorweinGiuga%27s%20Conjecture%20on%20Primality.pdf",
+      "locator": "Theorem1及证明，印刷pp40–41；反例交集重述p41；§2 p44的i135=3459与13887位",
+      "version": "American Mathematical Monthly103(1)(1996),40–50；JSTOR2975213扫描副本",
+      "subquestions": [
+        "Giuga与Carmichael交集的结构刻画",
+        "反例的已知排除界"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "D. Borwein; J. M. Borwein; P. B. Borwein; R. Girgensohn",
+      "claim_date": "1996-01",
+      "note": "已读结构证明及§2下界。13800是引言的较粗概述，p44实际至少13887位；2013回顾P135>10^13886。1000位界在此归于Giuga，非Sauvaget2011。论文定义Giuga数不要求Carmichael，不能混称所有Giuga数为主猜想反例。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "e038-a-kellner",
+      "url": "https://arxiv.org/pdf/math/0409259",
+      "locator": "§2 Conjectures2.1–2.2、Theorem2.3及证明（pp2–3）；§3及References",
+      "version": "arXiv:math/0409259v1，2004-09-15",
+      "subquestions": [
+        "Bernoulli与幂和表述等价"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Bernd C. Kellner",
+      "claim_date": "2004-09-15",
+      "note": "证明两种猜想等价而非猜想本身；§2回述Giuga约1950、Agoh约1990，Agoh1993建立联系。Theorem2.3并非对所有n简单令幂和=nBn−1：n≡2(mod4)、n>2时差为n/2；两种素性断言仍等价。原始Giuga1950正文未取得。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e038-a-agoh",
+      "url": "https://link.springer.com/article/10.1007/BF02570490",
+      "locator": "出版社作者、Abstract、About this article及References[7]",
+      "version": "Manuscripta Mathematica87(1995),501–510；收到1995-04-11，出版1995-12",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "claimant": "Takashi Agoh",
+      "claim_date": "1995-12",
+      "note": "官方书目与摘要核实作者Takashi（2013正文误作Takahashi，参考文献则正确）；1990提出约年由Kellner回述，不能填成已核1990发表。原稿正文受订阅限制，GDZ入口仅导航壳；该条是原始发表记录的书目核验，不声称全文已阅。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "e038-a-sauvaget-v1",
+      "url": "https://arxiv.org/abs/1106.1627v1",
+      "locator": "官方摘要及Submission history",
+      "version": "arXiv:1106.1627v1，2011-06-08 19:19:22UTC",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完全撤回",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "claimant": "Thomas Sauvaget",
+      "claim_date": "2011-06-08",
+      "note": "v1摘要声称初等完整证明；v2次日撤回。这里只读v1摘要，不独立断言其具体错误推导。与后条撤回证据配对，不能保留为有效解决声明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "fully_retracted",
+        "claim_review": "not_read",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e038-a-retract",
+      "url": "https://arxiv.org/html/1106.1627v2",
+      "locator": "撤回全文Abstract与§1",
+      "version": "arXiv:1106.1627v2，2011-06-09 18:51:49UTC",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "撤回",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完全撤回",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Thomas Sauvaget",
+      "claim_date": "2011-06-09",
+      "note": "全文一页明确撤回v1，称Corollary2.2证明有初等缺口，致谢Chapman、Foo、Oller指出错误。PDF入口DisabledError但HTML全文成功，已分别记queries。撤回不是猜想反驳，也不是约1000位的新下界。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "fully_retracted",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "retraction",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e038-a-jis",
+      "url": "https://cs.uwaterloo.ca/journals/JIS/VOL15/Oller/oller5.pdf",
+      "locator": "§1.2 Definition2、Proposition3及十三个数列表（印刷pp2–3）；publication footer p5",
+      "version": "Journal of Integer Sequences15(2012),Article12.4.1；2012-03-26发表",
+      "subquestions": [
+        "所列13个数均不构成反例",
+        "奇Giuga数的素因子下界"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "José María Grau; Antonio M. Oller-Marcén",
+      "claim_date": "2012-03-26",
+      "note": "列表以30,858,1722开头；全为偶数，列最大97位并称10素因子。至少14因子对应任意奇Giuga数的较弱必要条件，不是2013主反例下界。原刊大数分解与OEIS索引的十因子串不一致，数学分工应以精确乘积复核；本文的主定理算术导数不解决当前主题。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "e038-a-oeis",
+      "url": "https://oeis.org/A007850/internal",
+      "locator": "搜索索引的%I、%S–%U、%C Schneider2006及额外97位数说明",
+      "version": "索引所示#181，2026-10-27 09:16:05；本轮2026-11-26获取索引",
+      "subquestions": [
+        "所列13个数均不构成反例"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "三条OEIS直接入口均403；搜索索引可见完整列表摘录与发现者Schneider原始留言，不能写直接官网全文访问成功。现索引仍12+1已知数，额外者不一定是按大小排序第13项，亦不是证明总共只有13个；正因子分解交数学分工算术核对。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "038-FE1",
+      "url": "https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/Reduction.lean",
+      "locator": "L33–50 conjecture_iff_no_carmichael_giuga；L61 no_carmichael_giuga；L66–68 agoh_giuga_conjecture",
+      "version": "529aa6f8ddb256ab30c7e92fdfa01fff86d710d6",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "rerun": {
+        "commit": "529aa6f8ddb256ab30c7e92fdfa01fff86d710d6",
+        "theorem": "no_carmichael_giuga; agoh_giuga_conjecture",
+        "toolchain": "leanprover/lean4:v4.28.0; mathlib 8f9d9cff6bd728b17a24e163c9402775d9e6a365（实际配置已读）",
+        "command": "未执行；本轮静态审查",
+        "axioms": "no_carmichael_giuga声明体by sorry；最终agoh_giuga_conjecture直接依赖该占位。未运行#print axioms。"
+      },
+      "note": "主问题确有精确形式化题面。Defs排除0、1并要求合数；Basic求和域与卡一致。但仓库README也明确主问题开放，不能将定理名存在或lake build可接受sorry视作证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "038-FE2",
+      "url": "https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/BorweinBound.lean",
+      "locator": "L949–961 B20；L1026–1034乘积比较；L1074–1082 carmichael_giuga_borwein_bound，L1079 sorry",
+      "version": "529aa6f8ddb256ab30c7e92fdfa01fff86d710d6",
+      "subquestions": [
+        "反例的已知排除界"
+      ],
+      "scope_match": "仅子问",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "rerun": {
+        "commit": "529aa6f8ddb256ab30c7e92fdfa01fff86d710d6",
+        "theorem": "carmichael_giuga_borwein_bound; BorweinVerifier.normalSet_card_ge_20; carmichael_giuga_card_ge_20",
+        "toolchain": "Lean4.28.0; mathlib8f9d9cff6bd728b17a24e163c9402775d9e6a365",
+        "command": "未执行；未运行B=4000搜索或native_decide",
+        "axioms": "目标所需hMin: 4000≤T.card以sorry给出；文件其他native_decide不消除此缺口。未运行公理打印。"
+      },
+      "note": "作者README和文件头自述B20演示与乘积比较已执行；真正将一般Carmichael-Giuga反例推至4000个素因子的步骤缺失。区分数学文献已有界与这个仓库尚不完整的形式化；不能说此界数学上已反驳，也不能说本轮验证该界通过。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "038-FE3",
+      "url": "https://github.com/SamuelSchlesinger/agoh-giuga-conjecture/blob/529aa6f8ddb256ab30c7e92fdfa01fff86d710d6/AgoGiuga/Structural.lean",
+      "locator": "structural_backward L42–44；structural_forward L336–353；Defs.lean L13–19；Basic.lean giugaSum",
+      "version": "529aa6f8ddb256ab30c7e92fdfa01fff86d710d6",
+      "subquestions": [
+        "Giuga与Carmichael交集的结构刻画"
+      ],
+      "scope_match": "仅子问",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "claim_state": "公开声称",
+      "claimant": "Samuel Schlesinger / repository README",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "rerun": {
+        "commit": "529aa6f8ddb256ab30c7e92fdfa01fff86d710d6",
+        "theorem": "structural_forward; structural_backward; conjecture_iff_no_carmichael_giuga",
+        "toolchain": "Lean4.28.0; mathlib8f9d9cff6bd728b17a24e163c9402775d9e6a365",
+        "command": "未执行build或#print axioms",
+        "axioms": "所取Structural、Defs、Basic文本未见sorry/admit/axiom；Giuga/Carmichael及Mathlib依赖未逐一审计。"
+      },
+      "note": "已取354行Structural，核关键方向、定义和量词；README声称双向证明完成。可登记为子结果源码静态核读，尚不是本轮独立编译验证，也不排除反例。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "038-FE4",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/f743e2f2fdf4331b0f64b6a080fde80458815edc/FormalConjectures/Wikipedia/AgohGiuga.lean",
+      "locator": "L50–76两种主式与等价；L84–104弱/强Giuga定义；L207–269子问",
+      "version": "f743e2f2fdf4331b0f64b6a080fde80458815edc",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "rerun": {
+        "commit": "f743e2f2fdf4331b0f64b6a080fde80458815edc",
+        "theorem": "AgohGiuga.agoh_giuga; AgohGiuga.agoh_giuga.variants.giuga",
+        "command": "未执行",
+        "axioms": "两个主目标均by sorry；多项research solved子问也仍sorry。"
+      },
+      "note": "目录research open/solved标的是数学问题状态，不能当文件已证明。全文272行已阅；强Giuga指数n−1即反例类，弱Giuga指数φ(n)是另一类，不能混用其证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "038-FE5",
+      "url": "https://github.com/mo271/formal-conjectures/blob/2663234a28260853790aa5752d8d4550ff0ab1ca/FormalConjectures/Wikipedia/AgohGiuga.lean",
+      "locator": "L81–98 IsWeakGiuga与isWeakGiuga_iff_prime_dvd；L99–127目标证明体",
+      "version": "2663234a28260853790aa5752d8d4550ff0ab1ca",
+      "subquestions": [
+        "弱Giuga的逐素因子刻画"
+      ],
+      "scope_match": "同源不同问",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "rerun": {
+        "commit": "2663234a28260853790aa5752d8d4550ff0ab1ca",
+        "theorem": "AgohGiuga.isWeakGiuga_iff_prime_dvd",
+        "command": "未执行",
+        "axioms": "该目标体无sorry；同一文件主猜想等其他目标含sorry；未做依赖闭包公理审计。"
+      },
+      "note": "从DeepMind formal_proof链接追到固定原文件。弱Giuga使用φ(n)指数，该有限素因子条件不等于不存在强Giuga数。工具链未取全，不报独立复跑。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "038-FE6",
+      "url": "https://github.com/epoch-research/LeanOpenProblems-results/blob/61137ec99283566981fab4c91c9ce5e4358bc272/runs/oeis-full-50usd-ant-j0j0g4uzligm1k41/oeis_309132_conjecture_2/Submission/Spec.lean",
+      "locator": "定义a/A309132_conjecture/agoh_giuga_condition；core L755–799；oeis_309132_conjecture_2 L824–835",
+      "version": "61137ec99283566981fab4c91c9ce5e4358bc272",
+      "subquestions": [
+        "OEIS A309132命题与Agoh–Giuga猜想等价"
+      ],
+      "scope_match": "仅子问",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "rerun": {
+        "commit": "61137ec99283566981fab4c91c9ce5e4358bc272",
+        "theorem": "oeis_309132_conjecture_2 : A309132_conjecture ↔ agoh_giuga_conjecture",
+        "command": "未执行；获取836行Spec并静态核目标/定义",
+        "axioms": "此文件文本未见sorry/admit/axiom/unsafe/native_decide；import FormalConjectures.Util.ProblemImports的传递依赖和#print axioms未审。"
+      },
+      "note": "MathWorld提供AI/accepted线索，实际判断以Epoch原源码为准。最终只证两个猜想等价，不证明任一猜想。完整工具链/构建日志未取得；未据MathWorld二手接受状态登记第三方独立复跑。 这里的声明限于所提交等价定理的证明材料，不登记为主猜想完整解。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "038-FE7",
+      "url": "https://beta.prove2.me/theorems/f47cdc6e-0596-4812-b182-8dac3e22e880",
+      "locator": "Proved标签L13；版本L17；Formal statement L39–41；Scope L21–30",
+      "version": "2026-09-15；页面报告Lean v4.33.1 / Mathlib 0df444a",
+      "subquestions": [
+        "Giuga与Carmichael交集的结构刻画"
+      ],
+      "scope_match": "仅子问",
+      "role": "形式化",
+      "publication": "项目报告",
+      "claim_state": "公开声称",
+      "claimant": "Prove2Me / LG",
+      "claim_date": "2026-09-15",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "平台原页声称Proved，但公开展示的是by sorry的题面，未取得实际证明体或可核构建日志。不据展示占位反推平台没有私下验证，也不据徽章认定本轮或第三方独立复跑。定理等价幂和于逐素因子两整除条件，不能关闭主猜想。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "038-FE8",
+      "url": "https://fabianarevalo.com/odd-giuga",
+      "locator": "Theorem A L112–114；scope L59–72；computational controls L124–143；AI与caveats L160–181",
+      "version": "2026-08-23作者笔记；2026-11-26读取",
+      "subquestions": [
+        "奇Giuga数的素因子下界"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "作者主页",
+      "claim_state": "公开声称",
+      "claimant": "Fabian Arevalo，披露Claude Code辅助",
+      "claim_date": "2026-08-23",
+      "review_status": "已读未核关键步骤",
+      "note": "作者报告以m≤12穷举加奇偶性排除13，给公开程序/运行表，明确不是不存在奇Giuga数的证明。此次读笔记全文，未获取或运行配套程序、未复核数十亿closure。作者承认文献只查过摘要；不以此验证1996归属、最新计数或优先权。此处CERTIFIED仅作者标签，不是形式化证明或本轮独立复跑。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "038-FE9",
+      "url": "https://www.proofatlas.ai/collaboration/agoh-giuga-conjecture/",
+      "locator": "Exact statement L45–53；Open/Version9 L63–86；status checked L120",
+      "version": "Version9；页面标2026-08-02核状态；2026-11-26读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "项目报告",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "公开AI协作项目页面明确称research question、conjecture remains open；条件性degree2048/A=71路线报告与5996行留档不是完整证明。本轮未读其所有研究档案或验证分支计算。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "038-FE10",
+      "url": "https://arxiv-troller.com/paper/3333470/",
+      "locator": "L31–52标题、作者、日期与摘要；对应arXiv:2610.09129",
+      "version": "索引称2026-10-06提交/10-08更新；官方版本全文未取得",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "二手索引",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "索引题名Idempotence in Carmichael and Giuga numbers and its application to the Agoh-Giuga conjecture，作者Miguel Ángel López；摘要说新必要条件/幂等性研究。官方abs/html/pdf多入口均失败，不能凭此认定论文不存在，也不能断言全文绝无Lean。当前未获得其支持10^13800完成形式化的可核材料；保留待核，不作为数学进展主证据。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "secondary_index"
+      }
+    },
+    {
+      "evidence_id": "E038-M-equivalence",
+      "url": "https://math.colgate.edu/~integers/n67/n67.pdf",
+      "locator": "§1.1 Theorems3–4，印刷pp2–3；〔原始工具引用已私有留存〕",
+      "version": "Borwein–Maitland–Skerritt, INTEGERS13(2013)A67；2026-11-26阅读",
+      "subquestions": [
+        "Giuga与Carmichael交集的结构刻画"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "独立按每个p|n的有限域幂和推出p−1|n−1及p|(n/p−1)，后者自动强制平方自由，CRT给反向。n>1时全参数等价；Carmichael单独定义必须含合数与平方自由。实际小例n=9检出省略平方自由的风险；n=1检出素数iff表述须n≥2。并非完整不存在证明，未复跑2013大界。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E038-M-list13",
+      "url": "https://cs.uwaterloo.ca/journals/JIS/VOL15/Oller/oller5.pdf",
+      "locator": "§1.2 Definition2及13数列表，印刷pp2–3；〔原始工具引用已私有留存〕",
+      "version": "Grau–Oller-Marcén, JIS15(2012), Giuga Numbers and the Arithmetic Derivative；2026-11-26阅读",
+      "subquestions": [
+        "所列13个数均不构成反例"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "文献列第二项858、最大十进制数为97位；本轮对该历史列表逐个独立验证偶性、n>2、gcd(n−1,n)=1、pow(n−1,n−1,n)=n−1≠1，排除13数的Carmichael性。未认证全部Giuga身份，未分解大数，不把历史13数当当日完备搜索。870在p=5处失败：870/5−1=173。原刊抽取因子串和倒数和条件异常保留视觉复核，不宣告作者勘误。 实际命令python 〔私有材料定位已省略〕；脚本SHA256=3891f7f8eeb364943c89fee8165790d7c0fb1c7ac899393a08c9d3f05b01db38；输出038_small_checks.json。Python算术检查不是Lean/Coq形式化复跑。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E038-M-nomenclature",
+      "url": "https://math.dartmouth.edu/~carlp/giugafinal.pdf",
+      "locator": "§1.1 Introduction；〔原始工具引用已私有留存〕",
+      "version": "Luca–Pomerance–Shparlinski, On Giuga Numbers, IJMM4(1)(2009)13–18；作者站刊稿",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "note": "本篇将合数幂和反例称Giuga，将只满足p²|(n−p)者称weak Giuga；与2012/2013题卡Giuga命名不同。定义差异不能误报为数学证据冲突。只核§1.1定义与结构，不声称重验整篇渐近计数证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000601",
+      "other_card_rev": "4f4bd34d0035c893",
+      "relation": "严格同题",
+      "reason": "本卡排除满足Σ(k=1..n−1)k^(n−1)≡−1(mod n)的合数；601正式表述及acceptance为n≥2且n | 1+Σ(k=0..n−1)k^(n−1)时n为素数，或给出合数反例。n≥2使指数n−1≥1，故额外0^(n−1)=0；整除与−1同余逐点等价，n≥2的非素数恰为合数，双向任务及反例验收均相同。1的退化域在双方正式目标之外，来源年代或难度标签不改变数学命题。",
+      "positions": {
+        "self": "rev7defea2ace9c056c；正文形式化表述、acceptance.criteria、合成数域",
+        "other": "rev4f4bd34d0035c893；正文形式化表述n≥2、求和从0开始、人话版、acceptance.criteria"
+      },
+      "note": "对QX-P-000038|QX-P-000601由较小编号000038本包负责。本轮仅提交严格同题候选及等价理由，仍需包内指定二审；未合并、未重定向、未修改任何在线题卡。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "duplicate_relation": "same"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "proposer/first_published/sources/题面年代",
+      "old": "J. Giuga(1850), T. Agoh(1990)；Wikipedia role original；1850/1990",
+      "new": "Giuseppe Giuga（1950）；Takashi Agoh（约1990提出，1995正式发表）。补Giuga《Su una presumibile proprietà caratteristica dei numeri primi》83(1950)511–528书目与Agoh DOI10.1007/BF02570490；1950原文未得，1990提出约年由Kellner2004回述。",
+      "reason": "1850与作者首字母误写；提出日期和可核发表日期应分开。原刊书目可靠，不能称Wikipedia为原始稿。",
+      "evidence_ids": [
+        "e038-a-2013",
+        "e038-a-kellner",
+        "e038-a-agoh"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展/边界与约定",
+      "old": "Borwein et al.(2013)：反例>10^13800且素因子≥14",
+      "new": "2013原刊Theorem12：反例为奇平方自由数，至少4771素因子，n>10^19907，即至少19908位。1996 p44给至少13887位。奇Giuga数至少14因子须单列为较弱对象范围。",
+      "reason": "这两个较弱不等式本身可由2013更强界推出，并非数学为假；错误在混淆年份、位数与指数以及不同对象的必要条件，且遗漏真正2013进展。本轮未独立复跑normal-set树。 原卡的两个弱不等式本身并非反例或假命题。",
+      "evidence_ids": [
+        "e038-a-2013",
+        "e038-a-1996",
+        "e038-a-jis"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "Sauvaget(2011)/相关进展与声称解决",
+      "old": "Sauvaget(2011)类界~10^1000；[DISPUTED]无；未见声称解决",
+      "new": "Sauvaget2011-06-08 v1有完整初等证明声明，2011-06-09 v2因Cor2.2缺口完全撤回。删除将其视为1000位进展的说法；1000位历史界由Giuga早期工作获得。",
+      "reason": "作者原文明确撤回，P0须单列版本与撤回；无效历史声明不能关闭主问题。",
+      "evidence_ids": [
+        "e038-a-sauvaget-v1",
+        "e038-a-retract",
+        "e038-a-1996"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text.人话版/原文摘录",
+      "old": "n 是素数，当且仅当 n 整除 1^(n−1)+…+(n−1)^(n−1)+1。",
+      "new": "对整数 n≥2，猜想：n 是素数，当且仅当 n 整除 1+sum_{k=1}^{n−1} k^(n−1)。主问题仍为不存在满足同余的合数。",
+      "reason": "n=1空和导致右侧模1成立而非素数；必须明确参数域和猜想属性。",
+      "evidence_ids": [
+        "E038-M-equivalence"
+      ],
+      "small_case_check": "已执行n=1空和与模1余数；n=2为素数且S=1；n=4的S mod4=0≠3。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text.边界与约定.约定依赖",
+      "old": "Carmichael 条件（p−1|n−1 对所有素因子 p）",
+      "new": "Carmichael 的 Korselt 判据：n 为合数且平方自由，并对所有素因子 p|n 有 p−1|n−1。Giuga 条件 p|(n/p−1) 本身推出平方自由，因此两类之交与原幂和反例等价。",
+      "reason": "独立Carmichael定义漏了平方自由；主等价本身正确。",
+      "evidence_ids": [
+        "E038-M-equivalence"
+      ],
+      "small_case_check": "n=9满足2|8，却2^8 mod9=4≠1；n=561通过完整Korselt而不Giuga；n=30为Giuga而不Carmichael。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "题面纠错",
+      "field": "card_text.已知结果与进展/边界与约定",
+      "old": "13 个已知合成 Giuga 数（30, 870, …）；最大者超过10^10000",
+      "new": "所核2012文献列13个Giuga数，开头为30、858、1722；该列表最大者有97位。本轮按偶性和费马见证逐个排除其Carmichael性；当前已知数量另按带日期的检索证据记述。",
+      "reason": "870不是Giuga；已知清单最大数与假想反例下界混淆。",
+      "evidence_ids": [
+        "E038-M-list13"
+      ],
+      "small_case_check": "已执行870/5−1=173且173 mod5=3；858各素因子2,3,11,13对应Giuga余数均0；13个数的Fermat见证通过，最大字符串len=97。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "card_text.边界与约定.结构性锚点；difficulty.note",
+      "old": "任何声称反例须同时过Giuga+Carmichael双条件（机器秒验）；任何声称不存在证明须超越固定素因子个数的CRT排除框架",
+      "new": "候选反例须以可核证据满足完整Giuga及Carmichael条件；给定认证完整分解时可检验相应局部条件，耗时取决于输入和证书。固定截断的排除只能覆盖已证范围；完整不存在证明须覆盖所有合数，所用方法不预先限定。 2013的8135因子上限仅针对文中具体normal-set下界算法。",
+      "reason": "秒验不是无条件性能保证；CRT无法作为未经证明的方法禁限。有限核验不解决全参数猜想。",
+      "evidence_ids": [
+        "E038-M-equivalence",
+        "E038-M-list13",
+        "e038-a-2013"
+      ],
+      "small_case_check": "本轮快速排除13个偶数只用a=n−1，不代表任意大奇数候选的分解或认证可秒验；未执行超大原始幂和。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "card_text.已知结果与进展；formal_status；novelty.scope.search_terms",
+      "old": "≥13800位数字级界并经Lean形式化，arXiv:2610.09129",
+      "new": "将数学界、形式化目标、代码状态分别列出。已取得Samuel仓库的结构等价源码；其主猜想no_carmichael_giuga以及10^13800下界关键B4000步骤均为sorry。arXiv:2610.09129官方全文尚未取得，当前不能以它支持Lean完成声明；保留待核并撤下已核实措辞。",
+      "reason": "固定源码直接显示两个不同占位；相关论文索引不提供Lean验证或下界证明依据。未将source打不开误写为论文不存在，也不据占位否认数学文献已有结果。",
+      "evidence_ids": [
+        "038-FE1",
+        "038-FE2",
+        "038-FE10"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "formal；ai_claims；相关进展与声称解决",
+      "new": "按子题记录结构等价、弱Giuga判据、A309132等价与奇Giuga有限因子界。明确源码静态检查/平台作者声称验证/未复跑的状态；主猜想维持未取得解决确证。",
+      "reason": "目录题目状态、Proved徽章与旁支AI结果易被误当完整主猜想已解，需保留精确量词与指数。",
+      "evidence_ids": [
+        "038-FE3",
+        "038-FE4",
+        "038-FE5",
+        "038-FE6",
+        "038-FE7",
+        "038-FE8"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议主卡",
+      "field": "与QX-P-000601的同题关系",
+      "new": "提交QX-P-000038|QX-P-000601严格同题二审候选；保留双方编号、来源和证据。",
+      "reason": "固定同版正文与acceptance一致，n≥2时附加0项为0；由较小编号000038负责。尚未合并或改题库。",
+      "small_case_check": "038_small_checks.py已比较n=2,4,30两种求和，结果一致；一般等价靠0^(n−1)=0与整除/同余恒等。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "card_action": "suggest_main"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "card_rev及在线题卡",
+      "new": "本回执始终对应7defea2ace9c056c；所有改动仅建议。若维护者改变定义、量词、参数域或验收对象，须生成新card_rev并重查受影响路线；仅补史料/进展按包内规则处理。",
+      "reason": "本轮没有在线改题、提交PR、结案或合并。指定二审不可由本轮分工交叉核读替代。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {
+        "card_action": "no_change"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "Giuga1950原刊未取得；Agoh1995只有出版社摘要/书目，GDZ扫描入口仅导航壳。",
+      "next_step": "取得可读原刊扫描后核1950题面与Agoh首次提出背景；当前保留1950/约1990与1995发表的来源层级。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2013树计算结果是正式论文公开报告，本轮未复跑约120GB计算输出；二手Sorini2001所谓10^36067界未取得原文。",
+      "next_step": "若需宣称独立验证2013界或最新最强纪录，固定算法源码与输入重跑，另亲读Sorini2001以区分启发式极限和已证明下界；当前仅报告已亲读Theorem12。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "OEIS直访403，当前列表依赖索引版本；JIS最大数因子分解与OEIS不一致。",
+      "next_step": "采用数学分工实际日志：已确认OEIS十因子乘积及Giuga式各余数，但大因子素性没有本轮证书；已知数反例排除可独立用偶性/Fermat见证完成。原刊提取串差异只保留待视觉复核，不直接声称作者排版错误。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "arXiv:2610.09129官方abs、v2 abs、v1/v2 html、pdf均未读取成功，export入口也不可用；仅有索引摘要。",
+      "next_step": "从作者或可访问原始刊载取得全文及明确版本，核其真正结论和是否有Lean附件；目前不能把卡引用登记为已核实形式化。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "Samuel、mo271、Epoch仅静态；虽Samuel工具链/manifest已取得，依赖、公理闭包和历史构建日志未核。",
+      "next_step": "若要升级复现证据，固定各仓库和依赖，针对结构判据或等价目标做有界构建并记录#print axioms；主猜想与B4000已知sorry需先有真实新证明才值得复跑，不能以build接受占位作通过。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "Prove2Me只公开题面与Proved标签；Fabian仅原笔记与作者运行声明已阅，配套完整证书未复核。",
+      "next_step": "若采用这些子结果为高等级证据，取具体证明体或固定程序/证书与运行环境，独立检查适用范围及运行日志；不得沿用作者CERTIFIED/Proved标签冒充本轮独立验证。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2012原刊文本抽取显示的因子串与十进制值不合，及倒数和定义的平方自由前提可能为排版/抽取缺损；本轮截图未能提供可审像素。",
+      "next_step": "如需引用该因子分解或Prop3(ii)，另取原刊页面图像复核；主回执采用2013Theorem4完整条件以及无需因子分解的偶性排除，不宣告新勘误。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "与QX-P-000601的完整同版正文逐项一致，严格同题合并尚未经过包内指定二审；索引筛查也不能排除其他未显式标名的同题。",
+      "next_step": "指定二审核双方card_rev、n≥2域、0项消去恒等式与两种acceptance，决定主卡/重定向；若之后版本变化需重新比较。当前不给全库无其他重复结论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "结构等价和所列13数排除提交已证子问提议，其他等价形式有完整证明材料；尚无包内指定二审。",
+      "next_step": "二审分别核有限域/CRT推导、13数输入与费马见证、各等价命题定义及形式化依赖；不得把子问结论迁移为主猜想解决。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "7defea2ace9c056c",
+      "codes": {}
+    }
+  ]
+}

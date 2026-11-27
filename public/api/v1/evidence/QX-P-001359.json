@@ -1,0 +1,2381 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001359",
+  "card_rev": "d5e99c334cbf5f02",
+  "summary": {
+    "math_status": {
+      "value": "claimed_resolution",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-04"
+      ],
+      "parts": [
+        {
+          "subquestion": "单元格与格点模型、非退化量词",
+          "value": "partial",
+          "note": "以各单元格中心编号([n]²)可精确恢复原棋盘模型，n×n单元格不应转成(n+1)×(n+1)网格交点。设[n]={1,…,n}，目标为整数s∈[1,n−1]、a,b∈[1,n−s]，四点(a,b),(a+s,b),(a,b+s),(a+s,b+s)同色。四角互异等价s>0；不要求内部同色，不允许倾斜方形，也不把不同水平/竖直步长的矩形算作目标。原(a)9×9的目标数为Σ_{s=1}^8(9−s)²=204，本轮算核与原文一致，排除点/格转换的加一错误。n=1没有目标；若误许s=0则任何非空网格立即满足，显然改题。"
+        },
+        {
+          "subquestion": "正方形与矩形的具体区别",
+          "value": "partial",
+          "note": "本轮枚举3×3二染色行001/110/001：存在第1、3行和第1、2列的同色矩形，但全部轴平行正方形均不同色。故矩形存在性不能直接推出正方形存在性；该矩阵只用于定义核对，不是主问题最优下界。矩阵枚举结果已留internal/p1359_small_checks.json。"
+        },
+        {
+          "subquestion": "矩形旁支的方阵最小尺寸",
+          "value": "partial",
+          "note": "本轮独立证矩形目标的最小方阵尺寸为5。4×4行0011/0101/1010/1100已枚举无同色矩形。若5×5无矩形，每个列对×颜色类别最多出现于一行，共20类别；每行红点数r贡献C(r,2)+C(5−r,2)≥4，五行总贡献≥20，因此必全等且每行r=2或3、每种类别恰出现一次。红类别总数应为10，但五个C(r,2)各为1或3，其和为奇数，矛盾。“15×15必有同色矩形”本身是正确的弱上界，但不能写成矩形的精确阈值或用于证明本题最优值。"
+        },
+        {
+          "subquestion": "上下界验收的单调性",
+          "value": "partial",
+          "note": "若所有n0×n0染色有目标，任意N≥n0染色限制到一个n0×n0子方阵即可得到目标；下界用(n0−1)×(n0−1)无目标染色。因而验收无需逐个证明所有更大N，也不应把一般矩形上界当本题上界。此为本轮独立直接推导。"
+        },
+        {
+          "subquestion": "下界G_sq≥15",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；仅此下界子问：本轮明确构造A1(x1=1其余0)及逐个819square检查成功，保证14×14可避免，所有更小尺寸限制取子方阵也可避免。构造本身数字及检查范围见证据；独立支线从原稿另取矩阵并复验。不能用下界验证代替上界。"
+        },
+        {
+          "subquestion": "§4.3局部漏洞及条件性修补",
+          "value": "partial",
+          "note": "原刊与预印本均误称边界单行不可能成为次边界；A1首行x1=0,x2=1和A2第13行x7=0给反例且各矩阵仍避方形。两套独立代码证改为双行/列块时32外侧与19内移模式不交。在Thm4.4四族穷尽成立前提下，这排除14×15并推出15×15上界；前提的全量计算未本轮复跑。它是局部修补而非主结论反例、正式勘误发布或完整新的独立证明。"
+        },
+        {
+          "subquestion": "相邻形状结论的范围",
+          "value": "partial",
+          "note": "矩形方阵二色阈值5、本题轴平行square完整声明15、允许倾斜square的新稿声明7，以及3维box问题各自独立。旧卡两条矩形资料不能支持本题仍开放。"
+        },
+        {
+          "subquestion": "Walton–Li 文字归约的颜色下标",
+          "value": "statement_error",
+          "note": "只针对源论文局部 k<c−1 / p<c−1 排版范围：必须包含最后一色，取 0≤k<c。c=2 时若逐字使用错误范围，全色 1 的任意网格都会满足仅禁止色 0 的残缺约束；其示例和计数已经包含两色。因此记录局部勘误，不推断实际作者代码有相同错误，更不否定由其他刊文支持的 n=15。"
+        },
+        {
+          "subquestion": "本轮独立有限计算的范围",
+          "value": "partial",
+          "note": "819 个四角检查确认一份 14×14 避免矩阵；n=15 独立 SAT 输入 225 变量/2031 子句经过 60.064 秒超时而没有判定。未下载或检查大型 DRAT/LRAT，未运行 Lean；“复跑通过”只用于下界见证，不用于上界或完整主题。"
+        },
+        {
+          "subquestion": "额外公开 AI / Lean 同题证明",
+          "value": "no_evidence_in_scope",
+          "note": "固定 FC 源码召回为不同量词的实平面给定面积问题；OAI 固定目录及限定公开查询未定位同题 n=15 新完整声明或可复用 Lean endpoint。已排除一般矩形、4 色 17×17、平方数和、packing coloring 等同词结果。此为检索边界，不是全网不存在断言。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "rerun_partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://www.cs.umd.edu/~gasarch/TOPICS/vdw/2colsq.pdf"
+      ],
+      "note": "只覆盖：仅子问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://arxiv.org/abs/2512.23303v1",
+      "review": "key_steps_checked"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "完整声明待核",
+      "scope_note": "冻结card_rev=d5e99c334cbf5f02的核心问与AMM6211(b)、Bacher–Eliahou2010完全一致：任意二染色[n]^2强制正整数同边长、轴平行四角同色square的最小n。已有正式完整解声明G_sq=15，且声称14×15强制；Walton–Li2013及Dumitru–Prunescu2025分别报告SAT重现。本轮独立验证14×14下界，多路读完整主问原稿；发现2010§4.3单行桥错误并由两套独立双行/列块检查给条件修补，但四族穷尽/完整UNSAT计算未独立重做，单次60秒上界尝试无判定。本回执提结案二审，不继续以旧矩形资料标open、不自动修改题库闭合状态，也不把局部证明错误当15×15反例。",
+      "evidence_ids": [
+        "E1359-ORIGIN-INDEX",
+        "E1359-ACA-BE-JOURNAL",
+        "E1359-ACA-BE-PREPRINT",
+        "E1359-ACA-CHECKS",
+        "E1359-REVIEW-PUBLISHED43",
+        "E1359-CODE-WL2013",
+        "E1359-CODE-SATLIMIT",
+        "E1359-ACA-DP2025"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "单元格与格点模型、非退化量词",
+      "math_status": "部分进展",
+      "scope_note": "以各单元格中心编号([n]²)可精确恢复原棋盘模型，n×n单元格不应转成(n+1)×(n+1)网格交点。设[n]={1,…,n}，目标为整数s∈[1,n−1]、a,b∈[1,n−s]，四点(a,b),(a+s,b),(a,b+s),(a+s,b+s)同色。四角互异等价s>0；不要求内部同色，不允许倾斜方形，也不把不同水平/竖直步长的矩形算作目标。原(a)9×9的目标数为Σ_{s=1}^8(9−s)²=204，本轮算核与原文一致，排除点/格转换的加一错误。n=1没有目标；若误许s=0则任何非空网格立即满足，显然改题。",
+      "evidence_ids": [
+        "E1359-ORIGIN-INDEX",
+        "E1359-ORIGIN-BARBEAU"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "正方形与矩形的具体区别",
+      "math_status": "部分进展",
+      "scope_note": "本轮枚举3×3二染色行001/110/001：存在第1、3行和第1、2列的同色矩形，但全部轴平行正方形均不同色。故矩形存在性不能直接推出正方形存在性；该矩阵只用于定义核对，不是主问题最优下界。矩阵枚举结果已留internal/p1359_small_checks.json。",
+      "evidence_ids": [
+        "E1359-ORIGIN-INDEX"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "矩形旁支的方阵最小尺寸",
+      "math_status": "部分进展",
+      "scope_note": "本轮独立证矩形目标的最小方阵尺寸为5。4×4行0011/0101/1010/1100已枚举无同色矩形。若5×5无矩形，每个列对×颜色类别最多出现于一行，共20类别；每行红点数r贡献C(r,2)+C(5−r,2)≥4，五行总贡献≥20，因此必全等且每行r=2或3、每种类别恰出现一次。红类别总数应为10，但五个C(r,2)各为1或3，其和为奇数，矛盾。“15×15必有同色矩形”本身是正确的弱上界，但不能写成矩形的精确阈值或用于证明本题最优值。",
+      "evidence_ids": [],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "原题历史分问与发表年份",
+      "math_status": "部分进展",
+      "scope_note": "已核原刊书目为May1978 AMM85(5)p389，原题已有(a)9×9构造和(b)最小值两部分；1980-03p229被索引明确归部分解。1999索引p415收录(b)，不是1999才新提最小值扩问。原刊两页题文和1980解答正文未取，不能据书目声称已读全部原解或已核原文构造。",
+      "evidence_ids": [
+        "E1359-ORIGIN-INDEX",
+        "E1359-ORIGIN-1978-BIB",
+        "E1359-ORIGIN-1980-BIB"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "上下界验收的单调性",
+      "math_status": "部分进展",
+      "scope_note": "若所有n0×n0染色有目标，任意N≥n0染色限制到一个n0×n0子方阵即可得到目标；下界用(n0−1)×(n0−1)无目标染色。因而验收无需逐个证明所有更大N，也不应把一般矩形上界当本题上界。此为本轮独立直接推导。",
+      "evidence_ids": [
+        "E1359-ORIGIN-INDEX"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "下界G_sq≥15",
+      "math_status": "原题已证明",
+      "scope_note": "仅此下界子问：本轮明确构造A1(x1=1其余0)及逐个819square检查成功，保证14×14可避免，所有更小尺寸限制取子方阵也可避免。构造本身数字及检查范围见证据；独立支线从原稿另取矩阵并复验。不能用下界验证代替上界。",
+      "evidence_ids": [
+        "E1359-ACA-CHECKS",
+        "E1359-IND-LOWER"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "§4.3局部漏洞及条件性修补",
+      "math_status": "条件性结果",
+      "scope_note": "原刊与预印本均误称边界单行不可能成为次边界；A1首行x1=0,x2=1和A2第13行x7=0给反例且各矩阵仍避方形。两套独立代码证改为双行/列块时32外侧与19内移模式不交。在Thm4.4四族穷尽成立前提下，这排除14×15并推出15×15上界；前提的全量计算未本轮复跑。它是局部修补而非主结论反例、正式勘误发布或完整新的独立证明。",
+      "evidence_ids": [
+        "E1359-ACA-BE-PREPRINT",
+        "E1359-ACA-CHECKS",
+        "E1359-ACA-BE-JOURNAL",
+        "E1359-IND-BRIDGE",
+        "E1359-REVIEW-PUBLISHED43"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "相邻形状结论的范围",
+      "math_status": "仅特例",
+      "scope_note": "矩形方阵二色阈值5、本题轴平行square完整声明15、允许倾斜square的新稿声明7，以及3维box问题各自独立。旧卡两条矩形资料不能支持本题仍开放。",
+      "evidence_ids": [
+        "E1359-ACA-FENNER",
+        "E1359-ACA-DP2025",
+        "E1359-ACA-BOX2026"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Walton–Li 文字归约的颜色下标",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "只针对源论文局部 k<c−1 / p<c−1 排版范围：必须包含最后一色，取 0≤k<c。c=2 时若逐字使用错误范围，全色 1 的任意网格都会满足仅禁止色 0 的残缺约束；其示例和计数已经包含两色。因此记录局部勘误，不推断实际作者代码有相同错误，更不否定由其他刊文支持的 n=15。",
+      "evidence_ids": [
+        "E1359-CODE-WL2013"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "本轮独立有限计算的范围",
+      "math_status": "仅特例",
+      "scope_note": "819 个四角检查确认一份 14×14 避免矩阵；n=15 独立 SAT 输入 225 变量/2031 子句经过 60.064 秒超时而没有判定。未下载或检查大型 DRAT/LRAT，未运行 Lean；“复跑通过”只用于下界见证，不用于上界或完整主题。",
+      "evidence_ids": [
+        "E1359-CODE-WITNESS14",
+        "E1359-CODE-SATLIMIT"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "额外公开 AI / Lean 同题证明",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "固定 FC 源码召回为不同量词的实平面给定面积问题；OAI 固定目录及限定公开查询未定位同题 n=15 新完整声明或可复用 Lean endpoint。已排除一般矩形、4 色 17×17、平方数和、packing coloring 等同词结果。此为检索边界，不是全网不存在断言。",
+      "evidence_ids": [
+        "E1359-CODE-FC189",
+        "E1359-CODE-OAI"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "本包冻结题卡",
+      "query": "QX-P-001359 revd5e99c334cbf5f02",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取完整题面、形式化、人话、1978归属、p415原引用和15×15矩形旧进展。",
+      "locator": "package/任务.jsonl，row345",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "WebSearch system2_search_query",
+      "query": "\"6211\" \"Paullay\" Penner square",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际原题发现查询；大部分数字同名噪声排除。相关全文/书目另逐项核，不由Solutions标题判精确最小值已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "WebSearch system2_search_query",
+      "query": "\"6211\" \"Rabinowitz\" 415",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际原题发现查询；大部分数字同名噪声排除。相关全文/书目另逐项核，不由Solutions标题判精确最小值已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "WebSearch system2_search_query",
+      "query": "\"monochromatic squares\" \"1978\" Penner",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际原题发现查询；大部分数字同名噪声排除。相关全文/书目另逐项核，不由Solutions标题判精确最小值已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "WebSearch system1_search_query",
+      "query": "\"6211\" \"Paullay\" \"square\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际原题发现查询；大部分数字同名噪声排除。相关全文/书目另逐项核，不由Solutions标题判精确最小值已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "WebSearch system1_search_query",
+      "query": "\"6211\" \"Penner\" \"1978\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际原题发现查询；大部分数字同名噪声排除。相关全文/书目另逐项核，不由Solutions标题判精确最小值已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "WebSearch system1_search_query",
+      "query": "\"chromatic square\" \"Paullay\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际原题发现查询；大部分数字同名噪声排除。相关全文/书目另逐项核，不由Solutions标题判精确最小值已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "WebSearch system1_search_query",
+      "query": "\"2321631\" \"6211\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际原题发现查询；大部分数字同名噪声排除。相关全文/书目另逐项核，不由Solutions标题判精确最小值已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "WebSearch system1_search_query",
+      "query": "\"6211\" \"chessboard\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际原题发现查询；大部分数字同名噪声排除。相关全文/书目另逐项核，不由Solutions标题判精确最小值已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "WebSearch system1_search_query",
+      "query": "\"chromatic square\" mathematics Rabinowitz",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际原题发现查询；大部分数字同名噪声排除。相关全文/书目另逐项核，不由Solutions标题判精确最小值已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "WebSearch system2_search_query",
+      "query": "\"2321358\" \"6211\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际原题发现查询；大部分数字同名噪声排除。相关全文/书目另逐项核，不由Solutions标题判精确最小值已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "WebSearch system2_search_query",
+      "query": "\"6211\" \"Ingrid de Buda\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际原题发现查询；大部分数字同名噪声排除。相关全文/书目另逐项核，不由Solutions标题判精确最小值已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "WebSearch system2_search_query",
+      "query": "\"6211\" \"chromatic\" square",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际原题发现查询；大部分数字同名噪声排除。相关全文/书目另逐项核，不由Solutions标题判精确最小值已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Rabinowitz作者原站",
+      "query": "open/download http及https://stanleyrabinowitz.com/download/problems_1975-1979.pdf；https://www.stanleyrabinowitz.com同路径",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "Web502/不可访问；普通HTTP返回503。未取得作者原站整书PDF，转向可读的原书公开全文转录及独立书评交叉核对。",
+      "url": "https://stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "locator": "作者原站PDF入口",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Rabinowitz原书公开文本副本",
+      "query": "open Academia37249387；find6211.、chromatic、6211*、partial solution、6211(a)、6211 1978",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读书内本题全文转录、p415未解条目、作者/年表索引、p282代码说明；没有逐页读完整书，也未取得原刊1978/1980页面。两栏OCR相邻其他问题串入，按本题标题和完整语句拆分。",
+      "url": "https://www.academia.edu/37249387/Index_to_Mathematical_Problems_1975_1979",
+      "locator": "SubjectIndex Chessboard problems的6211(a)(b)；UnsolvedProblems p415；Chronology p282；de Buda/Paullay/Penner作者索引",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "EdwardJ.Barbeau作者公开书评",
+      "query": "open/download rabinowitz.pdf；读p1书目信息及p3的AMM6211完整最小值问句",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "4页PDF已取得，p3原引文与书副本文本一致；它是1999索引的书评，不是1978原题或1980解答本身。",
+      "url": "https://www.math.utoronto.ca/barbeau/rabinowitz.pdf",
+      "locator": "review pp1,3；internal/p1359_barbeau_review.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "JSTOR正式卷目录",
+      "query": "open Vol87No3March1980，定位6211",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "目录确认p229及Paullay/Penner/de Buda，DOI10.2307/2321631；Solutions栏目本身不说明(b)已解。",
+      "url": "https://www.jstor.org/stable/i315108",
+      "locator": "L462–470",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Netlib研究书目",
+      "query": "find6210--6215、MTP+78及6211solution条目",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位原题所在合刊85(5)May1978pp389–390、DOI10.2307/2321358；MTP+78标签在HTML未命中。题目作者归属以书内6211转录核，不把合刊全部作者当本题提出者。",
+      "url": "https://netlib.sandia.gov/bibnet/authors/t/taussky-todd-olga.html",
+      "locator": "Mullin:1978:PSA，L6509–6535；Paullay:1980:APS",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Crossref出版社提交元数据",
+      "query": "GET /works/10.2307/2321358 与 /works/10.2307/2321631",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "普通HTTP成功取得JSON：原题合刊1978-05、85(5)、p389；解答1980-03、87(3)、p229。记录created2006仅DOI登记时间，不当首次发表。",
+      "url": "https://api.crossref.org/works/10.2307/2321358",
+      "locator": "internal/p1359_crossref1978.json、p1359_crossref1980.json",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "AMM原刊1978/1980全文入口",
+      "query": "open stable2321358、2321358?seq=1、stable2321631及两stable/pdf端点",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "网页工具不可访问；普通HTTP两个PDF端点均返回3038byte HTML验证页而非PDF，停止此路径；未声称亲读原刊。另一次未核TaylorFrancis DOI候选路径403，未采用为证据。",
+      "url": "https://www.jstor.org/stable/2321358",
+      "locator": "原题p389；解答https://www.jstor.org/stable/2321631 p229；internal/p1359_amm_access.json",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本轮独立边界与旁支核对",
+      "query": "9×9目标方形数Σ(9−s)^2；3×3矩形但无正方形；4×4无矩形；5×5矩形双计数",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "小矩阵全部目标枚举已运行；5×5上界用组合计数和奇偶完整手证。只核定义及矩形对照，未用该检查冒充15×15正方形上界证明。",
+      "locator": "internal/p1359_small_checks.json",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S2",
+      "query": "[{\"q\": \"\\\"chromatic square\\\" Paullay Penner 6211\"}, {\"q\": \"monochromatic axis parallel squares two colors grid smallest n 15 14\"}, {\"q\": \"\\\"6211\\\" \\\"square\\\" coloring\"}]",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "精确词与同边长网格检索；合并回包命中Bacher/Eliahou、Walton/Li和近期论文线索，也含大量无关6211商品页；无关项不作证据。",
+      "request_id": "QX1359-root-b1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S1",
+      "query": "[{\"q\": \"Bacher Eliahou Extremal binary matrices without constant 2-squares 15 2010\"}, {\"q\": \"\\\"monochromatic-square-free\\\" \\\"15\\\" SAT\"}, {\"q\": \"\\\"Two-colorings of finite grids\\\" Gallai\", \"recency\": 730}]",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "S1核官方Bacher–Eliahou期刊PDF、Walton–Li作者论文及2512.23303原始arXiv。直接命中n0=15完整解决声明。",
+      "request_id": "QX1359-root-b2",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S2",
+      "query": "[{\"q\": \"\\\"Extremal binary matrices without constant 2-squares\\\" pdf\"}, {\"q\": \"\\\"Constructive and computational methods for extremal\\\" \\\"2611.19635\\\"\"}, {\"q\": \"\\\"Bacher\\\" \\\"Eliahou\\\" \\\"2-squares\\\" erratum\"}]",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "找到公开25页预印本、新官方24页PDF地址及2611.19635镜像线索；镜像只用于发现，后者另取得arXiv原始摘要。未命中专门勘误。",
+      "request_id": "QX1359-root-b4",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S1",
+      "query": "[{\"q\": \"\\\"Bacher\\\" \\\"Eliahou\\\" \\\"2-squares\\\" correction retraction\", \"recency\": 730}, {\"q\": \"\\\"2611.19635\\\" site:arxiv.org\"}, {\"q\": \"\\\"Extremal binary matrices\\\" site:fourier.ujf-grenoble.fr\"}]",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "其中第一查询recency=730；回包仍引用2010结果，未取得撤回/勘误；另两查询未直接给2611.19635官方可读页或作者原始代码。有限搜索不等于不存在勘误。",
+      "request_id": "QX1359-root-b6",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S2",
+      "query": "[{\"q\": \"\\\"2512.23303\\\" \\\"DRAT\\\" github\"}, {\"q\": \"\\\"Two-colorings of finite grids\\\" code data proof\"}, {\"q\": \"\\\"Bacher\\\" \\\"Erickson\\\" source code\"}]",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "找到Dumitru作者主页；论文全文和主页仅给arXiv，未定位其约15GB DRAT附件或校验日志。也召回方形占领博弈等邻题，非原色数阈值。",
+      "request_id": "QX1359-root-b8",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S1",
+      "query": "[{\"q\": \"\\\"Extremal binary matrices\\\" \\\"4.3\\\" \\\"second\\\"\"}, {\"q\": \"\\\"Bacher\\\" \\\"Eliahou\\\" \\\"14 × 15\\\" \\\"row\\\"\"}, {\"q\": \"\\\"Extremal binary matrices\\\" site:hal.science\"}]",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "S1直接返回正式刊p93§4.3完整相关段落，单行边界不相交论断与预印本相同；另找到作者HAL标识hal-01614251。",
+      "request_id": "QX1359-root-b10",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open/find",
+      "query": "[{\"ref_id\": \"https://intlpress.com/site/pub/files/_fulltext/journals/joc/2010/0001/0001/JOC-2010-0001-0001-a006.pdf\"}, {\"ref_id\": \"https://arxiv.org/abs/2512.23303\"}, {\"ref_id\": \"https://arxiv.org/abs/2611.19635\"}]",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "首次打开正式2010旧PDF失败403；arXiv2512.23303v1元数据读取成功；2611.19635 Web打开DisabledError。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open/find",
+      "query": "[{\"ref_id\": \"https://www.cs.umd.edu/~gasarch/TOPICS/vdw/2colsq.pdf\"}, {\"ref_id\": \"https://arxiv.org/pdf/2512.23303v1\"}, {\"ref_id\": \"https://intlpress.com/api/bgcloud-front/resource/pdf/volume/1805865056627798017-1805865056627798017-1d9580d5662be00c44df87a294fbe9aa.pdf\"}]",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "UMD25页原论文预印本返回文字；官方新路径24页PDF解析并实际显示pp77–81；2512固定版本Web PDF失败，但另用普通HTTP取得完整本地文件。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002157〕",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "官方新PDF后续open line300及三个find均403；不能把初次可读的前页报成正式全文已读。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open/find",
+      "query": "[{\"ref_id\": \"https://cs.unibuc.ro/~bdumitru/\"}, {\"ref_id\": \"https://arxiv.org/html/2611.19635v1\"}]",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "作者主页实际读相关论文段及链接，未见代码/证书下载；2611.19635 HTML Web失败。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open/find",
+      "query": "[{\"ref_id\": \"https://www.cs.umd.edu/~gasarch/COURSES/858/S13/grid.pdf\"}, {\"ref_id\": \"https://arxiv.org/abs/1005.3750\"}, {\"ref_id\": \"https://hal.science/hal-01614251\"}]",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "旧卡Fenner49页PDF实际读定义和引言；arXiv版本史v2=2012-11-13；HAL为Anubis访问拒绝，未绕过。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open/find",
+      "query": "检索词／定位词：5 Which；G5,5；OBS2 = 〔私有记录编号：PR-002158〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "在Fenner原PDF定位并实际读Thm5.1/5.2、Tables11–13与§8对应句，二色矩形方阵阈值为5。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "普通HTTP/本地固定稿",
+      "query": "https://intlpress.com/site/pub/files/_fulltext/journals/joc/2010/0001/0001/JOC-2010-0001-0001-a006.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "{\"name\": \"bacher2010\", \"url\": \"https://intlpress.com/site/pub/files/_fulltext/journals/joc/2010/0001/0001/JOC-2010-0001-0001-a006.pdf\", \"error\": \"HTTP Error 403: Forbidden\"}",
+      "url": "https://intlpress.com/site/pub/files/_fulltext/journals/joc/2010/0001/0001/JOC-2010-0001-0001-a006.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "普通HTTP/本地固定稿",
+      "query": "https://arxiv.org/pdf/2512.23303",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "{\"name\": \"dp2025\", \"url\": \"https://arxiv.org/pdf/2512.23303\", \"status\": 200, \"bytes\": 481747, \"type\": \"application/pdf\", \"sha256\": \"33d516d365f79864c5c2923ed04496acf5d0b52e059e5caee9b0d2c18d02a05e\"}",
+      "url": "https://arxiv.org/pdf/2512.23303",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "普通HTTP/本地固定稿",
+      "query": "https://intlpress.com/api/bgcloud-front/resource/pdf/volume/1805865056627798017-1805865056627798017-1d9580d5662be00c44df87a294fbe9aa.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "{\"url\": \"https://intlpress.com/api/bgcloud-front/resource/pdf/volume/1805865056627798017-1805865056627798017-1d9580d5662be00c44df87a294fbe9aa.pdf\", \"error\": \"HTTP Error 403: Forbidden\"}",
+      "url": "https://intlpress.com/api/bgcloud-front/resource/pdf/volume/1805865056627798017-1805865056627798017-1d9580d5662be00c44df87a294fbe9aa.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "普通HTTP/本地固定稿",
+      "query": "https://www.cs.umd.edu/~gasarch/TOPICS/vdw/2colsq.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "{\"url\": \"https://www.cs.umd.edu/~gasarch/TOPICS/vdw/2colsq.pdf\", \"status\": 200, \"bytes\": 199531, \"sha256\": \"93f2a1b42de5ded89f2a2bc2a9fcb5f2d8f1ae04c08d02c3b55132c5299d85e3\"}",
+      "url": "https://www.cs.umd.edu/~gasarch/TOPICS/vdw/2colsq.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "普通HTTP/本地固定稿",
+      "query": "https://arxiv.org/abs/2611.19635",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "{\"url\": \"https://arxiv.org/abs/2611.19635\", \"status\": 200, \"bytes\": 40968, \"sha256\": \"c91ed3bfb2e024a93eeccbf6acec1242122dd21c89394a2c2c39b0545bc7034e\"}",
+      "url": "https://arxiv.org/abs/2611.19635",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地PDF正文",
+      "query": "Bacher–Eliahou UMD25页稿；pdftotext -layout；§1、§3(pp8–11)、§4(pp12–19)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取定义、全部算法描述、计数表、四个模板及其约束、14×15边界桥；未逐段复核§2和§5旁题。完整预印本已取得，不等于正式刊本全稿逐页核过。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地PDF正文",
+      "query": "2512.23303v1；§3 Lemma3.1、§5 Theorem5.1/5.2及references[2],[15]",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得15页PDF，实际读pp4–8和参考文献；未核其他几何体定理。公式Xi轴平行、Omega允许倾斜，分别15与7。作者报告15GB DRAT生成；未得其文件或独立校验日志。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本轮独立有限核对",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002159〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "A1显式14×14构造819方形均通过；四族每个方形做有限符号/参数检查；单行交集4暴露§4.3错误，双行块32/19交集0修补局部桥。未重跑全体14×14分类或15×15UNSAT。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API / Formal Conjectures",
+      "query": "GET /repos/google-deepmind/formal-conjectures/commits/main",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "锁定 head ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8，源时间戳 2026-11-26T15:20:47Z；仅核提交元数据，不把该提交其他文件当已读。",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API / OpenAI math",
+      "query": "GET /repos/openai/math/commits/main",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "锁定 head 3344da59991ed94f9ba711217b29c1d760badfa6，源时间戳 2026-11-25T00:18:47Z；与本会话既有完整目录缓存一致。",
+      "url": "https://api.github.com/repos/openai/math/commits/main",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code / Formal Conjectures",
+      "query": "\"monochromatic\" \"square\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "topn=20，返回 2 文件：ErdosProblems/189.lean 与汇总声明清单 FC100SolvedSet1.lean；前者另取固定源码全文，后者只读命中片段。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed file / Formal Conjectures",
+      "query": "fetch ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8:FormalConjectures/ErdosProblems/189.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整 90 行；目标为实平面有限染色中同一色类是否包含每一个指定面积的矩形/正方形，不是有限整数网格允许任意正边长的阈值。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/189.lean",
+      "locator": "定义 Erdos189For 及 theorem erdos_189 / variants.square",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code / Formal Conjectures",
+      "query": "\"6211\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "只返回 MicroscopicWeighting.lean 的大整数子串 6211；只核搜索片段，不是 AMM 6211。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub pull requests / Formal Conjectures",
+      "query": "\"monochromatic\" \"square\"; state=all; topn=20",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回 PR 8284、6373、4213、3588，已读返回正文：分别为一维等差数列颜色数、平方数 Ramsey completeness、方括号分割关系及其他 Erdős 题集合；无本题 n=15 endpoint。搜索并非仓库逐文件穷尽。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code / OpenAI math",
+      "query": "\"monochromatic\" \"square\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回 20 条并达到上限；已读返回路径和片段，涉及平衡割、FK 渗流、欧氏 Ramsey 邻题等；未逐篇读全部稿件，不把本查询作穷尽。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code / OpenAI math",
+      "query": "\"Paullay\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "返回 0；不能单靠姓名无命中断言不存在。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本会话固定 OpenAI 全目录缓存",
+      "query": "Paullay|Penner|monochromatic.{0,25}square|square.{0,25}monochromatic|6211|Walton|Eliahou",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "在 3344da59991ed94f9ba711217b29c1d760badfa6 的完整 overview.tex 与 CONTENTS.md 本地逐行匹配；两文件均 0 命中。目录 blob 分别 1a56184b1f28a8750722dc2dd6306af8424da0b6、7d4a8770643439016a70f23a4524d0ebacc78900。已复核远端 head 未变。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/CONTENTS.md",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub global code",
+      "query": "\"Paullay\" \"Penner\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回 1 个过期域名列表，字符串偶合，无数学内容。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub global code",
+      "query": "\"monochromatic\" \"squares\" \"SAT\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回 20 条并达到上限，读路径/片段：其中 agentic-erdos ep318 为倒数平方和问题，另有 rectangles 程序及非数学词表；未定位本题作者原代码或可下载证书。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub global code",
+      "query": "\"monochromatic-square-free\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "只返回 CIRDC 的 2013 会议文献 JSON，标题及 articleNumber 6579363 匹配 Walton–Li，不是 SAT 源程序。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "Walton Li monochromatic squares SAT grid 15 monosquareexact",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "找到马里兰大学 Gasarch 托管的完整 Walton–Li 原稿，另召回 Bacher–Eliahou；后者由主审全文核查。",
+      "url": "https://www.cs.umd.edu/users/gasarch/TOPICS/vdw/monosquareexact.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"monochromatic squares\" \"SAT\" \"code\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回同题论文、Gasarch 目录及后来复算摘要，未由此取得作者编码程序、原始 CNF 或 DRAT/LRAT 文件。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "大学托管论文 / HTTP + PDF",
+      "query": "open/download monosquareexact.pdf; pdftotext -layout; inspect rendered PDF page 2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整 5 页已读；§II 定义、归约和两个方向证明，§III 显式 14×14 构造与上界实验，§IV 和附注均核。第 2 页图像确认颜色范围 0≤k<c−1 为正文下标笔误，否定号并未缺失。",
+      "url": "https://www.cs.umd.edu/users/gasarch/TOPICS/vdw/monosquareexact.pdf",
+      "locator": "§II–V；PDF pp2–5",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "site:mathoverflow.net \"15\" \"monochromatic\" \"square\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "命中 MO 89032；Bacher 作者答复精确定义并指向 2010 刊文。其他结果为 packing coloring、平方和等邻题，不作同题证据。",
+      "url": "https://mathoverflow.net/questions/89032/the-problem-about-2-coloring-finite-plane",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"monochromatic-square-free\" \"github\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回一般 AI 目录等页面；检索片段没有提供本题完整新证明或本题 GitHub 证书端点，未把目录标签算验证。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "MathOverflow",
+      "query": "open question 89032 including answer 89091 and answer 89056",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整网页已读；原帖“combinatorial square”含糊，评论提及矩形/二分 Ramsey，但 Bacher 答案明确同边长四点定义。",
+      "url": "https://mathoverflow.net/questions/89032/the-problem-about-2-coloring-finite-plane",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Stack Exchange API / MathOverflow",
+      "query": "questions/89032; questions/89032/answers; questions/89032/comments; answers/89091;89056/comments; filter=withbody; pagesize=100",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际访问四个入口并读完 1 主帖、2 答案、主帖 4 评论及答案 4 评论；各入口 page=1 的 has_more 均 false。缓存 p1359_mo89032_api.json。",
+      "url": "https://api.stackexchange.com/2.3/questions/89032/answers?site=mathoverflow&filter=withbody&pagesize=100&page=1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/任务.jsonl",
+      "query": "逐行JSON读取id == QX-P-001359完整task/card_metadata/card_text/prior_evidence",
+      "date": "2026-11-27",
+      "request_id": "P1359-DUP-TASK",
+      "outcome": "原文已阅且同题",
+      "locator": "QX-P-001359 rev d5e99c334cbf5f02",
+      "result_count": 1,
+      "note": "当前完整题面为两色、有限[n]^2、轴平行、正整数等边长、仅四角同色的最小n。任务与冻结meta/text一致；meta.novelty.card_rev为旧ab1faa2a5ca7600d，legacy prior_evidence不算本轮查新。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl（2469条）",
+      "query": "6211|monochrom|同色|二染|两色|格点|grid|rectangle|square|正方形|矩形",
+      "date": "2026-11-27",
+      "request_id": "P1359-DUP-INDEX-1",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "完整索引JSONL整行、不区分大小写正则召回",
+      "result_count": 104,
+      "note": "实际ID：QX-P-000003, QX-P-000007, QX-P-000010, QX-P-000018, QX-P-000042, QX-P-000053, QX-P-000055, QX-P-000184, QX-P-000205, QX-P-000209, QX-P-000221, QX-P-000272, QX-P-000277, QX-P-000279, QX-P-000291, QX-P-000355, QX-P-000363, QX-P-000407, QX-P-000415, QX-P-000427, QX-P-000430, QX-P-000431, QX-P-000592, QX-P-000594, QX-P-000599, QX-P-000602, QX-P-000604, QX-P-000606, QX-P-000614, QX-P-000654, QX-P-000753, QX-P-000757, QX-P-000776, QX-P-000793, QX-P-000794, QX-P-000803, QX-P-000809, QX-P-000830, QX-P-000831, QX-P-000881, QX-P-000895, QX-P-000981, QX-P-001091, QX-P-001169, QX-P-001212, QX-P-001215, QX-P-001223, QX-P-001250, QX-P-001261, QX-P-001352, QX-P-001359, QX-P-001361, QX-P-001367, QX-P-001374, QX-P-001375, QX-P-001378, QX-P-001437, QX-P-001444, QX-P-001472, QX-P-001485, QX-P-001634, QX-P-001694, QX-P-001701, QX-P-001702, QX-P-001703, QX-P-001711, QX-P-001717, QX-P-001728, QX-P-001746, QX-P-001776, QX-P-001800, QX-P-001801, QX-P-001808, QX-P-001811, QX-P-001819, QX-P-001844, QX-P-001845, QX-P-001849, QX-P-001850, QX-P-001883, QX-P-001885, QX-P-001899, QX-P-001924, QX-P-002050, QX-P-002065, QX-P-002069, QX-P-002071, QX-P-002111, QX-P-002124, QX-P-002128, QX-P-002205, QX-P-002246, QX-P-002257, QX-P-002274, QX-P-002312, QX-P-002315, QX-P-002316, QX-P-002356, QX-P-002416, QX-P-002418, QX-P-002419, QX-P-002461, QX-P-002473, QX-P-002486。前三式先以rg执行，随后Python记录同式命中；第四式为本次新增精确召回，仅自身。宽式含square-free/矩形剖分等噪声，索引只作候选召回，严格同题判断使用下列冻结全文。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl（2469条）",
+      "query": "monochrom|同色|6211|chromatic.square|grid.{0,25}(Ramsey|colou?r)|网格.{0,20}(Ramsey|染色)|Paullay|Penner",
+      "date": "2026-11-27",
+      "request_id": "P1359-DUP-INDEX-2",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "完整索引JSONL整行、不区分大小写正则召回",
+      "result_count": 7,
+      "note": "实际ID：QX-P-000018, QX-P-000205, QX-P-000415, QX-P-000881, QX-P-000895, QX-P-001359, QX-P-002416。前三式先以rg执行，随后Python记录同式命中；第四式为本次新增精确召回，仅自身。宽式含square-free/矩形剖分等噪声，索引只作候选召回，严格同题判断使用下列冻结全文。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl（2469条）",
+      "query": "rectangle|矩形|square.{0,20}colou?r|colou?r.{0,20}square|正方形.{0,12}染|染.{0,12}正方形|方格.{0,12}染|棋盘",
+      "date": "2026-11-27",
+      "request_id": "P1359-DUP-INDEX-3",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "完整索引JSONL整行、不区分大小写正则召回",
+      "result_count": 10,
+      "note": "实际ID：QX-P-000830, QX-P-000831, QX-P-001359, QX-P-001437, QX-P-001485, QX-P-002050, QX-P-002111, QX-P-002257, QX-P-002418, QX-P-002419。前三式先以rg执行，随后Python记录同式命中；第四式为本次新增精确召回，仅自身。宽式含square-free/矩形剖分等噪声，索引只作候选召回，严格同题判断使用下列冻结全文。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl（2469条）",
+      "query": "6211|chromatic.square|monochromatic.{0,25}square|四角同色|单色正方形|Paullay|Penner|Bacher|Eliahou",
+      "date": "2026-11-27",
+      "request_id": "P1359-DUP-INDEX-4",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "完整索引JSONL整行、不区分大小写正则召回",
+      "result_count": 1,
+      "note": "实际ID：QX-P-001359。前三式先以rg执行，随后Python记录同式命中；第四式为本次新增精确召回，仅自身。宽式含square-free/矩形剖分等噪声，索引只作候选召回，严格同题判断使用下列冻结全文。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "github_fetch_file / qunxingmath-org/qunxing-data",
+      "query": "GET problems/000/QX-P-000018.meta.json AND problems/000/QX-P-000018.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1359-DUP-FULL-000018",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000018.text.md",
+      "locator": "QX-P-000018 rev 4cd53fdbaf3376cd；完整meta及正文",
+      "result_count": 2,
+      "note": "两文件实际成功读取、全文阅读；meta.id/card_rev与索引一致，缓存Git blob SHA逐一重算一致。候选卡引用的外部论文、历史搜索和开放状态只是被冻结的卡内信息，本子任务未把它们当作已重新外访的证据。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "github_fetch_file / qunxingmath-org/qunxing-data",
+      "query": "GET problems/000/QX-P-000205.meta.json AND problems/000/QX-P-000205.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1359-DUP-FULL-000205",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000205.text.md",
+      "locator": "QX-P-000205 rev dd3c2743ec3ebc33；完整meta及正文",
+      "result_count": 2,
+      "note": "两文件实际成功读取、全文阅读；meta.id/card_rev与索引一致，缓存Git blob SHA逐一重算一致。候选卡引用的外部论文、历史搜索和开放状态只是被冻结的卡内信息，本子任务未把它们当作已重新外访的证据。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "github_fetch_file / qunxingmath-org/qunxing-data",
+      "query": "GET problems/000/QX-P-000830.meta.json AND problems/000/QX-P-000830.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1359-DUP-FULL-000830",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000830.text.md",
+      "locator": "QX-P-000830 rev 5213d0c6b43f0447；完整meta及正文",
+      "result_count": 2,
+      "note": "两文件实际成功读取、全文阅读；meta.id/card_rev与索引一致，缓存Git blob SHA逐一重算一致。候选卡引用的外部论文、历史搜索和开放状态只是被冻结的卡内信息，本子任务未把它们当作已重新外访的证据。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "github_fetch_file / qunxingmath-org/qunxing-data",
+      "query": "GET problems/000/QX-P-000881.meta.json AND problems/000/QX-P-000881.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1359-DUP-FULL-000881",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000881.text.md",
+      "locator": "QX-P-000881 rev 52884dccab21ff2e；完整meta及正文",
+      "result_count": 2,
+      "note": "两文件实际成功读取、全文阅读；meta.id/card_rev与索引一致，缓存Git blob SHA逐一重算一致。候选卡引用的外部论文、历史搜索和开放状态只是被冻结的卡内信息，本子任务未把它们当作已重新外访的证据。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "github_fetch_file / qunxingmath-org/qunxing-data",
+      "query": "GET problems/000/QX-P-000895.meta.json AND problems/000/QX-P-000895.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1359-DUP-FULL-000895",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000895.text.md",
+      "locator": "QX-P-000895 rev 4aa53dacba3efe06；完整meta及正文",
+      "result_count": 2,
+      "note": "两文件实际成功读取、全文阅读；meta.id/card_rev与索引一致，缓存Git blob SHA逐一重算一致。候选卡引用的外部论文、历史搜索和开放状态只是被冻结的卡内信息，本子任务未把它们当作已重新外访的证据。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "github_fetch_file / qunxingmath-org/qunxing-data",
+      "query": "GET problems/001/QX-P-001359.meta.json AND problems/001/QX-P-001359.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1359-DUP-FULL-001359",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001359.text.md",
+      "locator": "QX-P-001359 rev d5e99c334cbf5f02；完整meta及正文",
+      "result_count": 2,
+      "note": "两文件实际成功读取、全文阅读；meta.id/card_rev与索引一致，缓存Git blob SHA逐一重算一致。候选卡引用的外部论文、历史搜索和开放状态只是被冻结的卡内信息，本子任务未把它们当作已重新外访的证据。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "github_fetch_file / qunxingmath-org/qunxing-data",
+      "query": "GET problems/001/QX-P-001437.meta.json AND problems/001/QX-P-001437.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1359-DUP-FULL-001437",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001437.text.md",
+      "locator": "QX-P-001437 rev 3b3d6b633fae4301；完整meta及正文",
+      "result_count": 2,
+      "note": "两文件实际成功读取、全文阅读；meta.id/card_rev与索引一致，缓存Git blob SHA逐一重算一致。候选卡引用的外部论文、历史搜索和开放状态只是被冻结的卡内信息，本子任务未把它们当作已重新外访的证据。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "InternationalPress正式PDF/find",
+      "query": "4.3.；A1",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "两次find均403；不声称下载正式24页PDF。",
+      "url": "https://intlpress.com/site/pub/files/_fulltext/journals/joc/2010/0001/0001/JOC-2010-0001-0001-a006.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1 / InternationalPress全文索引",
+      "query": "\"Extremal binary matrices\" \"4.2.1\" \"x1\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读正式刊索引返回§4.2.1、§4.2.2完整A1/A2矩阵，页面标题为p90；A1参数条件(1)亦返回。ref 〔原始工具引用已私有留存〕。",
+      "url": "https://intlpress.com/site/pub/files/_fulltext/journals/joc/2010/0001/0001/JOC-2010-0001-0001-a006.pdf",
+      "locator": "§4.2.1--4.2.2",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1 / InternationalPress全文索引",
+      "query": "\"Extremal binary matrices\" \"4.2.2\" \"x7\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "同次请求返回的正式A2第13行，与预印本逐项核对一致。",
+      "url": "https://intlpress.com/site/pub/files/_fulltext/journals/joc/2010/0001/0001/JOC-2010-0001-0001-a006.pdf",
+      "locator": "§4.2.2",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "InternationalPress新PDF端点",
+      "query": "open https://intlpress.com/api/bgcloud-front/resource/pdf/volume/1805865056627798017-1805865056627798017-1d9580d5662be00c44df87a294fbe9aa.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "403；没有通过其他方式绕过访问控制。",
+      "url": "https://intlpress.com/api/bgcloud-front/resource/pdf/volume/1805865056627798017-1805865056627798017-1d9580d5662be00c44df87a294fbe9aa.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"Extremal binary matrices\" \"4.3\" \"second\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "本支线这次实际返回正式p84§3.1而非p93；p93来自主审已取得的原始工具缓存，下条单列。",
+      "url": "https://intlpress.com/site/pub/files/_fulltext/journals/joc/2010/0001/0001/JOC-2010-0001-0001-a006.pdf",
+      "locator": "本次返回p84",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "已缓存正式刊原始检索返回",
+      "query": "读取internal/p1359_root_b10.json中的turn870636242search3及search4",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读正式p93§4.3全文索引。两个正式PDF地址均保留外行模式不出现于第二/倒数第二行列的断言；不是自行重跑主审检索。",
+      "url": "https://intlpress.com/site/pub/files/_fulltext/journals/joc/2010/0001/0001/JOC-2010-0001-0001-a006.pdf",
+      "locator": "p93§4.3",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "已取得UMD作者预印本文本",
+      "query": "internal/p1359_bacher_preprint.txt §§4.2.1--4.2.2、§4.3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "只读相关矩阵、变量条件及边界论证，未声称本支线审完25页证明。两矩阵与正式刊索引吻合。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本地Python/重新转录矩阵",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002160〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "没有导入主审矩阵检查程序。A1仅x2=1其余0；A2所有变量0。分别检查全部819个非退化轴平行方形，均无同色；A1第1行=A2第13行=00100111100101。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "公开作者稿共享缓存 / UMD",
+      "query": "实际读取p1359_bacher_preprint.txt开头1–95行及510–810行（§§4.2–4.3）；核A1–A4参数、Thm4.4分类表述、单行边界论证",
+      "date": "2026-11-27",
+      "request_id": "P1359-IND-READ",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cs.umd.edu/~gasarch/TOPICS/vdw/2colsq.pdf",
+      "locator": "25页稿pp.1–3与15–19；PDF SHA256 93f2a1b42de5ded89f2a2bc2a9fcb5f2d8f1ae04c08d02c3b55132c5299d85e3",
+      "result_count": 1,
+      "note": "只审指定段落和当前问题范围，未读审§3搜索算法全部细节；公开PDF由根下载，此处为实际共享缓存阅读，不虚构新的网络请求。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立有限核验",
+      "site": "本地Python标准库",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002161〕",
+      "date": "2026-11-27",
+      "request_id": "P1359-IND-RERUN",
+      "outcome": "原文已阅且同题",
+      "locator": "internal/p1359_independent_checks.py / .json",
+      "result_count": 1,
+      "note": "独立从预印本转录四族，未以根脚本、根矩阵数组或作者程序为输入。三个14×14指定矩阵各819检查；合法参数投影与k=1、2模式交集精确枚举。 查询日期按客户端Asia/Shanghai换算；原UTC记录为2026-11-26晚间。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E1359-ORIGIN-INDEX",
+      "url": "https://www.academia.edu/37249387/Index_to_Mathematical_Problems_1975_1979",
+      "locator": "Rabinowitz–Bowron原书文本：SubjectIndex的AMM6211(a)(b)；UnsolvedProblems p415；代码p282及相关作者索引",
+      "version": "Index to Mathematical Problems1975–1979，版权/书目1999；公开ebook转录未标独立修订日；访问2026-11-27",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "原始档案",
+      "review_status": "仅核关键步骤",
+      "note": "作者原站PDF502/503，本轮读可公开取得的原书全文转录相关段落，不是只看题名。6211由AlvinJ.Paullay、SidneyPenner提出；(a)要9×9避免全部204目标方形，(b)求最小强制尺寸；p415仅保留(b)。目标是横纵网格形成子正方形的四个互异角单元格同色。作者索引记de Buda为87(1980)229x，p282定义x为当时尚无完整解的部分解；不能由1980栏目Solutions反推最小值已解。两栏转录有串列，已用完整语句和独立书评校对。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E1359-ORIGIN-1978-BIB",
+      "url": "https://api.crossref.org/works/10.2307/2321358",
+      "locator": "publisher-deposited published-print、volume、issue、page；合刊AdvancedProblems6183,6210–6215",
+      "version": "AMM85(5)，1978-05，原题始页389；DOI10.2307/2321358",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "review_status": "未读全文",
+      "note": "出版社提交元数据核最早本题刊载年月；题目作者需与原书6211段落对应，合刊含多题所以作者列表多于两人。1978原刊PDF尚未取得；数学题面在索引转录中实读。2006是Crossref创建记录日期，不是问题提出日期。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_review": "not_read",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1359-ORIGIN-1980-BIB",
+      "url": "https://www.jstor.org/stable/i315108",
+      "locator": "AMM87(3)March1980，Solutions of AdvancedProblems:6211，p229；Crossref同DOI元数据核对",
+      "version": "1980-03；DOI10.2307/2321631",
+      "subquestions": [
+        "AMM6211历史部分解与(b)精确值问题"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "正式刊发",
+      "review_status": "未读全文",
+      "note": "正式目录列Paullay、Penner、Ingridde Buda；原刊解答正文未取得，无法独立复述其构造或所有编辑评论。Rabinowitz标此为partial solution，而p415仍列最小尺寸问；仅可据此分清历史部分解与完整数值解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1359-ORIGIN-BARBEAU",
+      "url": "https://www.math.utoronto.ca/barbeau/rabinowitz.pdf",
+      "locator": "4页作者公开书评p1书目、p3直接重述AMM6211最小尺寸问题",
+      "version": "EdwardJ.Barbeau对Rabinowitz–Bowron1999索引的书评；公开PDF未标明确书评发表日期",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "作者主页",
+      "review_status": "仅核关键步骤",
+      "note": "完整4页文件已取，实际读书目信息及p3本题段。确认棋盘n×n单元格、horizontal/vertical lines、four distinct corner squares及求最小n，与原书转录一致。书评称当时未解，不可迁移为2026状态。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E1359-ACA-BE-JOURNAL",
+      "url": "https://intlpress.com/site/pub/files/_fulltext/journals/joc/2010/0001/0001/JOC-2010-0001-0001-a006.pdf",
+      "locator": "J.Combinatorics1(1),77–100; abstract,§1,Thm1.2;正式§4.3 p93",
+      "version": "2010; DOI10.4310/JOC.2010.v1.n1.a6;原刊24页",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "完整证明",
+      "publication": "正式刊发",
+      "review_status": "核对发现漏洞",
+      "note": "同题正式完整解声明G_sq=15，且有更强14×15强制结果及13×Z避免构造。旧/新官方PDF本地HTTP均403；Web初次实际读pp77–81，后S1定向取得p93§4.3，非正式全稿已取得。正文单行边界模式不相交断言有下述明确局部反例；两行块可条件修补。争议只及该局部论证，不是14×15或15×15反例；算法计数Er(15)=0及后续独立作者SAT声明另列。提结案二审，不自动改卡。",
+      "claim_state": "关键步骤受质疑",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_state": "step_disputed",
+        "claim_review": "gap_found",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1359-ACA-BE-PREPRINT",
+      "url": "https://www.cs.umd.edu/~gasarch/TOPICS/vdw/2colsq.pdf",
+      "locator": "25页公开预印本；Thm1.2；§3算法/计数；§4.2模板A1–A4/Thm4.4；§4.3 p19",
+      "version": "UMD托管未明示日期版本；2026-11-27下载199531字节SHA25693f2a1b42de5ded89f2a2bc2a9fcb5f2d8f1ae04c08d02c3b55132c5299d85e3",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "完整证明",
+      "publication": "预印本",
+      "review_status": "核对发现漏洞",
+      "note": "实际读主问证明各节。深度优先枚举以三同色角强迫第四角反色，剪去已成单色square分支；仅用全局补色与转置减少遍历，不允许任意行列置换。作者报Er(14)=116114且Er(15)=0，Thm4.4四族全部232228个矩阵。算法逻辑可审，作者实现/完整遍历日志未取得或复跑。A1(x1=0,x2=1,其余0)首行与A2(全部0)第13行同为00100111100101，均合法Erickson；故§4.3的单行不相交说法错误。正式p93同段一致；不把局部缺口当主结论反例。",
+      "claim_state": "完整稿已取得",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "gap_found",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1359-ACA-CHECKS",
+      "url": "https://www.cs.umd.edu/~gasarch/TOPICS/vdw/2colsq.pdf",
+      "locator": "§4.2模板＋本轮独立check_p1359_matrices.py与p1359_matrix_checks.json",
+      "version": "2026-11-27;Python 3.12.14;脚本SHA256c6ee3084e3b1d7a083943d12a904a344b39205405a05232eecdf416c0faf21e8",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "仅子问",
+      "role": "证书",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "本轮自己编写的有限检查，不是复跑作者代码或Lean证明。A1取x1=1其余0得到以下14行：10100111100100/11110010001001/01000100111100/10011110010001/11001000100111/00010011110010/01111001000100/00100010011110/01001111001000/11100100010011/10001001111001/00111100100010/10010001001111/00100111100100。遍历s=1..13及所有i,j，共819个轴平行square，无单色。另对四族每个square按所含变量及全局参数约束枚举，验证所有许可参数均避免目标；合法参数数57344/128/32/73。本轮并未证这四族穷尽全部14×14。边界单行9种、内移一格单行14种（模反向/补色）交4种；改用相邻两行/列，模块反转、块内反转、补色分别32与19种，交集0。14×15的两个重叠14×14窗必有一个双列块同时属两类，从而在作者四族分类完整前提下修复14×15上界。独立查重支线另从原稿转录并编程得到相同数值。",
+      "formal_status": "复跑只覆盖一部分",
+      "rerun": {
+        "command": "python3 internal/check_p1359_matrices.py",
+        "toolchain": "Python 3.12.14 标准库；无Lean/lake",
+        "theorem": "14×14显式避免构造；四模板参数有效性；条件性双行块上界桥",
+        "log_url": "本回执note保留构造与所有计数；本地internal/p1359_matrix_checks.json",
+        "axioms": "非Lean；不主张#print axioms或完整主命题形式化验收"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "formal_evidence": "rerun_partial",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1359-ACA-DP2025",
+      "url": "https://arxiv.org/abs/2512.23303v1",
+      "locator": "§3 Lemma3.1 pp4–5；§5 Thm5.1/5.2 pp7–8；refs[2],[15]",
+      "version": "v1 2025-12-29 08:46:02UTC；完整15页；SHA25633d516d365f79864c5c2923ed04496acf5d0b52e059e5caee9b0d2c18d02a05e",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "完整证明",
+      "publication": "预印本",
+      "review_status": "仅核关键步骤",
+      "note": "Dumitru–Prunescu再次报告轴平行阈值15。每个四点集合加入至少一个1、至少一个0两个CNF子句的逻辑等价本轮手核。Thm5.2作者称CaDiCaL为Xi15生成约15GB DRAT；本文没有给本轮已获取的trace/校验日志，不能记本轮独立验证通过，也不能把生成证书等同已由独立checker验过。使用BreakID与D8×颜色翻转的处理未在本轮源码复验。允许旋转的Omega在Thm5.1阈值7是不同问，不替代轴平行15。其余三角形/矩形/立方体节未审。",
+      "claim_state": "完整稿已取得",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1359-ACA-FENNER",
+      "url": "https://www.cs.umd.edu/~gasarch/COURSES/858/S13/grid.pdf",
+      "locator": "Def1.2 pp2–3；§5 Thm5.1/5.2、Tables11–13 pp25–27；§8",
+      "version": "UMD49页稿；相关arXiv1005.3750v2=2012-11-13，本文访问2026-11-27",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "仅核关键步骤",
+      "note": "允许两个独立正步长的矩形模型；不是本题等步长square。原文G5,5不可二染而G4,6可二染，故二色方阵矩形锐阈值5。原卡15×15强制矩形字面只是正确弱界，错误在暗示其是G(2)经典锐值/拿来支持square仍开放。完整49页经Web可解析，实际只读定义和相关二色结论/表，不声称读完全部证明。根与出处/查重支线用4×4构造及5×5列对×颜色计数奇偶证明独立核5。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1359-ACA-BOX2026",
+      "url": "https://arxiv.org/abs/2611.19635",
+      "locator": "官方arXiv摘要与submission history，经普通HTTP实际读取",
+      "version": "v1 2026-11-14 21:36:09UTC；HTML40968字节SHA256c91ed3bfb2e024a93eeccbf6acec1242122dd21c89394a2c2c39b0545bc7034e",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "未读全文",
+      "note": "Alm–Miller研究三维无单色轴平行长方体与二维单色矩形最少个数rho(a,b)，是另一维数/形状问题。Web打开失败后取得官方摘要，未读全文，不据第三方镜像的历史引用升级为新解或覆盖本题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1359-ACA-DUMITRU-HOME",
+      "url": "https://cs.unibuc.ro/~bdumitru/",
+      "locator": "Papers2025，Two-colorings条目及其唯一arXiv链接",
+      "version": "主页标Last updated27September2026；本轮2026-11-27读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "仅子问",
+      "role": "重述",
+      "publication": "作者主页",
+      "review_status": "已读未核关键步骤",
+      "note": "作者亲自列该SAT与对称破除工作；没有在所读条目给出可下载15GB trace、独立checker日志或Git提交。主页其他论文的withdrawn字样属于SeparatingWords，不能移给本题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E1359-CODE-WL2013",
+      "url": "https://www.cs.umd.edu/users/gasarch/TOPICS/vdw/monosquareexact.pdf",
+      "locator": "§II Definition 2、SAT 归约及 Lemmas 1–2 / Theorem 1；§III Results；附注",
+      "version": "2013 ICISA；DOI 10.1109/ICISA.2013.6579363；所取 PDF SHA256 3722badd47a3d6989e1933dee359d9ebd786645f7a19b617108c6d15c57790f5",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "完整证明",
+      "publication": "正式刊发",
+      "review_status": "仅核关键步骤",
+      "note": "已读全部 5 页并手核归约的两个方向。它禁止每个相同正边长、轴平行四角同色，与原卡形式化目标一致。作者 MiniSAT 自报 14×14 SAT（2.14 秒）、14×15 UNSAT（20.58 分钟）及 15×15 UNSAT（22.18 分钟），是精确 n=15 的计算解；这些时间和 UNSAT 结论是作者记录，不是本轮成功复跑。源稿未给编码程序或原始 CNF / 可下载 DRAT。第 2 页以及证明中 0≤k<c−1 / p<c−1 有下标笔误，应为 k<c / p<c；示例列了两色、计数乘以 c、文字也说 0 到 c−1。按字面漏最后一色则全最后一色着色满足其残缺式；不据此断言作者程序也有该 bug。使用经纠正的数学编码。本轮只独立通过显式 14×14 见证校验；上界单次 60 秒超时。2013 摘要的首解措辞应与 2010 已刊解及 2012 作者公开答复对账。",
+      "claim_state": "完整稿已取得",
+      "claimant": "Paul Walton; Wing Ning Li",
+      "claim_date": "2013",
+      "formal_status": "复跑仅覆盖部分",
+      "rerun": {
+        "cache": "〔私有材料定位已省略〕",
+        "command": "pdftotext -layout internal/p1359_walton_li.pdf internal/p1359_walton_li.txt；另见 p1359_check_walton_witness.py / p1359_sat_upper.py",
+        "axioms": "普通有限 CNF 等价归约及程序计算；未取得 Lean 主定理或检查形式化公理"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "formal_evidence": "rerun_partial",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1359-CODE-WITNESS14",
+      "url": "https://www.cs.umd.edu/users/gasarch/TOPICS/vdw/monosquareexact.pdf",
+      "locator": "PDF p4 右栏 14×14 显式矩阵；全部 819 个合法正边长位置",
+      "version": "同一固定 PDF；本轮 2026-11-27 Asia/Shanghai 独立枚举",
+      "subquestions": [
+        "14×14 避免着色（下界）"
+      ],
+      "scope_match": "仅子问",
+      "role": "证书",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "从固定 PDF 的 pdftotext 右栏提取 14 行，每行 14 位；逐个检查 side=1..13、每个合法左上角的四点相同颜色，819 个候选四角中单色命中 0。这是一份有限下界见证，只证明阈值大于 14；未用 SAT 重新寻找构造，也不证明 15×15 的上界。",
+      "claim_state": "完整稿已取得",
+      "formal_status": "本轮独立复跑通过",
+      "rerun": {
+        "commit": "源 PDF SHA256 3722badd47a3d6989e1933dee359d9ebd786645f7a19b617108c6d15c57790f5",
+        "toolchain": "Python 3.12.14，标准库",
+        "command": "python internal/p1359_check_walton_witness.py",
+        "cache": "〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material",
+        "axioms": "整数循环与有限逐项比较；非 Lean 内核验证"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "formal_evidence": "third_party_rerun_pass",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1359-CODE-SATLIMIT",
+      "url": "urn:qunxing:private-material",
+      "locator": "独立布尔编码 p1359_sat_upper.py；输入 p1359_n15.cnf；一次 n=15 求解",
+      "version": "2026-11-27 Asia/Shanghai；脚本 SHA256 7d431e002ece5f7deb8a7daefdbc93ce2f1583c0cf8774b21e68d0e608efcff4",
+      "subquestions": [
+        "15×15 上界独立计算"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "本轮使用独立一布尔变量/格点编码：225 变量，1015 个轴平行正方形，每个两条子句同时禁止全 0 和全 1，共 2030；再用全局换色对称合法固定首点为 1，共 2031。每个 avoiding 着色或其全局补色满足该单位子句，故此对称约束不会丢失存在性。实际运行 python-sat 1.9.dev25 的 cadical195，60 秒墙钟、CPU soft60/hard61 秒、2 GiB 地址空间；60.063650 秒超时后进程终止，returncode=-9，没有得到 SAT/UNSAT。未开启 proof logging，未产生或检查 DRAT/LRAT。不是作者程序复跑；不把超时当 UNSAT，也不因本轮超时否定已刊结论。",
+      "claim_state": "无声明",
+      "formal_status": "复跑受阻",
+      "rerun": {
+        "commit": "CNF SHA256 6ce7847bbedb796d5742a39901c1cce373e4cf3effe445d96e0c0ba4576b503c",
+        "theorem": "不存在 15×15 轴平行四角正方形避免二染色（本次求解未判定）",
+        "toolchain": "Python 3.12.14；隔离 python-sat 1.9.dev25；cadical195",
+        "command": "python internal/p1359_sat_upper.py",
+        "cache": "〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material",
+        "axioms": "本轮未取得求解结论、未运行独立证书检查器或 Lean"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "formal_evidence": "rerun_blocked",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1359-CODE-MO",
+      "url": "https://mathoverflow.net/a/89091",
+      "locator": "Roland Bacher 答案 89091，及题 89032 的全部 2 答案 / 8 评论",
+      "version": "答案发布 2012-02-21 09:11 UTC，最后编辑 2012-02-21 11:08 UTC；本轮 API 全分页读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "社区帖子",
+      "review_status": "仅核关键步骤",
+      "note": "作者明确将目标写为 S={i,i+t}×{j,j+t}、四点同色，并说明其与 Eliahou 的 J. Comb. 1 (2010), 77–100 给精确值 15、14×14 与 13×Z 避免构造。这里核的是作者对已刊解的公开定位及精确范围，不以转载 Math Reviews 文字替代主审对原刊证明的检查。主帖及部分评论另有任意行列组合/矩形解释；只把答案的明确定义作为同题证据。另一个答案仅给 13×13 矩阵，没有新上界证明。",
+      "claim_state": "公开声称",
+      "claimant": "Roland Bacher",
+      "claim_date": "2012-02-21",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "E1359-CODE-FC189",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/189.lean",
+      "locator": "完整 90 行；Erdos189For，erdos_189 与 variants.square",
+      "version": "commit ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8；blob cc16853eed149c0a83ab671aa407ce0d6b639f5d",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "review_status": "本轮独立数学核对",
+      "note": "精确目标是对实平面任意有限染色，某一色类含每个预定面积的矩形或正方形；square 变体是否定这个全称命题。它既不固定有限 n×n 整数网格，也不问允许任意正边长时的最小阈值。当前文件相关主定理本体均 sorry；rectangle 的 formal_proof 还指向外仓其他目标，本轮因不同题未追读该外仓。未运行 Lean，不能将 research solved 标签或这个不同目标的形式化链接当 AMM 6211 的 n=15 证明。",
+      "claim_state": "无声明",
+      "formal_status": "已静态检查未复跑",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1359-CODE-OAI",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/CONTENTS.md",
+      "locator": "完整 CONTENTS.md 与 overview.tex 的本地固定版本检索，以及远端 head 元数据",
+      "version": "commit 3344da59991ed94f9ba711217b29c1d760badfa6；CONTENTS.md blob 7d4a8770643439016a70f23a4524d0ebacc78900；overview.tex blob 1a56184b1f28a8750722dc2dd6306af8424da0b6",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "尚未确认",
+      "role": "进展",
+      "publication": "代码仓库",
+      "review_status": "未读全文",
+      "note": "在这两个完整目录按 Paullay、Penner、Walton、Eliahou、6211 和 monochromatic/square 邻近词检索均 0 命中；另对仓库 monochromatic square 的前 20 条返回片段筛查只见邻题。这里只是实际目录与召回范围未定位同题新 AI 主张，未通读 730 份稿件，也不证明所有公开 AI 平台均无声明。主问题既有 2010/2013 普通计算解，与是否有 AI 重证是两件事。",
+      "claim_state": "无声明",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1359-DUP-SELF",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001359.text.md",
+      "locator": "冻结text.md §§题面、形式化G_sq、人话、原文摘录、已知结果与开放状态；meta.acceptance.criteria",
+      "version": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev d5e99c334cbf5f02; text blob 0eda3de80198d08b228481a34bd7fd06fe186369; meta blob a9a142458fd0f0f2350d708bb13ba5ff16856a0f",
+      "subquestions": [
+        "两色[n]^2中四角同色轴平行正方形的最小必现边长n"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "冻结卡与任务文件逐字一致，形式化定义的当前数学目标清楚。卡内AMM6211摘录仅为中文转述，是否把原始存在性问加强成精确阈值由原题路线另核，不能据自身转述认证原始出处同一性。矩形旁注、小尺寸/倾斜边界已单独手证和程序检查；学术路线的n=15主结论不以本条库内证据替代。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1359-REVIEW-PUBLISHED43",
+      "url": "https://intlpress.com/site/pub/files/_fulltext/journals/joc/2010/0001/0001/JOC-2010-0001-0001-a006.pdf",
+      "locator": "§4.2.1 A1（正式p90起）、§4.2.2 A2；p93§4.3",
+      "version": "Journal of Combinatorics1(1)(2010),77--100；DOI10.4310/JOC.2010.v1.n1.a6；本轮访问2026-11-27",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "完整证明",
+      "publication": "正式刊发",
+      "review_status": "核对发现漏洞",
+      "note": "正式刊相关矩阵和§4.3已从出版社PDF的搜索全文返回实际读取；完整24页PDF下载403。独立转录给A1变量(x1,x2,x15,x16)=(0,1,0,0)，其余变量0，A2全部变量0，满足A1原条件。两矩阵各819个方形枚举无同色，而A1外侧第1行与A2倒数第二即第13行同为00100111100101。因此§4.3所写单行不相交断言被明确局部例反驳，正式版并未通过修改矩阵消除该例。该例不是14×15或15×15反例，不能推出Theorem4.1、n0=15或完整分类为假；还需独立上界或补足原论证。计算及数据见internal/p1359_published43_check.py/.json。",
+      "claim_state": "关键步骤受质疑",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_state": "step_disputed",
+        "claim_review": "gap_found",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1359-IND-LOWER",
+      "url": "https://www.cs.umd.edu/~gasarch/TOPICS/vdw/2colsq.pdf",
+      "locator": "§4.2.1 A1，25页稿p.15；x1=1，其余xi=0；独立结果p1359_independent_checks.json fixtures.A1_x1_only",
+      "version": "25-page UMD preprint; SHA256 93f2a1b42de5ded89f2a2bc2a9fcb5f2d8f1ae04c08d02c3b55132c5299d85e3",
+      "subquestions": [
+        "G_sq≥15的明确14×14避例"
+      ],
+      "role": "证书",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "逐s=1..13及全部起点枚举819方形，单色数0；验证的是具体矩阵，无需假定分类完备。独立脚本、完整矩阵及各边长检查数均在缓存。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1359-IND-BRIDGE",
+      "url": "https://www.cs.umd.edu/~gasarch/TOPICS/vdw/2colsq.pdf",
+      "locator": "§4.2.5 Thm4.4（p.18）与§4.3（p.19）；独立结果boundary_patterns",
+      "version": "25-page UMD preprint; SHA256 93f2a1b42de5ded89f2a2bc2a9fcb5f2d8f1ae04c08d02c3b55132c5299d85e3",
+      "subquestions": [
+        "假设四族已穷尽全部14×14避例时，推导无14×15避例的有限边界桥"
+      ],
+      "role": "勘误",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "关键步骤受质疑",
+      "review_status": "本轮独立数学核对",
+      "note": "原文单行不相交断言被A1(x2=1其余0)首行与A2(全0)第13行同为00100111100101直接反驳，两矩阵均通过819检查。独立两行/列块投影外侧32、内移19、交0，给出分类前提下的修补；不将其说成已重跑Thm4.4、整稿二审或形式化验证。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "claim_state": "step_disputed",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "preprint"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000018",
+      "other_card_rev": "4cd53fdbaf3376cd",
+      "relation": "仅相似",
+      "reason": "18冻结题在整个欧氏平面任意两色染色中，问除至多一个三角形全等类型外是否都出现同色全等三角形；其边界明确要求全等而非任意缩放。1359是在有限整数[n]^2上，对固定两色找四个轴平行、两坐标差相等且正的同色角点，并求临界n。三角形三点/四角正方形、全平面/有限整数方阵、固定全等尺寸/可变整数边长及至多一例外/无例外阈值的量词均不同，不能因monochromatic plane图形召回而合并。",
+      "positions": {
+        "self": "冻结text.md §§题面、形式化G_sq、人话、原文摘录、已知结果与开放状态；meta.acceptance.criteria",
+        "other": "冻结text.md §§题面、形式化、全等不许缩放边界；meta.acceptance.criteria"
+      },
+      "note": "即使三角形某三顶点可作为正方形的一部分，三角形结论不保证第四角颜色；本次未检查18自身历史状态。 本次不提合并；若将来取得严格等价证明，才按较小ID QX-P-000018 负责主卡和二审合并提议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000205",
+      "other_card_rev": "dd3c2743ec3ebc33",
+      "relation": "仅相似",
+      "reason": "205冻结题对一般位置（无三点共线）的有限两色平面点集，要求一个单色且内部及边界不含其他给定点的三角形，其形式化为conv{p,q,r}∩P={p,q,r}。1359的规则网格有大量共线点，要求四个角点等色的轴平行正方形，不限制内部或边上其余格点颜色/存在性。任意点集的一般位置与空性、三点目标，与完整网格的四点等边长目标均不同；候选未明说的点数边界也不能通过自动修正后算严格同题。",
+      "positions": {
+        "self": "冻结text.md §§题面、形式化G_sq、人话、原文摘录、已知结果与开放状态；meta.acceptance.criteria",
+        "other": "冻结text.md §§题面、形式化conv∩P条件、人话、一般位置边界；meta.acceptance.criteria"
+      },
+      "note": "候选的小点数范围本身需其独立查新处理；这里只确认它不是1359的字面同题。 本次不提合并；若将来取得严格等价证明，才按较小ID QX-P-000205 负责主卡和二审合并提议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000830",
+      "other_card_rev": "5213d0c6b43f0447",
+      "relation": "仅相似",
+      "reason": "830冻结题对任意n点集A⊂R²，问能否选出|A′|=n/2的子集，使每个包含至少1000个A点的轴平行矩形都被A′击中。1359对完整整数方阵的每一种两色赋值，要求等边长四角全同色。830是存在特定半数选择及所有大区域被命中的量词，1359是任意染色都有指定四角；前者计矩形区域内点数，不要求四个角在A中、等色或宽高相同。",
+      "positions": {
+        "self": "冻结text.md §§题面、形式化G_sq、人话、原文摘录、已知结果与开放状态；meta.acceptance.criteria",
+        "other": "冻结text.md §§题面、原文、1000/A′边界；meta.acceptance.criteria"
+      },
+      "note": "把A′理解成一种颜色也不会把存在染色变成任意染色；区域击中与角点单色不能互换。 本次不提合并；若将来取得严格等价证明，才按较小ID QX-P-000830 负责主卡和二审合并提议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000881",
+      "other_card_rev": "52884dccab21ff2e",
+      "relation": "仅相似",
+      "reason": "881冻结题把F₂^n∖{0}任意两色染色，定义可保证的同色非零线性子空间点集规模f(n)，问其是否O(n)。1359的n是整数网格每边点数，目标是四个欧氏正方形角点；881的n是向量空间维数，0不染色，线性子空间的非零点数为2^d−1，结论是渐近增长阶。F₂中的加法平行四边形关系并不保证整数坐标的正相等间距，线性子空间目标也不等于四角同色方形。",
+      "positions": {
+        "self": "冻结text.md §§题面、形式化G_sq、人话、原文摘录、已知结果与开放状态；meta.acceptance.criteria",
+        "other": "冻结text.md §§题面、人话对f(n)的定义、原文和不染0约定；meta.acceptance.criteria"
+      },
+      "note": "即便把二进制向量嵌入某个大网格，颜色域、闭包条件和所求参数均需额外转换；现有两卡没有严格等价。 本次不提合并；若将来取得严格等价证明，才按较小ID QX-P-000881 负责主卡和二审合并提议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000895",
+      "other_card_rev": "4aa53dacba3efe06",
+      "relation": "仅相似",
+      "reason": "895冻结题给K_n的边染色，要求不存在两组三顶点互不相交且对应边颜色相同的colour-isomorphic三角形，研究最少颜色数g(n)的增长阶。它不是每个三角形内部三条边同色，颜色数也随n变化。1359染的是网格顶点/格位，固定两色，目标为同色四角及相等轴向间距，并求方阵阈值。边染色/点染色、可变色数/固定二色、两同构三角形/一个同色正方形均不同。",
+      "positions": {
+        "self": "冻结text.md §§题面、形式化G_sq、人话、原文摘录、已知结果与开放状态；meta.acceptance.criteria",
+        "other": "冻结text.md §§题面、人话、原文colour-isomorphic、g(n)定义；meta.acceptance.criteria"
+      },
+      "note": "不把候选标题的“同色同构”误读成1359的monochromatic四角条件。 本次不提合并；若将来取得严格等价证明，才按较小ID QX-P-000895 负责主卡和二审合并提议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001437",
+      "other_card_rev": "3b3d6b633fae4301",
+      "relation": "仅相似",
+      "reason": "1437冻结题给定q字母的周期矩形符号阵列及k×l连续子阵多重集结构，问有多少广义de Bruijn环面共享该结构。1359处理不回绕的有限两色网格，对所有赋值强制出现四个指定间距角点，且不要求整个子阵同色。周期边界、可变字母表、整个连续子阵及多重计数/计数公式，与固定两色、角点单色、非周期及最小必现n均不同。",
+      "positions": {
+        "self": "冻结text.md §§题面、形式化G_sq、人话、原文摘录、已知结果与开放状态；meta.acceptance.criteria",
+        "other": "冻结text.md §§题面、N形式化、二维周期/字母表/子阵边界；meta.acceptance.criteria"
+      },
+      "note": "正方形染色文献中的Erickson torus属于另一模型；仅有二维周期阵列共同关键词不足以建立等价。 本次不提合并；若将来取得严格等价证明，才按较小ID QX-P-001359 负责主卡和二审合并提议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "first_published/sources/原文摘录",
+      "old": "first_published为空；仅指Rabinowitzp415",
+      "new": "AMM6211(b)，AlvinJ.Paullay与SidneyPenner，1978年5月，AMM85(5)p389，DOI10.2307/2321358；1980年3月87(3)p229为索引所记部分解，DOI10.2307/2321631。Rabinowitz–Bowron1999索引p415是重述。",
+      "reason": "从出版社记录确认年月，并分清原题两部分与历史部分解。",
+      "evidence_ids": [
+        "E1359-ORIGIN-INDEX",
+        "E1359-ORIGIN-1978-BIB",
+        "E1359-ORIGIN-1980-BIB"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化/人话版边界",
+      "new": "以[n]²标号n×n单元格中心；n≥1，c:[n]²→{0,1}任意，1≤s≤n−1，1≤a,b≤n−s均为整数，四点同色。角单元格互异、轴平行；内部颜色任意。",
+      "reason": "核心形式化方向正确，补显式坐标范围，并解释点/格模型避免加一偏移。",
+      "evidence_ids": [
+        "E1359-ORIGIN-INDEX",
+        "E1359-ORIGIN-BARBEAU"
+      ],
+      "small_case_check": "n=1无目标；s=0会让题变平凡；9×9目标数204与原(a)精确匹配。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "已知结果与进展/矩形版G(2)",
+      "old": "矩形版G(2)经典（15×15强制单色矩形）",
+      "new": "若以相同二色方阵模型但只要求矩形，最小尺寸是5；15×15强制矩形仅是非锐上界，不能代替正方形论证。主问题的精确15结论须由主审的对应正方形论文证据支持。",
+      "reason": "原句弱上界并非逻辑假话，但将15置于矩形版经典值语境会造成错误阈值印象。",
+      "evidence_ids": [
+        "E1359-ORIGIN-INDEX"
+      ],
+      "small_case_check": "4×4无矩形构造已枚举；5×5用20类别与奇偶矛盾独立证必有矩形。3×3例显示有矩形而无正方形。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "开放状态证据/informal_status/statement_audit",
+      "old": "1999未解索引及矩形活跃框架支持本题open",
+      "new": "历史索引只记当年状态；按本轮同题正式论文及证明审查更新状态。矩形文献不能单独作为本题开放证据。",
+      "reason": "本题原问可以精确对齐，不能用邻题活跃或旧未解标签替代当前同题核验。",
+      "evidence_ids": [
+        "E1359-ORIGIN-INDEX",
+        "E1359-ORIGIN-BARBEAU"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "acceptance.criteria",
+      "new": "给出(n0−1)×(n0−1)无目标染色并验证；证明每个n0×n0二染色必含目标，较大尺寸由限制到子方阵自动推出。",
+      "reason": "只整理原验收逻辑，不改变问题；上下界均必须使用同一轴平行正方形定义。",
+      "evidence_ids": [
+        "E1359-ORIGIN-INDEX"
+      ],
+      "small_case_check": "3×3含矩形但无正方形例排除把两种上界混用。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "已知结果与进展 / ai_claims / informal_status",
+      "old": "正方形必要n未知，仅矩形框架活跃；旧novelty绑定ab1faa2a5ca7600d。",
+      "new": "登记Bacher–Eliahou2010正式完整结果G_sq=15（14×14避免，14×15强制），Walton–Li2013和Dumitru–Prunescu2025 SAT重现声明；二审处理结案，不自动改冻结卡。",
+      "reason": "当前核心问已有直接同题完整解来源，不能继续仅凭旧版粗检或邻题活跃列open。SAT不等于生成式AI证明；各声称/复跑层级分开。",
+      "evidence_ids": [
+        "E1359-ACA-BE-JOURNAL",
+        "E1359-ACA-DP2025"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "证明审计 / 待复核项",
+      "new": "记录§4.3单行模式漏洞及本轮双行块条件修补；原始计算分类和后续UNSAT证书仍待独立终审。",
+      "reason": "只披露实际查出的局部错误和修补范围，不将其升级成主结果被推翻，也不因正式发表掩盖本轮发现。",
+      "evidence_ids": [
+        "E1359-ACA-BE-JOURNAL",
+        "E1359-ACA-BE-PREPRINT",
+        "E1359-ACA-CHECKS"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "计算验证层级",
+      "new": "记录已读的 SAT 编码、颜色下标局部勘误、作者自报 UNSAT 与本轮有限复跑的分别范围；本轮仅通过 14×14 见证检查，15×15 单次限时超时。",
+      "reason": "避免把已安装求解器、已生成 CNF、作者所报 UNSAT 或不同题 sorry 骨架混为本轮完整形式化通过。",
+      "small_case_check": "c=2，若只对 k=0 加禁止四角色约束，则全 k=1 着色满足残缺公式而含单色正方形；加入两个颜色的子句后，此小例被正确排除。",
+      "evidence_ids": [
+        "E1359-CODE-WL2013",
+        "E1359-CODE-WITNESS14",
+        "E1359-CODE-SATLIMIT",
+        "E1359-CODE-FC189"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "informal_status / track / novelty / search_coverage",
+      "old": "open；依据矩形染色框架及4色17×17挑战；旧novelty绑定ab1faa2a5ca7600d。",
+      "new": "登记同题已刊完整解G_sq=15并提交结案二审；本次主问题标签完整声明待核，覆盖逐题粗查有缺口。原题首发1978-05，2010正式解与2013/2025重现分开；对已发现局部错误及条件修补保留审计。",
+      "reason": "不能将旧索引当现时开放认证、将含不同量词的文献当直接证据，或把发表/作者UNSAT记录冒充本轮完整独立重跑。主问题核心定义无需改成矩形、倾斜square或周期问题。",
+      "evidence_ids": [
+        "E1359-DUP-SELF",
+        "E1359-ORIGIN-1978-BIB",
+        "E1359-ACA-BE-JOURNAL",
+        "E1359-CODE-WL2013",
+        "E1359-ACA-DP2025",
+        "E1359-ACA-FENNER"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "duplicates / merge",
+      "new": "六个候选冻结meta/text均已比较，无严格同题，不提合并；只交修订建议，保留冻结card_rev。",
+      "reason": "三角形、区域命中集、向量空间、边染色与周期子阵不同于二色有限轴平行等边长四角阈值。",
+      "evidence_ids": [
+        "E1359-DUP-SELF"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {
+        "card_action": "no_change"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "1978AMM原刊与1980解答PDF都未取得，JSTOR端点返回验证HTML；作者原站索引PDF502/503。已实际读原书公开全文转录相关段及作者书评，书目已用出版社Crossref核。",
+      "next_step": "如以后取得合法原刊，核6211完整排版与1980解答具体构造/编辑评论；当前不得将索引转录或目录当作亲读原刊。题意与日期已足以与现代同题结果对齐。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2010算法计数/Thm4.4完备性尚无本轮全部重跑日志；§4.3局部单行错误已有独立双行块修补，但仍以该完备性为前提。正式24页全文下载403，主证明整体按公开25页稿审，正式相关段定向已核。",
+      "next_step": "结案二审核已刊计算结果与四族完备性，或取得2013/2025独立完整UNSAT证书及编码等价验证；不可把本轮819个下界检查/局部修补写成完整上界独立认证。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "2025论文声称约15GB DRAT，所读论文及作者页没有取得可校验证书/日志；对称破除的可满足性保持也未源码复验。",
+      "next_step": "若进行完整形式化或计算认证，固定原CNF、全部预处理/对称破除、solver和checker版本及hash并实际校验；当前只登记作者证书声明，不虚构独立通过。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "Walton–Li 论文提到两个转换程序，但本轮限定查询未取得作者源码、原始实例或可独立核验的 UNSAT 文件；本轮上界复跑 60 秒超时。",
+      "next_step": "若任务另需完整可复现上界证书，再取得固定版本程序/CNF/DRAT 或 LRAT 和检查器日志；当前保留已刊证明与已完成下界校验，不把未完成上界计算标为成功。无需为查新继续无界大搜索。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "公开代码关键词检索有 topn 限制；目录检索不能覆盖改名、未索引或未公开的证明。已读 FC 邻题不能据标签跨题转移结果。",
+      "next_step": "以实际 queries 和固定目录作为覆盖边界；如后续出现明确同题新声明，再取完整正文、精确 endpoint、依赖、公理和可运行日志复核。本轮不声称所有平台均无结果。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "2469条简索引四式召回，6个相关候选meta/text共14冻结文件均已读并验证；未发现严格同题。并未逐字遍历全库每一正文。",
+      "next_step": "保持本卡独立，不提合并。后续若出现最小两色正方形卡，逐项核颜色数、n的坐标含义、倾斜/轴平行、square/rectangle和存在性/最小值；只有严格等价才由较小ID提交二审合并建议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "已刊同题完整解需按包内规则结案二审。两个局部排版/证明问题分别涉及2010单行桥和2013颜色下标，均不是主结论反例；本轮证书覆盖下界与条件性桥。",
+      "next_step": "二审核n=15的上下界全链，并决定状态与书目修订；既可审原完整分类配合双行块修补，也可核独立UNSAT证书全链。保留实际构造、程序哈希、超时日志和未运行Lean的事实，不混同数学已刊结论、证明审查、计算复跑、题库结案四层。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "d5e99c334cbf5f02",
+      "codes": {}
+    }
+  ]
+}

@@ -1,0 +1,3899 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001174",
+  "card_rev": "008db90eb0c89f55",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-02"
+      ],
+      "parts": [
+        {
+          "subquestion": "有限范围：本题所有n<2^64",
+          "value": "partial",
+          "note": "一手2021报告对118,968,378个普通base2伪素数全表测MethodA* ordinaryLucas未发现交集。本轮独立核A/A*在D5的普通Lucas等价与题目分支映射，因此可按作者计算报告列为本题<2^64无反例；大表完整性与执行日志本轮未复跑。不能只引用strongBPSW的2^64口号，也不能从有限界推出所有n。"
+        },
+        {
+          "subquestion": "有限范围：n<2^80且有两个或三个素因子",
+          "value": "partial",
+          "note": "Shallue–Webster2019报告对精确(2;1,-1)-challenge无反例；范围为两个或三个素因子，文中§7明确含平方因子候选，依赖≤2^40无同时Wieferich/Wall–Sun–Sun素数的计算。实际视读p421排除了OCR负号歧义；本轮未重跑，不外推至所有因子数。"
+        },
+        {
+          "subquestion": "构造族：2022 Fibonacci因子方法产生的候选",
+          "value": "partial",
+          "note": "正式稿证明满足指定F_L因子条件的乘积是Fib伪素数；对约2^23个满足±2mod5的构造候选及另一prime-index筛选族，作者报告没有ordinarybase2通过者。它提供构造/搜索方法，不提供全题证明或实际反例；约2^23是候选量，不是已全检n的上界。"
+        },
+        {
+          "subquestion": "本轮实际穷尽的有限区间1<n≤10^6",
+          "value": "partial",
+          "note": "逐个检查160714个符合mod5条件的奇合数；59个ordinary Fermat候选中无一同时满足F_(n+1)≡0。偶数由奇偶性排除。完整代码、输出和全部候选自含；只在2..2000作第二种Fibonacci实现交叉检查，无正式证明助手运行。"
+        },
+        {
+          "subquestion": "较大有限范围声明：10^21与10^23",
+          "value": "undeterminable",
+          "note": "复用v01已登记材料；本次未重查。2024官方作者摘要报10^21；2026后文回顾称10^23，全文均未取得，未核明差别来源。两者只是有限区间声明，不能关闭无限全称主问。"
+        },
+        {
+          "subquestion": "本原部分构造与选族搜索",
+          "value": "partial",
+          "note": "复用v01已登记材料；本次未重查。2026-11-23新文Thm2给强Lucas伪素数子族并报告选族搜索无例，未证明这族所有元素都未通过Fermat，也未遍历全部n；通过基101/137测试即假定素数的步骤使它不能直接称确定性全域验证。"
+        },
+        {
+          "subquestion": "Carmichael合数n<10^24的受限子类报告",
+          "value": "partial",
+          "note": "复用v01对Wagstaff2026-11-23新文的阅读记录：作者转述Baillie检验Carmichael表无Lucas共同命中。只为Carmichael子类及该有限界；本次未重开论文或核全表，不能扩成全部合数n<10^24。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/google-deepmind/formal-conjectures/pull/7121/files"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "urn:qunxing:private-material",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "现卡核心问题是：对n>1、n≡2或3(mod5)，若ordinary base2 Fermat与固定Fibonacci F_(n+1)两条件同时成立，则n为素数。Odd可从前提推出；n=2是前件失败而非反例。核心公式与2019正式PSW challenge定义相符；普通/强伪素数标签、任意Lucas参数建议及历史年代的旁注错误，不构成主命题已推翻。已取得有限范围的实质证据：作者报告全部ordinary psp(2)<2^64没有ordinary Lucas(A*)共同命中，并由A/A*等价及本域首D=5桥接到本题；另2019二/三素因子（按重数）n<2^80范围包括排除平方因子后的完整受限搜索。两项大规模文献计算未在本轮复跑。本轮独立Python精确搜索覆盖全部n≤10^6的域内合数，59个ordinary Fermat候选全部Fibonacci失败；这是有界计算，不能推出全称断言。本轮出处、学术、公开代码/AI与社区路线没有取得本主问题的一般完整证明或反例确证。FC主定理仍sorry；其他变体的证明不解决本题。旧novelty.card_rev=456a602db87c2431与清单008db90eb0c89f55不同，只作历史记录；当前回执严格绑定清单版本。 保存时发现同题同card_rev的v01已先行入库，已校验并复用其2026-11-23新文、2024/2026摘要等独有记录；两篇摘要所述10^21与10^23差别未有全文核明，不选择较大数字作已核界。新增材料仍只支持有限范围/构造族进展，主状态不变。 v04仅定向复核并纠正2003稿p334页图判读，精确公式依据改为p335；上述计算与其他研究从已入库v03继承，本次修订未再次执行。",
+      "evidence_ids": [
+        "1174-SRC-E01",
+        "1174-SRC-E02",
+        "1174-SRC-E03",
+        "1174-SRC-E04",
+        "1174-SRC-E05",
+        "1174-ACA-E01",
+        "1174-ACA-E02",
+        "1174-ACA-E03",
+        "1174-ACA-E04",
+        "1174-ACA-E05",
+        "1174-AUX-E001",
+        "1174-AUX-E002",
+        "1174-ROOT-E01",
+        "1174-ROOT-E02",
+        "1174-REUSE-ACA-E03",
+        "1174-REUSE-ACA-E04",
+        "1174-REUSE-ACA-E05",
+        "1174-ROOT-RECONCILE"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限范围：本题所有n<2^64",
+      "math_status": "仅特例",
+      "scope_note": "一手2021报告对118,968,378个普通base2伪素数全表测MethodA* ordinaryLucas未发现交集。本轮独立核A/A*在D5的普通Lucas等价与题目分支映射，因此可按作者计算报告列为本题<2^64无反例；大表完整性与执行日志本轮未复跑。不能只引用strongBPSW的2^64口号，也不能从有限界推出所有n。",
+      "evidence_ids": [
+        "1174-ACA-E02",
+        "1174-ACA-E03"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限范围：n<2^80且有两个或三个素因子",
+      "math_status": "仅特例",
+      "scope_note": "Shallue–Webster2019报告对精确(2;1,-1)-challenge无反例；范围为两个或三个素因子，文中§7明确含平方因子候选，依赖≤2^40无同时Wieferich/Wall–Sun–Sun素数的计算。实际视读p421排除了OCR负号歧义；本轮未重跑，不外推至所有因子数。",
+      "evidence_ids": [
+        "1174-ACA-E01"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "构造族：2022 Fibonacci因子方法产生的候选",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "正式稿证明满足指定F_L因子条件的乘积是Fib伪素数；对约2^23个满足±2mod5的构造候选及另一prime-index筛选族，作者报告没有ordinarybase2通过者。它提供构造/搜索方法，不提供全题证明或实际反例；约2^23是候选量，不是已全检n的上界。",
+      "evidence_ids": [
+        "1174-ACA-E05"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "本轮实际穷尽的有限区间1<n≤10^6",
+      "math_status": "仅特例",
+      "scope_note": "逐个检查160714个符合mod5条件的奇合数；59个ordinary Fermat候选中无一同时满足F_(n+1)≡0。偶数由奇偶性排除。完整代码、输出和全部候选自含；只在2..2000作第二种Fibonacci实现交叉检查，无正式证明助手运行。",
+      "evidence_ids": [
+        "1174-ROOT-E01",
+        "1174-ROOT-E02"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "较大有限范围声明：10^21与10^23",
+      "math_status": "现有材料无法判定",
+      "scope_note": "复用v01已登记材料；本次未重查。2024官方作者摘要报10^21；2026后文回顾称10^23，全文均未取得，未核明差别来源。两者只是有限区间声明，不能关闭无限全称主问。",
+      "evidence_ids": [
+        "1174-REUSE-ACA-E03",
+        "1174-REUSE-ACA-E04"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "math_status": "undeterminable"
+      }
+    },
+    {
+      "subquestion": "本原部分构造与选族搜索",
+      "math_status": "部分进展",
+      "scope_note": "复用v01已登记材料；本次未重查。2026-11-23新文Thm2给强Lucas伪素数子族并报告选族搜索无例，未证明这族所有元素都未通过Fermat，也未遍历全部n；通过基101/137测试即假定素数的步骤使它不能直接称确定性全域验证。",
+      "evidence_ids": [
+        "1174-REUSE-ACA-E05"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Carmichael合数n<10^24的受限子类报告",
+      "math_status": "仅特例",
+      "scope_note": "复用v01对Wagstaff2026-11-23新文的阅读记录：作者转述Baillie检验Carmichael表无Lucas共同命中。只为Carmichael子类及该有限界；本次未重开论文或核全表，不能扩成全部合数n<10^24。",
+      "evidence_ids": [
+        "1174-REUSE-ACA-E05"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-02-1174-SRC-001-search-1",
+      "route": "原题与出处",
+      "site": "Web search",
+      "query": "system2: Selfridge conjecture Fibonacci \"n+1\" \"1980\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检索返回Chen–Greene2003原期刊PDF、相关摘要和二手页面；后续改用原稿核范围，未从摘要写已证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-001-search-2",
+      "route": "原题与出处",
+      "site": "Web search",
+      "query": "system2: Selfridge \"Fibonacci\" \"Pomerance\" conjecture 5 prime",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中JMM2008摘要、Chen–Greene2003及Crandall–Pomerance研究问题摘要；用于追溯入口，未将搜索索引时间当提出年代。refs 〔原始工具引用已私有留存〕/23/24。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-002-open-psw",
+      "route": "原题与出处",
+      "site": "Pomerance作者档案",
+      "query": "open https://math.dartmouth.edu/~carlp/PDF/paper25.pdf",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://math.dartmouth.edu/~carlp/PDF/paper25.pdf",
+      "locator": "24页扫描稿",
+      "note": "Web返回24页PDF但Total lines:0，没有可读文本；本次未读到正文，ref 〔原始工具引用已私有留存〕。随后实际下载、OCR及图像核对补齐，不把这一记录当最终全文始终不可访问。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-002-open-chen-fq",
+      "route": "原题与出处",
+      "site": "Fibonacci Quarterly",
+      "query": "open https://www.fq.math.ca/Scanned/41-4/chen.pdf",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.fq.math.ca/Scanned/41-4/chen.pdf",
+      "note": "TimeoutError，ref 〔原始工具引用已私有留存〕。后续作者存档成功。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-002-search-1974",
+      "route": "原题与出处",
+      "site": "Web search",
+      "query": "system1: \"Selfridge\" \"Fibonacci\" conjecture \"1974\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未从返回结果核出1974首提证据；命中FC索引及不同Fibonacci问题，不把这些日期移植到本题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-002-search-1980",
+      "route": "原题与出处",
+      "site": "Web search",
+      "query": "system1: \"The pseudoprimes to 25\" \"Fibonacci\" 1980",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中1980论文镜像、期刊引用与p1025原$30挑战片段；正式原稿后续实际读，未仅凭标题认定与本弱版完全相同。refs 〔原始工具引用已私有留存〕/5。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-003-open-mirror",
+      "route": "原题与出处",
+      "site": "Bernstein参考文献档案",
+      "query": "open https://cr.yp.to/bib/1980/pomerance-pseudo.pdf",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://cr.yp.to/bib/1980/pomerance-pseudo.pdf",
+      "note": "502 Bad Gateway，ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-003-open-bw",
+      "route": "原题与出处",
+      "site": "AMS",
+      "query": "open https://www.ams.org/journals/mcom/1980-35-152/S0025-5718-1980-0583518-6/S0025-5718-1980-0583518-6.pdf",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://www.ams.org/journals/mcom/1980-35-152/S0025-5718-1980-0583518-6/S0025-5718-1980-0583518-6.pdf",
+      "note": "工具提示不可访问，ref 〔原始工具引用已私有留存〕。未声称已读Baillie–Wagstaff1980原文；常用强版本定义改由作者后续原稿核实。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-004-download",
+      "route": "原题与出处",
+      "site": "Pomerance作者档案 / urllib",
+      "query": "GET https://math.dartmouth.edu/~carlp/PDF/paper25.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://math.dartmouth.edu/~carlp/PDF/paper25.pdf",
+      "locator": "pp1003、1020–1025的后续本地OCR；p1003/1024/1025图像",
+      "note": "实际HTTP200，2036301 bytes，24页，SHA256 517d994869ba4dc808594addb0b02abfd17b75d9940c7acbf9c4d40d388c7585。缓存1174_psw_1980.pdf，下载日志1174_psw_1980_download.json。此处是新网络实际请求，不冒记Web空文本为已阅。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-005-search-bw",
+      "route": "原题与出处",
+      "site": "Web search",
+      "query": "system2: \"Lucas pseudoprimes\" \"1980\" Baillie Wagstaff pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中1980书目/镜像线索及作者后续原稿；不把原文未取到写成已核旧论文所有步骤。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-005-search-1979",
+      "route": "原题与出处",
+      "site": "Web search",
+      "query": "system2: \"Selfridge\" \"Fibonacci\" conjecture \"1979\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未核出本弱版的1979首提；返回PSW1980收稿1978/修订1979等信息，只作为版本背景。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-005-search-bfw",
+      "route": "原题与出处",
+      "site": "Web search",
+      "query": "system2: \"Strengthening the Baillie-PSW\" primality test standard strong",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Baillie–Fiori–Wagstaff作者稿及AMS2021书目，DOI10.1090/mcom/3616，Math.Comp.90(2021),1931–1955；下一请求实际读定义。refs 〔原始工具引用已私有留存〕/33。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-006-open-bfw",
+      "route": "原题与出处",
+      "site": "Andrew Fiori作者主页",
+      "query": "open https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "作者accepted稿日期2020-11-17；§§2–3 pp2–7",
+      "note": "取得25页PDF并实际读ordinary/strong Fermat、ordinary/strong Lucas、MethodA/A*和该文所称original BPSW的定义。ref 〔原始工具引用已私有留存〕。该版本是作者accepted稿，不将2021期刊年当其页首日期。计算大界未在出处路线重跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-007-read-chen",
+      "route": "原题与出处",
+      "site": "John Greene作者档案",
+      "query": "open 〔原始工具引用已私有留存〕 at lineno0 〔私有记录编号：PR-000491〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "locator": "2003刊稿pp334–335，Introduction及Preliminaries",
+      "note": "本次是沿学术代理已发现原稿作新的定点读取，非共用请求冒记；ref 〔原始工具引用已私有留存〕。明确$30旧strong版本及后续$620弱base2+固定Fibonacci+mod5=2/3条件；作者声明无实际例子。p334编号1/2的同余右端缺失；后续真实图像确认原稿显示也留空，不仅是文本抽取问题。采用p335完整文字定义及2019正式定义交叉核，不把补全项冒称直接逐字读到。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-007-read-shallue",
+      "route": "原题与出处",
+      "site": "MSP正式全文",
+      "query": "open 〔原始工具引用已私有留存〕 at lineno0 〔私有记录编号：PR-000492〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "Shallue–Webster2019，pp411–413，Introduction及Definition2",
+      "note": "新的定点读取，ref 〔原始工具引用已私有留存〕。确认PSW challenge为普通base2 Fermat、Jacobi(5/n)=-1及F_(n+1)=0；固定Lucas参数(1,-1)。原稿同时把强Fermat+强Lucas与自选D的BPSW另行定义，不把其搜索直接混入本题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-008-find-chen-refs",
+      "route": "原题与出处",
+      "site": "John Greene作者档案",
+      "query": "find 〔原始工具引用已私有留存〕 pattern \"REFERENCES\" 〔私有记录编号：PR-000493〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "note": "ref 〔原始工具引用已私有留存〕，因扫描正文空格分拆未命中；随后直接读取结尾取得引文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-008-find-bfw-appendix",
+      "route": "原题与出处",
+      "site": "Andrew Fiori作者稿",
+      "query": "find 〔原始工具引用已私有留存〕 pattern \"Appendix A\" 〔私有记录编号：PR-000494〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "AppendixA pp24–25，Theorems3/4",
+      "note": "ref 〔原始工具引用已私有留存〕。实际读MethodA与A*的ordinary Lucas等价短证：当D5时U_(2k)(5,5)=5^k U_(2k)(1,-1)，gcd(n,10)=1可消去5的幂；另读强Lucas等价定理陈述。未将特定等价扩写成任意参数可替换。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-008-find-pom84",
+      "route": "原题与出处",
+      "site": "MSP正式全文",
+      "query": "find 〔原始工具引用已私有留存〕 pattern \"[Pom84]\" 〔私有记录编号：PR-000495〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "p422参考文献",
+      "note": "ref 〔原始工具引用已私有留存〕。核1984Pomerance稿为Lenstra论文后记的书目信息；本次没有读取1984稿，不能据此替本弱版补精确首提年份。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-009-read-chen-end",
+      "route": "原题与出处",
+      "site": "John Greene作者档案",
+      "query": "open 〔原始工具引用已私有留存〕 at lineno860 〔私有记录编号：PR-000496〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "locator": "pp343–344 Conclusions及References[2]–[4]",
+      "note": "ref 〔原始工具引用已私有留存〕。挑战放宽及$620条件所引[4]实为C.Pomerance私人通信，无日期；原稿标SubmittedApril2001、FinalRevisionJuly2001，正式出版2003，三者不混用。结尾仍未给出反例，不把候选集合/启发式写成完整反例。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-010-ocr-first",
+      "route": "原题与出处",
+      "site": "本地扫描稿",
+      "query": "OCR rendered 1980 pp1003,1020–1025 using tesseract",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://math.dartmouth.edu/~carlp/PDF/paper25.pdf",
+      "locator": "本地缓存",
+      "note": "首批并行OCR部分成功，p1020触发45秒超时导致总体返回异常；保留已生成页文本，随后只补缺页。没有把OCR程序运行说成数学搜索或证明助手运行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-011-ocr-complete",
+      "route": "原题与出处",
+      "site": "本地扫描稿",
+      "query": "Read existing OCR and retry missing pp1020/1022 with OMP_THREAD_LIMIT=1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://math.dartmouth.edu/~carlp/PDF/paper25.pdf",
+      "locator": "实际读取pp1003、1020–1025",
+      "note": "完成定点OCR读取；§10(pp1023–1025)确认定义、A/B、普通psp计算观察及正式提出的strongbase2+ordinaryLucas挑战。OCR只作导航和阅读辅助，关键A/B及$30文字另看图。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-012-view-1024",
+      "route": "原题与出处",
+      "site": "本地扫描图像",
+      "query": "view_image 1174_psw_1980_p1024_crop.png",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://math.dartmouth.edu/~carlp/PDF/paper25.pdf",
+      "locator": "p1024 MethodA/B实际图像",
+      "note": "真实图像显示A取首个Jacobi=-1的D∈5,-7,9,-11,…，P1、Q=(1-D)/4；B为另一算法。已看见图像，不只是工具占位标记。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-013-view-1025",
+      "route": "原题与出处",
+      "site": "本地扫描图像",
+      "query": "view_image 1174_psw_1980_p1025_crop.png",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://math.dartmouth.edu/~carlp/PDF/paper25.pdf",
+      "locator": "p1025 $30挑战实际图像",
+      "note": "真实图像明确spsp(2)+lpsp、eitheralgorithmAorB，或证明某算法无此数，并要求提交因子分解；不是本卡弱Fermat+固定Fibonacci $620版本的逐字原问。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-014-view-1003",
+      "route": "原题与出处",
+      "site": "本地扫描图像",
+      "query": "view_image 1174_psw_1980_p1003_crop.png",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://math.dartmouth.edu/~carlp/PDF/paper25.pdf",
+      "locator": "p1003刊名、作者、题名实际图像",
+      "note": "真实图像核Math.Comp.35 no151、July1980、pp1003–1026；作者Pomerance、J.L.Selfridge、S.S.WagstaffJr。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-015-static-root",
+      "route": "原题与出处",
+      "site": "共享目录已有算法和日志",
+      "query": "Read compute_1174.py and 1174_finite_run.json; static independent review only",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "urn:qunxing:private-material",
+      "locator": "有限≤10^6弱版检索的筛法、域、递推及日志",
+      "note": "未重跑或扩界。静态核Eratosthenes筛起点q²/切片长度、普通Fermat筛、固定Fibonacci倍增式；strong_base2只作统计、不参与筛除。偶数排除由前提推得，不是漏设Odd。原运行计数是root日志，本源代理不冒称独立再次执行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-SRC-016-visual-chen",
+      "route": "原题与出处",
+      "site": "共享目录中已取得的Chen–Greene原稿",
+      "query": "Read source/1174_academic/Chen-Greene2003.pdf; render and view p334 conditions crop",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "locator": "p334引言及编号1–4实际图像",
+      "note": "本次只读共享缓存并新作裁图，无新网络下载。已看见原稿编号1/2同余右端确实留空，不能把2和0称为直接可读原印；本题精确同余按p335定义、其挑战解释及2019定义交叉核。裁图1174_chen_2003_conditions_crop.png。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-001",
+      "route": "学术",
+      "site": "Web System1",
+      "query": "Selfridge conjecture Fibonacci Fermat pseudoprime n 2 3 mod 5 counterexample",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中原稿、索引与社区条目；检索片段不能作已证/已反驳结论。recency=1095。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-001",
+      "route": "学术",
+      "site": "Web System1",
+      "query": "Fibonacci pseudoprime base 2 Fermat n+1 negative Jacobi 5 computational bound",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 Chen–Greene2003、Shallue–Webster2019 及强 BPSW 材料；后续逐一核范围。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-001",
+      "route": "学术",
+      "site": "Web System1",
+      "query": "\"Selfridge\" \"Fibonacci\" \"2026\" conjecture",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365；命中当前社区/形式化目录线索，没有取得新的完整解答稿；代码交辅助路线核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-002",
+      "route": "学术",
+      "site": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "query": "open {\"ref_id\":\"https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕，取得正式刊稿全文，读摘要、引言、Thm1、Def2；后续补读§3/§7并本地视觉核页411/421。",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-002",
+      "route": "学术",
+      "site": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "query": "open {\"ref_id\":\"https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕，取得11页作者存档全文，读pp334–336；作者明确没有构造出反例。p334扫描公式右侧缺字，后续本地图像核实。",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-002",
+      "route": "学术",
+      "site": "https://www.tandfonline.com/doi/abs/10.1080/00150517.2022.12427461",
+      "query": "open {\"ref_id\":\"https://www.tandfonline.com/doi/abs/10.1080/00150517.2022.12427461\"}",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "note": "〔原始工具引用已私有留存〕；403 Forbidden，仅此前检索摘要可见，随后另取期刊官网全文。",
+      "url": "https://www.tandfonline.com/doi/abs/10.1080/00150517.2022.12427461",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-003",
+      "route": "学术",
+      "site": "Web System1",
+      "query": "\"Using Fibonacci Factors to Create Fibonacci Pseudoprimes\" pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 Fibonacci Quarterly 60(4)官网PDF及2024上线的T&F元数据；原刊实际为2022。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-003",
+      "route": "学术",
+      "site": "Web System1",
+      "query": "\"PSW-challenge\" \"2026\" pseudoprimes",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；命中2019旧稿及二手页面，未取得2026新完整证明/反例稿。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-003",
+      "route": "学术",
+      "site": "Web System1",
+      "query": "\"Selfridge conjecture\" \"Fibonacci\" proof counterexample",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；命中Selfridge综述/社区线索，未取得同题新完整解答。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-003",
+      "route": "学术",
+      "site": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"square\"} 〔私有记录编号：PR-000497〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；定位squarefree算法及§7明确纳入平方因子候选，需与§3平方因子必要条件合读。",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "〔原始工具引用已私有留存〕 find square",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-003",
+      "route": "学术",
+      "site": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"7. Computations\"} 〔私有记录编号：PR-000498〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "〔原始工具引用已私有留存〕；原词未命中，实际标题为 Computational notes and conclusion。",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "〔原始工具引用已私有留存〕 find 7. Computations",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-003",
+      "route": "学术",
+      "site": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"7.\"} 〔私有记录编号：PR-000499〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；定位§7、Algorithm1及Thm8仅squarefree的量词。",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "〔原始工具引用已私有留存〕 find 7.",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-003",
+      "route": "学术",
+      "site": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"64\"} 〔私有记录编号：PR-000500〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；引言所引Gilchrist 2^64是strong BPSW，单凭该句不能迁给本题。",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "〔原始工具引用已私有留存〕 find 64",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-004",
+      "route": "学术",
+      "site": "Web System1",
+      "query": "\"Selfridge\" \"Fibonacci\" conjecture counterexample proof 2025 2026",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；未取得新完整解答。MO片段将邻近答案的“solved in the negative”与Selfridge段拼接，后续打开排除。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-004",
+      "route": "学术",
+      "site": "Web System1",
+      "query": "\"Fast tabulation of challenge pseudoprimes\" erratum correction",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2019论文、arXiv与索引，未检到对应撤回/勘误通知；不等于证明不存在勘误。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-004",
+      "route": "学术",
+      "site": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "query": "open {\"ref_id\":\"https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；取得25页作者accepted稿（2020-11-17），本次先读定义/术语；后续核§3统计与附录A。",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-004",
+      "route": "学术",
+      "site": "https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf",
+      "query": "open {\"ref_id\":\"https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；取得正式期刊5页全文，读Thm1.1与引言；§3随后定点读。",
+      "url": "https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-005",
+      "route": "学术",
+      "site": "Web System1",
+      "query": "\"Strengthening the Baillie-PSW primality test\" erratum correction 2026",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=2190；命中AMS正式刊发元数据/arXiv/作者PDF；未检到相应撤回或勘误。AMS：Math.Comp.90(330)(2021)1931–1955，2021-03-22上线。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-005",
+      "route": "学术",
+      "site": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "query": "open {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":662} 〔私有记录编号：PR-000501〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；§7 p421报告<2^80且2/3因子的计算，已继续读取本地页图。",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "〔原始工具引用已私有留存〕 line 662",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-005",
+      "route": "学术",
+      "site": "https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf",
+      "query": "open {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":180} 〔私有记录编号：PR-000502〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；本次仅显示Prop2.9附近，不计已读§3计算；后续find定位全文。",
+      "url": "https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf",
+      "locator": "〔原始工具引用已私有留存〕 line 180",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-005",
+      "route": "学术",
+      "site": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"118968378\"} 〔私有记录编号：PR-000503〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；确认118,968,378指普通psp(2)，其中只有31,894,014为strong，二者不能混称。",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "〔原始工具引用已私有留存〕 find 118968378",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-005",
+      "route": "学术",
+      "site": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Method A*\"} 〔私有记录编号：PR-000504〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；§3 p7明确所有普通psp(2)<2^64均非MethodA* ordinary lpsp；作者报告，本轮未复跑。",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "〔原始工具引用已私有留存〕 find Method A*",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-005",
+      "route": "学术",
+      "site": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Appendix A.\"} 〔私有记录编号：PR-000505〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；定位A/A*同ordinary lpsp及附录A Thm3，后续全文核证明。",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "〔原始工具引用已私有留存〕 find Appendix A.",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-006",
+      "route": "学术",
+      "site": "https://arxiv.org/abs/2006.14425",
+      "query": "open {\"ref_id\":\"https://arxiv.org/abs/2006.14425\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "〔原始工具引用已私有留存〕；版本页当前v2，2021-06-11；v1为2020-06-25。未显示撤回声明。",
+      "url": "https://arxiv.org/abs/2006.14425",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-006",
+      "route": "学术",
+      "site": "https://arxiv.org/abs/1806.08697",
+      "query": "open {\"ref_id\":\"https://arxiv.org/abs/1806.08697\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "〔原始工具引用已私有留存〕；当前仅v1，2018-06-22；已刊OBS2(2019)411–423。未显示撤回声明。",
+      "url": "https://arxiv.org/abs/1806.08697",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-006",
+      "route": "代码、公开 AI 和社区",
+      "site": "https://mathoverflow.net/questions/66084/open-problems-with-monetary-rewards/383209",
+      "query": "open {\"ref_id\":\"https://mathoverflow.net/questions/66084/open-problems-with-monetary-rewards/383209\"}",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "note": "〔原始工具引用已私有留存〕；打开完整多答案页面，待定位误拼接的负解评论所属问题。",
+      "url": "https://mathoverflow.net/questions/66084/open-problems-with-monetary-rewards/383209",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-006",
+      "route": "学术",
+      "site": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "query": "screenshot {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pageno\":4} 〔私有记录编号：PR-000506〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "服务只回传<<ImageDisplayed>>占位文本，没有ImageContent；未实际看到图片，不计视觉核验。后续以本地下载PDF渲染纠正。",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "〔原始工具引用已私有留存〕 PDF page index 4",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-006",
+      "route": "学术",
+      "site": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "query": "screenshot {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pageno\":23} 〔私有记录编号：PR-000507〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "服务只回传<<ImageDisplayed>>占位文本，没有ImageContent；未实际看到图片，不计视觉核验。后续以本地下载PDF渲染纠正。",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "〔原始工具引用已私有留存〕 PDF page index 23",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-006",
+      "route": "学术",
+      "site": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "query": "screenshot {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pageno\":24} 〔私有记录编号：PR-000508〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "服务只回传<<ImageDisplayed>>占位文本，没有ImageContent；未实际看到图片，不计视觉核验。后续以本地下载PDF渲染纠正。",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "〔原始工具引用已私有留存〕 PDF page index 24",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-006",
+      "route": "学术",
+      "site": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "query": "screenshot {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pageno\":12} 〔私有记录编号：PR-000509〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "服务只回传<<ImageDisplayed>>占位文本，没有ImageContent；未实际看到图片，不计视觉核验。后续以本地下载PDF渲染纠正。",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "〔原始工具引用已私有留存〕 PDF page index 12",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-006",
+      "route": "学术",
+      "site": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "query": "screenshot {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pageno\":0} 〔私有记录编号：PR-000510〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "服务只回传<<ImageDisplayed>>占位文本，没有ImageContent；未实际看到图片，不计视觉核验。后续以本地下载PDF渲染纠正。",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "locator": "〔原始工具引用已私有留存〕 PDF page index 0",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-007",
+      "route": "学术",
+      "site": "https://arxiv.org/html/2006.14425v2",
+      "query": "open {\"ref_id\":\"https://arxiv.org/html/2006.14425v2\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；取得2006.14425v2 HTML全文，后续定点读§3与附录A。",
+      "url": "https://arxiv.org/html/2006.14425v2",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-007",
+      "route": "学术",
+      "site": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Let n be an odd\"} 〔私有记录编号：PR-000511〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；读附录A Thm3完整普通Lucas桥接；同一输出亦含其它参数定理，不迁入本题。",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "〔原始工具引用已私有留存〕 find Let n be an odd",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-007",
+      "route": "学术",
+      "site": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 3.\"} 〔私有记录编号：PR-000512〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；定点Thm3：gcd(n,10)=1，A和A*普通Lucas通过条件等价。",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "〔原始工具引用已私有留存〕 find Theorem 3.",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-007",
+      "route": "学术",
+      "site": "https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"3. Searching\"} 〔私有记录编号：PR-000513〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "〔原始工具引用已私有留存〕；无此精确标题，实际为The Search for a Baillie-PSW Pseudoprime。",
+      "url": "https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf",
+      "locator": "〔原始工具引用已私有留存〕 find 3. Searching",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-007",
+      "route": "代码、公开 AI 和社区",
+      "site": "https://mathoverflow.net/questions/66084/open-problems-with-monetary-rewards/383209",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"solved (in the negative)\"} 〔私有记录编号：PR-000514〕",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "note": "〔原始工具引用已私有留存〕；负解评论出现在Selfridge答案之前，指向crossword.pdf，尚需读上一答案上下文。",
+      "url": "https://mathoverflow.net/questions/66084/open-problems-with-monetary-rewards/383209",
+      "locator": "〔原始工具引用已私有留存〕 find solved (in the negative)",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-008",
+      "route": "学术",
+      "site": "https://arxiv.org/html/2006.14425v2",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"118968378\"} 〔私有记录编号：PR-000515〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "〔原始工具引用已私有留存〕；连写数字未命中HTML内薄空格数字，随后改查Feitsma；不是统计声明不存在。",
+      "url": "https://arxiv.org/html/2006.14425v2",
+      "locator": "〔原始工具引用已私有留存〕 find 118968378",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-008",
+      "route": "学术",
+      "site": "https://arxiv.org/html/2006.14425v2",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 3\"} 〔私有记录编号：PR-000516〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；v2附录A Thm3完整证明已读并独立核普通Lucas恒等式，不把Thm4强版核验算作本次完成。",
+      "url": "https://arxiv.org/html/2006.14425v2",
+      "locator": "〔原始工具引用已私有留存〕 find Theorem 3",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-008",
+      "route": "学术",
+      "site": "https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"unsuccessful\"} 〔私有记录编号：PR-000517〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；引言明确实际未找到挑战反例；读Thm1.1及其证明的对象仅Fibonacci伪素数。",
+      "url": "https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf",
+      "locator": "〔原始工具引用已私有留存〕 find unsuccessful",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-008",
+      "route": "学术",
+      "site": "https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"We tested\"} 〔私有记录编号：PR-000518〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "〔原始工具引用已私有留存〕；原词未命中，后续改以§3定位。",
+      "url": "https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf",
+      "locator": "〔原始工具引用已私有留存〕 find We tested",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-008",
+      "route": "代码、公开 AI 和社区",
+      "site": "https://mathoverflow.net/questions/66084/open-problems-with-monetary-rewards/383209",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Pratt\"} 〔私有记录编号：PR-000519〕",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "〔原始工具引用已私有留存〕；已明确“solved in the negative”属于Vaughan Pratt的集合系问题，不是Selfridge猜想；排除检索片段误拼。",
+      "url": "https://mathoverflow.net/questions/66084/open-problems-with-monetary-rewards/383209",
+      "locator": "〔原始工具引用已私有留存〕 find Pratt",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-009",
+      "route": "学术",
+      "site": "https://arxiv.org/abs/2105.13513",
+      "query": "open {\"ref_id\":\"https://arxiv.org/abs/2105.13513\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "〔原始工具引用已私有留存〕；当前v1，2021-05-28，3作者预印本；正式2022稿增加John Greene，采用正式稿结果，不将两个版本完全等同。",
+      "url": "https://arxiv.org/abs/2105.13513",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-009",
+      "route": "学术",
+      "site": "https://doi.org/10.1090/mcom/3616",
+      "query": "open {\"ref_id\":\"https://doi.org/10.1090/mcom/3616\"}",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "note": "〔原始工具引用已私有留存〕；DOI重定向AMS页面被工具拒取，不能计为已读出版社全文；已读作者accepted稿与当前arXiv v2。",
+      "url": "https://doi.org/10.1090/mcom/3616",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-009",
+      "route": "学术",
+      "site": "https://arxiv.org/html/2006.14425v2",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Feitsma\"} 〔私有记录编号：PR-000520〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；当前v2 §3 L302仍明确全部118,968,378普通psp(2)<2^64无A*普通Lucas交集，与accepted稿相同。",
+      "url": "https://arxiv.org/html/2006.14425v2",
+      "locator": "〔原始工具引用已私有留存〕 find Feitsma",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-009",
+      "route": "学术",
+      "site": "https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf",
+      "query": "find {\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"3.\"} 〔私有记录编号：PR-000521〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "〔原始工具引用已私有留存〕；§3 pp322–323已读：约2^23个构造出的特定Fib伪素数无普通base2交集；另一搜索只覆盖指定prime L≤100000且被其伪素性检验判合数的F_L，不是全区间穷举。",
+      "url": "https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf",
+      "locator": "〔原始工具引用已私有留存〕 find 3.",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-L001",
+      "route": "学术",
+      "site": "作者网页→本地PDF",
+      "query": "urllib.request.urlopen('https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf', timeout=15)；pdftotext -layout后读取Method A、Theorem3与§3段落",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "source/1174_academic/bfw-accepted-20201117.pdf；pp4–5,7,24–25",
+      "note": "实际下载384528bytes，PDF签名有效。此为同一exec_command中两个下载之一；前次因缺requests包报错发生于发起网络请求前。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-L001",
+      "route": "学术",
+      "site": "作者网页→本地PDF",
+      "query": "urllib.request.urlopen('https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf', timeout=15)；pdftoppm第1页与view_image",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "locator": "source/1174_academic/Chen-Greene2003-page1.png；印刷p334",
+      "note": "实际下载3335017bytes并实际观看本地渲染图：编号1/2同余式右侧本身空白，不只是OCR失字。用p335定义及2019明确公式交叉识别；不伪造原图所写。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ACA-L002",
+      "route": "学术",
+      "site": "MSP期刊→本地PDF",
+      "query": "urllib.request.urlopen('https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf', timeout=20)；pdftotext -layout；pdftoppm第3/13页；view_image两页",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "source/1174_academic/Shallue-Webster2019-page3.png 与 page13.png；印刷pp411,421",
+      "note": "实际下载2451497bytes。实际观看两页：确认(2;1,-1)、Jacobi=-1、2^80与2^40指数和§7包括平方因子的原文；未复跑作者计算。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-001",
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "本地扫描全部2469行title/title_en/aliases，re.I：Selfridge|Baillie|Pomerance|Fibonacci.*pseudo|pseudo.*Fibonacci|Fermat.*Lucas|Lucas.*Fermat|伪素数|斐波那契.*素",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "result_count": 7,
+      "locator": "索引SHA256=f8cb9c4e9e263756a5078cdbb6094c065ecd704586a97e171cebb5e695476701",
+      "note": "命中自身1174及40、838、1242、1347、1931、1972；作者名/题材噪声仅索引初筛，不凭标题下重复结论。1972后取固定正文比对。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-002",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "locator": "5bd8bfb9def462c19a87d2d275af3db3341dc727",
+      "note": "实际本题新请求；main=5bd8bfb9def462c19a87d2d275af3db3341dc727，committer=2026-11-26T13:20:16Z。只作版本定位，不将该提交关于OEIS100475的证明说明迁入本题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-003",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 代码搜索",
+      "query": "\"Selfridge\" \"Fibonacci\"；topn=10",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 10,
+      "note": "返回gmpy2/Sage/PARI及普通数学程序中的Fibonacci与primality函数片段，没有据此认定一般素性证明；未逐仓审计或运行程序。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-004",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1_search_query",
+      "query": "\"Selfridge\" \"Fibonacci\" (\"Lean\" OR proof OR solved OR counterexample)；recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批两query。〔原始工具引用已私有留存〕–4、7–8含FC文档/社区题面、同名其他猜想和Wikipedia；后续单独取FC与三个社区原页。未把同名已解决猜想迁入PSW。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-004",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1_search_query",
+      "query": "\"cb0220\" Selfridge",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批请求；〔原始工具引用已私有留存〕–6为汽车零件CB0220噪声，未打开；随后用GitHub精确路径定位cb-0220。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-005",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 固定版本源码",
+      "query": "fetch FormalConjectures/Wikipedia/Selfridge.lean @ 5bd8bfb9def462c19a87d2d275af3db3341dc727",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/FormalConjectures/Wikipedia/Selfridge.lean",
+      "locator": "全文；IsSelfridge、selfridge_conjecture、IsPseudoSelfridge及两种counterexample；FermatNumbers节",
+      "note": "实际definition和主statement吻合普通Fermat+固定Fibonacci；主定理research open/by sorry，无外部主证明链接。public import FormalConjecturesUtil；未追完整依赖闭包/构建。±1模5变体的已证反例及FermatNumbers充分条件均不是本题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-006",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/bespokelabsai/conjecture-bench/commits/main",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/bespokelabsai/conjecture-bench/commits/main",
+      "locator": "8d494791ace5894b860585d67ba8e69dbfed6376",
+      "note": "当前main=8d494791ace5894b860585d67ba8e69dbfed6376，committer=2026-10-25T09:20:54Z；用于固定目录条目，不代表状态日期更新。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-007",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 仓内搜索",
+      "query": "\"Selfridge\"；repository_name=bespokelabsai/conjecture-bench；topn=10",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 10,
+      "note": "定位cb-0220；同批含Lander–Parkin–Selfridge和其他同名猜想，extended unsolvedmath-1876有等价奖题线索，已交出处路线，不把搜索片段当证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-008",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 固定版本JSON",
+      "query": "fetch problems/conjectures/cb-0220.json @ 8d494791ace5894b860585d67ba8e69dbfed6376",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0220.json",
+      "locator": "statement/counterexample/status_observation/provenance全字段",
+      "note": "state=open、as_of=2026-07-24、evidence_state=source-linked；源指FC旧commit7a41db3d761324599812d6ca6cb6a9f311046dc7及Wikipedia。仅目录观察，不是当前独立数学查新或形式化证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-009",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 固定版本README",
+      "query": "fetch README.md @ 8d494791ace5894b860585d67ba8e69dbfed6376",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/README.md",
+      "locator": "L3–22、L58–60、L91–107",
+      "note": "完整文件取得，实际读定位列出的状态/来源/声明边界段：收录不表示维护方独立核实状态或解决，catalogued claim不是数学验证或背书。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-010",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 固定版本工具链",
+      "query": "fetch lean-toolchain @ 5bd8bfb9def462c19a87d2d275af3db3341dc727",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/lean-toolchain",
+      "locator": "全文",
+      "note": "leanprover/lean4:v4.33.1；没有安装或执行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-011",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 定向代码搜索",
+      "query": "\"selfridge_conjecture\" OR \"IsSelfridge\"；repository_name=[google-deepmind/formal-conjectures,openai/math]；topn=10",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 1,
+      "note": "仅返回FC主定理sorry片段；未检到这两个仓范围内的同题完整证明。搜索不等于全仓遍历。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "ProofXiv",
+      "query": "open https://proofxiv.org/problems/selfridge-s-conjectures-selfridge-conjecture",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://proofxiv.org/problems/selfridge-s-conjectures-selfridge-conjecture",
+      "locator": "〔原始工具引用已私有留存〕；L25–54、L59–102",
+      "note": "全文网页已读：同题仍sorry，papers/attempts为0；两条approach为二手文献叙述、非证明。数值界限由学术路线另取一手来源核对，代码与社区路线不据该页将不同BPSW版本互相迁移，也不使用平台weekly confirmed作独立专家核验。外部PR7121信号已另行原仓审查并排除。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "Prove Together",
+      "query": "open https://provetogether.ai/problems/270",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://provetogether.ai/problems/270",
+      "locator": "〔原始工具引用已私有留存〕；L9–24、L27–42",
+      "note": "同一批open；同题Prop target和旧FC revision、无public lemmas/discussion；页面明确target验收不等于命题已证明。未把kernel-replay policy字样当已通过本题证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "Cairn Commons",
+      "query": "open https://cairn-commons.com/problems/selfridge",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://cairn-commons.com/problems/selfridge",
+      "locator": "〔原始工具引用已私有留存〕；L18–21、L37–50、L70–95",
+      "note": "同一批open；Claims/Verified/Disputed/Refuted/文献板均0；2 open/1 solved为整个Selfridge文件的计数，不是主素性猜想已解。页面两条命题来自旧FC快照；无主证明声明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-013",
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "复扫全部2469行title/title_en/aliases，re.I：Fibonacci|斐波那契|素性|primality|PSW|BPSW|Fermat|费马|Wagstaff|2\\^n.?-.?2|3.*7.*mod.*10",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "result_count": 23,
+      "locator": "同一索引SHA256=f8cb9c4e9e263756a5078cdbb6094c065ecd704586a97e171cebb5e695476701",
+      "note": "扩大主题覆盖；绝大多数为Fibonacci数、Fermat数、AKS、多项式素性等不同问法，未据标题裁定重复。正文提及相邻卡1173，故取1173与自身完整meta+text；1972来自第一轮也取全文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-014",
+      "route": "库内查重",
+      "site": "qunxing-data 固定版本全文",
+      "query": "fetch problems/001/QX-P-001174.meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001174.meta.json",
+      "locator": "全文取得并核id/card_rev/title/acceptance及相关元数据",
+      "note": "blob=40a272c200ee6bedca246d6d2ddcb5f6e49a68e3；自身rev=008db90eb0c89f55，与任务一致。仅核重复关系所需范围，不复核他卡状态或展开他题求解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-015",
+      "route": "库内查重",
+      "site": "qunxing-data 固定版本全文",
+      "query": "fetch problems/001/QX-P-001174.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001174.text.md",
+      "locator": "全文题面、人话、原文/记录、边界",
+      "note": "blob=2a46f0b05a0b80a310ef77dbf5995d93a2a89110；自身rev=008db90eb0c89f55，与任务一致。仅核重复关系所需范围，不复核他卡状态或展开他题求解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-016",
+      "route": "库内查重",
+      "site": "qunxing-data 固定版本全文",
+      "query": "fetch problems/001/QX-P-001173.meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001173.meta.json",
+      "locator": "全文取得并核id/card_rev/title/acceptance及相关元数据",
+      "note": "blob=7fb2838bd7c21b7c22ecd55b1df8d8da6783ad10；候选rev=9a6ac7acd7331836，与索引一致；素数p及模p²条件，不含base2 Fermat组合。仅核重复关系所需范围，不复核他卡状态或展开他题求解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-017",
+      "route": "库内查重",
+      "site": "qunxing-data 固定版本全文",
+      "query": "fetch problems/001/QX-P-001173.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001173.text.md",
+      "locator": "全文题面、人话、原文/记录、边界",
+      "note": "blob=244fe09288e65ffb487723430f1c9c1dd9dff607；候选rev=9a6ac7acd7331836，与索引一致；素数p及模p²条件，不含base2 Fermat组合。仅核重复关系所需范围，不复核他卡状态或展开他题求解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-018",
+      "route": "库内查重",
+      "site": "qunxing-data 固定版本全文",
+      "query": "fetch problems/001/QX-P-001972.meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001972.meta.json",
+      "locator": "全文取得并核id/card_rev/title/acceptance及相关元数据",
+      "note": "blob=c7f3f411bd0f8f747fa6bb3a89724c587d0b5b7f；候选rev=1df662717334b689，与索引一致；特殊b⁴+1族普通base2条件，正文量词残缺且没有Fibonacci条件。仅核重复关系所需范围，不复核他卡状态或展开他题求解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-019",
+      "route": "库内查重",
+      "site": "qunxing-data 固定版本全文",
+      "query": "fetch problems/001/QX-P-001972.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001972.text.md",
+      "locator": "全文题面、人话、原文/记录、边界",
+      "note": "blob=8675e776421c9f283a8a3f644d21b5af286739b0；候选rev=1df662717334b689，与索引一致；特殊b⁴+1族普通base2条件，正文量词残缺且没有Fibonacci条件。仅核重复关系所需范围，不复核他卡状态或展开他题求解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-020",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub PR API",
+      "query": "GET /repos/google-deepmind/formal-conjectures/pulls/7121",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/pulls/7121",
+      "locator": "head=0d099857e17f3083b3a0b170ff9fdbbb00378c22；base=4c40439d9be65b242e9196fb7848be02a9a4481d",
+      "note": "ProofXiv外部信号的实际PR元数据/正文已读；open、unmerged、93 changed files；标题circuit complexity/one-way function，含toolchain升级。PR自报build验证不是本轮执行，也不是Selfridge主题证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-021",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub PR files API",
+      "query": "GET /repos/google-deepmind/formal-conjectures/pulls/7121/files?per_page=100",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/pulls/7121/files?per_page=100",
+      "result_count": 93,
+      "locator": "Selfridge.lean完整patch；blob75dc7a61ebc9e478b7296764326ec8b0799c8708",
+      "note": "实际取得93文件元数据，仅详细读Selfridge patch；三个±1模5反例将decide+kernel换为exponentiation.threshold下norm_num。没有主定理证明改动。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-AUX-022",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub PR 固定head源码",
+      "query": "fetch FormalConjectures/Wikipedia/Selfridge.lean @ SamuelSchlesinger/formal-conjectures 0d099857e17f3083b3a0b170ff9fdbbb00378c22",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/SamuelSchlesinger/formal-conjectures/blob/0d099857e17f3083b3a0b170ff9fdbbb00378c22/FormalConjectures/Wikipedia/Selfridge.lean",
+      "locator": "主statement、两处sorry、与PR patch相符的变体部分",
+      "note": "完整文件取得；重点核主定理仍by sorry及原始predicate未换题。blob与PR files相同，假解决线索排除；不构建分支。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ROOT-001",
+      "route": "学术",
+      "site": "MSP / The Open Book Series",
+      "query": "open 〔原始工具引用已私有留存〕（2019论文全文PDF） 〔私有记录编号：PR-000522〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "pp411–417：定义、Theorem1、平方因子必要条件与squarefree算法",
+      "note": "原文全文取得，实际阅读指定页；解析文字有负号丢失，未据该文字把Jacobi=-1误抄成+1。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ROOT-002",
+      "route": "学术",
+      "site": "MSP PDF截图/页内查找",
+      "query": "screenshot 〔原始工具引用已私有留存〕 pageno=2,6；find pattern=\"7. Implementation\" 〔私有记录编号：PR-000523〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "note": "截图请求只返回<<ImageDisplayed>>文字占位，未取得可视image块，不能登记已视读；页内查找此精确标题无命中，不等于论文没有计算章节。refs 〔原始工具引用已私有留存〕/1/2。后续另一路实际核读§7及PDF页，单独记录。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ROOT-003",
+      "route": "学术",
+      "site": "作者主页接受稿",
+      "query": "open https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "pp1–7：ordinary psp定义、Method A/A*、§3全部ordinary psp(2)计算报告",
+      "note": "ref 〔原始工具引用已私有留存〕。实际读到§3，ordinary与strong是严格不同集合；文中另报告全部118,968,378个ordinary psp(2)<2^64无ordinary Lucas(A*)共同命中，因此不能一概把文献2^64范围说成只涵盖strong。本文计算是作者报告，本轮没有重跑其数据集。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ROOT-004",
+      "route": "学术",
+      "site": "本地作者接受稿PDF及渲染图",
+      "query": "PyMuPDF渲染bfw-accepted-20201117.pdf的p7、p24、p25，并用view_image逐页实视",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "p7§3和§4开头；Appendix A Theorem3 pp24–25",
+      "note": "实际看到了三页图像，核118968378、2^64、ordinary psp/lpsp措辞，以及A/A*同余等价公式中的Q=-1及指数(n+1)/2；本题n奇、5∤n满足Theorem3适用条件。与失败的MSP截图请求分列。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ROOT-005",
+      "route": "代码、公开 AI 和社区",
+      "site": "本轮本地Python有限搜索",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000524〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "locator": "n≤1,000,000的完整有限搜索，精确整数运算；ROOT-E01内附完整源码及59条候选",
+      "result_count": 0,
+      "note": "实际运行Python3.12.14、退出0。先筛全部奇合数及mod5=2/3，再ordinary Fermat，再固定Fibonacci；strong检查仅诊断统计，不作筛除。检查160714个域内奇合数，59个Fermat候选，15个亦strong，二条件共同命中0。另直接递推交叉检查仅n=2..2000，不能称两套实现独立穷尽全百万范围。另一路审阅源码和输出但未重跑；没有Lean/Coq/Isabelle运行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ROOT-001",
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "Selfridge conjecture 2 n-1 Fibonacci n+1 n 2 3 modulo 5 prime counterexample; Selfridge conjecture Fibonacci pseudoprimes Fermat 1980 Baillie Wagstaff",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ROOT-001；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 两条实际查询；命中Chen–Greene、Pomerance讲义、2019 tabulation及formal-conjectures。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ROOT-002",
+      "route": "原题与出处",
+      "site": "作者机构PDF",
+      "query": "open https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "locator": "pp334–335，§1–2",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ROOT-002；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 精确组合条件及变体命名核对；扫描版公式后用页图核准。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ROOT-003",
+      "route": "代码、公开 AI 和社区",
+      "site": "FLINT官方文档",
+      "query": "open https://flintlib.org/doc/ulong_extras/n_is_probabprime_BPSW.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://flintlib.org/doc/ulong_extras/n_is_probabprime_BPSW.html",
+      "locator": "函数文档",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ROOT-003；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 文档指出n≡2,3 mod5时用Fibonacci变体；没有本轮读实现或复跑，且文档注明部分由LLM生成，不单独据此认证计算界。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ROOT-004",
+      "route": "原题与出处",
+      "site": "Wagstaff作者教学资料",
+      "query": "open https://www.cs.purdue.edu/homes/ssw/cs655/bigp.pdf; find conjecture",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cs.purdue.edu/homes/ssw/cs655/bigp.pdf",
+      "locator": "slides17–18",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ROOT-004；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 讲义使用strong probable prime表述，非当前普通Fermat前提的直接同一证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ROOT-005",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Selfridge\" \"Fibonacci\" \"counterexample\" \"2026\" (recency=365); \"Selfridge\" \"Fibonacci\" conjecture proof 2025 2026 (recency=730)",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ROOT-005；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 近年查询未取得主问完整解；命中Codeforces的已推翻变体，随后单独核对。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ROOT-006",
+      "route": "原题与出处",
+      "site": "Pomerance作者PDF",
+      "query": "open https://math.dartmouth.edu/~carlp/lucasprime3.pdf; find 620",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.dartmouth.edu/~carlp/lucasprime3.pdf",
+      "locator": "§5，印刷p5",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ROOT-006；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 作者列出当前精确条件；此无日期PDF不据爬取时间认定首次年份。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ROOT-007",
+      "route": "代码、公开 AI 和社区",
+      "site": "Codeforces原帖",
+      "query": "open https://codeforces.com/blog/entry/120635; find 22711873",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://codeforces.com/blog/entry/120635",
+      "locator": "22711873评论及紧后纠正",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ROOT-007；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 原帖把F_n=±1当条件；后续评论承认与F_(n+1)=0不同。本轮另用两算法算余数排除。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ROOT-008",
+      "route": "原题与出处",
+      "site": "Chen–Greene PDF文本与页图",
+      "query": "find 620; screenshot pageno=0 of https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "locator": "p334四条件及p335定义/末段；v04更正页图判读",
+      "note": "保留v01原实际请求（经v03复用）的审计身份，但更正其解释：p334编号1)、2)同余的右端在该PDF页图中留白，原称页图直接确认1/0不准确。2026-11-26根代理再次实际截图p334和p335，精确普通Fermat=1及Fibonacci=0由p335定义和末段组合余类说明核实，并与2019明确三条件相符。本次只修正出处定位，不改主问题范围。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ROOT-009",
+      "route": "学术",
+      "site": "INTEGERS期刊官网",
+      "query": "open https://math.colgate.edu/~integers/aa135/aa135.pdf; open at line69",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.colgate.edu/~integers/aa135/aa135.pdf",
+      "locator": "§§1–4，2026-11-23",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ROOT-009；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 读到普通与强测试区别、Method1的D=5分支、Feitsma表作者复核、受限构造搜索及额外基101/137后视为素数的做法。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ROOT-010",
+      "route": "学术",
+      "site": "Fibonacci Quarterly期刊官网",
+      "query": "open https://www.fq.math.ca/Papers/60-4/schaefer09092021.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.fq.math.ca/Papers/60-4/schaefer09092021.pdf",
+      "locator": "题名、摘要、§1",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ROOT-010；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 作者定义的BPSW正是本卡条件；计算范围由学术分件定点核对。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ROOT-011",
+      "route": "学术",
+      "site": "MSP期刊官网",
+      "query": "open https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "p411 Introduction",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ROOT-011；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 作者定义PSW-challenge与本题相同；2^80结论限定两或三素因子。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ROOT-012",
+      "route": "原题与出处",
+      "site": "本地Python/SymPy",
+      "query": "python: evaluate n%5, pow(2,n-1,n), Fibonacci residues and factorization for n=2,3,7,27,323,341,5777,10877,16109,18971,6601; separately n=1387,6601 strong-base2 chain",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "urn:qunxing:private-material",
+      "locator": "实际两次终端输出",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ROOT-012；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 仅做确切边界例和变体鉴别，不称连续区间穷举。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ROOT-013",
+      "route": "原题与出处",
+      "site": "本地Python双算法",
+      "query": "python: modular fast-doubling fib2 and independent 2x2 matrix exponentiation fibmat, compare k=n-1,n,n+1 for n=2,3,7,27,323,5777,1387,6601,30889,22711873; assert all residues equal; verify factor products",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "url": "urn:qunxing:private-material",
+      "locator": "001174_small_checks.json；本回执E1174-ROOT-3内嵌结果",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ROOT-013；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 两种整数算法全部一致。22711873的F_(n+1)余1，不是本题反例；6601/30889剩余类不符。不是Lean复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-001",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "system1_search_query (recency=3650,3650,365): \"Fibonacci\" \"2^(n-1)\" \"Selfridge\" conjecture ; \"Fibonacci\" \"n+1\" \"±2\" \"pseudoprime\" ; \"Baillie\" \"Wagstaff\" Fibonacci conjecture counterexample",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-001；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 合并结果命中Chen–Greene、作者主页、Wagstaff课件、MathNet2024等；不凭搜索摘要推定完整解决。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-002",
+      "route": "学术",
+      "site": "Greene作者公开论文",
+      "query": "open https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf ; find \"pseudoprime\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "locator": "§1–2",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-002；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 读pp334–335的弱Fermat/Fibonacci条件与构造启发；作者明确未给出反例。未将其启发式当存在证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-003",
+      "route": "学术",
+      "site": "Greene作者主页",
+      "query": "open https://www.d.umn.edu/~jgreene/baillie/Baillie-PSW.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.d.umn.edu/~jgreene/baillie/Baillie-PSW.html",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-003；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 作者说明1248个素数的子集乘积启发式期待约740个反例；这是期望，并非实际构造的反例。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-004",
+      "route": "学术",
+      "site": "Wagstaff作者课件",
+      "query": "open https://www.cs.purdue.edu/homes/ssw/cs355/2016.pdf ; find \"1020\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cs.purdue.edu/homes/ssw/cs355/2016.pdf",
+      "locator": "PDF p15–16",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-004；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 pp15–16给普通base2及Fibonacci组合；课件的约10^20文字未给精确表/复现信息，本回执不采用它作为确定计算上界。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-005",
+      "route": "学术",
+      "site": "OUCI",
+      "query": "open https://ouci.dntb.gov.ua/en/works/lRwry0W9/",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://ouci.dntb.gov.ua/en/works/lRwry0W9/",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-005；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 返回403，未取得全文；未以此二手入口作结论依据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-006",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "system1_search_query: \"On the Baillie PSW-conjecture\" author ; Baillie Wagstaff Lucas pseudoprimes 1980 pdf 620 Fibonacci ; \"Selfridge\" \"Fibonacci\" counterexample 2026 (recency=365)",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-006；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 定位2024/2026MathNet作者摘要、FQ2022正文与2021加强测试论文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-007",
+      "route": "学术",
+      "site": "Fibonacci Quarterly",
+      "query": "open https://www.fq.math.ca/Papers/60-4/schaefer09092021.pdf ; find \"64\", \"3. The Search\", \"References\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.fq.math.ca/Papers/60-4/schaefer09092021.pdf",
+      "locator": "§3 pp322–323，References[7],[15],[16]",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-007；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 §3明确区分本题PSW challenge的计算与构造子族；2^64检查为作者转述Wagstaff，所引[15]是Pomerance私人通信；未本轮重跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-008",
+      "route": "学术",
+      "site": "MathNet官方期刊页",
+      "query": "open https://www.mathnet.ru/php/archive.phtml?jrnid=ivm&option_lang=eng&paperid=9974&wshow=paper ; open https://www.mathnet.ru/php/archive.phtml?jrnid=ivm&option_lang=eng&paperid=10197&wshow=paper",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-008；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 取得两篇官方题录和作者摘要；随后由检索返回的完整官方摘要核出2024写10^21，2026回顾写10^23；不得提升为全文已核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-009",
+      "route": "学术",
+      "site": "AMS DOI",
+      "query": "open https://doi.org/10.1090/mcom/3616",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://doi.org/10.1090/mcom/3616",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-009；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 重定向AMS后不可访问；本回执不依据2021加强测试论文推定弱式命题覆盖。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-010",
+      "route": "学术",
+      "site": "MathNet及Springer全文入口",
+      "query": "click ivm9974 link36→getFT.phtml?jrnid=ivm&option_lang=eng&paperid=9974&what=fullt ; click ivm10197 link34→getFT.phtml?jrnid=ivm&option_lang=eng&paperid=10197&what=fullt ; click ivm9974 link38→https://doi.org/10.3103/S1066369X24700294 ; open原题录line47/45",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-010；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 两PDF入口TimeoutError，英文版重定向Springer不可达，题录回开亦超时；均未取得两篇全文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-011",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "system1_search_query: \"On a new combined primality test for natural numbers\" conditions pseudoprimes ; \"On the Baillie PSW-conjecture\" \"theorem 4\" ; \"Ishmukhametov\" \"FL-pseudoprimes\" 2024 2026 ; \"Fast tabulation of challenge pseudoprimes\" Fibonacci 2^80",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-011；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 官方作者摘要完整返回：2024报告至10^21并修正2022前文Theorem4；2026回顾写10^23而新测试改为椭圆曲线+n≡2mod3。定位Shallue–Webster原论文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-012",
+      "route": "学术",
+      "site": "MathNet短链接",
+      "query": "open http://mi.mathnet.ru/ivm9974 ; open http://mi.mathnet.ru/ivm10197",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-012；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 两短链均提示不可访问，未取得新内容。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-013",
+      "route": "学术",
+      "site": "MSP正式版及arXiv",
+      "query": "open https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf ; open https://arxiv.org/abs/1806.08697 ; find \"squarefree\", \"square-free\", \"7. The computation\", \"Wieferich\" ; open PDF line650",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "pp411–412、414–417、421",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-013；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 核定义、Theorem1、Algorithm1、Theorem8及§7。2^80覆盖仅两/三素因子；§7明确说明该界内重复素因子的排除也已计入。作者计算/算法报告，未本轮复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-014",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "system1_search_query (recency=365): \"Baillie PSW\" \"10\" \"23\" Ishmukhametov ; \"Ishmukhametov\" \"Baillie\" correction erratum ; \"Selfridge\" Fibonacci conjecture solved counterexample 2025 2026",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-014；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 命中2026-11-23发表Wagstaff新文及2024/2026作者摘要；未见覆盖全域的完整解或具体反例。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-001174-ACA-015",
+      "route": "学术",
+      "site": "INTEGERS正式版",
+      "query": "open https://math.colgate.edu/~integers/aa135/aa135.pdf ; open lines45,115,185",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.colgate.edu/~integers/aa135/aa135.pdf",
+      "locator": "§2、Thm2及§4 pp3–5",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-001174-ACA-015；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 核§1–4及Thm2，作者无完整解；新文构造强Lucas子族并选族搜索。通过基101/137强测试即假定素数的搜索终止方式已明确记录，不表述成全域确定性验证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-001",
+      "route": "库内查重",
+      "site": "包内固定快照索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000525〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-001；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 初轮查题名/JSON，0220也命中题号造成无关碰撞；随后限定标题字段复查，不凭初轮标题命中判同题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-002",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch/WebOpen",
+      "query": "\"Selfridge\" \"Fibonacci\" (\"Lean\" OR \"AI\" OR \"proof\"); recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-002；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 system1实际检索，命中formal-conjectures转录目录、ProofXiv和无关Selfridge其他问题；后续核目标声明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-003",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch/WebOpen",
+      "query": "\"cb-0220\" conjecture Selfridge",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-003；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 system1实际检索；其后直接取得conjecture-bench固定commit的JSON，不依赖搜索摘要作状态判断。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-004",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch/WebOpen",
+      "query": "site:github.com/google-deepmind/formal-conjectures \"Selfridge.lean\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-004；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 system1实际检索，命中正式目录转录与文献背景；精确源码另用GitHub API读取。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-005",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GitHub GET https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-005；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 取得main=5bd8bfb9def462c19a87d2d275af3db3341dc727，commit日期2026-11-26T13:20:16Z。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-006",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GitHub GET https://api.github.com/repos/bespokelabsai/conjecture-bench",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/bespokelabsai/conjecture-bench",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-006；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 确认默认分支main；用于定位固定版本，未仅凭仓库更新时间推出数学状态。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-007",
+      "route": "代码、公开 AI 和社区",
+      "site": "ProofXiv",
+      "query": "open https://proofxiv.org/problems/selfridge-s-conjectures-selfridge-conjecture",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://proofxiv.org/problems/selfridge-s-conjectures-selfridge-conjecture",
+      "locator": "Statement / Openness evidence / Signs from outside / Approaches",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-007；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 实读同一普通Fermat+Fibonacci±2猜想页，展示sorry题面，Papers/Attempts为0；其开放标签是维护方记录，不证明全球无解。页面自动提示PR7121改此文件，后续实际核patch；页面提到的2^64等计算界没有在本分件依据二手文字升格为已核数学事实。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-008",
+      "route": "代码、公开 AI 和社区",
+      "site": "Cairn Commons",
+      "query": "open https://cairn-commons.com/problems/selfridge",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://cairn-commons.com/problems/selfridge",
+      "locator": "Current state / Formal statement",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-008；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 实读同题目录及Claims/Verified=0；“2 open,1 solved”是整文件统计，已进一步核明solved为Fermat数因子序列的条件性异题。其状态不能证明全球开放。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-009",
+      "route": "代码、公开 AI 和社区",
+      "site": "Prove Together",
+      "query": "open https://provetogether.ai/ledger?problems_cursor=AgkABls79kIDBwAAAAAAAAD4",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://provetogether.ai/ledger?problems_cursor=AgkABls79kIDBwAAAAAAAAD4",
+      "locator": "Selfridge条目L74–78",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-009；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 实际读取这一页中的Selfridge条目，记录上游题面标research open；这是目录一页，未对整个Ledger进行穷尽扫描。没有接受页面上的注册、发帖或领取任务指令。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-010",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GitHub fetch_file repository_full_name=google-deepmind/formal-conjectures path=FormalConjectures/Wikipedia/Selfridge.lean ref=5bd8bfb9def462c19a87d2d275af3db3341dc727",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/FormalConjectures/Wikipedia/Selfridge.lean",
+      "locator": "IsSelfridge / selfridge_conjecture / variants / FermatNumbers",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-010；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 完整源码已读：IsSelfridge为odd、mod5=2/3、普通base2 Fermat、F_(p+1)=0；selfridge_conjecture为research open+sorry。±1/F_(p−1)的6601、30889变体有证明体，但范围不同；Fermat因子序列的sufficient_condition也为异题。无Lean构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-011",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GitHub GET https://api.github.com/repos/bespokelabsai/conjecture-bench/commits/main",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/bespokelabsai/conjecture-bench/commits/main",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-011；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 取得main=8d494791ace5894b860585d67ba8e69dbfed6376，commit日期2026-10-25T09:20:54Z。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GitHub GET https://api.github.com/repos/bespokelabsai/conjecture-bench/git/trees/main?recursive=1",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/bespokelabsai/conjecture-bench/git/trees/main?recursive=1",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-012；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 实际取得未截断文件树并定位problems/conjectures/cb-0220.json；仅文件名树，不据此声称读取全仓库题目内容。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-013",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GitHub fetch_file repository_full_name=bespokelabsai/conjecture-bench path=problems/conjectures/cb-0220.json ref=8d494791ace5894b860585d67ba8e69dbfed6376",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0220.json",
+      "locator": "statement / counterexample / status_observation / provenance",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-013；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 JSON题面与主问数学等价；status_observation.state=open，as_of=2026-07-24，evidence_state=source-linked。counterexample要求合数满足四条件并附一个真因子。来源是固定FC7a41db3，不是独立完整证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-014",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GitHub list_pr_changed_filenames repo_full_name=google-deepmind/formal-conjectures pr_number=7121",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/7121",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-014；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 返回跨页改动清单，确认含FormalConjectures/Wikipedia/Selfridge.lean，再取该已验证路径patch。仅改文件不能当主问证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-015",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch/WebOpen",
+      "query": "site:github.com/openai/math (\"Selfridge\" OR \"PSW-challenge\")",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-015；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 system2实际检索；返回集合未显示可辨认的openai/math本题完整证据，混入多个Selfridge相关异题。未作全仓库扫描。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-016",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch/WebOpen",
+      "query": "\"Selfridge\" \"primality\" (\"AI\" OR \"Lean\") counterexample",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-016；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 system2实际检索，出现Saouter准则、数论工具和其他Selfridge数学结果；未凭姓名/素性共现认定本题解决。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-017",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch/WebOpen",
+      "query": "\"PSW-challenge\" (\"counterexample\" OR \"resolved\") 2026",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-017；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 system2实际检索，命中Codeforces120635不同Fibonacci条件反例和论文/代码线索。该Codeforces小例交由root独立核，不在本分件重复运算；检索命中不充作同题反例。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-018",
+      "route": "库内查重",
+      "site": "包内固定快照索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000526〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-018；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 19条词面命中，包括1173 Wall–Sun–Sun、其他Fibonacci题与Selfridge名下其他猜想；没有据此认定关系或合并。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-019",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GitHub fetch_file repository_full_name=google-deepmind/formal-conjectures path=FormalConjectures/Wikipedia/Selfridge.lean ref=7a41db3d761324599812d6ca6cb6a9f311046dc7",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/FormalConjectures/Wikipedia/Selfridge.lean",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-019；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 实际读取cb-0220所指旧版：IsSelfridge与主定理仍同题、research open+sorry；旧版其他变体采用decide +native，序列sufficient_condition当时也含sorry，不能将全文件某标签充作此主问已证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-020",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GitHub GET https://api.github.com/repos/google-deepmind/formal-conjectures/pulls/7121",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/7121",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-020；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 PR题为circuit complexity/one-way function，state=open、merged=false；head0d099857e17f3083b3a0b170ff9fdbbb00378c22，正文说明附带工具链升级，不能据标题/自动追踪误判Selfridge主问有新证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-021",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GitHub fetch_pr_file_patch repo_full_name=google-deepmind/formal-conjectures pr_number=7121 path=FormalConjectures/Wikipedia/Selfridge.lean",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/7121/files",
+      "locator": "Selfridge.lean patch",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-021；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 实读patch只调整±1变体6601/30889证明的exponentiation.threshold/norm_num战术，未触碰主问的sorry及数学陈述，排除该自动PR信号作为主问新解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-AUX-022",
+      "route": "库内查重",
+      "site": "包内固定快照索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000527〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-AUX-022；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 命中本卡及Agrawal/Popovych两张多项式同余素性判据题的词面候选；未取得双方正文、不登记严格关系。强主题词Selfridge+PSW仅本卡。索引筛选不等于全库无重复。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-ROOT-LAST-01",
+      "route": "学术",
+      "site": "MathNet 官方期刊页",
+      "query": "open https://www.mathnet.ru/php/archive.phtml?jrnid=ivm&option_lang=eng&paperid=9974&wshow=paper",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.mathnet.ru/php/archive.phtml?jrnid=ivm&option_lang=eng&paperid=9974&wshow=paper",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-ROOT-LAST-01；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 根代理复核官方摘要入口超时；不改变学术分件的摘要级证据，未取得全文，10^21/10^23口径差异仍待核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-ROOT-LAST-02",
+      "route": "学术",
+      "site": "MathNet 官方期刊页",
+      "query": "open https://www.mathnet.ru/php/archive.phtml?jrnid=ivm&option_lang=eng&paperid=10197&wshow=paper",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.mathnet.ru/php/archive.phtml?jrnid=ivm&option_lang=eng&paperid=10197&wshow=paper",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-ROOT-LAST-02；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 根代理复核官方摘要入口超时；不改变学术分件的摘要级证据，未取得全文，10^21/10^23口径差异仍待核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-REUSE-073e4058-QX-R3-02-1174-ROOT-LAST-03",
+      "route": "代码、公开 AI 和社区",
+      "site": "Formal Conjectures 官方源码文档",
+      "query": "open https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Wikipedia/Selfridge/; find selfridge_conjecture",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Wikipedia/Selfridge/",
+      "locator": "IsSelfridge、selfridge_conjecture 与 adjacent variants，网页行4600–4641",
+      "note": "复用已入库v01（〔私有材料定位已省略〕）的实际请求记录，原request_id=QX-R3-02-1174-ROOT-LAST-03；此次只读取并对账回执，未重新执行该请求。为避免与另一组独立请求编号碰撞，在本v03加来源前缀，不把两次不同请求合并计数。 根代理复核公开文档：主问标research open且证明体sorry；6601、30889是±1与F_(p−1)变体；文档的All goals completed提示不能替代无sorry证明。此动态文档只补核，固定源码证据以AUX-E01指定提交为准，未构建Lean。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-ROOT-RECONCILE-001",
+      "route": "原题与出处",
+      "site": "群星查新中同题既有正式回执",
+      "query": "读取并校验QX-R3-02_QX-P-001174_单题回执_v01.jsonl；对照batch_id/id/card_rev、主问题、请求和证据",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "urn:qunxing:private-material",
+      "locator": "完整UTF-8 JSONL一行；全部53 queries、12 evidence、5 math_results及pending",
+      "note": "该v01在本轮当前题核查期间于2026-11-26T15:19:09Z出现；上传后独立列表发现同名才取得。身份、Schema、引用及试导接受通过；两个“其他：本轮小例核对”route导入器未识别，在v03统一为“原题与出处”，不改实际操作。原v01仍保留，证据未被冒作此次重查。另一份上传曾自动名为v01(1)，现已仅改名v02，字节未变；v03汇合两份，后续以v03接续。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-1174-V04-ROOT-SCAN-CORRECTION",
+      "route": "原题与出处",
+      "site": "Chen–Greene作者机构PDF",
+      "query": "screenshot https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf pageno=0; screenshot pageno=1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "locator": "印刷pp334–335",
+      "note": "针对v01/v03继承记录与v02留白说明的具体冲突进行复核。p334右端留白，p335定义清楚支持=1与=0并给组合余类，故纠正查询说明及证据定位。该复核未重复其他检索或旧程序运行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "1174-SRC-E01",
+      "url": "https://math.dartmouth.edu/~carlp/PDF/paper25.pdf",
+      "locator": "p1003刊头；§10 pp1023–1025；p1024 MethodA/B及p1025挑战",
+      "version": "Math.Comp.35(151),July1980,1003–1026；作者存档扫描24页；本轮HTTP200及关键图像已核",
+      "subquestions": [
+        "PSW组合测试历史来源",
+        "原1980挑战的强弱范围",
+        "Selfridge参数选择方法A"
+      ],
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "Pomerance、J.L.Selfridge、S.S.WagstaffJr的原稿定义ordinary、Euler、strong伪素数并在§10结合Lucas测试。MethodA首取D=5,-7,9,-11,…中Jacobi(D/n)=-1者，令P=1,Q=(1-D)/4。pp1024–1025原正式挑战是strongbase2与普通Lucas(A或B)同时通过的合数，奖励$30；同时报告前21853个普通psp2未通过A/B。该1980来源不能被不加区分地写成本卡后来$620普通Fermat+固定Fibonacci版本的确切首提日期。已读所列章节和真实图像，未复跑1980计算。网页提取初为0行，后以下载/OCR/图像补核；ref turn890539380view0对应原文件，实际可读证据在本地扫描及OCR。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-SRC-E02",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "locator": "pp334–335 Introduction/Preliminaries；pp343–344 Conclusions与References[2]–[4]",
+      "version": "ZhuoChen–JohnGreene,Some Comments on Baillie-PSW Pseudoprimes,FibonacciQuarterly41(4)(2003),334–344；SubmittedApril2001/FinalRevisionJuly2001",
+      "subquestions": [
+        "主问题的精确弱版条件",
+        "$620挑战出处与年代边界"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "原稿先区分1980年的$30 strongbase2+Lucas问题，继而给后来放宽的$620条件：合数n、n≡2或3 mod5、普通base2费马条件及F_(n+1)≡0。p335用乘法阶/Fibonacci秩再次说明同一条件。该放宽条件的引文[4]为C.Pomerance私人通信，未标日期；因而本轮能确证2003正式重述及2001稿件元数据，不能由此编出精确首提年。作者明确没有找到该数；候选因子集合及启发式不是反例。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕。仅阅读指定来源/定义/结论部分，不称独立核过全篇候选计算。 特别限定：p334编号1/2的同余右端在本轮实际图像中也留空；精确条件由同文p335定义、其挑战解释及2019正式定义交叉核得，未把补全数字当成p334逐字原印。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-SRC-E03",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "pp411–413，Introduction及Definition2",
+      "version": "AndrewShallue–JonathanWebster,Fast tabulation of challenge pseudoprimes,TheOpenBookSeries2(2019),411–423,DOI10.2140/obs.2019.2.411",
+      "subquestions": [
+        "主问题的现代精确命名",
+        "Fibonacci固定参数",
+        "PSWchallenge与BPSW区分"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "该文将普通2^(n−1)≡1、Jacobi(5/n)=-1与F_(n+1)≡0的合数定义为PSW-challengepseudoprime，亦即(2;1,-1)-challenge。Fibonacci由U0=0,U1=1,U_j=P U_(j−1)−Q U_(j−2)在P1,Q−1给出。p413另外说明BPSW使用强Fermat、强Lucas及依n选D的规则，不能与本弱版等同。奇数上二次互反给Jacobi(5/n)=(n/5)，因而非平方剩余条件等价n≡±2 mod5；与卡公式相符。此源的计算范围及算法定理由学术路线另列，源路线仅核定义。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-SRC-E04",
+      "url": "https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf",
+      "locator": "§§2.1–2.4 pp2–5；§3 pp6–7；AppendixA Theorem3 pp24–25及Theorem4陈述",
+      "version": "Baillie–Fiori–Wagstaff,Strengthening the Baillie-PSW primality test，作者accepted稿页首2020-11-17，25页；正式书目Math.Comp.90(2021),1931–1955",
+      "subquestions": [
+        "普通与强费马测试的区别",
+        "普通与强Lucas测试的区别",
+        "MethodA/A*与固定Fibonacci的桥接"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "ordinarybase2条件只有2^(n−1)≡1。strong条件将n−1=2^s d（d奇数）后要求2^d≡1，或某0≤j<s有2^(2^j d)≡−1，严格强于ordinary。普通Lucas只检U_(n+1)；强Lucas另有奇数部分及V项要求。该文§3所称originalBPSW使用strongbase2+strongLucas+MethodA*。在本卡奇数n≡±2 mod5时A选D5,P1,Q−1；A*改P=Q=5。附录Theorem3在gcd(n,10)=1下通过U_(2k)(5,5)=5^kU_(2k)(1,−1)证明两方法ordinaryLucas通过集相同；已独立核这一步，不把它扩成任意Lucas参数皆可换。不同文献/版本的BPSW应按明确测试规则识别。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕；未复跑其大范围统计或完整审计所有定理。 此accepted稿§3对118,968,378个ordinary psp(2)<2^64另有无ordinary Lucas A*共同命中的全表报告，不能误缩为仅strong候选；与2019文中引用Gilchrist的strong表范围不同。出处路线没有重跑该大表。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "1174-SRC-E05",
+      "url": "urn:qunxing:private-material",
+      "locator": "本条自含域和小例核对；共享compute_1174.py的静态审读",
+      "version": "2026-11-26本轮独立手工核对及只读代码审查；无本核查路线新数值运行",
+      "subquestions": [
+        "Odd条件冗余与n2边界",
+        "普通和强测试的小例",
+        "固定参数及有限计算范围"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "(1)n>1且2^(n−1)≡1 modn时，n不可能为偶数，因为2^(n−1)−1为奇数；故FC另列Odd与卡公式的有效域一致，不是漏设导致反例。n2不满足费马前提，故不是原问反例。(2)奇数中n≡2或3 mod5等价n≡7或3 mod10；并有Jacobi(5/n)=-1，排除5因子及平方数。(3)n7满足2^6≡1和F8=21≡0，确为素数，核索引n+1及F0=0,F1=1。(4)1387=19·73且≡2 mod5。2^9≡−1 mod19、≡1 mod73；693=9·77，所以2^693≡512 mod1387，512²≡1 mod1387且512≠±1。因n−1=2·693，它通过普通费马而未通过strongbase2。本轮实际运行日志给F1388 mod1387=248，因此这不是原问全条件反例。(5)静态审本轮的≤10^6脚本：标准Eratosthenes筛识别合数，strong检查仅作统计；Fibonacci倍增保持(F_m,F_(m+1))并返回F_(n+1)模n。原运行日志的59个费马候选/15个strong候选不能被误写成只筛strong；本核查路线没有重跑、扩大范围或作证明助手核验。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "1174-ACA-E01",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "Shallue–Webster, Fast tabulation of challenge pseudoprimes：p411三条件；p412 Thm1；p413 Def2；pp414–415 Props3–4；p421 §7。refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕/2, 〔原始工具引用已私有留存〕。实际本地视读pp411/421。",
+      "version": "The Open Book Series 2 (2019),411–423, DOI10.2140/obs.2019.2.411；arXiv1806.08697当前v1(2018-06-22)，版本页本轮已读。",
+      "subquestions": [
+        "普通Fermat+固定Fibonacci的定义边界",
+        "n<2^80且有两个或三个素因子的有限验证"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Andrew Shallue; Jonathan Webster",
+      "claim_date": "2019",
+      "note": "原挑战正是普通2^(n-1)=1、(5/n)=-1、F_(n+1)=0；不是强BPSW。作者报告<2^80且有2或3个素因子的候选均无反例（t来自n=p1…pt，计重）。算法正文先假设squarefree，§7明确以≤2^40无同时Wieferich与Wall–Sun–Sun素数纳入平方因子候选。该必要条件可独立核：p²|n时普通Fermat迫使ord_(p²)(2)|gcd(n−1,p(p−1))，故p为Wieferich；Lucas秩也迫使p为Wall–Sun–Sun。本轮没有复核大规模素数表或运行算法，不能升级为本轮复跑，也不能去掉2/3因子限制。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-ACA-E02",
+      "url": "https://arxiv.org/html/2006.14425v2",
+      "locator": "Baillie–Fiori–Wagstaff, Strengthening the Baillie-PSW primality test：§2.1普通psp定义/统计，§3 L302；作者accepted PDF p7 L334–340。refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕。作者PDF https://www.cs.uleth.ca/~fiori/Docs/bfw-accepted.pdf 。",
+      "version": "arXiv2006.14425v2，2021-06-11；作者accepted稿日期2020-11-17。已刊Math.Comp.90(330)(2021),1931–1955, DOI10.1090/mcom/3616；出版社正文直开失败，实际读上述作者稿/当前v2。",
+      "subquestions": [
+        "本题n<2^64的有限验证"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Robert Baillie; Andrew Fiori; Samuel S. Wagstaff Jr.",
+      "claim_date": "2021",
+      "note": "§3明确报告使用Feitsma的118,968,378个普通psp(2)<2^64，全体均不是MethodA*的ordinary lpsp；不能误缩成仅31,894,014个strong psp(2)。通过E03桥接，此作者计算涵盖本题全部n<2^64。仅为已读的一手计算报告，本轮未下载完整Feitsma表、未重跑全表检查；原稿版本页未见撤回，有限标题检索未命中勘误。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-ACA-E03",
+      "url": "https://arxiv.org/html/2006.14425v2",
+      "locator": "§2.3 MethodA/MethodA*；Appendix A Thm3及完整证明，HTML L915–937。作者accepted PDF pp24–25 L1745–1814。refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕。",
+      "version": "arXiv2006.14425v2 (2021-06-11)；与已读2020-11-17作者accepted稿普通Lucas桥接一致。",
+      "subquestions": [
+        "将MethodA*普通Lucas计算界用于固定Fibonacci分支的等价桥接"
+      ],
+      "role": "完整证明",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "claimant": "Robert Baillie; Andrew Fiori; Samuel S. Wagstaff Jr.",
+      "claim_date": "2021",
+      "note": "只核本桥接，不宣称全稿或计算独立验证。本题普通Fermat迫使n奇，n≡±2(mod5)给5∤n且Jacobi(5/n)=-1；所以MethodA首个D=5，P=1,Q=-1，U=Fibonacci。A*改为P=Q=5。定理证明的恒等式U_(2k)(5,5)=5^k U_(2k)(1,-1)由两对特征根平方关系直接得出；置2k=n+1且5可逆，两个零同余等价。因而E02全ordinary表的排除结论确能推出本题<2^64无合数；无需假定本题Fermat为strong。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-ACA-E04",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "locator": "Chen–Greene, Some Comments on Baillie-PSW Pseudoprimes，pp334–336引言与§2；ref 〔原始工具引用已私有留存〕。p334已本地渲染实际视读。",
+      "version": "The Fibonacci Quarterly41(4)(2003),334–344；稿上SubmittedApril2001、FinalRevisionJuly2001。",
+      "subquestions": [
+        "历史弱挑战表述与构造启发式的证据等级"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Zhuo Chen; John Greene",
+      "claim_date": "2003",
+      "note": "作者讨论降低为普通base2与固定Fib、n≡2/3(mod5)的$620挑战并明确没有实际例子；构造空间与期望数量属于启发式，不能当完整反例。p334编号1/2公式右侧在实际扫描图中留白，精确公式以p335定义及E01明确三条件交叉识别。本轮未核其全部数值表，不给其启发式赋数学证明等级。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-ACA-E05",
+      "url": "https://www.mathstat.dal.ca/FQ/Papers/60-4/schaefer09092021.pdf",
+      "locator": "Greene–Lim–Mashalkar–Schaefer, Using Fibonacci Factors to Create Fibonacci Pseudoprimes：Thm1.1 p320；§2证明pp321–322；§3 pp322–323两种搜索；refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕。",
+      "version": "The Fibonacci Quarterly60(4),November2022,320–324。T&F元数据另记2024-09-10网上上线；arXiv2105.13513当前v1(2021-05-28)为3作者早稿，本轮只用4作者正式稿数学内容。",
+      "subquestions": [
+        "指定Fibonacci因子构造族中的有限反例搜索"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "John Greene; Junhyun Lim; Shaunak Mashalkar; Edward F. Schaefer",
+      "claim_date": "2022",
+      "note": "Thm1.1只构造Fibonacci伪素数，不保证普通Fermat。§3作者由Spring2021已有1≤L≤9999的F_L完全/部分分解产生约2^23个n≡±2(mod5)的特定Fib伪素数，报告无base2通过者；另检L≤100000、L素数且L≡±2(mod5)的F_L，对被伪素性测试判为合数者再测base2，也未找到反例。这些是构造族/筛选样本，不是全区间穷举。已读完整5页并核关键量词，未复跑GitHub程序；该库入口交AUX。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-AUX-E001",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/FormalConjectures/Wikipedia/Selfridge.lean",
+      "locator": "IsSelfridge definition；selfridge_conjecture主声明和sorry；IsPseudoSelfridge及6601/30889变体；FermatNumbers充分条件。完整本地 source/1174_FC_Selfridge.lean。",
+      "version": "FC commit 5bd8bfb9def462c19a87d2d275af3db3341dc727；本轮2026-11-26查询；文件blob606b56338070f7ae57ca376bbeeb16c410b65ff7",
+      "subquestions": [
+        "主问题",
+        "范围排除：±1模5的F_(n−1)变体及Fermat数另问"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "rerun": {
+        "commit": "5bd8bfb9def462c19a87d2d275af3db3341dc727",
+        "theorem": "Selfridge.selfridge_conjecture",
+        "toolchain": "leanprover/lean4:v4.33.1",
+        "command": "未执行构建或证明复跑；仅静态读源码。",
+        "axioms": "主证明体是literal sorry；本轮未产生#print axioms输出。public import FormalConjecturesUtil；没有检查完整依赖闭包。"
+      },
+      "note": "本轮直接读固定版本原文件，而非官网总数或搜索片段。IsSelfridge严格为自然数p奇、p≡2或3(mod5)、2^(p−1)≡1(mod p)、Nat.fib(p+1)≡0(mod p)。这是普通base2 Fermat与固定Fibonacci，不能换成strong probable prime或任意自选Lucas参数。题卡n>1未显写Odd不导致本命题差异：若n>1为偶数，2^(n−1)为偶数而同余1不可能；反向Lean的Odd和mod5排除0/1。此等价性是本轮直接数学核对，并非主猜想证明。主定理仍research open且by sorry，文件没有主问题外部完整证明链接。6601、30889的已证反例属于n≡±1(mod5)及F_(n−1)条件；文件的research solved充分条件属于Fermat数素因子个数另问，均不得迁为本题反例/已解状态。PR7121固定head0d099857e17f3083b3a0b170ff9fdbbb00378c22也保留主sorry，实际只改上述变体的计算tactic，已按完整patch和head主声明排除。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "1174-AUX-E002",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0220.json",
+      "locator": "cb-0220.json全字段及README L3–22、L58–60、L91–107；本地source/1174_cb0220.json与1174_cb_README.md",
+      "version": "conjecture-bench commit 8d494791ace5894b860585d67ba8e69dbfed6376；条目status_observation.as_of=2026-07-24",
+      "subquestions": [
+        "主问题的目录/来源记录"
+      ],
+      "role": "重述",
+      "publication": "二手索引",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "固定JSON的题面为奇n≡±2(mod5)同时满足普通base2 Fermat和F_(n+1)整除则prime；反例需composite满足全部条件并给一个非平凡因子。该文件state=open但仅source-linked，引用FC旧commit7a41db3d761324599812d6ca6cb6a9f311046dc7和Wikipedia；actual as_of为2026-07-24，不是题卡写的23日。README明确收录及catalogued claim不等于维护方独立核实或数学背书。此证据只确认目录所写状态/来源，不能独立证明截至2026-11-26仍开放，也不是首次提出出处。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "secondary_index"
+      }
+    },
+    {
+      "evidence_id": "1174-ROOT-E01",
+      "url": "urn:qunxing:private-material",
+      "locator": "本条note内含完整Python代码、实际运行日志及全部59个Fermat候选；无需外部附件",
+      "version": "2026-11-26实际运行Python3.12.14；源码SHA256 88c8d5d65cb99783f3c67bebe6ed11dab66573cf1f7031596cf4ced231c7a132；候选JSON SHA256 0f02da80cc65bf6cbe99165101f46c217b74b410f3ebae0598e2874a7580bcbd",
+      "subquestions": [
+        "本轮独立有限计算n≤10^6"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "本轮实际计算证书，仅覆盖n≤10^6。Eratosthenes筛确定素合；保留每个ordinary Fermat候选的非平凡因子与F_(n+1)余数；全部59条均非零。奇数筛没有漏掉可能反例：若n>1偶数，则2^(n−1)−1为奇数，不能被偶数n整除。所有运算用Python精确整数。fast doubling的状态为(F_m,F_(m+1))，按二进制递推到m=n+1；直接逐项递推只在2≤n≤2000交叉比较。strong_base2只在ordinary候选已保留后记录，不参与排除。独立静态审查核过筛法q²起点、切片长度、模倍增、下标、有限因子搜索和偶数排除，未进行第二次运行。这不是2^64或2^80文献计算的复跑，也不是全称证明或证明助手认证。为避免依赖临时工作区，以下完整嵌入源码、实际日志和全59候选。\nSOURCE_CODE_UTF8:\n\"\"\"Finite exact Selfridge search, weak Fermat + fixed Fibonacci; not a proof.\"\"\" 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "1174-ROOT-E02",
+      "url": "urn:qunxing:private-material",
+      "locator": "本条自含的域、普通/强测试与Method A/A*适用性核对",
+      "version": "2026-11-26本轮数学核对；A/A*公式另核接受稿Appendix A Theorem3",
+      "subquestions": [
+        "主问题谓词与Jacobi/固定Lucas同一性",
+        "普通与强检验范围",
+        "作者2^64报告对本题的覆盖桥接"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "对n>1，Fermat条件排除偶数；因而题面不必另加Odd条件即可与Lean的Odd谓词对齐。n=2不通过Fermat，所以是前件为假而非原蕴含的反例；本题只问无假阳性，不承诺无特判地接受所有素数。对奇数n且5∤n，二次互反给Jacobi(5/n)=(n/5)，故n mod5∈{2,3}等价于Jacobi(5/n)=-1。Lucas递推U0=0,U1=1,U_(k+2)=P U_(k+1)−Q U_k在P=1,Q=-1时就是Fibonacci。强2基检验写n−1=2^s d且d奇，要求2^d≡1或某0≤r<s有2^(2^r d)≡−1；此条件蕴含ordinary Fermat，但不能倒推。例1387=19×73在本题余类，ordinary通过而strong失败，F1388≡248(mod1387)，因此只说明费马分量强弱不同，绝不是主猜想反例。强Lucas蕴含普通Lucas亦可由U_(2m)=U_m V_m迭代看出。单凭某强测试无误报范围，不能移植为较弱测试无误报范围。本题Jacobi(5/n)=-1使Method A的首个D直接取5，因而P=1,Q=-1；A*将此情况改为P=Q=5。设α1=(1+√5)/2,β1=(1−√5)/2，α2=(5+√5)/2,β2=(5−√5)/2，则α2²=5α1²、β2²=5β1²且两差均√5。由Lucas闭式得U_(2k)(5,5)=5^k U_(2k)(1,−1)。n为奇数，取2k=n+1且5与n互素，得到U_(n+1)(5,5)≡0 iff F_(n+1)≡0(modn)。因此接受稿p7明确针对全部ordinary psp(2)与ordinary lpsp(A*)的2^64计算报告，确能覆盖本题；覆盖理由是这一特定桥接，不是把strong等同ordinary或允许任意Lucas参数。以上为手工核对，未形式化或执行文献的大范围搜索。 另一核查者独立静态核对了偶数排除、Jacobi互反、A/A*闭式桥接与1387用途；没有新增程序运行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "1174-REUSE-ROOT-E1",
+      "url": "https://www.d.umn.edu/~jgreene/papers/Baillie_PSW_Fib.pdf",
+      "locator": "Chen–Greene 2003, pp334–335；精确Fermat/Fibonacci定义与组合余类见p335；p334两条编号公式右端留白（v04纠正）",
+      "version": "Fibonacci Quarterly41(4)(2003),334–344；稿注明2001年7月最终修订",
+      "subquestions": [
+        "主问题",
+        "原题精确条件"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "此证据来自v01并由v03继承。v04实际重看pp334–335页图后纠正原定位：不能声称p334编号同余右端可读出1/0；p335正文分别给普通base2 Fermat=1、Fibonacci=0，并在末段说明n≡2或3(mod5)的组合。原题同一性不变，亦由2019正式精确定义支持。作者未给出反例；只称已核较早重述，不断定弱版首次提出年代。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-REUSE-ROOT-E2",
+      "url": "https://math.dartmouth.edu/~carlp/lucasprime3.pdf",
+      "locator": "Pomerance, Primality Testing: Variations on a Theme of Lucas，§5 p5",
+      "version": "作者公开PDF，未从文件确定版本日期；2026-11-26读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "复用同版有效回执v01的证据项 1174-ROOT-E2，原回执SHA256=0b1ee411bf06a7f7ef66ffb1e506c187abd1da9b54d7c65b01558f24836ba0ef；此次未重新查阅该外部来源或重跑，所列review_status/formal_status是原回执保留的核查层级。 作者直接列出本题模5与两同余条件。此为公开问题陈述，不是当前开放性的完备证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "1174-REUSE-ROOT-E3",
+      "url": "urn:qunxing:private-material",
+      "locator": "本条自含参数对照及实际余数核对",
+      "version": "2026-11-26；普通Python两算法，非证明助手",
+      "subquestions": [
+        "普通Fermat与强Fermat的区别",
+        "域外与错位Fibonacci反例排除",
+        "奇性边界"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "复用同版有效回执v01的证据项 1174-ROOT-E3，原回执SHA256=0b1ee411bf06a7f7ef66ffb1e506c187abd1da9b54d7c65b01558f24836ba0ef；此次未重新查阅该外部来源或重跑，所列review_status/formal_status是原回执保留的核查层级。 手工：n>1若偶，则2^(n−1)−1为奇数，不能被n整除，故题卡前提已经强制n奇；n=2未通过前提，不是反例。实际Python计算：1387=19·73，n mod5=2，2^1386 modn=1，2^693 modn=512非±1，故普通Fermat并非强测试；F1388 modn=248，亦非本题反例。6601=7·23·41的模5为1，F6600余0而F6602余2092；30889=17·23·79的模5为4，F30888余0而F30890余13431。22711873=59·349·1103的模5为3，F_n余1但F_(n+1)也余1，虽普通Fermat余1仍未通过本题第二关。Fibonacci余数使用fib2(k,m): k=0返(0,1)，先(a,b)=fib2(k//2,m)，c=a*(2b−a)%m,d=(a²+b²)%m，k偶返(c,d)、奇返(d,(c+d)%m)；再与Q=[[1,1],[1,0]]模m快速幂的(0,1)项独立逐项比较。实际测试n=2,3,7,27,323,5777,1387,6601,30889,22711873的k=n−1,n,n+1全一致。只为这些例子，不是区间核验；从有限例子不推出主问题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "1174-REUSE-ACA-E01",
+      "url": "https://www.fq.math.ca/Papers/60-4/schaefer09092021.pdf",
+      "locator": "§3 pp322–323；References[7],[15]",
+      "version": "Fibonacci Quarterly 60(4), November 2022, pp320–324；2026-11-26访问",
+      "subquestions": [
+        "有限范围：n<2^64"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "复用同版有效回执v01的证据项 1174-ACA-E01，原回执SHA256=0b1ee411bf06a7f7ef66ffb1e506c187abd1da9b54d7c65b01558f24836ba0ef；此次未重新查阅该外部来源或重跑，所列review_status/formal_status是原回执保留的核查层级。 本题弱Fermat+Fibonacci条件在§3明确定义。作者转述Feitsma/Galway全部base2伪素数表经Wagstaff检查，无同题反例；其[15]为Pomerance私人通信。本文另查构造候选，并不覆盖更大的全部整数。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-REUSE-ACA-E02",
+      "url": "https://msp.org/obs/2019/2-1/obs-v2-n1-p25-p.pdf",
+      "locator": "§1 Theorem1，§3.1，§4 Theorem8，§7 p421",
+      "version": "Open Book Series 2 (2019), pp411–423，DOI10.2140/obs.2019.2.411；arXiv1806.08697v1为2018-06-22",
+      "subquestions": [
+        "有限范围：两或三素因子且n<2^80"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "复用同版有效回执v01的证据项 1174-ACA-E02，原回执SHA256=0b1ee411bf06a7f7ef66ffb1e506c187abd1da9b54d7c65b01558f24836ba0ef；此次未重新查阅该外部来源或重跑，所列review_status/formal_status是原回执保留的核查层级。 参数明确为Fermat底2、Lucas(P,Q)=(1,−1)、Jacobi(5/n)=−1，与本题一致。§7报告在两/三素因子、n<2^80的搜索无例，并说明因≤2^40无同时Wieferich与Wall–Sun–Sun素数，已排除重复素因子。未独立重跑或逐项审核大规模数据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-REUSE-ACA-E03",
+      "url": "https://www.mathnet.ru/php/archive.phtml?jrnid=ivm&option_lang=eng&paperid=9974&wshow=paper",
+      "locator": "官方作者摘要、版本日期；PDF入口未取得",
+      "version": "Izv. VUZ Mat. 2024 no4 pp80–88 / Russian Math 68:4 pp72–78，DOI10.26907/0021-3446-2024-4-80-88",
+      "subquestions": [
+        "有限范围计算声明：10^21"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "复用同版有效回执v01的证据项 1174-ACA-E03，原回执SHA256=0b1ee411bf06a7f7ef66ffb1e506c187abd1da9b54d7c65b01558f24836ba0ef；此次未重新查阅该外部来源或重跑，所列review_status/formal_status是原回执保留的核查层级。 作者摘要明确报告同题FL伪素数不存在至10^21，并称修正2022前文Theorem4。仅摘要可读，算法覆盖、排除定理及计算凭证未核，故只登记公开的有限范围声明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-REUSE-ACA-E04",
+      "url": "https://www.mathnet.ru/php/archive.phtml?jrnid=ivm&option_lang=eng&paperid=10197&wshow=paper",
+      "locator": "官方作者摘要；PDF入口未取得",
+      "version": "Izv. VUZ Mat. 2026 no7 pp95–100，DOI10.26907/0021-3446-2026-7-95-100",
+      "subquestions": [
+        "有限范围计算声明：10^23待核",
+        "不同问：Fermat与椭圆曲线组合"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "尚未确认",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "复用同版有效回执v01的证据项 1174-ACA-E04，原回执SHA256=0b1ee411bf06a7f7ef66ffb1e506c187abd1da9b54d7c65b01558f24836ba0ef；此次未重新查阅该外部来源或重跑，所列review_status/formal_status是原回执保留的核查层级。 摘要回顾同题前文时写无例至10^23，与2024官方摘要10^21口径不同，尚不知是新计算、修订或笔误。本篇新命题改为椭圆曲线测试及n≡2mod3，不能据其标题关闭Fibonacci主问。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-REUSE-ACA-E05",
+      "url": "https://math.colgate.edu/~integers/aa135/aa135.pdf",
+      "locator": "§2 pp3；Theorem2 pp4；§4 pp4–5",
+      "version": "INTEGERS26(2026)#A135，发表2026-11-23，DOI10.5281/zenodo.24473693；2026-11-26访问",
+      "subquestions": [
+        "有限范围：n<2^64",
+        "受限子类：Carmichael n<10^24",
+        "本原部分构造与选族搜索"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "复用同版有效回执v01的证据项 1174-ACA-E05，原回执SHA256=0b1ee411bf06a7f7ef66ffb1e506c187abd1da9b54d7c65b01558f24836ba0ef；此次未重新查阅该外部来源或重跑，所列review_status/formal_status是原回执保留的核查层级。 Wagstaff报告亲查普通psp(2)<2^64表无lpsp；又转述Baillie在Carmichael<10^24表无lpsp。Thm2构造F_m/L_m本原部分强Lucas伪素数；§4选族搜索F_m的m<300000、L_m的m<150000未找到反例，但通过附加基101/137强测试即假定素数，未提供全域确定性结论。本轮未重跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1174-REUSE-AUX-E01",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/FormalConjectures/Wikipedia/Selfridge.lean",
+      "locator": "Selfridge.IsSelfridge；Selfridge.selfridge_conjecture；IsPseudoSelfridge与variants；FermatNumbers",
+      "version": "commit 5bd8bfb9def462c19a87d2d275af3db3341dc727，2026-11-26T13:20:16Z；当日实读",
+      "subquestions": [
+        "主问题",
+        "±1剩余类异题及形式化状态"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "复用同版有效回执v01的证据项 1174-AUX-E01，原回执SHA256=0b1ee411bf06a7f7ef66ffb1e506c187abd1da9b54d7c65b01558f24836ba0ef；此次未重新查阅该外部来源或重跑，所列review_status/formal_status是原回执保留的核查层级。 主定理明确research open并含sorry，仅为形式化题面。定义含odd；当前卡n>1与2^(n−1)≡1(modn)已强制n为奇数，所以不改变命题范围：若n≥2偶，则左边被2整除、右边为奇，与模n同余矛盾；n=0,1亦不满足mod5=2/3。同文件6601、30889为±1及F_(n−1)异题的证明体，不能反驳本主问。另一个research solved条目是Fermat数因子序列非单调性的附加假设结论。仅静态读指定源文件，没有Lean构建、#print axioms或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "1174-REUSE-AUX-E02",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0220.json",
+      "locator": "statement；counterexample；status_observation；provenance.sources",
+      "version": "commit 8d494791ace5894b860585d67ba8e69dbfed6376，2026-10-25；status_observation.as_of=2026-07-24；2026-11-26实读",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "复用同版有效回执v01的证据项 1174-AUX-E02，原回执SHA256=0b1ee411bf06a7f7ef66ffb1e506c187abd1da9b54d7c65b01558f24836ba0ef；此次未重新查阅该外部来源或重跑，所列review_status/formal_status是原回执保留的核查层级。 条目精确记录普通Fermat+Fibonacci±2条件，开放标注是有来源的观察记录而非独立证明全球仍开放。题卡旧“2026-07-23快照”日期与当前条目as_of=2026-07-24不同，建议补精确版本/观察日期；不能改题卡card_rev后沿用本回执。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "1174-REUSE-AUX-E03",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/FormalConjectures/Wikipedia/Selfridge.lean",
+      "locator": "IsSelfridge；selfridge_conjecture",
+      "version": "commit 7a41db3d761324599812d6ca6cb6a9f311046dc7，cb-0220固定来源；2026-11-26实读",
+      "subquestions": [
+        "主问题历史形式化来源"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "复用同版有效回执v01的证据项 1174-AUX-E03，原回执SHA256=0b1ee411bf06a7f7ef66ffb1e506c187abd1da9b54d7c65b01558f24836ba0ef；此次未重新查阅该外部来源或重跑，所列review_status/formal_status是原回执保留的核查层级。 旧固定源与本次当前源的主问题陈述一致，均research open+sorry。相邻已解标签/变体不是该主定理；没有把2026-07旧状态记录当作本轮新检索。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "1174-REUSE-AUX-E04",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/7121/files",
+      "locator": "FormalConjectures/Wikipedia/Selfridge.lean完整文件patch",
+      "version": "PR7121 open；head=0d099857e17f3083b3a0b170ff9fdbbb00378c22；API updated_at=2026-11-11T13:32:14Z；2026-11-26实读",
+      "subquestions": [
+        "自动目录提示的PR新解信号排除"
+      ],
+      "role": "形式化",
+      "publication": "PR",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "复用同版有效回执v01的证据项 1174-AUX-E04，原回执SHA256=0b1ee411bf06a7f7ef66ffb1e506c187abd1da9b54d7c65b01558f24836ba0ef；此次未重新查阅该外部来源或重跑，所列review_status/formal_status是原回执保留的核查层级。 ProofXiv自动信号提到该PR改Selfridge文件。实际patch只对6601与30889的IsPseudoSelfridge变体设置exponentiation.threshold并调整战术，主猜想未被证明；不把构建适配当数学新解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "1174-ROOT-RECONCILE",
+      "url": "urn:qunxing:private-material",
+      "locator": "同题两份单题回执的身份、版本、内容和查询编号对账",
+      "version": "2026-11-26；原v01 SHA256 0b1ee411bf06a7f7ef66ffb1e506c187abd1da9b54d7c65b01558f24836ba0ef；v02 SHA256 59b05d926b25445b6de221359e650f4a326d4599b7bd3a39452659c604c2b00e",
+      "subquestions": [
+        "已有同版结果复用及递增版本合并"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "v01=〔私有材料定位已省略〕（42771字节）；v02=〔私有材料定位已省略〕（103142字节），后者最初因同名自动加(1)，现仅更名为v02，无内容覆盖。两者schema/batch_id/id/card_rev完全一致，主状态均部分进展；v01独有2026-11-23新文及2024/2026摘要待核记录，v02独有1980原件审阅、完整A/A*桥接、n≤10^6实际运行及查重双方正文。v03复用两份，不重新执行旧查询。为避免不同请求偶然同名，v01的每个request_id增加来源前缀并在note保留原值；evidence_id统一加REUSE标记并映射引用。旧v01关于尚未读取1980及查重双方正文的下一步，已有v02对应证据覆盖；弱版精确首提年及10^21/10^23全文仍待核。此对账不是对所有文献的大规模计算复跑，也不把两套有限覆盖相加。所有旧版继续保留。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "1174-V04-CORRECTION",
+      "url": "urn:qunxing:private-material",
+      "locator": "已入库v03的REUSE-ROOT-008查询及REUSE-ROOT-E1证据定位；v04窄修订",
+      "version": "2026-11-26；源v03 SHA256 cc3e4d01091ea102f624cd866916b55df96ed63f41864bff312e4c901fd7285a",
+      "subquestions": [
+        "出处页图解释更正"
+      ],
+      "role": "勘误",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "有修订",
+      "review_status": "本轮独立数学核对",
+      "note": "实际读入v03并核schema/三键/引用。v03已合并两份互补同题回执且数学结论兼容，但继承了v01对p334公式的错误视觉描述；v04以再次截图p0/p1修正，保留v03的其他全部证据、待核与查重。旧版不覆盖。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "retraction",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001173",
+      "other_card_rev": "9a6ac7acd7331836",
+      "relation": "待核",
+      "reason": "双方固定正文已读：1173的变量预设为素数p，考察F_(p−(p|5))模p²是否为0；1174考察任意n>1中普通base2 Fermat与F_(n+1)模n的组合条件，欲排除合数。两卡共享Fibonacci/Wieferich题材但对象、模数及另一Fermat条件不同；此为已见范围对照，关系终审交较小编号负责方，不根据相邻编号作合并。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001174.text.md §形式化表述、§边界与约定；https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001174.meta.json acceptance/card_rev",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001173.text.md §形式化表述、§人话版、§边界与约定；https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001173.meta.json acceptance/card_rev"
+      },
+      "note": "共同pair：QX-P-001173__QX-P-001174。较小编号1173不由当前1174分件负责最终关系判定，留待1173负责人复核；不创建第二份最终关系结论，不修改两卡。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-001972",
+      "other_card_rev": "1df662717334b689",
+      "relation": "仅相似",
+      "reason": "1972正文只保留特殊族n=b⁴+1、b偶的base2 Fermat伪素数主题，且其人话/备注对全称或无穷性有未定范围；没有F_(n+1)整除条件。1174是一般n≡±2(mod5)的Fermat+固定Fibonacci合取推出素性。因此不能把特殊族的Fermat伪素数存在或计数当作1174反例，也不能合并卡；不主张严格蕴含关系。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001174.text.md §形式化表述、§人话版",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001972.text.md §题面、§人话版、§查新备注；https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001972.meta.json acceptance/card_rev"
+      },
+      "note": "共同pair：QX-P-001174__QX-P-001972，由较小编号1174负责。双方meta与text固定commit读取且card_rev与索引一致；不对1972本题数学状态或残缺量词作越权修订。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "建议修订",
+      "field": "标题、title_en及题面概括",
+      "old": "SelfridgePSW素性判据猜想（测试无误报）；PSW组合测试无误报",
+      "new": "Selfridge／PSW挑战：在n≡±2(mod5)下，普通base2费马测试与固定Fibonacci测试是否没有合数同时通过。核心同余公式保留，并与依n选参数的全域强BPSW测试区分。",
+      "reason": "本卡是固定Fibonacci、指定余类的弱测试挑战。全域BPSW有多种历史/实现版本，不能只凭名称断言等价。",
+      "small_case_check": "n7在本域且F8=21；n≡1或4mod5不在本卡域，却仍可能适用一般BPSW参数选择，因此不能称一般PSW均不适用。",
+      "evidence_ids": [
+        "1174-SRC-E01",
+        "1174-SRC-E03",
+        "1174-SRC-E04"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "题面纠错",
+      "field": "边界与约定：组合分支",
+      "old": "2^(n−1)≡1（2基强伪素数）",
+      "new": "2^(n−1)≡1(modn)是普通base2费马条件；若n另已知合数，称base2费马伪素数。强伪素数还需n−1=2^s d后的Miller–Rabin分支条件。",
+      "reason": "普通与强测试通过集合不同；把strong当筛选将漏掉本题必须检查的候选。此项修正背景术语，不宣布核心公式错误。",
+      "small_case_check": "1387=19·73位于本卡mod5域，2^693≡512，512²≡1但512≠±1，故普通通过、strong失败；其Fibonacci条件失败，所以不是原问反例。",
+      "evidence_ids": [
+        "1174-SRC-E04",
+        "1174-SRC-E05"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "边界与约定、Fibonacci定义与独立验证建议",
+      "old": "Lucas0−1型；Lucas参数自选实现，与既有核验不同源",
+      "new": "固定F0=0、F1=1、F_(j+2)=F_(j+1)+F_j，即LucasU序列参数P=1,Q=−1；验证须保持F_(n+1)这一索引和这些参数。可用独立递推、矩阵或倍增算法交叉核，不以自选另一Lucas参数替代原问。",
+      "reason": "改变参数通常改变数学谓词；MethodA/A*之间已证的特定等价不能泛化到任意参数。Odd无需作为实质新限制，它已由n>1及费马条件推出。若修改正式定义/验收字段，生成新card_rev并重查受影响路线；本回执仍绑定当前rev。",
+      "small_case_check": "F8=21通过n7检查；n2有2^1≡0 mod2，不触发蕴含。附录的P=Q=5替换仅在指定A/A*规则和gcd(n,10)=1下凭证明等价。",
+      "evidence_ids": [
+        "1174-SRC-E02",
+        "1174-SRC-E03",
+        "1174-SRC-E04",
+        "1174-SRC-E05"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "sources、原文摘录、人话版的提出年份",
+      "old": "Selfridge's conjecture(1980s)；以FC/conjecture-bench登记当original出处",
+      "new": "区分1980Pomerance–Selfridge–Wagstaff组合测试及$30强版本，与2003Chen–Greene正式重述的$620普通Fermat+固定Fibonacci挑战（稿件2001，放宽条件引Pomerance私人通信）。本轮没有建立本弱版精确首提年；first_published可暂留null，注明当前可核精确来源与历史来源分别为何。",
+      "reason": "1980原稿不逐字提出本卡的弱版奖励条件；2001是稿件日期、2003是正式出版年，私人通信没有给确切时间。不得用家族来源年代或仓库登记时间填造历史首次性。奖金额只记历史来源所载，不承诺当前仍可领取。 引文需注意p334两条同余右端原稿留白，精确条件须连同p335及2019定义引用，不伪造逐字摘录。",
+      "small_case_check": "原1980p1025明确spsp(2)+lpsp(A/B)，后来弱版允许1387这类普通非strong候选进入初筛；两题的范围不能仅因同名而混合。",
+      "evidence_ids": [
+        "1174-SRC-E01",
+        "1174-SRC-E02",
+        "1174-SRC-E03"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版最后一句及边界外分支",
+      "old": "这是把一个实用算法变成确定性判据的关键一步；±2以外PSW测试不适用域",
+      "new": "若证明本猜想，只得到该指定余类及固定Fibonacci组合的无误报结论。一般BPSW对其他余类会依n选择其他判别式；本卡结论不能直接替代完整BPSW测试的所有输入与所有版本。",
+      "reason": "保持限制域到算法结论的量词一致，不将一个分支的无反例推广为全域正确性。",
+      "small_case_check": "偶数由费马前提排除，2作为素数需独立处理；n≡1或4mod5仅为本命题域外，不能因此宣称一般BPSW未定义。",
+      "evidence_ids": [
+        "1174-SRC-E03",
+        "1174-SRC-E04",
+        "1174-SRC-E05"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "题面/边界与约定",
+      "old": "满足两个强条件；2^{n−1}≡1（2基强伪素数）",
+      "new": "本题要求底数2的普通Fermat条件2^{n−1}≡1(mod n)与固定Fibonacci条件F_{n+1}≡0(mod n)。这是弱PSW挑战分支；ordinaryFermat不等同strong probable-prime测试。",
+      "reason": "混称strong会缩小候选集合，改变问题及计算覆盖。",
+      "evidence_ids": [
+        "1174-ACA-E01",
+        "1174-ACA-E02"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "建议独立验证",
+      "old": "Lucas参数自选实现，与既有核验不同源",
+      "new": "用独立实现计算固定Fibonacci F_{n+1}（或严格等价的U_{n+1}(1,-1)）；仅在证明参数变换等价后才能借用别的Lucas实现。本题保留n≡±2(mod5)。",
+      "reason": "任意选择Lucas参数会变更命题。A*的(5,5)是有E03证明的特定等价，不能推广为任意参数。",
+      "evidence_ids": [
+        "1174-ACA-E01",
+        "1174-ACA-E03"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展",
+      "old": "无反例（核验深）；Baillie–PSW文献线",
+      "new": "已读的一手作者计算：本题所有n<2^64无反例；有两个或三个素因子的n<2^80亦无反例。前者由普通base2全表与MethodA* ordinaryLucas检查并经参数等价得到；后者含文中排除的平方因子候选。两项大规模计算本轮均未复跑。2022稿的约2^23个构造候选搜索也未找到反例，不能改写为全区间上界。",
+      "reason": "将模糊“核验深”替换为可审计的精确范围与验证层级，避免把更强测试或限定因子数覆盖迁成全题结论。",
+      "evidence_ids": [
+        "1174-ACA-E01",
+        "1174-ACA-E02",
+        "1174-ACA-E03",
+        "1174-ACA-E05"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "card_metadata.formal / formal_status；正文开放状态证据",
+      "old": "formal=[]；formal_status.value=none；用formal-conjectures站点总数描述状态",
+      "new": "记录已有Lean正式题面：https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/FormalConjectures/Wikipedia/Selfridge.lean，Selfridge.selfridge_conjecture；主证明体sorry，仅形式化题面，未独立复跑。各文件已解决变体不能替代该主声明。",
+      "reason": "本轮固定源码直接确认题面已形式化，但未得到主证明；none与源码存在正式题面不一致。",
+      "evidence_ids": [
+        "1174-AUX-E001"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "card_text.边界与约定（组合分支、建议独立验证）",
+      "old": "2^{n−1}≡1（2基强伪素数）；Lucas参数自选实现",
+      "new": "2^{n−1}≡1(mod n)是普通base2 Fermat条件；另一条件固定为Fibonacci F_(n+1)≡0(mod n)，等价Lucas U序列P=1、Q=−1。独立实现可改变计算算法，必须保持参数、n≡±2(mod5)限制及n>1，不能改成强BPSW或自选Lucas条件。",
+      "reason": "强伪素数附加Miller–Rabin结构条件，不能由当前单一Fermat同余名称代替；修改Lucas参数会改变所检命题。修的是说明与核验规约，主公式与Lean可等价对齐。",
+      "evidence_ids": [
+        "1174-AUX-E001"
+      ],
+      "small_case_check": "n=2时2^(n−1)≡1(mod n)不成立；一般偶n>1也由奇偶性排除，因此Lean显式Odd与题卡n>1组合条件相容。这里没有重复主线的区间搜索。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "card_text.开放状态证据：conjecture-bench日期与证据强度",
+      "old": "2026-07-23快照（2026-11-20复核仓库）",
+      "new": "本轮2026-11-26实读固定conjecture-bench条目：status_observation.state=open，as_of=2026-07-24，evidence_state=source-linked；旧FC和Wikipedia目录链接，不计为新的独立开放性验证。",
+      "reason": "原JSON实际日期与题卡23日不同；README同时限制目录状态的验证含义。",
+      "evidence_ids": [
+        "1174-AUX-E002"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定；小n与独立计算说明",
+      "new": "将“2基强伪素数”改为“普通2基Fermat伪素数”；固定Fibonacci F0=0,F1=1，等价Lucas参数P=1,Q=-1，不允许自选参数替代。n=2是蕴含前件不成立；Odd可由Fermat条件推出。有限计算范围、作者计算与本轮实际运行分别登记。",
+      "reason": "正式核心公式本身与精确弱挑战一致，旁注中的strong和自选Lucas会改变计算筛选；若修改正式定义、量词或验收字段须新card_rev，当前回执保持清单哈希。",
+      "small_case_check": "1387=19×73通过普通2基Fermat、不通过强2基，且F1388 mod1387=248；不是二条件反例。",
+      "evidence_ids": [
+        "1174-ROOT-E01",
+        "1174-ROOT-E02"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "已知结果与进展；相关进展与声称解决",
+      "new": "合并已有同版v01中Wagstaff2026-11-23的本原部分构造、选族搜索和Carmichael受限报告；2024/2026摘要的10^21、10^23只列待核声明。与本轮实际≤10^6运行及作者<2^64、二/三因子<2^80结果分别记录。",
+      "reason": "同题先行回执身份和版本一致，依指令直接复用独有记录，不重复检索，也不从摘要选择更大界或把构造族视作全部整数。",
+      "evidence_ids": [
+        "1174-REUSE-ACA-E03",
+        "1174-REUSE-ACA-E04",
+        "1174-REUSE-ACA-E05",
+        "1174-ROOT-RECONCILE"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "本弱版的精确首提日没有从当前可核原件确定；Chen–Greene所引放宽条件为无日期私人通信，1980正式挑战的强弱范围不同。此历史缺口不阻挡对现卡核心公式和当前证据状态的回执。",
+      "next_step": "如需填first_published或主张历史首次提出，另核带日期的Selfridge/Pomerance通信、原始问题公告或更早公开重述；在取得前保留精确年份未知，不把1980家族论文日期直接移植。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "截至2026-11-26，实际搜索及已读上述一手稿中没有取得符合精确弱Fermat/固定Fib/±2mod5范围的新完整证明或反例；有限检索不能证明不存在尚未命中的稿件。标题定点勘误检索及arXiv版本页未见撤回/勘误。",
+      "next_step": "继续定向寻找精确弱Fermat、固定Fibonacci与±2mod5同时成立范围的完整解或反例；收到新材料须核全称量词、版本及核心证明，有限计算和目录open标记不能替代。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "118,968,378全表检查、2^80限定因子数计算与约2^23构造候选搜索均属作者报告；本轮只核其数学范围/参数桥接，未执行这些大规模程序。",
+      "next_step": "若以后将这些记录升级为独立复跑证据，应固定完整数据、算法版本和日志；本轮与root另做的≤10^6独立核验分开记账，勿将二者覆盖范围相加或互相冒充。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "Chen–Greene2003 p334原扫描编号公式右侧空白，且1980强/自适应参数挑战与后来$620弱固定Fib挑战历史版本不同。",
+      "next_step": "本轮已以2019精确三条件对齐题面，并在出处条目区分历史版本。若将来补确切首提年份，仍需原始有日期材料；不把2003排印空白自行补成逐字引语。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "QX-P-001173比本题编号小；当前分件已提供双方固定版本正文差别，但不代替其负责方给最终关系结论。",
+      "next_step": "将pair QX-P-001173__QX-P-001174及positions转交1173负责方终审，统一关系记录；不要把本条待核再生成一份最终合并关系。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮有限程序是自编精确搜索，未独立复跑作者完整2^64表或2019的2^80二/三因子算法。",
+      "next_step": "如需把作者报告提升为本轮大范围独立复核，须固定数据集、算法版本、完整日志及覆盖证明后另行运行；不能用本轮≤10^6计算替代。全称证明仍需另一类证据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "复用v01保留的待核事项：2024/2026官方摘要的10^21与10^23口径不同；两篇PDF入口超时，英文版跳转失败。",
+      "next_step": "取得合法全文后逐项核算法、平方因子覆盖、参数范围和计算记录，确认10^23是否新增结果或笔误；同时核2024对2022 Theorem4的实际修正。此前分列作者声明，不择大数作为已验证界。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "复用v01保留的待核事项：有限枚举和新选族搜索均为文献作者/转述的计算，本轮未复跑；Wagstaff2026的部分候选通过两额外强测试即假定素数。",
+      "next_step": "若需要升级验证等级，取得相应版本程序、输入数据及日志并独立核验；保留n界、素因子个数、Carmichael子类等限制，不把构造族无例推广至全域。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "008db90eb0c89f55",
+      "codes": {}
+    }
+  ]
+}

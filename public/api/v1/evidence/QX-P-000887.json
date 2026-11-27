@@ -1,0 +1,2638 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000887",
+  "card_rev": "22e07954e4b9d7b6",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-03"
+      ],
+      "parts": [
+        {
+          "subquestion": "已发表的诱导通用图近线性上界",
+          "value": "partial",
+          "note": "EJM Theorem4给顶点和边均≤n·2^{O(sqrt(logn·loglogn))}的诱导通用图。此结果2021v2新增、2023正式刊发，不能把当前2010.05779整个论文归为非诱导；2020v1历史摘要确实只谈非诱导边数。"
+        },
+        {
+          "subquestion": "2025线性下界",
+          "value": "partial",
+          "note": "Gavoille–Jacques §2.2/Table3给平面图系数约10.520；按渐近范围记f(n)≥10.52n−o(n)，不写成对所有小n的精确不等式。137限制的是使用有限冲突家族证明下界的方法，非所有证明方法极限。"
+        },
+        {
+          "subquestion": "2026多对数因子上界声明",
+          "value": "claimed_resolution",
+          "note": "Rotbart Cor1.2声称logn+O(loglogn)标签，从而f(n)≤n(logn)^{O(1)}；取得镜像全文，官方abs/pdf/html均DisabledError，未核版本一致性与Lemma3.2整条证明。稿内p2明确logn+O(1)仍开放；即便该子问通过，也不关闭当前主验收。"
+        },
+        {
+          "subquestion": "2026推广至全部固定proper minor-closed类",
+          "value": "claimed_resolution",
+          "note": "2611.14194镜像Theorem3称每个固定proper minor-closed类均有n^{1+o(1)}顶点与边的诱导通用图；这推广族范围，对平面子类不提供O(n)阶。官方三入口失败、镜像全文已得仅核声明及引言。"
+        },
+        {
+          "subquestion": "n≤4的精确最小阶",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；结论仅为n≤4的有限子问，f1=1、f2=3、f3=5、f4=8，不是一般最小阶公式。实际有限检查覆盖75个带标号目标，对应1/2/4/11个同构型；另对512个规范化7点宿主作辅助检验。主代理已静态复核脚本与输出，未作Lean形式化，指定二审仍待完成。构造、上下界证明、单射及坐标证书、源码与日志已私有留存。"
+        },
+        {
+          "subquestion": "初等一般线性下界",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；本轮给出可直接复核的初等界f(n)≥2n−ceil(n/4)，不称最佳文献界。取独立n点目标A与由若干K4和一个剩余小团构成的n点平面目标B，α(B)=ceil(n/4)。在同一诱导宿主中，两像交集在B内须独立，故交至多ceil(n/4)；其并集至少2n−ceil(n/4)。这是全n论证，不由有限枚举外推；只为线性常数因子，不能推出f(n)/n→∞。提交子问二审。"
+        },
+        {
+          "subquestion": "固定n的单射邻接标签与诱导通用图等价",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；限定固定n、所有标签恰L位、每张图内标签单射、全类共享decoder且不要求编码/解码效率，最优L_n=ceil(log2 f(n))。由最小宿主的顶点编号得到长度ceil(log2 f(n))标签，decoder按宿主邻接表回答。反向以全部L位字符串为宿主顶点、decoder决定不同标签对的邻接，可任意补齐不用到的对；单射且保持边/非边使每个目标为诱导子图，故f(n)≤2^L。可变长度或跨所有n的统一有效decoder另有约定，不能无条件搬用这个精确等式。本轮小host标签示例也已实际检查；这与完整渐近构造复跑或Lean验证不同。已知n^{1+o(1)}可有无界乘子，如n logn，因此不满足主验收。指定二审待完成。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "none_found",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/patmorin/labelling/blob/5eb7490d3ee905414a9893fdcce9d82343fea385/slides/script.md"
+      ],
+      "note": "只覆盖：仅子问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "令f(n)为含全部n点平面图作诱导子图的一般有限简单无向宿主的最小顶点数。本次已读原始报告、正式论文及预印本，没有取得满足验收的精确f(n)或同阶上下界。线性下界与n^{1+o(1)}、甚至新声明的n(logn)^{O(1)}上界并不组成Θ(n)；未命中线性完整解不等于证明线性上界不存在。宿主不必平面，边数问题另列。 本轮独立精确值f(1..4)=1,3,5,8只覆盖小参数；同阶按通常常数因子Θ意义理解。",
+      "evidence_ids": [
+        "e887-a-owr",
+        "e887-a-ejm",
+        "e887-a-lower",
+        "e887-a-rotbart"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "已发表的诱导通用图近线性上界",
+      "math_status": "部分进展",
+      "scope_note": "EJM Theorem4给顶点和边均≤n·2^{O(sqrt(logn·loglogn))}的诱导通用图。此结果2021v2新增、2023正式刊发，不能把当前2010.05779整个论文归为非诱导；2020v1历史摘要确实只谈非诱导边数。",
+      "evidence_ids": [
+        "e887-a-ejm",
+        "e887-a-ejm-v2"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "2025线性下界",
+      "math_status": "部分进展",
+      "scope_note": "Gavoille–Jacques §2.2/Table3给平面图系数约10.520；按渐近范围记f(n)≥10.52n−o(n)，不写成对所有小n的精确不等式。137限制的是使用有限冲突家族证明下界的方法，非所有证明方法极限。",
+      "evidence_ids": [
+        "e887-a-lower"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "2026多对数因子上界声明",
+      "math_status": "完整声明待核",
+      "scope_note": "Rotbart Cor1.2声称logn+O(loglogn)标签，从而f(n)≤n(logn)^{O(1)}；取得镜像全文，官方abs/pdf/html均DisabledError，未核版本一致性与Lemma3.2整条证明。稿内p2明确logn+O(1)仍开放；即便该子问通过，也不关闭当前主验收。",
+      "evidence_ids": [
+        "e887-a-rotbart"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "2026推广至全部固定proper minor-closed类",
+      "math_status": "完整声明待核",
+      "scope_note": "2611.14194镜像Theorem3称每个固定proper minor-closed类均有n^{1+o(1)}顶点与边的诱导通用图；这推广族范围，对平面子类不提供O(n)阶。官方三入口失败、镜像全文已得仅核声明及引言。",
+      "evidence_ids": [
+        "e887-a-minor"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "n≤4的精确最小阶",
+      "math_status": "原题已证",
+      "scope_note": "结论仅为n≤4的有限子问，f1=1、f2=3、f3=5、f4=8，不是一般最小阶公式。实际有限检查覆盖75个带标号目标，对应1/2/4/11个同构型；另对512个规范化7点宿主作辅助检验。主代理已静态复核脚本与输出，未作Lean形式化，指定二审仍待完成。构造、上下界证明、单射及坐标证书、源码与日志已私有留存。",
+      "evidence_ids": [],
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "初等一般线性下界",
+      "math_status": "原题已证",
+      "scope_note": "本轮给出可直接复核的初等界f(n)≥2n−ceil(n/4)，不称最佳文献界。取独立n点目标A与由若干K4和一个剩余小团构成的n点平面目标B，α(B)=ceil(n/4)。在同一诱导宿主中，两像交集在B内须独立，故交至多ceil(n/4)；其并集至少2n−ceil(n/4)。这是全n论证，不由有限枚举外推；只为线性常数因子，不能推出f(n)/n→∞。提交子问二审。",
+      "evidence_ids": [],
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "固定n的单射邻接标签与诱导通用图等价",
+      "math_status": "原题已证",
+      "scope_note": "限定固定n、所有标签恰L位、每张图内标签单射、全类共享decoder且不要求编码/解码效率，最优L_n=ceil(log2 f(n))。由最小宿主的顶点编号得到长度ceil(log2 f(n))标签，decoder按宿主邻接表回答。反向以全部L位字符串为宿主顶点、decoder决定不同标签对的邻接，可任意补齐不用到的对；单射且保持边/非边使每个目标为诱导子图，故f(n)≤2^L。可变长度或跨所有n的统一有效decoder另有约定，不能无条件搬用这个精确等式。本轮小host标签示例也已实际检查；这与完整渐近构造复跑或Lean验证不同。已知n^{1+o(1)}可有无界乘子，如n logn，因此不满足主验收。指定二审待完成。",
+      "evidence_ids": [
+        "E887-M-label",
+        "887-FE3"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "math_status": "proved"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-03-887-origin-01-open-1",
+      "route": "原题与出处",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://doi.org/10.4171/owr/2022/1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://doi.org/10.4171/owr/2022/1",
+      "note": "DOI跳转EMS返回500/non-retryable；后续MFO官方PDF成功。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-01-open-2",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/abs/2010.05779\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/2010.05779",
+      "note": "官方摘要及版本历史：v5=2026-10-14纠正Lemma20证明，摘要同时列非诱导和诱导结论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-01-system1_search_query-1",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"planar graphs induced universal linear size adjacency labelling log n O(1) 2025 2026\",\"recency\":730}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "近期检索命中Rotbart2611.11444、2025下界与正式旧标号论文；逐一后续核查，未据摘要关闭主问题。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-02-open-1",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/abs/2611.11444\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2611.11444",
+      "note": "2611.11444官方abs入口DisabledError，镜像全文稍后可读。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-02-open-2",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/abs/2508.11585\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/2508.11585",
+      "note": "2508.11585官方作者、摘要、v1日期已读；下界精确量词随后核正文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-02-open-3",
+      "route": "原题与出处",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://ems.press/doi/10.4171/owr/2022/1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://ems.press/doi/10.4171/owr/2022/1",
+      "note": "EMS直接DOI地址工具不可访问。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-02-click-1",
+      "route": "学术",
+      "site": "web:click",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"id\":9} 〔私有记录编号：PR-001258〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/2010.05779",
+      "note": "2010.05779v5官方PDF22页可达，已读定义、Theorems1/4/5与Lemma20。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-02-click-2",
+      "route": "学术",
+      "site": "web:click",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"id\":10} 〔私有记录编号：PR-001259〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/2010.05779",
+      "note": "同版官方HTML可达，后续逐段核定理及勘误范围。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-02-system2_search_query-1",
+      "route": "原题与出处",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"\\\"10.4171/owr/2022/1\\\" \\\"pdf\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位报告DOI入口；原DOI不可访问，继续查官方馆藏。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-02-system2_search_query-2",
+      "route": "原题与出处",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"\\\"Oberwolfach\\\" \\\"2022\\\" \\\"minimum order\\\" \\\"induced\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "同批搜索用于定位原题；未凭检索串未现即断言不存在，后续取得报告原文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-02-system2_search_query-3",
+      "route": "原题与出处",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"\\\"planar\\\" \\\"linear-size\\\" \\\"induced-universal\\\" 2026\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中几何通用图、bounded-degree非诱导线性结果与近期预印本；这些不同对象不算主问题解决。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-03-system1_search_query-1",
+      "route": "原题与出处",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"\\\"Graph Theory\\\" \\\"2022\\\" \\\"Report\\\" site:publications.mfo.de\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位MFO馆藏mfo/3924与OWR_2022_01.pdf官方全文链接。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-03-system1_search_query-2",
+      "route": "原题与出处",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"\\\"What is the minimum order of a graph\\\" \\\"planar\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "精确句搜索未提供可归原文的相同句；后续报告p33确认minimum number of vertices的等价问法。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-03-system1_search_query-3",
+      "route": "原题与出处",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"\\\"OWR\\\" \\\"2022\\\" \\\"universal\\\" \\\"Joret\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中MFO报告及引用，后续读Joret条目。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-03-click-1",
+      "route": "学术",
+      "site": "web:click",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"id\":7} 〔私有记录编号：PR-001260〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/2508.11585",
+      "note": "2508.11585v1官方PDF27页取得，已核§2.2信息论下界与Table3。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-03-click-2",
+      "route": "学术",
+      "site": "web:click",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"id\":8} 〔私有记录编号：PR-001261〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/2508.11585",
+      "note": "同版HTML已读，注意其公式渲染/解析与PDF可能不同；最终数值用渐近表述。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-03-open-1",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/pdf/2611.11444v1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/2611.11444v1",
+      "note": "2611.11444v1官方PDF DisabledError。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-03-open-2",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/html/2611.11444v1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/html/2611.11444v1",
+      "note": "2611.11444v1官方HTML DisabledError。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-03-open-3",
+      "route": "原题与出处",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://ems.press/doi/10.4171/OWR/2022/1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://ems.press/doi/10.4171/OWR/2022/1",
+      "note": "大写OWR的EMS DOI地址亦不可访问。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-03-find-1",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 5\"} 〔私有记录编号：PR-001262〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2010.05779v5",
+      "note": "Theorems4/5给诱导通用图顶点与边同时近线性，而非仅非诱导。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-03-find-2",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Lemma 20\"} 〔私有记录编号：PR-001263〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2010.05779v5",
+      "note": "Lemma20属于§3非诱导universality引理；v5说明修正其证明，不等于论文整篇撤回。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-03-find-3",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"induced-universal\"} 〔私有记录编号：PR-001264〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2010.05779v5",
+      "note": "定义、诱导Theorem4、§4构造与限制已读；宿主无平面性要求。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-04-open-1",
+      "route": "原题与出处",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "官方OWR完整报告74页可达；后续定向阅读Joret印刷p33及p34书目。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-04-open-2",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/abs/2611.14194\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2611.14194",
+      "note": "2611.14194官方abs DisabledError，后续镜像全文可达。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-04-open-3",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.cnoctave.top/pdf/2611.11444\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.cnoctave.top/pdf/2611.11444",
+      "note": "Rotbart8页作者稿从第三方镜像取得，Cor1.2与§1.2开放问题明确；官方原件版本一致性未核，不升级为公认新最优。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-04-open-4",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://dept-info.labri.fr/~gavoille/article/GJ25a.pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://dept-info.labri.fr/~gavoille/article/GJ25a.pdf",
+      "note": "Gavoille作者站27页稿，文内日期2025-08-18；与官方arXiv v1研究一致，核§2.2和Table3。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-04-find-1",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"10.52\"} 〔私有记录编号：PR-001265〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://arxiv.org/html/2508.11585v1",
+      "note": "HTML字面10.52未匹配，Table3实际显示10.520；不解释为下界不存在。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-04-find-2",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 1\"} 〔私有记录编号：PR-001266〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2508.11585v1",
+      "note": "Theorem1为clique-union精确下界，planar包含≤4点团并，得到线性下界；不是最小阶全解。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-04-find-3",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"3.2.\"} 〔私有记录编号：PR-001267〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2010.05779v5",
+      "note": "阅读Lemma20新证明的定义、嵌入和用途；没有逐行比较v4，也未独立审计整篇证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-05-find-1",
+      "route": "原题与出处",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"minimum order\"} 〔私有记录编号：PR-001268〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "OWR解析正文不含minimum order这段精确字符串，后以minimum number定位同意题目。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-05-find-2",
+      "route": "原题与出处",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"induced subgraph\"} 〔私有记录编号：PR-001269〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "该find返回其他诱导子图问题段落，未把这些段落当所负责问题原文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-05-find-3",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem\"} 〔私有记录编号：PR-001270〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.cnoctave.top/pdf/2611.11444",
+      "note": "镜像Theorem1.1与Cor1.2：logn+O(tloglogn)，平面n(polylogn)；仅新上界子问声明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-05-find-4",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 2\"} 〔私有记录编号：PR-001271〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2508.11585v1",
+      "note": "Theorem2含limsup/对无穷多个n与limit条件，不能将摘要10.52n套所有小n。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-05-open-1",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/pdf/2611.14194v1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/2611.14194v1",
+      "note": "2611.14194v1官方PDF DisabledError。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-05-open-2",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/html/2611.14194v1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/html/2611.14194v1",
+      "note": "2611.14194v1官方HTML DisabledError。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-05-open-3",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":142} 〔私有记录编号：PR-001272〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2508.11585v1",
+      "note": "§2.2定义无标号增长率与计数关系，区分渐近量词。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-05-system2_search_query-1",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"\\\"Tight B-Trees\\\" Rotbart correction erratum\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "搜索返回该新稿镜像/索引，没有明确对应撤回/勘误条目；不能据此保证无错误。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-05-system2_search_query-2",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"\\\"You Can Have It All\\\" \\\"2611.14194\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位2611.14194镜像与SiRate版本；排除晚于核查日的索引页作为时间证据。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-06-find-1",
+      "route": "原题与出处",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"universal\"} 〔私有记录编号：PR-001273〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "OWR回溯到Joret报告及2010.05779、JACM2021参考文献。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-06-find-2",
+      "route": "原题与出处",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Pat Morin\"} 〔私有记录编号：PR-001274〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "确认Joret讲题及共同作者、印刷p33；不是整个报告组织者即首提者。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-06-find-3",
+      "route": "原题与出处",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"label\"} 〔私有记录编号：PR-001275〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "PDF解析find字面label无匹配，其他检索已见labelling；仅记录接口查找结果。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-06-find-4",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"open\"} 〔私有记录编号：PR-001276〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.cnoctave.top/pdf/2611.11444",
+      "note": "Rotbart镜像p2明确logn+O(1)标签仍开放，其宣称多对数因子未闭合Θ(n)。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-06-open-1",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":149} 〔私有记录编号：PR-001277〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2508.11585v1",
+      "note": "下界Theorem2及标准二项式计数已阅；回传保守写10.52n−o(n)，避免全n精确不等式。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-06-open-2",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":79} 〔私有记录编号：PR-001278〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.cnoctave.top/pdf/2611.11444",
+      "note": "复读新稿Cor1.2及开放问题句，未将线性目标误读为已解。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-06-open-3",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.cnoctave.top/pdf/2611.14194\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2611.14194",
+      "note": "2611.14194第三方镜像58页取得，仅读摘要与引言Theorems1/3；是推广到proper minor-closed，平面情形仍n^{1+o(1)}。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-07-open-1",
+      "route": "原题与出处",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":1108} 〔私有记录编号：PR-001279〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "OWRJoret条目标题定位，随后完整阅读问题上下文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-07-open-2",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":168} 〔私有记录编号：PR-001280〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2508.11585v1",
+      "note": "下界论文讨论limsup与全体n的差异，不能忽略子序列限定。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-07-open-3",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":50} 〔私有记录编号：PR-001281〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2611.14194",
+      "note": "广类预印本引言定义与量词读取；未审计58页全部证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-07-open-4",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":125} 〔私有记录编号：PR-001282〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.cnoctave.top/pdf/2611.11444",
+      "note": "新B-tree稿graph-product参数及§2定义已阅；非完整证明审计。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-07-find-1",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 1\"} 〔私有记录编号：PR-001283〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.cnoctave.top/pdf/2611.14194",
+      "note": "2611.14194 Theorem1标签、Cor2顶点、Theorem3顶点+边；固定proper minor-closed类，不是O(n)。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-07-find-2",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Lemma 3.2\"} 〔私有记录编号：PR-001284〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.cnoctave.top/pdf/2611.11444",
+      "note": "RotbartLemma3.2及3.3/3.4关键平衡链已读但未独立核完，不登记为独立数学证明通过。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-07-find-3",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"References\"} 〔私有记录编号：PR-001285〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.cnoctave.top/pdf/2611.11444",
+      "note": "新B-tree稿参考文献和运行时范围已阅，仅用于原始声明定位。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-08-open-1",
+      "route": "原题与出处",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":1110} 〔私有记录编号：PR-001286〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "OWR印刷p33：问题(1)边数+非诱导，问题(2)顶点数+诱导，已明确两者已有n^{1+o(1)}。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-08-open-2",
+      "route": "原题与出处",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":1120} 〔私有记录编号：PR-001287〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "原题后文希望精确渐近；树分别Θ(nlogn)边数、Θ(n)诱导阶，并提出平面也可能相同。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-08-open-3",
+      "route": "原题与出处",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":1130} 〔私有记录编号：PR-001288〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "复读上下文与p34书目；卡引号为等价转述，不是逐字原句。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-08-find-1",
+      "route": "原题与出处",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Problem 1\"} 〔私有记录编号：PR-001289〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "Problem1字面未匹配，原文使用编号(1)。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-08-find-2",
+      "route": "原题与出处",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"minimum number\"} 〔私有记录编号：PR-001290〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "实际定位minimum number of vertices原句与上下文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-08-find-3",
+      "route": "原题与出处",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"linear number\"} 〔私有记录编号：PR-001291〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "linear number字面未匹配，原文为near-linear/Θ(n)；不作无相应问题结论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-08-find-4",
+      "route": "学术",
+      "site": "web:find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"strict\"} 〔私有记录编号：PR-001292〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2508.11585v1",
+      "note": "冲突家族方法的下界限制只限制该技术，不能推成全问题的上界或下界极限。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-09-open-1",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/abs/2010.05779v1\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/2010.05779v1",
+      "note": "官方v1=2020-10-12，摘要只有非诱导边数；旧版本页latest字段缓存仍列v4，不凌驾当前v5页面。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-09-open-2",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://arxiv.org/abs/2010.05779v2\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/2010.05779v2",
+      "note": "官方v2=2021-02-05，Comments明确新增诱导通用结果；版本史使卡2020v1描述可作为历史，但不能概括现状。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-09-open-3",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://github.com/patmorin/mflabelling/blob/c7d1dec79628415b33cd88e497f653194ddb2789/sparse.tex\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://github.com/patmorin/mflabelling/blob/c7d1dec79628415b33cd88e497f653194ddb2789/sparse.tex",
+      "note": "作者TeX仓库固定提交页面DisabledError；本学术分工未读取代码/源码正文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-09-system1_search_query-1",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"\\\"planar\\\" \\\"induced-universal\\\" \\\"O(n)\\\" \\\"2026\\\"\",\"recency\":730}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "近期针对O(n)诱导上界检索返回近线性/多对数稿，未获得线性上界确证；不写全球无。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-09-system1_search_query-2",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"\\\"planar\\\" \\\"log n\\\" \\\"O(1)\\\" \\\"adjacency\\\" proof\",\"recency\":730}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "针对logn+O(1)标签检索，命中新稿仍区分O(loglogn)与O(1)；未取得主问题完整解。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-09-system1_search_query-3",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "{\"q\":\"\\\"Tight B-Trees for Adjacency Labeling\\\" correction OR withdrawn OR erratum\",\"recency\":365}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "带撤回/勘误词搜索只回该新稿及相关镜像，未提供明确勘误；不推出无勘误。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-10-system2_search_query-1",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"Gawrychowski Janczewski 2022 adjacency labeling planar graphs sqrt log SOSA arxiv\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位SOSA2022 Gawrychowski–Janczewski出版社及作者页，后续访问只得摘要。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-10-system2_search_query-2",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "{\"q\":\"\\\"planar\\\" \\\"induced-universal\\\" \\\"linear\\\" \\\"2026\\\" \\\"proof\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "同批命中近线性与新多对数结果，没有可用于验收Θ(n)的完整证明；不使用BGP摘要OCR的3/4倒置错误。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-11-open-1",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://wja.cs.uni.wroc.pl/\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://wja.cs.uni.wroc.pl/",
+      "note": "Janczewski作者页核题名与作者，页面没有该题arXiv链接；未把导航页当论文全文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-11-open-2",
+      "route": "学术",
+      "site": "web:open",
+      "query": "{\"ref_id\":\"https://epubs.siam.org/doi/10.1137/1.9781611977066.3\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://epubs.siam.org/doi/10.1137/1.9781611977066.3",
+      "note": "SIAM正式出版页：2022-01-04、pp24–36；公式为图片且全文订阅访问，后续PDF重定向摘要。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-12-click-1",
+      "route": "学术",
+      "site": "web:click",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"id\":60} 〔私有记录编号：PR-001293〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://epubs.siam.org/doi/10.1137/1.9781611977066.3",
+      "note": "ViewPDF链接重定向doi/abs页面，没有取得全文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-origin-12-click-2",
+      "route": "学术",
+      "site": "web:click",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"id\":32} 〔私有记录编号：PR-001294〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://epubs.siam.org/doi/10.1137/1.9781611977066.3",
+      "note": "抽象公式图片GIF入口Unsupported content-type，未从损坏提取文本推断精确符号。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "887-F1",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "\"planar\" \"induced universal\" \"Lean\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "该批组合结果未给逐查询总数；recency=730。命中文献、目录、邻近AI或形式化项目，具体同一性另查。2611.11444、2611.14194、2508.11585论文线索交原题/学术分工核全文，未在本代码路线把摘要升为已证结果。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F1",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "\"planar\" \"induced-universal\" \"AI\" proof",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "该批组合结果未给逐查询总数；recency=730。命中文献、目录、邻近AI或形式化项目，具体同一性另查。2611.11444、2611.14194、2508.11585论文线索交原题/学术分工核全文，未在本代码路线把摘要升为已证结果。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F1",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "\"planar\" \"adjacency labeling\" code github",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "该批组合结果未给逐查询总数。命中文献、目录、邻近AI或形式化项目，具体同一性另查。2611.11444、2611.14194、2508.11585论文线索交原题/学术分工核全文，未在本代码路线把摘要升为已证结果。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F1",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "\"planar\" \"induced-universal\" \"linear\" 2025 2026",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "该批组合结果未给逐查询总数；recency=730。命中文献、目录、邻近AI或形式化项目，具体同一性另查。2611.11444、2611.14194、2508.11585论文线索交原题/学术分工核全文，未在本代码路线把摘要升为已证结果。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F4",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system2",
+      "query": "\"induced-universal\" \"planar\" github code",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "该批组合结果未给逐查询总数。命中文献、目录、邻近AI或形式化项目，具体同一性另查。2611.11444、2611.14194、2508.11585论文线索交原题/学术分工核全文，未在本代码路线把摘要升为已证结果。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F4",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system2",
+      "query": "\"adjacency labeling\" \"planar\" implementation",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "该批组合结果未给逐查询总数。命中文献、目录、邻近AI或形式化项目，具体同一性另查。2611.11444、2611.14194、2508.11585论文线索交原题/学术分工核全文，未在本代码路线把摘要升为已证结果。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F4",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system2",
+      "query": "\"induced universal\" Isabelle Coq ACL2",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "该批组合结果未给逐查询总数。命中文献、目录、邻近AI或形式化项目，具体同一性另查。2611.11444、2611.14194、2508.11585论文线索交原题/学术分工核全文，未在本代码路线把摘要升为已证结果。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F4",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system2",
+      "query": "\"planar\" \"universal graph\" \"formalization\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "该批组合结果未给逐查询总数。命中文献、目录、邻近AI或形式化项目，具体同一性另查。2611.11444、2611.14194、2508.11585论文线索交原题/学术分工核全文，未在本代码路线把摘要升为已证结果。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F16",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "\"planar induced universal\" proof Lean Isabelle Coq",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "该批组合结果未给逐查询总数；recency=730。命中文献、目录、邻近AI或形式化项目，具体同一性另查。2611.11444、2611.14194、2508.11585论文线索交原题/学术分工核全文，未在本代码路线把摘要升为已证结果。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F16",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "\"induced-universal\" \"planar\" \"solved\" AI",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "该批组合结果未给逐查询总数；recency=730。命中文献、目录、邻近AI或形式化项目，具体同一性另查。2611.11444、2611.14194、2508.11585论文线索交原题/学术分工核全文，未在本代码路线把摘要升为已证结果。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F16",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1",
+      "query": "\"adjacency labeling\" github code implementation planar",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "该批组合结果未给逐查询总数；recency=730。命中文献、目录、邻近AI或形式化项目，具体同一性另查。2611.11444、2611.14194、2508.11585论文线索交原题/学术分工核全文，未在本代码路线把摘要升为已证结果。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"universal\" \"planar\"; repository_name=\"google-deepmind/formal-conjectures\"; topn=20",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "精确组合universal+planar在DeepMind默认分支返回0；仅此检索范围，不表示所有别名目标均不存在。",
+      "result_count": 0,
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "887-F3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"induced\" \"universal\"; repository_name=\"leanprover-community/mathlib4\"; topn=20",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回20条片段，主要范畴论、拓扑与自由结构的universal/induced，不是图论诱导通用性；未拉取这些无关文件。",
+      "result_count": 20,
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F5",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"InducedUniversal\"; repository_name=[\"leanprover-community/mathlib4\",\"google-deepmind/formal-conjectures\",\"openai/math\"]; topn=20",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "InducedUniversal在Mathlib、DeepMind、openai/math三库默认分支查询返回0；命名与范围有限。",
+      "result_count": 0,
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "887-F6",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"planar\" \"labeling\"; repository_name=\"google-deepmind/formal-conjectures\"; topn=20",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "planar+labeling在DeepMind默认分支返回0；不含labelling等所有别名。",
+      "result_count": 0,
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "887-F7",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"induced-universal\" \"planar\"; repository_name=\"global\"; topn=20",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回20条：作者TeX项目、论文/百科镜像与AI可数图文稿等；实际跟进作者repo与AI输出，未把GitHub命中等同程序实现或形式化。",
+      "result_count": 20,
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F11",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"planar\" \"universal\"; repository_name=\"openai/math\"; topn=15",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回公开AI平面度量L1等不同问题命中；追读ComparatorChallenges/PlanarL1.lean与docs/089，确认不涉及有限诱导通用图最小阶。",
+      "result_count": 15,
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F14",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"adjacency labeling\" \"planar\"; repository_name=\"global\"; topn=20",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回20条文献索引、数据集/百科和bib记录；未命中可直接证明本题最小阶的实现。topn=20不是全站穷尽。",
+      "result_count": 20,
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F15",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"adjacency labelling\" \"planar\"; repository_name=\"global\"; topn=20",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回20条含作者labelling讲稿和lhp实现等；跟进README、目录与代码判定只为产品结构子程序。topn=20不是全站穷尽。",
+      "result_count": 20,
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F8",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/patmorin/universal2/blob/8b98d96e5e8e4b020f85e11fddce7be3cde2e25c/README.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "README全文：旧项目ABANDONED并把主结果指向arXiv:2010.05779；这是项目迁移，不是作者撤回数学结论。",
+      "url": "https://github.com/patmorin/universal2/blob/8b98d96e5e8e4b020f85e11fddce7be3cde2e25c/README.md",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "887-F9",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://api.github.com/repos/patmorin/universal2/git/trees/8b98d96e5e8e4b020f85e11fddce7be3cde2e25c?recursive=1",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "递归固定tree，truncated=false，8条含目录；只有README、TeX/Bib/类、Makefile和图素材，未见证明器代码或宿主生成程序。未编译。",
+      "url": "https://api.github.com/repos/patmorin/universal2/git/trees/8b98d96e5e8e4b020f85e11fddce7be3cde2e25c?recursive=1",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F10",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks/2109.00327__00/output.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际取得339行AI自然语言文稿，核Statement/outcome、Proposition3.1及Gap。对象是可数K_t-minor-free诱导通用图及其有限子图分隔子，不是本题有限宿主阶；自评partial。未数学验证其全部推导。",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks/2109.00327__00/output.md",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "887-F12",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/ComparatorChallenges/PlanarL1.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "全文52行：OAI.PlanarL1.MainStatement是加权平面图到L1空间的一致失真界；Comparator目标体sorry。不同问题，既不登记为本题形式化，也不据Comparator占位否认其他位置的实际证明。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/ComparatorChallenges/PlanarL1.lean",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "887-F13",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/docs/089.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "docs/089全文是L1度量嵌入及有界树宽的形式化范围说明；确认与本题不同。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/docs/089.md",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "887-F17",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/patmorin/lhp/blob/90ff97c0191125885b5b1d3904526de7dbc6235e/README.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "README全文：Python layered H-partition / tripod算法，以一个已给嵌入的平面三角剖分为输入，不生成覆盖全部n点图的统一最小宿主。",
+      "url": "https://github.com/patmorin/lhp/blob/90ff97c0191125885b5b1d3904526de7dbc6235e/README.md",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "887-F18",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://api.github.com/repos/patmorin/lhp/git/trees/90ff97c0191125885b5b1d3904526de7dbc6235e?recursive=1",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "固定tree全部8条，truncated=false；lhp.py/lhp_demo.py/make_input.py及README图素材。是算法实现，不是Lean等证明脚本。",
+      "url": "https://api.github.com/repos/patmorin/lhp/git/trees/90ff97c0191125885b5b1d3904526de7dbc6235e?recursive=1",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F19",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/patmorin/labelling/blob/5eb7490d3ee905414a9893fdcce9d82343fea385/slides/script.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "作者完整讲稿解释decoder和2^f(n)宿主对应，报告logn+o(logn)标签，并将二阶项列为当时开放问题。报告日期2020，不能用作2026最新状态；自然语言不是内核证明。",
+      "url": "https://github.com/patmorin/labelling/blob/5eb7490d3ee905414a9893fdcce9d82343fea385/slides/script.md",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "887-F20",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://api.github.com/repos/patmorin/labelling/git/trees/5eb7490d3ee905414a9893fdcce9d82343fea385?recursive=1",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "固定递归tree共266条且未截断；论文TeX、讲稿、图/音视频及构建素材。没有从目录取得主问题形式化代码；未读所有素材。",
+      "url": "https://api.github.com/repos/patmorin/labelling/git/trees/5eb7490d3ee905414a9893fdcce9d82343fea385?recursive=1",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "887-F21",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch https://github.com/patmorin/lhp/blob/90ff97c0191125885b5b1d3904526de7dbc6235e/lhp.py",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "lhp.py共559行取得，静态核输入/输出、tripod_partition、h3/h8父结点与verify_results断言。没有执行算法、测试或形式化构建；产品结构子程序不证明宿主诱导普适性或最优阶。",
+      "url": "https://github.com/patmorin/lhp/blob/90ff97c0191125885b5b1d3904526de7dbc6235e/lhp.py",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-math-01",
+      "route": "学术",
+      "site": "web system2_search_query",
+      "query": "planar graphs induced universal adjacency labelling log n O log log n Esperet Joret Morin 2010.05779",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2021 JACM作者刊稿、2003.04280、2010.05779等。随后直接开两项主来源。其他搜索命中未全文读取，不冒称逐篇审计。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-math-02",
+      "route": "学术",
+      "site": "dept-info.labri.fr",
+      "query": "open https://dept-info.labri.fr/~gavoille/article/DEGJx21.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://dept-info.labri.fr/~gavoille/article/DEGJx21.pdf",
+      "note": "〔原始工具引用已私有留存〕；取得33页正式刊稿，重点读取§1 Theorem1、脚注1与有限简单图约定。核单射标签/诱导通用图等价及已有上界范围，没有独立复跑构造或全文证明审计。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-math-03",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "open https://arxiv.org/abs/2010.05779",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/2010.05779",
+      "note": "〔原始工具引用已私有留存〕；实际仅摘要、版本历史与Comments。v5为2026-10-14，备注修Lemma20；摘要明确同时有非诱导与诱导两项结论。全文修订审查交origin，不记为本分工已读PDF。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-dedup-index-1",
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "诱导通用|induced.universal|universal.*planar|planar.*universal|平面.*通用|通用.*平面|adjacency.*label|邻接.*标",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 2,
+      "note": "命中本题及000138的Lebesgue平面集合通用覆盖词语；000138仅索引噪声，未取正文，不作正式关系判断。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-dedup-index-2",
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "universal graph|通用图|标号方案|labeling scheme|labelling scheme",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 1,
+      "note": "放宽到通用图/标号方案仍仅本题。没有取得其他同题正文候选，duplicates留空；只说明本轮索引筛查范围，不能证明全库无重复。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-root-01",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"planar\" \"induced-universal\" linear vertices [recency:730]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "得到作者站2025下界和相关标号来源；搜索结果的日期不等同论文发表日期。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-root-02",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"2010.05779\" induced universal",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "发现v5修正线索，后亲读arXiv官方版本史；不依镜像摘要确认版本。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-root-03",
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "open https://arxiv.org/abs/2010.05779v5",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2010.05779v5",
+      "note": "亲读作者摘要和官方版本史：v5 2026-10-14纠Lemma20；摘要含诱导/非诱导两结论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-root-04",
+      "route": "学术",
+      "site": "arXiv原稿",
+      "query": "open https://arxiv.org/pdf/2508.11585",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2508.11585",
+      "note": "取得27页v1，实际读定义、贡献、Table1/3与Theorem2计数段；未独立审全部27页其他定理。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-root-05",
+      "route": "学术",
+      "site": "arXiv原稿定位",
+      "query": "find 2508.11585 PDF: Theorem 2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2508.11585",
+      "note": "核un≤binom(N,n)计数及c^c/(c−1)^(c−1)=g；Table3给cn−o(n)。保守按10.52n−o(n)报告，不移植成每个n精确界；137只限conflictingfamily策略。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-root-06",
+      "route": "学术",
+      "site": "arXiv PDF文本定位",
+      "query": "find 2508.11585 PDF: 27.226",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://arxiv.org/pdf/2508.11585",
+      "note": "此字符串匹配返回无命中，但Theorem2定位返回的Table3可见27.2268；无命中仅为定位器结果，非论文无此常数。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-root-07",
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "open https://arxiv.org/abs/2611.11444",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2611.11444",
+      "note": "DisabledError，未取得官方摘要；不能记录为无论文/无命中。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-root-08",
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "open https://arxiv.org/pdf/2611.11444",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/2611.11444",
+      "note": "DisabledError，未取得官方PDF；镜像原稿由学术分工另读，证据级别分开。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-root-09",
+      "route": "学术",
+      "site": "arXiv官方全文",
+      "query": "open https://arxiv.org/html/2010.05779v5",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2010.05779v5",
+      "note": "HTML全文取得，亲读引言与Thm1/4/5及Lemma20定位：非诱导(1+o(1))n顶点不迁移成诱导界，Thm4诱导顶点及边均n*2^{O(sqrt(logn loglogn))}。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-root-10",
+      "route": "原题与出处",
+      "site": "MFO官方档案",
+      "query": "open https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "原会报告74页取得，只核本题相关p33段及目录和日期，不声称读全会议报告。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-root-11",
+      "route": "原题与出处",
+      "site": "MFO官方PDF定位",
+      "query": "find OWR_2022_01.pdf: minimum number of vertices",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "note": "PDF页28/印刷p33问题(2)与本卡目标一致；紧邻问题(1)最小边数/非诱导是不同目标；原文已写两问题n^{1+o(1)}。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-887-root-12",
+      "route": "学术",
+      "site": "arXiv官方全文定位",
+      "query": "find 2010.05779v5: Lemma 20.",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2010.05779v5",
+      "note": "Lemma20位于非诱导 universality证明。只核定位，未独立重验修补的完整依赖链。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "e887-a-owr",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3924/OWR_2022_01.pdf",
+      "locator": "印刷p33（PDF零基28）：Gwenaël Joret, Further applications of the product structure theorem，问题(2)及后两段；p34参考文献",
+      "version": "Oberwolfach Report1/2022；会议2022-01-02至01-08；DOI10.4171/OWR/2022/1",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Gwenaël Joret（联合Dujmović、Esperet、Gavoille、Micek、Morin）",
+      "claim_date": "2022",
+      "note": "原句：What is the minimum number of vertices in a graph containing all n-vertex planar graphs as induced subgraphs? 卡的minimum order是等价转述，非逐字摘录。上下文已报n^{1+o(1)}，希望改进到精确渐近；提及树Θ(n)也可能是平面答案。宿主没有平面性要求，另一个问题才优化非诱导边数。未声称OWR是该问题全球最早提出。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "e887-a-ejm",
+      "url": "https://arxiv.org/html/2010.05779v5",
+      "locator": "§1 Theorems1、4、5及定义；§3.2 Lemma20；§4诱导构造",
+      "version": "arXiv:2010.05779v5，2026-10-14；JLMS108(4)(2023),1333–1357，DOI10.1112/jlms.12781",
+      "subquestions": [
+        "主问题",
+        "已发表的诱导通用图近线性上界"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Louis Esperet; Gwenaël Joret; Pat Morin",
+      "claim_date": "2026-10-14",
+      "note": "当前修订稿Theorem1为非诱导、(1+o(1))n顶点与n^{1+o(1)}边；Theorem4为诱导、顶点与边同时n·2^{O(sqrt(logn·loglogn))}。未逐行审计全部结构/编码证明，无形式化复跑。此处正式刊发标签指2023论文，v5修正是后续预印本版本。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "e887-a-ejm-v2",
+      "url": "https://arxiv.org/abs/2010.05779v2",
+      "locator": "Abstract、Comments与Submission history",
+      "version": "v1=2020-10-12；v2=2021-02-05，Comments明确新增induced-universal结果",
+      "subquestions": [
+        "已发表的诱导通用图近线性上界"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "本轮v1/v2仅读官方摘要及历史，不冒充早版全文审计；v5已取得全文。卡2020v1非诱导叙述可作为历史，但其2026现状与PASS必须补v2之后诱导结论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e887-a-correction",
+      "url": "https://arxiv.org/abs/2010.05779",
+      "locator": "Comments、v5时间；对应全文§3.2 Lemma20",
+      "version": "arXiv:2010.05779v5，2026-10-14 15:53:27UTC",
+      "subquestions": [
+        "已发表的诱导通用图近线性上界"
+      ],
+      "role": "勘误",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Louis Esperet; Gwenaël Joret; Pat Morin",
+      "claim_date": "2026-10-14",
+      "note": "作者说明修正Lemma20证明；该引理位于非诱导universality部分。本轮读当前引理表述与嵌入步骤，未逐行对比v4/v5，不主张修正完全独立验证，更不把这次修正写为整篇撤回。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "retraction",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e887-a-lower",
+      "url": "https://arxiv.org/pdf/2508.11585",
+      "locator": "§2.2 Theorem2及Table3（印刷pp7–8）；§1关于conflicting families限制",
+      "version": "arXiv:2508.11585v1，2025-08-15；作者站稿内日期2025-08-18",
+      "subquestions": [
+        "主问题",
+        "2025线性下界"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Cyril Gavoille; Amaury Jacques",
+      "claim_date": "2025-08-15",
+      "note": "已读定义、计数下界u_n≤binom(N,n)、Theorem2与表3；平面g=27.2268*、c=10.520。汇总取10.52n−o(n)渐近式，不将摘要省略的下阶项/大n量词当每个n的精确下界。没有独立复核原始平面图计数文献或论文全证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e887-a-rotbart",
+      "url": "https://arxiv.cnoctave.top/pdf/2611.11444",
+      "locator": "§1.2 Theorem1.1、Corollary1.2（p2）与开放问题句；§3 Lemmas3.2–3.4、§4",
+      "version": "镜像稿内标arXiv:2611.11444v1、2026-11-08；8页；官方原件入口失败，版本/时间/身份一致性待核",
+      "subquestions": [
+        "2026多对数因子上界声明"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "镜像稿署名Noy Rotbart",
+      "claim_date": "2026-11-08（镜像标记；官方提交时间未核）",
+      "note": "完整作者稿从第三方镜像取得；公开声称n(logn)^{O(1)}顶点诱导通用，并明确O(n)等价的logn+O(1)标签仍开放。已读核心平衡引理及推导描述，未独立证明或复跑，官方真实性/当前版本仍待核，不称已确证最新最优界。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e887-a-minor",
+      "url": "https://arxiv.cnoctave.top/pdf/2611.14194",
+      "locator": "引言Theorem1、Corollary2、Theorem3及脚注2（印刷pp2–3）；只核引言与摘要",
+      "version": "镜像稿内标arXiv:2611.14194v1、2026-11-10；58页；官方入口失败，版本/时间/身份一致性待核",
+      "subquestions": [
+        "2026推广至全部固定proper minor-closed类"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "claimant": "镜像稿署名Vida Dujmović; Cyril Gavoille; Gwenaël Joret; Piotr Micek; Pat Morin; David R. Wood",
+      "claim_date": "2026-11-10（镜像标记；官方提交时间未核）",
+      "note": "取得完整镜像文件但只读引言/定理，未审全部证明；Theorem3将近线性顶点+边推广至每个固定proper minor-closed类，不能关平面线性阶目标。脚注明确label须在各图内injective。作者TeX固定提交入口亦DisabledError。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e887-a-sosa",
+      "url": "https://epubs.siam.org/doi/10.1137/1.9781611977066.3",
+      "locator": "出版社Abstract、Information、History",
+      "version": "SOSA2022，pp24–36；2022-01-04在线发表",
+      "subquestions": [
+        "已发表的诱导通用图近线性上界"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "claimant": "Paweł Gawrychowski; Wojciech Janczewski",
+      "claim_date": "2022-01-04",
+      "note": "题名Simpler Adjacency Labeling for Planar Graphs with B-Trees。本轮只取得官方摘要与书目；PDF跳回摘要，公式图片工具不支持GIF。logn+O(sqrt(logn))由后续原始论文回述，本条本身不冒称完整数学审计。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "887-FE1",
+      "url": "https://github.com/patmorin/universal2/blob/8b98d96e5e8e4b020f85e11fddce7be3cde2e25c/README.md",
+      "locator": "README完整5行；固定递归tree共8条",
+      "version": "8b98d96e5e8e4b020f85e11fddce7be3cde2e25c；README工具标2020-12-11",
+      "subquestions": [
+        "已发表的诱导通用图近线性上界"
+      ],
+      "scope_match": "仅子问",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "作者旧Sparse Induced-Universal项目明确ABANDONED并指向2010.05779；目录为论文TeX等素材。这里只证明来源迁移及材料类型，不证明完整最小阶、不构成数学撤回，也没有形式化复跑。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "887-FE2",
+      "url": "https://github.com/patmorin/lhp/blob/90ff97c0191125885b5b1d3904526de7dbc6235e/lhp.py",
+      "locator": "tripod_partition L216–254；h3parents/h8parents L370–408；verify_results L418–458；CLI L531–558",
+      "version": "90ff97c0191125885b5b1d3904526de7dbc6235e；源码工具标2021-01-05",
+      "subquestions": [
+        "已发表的诱导通用图近线性上界"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "代码仓库",
+      "claim_state": "公开声称",
+      "claimant": "Pat Morin / lhp repository",
+      "review_status": "仅核关键步骤",
+      "note": "原作者README及559行Python取得，核接口与验证器范围：输入为带旋转次序及外面的一个平面三角剖分，输出BFS层/三脚架分划及相关商图分解。verify_results是此输入的运行期断言，不是对所有输入的形式化证明；本轮未调用它。程序不遍历全部n点平面图、不输出诱导通用宿主、不认证最优阶。未以普通Python程序登记Lean/Isabelle形式化。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "887-FE3",
+      "url": "https://github.com/patmorin/labelling/blob/5eb7490d3ee905414a9893fdcce9d82343fea385/slides/script.md",
+      "locator": "开头decoder/label scheme及2^f(n)通用图段；末尾logn+O(sqrt(lognloglogn))与二阶项问题",
+      "version": "5eb7490d3ee905414a9893fdcce9d82343fea385；讲稿工具标2020-10-07",
+      "subquestions": [
+        "固定n的单射邻接标签与诱导通用图等价",
+        "已发表的诱导通用图近线性上界"
+      ],
+      "scope_match": "仅子问",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "公开声称",
+      "claimant": "Pat Morin，讲稿列联合作者Dujmović/Esperet/Gavoille/Joret/Micek",
+      "review_status": "已读未核关键步骤",
+      "note": "作者repo中的自然语言讲稿说明共同decoder和2^f(n)个字符串宿主，报告(1+o(1))logn标签。它解释了研究构造路线，不是可复跑的完整标签实现或证明器文件；目录核到论文/报告素材。此上界允许无界亚多项式乘子，不能等同O(n)或确定最小阶，旧稿open措辞不代替当前查新。标签唯一性等严格技术约定应以论文原文为准。 该状态只指本轮列明定向检索未取得本题形式化证明，不宣称全网不存在。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "887-FE4",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks/2109.00327__00/output.md",
+      "locator": "开头verdict=partial及Statement/outcome；Proposition3.1；末尾§7 Gap",
+      "version": "96f91048c5282ac2b8bed0b7e8dc454cf38ba636；工具标2026-09-01",
+      "subquestions": [],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "代码仓库",
+      "claim_state": "公开声称",
+      "claimant": "graph-theory-AI/Graph-Theory-LLM-Proofs公开AI文稿",
+      "review_status": "已读未核关键步骤",
+      "note": "全文文件339行已取得，核量词和自述范围：研究特定可数K_t-minor-free诱导通用图U_t有限子图的balanced separators，并提出不同可数宿主的子结果。原稿自认specific U_t未解决；其有限子图阶n与本题共同宿主阶函数不同。未核旁题证明，不为本题登记完整证明/反例或形式化。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "887-FE5",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/ComparatorChallenges/PlanarL1.lean",
+      "locator": "IsPlanar；MainStatement；planar_graph_metrics_embed_L1；同提交lean/docs/089.md",
+      "version": "3344da59991ed94f9ba711217b29c1d760badfa6",
+      "subquestions": [],
+      "scope_match": "同源不同问",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "note": "全文目标要求每个有限连通平面图的任意正对称边长度量嵌入实L1，有统一常数失真；没有统一有限宿主图或n点诱导嵌入最小阶。Comparator题面以sorry结尾，正式证明可能另在OAI目录；因不同题本轮不进一步build或公理审计，不据此评论旁题证明是否成立。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E887-M-label",
+      "url": "https://dept-info.labri.fr/~gavoille/article/DEGJx21.pdf",
+      "locator": "§1 Theorem1、脚注1；§2首段有限简单图约定；〔原始工具引用已私有留存〕",
+      "version": "Dujmovic et al., JACM68(6)(2021),Article42；作者站正式刊稿，2026-11-26阅读",
+      "subquestions": [
+        "固定n的单射邻接标签与诱导通用图等价"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "note": "仅核定义、单射必要性和上界陈述；不是最小阶全参数解。固定n且恰好L位的图内单射标签、共享decoder且无复杂度要求时，最优L=ceil(log2 f(n))；可变长度或单一跨n有效decoder须另说明编码约定。文献(1+o(1))log2n位对应n^(1+o(1))顶点，不能等同Theta(n)。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E887-M-abstract",
+      "url": "https://arxiv.org/abs/2010.05779",
+      "locator": "Abstract、Comments、Submission history；〔原始工具引用已私有留存〕",
+      "version": "arXiv2010.05779v5，2026-10-14；本轮2026-11-26读取条目",
+      "subquestions": [
+        "已发表的诱导通用图近线性上界"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "条目摘要明确分别给非诱导(1+o(1))n顶点、n^(1+o(1))边，以及诱导n^(1+o(1))顶点与边。卡将整篇仅标为非诱导不正确。v5修Lemma20的影响不由本摘要检查决定；原文由origin分工核查。本项不是完整主问题解决声明。 版本细化：2020v1仅读非诱导摘要，2021v2才新增诱导结果；不得追溯误称v1已有诱导定理。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    }
+  ],
+  "duplicates": [],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "sources/proposer/原文摘录",
+      "old": "OWR DOI10.4171/owr/2022/1；HFid30004965，无URL/章节；minimum order句当逐字原文",
+      "new": "补MFO官方全文与Joret报告《Further applications of the product structure theorem》印刷p33问题(2)、p34参考文献。将当前英文句标为等价转述，或替换为已核原句；OWR仅可核记载，不确认为全球首提。",
+      "reason": "实际原文用minimum number of vertices，上下文同时区分非诱导边数问题与诱导阶问题，且已有近线性进展。",
+      "evidence_ids": [
+        "e887-a-owr"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展/2026-11-21命题对应核对PASS",
+      "old": "Esperet–Joret–Morin(2020)仅稀疏非诱导n^{1+o(1)}；现状诱导只笼统标号方法",
+      "new": "明确版本：2020v1摘要只非诱导边数；2021v2新增诱导、顶点与边均n^{1+o(1)}；2023正式刊发；当前v5 Theorem4给n·2^{O(sqrt(logn·loglogn))}。分开顶点数、边数和是否诱导，更新进展核对。",
+      "reason": "历史v1限定描述可保留，但现行论文不是只有非诱导结果。n^{1+o(1)}也不等于O(n)或Θ(n)，不能按数量级已解。",
+      "evidence_ids": [
+        "e887-a-ejm",
+        "e887-a-ejm-v2",
+        "e887-a-owr"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "相关进展与声称解决/撤回勘误",
+      "old": "只列2020稀疏通用定理；无后续修订",
+      "new": "单列2010.05779v5于2026-10-14纠正Lemma20证明；注明引理属非诱导部分与本轮未对比旧版证明，不能写整篇撤回或已独立验证修复。",
+      "reason": "P0需要版本化记录当前修正，同时保持数学结论与证明审计状态分离。",
+      "evidence_ids": [
+        "e887-a-correction"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "已知下界/近期进展",
+      "old": "2026-08triage open及无来源文献行",
+      "new": "补2025信息论下界f(n)≥10.52n−o(n)。另列镜像稿标2026-11-08、署名Rotbart的多对数因子上界声明，待核官方原件、时间/身份/版本及证明；2611.14194范围推广单列，皆不满足现卡同阶验收。",
+      "reason": "新预印本要区分声明、取得镜像、独立核验；10.52仅渐近，不用于小n精确值；137仅技术限制。",
+      "evidence_ids": [
+        "e887-a-lower",
+        "e887-a-rotbart",
+        "e887-a-minor"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text.形式化表述",
+      "old": "如上。",
+      "new": "对整数n≥1，令f(n)为有限简单无向图U的最小顶点数，使对每个n点平面图G，存在单射φ:V(G)→V(U)，且对所有不同u,v，uv∈E(G)当且仅当φ(u)φ(v)∈E(U)。U不要求平面。求f(n)的确值或同阶上下界。",
+      "reason": "明确单一host对全部目标的量词、诱导的双向条件、正整数范围及宿主不受平面性限制，保留原验收。",
+      "evidence_ids": [
+        "E887-M-label"
+      ],
+      "small_case_check": "实际核f1=1,f2=3,f3=5,f4=8；K2容纳独立2点图为普通子图而不为诱导子图，脚本已检。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "card_text.人话版",
+      "old": "因为n点平面图数量极多、形状各异，通用图的阶必须明显超过n，但超多少正是需要确定的数量级。",
+      "new": "同一个宿主必须容纳全部目标图，不同目标的诱导像可以共享顶点。问题是确定最小阶的确值或同阶上下界；不能仅由目标种类多推断必须超线性。",
+      "reason": "明显超过n没有明确数学含义，可能误导为f(n)/n趋于无穷。初等下界f(n)≥2n−ceil(n/4)只是线性常数因子，并非超线性结论。",
+      "evidence_ids": [],
+      "small_case_check": "已核精确小值1,3,5,8；一般下界由独立n点集与若干K4加剩余小团的两像交叠至多ceil(n/4)直接证明，无有限外推。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "acceptance.verification/边界与约定",
+      "old": "确定包含全部n点平面图作为诱导子图的图的最小阶的确切值，或给出同阶的上下界。",
+      "new": "保留原验收；明确同阶指同一函数g(n)的常数因子界c·g(n)≤f(n)≤C·g(n)对充分大n成立。单独f(n)=n^{1+o(1)}或有限小n精确值，均不自动达到主验收。",
+      "reason": "指数渐近最优与常数因子同阶不同，防止把已有上界误判主问题已证。",
+      "evidence_ids": [
+        "E887-M-label"
+      ],
+      "small_case_check": "g(n)=n log2n满足n^{1+o(1)}但g(n)/n无界；脚本保存n=2^16,2^64,2^256,2^1024的比值及指数误差作说明，一般区分依靠公式而非这些例子。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "formal；ai_claims；已知结果与进展的验证说明",
+      "new": "公开代码包括Pat Morin的产品结构分解子程序；邻接标号作者仓库主要是论文及讲稿。当前定向范围未取得本题最小阶/O(n)的形式化证明，未独立复跑。可数通用图分隔子与L1度量嵌入结果均另题，不能作为本题已解决证据。",
+      "reason": "程序存在、论文源码、研究旁题和形式化目标需要分别记录；自然语言上界及单输入运行期断言不提供所有平面图共同宿主最优性证书。",
+      "evidence_ids": [
+        "887-FE1",
+        "887-FE2",
+        "887-FE3",
+        "887-FE4",
+        "887-FE5"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "card_rev/在线题卡/验收",
+      "new": "正式回执对应22e07954e4b9d7b6。未改在线卡、未提交PR、未结案或合并；若维护者改定义、量词、参数域或验收对象，生成新card_rev并重查受影响路线。",
+      "reason": "小参数、线性常数下界或近线性上界不能把整个最小阶任务结案；分工交叉核读不代替包内指定二审。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {
+        "card_action": "no_change"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "reason": "2611.11444和2611.14194官方abs/pdf/html均DisabledError，只获得第三方镜像；新B-tree证明未完整独立复核。",
+      "next_step": "从作者/官方可达入口核版本与完整稿一致性，审新平衡引理和标签长度/注入/解码论证；之前只列待核进展声明，不把镜像主张写成已证明最优。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2010.05779v5说明纠正Lemma20，但本轮只读修正版并核所属范围，没有逐行对比v4或独立审计其全部依赖。",
+      "next_step": "有二审需求时固定v4/v5与源文件，审更正步骤及其对Theorem1/4的依赖；不得把网页Comments自动升级为本轮通过证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "SOSA2022只读出版社摘要，全文重定向摘要且公式图片入口失败；2025计数下界仅核关键计数步骤，未重证输入的平面图枚举定理。",
+      "next_step": "若需要完整最佳已发表上界链与精确常数，取得SOSA全文并核label条件，回读2025引用的计数来源；保持渐近下阶项和大n量词，不宣称小n精确10.52倍。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮未取得本题最小阶或O(n)的Lean/Isabelle/Coq/ACL2精确目标；检索仅覆盖列出的库、关键词和topn结果。",
+      "next_step": "若后续有具体证明/构造声明，先核forall n与全部平面图、诱导而非一般子图、宿主不要求平面等量词，再固定代码/依赖/证书并对确切目标复跑；不要把本次无命中升级为全网不存在。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "取得的lhp.py仅为单输入三角剖分的产品结构子程序；相关标号仓库没有取得完整标签生成/译码器或诱导通用宿主验证程序。",
+      "next_step": "若需实现层复现，补充完整标签算法、统一decoder及输入预处理、注入性、非边保留和全家族覆盖证明。程序小例成功不能代替主问题证据，当前没有为该子程序启动无关大计算。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮独立给出小参数精确证书，不能替代包内指定二审或主问题渐近解。",
+      "next_step": "指定二审复核f1..f4上下界、n4规范化穷举的完备理由及8点host的全部诱导见证；主数学状态依origin的全范围文献审查，有限证书只列子问。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "两组题名/英文名索引查询只找到本题与几何覆盖词语噪声；未全文检索全部等价标号表述。",
+      "next_step": "如后续出现planar adjacency labeling或诱导通用图候选，先取双方同版完整正文、域及验收条件，再按小编号责任判关系；当前不合并，也不作全库无重复保证。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮另给全n初等线性下界和固定n标签等价的推导，尚未通过包内指定二审。",
+      "next_step": "复核两像交叠界、标签固定长度/单射/共享decoder约定；保持与全问题精确或Θ阶验收分离。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "22e07954e4b9d7b6",
+      "codes": {}
+    }
+  ]
+}

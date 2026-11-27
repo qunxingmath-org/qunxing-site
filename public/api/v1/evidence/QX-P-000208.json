@@ -1,0 +1,2581 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000208",
+  "card_rev": "991064fa6de907a9",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-06"
+      ],
+      "parts": [
+        {
+          "subquestion": "渐近上界",
+          "value": "partial",
+          "note": "Baber v2 Thm4.1：lim f(n)/(n2^(n−1))≤0.60318；BHLL较弱界0.6068。两者都是极限密度界。"
+        },
+        {
+          "subquestion": "构造下界",
+          "value": "partial",
+          "note": "BHN官方摘要给c=0.45对所有n≥9；n=4^r时可用c=0.5。尚未取得全文。余量趋零，不反驳主问。"
+        },
+        {
+          "subquestion": "n=7精确值",
+          "value": "claimed_resolution",
+          "note": "2026-11-20预印本声称f(7)=304，覆盖 unrestricted C4-free 子图。已获完整稿并核关键归约；局部SAT证书未在本学术路线独立复跑，须另作二审/验证。与Minamoto仅g(7)=304的子类结果不同。 本回执最终保留完整证明声明待核状态；作者/他方日志不等于本轮重放。"
+        },
+        {
+          "subquestion": "odd-square子类及Q8有限下界",
+          "value": "partial",
+          "note": "Minamoto v5的g6=132,g7=304,g8=682限奇数方形相交边集；给f8≥682，不给f8=682。其旧部分声明已明示更正。"
+        },
+        {
+          "subquestion": "Q9的1532数值优先权",
+          "value": "partial",
+          "note": "由MPR1994原文能量值及其Hamiltonian换算已得到f9≥1532的旧数值声明；2026显式边表/独立证书的贡献不能记成1532数值首创。未据有限维值推断渐近结论。"
+        },
+        {
+          "subquestion": "题卡上界量词",
+          "value": "statement_error",
+          "note": "“已知f(n)≤0.60318·n2^(n−1)”若按无附加条件读为所有n即错。原文是极限密度；需补o(1)或∀ε>0充分大n。n=2的C4删一边保留3边即否定裸界。"
+        },
+        {
+          "subquestion": "n=1,2,3精确小例及渐近口径边界（本轮独立核验）",
+          "value": "partial",
+          "note": "实际穷尽n=1、2、3时分别2、16、4096个边子集，得到f(1)=1、f(2)=3、f(3)=9，密度分别1、3/4、3/4；最大见证另用公共邻居数≤1检查。它们表明未限定n的f(n)≤0.60318·n2^{n−1}不成立，也表明单个密度高于1/2的图不是渐近反例。固定n的强制C4门槛是f(n)+1条边而不是f(n)条边。没有进行n=8搜索或计算。 本轮手核基线：n≥2时保留下端Hamming权重为偶数的所有边，每个Q2面分跨相邻两层，最多保留其两条边，故C4-free；边数Σ_{k偶}(n−k)C(n,k)=n·2^{n−2}。Q_n中每个C4是一个二维坐标面，因为长度4闭路的每个翻转坐标须出现偶数次且无立即折返。另对2n个(n−1)维面计数得(n−1)f(n)≤2n f(n−1)，故d_n=f(n)/(n2^{n−1})非增，结合d_n≥1/2，极限存在；这只核标准基线，不决定极限恰为1/2。"
+        },
+        {
+          "subquestion": "有限维特例：f(9)≥1532",
+          "value": "partial",
+          "note": "本轮自写Python独立核验固定边表的1532条边均合法且唯一、两种C4判据及负控均通过。这只给Q9有限下界。MPR1994原文能量可换算相同数值，2026不能记成首次突破；未证明该数值最优。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/Bil812/erdos86-q9-c4/blob/1bd61f914cac4a8f61a3e5c6d29712b13a5992c8/lean/Q9Witness.lean"
+      ],
+      "note": "只覆盖：特例"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "本回执仍绑定原card_rev=991064fa6de907a9，未改题卡。可恢复的原意为∀ε>0∃N∀n≥N，f(n)≤(1/2+ε)n2^(n−1)，但卡面未绑定的≥(1/2+o(1))强制阈值、没有渐近项的0.60318背景界及“一个更密图即可推翻”的验收均需修正。修订正式量词/验收须新card_rev。本轮小例只否定不加限定的卡面文字，不是原渐近猜想的反例。",
+      "evidence_ids": [
+        "Q0208-ORIGIN-1984",
+        "s0208-baber2012",
+        "Q0208-SMALLCASES",
+        "Q0208-COM-FC"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "规范化后的渐近主问题",
+      "math_status": "部分进展",
+      "scope_note": "令d_n=f(n)/(n2^(n−1))，问lim d_n=1/2。已核经典渐近上下界、有限维证书及新n7声明，本次四路线有界查新未取得全主问题的可验证证明或固定正密度差反例族。单个n的最优、有限多个更密图及余量c/√n均不关闭该命题。",
+      "evidence_ids": [
+        "Q0208-ORIGIN-1984",
+        "s0208-baber2012",
+        "s0208-bhn1995",
+        "s0208-zhou2026"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "渐近上界",
+      "math_status": "部分进展",
+      "scope_note": "Baber v2 Thm4.1：lim f(n)/(n2^(n−1))≤0.60318；BHLL较弱界0.6068。两者都是极限密度界。",
+      "evidence_ids": [
+        "s0208-baber2012",
+        "s0208-bhll2012"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "构造下界",
+      "math_status": "部分进展",
+      "scope_note": "BHN官方摘要给c=0.45对所有n≥9；n=4^r时可用c=0.5。尚未取得全文。余量趋零，不反驳主问。",
+      "evidence_ids": [
+        "s0208-bhn1995"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "n=7精确值",
+      "math_status": "完整证明/反例声明待核",
+      "scope_note": "2026-11-20预印本声称f(7)=304，覆盖 unrestricted C4-free 子图。已获完整稿并核关键归约；局部SAT证书未在本学术路线独立复跑，须另作二审/验证。与Minamoto仅g(7)=304的子类结果不同。 本回执最终保留完整证明声明待核状态；作者/他方日志不等于本轮重放。",
+      "evidence_ids": [
+        "s0208-zhou2026"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "odd-square子类及Q8有限下界",
+      "math_status": "仅特例",
+      "scope_note": "Minamoto v5的g6=132,g7=304,g8=682限奇数方形相交边集；给f8≥682，不给f8=682。其旧部分声明已明示更正。",
+      "evidence_ids": [
+        "s0208-minamoto2026v5",
+        "s0208-minamoto-corrections"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Q9的1532数值优先权",
+      "math_status": "仅特例",
+      "scope_note": "由MPR1994原文能量值及其Hamiltonian换算已得到f9≥1532的旧数值声明；2026显式边表/独立证书的贡献不能记成1532数值首创。未据有限维值推断渐近结论。",
+      "evidence_ids": [
+        "s0208-mpr1994"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "题卡上界量词",
+      "math_status": "题面有误",
+      "scope_note": "“已知f(n)≤0.60318·n2^(n−1)”若按无附加条件读为所有n即错。原文是极限密度；需补o(1)或∀ε>0充分大n。n=2的C4删一边保留3边即否定裸界。",
+      "evidence_ids": [
+        "s0208-baber2012",
+        "s0208-bhll2012"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "n=1,2,3精确小例及渐近口径边界（本轮独立核验）",
+      "math_status": "仅特例",
+      "scope_note": "实际穷尽n=1、2、3时分别2、16、4096个边子集，得到f(1)=1、f(2)=3、f(3)=9，密度分别1、3/4、3/4；最大见证另用公共邻居数≤1检查。它们表明未限定n的f(n)≤0.60318·n2^{n−1}不成立，也表明单个密度高于1/2的图不是渐近反例。固定n的强制C4门槛是f(n)+1条边而不是f(n)条边。没有进行n=8搜索或计算。 本轮手核基线：n≥2时保留下端Hamming权重为偶数的所有边，每个Q2面分跨相邻两层，最多保留其两条边，故C4-free；边数Σ_{k偶}(n−k)C(n,k)=n·2^{n−2}。Q_n中每个C4是一个二维坐标面，因为长度4闭路的每个翻转坐标须出现偶数次且无立即折返。另对2n个(n−1)维面计数得(n−1)f(n)≤2n f(n−1)，故d_n=f(n)/(n2^{n−1})非增，结合d_n≥1/2，极限存在；这只核标准基线，不决定极限恰为1/2。",
+      "evidence_ids": [
+        "Q0208-SMALLCASES"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限维特例：f(9)≥1532",
+      "math_status": "仅特例",
+      "scope_note": "本轮自写Python独立核验固定边表的1532条边均合法且唯一、两种C4判据及负控均通过。这只给Q9有限下界。MPR1994原文能量可换算相同数值，2026不能记成首次突破；未证明该数值最优。",
+      "evidence_ids": [
+        "Q0208-COM-Q9CERT",
+        "Q0208-INDEPENDENT-ARCHIVE",
+        "s0208-mpr1994",
+        "Q0208-COM-PRIORITY"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "主问题形式化与Q9计算谓词",
+      "math_status": "部分进展",
+      "scope_note": "Google文件仅主问题陈述/sorry；Q9作者Lean主定理为固定列表长度、边合法性、c4free布尔谓词合取，本轮只静态读源码和作者日志，没有本轮Lean构建。Nodup与图论含义由本轮Python另核，不能代称形式化已通过。",
+      "evidence_ids": [
+        "Q0208-COM-FC",
+        "Q0208-COM-Q9LEAN",
+        "Q0208-INDEPENDENT-ARCHIVE"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-06-000208-ROOT-01",
+      "route": "原题与出处",
+      "site": "Erdos Problems",
+      "query": "open https://www.erdosproblems.com/86",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.erdosproblems.com/86",
+      "note": "页面工具报受限网址；没有由该次请求读到原文。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-02",
+      "route": "原题与出处",
+      "site": "搜索引擎system2",
+      "query": "Erdos problem 86 hypercube square free 0.60318",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中86正文、历史、latex及forum索引；也命中Baber和BHLL原文入口。搜索摘要内Formalised No及旧页面日期不作为实时状态。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-03",
+      "route": "原题与出处",
+      "site": "Erdos Problems",
+      "query": "open https://erdosproblems.com/86",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://erdosproblems.com/86",
+      "note": "网页工具不可访问/受限，索引摘要与全文分开登记。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-04",
+      "route": "原题与出处",
+      "site": "Erdos Problems",
+      "query": "open https://www.erdosproblems.com/history/86",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.erdosproblems.com/history/86",
+      "note": "网页工具不可访问/受限，索引摘要与全文分开登记。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-05",
+      "route": "原题与出处",
+      "site": "Erdos Problems",
+      "query": "open https://www.erdosproblems.com/forum/thread/86",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.erdosproblems.com/forum/thread/86",
+      "note": "网页工具不可访问/受限，索引摘要与全文分开登记。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-06",
+      "route": "原题与出处",
+      "site": "搜索引擎system1",
+      "query": "\"Erdős\" \"Problems and results in combinatorial analysis\" \"1991\" hypercube",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://ftp.gwdg.de/pub/EMIS/classics/Erdos/cit/84005094.htm",
+      "note": "命中1991书评/二手目录的397–406页和渐近问题转述；不是原文已阅。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-07",
+      "route": "代码、公开 AI 和社区",
+      "site": "搜索引擎system1",
+      "query": "\"Erdos 86\" solved hypercube; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中有限维ILP/公开证书及EPaDay旧1531索引，未从摘要认定主问题已解决。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-08",
+      "route": "原题与出处",
+      "site": "搜索引擎system2",
+      "query": "site:renyi.hu/~p_erdos/ \"1991\" \"397\" \"406\"",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "未返回所找1991原稿的可核定位；不表示不存在原稿。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-09",
+      "route": "原题与出处",
+      "site": "搜索引擎system2",
+      "query": "site:erdosproblems.com \"Er91\" \"1991-\"",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "未定位所找1991原稿。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-10",
+      "route": "原题与出处",
+      "site": "Erdos Problems",
+      "query": "open https://www.erdosproblems.com/latex/86",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://www.erdosproblems.com/latex/86",
+      "note": "工具受限/robots阻挡；只读到先前搜索索引。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-11",
+      "route": "原题与出处",
+      "site": "Erdos Problems/urllib",
+      "query": "GET https://www.erdosproblems.com/86",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://www.erdosproblems.com/86",
+      "note": "直接读取HTTP403；没有取得正文，不用该请求填原文已阅。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-12",
+      "route": "原题与出处",
+      "site": "Rényi Erdős论文档案",
+      "query": "open https://www.renyi.hu/~p_erdos/ ; click Erdos.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.renyi.hu/~p_erdos/Erdos.html",
+      "note": "读取作者论文目录，页面可见范围到1989；目录不是1991原文。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-13",
+      "route": "原题与出处",
+      "site": "Rényi论文目录内查找",
+      "query": "find 397--406 ; 1991-31 ; Problems and results in combinatorial analysis",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.renyi.hu/~p_erdos/Erdos.html",
+      "note": "目标1991条目未定位，同名检到1978条目，不能同名即当同题。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-14",
+      "route": "原题与出处",
+      "site": "搜索引擎system1",
+      "query": "\"Erdos\" \"1991-31.pdf\"",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "未定位目标1991原稿。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-15",
+      "route": "原题与出处",
+      "site": "搜索引擎system1",
+      "query": "\"Problems and results in combinatorial analysis and combinatorial number theory\" \"1991\" pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://matwbn.icm.edu.pl/ksiazki/aa/aa81/aa8142.pdf",
+      "note": "论文总目录索引含91.08、397–406；没有取得1991正文。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-16",
+      "route": "原题与出处",
+      "site": "Rényi原稿路径试读",
+      "query": "open https://www.renyi.hu/~p_erdos/1991-31.pdf",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.renyi.hu/~p_erdos/1991-31.pdf",
+      "note": "据目录线索尝试路径但不可访问；不把试读路径作为已验证来源。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-17",
+      "route": "原题与出处",
+      "site": "Rényi原稿路径试读",
+      "query": "open https://www.renyi.hu/~p_erdos/1991-08.pdf",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.renyi.hu/~p_erdos/1991-08.pdf",
+      "note": "据目录线索尝试路径但不可访问；不把试读路径作为已验证来源。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-18",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/Bil812",
+      "query": "open fixed README 1bd61f914cac4a8f61a3e5c6d29712b13a5992c8",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://github.com/Bil812/erdos86-q9-c4/blob/1bd61f914cac4a8f61a3e5c6d29712b13a5992c8/README.md",
+      "note": "根流程网页open DisabledError；社区路线另已经API取得固定源码，两者分别登记。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-19",
+      "route": "代码、公开 AI 和社区",
+      "site": "EPaDay项目报告",
+      "query": "open https://erdosproblemaday.com/day/86-hypercube-q9-1531",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://erdosproblemaday.com/day/86-hypercube-q9-1531",
+      "locator": "19 Oct 2026 Update；原11 Aug条目",
+      "note": "读到1532数值优先权更正、两份有限边表复核及仅显式证书贡献；不是渐近证明。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-20",
+      "route": "原题与出处",
+      "site": "Erdős1978原稿",
+      "query": "open https://combinatorica.hu/~p_erdos/1978-36.pdf",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://combinatorica.hu/~p_erdos/1978-36.pdf",
+      "note": "原文访问超时；不凭同名论文认定最早出处。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-21",
+      "route": "学术",
+      "site": "arXiv/Baber原文",
+      "query": "open https://arxiv.org/pdf/1201.3587 ; find Theorem 4.1 ; find [11]",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1201.3587v2",
+      "locator": "pp1–2定义π_e；p9 Thm4.1；p17 Ref11",
+      "note": "确认0.60318是极限密度界，找到Erdős1984原文入口；未执行原稿附带SDP证书。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-22",
+      "route": "原题与出处",
+      "site": "Rényi论文目录",
+      "query": "find On some problems in graph theory",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.renyi.hu/~p_erdos/Erdos.html",
+      "locator": "1984-11条目",
+      "note": "条目与Baber Ref11一致，随后成功读取原PDF。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-23",
+      "route": "原题与出处",
+      "site": "Erdős1984原稿",
+      "query": "open https://www.renyi.hu/~p_erdos/1984-11.pdf ; find cube ; screenshot page index7",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.renyi.hu/~p_erdos/1984-11.pdf#page=8",
+      "locator": "印刷p8，§I问题10",
+      "note": "PDF文字和截图交叉核对：Q_n有n2^(n−1)边，问(1/2+ε)密度强制C4，且半数边不够。原稿未在该短段展开N(ε)，依其渐近语境明确量词，不声称已证明。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-24",
+      "route": "学术",
+      "site": "arXiv/MPR1994原稿",
+      "query": "open https://arxiv.org/pdf/cond-mat/9410089 ; find 494792",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/cond-mat/9410089v1",
+      "locator": "p3 Eq3–4及p4 D=9数值",
+      "note": "根流程再次读取全受挫符号约束与D9能量；由公式归一化推出1532是本轮数学换算，不冒充原稿直接使用图论数值措辞。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-000208-ROOT-25",
+      "route": "学术",
+      "site": "arXiv/Zhou等2026",
+      "query": "open https://arxiv.org/html/2611.27284v1 ; read §§1–4.2/AppendixA",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2611.27284v1",
+      "locator": "Thm1.1；Lemmas3.2–3.4；Prop3.5；§4.2；AppendixA",
+      "note": "根流程核了归约的适用范围和20≤18最终矛盾、A/R0/R1与21份证书依赖；未本轮复跑约3.8GiB反驳轨迹，不能用作者日志充作本轮全证。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web search / system2",
+      "query": "Baber 2012 hypercube C4 free 0.60318 Balogh Hu Lidicky Liu",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位 Baber 1201.3587 与 BHLL 1201.0209；后续直接读 arXiv 原稿。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web search / system2",
+      "query": "Brass Harborth Nienborg 1995 C4 free hypercube lower bound",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位 Wiley 官方摘要及 Minamoto 2603.29127；搜索摘要不当作全文。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/1201.3587",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "核官方版本史：v1 2012-01-17，v2 2012-11-13，附件有 C++ 与数据。",
+      "url": "https://arxiv.org/abs/1201.3587",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/1201.0209",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "核 v1 2011-12-31、v2 2012-05-09 及正式 DOI；摘要简写不可取代正文极限定义。",
+      "url": "https://arxiv.org/abs/1201.0209",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者网页",
+      "query": "open https://lidicky.name/pub/c4free_cube.pdf",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "note": "HTTP 403；改用已定位 arXiv 正文，未反复重试。",
+      "url": "https://lidicky.name/pub/c4free_cube.pdf",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Wiley",
+      "query": "open https://onlinelibrary.wiley.com/doi/abs/10.1002/jgt.3190190104",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "官方摘要明确 n=4^r 与 all n≥9 两个下界；正文未取得。",
+      "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/jgt.3190190104",
+      "locator": "Abstract",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2603.29127",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "确认 v5 2026-08-28；现标题及摘要已限缩为 odd-square 子类和证书贡献。",
+      "url": "https://arxiv.org/abs/2603.29127",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/cond-mat/9410089",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "核 v1 1994-10-25，作者 Marinari–Parisi–Ritort、正式 DOI；后续读原 PDF。",
+      "url": "https://arxiv.org/abs/cond-mat/9410089",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/pdf/1201.3587v2",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "版本化 PDF 入口 DisabledError；随后不带版本的官方 PDF 成功且页眉为 v2。",
+      "url": "https://arxiv.org/pdf/1201.3587v2",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/pdf/1201.0209v2",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "版本化 PDF 入口 DisabledError；随后不带版本的官方 PDF 成功且页眉为 v2。",
+      "url": "https://arxiv.org/pdf/1201.0209v2",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/html/2603.29127v5; find \"6.1 Definition\", \"1532\", \"6.2 Exact\", \"0.497\", \"Marinari\"; open lines 266,405",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "已读摘要、修订说明及 §6 相关正文。1532 与 0.497 的文本 find 未命中，不等于无相关旧结果；D9 换算另由 MPR 原文完成。这里只给有限维下界及 odd-square 子类最优，不解决渐近主问。",
+      "url": "https://arxiv.org/html/2603.29127v5",
+      "locator": "导言修订说明；§6.1–6.2，尤其能量与边数换算",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/pdf/cond-mat/9410089; find \"0.494792\", \"Table\"; open lines 109,118; screenshot page index 3",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "PDF 共13页；find 带前导0未命中，原文实际为 −.494792；随后正文读取和第4页截图确证 D9 达到 −380 的整数尺度值。读 Eq3 与 D8/D9 段完成边数换算；未取得当年机器配置或见证。",
+      "url": "https://arxiv.org/pdf/cond-mat/9410089",
+      "locator": "原 PDF pp3–4，Eq.(3)，D8/D9 段",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Wiley",
+      "query": "open https://onlinelibrary.wiley.com/doi/pdf/10.1002/jgt.3190190104",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "PDF 地址重定向摘要网页；不能报为全文已阅。",
+      "url": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/jgt.3190190104",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/pdf/1201.3587; find \"Theorem 4.1\", \"lim\"; open line 15; screenshot page index 0",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "已读极限定义、背景及 Thm4.1。find lim 单次未命中，但定位阅读得到定义。PDF 内排版日期2018不作新版本日期，版本以 arXiv 页眉/历史 v2 2012-11-13 为准。未复跑附件 C++ 证书。",
+      "url": "https://arxiv.org/pdf/1201.3587",
+      "locator": "pp1–2 π_e 定义；p9 Theorem4.1",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/pdf/1201.0209; find \"Theorem 1\", \"lim\"; open line 20; screenshot page index 1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "已读 π_Q 极限定义、Thm1及 §4 计算方法。p2 说明0.6068也由 Baber 独立取得并最早见其2011年3月博士论文；这不等于0.60318已在2011年。未复跑计算附件。",
+      "url": "https://arxiv.org/pdf/1201.0209",
+      "locator": "pp1–2 定义与 Thm1；§4",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web search / system1",
+      "query": "\"C4\" \"hypercube\" \"2026\" \"Erdős\" proof [recency=730]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中新近2611.27284的n7精确值完整证明候选，已追到官方全文。其他命中为2026有限证书及旧界；未取得渐近全命题完整解声明。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web search / system1",
+      "query": "\"Baber\" \"Turán densities of hypercubes\" erratum correction withdrawn",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中原论文索引/摘要，未取得具体勘误或撤回声明；本次负面检索不证明不存在勘误。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web search / system1",
+      "query": "\"Brass\" \"Harborth\" \"Nienborg\" 1995 correction lower bound",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中官方摘要与题集转引，未取得具体勘误；准确量词以官方摘要为限。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "DOI / Elsevier",
+      "query": "open https://doi.org/10.1016/j.ejc.2013.06.003",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "转至 linkinghub.elsevier.com 的正式刊发入口不可访问；使用官方 arXiv v2 正文，刊年2014由原论文书目核对。",
+      "url": "https://doi.org/10.1016/j.ejc.2013.06.003",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2603.29127v1",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "核旧 v1 标题“New Lower Bounds”及304/680原始声称；版本史指向v5，不把旧摘要当现状。",
+      "url": "https://arxiv.org/abs/2603.29127v1",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "搜索命中镜像",
+      "query": "open https://borowiecki.dev/pdf/2611.27284",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "TimeoutError；随后官方 arXiv abs/html/PDF 成功，不依赖该镜像。",
+      "url": "https://borowiecki.dev/pdf/2611.27284",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2611.27284",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "确认唯一公开版本 v1 2026-11-20，作者6人，命题仅 f(7)=304，非 Erdős86 渐近结案。",
+      "url": "https://arxiv.org/abs/2611.27284",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/html/2611.27284v1; find \"github\", \"4.2.\", \"Zenodo\", \"doi\"; open lines 120,226,138,174,282,296",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "已读 Thm1.1、§2–4 数学归约与 Appendix A 对称/布尔编码。Zenodo 未命中；实际证书在 GitHub。核关键计数和范围，未独立复跑21份反驳，未把作者报告的 drat-trim 复核说成群星复跑。",
+      "url": "https://arxiv.org/html/2611.27284v1",
+      "locator": "Thm1.1；Lemmas3.1–3.4，Prop3.5，§4.1–4.2，Appendix A",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/pdf/2611.27284",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "官方9页完整稿已取得；数学对象为任意 C4-free Q7 子图，不限 odd-square。",
+      "url": "https://arxiv.org/pdf/2611.27284",
+      "locator": "pp1–9",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web search / system1",
+      "query": "\"2611.27284\" correction erratum withdrawal [recency=30]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检索命中官方条目及镜像；截至查询未找到具体撤回/勘误，不能据此断言已同行复核。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web search / system1",
+      "query": "\"The Four-Cycle Extremal Number of the Seven-Cube\" review [recency=30]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检索命中原稿/索引，未取得独立同行数学审查报告。官方版本史仅v1；搜索索引的Nov23更新不视作v2。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-01",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search / google-deepmind/formal-conjectures",
+      "query": "86；topn=10",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "在10条返回中定位ErdosProblems/86.lean，Green86及其他数字命中不属于本题。",
+      "result_count": 10,
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-02",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search / google-deepmind/formal-conjectures",
+      "query": "hypercube；topn=20",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "定位86.lean及Hypercube图基础文件；随后读取86完整文件。",
+      "result_count": 14,
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-03",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system1",
+      "query": "\"Erdos\" \"86\" \"hypercube\" proof；recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "找到问题页、有限Q9证书及代码；原题渐近声明与有限维声明需分开。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-04",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system1",
+      "query": "\"Erdős 86\" Lean AI",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "找到Google题面和AI辅助Q9公开证书；随后取得原代码及固定版本。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-05",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system1",
+      "query": "\"hypercube\" \"C4-free\" \"github\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位rafalwrona Q9–Q15、Bil812 Q9=1532、Mendoza有限ILP。搜索Bil812旧摘要未包含优先权纠正，后读当前README修正。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-06",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "FormalConjectures/ErdosProblems/86.lean @ 5bd8bfb9def462c19a87d2d275af3db3341dc727",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/FormalConjectures/ErdosProblems/86.lean",
+      "note": "定理给∀ε>0、最终所有n、所有超立方体子图的渐近表达，末尾sorry；只有题面，不是证明。",
+      "locator": "theorem Erdos86.erdos_86，第45–50行",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-07",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub commits API / Bil812/erdos86-q9-c4",
+      "query": "GET commits/HEAD",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/Bil812/erdos86-q9-c4/commit/1bd61f914cac4a8f61a3e5c6d29712b13a5992c8",
+      "note": "锁定commit 1bd61f914cac4a8f61a3e5c6d29712b13a5992c8；提交说明已纠正1994年1532数值优先权，当前版本为显式证书贡献。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-08",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub commits API / rafalwronapl/erdos86-hypercube-c4",
+      "query": "GET commits/HEAD",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/rafalwronapl/erdos86-hypercube-c4/commit/7b8554bf3e7562a4bc1fb217757e709ba63c3e26",
+      "note": "锁定commit 7b8554bf3e7562a4bc1fb217757e709ba63c3e26（2026-08-20），用于后续README固定版本。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-09",
+      "route": "代码、公开 AI 和社区",
+      "site": "Erdős Problem a Day / Web open",
+      "query": "GET https://erdosproblemaday.com/day/86-hypercube-q9-1531",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://erdosproblemaday.com/day/86-hypercube-q9-1531",
+      "note": "完整页面含19Oct更正：1531被显式1532证书替代；1532数值1994已报。网站声称独立核证书，本轮未把其验证当亲自复跑。",
+      "locator": "Update, 19 October 2026；Scope",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-10",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub网页 / Web open",
+      "query": "GET https://github.com/Bil812/erdos86-q9-c4",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/Bil812/erdos86-q9-c4",
+      "note": "当前README明确本项目不是新数值下界、不是f(9)最优值或渐近解；AI全过程及native_decide信任项已披露。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-11",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file / Bil812",
+      "query": "edges_q9_1532.txt @ 1bd61f914cac4a8f61a3e5c6d29712b13a5992c8；encoding=base64",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/Bil812/erdos86-q9-c4/blob/1bd61f914cac4a8f61a3e5c6d29712b13a5992c8/edges_q9_1532.txt",
+      "note": "取得原始13128字节边表，保持CRLF并核SHA256；未执行仓库验证器。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-12",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file / Bil812",
+      "query": "lean/Q9Witness.lean @ 1bd61f914cac4a8f61a3e5c6d29712b13a5992c8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Bil812/erdos86-q9-c4/blob/1bd61f914cac4a8f61a3e5c6d29712b13a5992c8/lean/Q9Witness.lean",
+      "note": "完整源码静态核：1532对数据与原边表逐项相同；无sorry/admit或手写axiom。主定理仅 concrete edges.length/all-valid/c4free布尔命题，不是一般n渐近题；未显式编码Nodup及抽象ex桥梁，本轮Python另核了去重与图论判据。",
+      "locator": "defs validEdge/hasEdge/squareOK/c4free；theorem ex_Q9_C4_at_least_1532，第348–350行",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-13",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file / Bil812",
+      "query": "lean/AXIOMS.log @ 1bd61f914cac4a8f61a3e5c6d29712b13a5992c8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Bil812/erdos86-q9-c4/blob/1bd61f914cac4a8f61a3e5c6d29712b13a5992c8/lean/AXIOMS.log",
+      "note": "这是作者记录：Lean4.35.0、3个native_decide evaluation axioms。本轮未运行Lean，不写形式化独立复跑通过。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-14",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file / Bil812",
+      "query": "lean/CHECK.log @ 1bd61f914cac4a8f61a3e5c6d29712b13a5992c8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Bil812/erdos86-q9-c4/blob/1bd61f914cac4a8f61a3e5c6d29712b13a5992c8/lean/CHECK.log",
+      "note": "作者正控exit0、补边负控exit1日志已阅；本轮不冒称重现该日志。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-15",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file / rafalwrona",
+      "query": "README.md @ 7b8554bf3e7562a4bc1fb217757e709ba63c3e26",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/rafalwronapl/erdos86-hypercube-c4/blob/7b8554bf3e7562a4bc1fb217757e709ba63c3e26/README.md",
+      "note": "读完整README：Q9–15有限显式证书下界1505/3304/7164/15372/32856/69909/148126；仅Q9–11高于其所比较BHN一般估计。未取得并复跑该七份边表。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-16",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file / Bil812",
+      "query": "README.md @ 1bd61f914cac4a8f61a3e5c6d29712b13a5992c8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/Bil812/erdos86-q9-c4/blob/1bd61f914cac4a8f61a3e5c6d29712b13a5992c8/README.md",
+      "note": "固定版本核对Claim/Independent verification/Scope/Priority/Provenance等段；数值1532为1994已报告，2026是显式证书。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-17",
+      "route": "代码、公开 AI 和社区",
+      "site": "本轮本地独立Python核证书",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002683〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "本轮自写独立程序，不导入/运行作者验证器。1532唯一合法边、哈希匹配；4608面无4边面，1边784面/3边3824面；第二共同邻居法最大1，共7648端点对；三类负控均拒绝。只证f(9)≥1532。",
+      "locator": "q9_1532_independent_result.json；verify_q9_1532_independent.py",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-18",
+      "route": "代码、公开 AI 和社区",
+      "site": "本轮本地源码静态核对",
+      "query": "抽取lean/Q9Witness.lean def edges对照原边表；检索sorry/admit/手写axiom；核主定理与AXIOMS.log",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "1532数据逐项一致；保存q9_1532_lean_static_audit.json。未执行Lean；计算谓词主定理没有直接声明SimpleGraph极值量。",
+      "locator": "q9_1532_lean_static_audit.json",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-19",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/zhelizhou/hypercube-c4/commits/13c4ac5b2269",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/zhelizhou/hypercube-c4/commits/13c4ac5b2269",
+      "note": "固定完整commit 13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03；2026-11-20T08:06:31Z。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-20",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/zhelizhou/hypercube-c4/releases/tags/q7-artifacts-v0.1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/zhelizhou/hypercube-c4/releases/tags/q7-artifacts-v0.1",
+      "note": "取得release三项asset大小/平台SHA256；没有下载archive或本地复核这些hash。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-21",
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/html/2611.27284v1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2611.27284v1",
+      "note": "读取Theorem1.1及有限Q7证明范围，主张无受限ex(Q7,C4)=304。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-22",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/zhelizhou/hypercube-c4/contents/q7?ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/zhelizhou/hypercube-c4/contents/q7?ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "note": "取得目录条目、路径、blob元数据。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-23",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/zhelizhou/hypercube-c4/git/ref/tags/q7-artifacts-v0.1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/zhelizhou/hypercube-c4/git/ref/tags/q7-artifacts-v0.1",
+      "note": "tag为轻量标签，目标763ce694a4855e8920661ceed503b953c831de3c，与paper commit不同。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-24",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定源码",
+      "query": "fetch_file repository_full_name=zhelizhou/hypercube-c4 path=q7/README.md ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/zhelizhou/hypercube-c4/blob/13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03/q7/README.md",
+      "note": "默认verify.py只核304见证和CNF hash；--traces核trace hash；--replay才检查RUP。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-25",
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/html/2611.27284v1 at section4.2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2611.27284v1#S4.SS2",
+      "note": "核21个DRUP作者报告，A/R0/R1为1/10/10；没有把作者检查视为本轮重跑。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-26",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定源码",
+      "query": "fetch_file repository_full_name=zhelizhou/hypercube-c4 path=q7/verify.py ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/zhelizhou/hypercube-c4/blob/13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03/q7/verify.py",
+      "note": "静态阅读全文；未执行该脚本。--replay调用PowerShell检查器且核checked_additions。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-27",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定源码",
+      "query": "fetch_file repository_full_name=zhelizhou/hypercube-c4 path=q7/generate_cnf.py ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/zhelizhou/hypercube-c4/blob/13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03/q7/generate_cnf.py",
+      "note": "静态读A编码和R0/R1重建调用及hash匹配；未运行CNF再生成。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-28",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定源码",
+      "query": "fetch_file repository_full_name=zhelizhou/hypercube-c4 path=q7/drat-trim-replay.md ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/zhelizhou/hypercube-c4/blob/13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03/q7/drat-trim-replay.md",
+      "note": "作者报告21条s VERIFIED/zero RAT，工具revision 2e3b2dc0ecf938addbd779d42877b6ed69d9a985；本轮未执行。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-29",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/zhelizhou/hypercube-c4/contents/q7/instances?ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/zhelizhou/hypercube-c4/contents/q7/instances?ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "note": "21个CNF目录条目及审计/manifest文件元数据；未拉取21个CNF正文。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-30",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/zhelizhou/hypercube-c4/contents/q7/tools?ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/zhelizhou/hypercube-c4/contents/q7/tools?ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "note": "取得检查器和tests目录元数据。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-31",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定源码",
+      "query": "fetch_file repository_full_name=zhelizhou/hypercube-c4 path=q7/instances/local_rigidity_final_audit.json ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/zhelizhou/hypercube-c4/blob/13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03/q7/instances/local_rigidity_final_audit.json",
+      "note": "读取全部审计JSON；scope明确该final audit没有重跑既有成功RUP checks，且不等于完整Q7服务验证。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-32",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定源码",
+      "query": "fetch_file repository_full_name=zhelizhou/hypercube-c4 path=q7/instances/star_rigidity_certificate_manifest.json ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/zhelizhou/hypercube-c4/blob/13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03/q7/instances/star_rigidity_certificate_manifest.json",
+      "note": "读取20份R0/R1的manifest；与final audit按prefix比对5字段完全一致，这只是元数据一致性检查。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-33",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定源码",
+      "query": "fetch_file repository_full_name=zhelizhou/hypercube-c4 path=q7/tools/check_drup.ps1 ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/zhelizhou/hypercube-c4/blob/13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03/q7/tools/check_drup.ps1",
+      "note": "静态读PowerShell/C# RUP检查、范围检验、只在验证后加入及最终空子句；未执行。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-34",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定源码",
+      "query": "fetch_file repository_full_name=zhelizhou/hypercube-c4 path=q7/tools/check_drup_history_fast.ps1 ref=13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/zhelizhou/hypercube-c4/blob/13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03/q7/tools/check_drup_history_fast.ps1",
+      "note": "静态读active/history回退；history由严格前缀已验证子句构成，忽略删除；未执行。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R3-06-000208-COM-35",
+      "route": "代码、公开 AI 和社区",
+      "site": "本轮本地元数据核对",
+      "query": "按prefix比较final_audit与manifest的cnf_sha256/proof_sha256/proof_lines/checked_additions/checker_report；合计作者报告additions",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "q7_static_metadata_audit.json",
+      "note": "20条共享元数据无差异；加A合计14205184 additions。没有核CNF/DRUP实际字节或重放证明。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-0208-D01",
+      "route": "库内查重",
+      "site": "包内固定全库查重简索引；本地rg",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002684〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际原始行检索也命中card_rev中的十六进制c4等噪声；未据这些行判同题，后续改为仅题名和别名字段筛选。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-0208-D02",
+      "route": "库内查重",
+      "site": "包内固定全库查重简索引；Python字段筛选",
+      "query": "re.search('hypercube|Q_?n|Q_?8|超立方|立方体|4.?cycle|C_?4|四圈|四环', title/title_en/aliases, re.I)；另核任务provenance.possible_duplicates中的QX-P-001623",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 19,
+      "note": "读取全部2469条固定索引；19条命中含路由、画法、序列符号等弱关联。选择000066、000235、000236、000012做完整版本正文对照，另强制核已有错链001623；标题不作为关系终判依据。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-0208-D03",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data 固定提交",
+      "query": "fetch_file problems/000/QX-P-000208.meta.json ; fetch_file problems/000/QX-P-000208.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000208.text.md",
+      "locator": "完整meta.json与完整text.md；题面、形式化、人话、原文摘录/备注及meta.acceptance.criteria",
+      "note": "两文件均取得；card_rev=991064fa6de907a9与固定索引一致。本题正文及metadata还与任务附件完全一致。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-0208-D04",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data 固定提交",
+      "query": "fetch_file problems/001/QX-P-001623.meta.json ; fetch_file problems/001/QX-P-001623.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001623.text.md",
+      "locator": "完整meta.json与完整text.md；题面、形式化、人话、原文摘录/备注及meta.acceptance.criteria",
+      "note": "两文件均取得；card_rev=e884bbd7e128f9b8与固定索引一致。001623实际为Erdős–Moser整数幂和方程，已排除同题；不为这条不相关错链强套“特例/同源不同问”关系。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-0208-D05",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data 固定提交",
+      "query": "fetch_file problems/000/QX-P-000066.meta.json ; fetch_file problems/000/QX-P-000066.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000066.text.md",
+      "locator": "完整meta.json与完整text.md；题面、形式化、人话、原文摘录/备注及meta.acceptance.criteria",
+      "note": "两文件均取得；card_rev=ab770e61983c1fe7与固定索引一致。候选旧状态和既有进展不作为本题本轮新证据。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-0208-D06",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data 固定提交",
+      "query": "fetch_file problems/000/QX-P-000235.meta.json ; fetch_file problems/000/QX-P-000235.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000235.text.md",
+      "locator": "完整meta.json与完整text.md；题面、形式化、人话、原文摘录/备注及meta.acceptance.criteria",
+      "note": "两文件均取得；card_rev=989d03ecd9d990f8与固定索引一致。候选旧状态和既有进展不作为本题本轮新证据。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-0208-D07",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data 固定提交",
+      "query": "fetch_file problems/000/QX-P-000236.meta.json ; fetch_file problems/000/QX-P-000236.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000236.text.md",
+      "locator": "完整meta.json与完整text.md；题面、形式化、人话、原文摘录/备注及meta.acceptance.criteria",
+      "note": "两文件均取得；card_rev=fe7963b2be652d25与固定索引一致。候选旧状态和既有进展不作为本题本轮新证据。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-0208-D08",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data 固定提交",
+      "query": "fetch_file problems/000/QX-P-000012.meta.json ; fetch_file problems/000/QX-P-000012.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000012.text.md",
+      "locator": "完整meta.json与完整text.md；题面、形式化、人话、原文摘录/备注及meta.acceptance.criteria",
+      "note": "两文件均取得；card_rev=5bd8cc5e4ed48520与固定索引一致。候选旧状态和既有进展不作为本题本轮新证据。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-0208-S01",
+      "route": "其他：独立小例核验",
+      "site": "本地Python 3.12.14，整数边集穷举",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002685〕",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "locator": "small_cases.py；small_case_results.json",
+      "note": "实际穷尽n=1、2、3时分别2、16、4096个边子集，得到f(1)=1、f(2)=3、f(3)=9，密度分别1、3/4、3/4；最大见证另用公共邻居数≤1检查。它们表明未限定n的f(n)≤0.60318·n2^{n−1}不成立，也表明单个密度高于1/2的图不是渐近反例。固定n的强制C4门槛是f(n)+1条边而不是f(n)条边。没有进行n=8搜索或计算。 通过两种枚举方式核对全部C4面，未运行证明助手。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "request_id": "QX-R3-06-0208-S02",
+      "route": "其他：题面边界审计",
+      "site": "本地固定题卡、独立量词推导与组合计数",
+      "query": "逐项比较题面≥(1/2+o(1))与形式化f(n)≤(1/2+o(1))；将渐近上界及其否定写成ε–N量词；手核奇偶层半边构造和(n−1)维面平均",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "locator": "statement_audit.json；task.json的card_text及acceptance.criteria",
+      "note": "原意可写为∀ε>0 ∃N ∀n≥N：f(n)≤(1/2+ε)n2^{n−1}；等价强制圈形式为在同一量词下e(H)>(1/2+ε)e(Q_n)⇒H含C4。符号o(1)不能在不说明存在/全称及选择方式时充当一个给定数值阈值；只将≥改为>仍未补完量词。若按任意趋零误差（包括0）理解原简写，会被上述半边构造否定；这不是对原意渐近上界的反驳。在存在适当误差的读法下，可把阈值取f(n)+1而表达同一渐近原意。 本轮手核基线：n≥2时保留下端Hamming权重为偶数的所有边，每个Q2面分跨相邻两层，最多保留其两条边，故C4-free；边数Σ_{k偶}(n−k)C(n,k)=n·2^{n−2}。Q_n中每个C4是一个二维坐标面，因为长度4闭路的每个翻转坐标须出现偶数次且无立即折返。另对2n个(n−1)维面计数得(n−1)f(n)≤2n f(n−1)，故d_n=f(n)/(n2^{n−1})非增，结合d_n≥1/2，极限存在；这只核标准基线，不决定极限恰为1/2。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "query_outcome": "not_applicable"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "Q0208-ORIGIN-1984",
+      "url": "https://www.renyi.hu/~p_erdos/1984-11.pdf#page=8",
+      "locator": "印刷p8，§I Graph theory问题10；PDF第8页文字及截图已核",
+      "version": "Erdős，Graph Theory and Combinatorics，Academic Press，1984，pp1–17；本轮2026-11-26读取",
+      "subquestions": [
+        "主问题",
+        "规范化后的渐近主问题"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "用C^(n)表示Q_n，询问半数加任意正ε比例的边是否足以强制C4；明确半数边本身不够。与规范化渐近命题同题，不支持把任意单个有限n密度大于1/2当反例。1984为本轮拿到并核对的最早正文；未证明史上最早。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q0208-EPADAY-CORRECTION",
+      "url": "https://erdosproblemaday.com/day/86-hypercube-q9-1531",
+      "locator": "19 Oct 2026 Update及原11 Aug条目",
+      "version": "页面19 Oct 2026更新；读取2026-11-26",
+      "subquestions": [
+        "有限维特例：f(9)≥1532",
+        "Q9证书的贡献与优先权"
+      ],
+      "role": "勘误",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "note": "项目说明1532数值已由1994论文报告，2026公开边表/独立脚本核验提供显式证书。报告方称核了两图但未核Lean；本轮只将自己实际核验的一份边表记独立通过。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "s0208-baber2012",
+      "url": "https://arxiv.org/pdf/1201.3587",
+      "locator": "pp1–2 π_e 定义；p9 Theorem4.1",
+      "version": "arXiv:1201.3587v2，2012-11-13；18页",
+      "subquestions": [
+        "渐近上界",
+        "题卡上界量词"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读，未核关键步骤",
+      "note": "原定理给极限边密度≤0.60318，换成 f(n) 须写(0.60318+o(1))n2^(n−1)，或对任意ε>0充分大n成立的0.60318+ε界。不是全部n的裸常数界；附件计算未独立复跑。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "s0208-bhll2012",
+      "url": "https://arxiv.org/pdf/1201.0209",
+      "locator": "p1 π_Q 定义；p2 Thm1及独立结果说明；§4",
+      "version": "arXiv:1201.0209v2，2012-05-09；v1 2011-12-31；正式刊发European J.Combin.35(2014),75–85,DOI10.1016/j.ejc.2013.06.003",
+      "subquestions": [
+        "渐近上界",
+        "结果时间线"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读，未核关键步骤",
+      "note": "0.6068是π_Q(C4)上界。Baber后续0.60318更强；2014是BHLL刊年，不是首次公开年。此处0.6068与Baber2011博士论文独立结果的优先信息来自BHLL正文，未另取博士论文。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "s0208-bhn1995",
+      "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/jgt.3190190104",
+      "locator": "Abstract；出版信息",
+      "version": "Journal of Graph Theory19(1)(1995),17–23，DOI10.1002/jgt.3190190104",
+      "subquestions": [
+        "构造下界"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "note": "官方摘要：n=4^r时f(n)≥(n+√n)2^(n−1)/2；所有n≥9时f(n)≥(n+0.9√n)2^(n−1)/2。密度余量分别为1/(2√n)、0.45/√n，均趋零，不能反驳本卡渐近主问。PDF入口只回摘要。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "s0208-mpr1994",
+      "url": "https://arxiv.org/pdf/cond-mat/9410089",
+      "locator": "p3 Eq.(3)及全受挫耦合定义；p4 D8/D9段",
+      "version": "arXiv:cond-mat/9410089v1，1994-10-25；正式J.Phys.A28(1995),327–334",
+      "subquestions": [
+        "有限维下界的早期出处",
+        "Q9的1532数值优先权"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "原文D9报告达到−.494792，并给同一尺度整数−380（目标−384）。用Eq3：N=512、√D=3、每点能量−380/768，得符号和S=760，正边数=(2304+760)/2=1532。每个方形符号积−1使正边子图C4-free。此为原文结果的本轮数学换算，非原文直接打印1532；当年未获显式边表，不声称复跑旧数值实验。D8原文另报告达到改进能量界。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "earliest_source",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "s0208-minamoto2026v5",
+      "url": "https://arxiv.org/html/2603.29127v5",
+      "locator": "摘要；§6.1–6.2，Definition7、Theorem1、能量换算",
+      "version": "arXiv:2603.29127v5，2026-08-28；55页；v1 2026-03-31",
+      "subquestions": [
+        "odd-square子类",
+        "有限维下界与优先权"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "有修订",
+      "review_status": "已读，未核关键步骤",
+      "note": "g(n)限每个方形保留1或3边，g≤f。v5声称g6=132,g7=304,g8=682并给证书；承认数值源于1979及1994/1995物理文献。g7/g8精确不能推成f7/f8精确；后续f7声明另列。未复跑其证书。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "s0208-minamoto-corrections",
+      "url": "https://arxiv.org/html/2603.29127v5",
+      "locator": "导言紧接摘要的版本更正段，HTML lines61–64；§9",
+      "version": "arXiv:2603.29127v5，2026-08-28；对v1–v4的显式更正",
+      "subquestions": [
+        "撤回/勘误",
+        "有限维声明边界"
+      ],
+      "role": "撤回/勘误",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "部分撤回",
+      "review_status": "已读，未核关键步骤",
+      "note": "v5撤回旧快速MIP证明f6≤132的说法，改为依赖Harborth–Nienborg旧上界；纠正目录Hamming范围与Q6度序列；旧BHN表超出参数域的数值改作域外标记。不是整篇撤回，亦不是渐近主问被反驳。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "partially_retracted",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "s0208-zhou2026",
+      "url": "https://arxiv.org/html/2611.27284v1",
+      "locator": "Theorem1.1；§3–4；AppendixA；9页完整PDF",
+      "version": "arXiv:2611.27284v1，2026-11-20；官方历史仅v1；作者Zheli Zhou,Haitong Ma,Ruofeng Yang,Tianzhi Ren,Kuan Yang,Shuai Li",
+      "subquestions": [
+        "n=7精确值"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Zheli Zhou等6人",
+      "claim_date": "2026-11-20",
+      "note": "Thm1.1声称任意C4-free Q7子图至多304边。归约用三项局部Q6排除结论与21份DRUP反驳；§4.2报告作者checker及drat-trim验证。已核关键计数/范围，未独立重放21份证书，不登记本轮验证通过。该有限维声明不蕴含渐近密度1/2。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q0208-COM-FC",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/FormalConjectures/ErdosProblems/86.lean",
+      "locator": "Erdos86.erdos_86，第45–50行",
+      "version": "commit 5bd8bfb9def462c19a87d2d275af3db3341dc727；blob 1fdc48c327c62ad64918391cd9752e7941589e4b；读取2026-11-26",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "∀ε>0 ∀ᶠn ∀H≤hypercube n，达到(1/2+ε) n2^(n−1)则含cycleGraph4，对应渐近猜想；证明体只有sorry，category research open。原卡formal_status none需区分为已有题面但没有这里的证明；本轮没有构建。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q0208-COM-Q9CERT",
+      "url": "https://github.com/Bil812/erdos86-q9-c4/blob/1bd61f914cac4a8f61a3e5c6d29712b13a5992c8/edges_q9_1532.txt",
+      "locator": "完整1532行边表；本轮verify_q9_1532_independent.py与q9_1532_independent_result.json",
+      "version": "commit 1bd61f914cac4a8f61a3e5c6d29712b13a5992c8；blob 28348b0b4e11d32451c2d179c2b24ac1d4113ee7；SHA256 d701bd189b9c79466089a2a1f8601c2fcbf82833f0a7c717938c35da1f52a8b1；读取/独立核验2026-11-26",
+      "subquestions": [
+        "有限维特例：f(9)≥1532"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "claimant": "Bil812账号发布；自述DeepSeek Harness/deepseek-flash代理制作",
+      "claim_date": "2026-10-18",
+      "note": "本轮Python3.12.14自写程序精确核：1532唯一合法Q9边、0重复、0非距离1边；4608方形面无C4；共同邻居法最大1；重复边/非边/补全方形负控均拒绝。此为本轮有限证书独立计算核验，不是Lean形式化复跑，也不证明最优或渐近反例。1532可由1994原文能量值按其归一化换算，原稿未直接使用该图论数值且旧配置未取得；2026贡献为显式证书。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q0208-COM-Q9LEAN",
+      "url": "https://github.com/Bil812/erdos86-q9-c4/blob/1bd61f914cac4a8f61a3e5c6d29712b13a5992c8/lean/Q9Witness.lean",
+      "locator": "validEdge第34–35行；c4free第244–248行；ex_Q9_C4_at_least_1532第348–350行；同目录AXIOMS.log和CHECK.log",
+      "version": "commit 1bd61f914cac4a8f61a3e5c6d29712b13a5992c8；blob d5bc3b131f925965cfe71728cc1d5060c14491a8；作者工具链Lean4.35.0/eb6cafb7290e8bd5f2937522d8d804f58f02bafc；读取2026-11-26",
+      "subquestions": [
+        "有限维Q9证书的计算谓词检查"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "Bil812/DeepSeek代理；作者日志报告exit0",
+      "claim_date": "2026-10-18",
+      "note": "无sorry/admit/手写axiom；数据与本轮核验边表逐项一致。主定理是edges.length=1532 ∧ edges.all validEdge=true ∧ c4free=true，不直接使用抽象SimpleGraph/ex量且无显式Nodup项；本轮Python另核数据唯一性和完整C4判据。作者#print axioms列Q9.edges_all_valid._native.native_decide.ax_1_1、Q9.edges_length._native.native_decide.ax_1_1、Q9.no_four_cycle_direct._native.native_decide.ax_1_1；属于native求值信任项。本轮未安装/构建/复跑Lean。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q0208-COM-PRIORITY",
+      "url": "https://github.com/Bil812/erdos86-q9-c4/blob/1bd61f914cac4a8f61a3e5c6d29712b13a5992c8/README.md",
+      "locator": "标题Claim；Independent verification；Relation to prior work；Scope and non-claims；Date, repository, versioning",
+      "version": "commit 1bd61f914cac4a8f61a3e5c6d29712b13a5992c8（API提交时间2026-10-23）；正文标2026-10-24纠正，tag v1.1；读取2026-11-26",
+      "subquestions": [
+        "Q9证书的贡献与优先权"
+      ],
+      "role": "勘误",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "note": "作者撤回新数值下界的旧表达：Marinari–Parisi–Ritort1994已报1532而未公开构型，2026项目提供显式可验边表。EPaDay1531页更新同样纠正。该文声称他方已核两图但未核Lean；本轮独立核验只覆盖主边表。旧搜索摘要仍显示更强措辞，取固定更新正文。 精确限定：1994原文报告能量值，本轮按其归一化换算为1532边的历史数值声明；旧显式边表未取得，不是原文直接打印1532。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q0208-COM-RAFAL",
+      "url": "https://github.com/rafalwronapl/erdos86-hypercube-c4/blob/7b8554bf3e7562a4bc1fb217757e709ba63c3e26/README.md",
+      "locator": "证书表；Relation To The BHN General Estimate；Independent Cross-Check；Disclosure",
+      "version": "commit 7b8554bf3e7562a4bc1fb217757e709ba63c3e26；blob bddc274f6f3f32603627920c36e078c8414ca46c；读取2026-11-26",
+      "subquestions": [
+        "有限维Q9–Q15显式证书"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "note": "本轮已读README及具体边表/校验器链接，未取得七份证书逐一核验。作者给下界1505、3304、7164、15372、32856、69909、148126（n9–15），并报告Minamoto独立稀疏共同邻居核验；只按公开声称登记。明确无n≥7最优或渐近结案声明；仅Q9–11改善所比BHN估计，Q12–15不改善。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q0208-COM-Q7PAPER",
+      "url": "https://arxiv.org/html/2611.27284v1",
+      "locator": "Theorem1.1；§4.2；§6",
+      "version": "arXiv:2611.27284v1，2026-11-20",
+      "subquestions": [
+        "有限维特例n=7"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Zheli Zhou, Haitong Ma, Ruofeng Yang, Tianzhi Ren, Kuan Yang, Shuai Li",
+      "claim_date": "2026-11-20",
+      "note": "公开声称无附加构型限制的ex(Q7,C4)=304；304下界已知，新增部分是排除305的全局上界。依赖A/R0/R1共21个Q6局部CNF反驳、轨道归约和组合论拼接。代码路线读取了声明及§4.2，本轮没有独立核完组合论证明或复跑21证书。该结论仅固定n=7，不证明或反驳渐近1/2猜想。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q0208-COM-Q7ARTIFACTS",
+      "url": "https://github.com/zhelizhou/hypercube-c4/releases/tag/q7-artifacts-v0.1",
+      "locator": "release assets；q7/README.md；GitHub tag reference",
+      "version": "paper源码commit 13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03；release于2026-11-18发布，tag目标763ce694a4855e8920661ceed503b953c831de3c",
+      "subquestions": [
+        "有限维特例n=7"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "固定源码与release标签不同，已分别记录。三个压缩证书的GitHub发布元数据：q7-a-traces.tar.zst: 20360933 bytes, sha256:2150d50e7cd788f2049364653f4886a0aa99d9cf48823a324ef891303b3ce583；q7-r0-traces.tar.zst: 448767281 bytes, sha256:5f53cd0e836ad4788bd4c5df13c08043c5495e5fb79dbc1be41d0a50172e8d97；q7-r1-traces.tar.zst: 878507000 bytes, sha256:5391d51f5cf6a09070542163fe565842a4874687701ee4b1d3d2469428cf42ee。总计1347635214 bytes。仅取得平台元数据，未下载这些压缩包，SHA256不是本轮计算值；无证书复跑。release正文指向paper commit下README。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q0208-COM-Q7CHECKERS",
+      "url": "https://github.com/zhelizhou/hypercube-c4/blob/13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03/q7/verify.py",
+      "locator": "q7/verify.py；tools/check_drup.ps1；tools/check_drup_history_fast.ps1；drat-trim-replay.md",
+      "version": "commit 13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03；verify.py blob8053cfb3698e6c022356932293be54ae481879e5；作者DRAT-trim revision2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+      "subquestions": [
+        "有限维特例n=7"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "静态读完整验证器。python3 q7/verify.py默认仅检查304边见证和21个CNF hash，不能据此宣称上界已核；--traces增加proof hash，--replay才用PowerShell7/C# RUP检查器重放。检查器在RUP通过后加入子句，检查变量界、要求有效空子句；history回退使用严格先前的已验证子句并忽略删除。作者另报DRAT-trim对21条均s VERIFIED且0 RAT，属作者使用第二软件的记录，不是本轮或独立第三方人员复核。本轮未执行verify/generator/checkers/DRAT-trim，也没有Lean形式证明。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q0208-COM-Q7MANIFEST",
+      "url": "https://github.com/zhelizhou/hypercube-c4/blob/13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03/q7/instances/local_rigidity_final_audit.json",
+      "locator": "root2_existing_report_reconfirmed；20个certificates；scope；配套star_rigidity_certificate_manifest.json",
+      "version": "commit 13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03；final_audit blob3196e8f114306e3e7beed05162803da369122282；manifest blob0290fd480c56e3a5229d22c1d4e5d27307965de0",
+      "subquestions": [
+        "有限维特例n=7"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "note": "本轮只比对两份JSON的20个prefix及cnf/proof hash、proof_lines、checked_additions、checker_report元数据：全部一致。A291482 + R04839460 + R19074242 =14205184次additions是作者报告的21条总数，非每条trace数。审计文件scope明确旧成功RUP检查未重跑，whole Q7 proof另需验证；manifest也明确仅两组局部刚性断言。此内部一致性核对不验证字节hash、证明语义或Q7全局归约。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q0208-SMALLCASES",
+      "url": "urn:qunxing:private-material",
+      "locator": "ZIP内QX-P-000208/small_cases.py、small_case_results.json；statement_audit.json",
+      "version": "本轮2026-11-26；Python3.12.14；script SHA256 8ffefe83fc62bbc4b234a7f61d5a87c6b2200ee622e066db546187e6003228bb",
+      "subquestions": [
+        "主问题",
+        "n=1,2,3精确小例及渐近口径边界（本轮独立核验）"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "完全穷尽2、16、4096个边子集得f1=1,f2=3,f3=9；坐标方形与四顶点子集交叉识别，极值见证另验共同邻居。小例支持澄清未限定的有限n上界，不是渐近半密度猜想反例。未运行n8搜索；不是证明助手通核。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q0208-INDEPENDENT-ARCHIVE",
+      "url": "urn:qunxing:private-material",
+      "locator": "ZIP内QX-P-000208/verify_q9_1532_independent.py、q9_1532_independent_result.json、community_sources/edges_q9_1532.txt及q9_1532_lean_static_audit.json",
+      "version": "本轮2026-11-26独立Python核验；上游commit1bd61f914cac4a8f61a3e5c6d29712b13a5992c8；边表SHA256 d701bd189b9c79466089a2a1f8601c2fcbf82833f0a7c717938c35da1f52a8b1",
+      "subquestions": [
+        "有限维特例：f(9)≥1532"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "1532合法唯一边，完整4608个坐标方形中784个含1边、3824个含3边，0个满方形；独立公共邻居测试最大1；重复边、非边、补全C4负控均拒绝。数据是上游公开数值证书，校验脚本及日志是本轮自写；只确认有限下界，不证明f9最优，不冒充Lean或Q7 DRUP复跑。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000066",
+      "other_card_rev": "ab770e61983c1fe7",
+      "relation": "待核",
+      "reason": "双方同用f(n)=ex(Q_n,C4)，但候选固定n=8问精确值680，并以680边见证+681边不可能性或不同正确极值验收；本题是n→∞归一化密度1/2的渐近上界。一个固定维数的精确值不决定无穷维数的极限，渐近式也不给n=8精确值；不能当同题合并，也不能把单个681边图当作本题渐近反例。",
+      "positions": {
+        "self": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；problems/000/QX-P-000208.text.md：## 题面 L5、### 形式化表述 L9、## 人话版 L13；同名meta.acceptance.criteria",
+        "other": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；problems/000/QX-P-000066.text.md：## 题面 L5、### 形式化表述 L9、## 人话版 L13、## 原文摘录 L21；同名meta.acceptance.criteria"
+      },
+      "note": "pair_id=QX-P-000066__QX-P-000208；owner=QX-P-000066；小编号owner不在本包；本轮提供完整固定版本范围对照，最终关系留owner复核，不建议合并。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-000235",
+      "other_card_rev": "989d03ecd9d990f8",
+      "relation": "同源不同问",
+      "reason": "候选在同一宿主Q_n中禁止C10并问ex(Q_n,C10)渐近阶；本卡禁止C4并问归一化密度1/2。禁图长度和验收目标不同：不含C4并不自动不含C10，反之亦不成立。候选原卡的已知界可能缺因子，本轮只比目标定义，不将其历史界用于本题。",
+      "positions": {
+        "self": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；problems/000/QX-P-000208.text.md：## 题面 L5、### 形式化表述 L9、## 人话版 L13；同名meta.acceptance.criteria",
+        "other": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；problems/000/QX-P-000235.text.md：## 题面 L5、### 形式化表述 L9、## 人话版 L13、## 原文摘录 L21；同名meta.acceptance.criteria"
+      },
+      "note": "pair_id=QX-P-000208__QX-P-000235；owner=QX-P-000208；本卡负责该对，已核同族不同验收对象；无合并建议，不主张一般逻辑独立。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "duplicate_relation": "related"
+      }
+    },
+    {
+      "other_id": "QX-P-000236",
+      "other_card_rev": "fe7963b2be652d25",
+      "relation": "同源不同问",
+      "reason": "候选求无C_{2k}且添任一缺边即出现C_{2k}的饱和生成子图最小边数sat；本卡求所有C4-free子图的最大边数ex及其渐近密度。即便取k=2，最小饱和与最大无圈仍是不同优化任务；是否生成不构成差别，因为本题可补孤立顶点，但min/max及饱和要求不能互换。",
+      "positions": {
+        "self": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；problems/000/QX-P-000208.text.md：## 题面 L5、### 形式化表述 L9、## 人话版 L13；同名meta.acceptance.criteria",
+        "other": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；problems/000/QX-P-000236.text.md：## 题面 L5、### 形式化表述 L9、## 人话版 L13、## 原文摘录 L21；同名meta.acceptance.criteria"
+      },
+      "note": "pair_id=QX-P-000208__QX-P-000236；owner=QX-P-000208；本卡负责该对，已核同族不同验收对象；无合并建议，不主张一般逻辑独立。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "duplicate_relation": "related"
+      }
+    },
+    {
+      "other_id": "QX-P-000012",
+      "other_card_rev": "5bd8cc5e4ed48520",
+      "relation": "待核",
+      "reason": "候选在任意N顶点图上，越过全图类的ex(N,C4)后求C4副本至少c√N的超饱和下界；本题宿主固定Q_n（2^n个顶点），问该宿主内最大C4-free边数的渐近密度。宿主范围、n的含义、阈值函数和计数/无圈验收均不同，不能依据共同C4或同Erdős题库认同题。",
+      "positions": {
+        "self": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；problems/000/QX-P-000208.text.md：## 题面 L5、### 形式化表述 L9、## 人话版 L13；同名meta.acceptance.criteria",
+        "other": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；problems/000/QX-P-000012.text.md：## 题面 L5、### 形式化表述 L9、## 人话版 L13；同名meta.acceptance.criteria"
+      },
+      "note": "pair_id=QX-P-000012__QX-P-000208；owner=QX-P-000012；小编号owner不在本包；本轮提供完整固定版本范围对照，最终关系留owner复核，不建议合并。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "origin / references",
+      "old": "首发年代1934–1999且以ErdosProblems86索引为主",
+      "new": "增补P.Erdős1984 On some problems in graph theory, combinatorial analysis and combinatorial number theory，印刷p8 §I问题10及原PDF定位。",
+      "reason": "本轮直接读原文与截图，1984可核；不把尚未读到的1978/1991同名文献称已核。此为出处元数据补证，不单独触发数学card_rev变化。",
+      "evidence_ids": [
+        "Q0208-ORIGIN-1984"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "题面；形式化表述；n与o(1)的量词",
+      "old": "超立方体Q_n中，边数≥(1/2+o(1))·n·2^{n−1}的子图必含C4？",
+      "new": "令n为正整数，f(n)=max{e(H):H⊆Q_n且H无C4}。问是否对每个ε>0，存在N，使所有n≥N都有f(n)≤(1/2+ε)n2^{n−1}；等价地，在这些n上，任何e(H)>(1/2+ε)e(Q_n)的子图H均含C4。这里o(1)是随n趋零的误差，并非任意指定的有限n门槛。",
+      "reason": "正式题面未绑定误差，且固定阈值≥与上界≤的取等边界不能直接互推。原数学意图可由形式化恢复，不能据简写直接宣告猜想已反驳；本项修改正式题面/量词，按包内规则由维护人确认并换card_rev。 对完整的∀ε>0渐近表述，≥与>可通过缩放ε互相转化；问题在误差量词未绑定，不能把所有≥写法都判错。",
+      "small_case_check": "实际穷尽n=1、2、3时分别2、16、4096个边子集，得到f(1)=1、f(2)=3、f(3)=9，密度分别1、3/4、3/4；最大见证另用公共邻居数≤1检查。它们表明未限定n的f(n)≤0.60318·n2^{n−1}不成立，也表明单个密度高于1/2的图不是渐近反例。固定n的强制C4门槛是f(n)+1条边而不是f(n)条边。没有进行n=8搜索或计算。 本轮手核基线：n≥2时保留下端Hamming权重为偶数的所有边，每个Q2面分跨相邻两层，最多保留其两条边，故C4-free；边数Σ_{k偶}(n−k)C(n,k)=n·2^{n−2}。Q_n中每个C4是一个二维坐标面，因为长度4闭路的每个翻转坐标须出现偶数次且无立即折返。另对2n个(n−1)维面计数得(n−1)f(n)≤2n f(n−1)，故d_n=f(n)/(n2^{n−1})非增，结合d_n≥1/2，极限存在；这只核标准基线，不决定极限恰为1/2。",
+      "evidence_ids": [
+        "Q0208-ORIGIN-1984",
+        "s0208-baber2012",
+        "Q0208-SMALLCASES",
+        "Q0208-COM-FC"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "acceptance.criteria；渐近反例验收",
+      "old": "证明 f(n)≤(1/2+o(1))·n·2^{n−1}，或构造一个边数更接近 n·2^{n−1} 的 C4-自由子图来推翻该猜想。",
+      "new": "肯定验收：证明∀ε>0∃N∀n≥N，f(n)≤(1/2+ε)n2^{n−1}。否定验收：给出固定ε>0、趋于无穷的整数序列n_j及C4-free子图H_j⊆Q_{n_j}，并证明e(H_j)≥(1/2+ε)n_j2^{n_j−1}。单个固定维数的更密图、若干有限数值或仍为1/2+o(1)的构造只列局部/次项进展。",
+      "reason": "“一个边数更接近全立方体的子图”没有指定固定正密度差和无界维数，不能作为n→∞猜想的反例；这是验收对象/量词修订，必须换card_rev，旧版本回执保留。",
+      "small_case_check": "f(2)=3、e(Q2)=4，密度3/4仍不反驳极限1/2；f(3)=9、e(Q3)=12同理。c/√n→0，所以即使无穷构造有密度1/2+c/√n，也与猜想相容。",
+      "evidence_ids": [
+        "Q0208-ORIGIN-1984",
+        "s0208-baber2012",
+        "Q0208-SMALLCASES",
+        "Q0208-COM-FC"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "provenance.possible_duplicates",
+      "old": "[\"QX-P-001623\"]",
+      "new": "移除QX-P-001623这一错误候选关联；若需题族导航可另记QX-P-000066为固定n=8的相关题，不能标严格同题或自动合并。",
+      "reason": "已取得双方固定commit全文与rev：001623是Erdős–Moser整数幂和方程，变量为n,k，验收为整数解；与超立方体C4-free极值无同一数学对象。仅修此元数据错链不单独触发数学card_rev变更。",
+      "small_case_check": "不涉及改数学命题；以固定版本题面和验收全文作对照，而非只凭标题或编号。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述、已知结果与进展、人话版的上界",
+      "old": "f(n)≤0.60318·n2^{n−1}",
+      "new": "lim_{n→∞} f(n)/(n2^{n−1})≤0.60318；等价可写f(n)≤(0.60318+o(1))n2^{n−1}，或对任意ε>0，充分大n时f(n)≤(0.60318+ε)n2^{n−1}。",
+      "reason": "原定理量词为渐近密度。改形式化量词应新card_rev并按规则复核相关路线。",
+      "evidence_ids": [
+        "s0208-baber2012",
+        "s0208-bhll2012"
+      ],
+      "small_case_check": "Q2=C4，删任意一条边后有3边且无C4，所以f2=3；0.60318×4=2.41272<3。该小例只反驳背景裸界，不反驳渐近猜想。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "相关进展与声称解决",
+      "old": "仅列BHN1995下界与Baber2012上界。",
+      "new": "补2026-11-20 Zhou等 arXiv2611.27284v1 声称f7=304，完整稿已读、SAT证书本轮未独立复跑；单列n7子问，主问题不结案。补Minamoto v5的子类范围、部分撤回与旧数值优先权。",
+      "reason": "新近完整声明与版本更正均为P0，不能只沿用旧状态页。",
+      "evidence_ids": [
+        "s0208-zhou2026",
+        "s0208-minamoto2026v5",
+        "s0208-minamoto-corrections",
+        "s0208-mpr1994"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与参考文献",
+      "old": "BHN1995：(1/2+c/√n)；Baber2012改进BHLL2014。",
+      "new": "BHN摘要可明确c=0.45适用于n≥9，n=4^r可取c=0.5。BHLL预印本2011-12-31、刊发2014给0.6068；Baber2012v2给更强0.60318。",
+      "reason": "区别适用范围与首次公开/刊发时间。",
+      "evidence_ids": [
+        "s0208-bhn1995",
+        "s0208-bhll2012",
+        "s0208-baber2012"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "形式化状态及有限维证书进展",
+      "old": "形式化状态none；原卡未列本轮取得的Q9证书及更正。",
+      "new": "Google固定版本已有Erdős86形式化题面，证明体sorry；Q9公开Lean代码仅本轮静态检查，未本轮构建。Q9主边表的1532条边由本轮独立Python核验合法、唯一且无C4；数值可由1994原稿能量值换算得到，原稿未直接打印1532且旧构型未取得；2026贡献为可公开复验显式证书。",
+      "reason": "分别登记主问题形式化题面、有限证书计算核验、作者Lean日志和数值优先权，不能互相替代。",
+      "evidence_ids": [
+        "Q0208-COM-FC",
+        "Q0208-COM-Q9CERT",
+        "Q0208-COM-Q9LEAN",
+        "Q0208-COM-PRIORITY",
+        "s0208-mpr1994",
+        "Q0208-INDEPENDENT-ARCHIVE"
+      ],
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "ErdosProblems正文/历史受限；其索引的Er90/Er91/Er93等旧条目以及同名1978稿未取得正文。本轮已核1984同题原文。",
+      "next_step": "如需认定史上首次提出或核数据库历史，取得对应档案原文/可访问导出再补准确页码；保留1984为目前最早可核实出处，不让来源访问缺口阻断本题其他路线。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "新n7完整证明声明需二审；本轮只核关键数学归约，未重放21份SAT反驳。",
+      "next_step": "固定arXiv2611.27284v1及仓库q7/commit13c4ac5b2269、q7-artifacts-v0.1，核数学归约、CNF生成一致性、21份DRUP回放与校验器版本。取得独立审核前保留“完整证明声明”，不得关闭渐近主问。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "BHN官方只读摘要；Baber/BHLL正文已读但计算附件未独立复跑。",
+      "next_step": "如需升级证据，取得BHN1995全文核构造及r范围，并复核相关计算证书；当前回执明确摘要/已读层级即可，不把缺口扩大成整题未查。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2026子类论文有明确部分撤回；1979原始稿与旧数值见证未在本路线完整取得。",
+      "next_step": "使用Minamoto v5而非v1–v4；需要最早出处的严格确认时查DPTV1979原稿。MPR1994已读原文并完成D9换算，但当年的显式配置无从本轮重验。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "渐近主问的本轮检索范围有限，未取得可验证全解；题卡需改量词。",
+      "next_step": "以更正后的渐近量词作为验收口径；后续若有新全解声明，核固定ε、n→∞、C4而非其他偶圈，并对修订版本复核。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "Q9本轮只完成独立Python有限证书核验，Lean作者日志及静态源码不是本轮通核；其定理是具体布尔计算谓词。",
+      "next_step": "若需正式登记Lean验证，固定已取commit和Lean4.35.0，实际构建并保存本轮日志/#print axioms，另补显式Nodup与抽象SimpleGraph C4/极值量映射；保留native_decide信任项。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "rafalwrona七份边表、EPaDay第二个1532构型及其他有限ILP项目未在本轮逐一复跑；没有取得渐近完整解。",
+      "next_step": "按需核Q10/Q11等独立证书和适用范围；任何有限n密度超过1/2都不得直接当作对∀ε>0最终界的反例。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "近期Q7完整证明公开声称已取得，但本轮仅静态读取检查器和审计元数据；三压缩trace约1.35GB，未下载、未核实际hash、未运行重放；不存在本轮构建失败记录。",
+      "next_step": "若提升为本轮复核通过：固定paper commit 13c4ac5b2269383d36e5fb0da303f0a5cd2d1b03和独立release tag目标，下载三asset并计算SHA256，重建21份CNF逐字节比对，实际执行--replay（PowerShell7）或固定DRAT-trim revision的RUP-only命令并保存逐case日志。不可用默认verify.py或作者manifest替代证书重放。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "21个局部SAT反驳即便成功，也还需核数学断言到CNF、10个轨道穷尽性及局部到全局拼接。",
+      "next_step": "独立逐项核A/R0/R1编码与Theorem1.1所需条件、two-hole轨道覆盖、305边图归约及计数矛盾；记录是否覆盖所有Q7的C4-free子图。无论此有限定理核验如何，保持渐近1/2主问题状态独立。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "QX-P-000066__QX-P-000208的小编号负责人不在本包。",
+      "next_step": "交QX-P-000066负责人按双方已缓存固定版本全文和验收对象登记关系；不将有限n=8结论或一般宿主的超饱和结果自动迁入本题。 另提示小编号负责人：2026 v5已公开f8≥682证书声明，其旧680精确目标需按本包外题的流程另核；本回执不替其结案。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "QX-P-000012__QX-P-000208的小编号负责人不在本包。",
+      "next_step": "交QX-P-000012负责人按双方已缓存固定版本全文和验收对象登记关系；不将有限n=8结论或一般宿主的超饱和结果自动迁入本题。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "只做固定简索引有界关键词筛选及5张候选全文核对，其中001623被排除为错链；未穷尽全部异名正文。",
+      "next_step": "若后续出现同一Q_n/C4-free最大边数且n→∞半密度命题的精确候选，再对固定版本正文逐项比较；本次没有严格同题不表示全库排重完成。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "主形式化能识别渐近原意，但题面误差量词、固定n上界及反例验收均需澄清。",
+      "next_step": "维护人按Erdős1984 p8、Baber v2 Thm4.1及本回执ε量词建议修订正式题面/验收并换card_rev；0.60318已核为极限密度界。旧回执仍绑定991064fa6de907a9，不把有限小例记成原渐近猜想的反例。",
+      "batch_id": "QX-R3-06",
+      "card_rev": "991064fa6de907a9",
+      "codes": {}
+    }
+  ]
+}

@@ -44,4 +44,7 @@ jobs:
           git -C "$RUNNER_TEMP/qunxing-data" checkout --quiet "$commit"
 
       - name: 题库页面与数据一致
-        run: python3 tools/build_problems.py --data "$RUNNER_TEMP/qunxing-data" --check
+        run: |
+          api_commit=$(python3 -c "import json; print(json.load(open('data/api-bank.json'))['source']['commit'])")
+          git -C "$RUNNER_TEMP/qunxing-data" worktree add --quiet --detach "$RUNNER_TEMP/qunxing-api-data" "$api_commit"
+          python3 tools/build_problems.py --data "$RUNNER_TEMP/qunxing-data" --api-data "$RUNNER_TEMP/qunxing-api-data" --check

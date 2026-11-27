@@ -1,0 +1,2322 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001317",
+  "card_rev": "b55ea6f1ee6e62af",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-04"
+      ],
+      "parts": [
+        {
+          "subquestion": "2025算法与2026v5理论的准确范围",
+          "value": "partial",
+          "note": "2025是表达式、结构猜想和有限恢复实验；v5是完整T=δ约束下复杂度floor/结构定理。它们不提供原OP2随机缺失观测的高概率样本界或梯度收敛保证。"
+        },
+        {
+          "subquestion": "固定正lambda与数值exact重建的条件性检查",
+          "value": "partial",
+          "note": "在明确的LΩ+λH、λ>0、三线性T/四次H、至少一条非零观测下，同步缩放证明exact-fit不是局部极小；它不排除argmax标签恢复、λ→0、训练退火或精确插值下minH。原问未把这些口径固定，不能叫原题反例。"
+        },
+        {
+          "subquestion": "仅以m谈唯一补全与目标等价关系",
+          "value": "statement_error",
+          "note": "同m不同位置的4阶小例和C2标签小例说明最优/最坏/随机、固定标签/同构类别、identity是否已知须分别定义；n=1的m=0边界也不能一概称多群拟合。"
+        },
+        {
+          "subquestion": "组合式群表重建的已知密集观测特例",
+          "value": "partial",
+          "note": "Vojtechovsky2001在n>3、空格≤n−1时给quadrangle方法且可任意填洞顺序的确定性保证。不是任意n阶群O(n log n)随机观测、也不是Huh正则经验损失的样本复杂度定理。方法局限不等于信息论唯一性下界。"
+        },
+        {
+          "subquestion": "Huh2025“算子值张量公式精确求解”及形式化层级",
+          "value": "statement_error",
+          "note": "现卡将实验恢复概述成先验精确求解算法会误导。已读附录是训练配方、经验设置和关掉正则的scheduler；v5相关Lean仅全观测结构证明的作者声明，实际代码403未核。需要把经验、全观测结构定理、随机缺失采样保证分层。"
+        },
+        {
+          "subquestion": "采样单位与实现mask",
+          "value": "undeterminable",
+          "note": "原2025附录使用tensor三指标Mabc。本轮未取得sampler，无法确认按n²个输入pair抽样并广播输出维，还是n³个标量独立抽样；本支线不自行替换原文定义。"
+        },
+        {
+          "subquestion": "修复为Huh2026 Open Problem2后的随机稀疏群表恢复",
+          "value": "no_evidence_in_scope",
+          "note": "已读原始提出、ICLR2025训练/模型、2511.23152v5范围与公开代码声明，另查学术、GitHub/FC/OAI/社区及库内同题。在这些实际来源内未取得对所有适用群、规定采样和成功概率、规定全局优化目标成立的完整O(n log n)恢复定理或对应反例。全观测结构定理、有限数值试验、密集观测组合推断及一般Latin母类的歧义不能替代该结论；不声称穷尽全部文献。"
+        },
+        {
+          "subquestion": "扩为所有拟群候选时的单元观测辨识下界",
+          "value": "partial",
+          "note": "本轮独立构造：n=2h的C2×C_h真群表在全部同标签Latin方候选中至少需要h²=n²/4个已知乘积单元；若候选还要求固定同一单位元，块翻转只给(h−1)²下界。完整任意h证明及n4核对已置于证据note。它只说明扩大母类会改变问题，不反驳群候选或指定正则目标的原OP2。"
+        },
+        {
+          "subquestion": "n≤4有标签乘积观测的辨识性基线",
+          "value": "partial",
+          "note": "完整枚举Latin表再筛单位/结合律，并穷举位置集合，区分身份先验、最佳/最坏/均匀位置和同构类别。只适用于明确的无噪声n²单元观测模型，不是对原优化器训练、全局最优或渐近概率定理的验证。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "rerun_blocked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://anonymous.4open.science/r/HyperCube_Lean-4664/README.md"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "本回执绑定b55ea6f1ee6e62af。源2605.29885 v1 Open Problem2问特定flatness-regularized empirical loss全局极小者能否在O(n log n)均匀随机观测下高概率恢复群表；现卡改成按群类最少m项的唯一补全，省去算法/目标、采样及概率量词，并在群与拟群之间切换，非等价。原文自身的Ω⊂Q³与表项计数、固定正则/调度/约束拟合及numeric exactness/accuracy仍须明确。以下分别记录可核条件性结果、模型边界和未找到全解范围，不把本轮保存或作者开放标签当数学结案。",
+      "evidence_ids": [
+        "E1317-ORIGIN-OP2",
+        "E1317-ORIGIN-ICLR2025",
+        "E1317-ORIGIN-V5",
+        "E1317-ORIGIN-MODEL-CHECK",
+        "E1317-CODE-TRAINING",
+        "E1317-ACA-V5-LIMIT"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "2025算法与2026v5理论的准确范围",
+      "math_status": "部分进展",
+      "scope_note": "2025是表达式、结构猜想和有限恢复实验；v5是完整T=δ约束下复杂度floor/结构定理。它们不提供原OP2随机缺失观测的高概率样本界或梯度收敛保证。",
+      "evidence_ids": [
+        "E1317-ORIGIN-ICLR2025",
+        "E1317-ORIGIN-V5"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "固定正lambda与数值exact重建的条件性检查",
+      "math_status": "条件性结果",
+      "scope_note": "在明确的LΩ+λH、λ>0、三线性T/四次H、至少一条非零观测下，同步缩放证明exact-fit不是局部极小；它不排除argmax标签恢复、λ→0、训练退火或精确插值下minH。原问未把这些口径固定，不能叫原题反例。",
+      "evidence_ids": [
+        "E1317-ORIGIN-MODEL-CHECK",
+        "E1317-ORIGIN-ICLR2025"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "仅以m谈唯一补全与目标等价关系",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "同m不同位置的4阶小例和C2标签小例说明最优/最坏/随机、固定标签/同构类别、identity是否已知须分别定义；n=1的m=0边界也不能一概称多群拟合。",
+      "evidence_ids": [
+        "E1317-ORIGIN-MODEL-CHECK"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "组合式群表重建的已知密集观测特例",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "Vojtechovsky2001在n>3、空格≤n−1时给quadrangle方法且可任意填洞顺序的确定性保证。不是任意n阶群O(n log n)随机观测、也不是Huh正则经验损失的样本复杂度定理。方法局限不等于信息论唯一性下界。",
+      "evidence_ids": [
+        "E1317-ACA-VOJ"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Huh2025“算子值张量公式精确求解”及形式化层级",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "现卡将实验恢复概述成先验精确求解算法会误导。已读附录是训练配方、经验设置和关掉正则的scheduler；v5相关Lean仅全观测结构证明的作者声明，实际代码403未核。需要把经验、全观测结构定理、随机缺失采样保证分层。",
+      "evidence_ids": [
+        "E1317-CODE-TRAINING",
+        "E1317-CODE-LEANCLAIM",
+        "E1317-CODE-LEANACCESS"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "采样单位与实现mask",
+      "math_status": "现有材料无法判定",
+      "scope_note": "原2025附录使用tensor三指标Mabc。本轮未取得sampler，无法确认按n²个输入pair抽样并广播输出维，还是n³个标量独立抽样；本支线不自行替换原文定义。",
+      "evidence_ids": [
+        "E1317-CODE-TRAINING"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "math_status": "undeterminable"
+      }
+    },
+    {
+      "subquestion": "修复为Huh2026 Open Problem2后的随机稀疏群表恢复",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "已读原始提出、ICLR2025训练/模型、2511.23152v5范围与公开代码声明，另查学术、GitHub/FC/OAI/社区及库内同题。在这些实际来源内未取得对所有适用群、规定采样和成功概率、规定全局优化目标成立的完整O(n log n)恢复定理或对应反例。全观测结构定理、有限数值试验、密集观测组合推断及一般Latin母类的歧义不能替代该结论；不声称穷尽全部文献。",
+      "evidence_ids": [
+        "E1317-ORIGIN-OP2",
+        "E1317-ORIGIN-ICLR2025",
+        "E1317-ORIGIN-V5",
+        "E1317-ORIGIN-MODEL-CHECK",
+        "E1317-ACA-VOJ",
+        "E1317-ACA-V5-LIMIT",
+        "E1317-CODE-COVERAGE"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "扩为所有拟群候选时的单元观测辨识下界",
+      "math_status": "条件性结果",
+      "scope_note": "本轮独立构造：n=2h的C2×C_h真群表在全部同标签Latin方候选中至少需要h²=n²/4个已知乘积单元；若候选还要求固定同一单位元，块翻转只给(h−1)²下界。完整任意h证明及n4核对已置于证据note。它只说明扩大母类会改变问题，不反驳群候选或指定正则目标的原OP2。",
+      "evidence_ids": [
+        "E1317-DUP-BLOCK"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "n≤4有标签乘积观测的辨识性基线",
+      "math_status": "仅特例",
+      "scope_note": "完整枚举Latin表再筛单位/结合律，并穷举位置集合，区分身份先验、最佳/最坏/均匀位置和同构类别。只适用于明确的无噪声n²单元观测模型，不是对原优化器训练、全局最优或渐近概率定理的验证。",
+      "evidence_ids": [
+        "E1317-DUP-SMALL",
+        "E1317-ORIGIN-MODEL-CHECK"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "system2_search_query",
+      "query": "\"Dongsung Huh\" \"2605.29885\" exact recovery",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "本轮实际搜索返回见p1317_origin_sourcecache.json。用于定位原始预印本和ICLR正式全文；未据摘要的open/solved词作数学判定。对PMLR定向查询未取得本题正式刊发条目，不据此断言未发表。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "system2_search_query",
+      "query": "\"Dongsung Huh\" \"operator-valued\" tensor 2025",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "本轮实际搜索返回见p1317_origin_sourcecache.json。用于定位原始预印本和ICLR正式全文；未据摘要的open/solved词作数学判定。对PMLR定向查询未取得本题正式刊发条目，不据此断言未发表。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "system1_search_query",
+      "query": "\"Discovering group structures via unitary representation learning\" 2025",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "本轮实际搜索返回见p1317_origin_sourcecache.json。用于定位原始预印本和ICLR正式全文；未据摘要的open/solved词作数学判定。对PMLR定向查询未取得本题正式刊发条目，不据此断言未发表。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "system1_search_query",
+      "query": "site:arxiv.org/abs/2605.29885 \"Submission history\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "本轮实际搜索返回见p1317_origin_sourcecache.json。用于定位原始预印本和ICLR正式全文；未据摘要的open/solved词作数学判定。对PMLR定向查询未取得本题正式刊发条目，不据此断言未发表。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "system1_search_query",
+      "query": "site:proceedings.mlr.press \"Separating Geometric\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "本轮实际搜索返回见p1317_origin_sourcecache.json。用于定位原始预印本和ICLR正式全文；未据摘要的open/solved词作数学判定。对PMLR定向查询未取得本题正式刊发条目，不据此断言未发表。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv",
+      "query": "OPEN https://arxiv.org/abs/2605.29885；随后普通HTTP GET同URL并解析Submission history",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "web DisabledError，但普通HTTP200取得官方abs。当前仅v1=2026-05-28 13:10:04UTC，6pages，Comments为Submitted to COLT2026 OpenProblemtrack。PDF的PMLR卷号留空，不当正式刊发证据。",
+      "url": "https://arxiv.org/abs/2605.29885",
+      "locator": "submission history and comments",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv",
+      "query": "OPEN/GET https://arxiv.org/pdf/2605.29885；pdftotext -layout；读完整6页",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "PDF页边固定2605.29885v1，6页252273bytes，SHA2560623980c710a6001b9de91e9491e708feb8eb966c19eb30d2e4e7968aa496fdb。已读§§1–6和参考文献；OpenProblem2在p4，不是摘要泛泛bounds。",
+      "url": "https://arxiv.org/pdf/2605.29885v1",
+      "locator": "p2 structure tensor; p3 flatness formula; p4 OpenProblem2; p5 Huh references",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv",
+      "query": "OPEN https://arxiv.org/abs/2511.23152；普通HTTP GET保存；读版本历史",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "官方当前v5=2026-11-16 20:48:26UTC，28页，新增一般binaryoperation/positivegap/Lean4；初稿2025-11-28，v4为2026-05-19。v5标题与2026原问所引旧标题不同，同一arXiv谱系。",
+      "url": "https://arxiv.org/abs/2511.23152",
+      "locator": "v1–v5 submission history and current abstract/comments",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv",
+      "query": "OPEN/GET https://arxiv.org/pdf/2511.23152；pdftotext -layout；定向读定义、Thm10、结论与Limitations",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "已取完整28页1532938bytes，SHA256ac903ee8792b2df013a37a6a37d1bdd7a8881d082c7750a58b6302cfb962c53f，页边v5。实际阅读重点pp1–4 definitions、p7 Thm10及邻近说明、pp8–11 experiments/extension/conclusion/Limitations/AI。没有逐步核28页全部证明或运行Lean。",
+      "url": "https://arxiv.org/pdf/2511.23152v5",
+      "locator": "p3 Eq(1)–(3); p4 Def1/3; p7 Thm10; p10 Limitations; p11 AI use",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv",
+      "query": "OPEN https://arxiv.org/abs/2605.29885v1；OPEN https://arxiv.org/pdf/2511.23152v5",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "web固定版本URL均DisabledError；前述普通HTTP取得的current PDFs有明确v1/v5页边与官方history，版本由该实际文件和SHA锁定，不把工具失败当论文缺失。",
+      "url": "https://arxiv.org/pdf/2511.23152v5",
+      "locator": "fixed-version web endpoints",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "ICLR official proceedings",
+      "query": "OPEN/GET Discovering Group Structures via Unitary Representation Learning official PDF；pdftotext -layout",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整25页6784143bytes，SHA256b895cfa76b9607f466af7364cfab37c1a5d95839c84f863713abc64d426c1a34；实际读pp1–10主要定义/实验/Conj6.1/OpenQuestions，AppA/B p12、AppC/D pp13–14及AppG pp17–18。未审全25页全部附录证明，未运行实验。",
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/09d320a5b92d74bbde3d0c4f52e680a9-Paper-Conference.pdf",
+      "locator": "p4 Eq(4)–(6); p6 accuracy versus numerical loss; p7 Conj6.1; p10 OpenQuestions; p12 epsilon-scheduler; p18 mask and loss",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "OpenReview",
+      "query": "OPEN https://openreview.net/forum?id=Tz8Li6G2xU",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "返回browser verification challenge；没有越过验证，也未读全评论。正式论文已从ICLR公开入口取得。",
+      "url": "https://openreview.net/forum?id=Tz8Li6G2xU",
+      "locator": "forum access boundary",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "ICLR PDF visual endpoint",
+      "query": "SCREENSHOT official PDF page index5 (printedp6)",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具返回图像占位，本分工没有据此声称看清Figure4采样图；观测模型结论依据已读文字/公式，具体sampler另交代码支线。",
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/09d320a5b92d74bbde3d0c4f52e680a9-Paper-Conference.pdf",
+      "locator": "printedp6 Figure4",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地原稿定向检索",
+      "query": "逐行全文文本扫描：argmax / arg max / classification / predict / scheduler / observed / mask / sampled / uniform",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "在实际已下载三文全文文本定位术语，再读对应页。2025正文未找到显式argmax定义；明确区分100%testaccuracy与tensorloss=0。2025AppG.3 Eq19用三元组Ωtrain；2026OpenProblem2称均匀sampled entries但未严格固定采样单位。",
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/09d320a5b92d74bbde3d0c4f52e680a9-Paper-Conference.pdf",
+      "locator": "local p1317_ICLR2025.txt; p1317_2605_latest.txt; p1317_2511_latest.txt",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本轮独立数学核对",
+      "query": "n=4 normalized Latin/group table enumeration; C2 label ambiguity; C3 subtraction isotope; fixed-lambda scaling; V4 numeric matrix exact rank",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "执行internal/p1317_origin_smallchecks.py，输出p1317_origin_smallchecks.json；小例解释模型/量词差异，非对作者意图的原问题反例，非渐近样本复杂度证明。",
+      "url": "https://arxiv.org/pdf/2605.29885v1",
+      "locator": "independent exact arithmetic and tiny exhaustive check",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S2",
+      "query": "\"Cayley-table completion\" \"recovery\" Huh",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中2605.29885原稿及自动转录目录；自动目录不作为证明。原稿完整PDF已由原题路线取得，Open Problem 2定位在p4。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S2",
+      "query": "\"Cayley table\" \"sample complexity\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中2605.29885原稿及自动转录目录；自动目录不作为证明。原稿完整PDF已由原题路线取得，Open Problem 2定位在p4。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S2",
+      "query": "\"2605.29885\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中2605.29885原稿及自动转录目录；自动目录不作为证明。原稿完整PDF已由原题路线取得，Open Problem 2定位在p4。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S1; recency=365",
+      "query": "\"Cayley-table completion\" exact recovery",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "近期精确检索未定位同题完整恢复定理；召回Vojtechovsky群表组合重建，后续读取作者全文判断范围。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S1; recency=365",
+      "query": "\"Cayley\" \"flatness\" \"Huh\" recovery",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "近期精确检索未定位同题完整恢复定理；召回Vojtechovsky群表组合重建，后续读取作者全文判断范围。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S1",
+      "query": "\"Cayley tables\" \"reconstruct\" \"random\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "近期精确检索未定位同题完整恢复定理；召回Vojtechovsky群表组合重建，后续读取作者全文判断范围。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S2",
+      "query": "\"Reconstruction of Group Multiplication Tables by Quadrangle Criterion\" Vojtechovsky",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "定位2001正式出版记录、作者PDF及math/0701697；2007是arXiv上传时间，不是问题或论文的首次刊发年份。 domains=cs.du.edu,math.du.edu,arxiv.org,sciencedirect.com",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S2; recency=365",
+      "query": "\"Cayley table completion\" \"sample\" -site:explorer-production-64a5.up.railway.app",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位2001正式出版记录、作者PDF及math/0701697；2007是arXiv上传时间，不是问题或论文的首次刊发年份。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S2; recency=365",
+      "query": "\"Huh\" \"Functional Compression\" \"recovery\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位2001正式出版记录、作者PDF及math/0701697；2007是arXiv上传时间，不是问题或论文的首次刊发年份。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S1; recency=365",
+      "query": "\"Cayley\" \"table\" \"exact recovery\" group -site:explorer-production.up.railway.app",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "重复原open-problem预印本及目录，无可核新解；2511.23152官方页确认v5为2026-11-16的28页重大修订。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web S1; recency=365",
+      "query": "\"Cayley-table completion\" \"O(n log\" -site:explorer-production.up.railway.app",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "重复原open-problem预印本及目录，无可核新解；2511.23152官方页确认v5为2026-11-16的28页重大修订。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "open https://arxiv.org/abs/2511.23152",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "官方v5信息已核；正文由2511_latest.pdf读取，根另核p1及p10 Limitations。",
+      "url": "https://arxiv.org/abs/2511.23152",
+      "locator": "v5 metadata; p10 Limitations",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "open https://arxiv.org/abs/2605.29885",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "本次web open返回DisabledError；不记成无论文。其他搜索及原题路线实际PDF200成功。",
+      "url": "https://arxiv.org/abs/2605.29885",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "ScienceDirect",
+      "query": "open https://www.sciencedirect.com/science/article/pii/S0195669801905487",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "publisher Web open 403；检索索引可核刊名卷期页码DOI；全文实际取作者自存稿。",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0195669801905487",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者大学站PDF",
+      "query": "GET https://cs.du.edu/~petr/data/papers/reconstruction_of_group_multiplication_tables.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际HTTP200，111812字节，SHA256 1a3a507e5d94f93294802e435f81140ecb4ae68317039dcb39ec67375a9ab819；全文7页含参考文献，读完§1定义/Thm1.1、§2证明、§3方法限制。",
+      "url": "https://cs.du.edu/~petr/data/papers/reconstruction_of_group_multiplication_tables.pdf",
+      "locator": "作者预刊稿pp1–7",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本轮独立范围核对",
+      "query": "比较 Vojtechovsky Thm1.1 的 holes≤n−1 与 Huh OP2 的 uniformly sampled observations O(n log n)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "前者为近乎全表观测m≥n²−n+1的任意位置保证并限定quadrangle推断法；后者为特定经验优化目标的稀疏随机高概率恢复。",
+      "url": "https://cs.du.edu/~petr/data/papers/reconstruction_of_group_multiplication_tables.pdf",
+      "locator": "Thm1.1; §3 vs arXiv2605.29885 p4",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "\"2605.29885\" code Huh",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "原论文索引/作者旧作及邻题召回；不把第三方Code(0)当不存在代码的证据。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "Huh Cayley table completion GitHub OVT 2025",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "原论文索引/作者旧作及邻题召回；不把第三方Code(0)当不存在代码的证据。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S1",
+      "query": "Dongsung Huh \"Cayley\" \"github\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回2025/2026论文与镜像；未定位同题一般恢复界的新完整证明。进一步核作者给出的具体入口。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S1",
+      "query": "\"Operator-Valued Tensor\" Huh code",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回2025/2026论文与镜像；未定位同题一般恢复界的新完整证明。进一步核作者给出的具体入口。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S1",
+      "query": "\"Cayley-table completion\" \"exact recovery\" proof bound; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回2025/2026论文与镜像；未定位同题一般恢复界的新完整证明。进一步核作者给出的具体入口。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub global",
+      "query": "\"operator-valued\" \"Huh\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "20条返回，多为文献表和arXiv汇编；不是20份同题证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / Formal Conjectures",
+      "query": "\"Cayley\" \"completion\"; repository_name=google-deepmind/formal-conjectures; topn=20",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "0条；仅本查询覆盖，不证明没有任何别名题面。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / OpenAI",
+      "query": "\"Cayley\" \"completion\"; repository_name=openai/math; topn=20",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "实际读20条返回片段：Cayley变换、群图、局部域completion等，不是部分乘法表恢复。未读20份全文。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "\"Discovering Group Structures via Unitary Representation Learning\" github",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位ICLR2025正式页、IBM页、海报及OpenReview；未出现可直接核的作者训练仓库。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "\"HyperCube\" \"Dongsung\" github",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位ICLR2025正式页、IBM页、海报及OpenReview；未出现可直接核的作者训练仓库。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "\"Cayley-table completion\" \"code\" Huh",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位ICLR2025正式页、IBM页、海报及OpenReview；未出现可直接核的作者训练仓库。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub global",
+      "query": "\"Discovering Group Structures\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回17条，含ICLR抓取元数据及2026稀疏数据增强论文；后者只引用Huh，非同题解决。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / OpenAI",
+      "query": "\"Cayley-table\"; repository_name=openai/math; topn=20",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "0条精确短语匹配。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "OpenReview / ICLR",
+      "query": "open https://openreview.net/forum?id=Tz8Li6G2xU",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "返回Verifying your browser，未继续或绕过验证，未读评审/作者答复。web 〔原始工具引用已私有留存〕。",
+      "url": "https://openreview.net/forum?id=Tz8Li6G2xU",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "ICLR proceedings",
+      "query": "open official2025 abstract page 09d320a5b92d74bbde3d0c4f52e680a9",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "正式页自称Evaluations展现准确恢复/速度优势；不是样本复杂度定理。web 〔原始工具引用已私有留存〕。",
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/09d320a5b92d74bbde3d0c4f52e680a9-Abstract-Conference.html",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub mirror",
+      "query": "fetch_file ZhangCurosr/zhangcursor-papers-arxiv-lg-002@859ef4eddf93071dd29e4221a65b0f73faf20a2e/2026-09-09/Sparse-Data-Augmentation-for-Optimization-with-Provable-Guar_94dd5453/full.md",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "完整镜像文件取得，实际只读标题/摘要/问题定义及Huh引用位置：已知变换群的数据增强与近似驻点，非未知乘法表恢复。未使用该镜像作为数学结果证据，未全审论文。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub ICLR metadata",
+      "query": "fetch_file sjw1231/sp26-cs411-team032-TEAM32@b81891645135c4024ced583b03a9fe5742fcfd46/scraper/data_iclr/papers/29498.json",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "完整1813字符抓取元数据，仅给ICLR海报和OpenReview链接；不是作者代码。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "\"HyperCube\" \"group structures\" github",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回IBM2025条件性理论页、海报及旧标题索引；作者新v5及匿名Lean入口由原文支线定位后直接核。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "\"Dongsung Huh\" \"github.com\" unitary",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回IBM2025条件性理论页、海报及旧标题索引；作者新v5及匿名Lean入口由原文支线定位后直接核。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "\"Functional Compression as Occam\" Lean GitHub",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回IBM2025条件性理论页、海报及旧标题索引；作者新v5及匿名Lean入口由原文支线定位后直接核。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub global",
+      "query": "\"HyperCube\" \"Cayley\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "20条结果主要为图论/attention masks；取picramide具体源排除同名，而非据Hypercube词命中本题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / OpenAI",
+      "query": "\"Cayley\" \"recovery\"; repository_name=openai/math; topn=20",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "18条返回片段为Cayley树、变换、群图及其他恢复问题；未出现本题目标。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Anonymous author Lean repository",
+      "query": "web open https://anonymous.4open.science/r/HyperCube_Lean-4664/README.md",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "web工具不可访问；〔原始工具引用已私有留存〕。",
+      "url": "https://anonymous.4open.science/r/HyperCube_Lean-4664/README.md",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code false positive",
+      "query": "fetch_file picramide/cayley@50878d2b67df809e791ac44f86926e9b7030c576/README.md; student_package/scripts/masks.py",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "两文件完整读取：RoBERTa/GLUE图注意力mask，Hypercube指Q_d图，不是Huh OVT，也不是Cayley-table样本复杂度。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Anonymous author Lean repository",
+      "query": "urllib GET https://anonymous.4open.science/r/HyperCube_Lean-4664/README.md; timeout15s",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "HTTP403；只读公开链接，无源码/commit/axioms返回。缓存p1317_anonymous_access.json。",
+      "url": "https://anonymous.4open.science/r/HyperCube_Lean-4664/README.md",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Anonymous author Lean repository",
+      "query": "urllib GET https://anonymous.4open.science/api/repo/HyperCube_Lean-4664/file/README.md; timeout15s",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "公开file端点同样HTTP403，停止该入口；未据仓库名猜测内部定理或版本。",
+      "url": "https://anonymous.4open.science/api/repo/HyperCube_Lean-4664/file/README.md",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub global",
+      "query": "\"HyperCube_Lean\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "0条；未找到可公开读取的镜像，不等于不存在。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub global",
+      "query": "\"Cayley-table completion\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "20条主要为原论文摘要转存；另SUN prospective candidate列同题为候选测试家族，读取具体正文排除解决声明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / Formal Conjectures",
+      "query": "\"2605.29885\"; repository_name=google-deepmind/formal-conjectures; topn=20",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "0条，未定位本题形式化目标；本包最近已读头ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub community / SUN",
+      "query": "fetch_file AlkaiDynamics/Symphonia-Universalis-Numinous@c159daf2285be47ccc1cf7fe73c5abd8507197ac/versions/v1b/SUN_PROSPECTIVE_TRIAL_0_CANDIDATE_ELECTION.md",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "完整文件取得，实际读头部状态/约束与C3、C4：作者明确没有empirical prediction，有限代数补全只是未来测试候选，没有本题界或程序证书。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Local primary PDF, origin branch cache",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002171〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "未匹配作者训练仓库URL。读取11行PyTorch einsum配方、GD超参数、ε-scheduler及Ωtrain/Mabc；只作静态阅读，无执行。",
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/09d320a5b92d74bbde3d0c4f52e680a9-Paper-Conference.pdf",
+      "locator": "AppendixA p12；G.3 eq18–20 pp17–18",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Local primary PDF, origin branch cache",
+      "query": "读p1317_2511_latest.txt中Lean脚注、§Limitations and Future Work、AI USE STATEMENT",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "v5固定PDF hash ac903ee8792b2df013a37a6a37d1bdd7a8881d082c7750a58b6302cfb962c53f；只读与代码/AI范围有关的段落，未重复原文支线全稿核查。",
+      "url": "https://arxiv.org/pdf/2511.23152v5",
+      "locator": "pp3,10–11",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S1 latest exact",
+      "query": "\"2605.29885\" recovery bounds proof solved; recency=180",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "仅召回原arXiv声明及索引，未取得新同题完整界；不由无新hit断言全球未解决。web turn851805240academia8。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S1 latest author",
+      "query": "\"Dongsung Huh\" \"Cayley-table completion\" \"sample complexity\"; recency=180",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "原问题、旧2511索引及自动摘要。AI摘要里的O(nlogn)/exponential说法不作为证明；页面仍列OpenProblem2。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Local fixed OpenAI catalog",
+      "query": "完整overview.tex/CONTENTS.md regex Cayley[- ]table|operator[- ]valued tensor|Dongsung|2605\\.29885|2511\\.23152|unitary representation learning",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "两目录固定在3344da59991ed94f9ba711217b29c1d760badfa6；具体blob/hash/regex及空结果在p1317_catalog_scan.json。不是全仓库所有文件穷尽。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Local toolchain and run extent",
+      "query": "shutil.which(lean/lake/elan); source-cache SHA256 inventory",
+      "date": "2026-11-27",
+      "outcome": "未执行",
+      "note": "三个工具均无；未跑Lean、训练、sampler、全群枚举。此任务的小阶枚举由其他支线完成，未重复。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "not_run"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "internal/p1317_task.json / package/任务.jsonl",
+      "query": "读取QX-P-001317完整task/card_metadata/card_text/prior_evidence，并比对package任务和冻结repo本题正文/meta",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-TASK",
+      "outcome": "原文已阅且同题",
+      "locator": "QX-P-001317 rev b55ea6f1ee6e62af",
+      "result_count": 1,
+      "note": "三份本题数据一致；meta.novelty.card_rev=0a5c0c919fd6d347为旧版记录，不计为本轮查新或恢复证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl",
+      "query": "Cayley|凯莱|乘法表|运算表|2605\\.29885|Huh|Dongsung",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-INDEX-1",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "2469条索引；第1组大小写不敏感regex",
+      "result_count": 7,
+      "note": "完整召回行已存p1317_index_scan.json；标题仅用于召回，关系判断使用下列实际冻结正文/meta。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl",
+      "query": "Latin|拉丁|拟群|quasigroup|defining.?set|critical.?set",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-INDEX-2",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "2469条索引；第2组大小写不敏感regex",
+      "result_count": 11,
+      "note": "完整召回行已存p1317_index_scan.json；标题仅用于召回，关系判断使用下列实际冻结正文/meta。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl",
+      "query": "matrix.?completion|矩阵补全|sample.?complexity|样本复杂|精确恢复|缺失.*观测",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-INDEX-3",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "2469条索引；第3组大小写不敏感regex",
+      "result_count": 1,
+      "note": "完整召回行已存p1317_index_scan.json；标题仅用于召回，关系判断使用下列实际冻结正文/meta。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl",
+      "query": "group.*(recover|reconstruct|learning)|群.*(重构|恢复|学习)|tensor|张量",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-INDEX-4",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "2469条索引；第4组大小写不敏感regex",
+      "result_count": 10,
+      "note": "完整召回行已存p1317_index_scan.json；标题仅用于召回，关系判断使用下列实际冻结正文/meta。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl",
+      "query": "补全|completion|reconstruct|重建|群识别|群.*学习|学习.*群|partial.*Latin|部分拉丁|defining.?set|critical.?set|Evans",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-INDEX-5",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "2469条索引；第5组大小写不敏感regex",
+      "result_count": 17,
+      "note": "完整召回行已存p1317_index_scan.json；标题仅用于召回，关系判断使用下列实际冻结正文/meta。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data@73290369a8dcc632e25e555aec525565ea6e08f8",
+      "query": "github_fetch_file: problems/001/QX-P-001317.meta.json AND problems/001/QX-P-001317.text.md; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-FETCH-1317",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001317.text.md",
+      "locator": "card_rev b55ea6f1ee6e62af; meta blob 5c724f3f2fff73808d613feffa7a53019779fdb3; text blob ebc6646810f5e9f3f4d3c535cda30555d368e71e",
+      "result_count": 2,
+      "note": "两文件全文已读取，Git blob SHA按实际UTF-8内容重算通过，版本与全库索引一致；只判本题关系，不重新研究候选进展。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data@73290369a8dcc632e25e555aec525565ea6e08f8",
+      "query": "github_fetch_file: problems/001/QX-P-001124.meta.json AND problems/001/QX-P-001124.text.md; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-FETCH-1124",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001124.text.md",
+      "locator": "card_rev 9da04b41b95cee70; meta blob 16465ddc745a4700d264d5e339484791712686fb; text blob a84bcf382f09e1cfaf2ade40edbe88bc958bbc56",
+      "result_count": 2,
+      "note": "两文件全文已读取，Git blob SHA按实际UTF-8内容重算通过，版本与全库索引一致；只判本题关系，不重新研究候选进展。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data@73290369a8dcc632e25e555aec525565ea6e08f8",
+      "query": "github_fetch_file: problems/000/QX-P-000677.meta.json AND problems/000/QX-P-000677.text.md; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-FETCH-677",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000677.text.md",
+      "locator": "card_rev 8043bf05f25367f9; meta blob 30a1d7a815794553a66d4f15bfe83eb93117e6cc; text blob a7304f782238b0411cc6b27274f2e2263903d5db",
+      "result_count": 2,
+      "note": "两文件全文已读取，Git blob SHA按实际UTF-8内容重算通过，版本与全库索引一致；只判本题关系，不重新研究候选进展。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data@73290369a8dcc632e25e555aec525565ea6e08f8",
+      "query": "github_fetch_file: problems/001/QX-P-001416.meta.json AND problems/001/QX-P-001416.text.md; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-FETCH-1416",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001416.text.md",
+      "locator": "card_rev 9c52dbd0902f1796; meta blob c53ddecad086019c50d73b22b07482286e56f0f9; text blob 516ed6f32479f0d036a3a38fba9729b707d5f0d2",
+      "result_count": 2,
+      "note": "两文件全文已读取，Git blob SHA按实际UTF-8内容重算通过，版本与全库索引一致；只判本题关系，不重新研究候选进展。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data@73290369a8dcc632e25e555aec525565ea6e08f8",
+      "query": "github_fetch_file: problems/001/QX-P-001850.meta.json AND problems/001/QX-P-001850.text.md; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-FETCH-1850",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001850.text.md",
+      "locator": "card_rev 6ecfef482f1b4094; meta blob 31adafe5a82f1c85aacff2f7d4e09ae20df1b0c9; text blob ebb8cc493efd74c080f7db3941dc8dcd7e311094",
+      "result_count": 2,
+      "note": "两文件全文已读取，Git blob SHA按实际UTF-8内容重算通过，版本与全库索引一致；只判本题关系，不重新研究候选进展。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data@73290369a8dcc632e25e555aec525565ea6e08f8",
+      "query": "github_fetch_file: problems/000/QX-P-000432.meta.json AND problems/000/QX-P-000432.text.md; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-FETCH-432",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000432.text.md",
+      "locator": "card_rev 21cb026ca4ef9ba9; meta blob a7a852d195b9ee09b5da14a6beaa8a92426099d2; text blob 9a5a84d1af30f9c8464cb7d4640cd553587957fa",
+      "result_count": 2,
+      "note": "两文件全文已读取，Git blob SHA按实际UTF-8内容重算通过，版本与全库索引一致；只判本题关系，不重新研究候选进展。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data@73290369a8dcc632e25e555aec525565ea6e08f8",
+      "query": "github_fetch_file: problems/000/QX-P-000896.meta.json AND problems/000/QX-P-000896.text.md; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-FETCH-896",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000896.text.md",
+      "locator": "card_rev 1acb3cf6a78027b5; meta blob 2605dbabea8c65b2c292f68c40be98c9774ccf6a; text blob b6fce667ed2ca4bcce423c3103da15b4031259e9",
+      "result_count": 2,
+      "note": "两文件全文已读取，Git blob SHA按实际UTF-8内容重算通过，版本与全库索引一致；只判本题关系，不重新研究候选进展。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data@73290369a8dcc632e25e555aec525565ea6e08f8",
+      "query": "github_fetch_file: problems/000/QX-P-000822.meta.json AND problems/000/QX-P-000822.text.md; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-FETCH-822",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000822.text.md",
+      "locator": "card_rev be6c9a1bb0af5ebd; meta blob 26e81bf7fb80d5e1a20fb3d76632f8af6da46be2; text blob 7f07b21eebb21eb8238276989a413ff46db3f927",
+      "result_count": 2,
+      "note": "两文件全文已读取，Git blob SHA按实际UTF-8内容重算通过，版本与全库索引一致；只判本题关系，不重新研究候选进展。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本轮主审已取得的arXiv官方PDF，本支读取本地正文定位",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002172〕",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-OP2-LOCAL",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2605.29885v1",
+      "locator": "v1 2026-05-28，pp2–4，§3与Open Problem 2；本支不重复下载",
+      "result_count": 1,
+      "note": "原问明确flatness正则经验损失的global minimizer、O(n log n) uniformly sampled entries及high probability。卡的按群类最小m/唯一性是不同扩写。§3用(a,b,c)∈Ω；本轮小例只采用a·b=c的一整个有标签乘积观测，不冒充已消除原文entry粒度歧义。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本地标准库Python直接枚举，不读取作者程序",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002173〕",
+      "date": "2026-11-27",
+      "request_id": "P1317-DUP-SMALL-ENUM",
+      "outcome": "原文已阅但范围不同",
+      "locator": "n=1..4全部标号Latin表；筛结合律和双侧单位元；n4所有2^16观测位置子集；h2块翻转；编码秩",
+      "result_count": 4,
+      "note": "计算是辨识性模型/题面边界验证。枚举保留全部标号候选，群同构仅在后续统计使用；没有运行Huh目标或global minimizer，也没有声称推翻原始渐近高概率保证。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E1317-ORIGIN-OP2",
+      "url": "https://arxiv.org/pdf/2605.29885v1",
+      "locator": "§2 p2; §3 pp2–3; §4 OpenProblem2 p4; referencesp5",
+      "version": "arXiv2605.29885v1,2026-05-28 13:10:04UTC; official latest history on2026-11-27 onlyv1; full6pages; SHA2560623980c710a6001b9de91e9491e708feb8eb966c19eb30d2e4e7968aa496fdb",
+      "subquestions": [
+        "原OpenProblem2：随机观测下正则全局极小值恢复",
+        "题卡表述审查"
+      ],
+      "scope_match": "同源不同问",
+      "role": "目前最早可核实出处",
+      "publication": "预印本",
+      "review_status": "已读未核关键步骤",
+      "note": "作者Dongsung Huh。已读完整6页，首提日期与题卡2026-05-28相符；Comments仅称投稿COLT，PMLR页眉卷号为空，不能改记正式发表。§3固定有限标签集Q、|Q|=n、δabc=1{a◦b=c}和n×n矩阵切片，T=Tr(AaBbCc)/n。p4 OpenProblem2明确询问：仅O(nlogn)个均匀采样entries时，flatness-regularized empirical loss的全局极小值能否以高概率完美恢复群表。它没有要求每个群类的精确最小m、最优观测集或最坏观测集，也不是单问信息论唯一性；目标域该问为群，§2一般谈群/拟群不自动扩大OP2。目标表按Q标签恢复，latent unitary gauge不等于只恢复抽象同构类。原文自身仍未精确定义sampled entry是Q²运算单元格还是Q³的单个0/1标量、是否替换抽样/置信参数、lambda或约束/退火版本、全部极小值还是选择某极小值、数值张量还是argmax标签，故不能擅补为唯一无歧义定理。§3 H用Ω上的经验loss Hessian trace，需与全观测理论的目标分开。 本条原题同一性指拟修复的OP2；对冻结卡的无模型最小m问并非严格等价，因此范围标同源不同问。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "earliest_source",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1317-ORIGIN-ICLR2025",
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/09d320a5b92d74bbde3d0c4f52e680a9-Paper-Conference.pdf",
+      "locator": "§4 pp3–4 Eq(3)–(6); §6.1p6; §6.2p7 Eq(9)–(10)/Conj6.1; §8p10; AppA p12; AppG.3 pp17–18",
+      "version": "ICLR2025 official25-page proceedings PDF, single authorDongsung Huh; SHA256b895cfa76b9607f466af7364cfab37c1a5d95839c84f863713abc64d426c1a34",
+      "subquestions": [
+        "2025所谓exact solver范围",
+        "正则与恢复定义"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "正式刊发",
+      "review_status": "已读未核关键步骤",
+      "note": "正文建立HyperCube三线性参数化及L=Lo(T;D)+εH(Eq5)，给有限实验的恢复、速度和样本效率，不是从任意不完整群表都可exact恢复的保证。p7 Eq10说明已知正确regular representation可代数重建每个有限群，随后的Conj6.1仍是在完整T=D约束下的正则最优结构猜想；这不证明学习过程可从随机少量观测发现该表示。p10明确把rigorous generalization bounds列为开放。p6区分100%testaccuracy与ε最后置0后tensortrain/testloss→0；并指出L2可能100%accuracy但数值重建仍不精确。p12实际训练使用ε-scheduler，承认固定正则妨碍full convergence，最后设ε=0。AppG.3 p18以Ωtrain⊂三元组和Mabc mask写loss，未在已读正文给严格采样法；lemma讨论已进入group representation形式后的保持，非从任意初始化到全局解的保证。实际读主要正文及指定附录，未独立全审全部25页或重跑GPU实验。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1317-ORIGIN-V5",
+      "url": "https://arxiv.org/pdf/2511.23152v5",
+      "locator": "§2.1–2.3 pp3–4 Eq(1)–(3),Def1/3; Theorem10p7; §5.1pp7–8; §7p10 Limitations; p11AI use",
+      "version": "arXiv2511.23152v5,2026-11-16 20:48:26UTC; initialv1=2025-11-28; 28pages; SHA256ac903ee8792b2df013a37a6a37d1bdd7a8881d082c7750a58b6302cfb962c53f",
+      "subquestions": [
+        "完全观测下复杂度下界及群isotopy结构",
+        "不等于部分观测exact recovery"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "已读未核关键步骤",
+      "note": "当前题名Functional Compression as Occam’s Razor: Algebraic Complexity from Sensitivity Minimization，三作者D.Huh/L.Horesh/H.Jeong。p3 H为已知δ的support上sensitivity和，Hinf在Fδ={Θ:T(Θ)=δ}取inf；Def1是整个张量包括零项的精确可行性。p7 Thm10对quasigroup说floor3|suppδ|达到当且仅当目标isotopic to group，极小表示为regular representation到isotopy/unitarygauge；isotopy是行列输出三个独立重标，绝非原运算必结合。p10明确理论只处理fully observed finite operation tables，partial/noisy、formal recovery rates/sample complexity、gradient convergence仍为openchallenges；这份全观测结论不证明OP2。p7–8数值实验先λ=.05，末期λ=0。p11作者称AI用于Lean翻译/润色，Lean及AI独立审由代码支线负责，本分工未检查或复跑；没有把标题ProvablyExact的旧版本字样判为随机恢复已解决。实际读定义、主范围及限制，没有全审28页证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1317-ORIGIN-MODEL-CHECK",
+      "url": "https://arxiv.org/pdf/2605.29885v1",
+      "locator": "本轮对模型、量词与退化边界的独立数学核对；p1317_origin_smallchecks.py/.json",
+      "version": "2026-11-27独立手算与Fraction/小规模完备枚举；不是原论文或Lean实验复跑",
+      "subquestions": [
+        "固定正lambda数值exact的条件性障碍",
+        "标号/同构及观测集量词",
+        "群/拟群与矩阵编码"
+      ],
+      "scope_match": "仅子问",
+      "role": "勘误",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "本轮独立复核，不是论文正式勘误。(1)若精确定为无约束LΩ+λH、λ>0、T为三线性、H为四次齐次正sensitivity，且观测中至少一个1，则exact-fitΘ沿tΘ有LΩ(tΘ)=(t³−1)²ΣΩδ²、H(tΘ)=t⁴H(Θ)，t=1导数4λH>0；略减t降目标，所以该固定正lambda数值插值版本不可能由exact-fit极小实现。n=1,A=B=C=1,λ=1/100,t=99/100：L1=3/100，Lt=29700029701/10^12<L1。只说明必须区分固定软惩罚/约束插值/退火/argmax，正缩放不改argmax；不是原意问题反驳。(2)穷举4阶identity标签0的归一化Latin方并验结合律得4个群表；目标C4时m=1，观测(0,1)=1还剩4表，观测(1,1)=2仅剩1表。因此m数目不能脱离位置或采样概率。C2在未知identity标签时有[[0,1],[1,0]]与[[1,0],[0,1]]两表，抽象同构但标号不同；n=1则无需观测已唯一。(3)a◦b=a−b mod3是C3的isotope但非结合，(0◦0)◦1=2而0◦(0◦1)=1，说明群/拟群/isotopy不可混同。(4)V4的XOR数值标签矩阵rank=3<4；Latin方不自动给任意数值编码fullrank。群/拟群one-hot tensor按a versus(b,c)展开则各行支持不交且各有n个1，MMᵀ=nI，确为rankn；必须说明所用编码。 n=1有理数例采用H=a²b²+b²c²+c²a²，即半Hessian trace的sensitivity归一化；若严格使用2605 p3无1/2平方损失的完整Hessian trace则H乘2，可将常数吸收入λ。导数正性、缩小参数破坏固定正λ数值插值极小的结论均不变，所报具体Fraction数值只属前一明确归一化。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1317-ACA-VOJ",
+      "url": "https://cs.du.edu/~petr/data/papers/reconstruction_of_group_multiplication_tables.pdf",
+      "locator": "作者稿§1 pp1–3定义、Thm1.1；§2 pp4–6证明；§3 p6；原刊Eur.J.Combin.22(8)(2001)1159–1164，DOI10.1006/eujc.2001.0548",
+      "version": "2001正式刊发；读取作者7页预刊稿SHA256=1a3a507e5d94f93294802e435f81140ecb4ae68317039dcb39ec67375a9ab819；math/0701697为2007存档",
+      "subquestions": [
+        "组合式群表重建的已知密集观测特例"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "正式刊发",
+      "review_status": "核过关键步骤",
+      "note": "n>3、至多n−1个空格的部分Cayley矩阵可由quadrangle criterion依任意预定顺序补全。核对双四边形推断、至多n−1空格下n个互不交叠候选必有完整副本、n=4分情况及§3删除整行的例子。作者区分无行列标签的Cayley矩阵、balanced矩阵和带表头Cayley表，n=3已是不同恢复问题。换算为观测数是m≥n²−n+1，不能当O(n log n)的随机样本保证；所谓界不能改善到n个空格是只用quadrangle方法的局限，删除一整行可由Latin约束复原，故不可改写成任意算法的信息论障碍。Dénes/Drápal旧界仅此文引用，原文未另取，未据它们定全局最优样本复杂度。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1317-ACA-V5-LIMIT",
+      "url": "https://arxiv.org/abs/2511.23152v5",
+      "locator": "v5官方提交历史；PDF p1摘要、p10 Limitations and Future Work",
+      "version": "v5, 2026-11-16 20:48:26 UTC,28pp",
+      "subquestions": [
+        "全观测结构定理与随机补全的范围"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "仅核关键步骤",
+      "note": "根与原题路线各自读取：当前作者Huh、Horesh、Jeong；全观测的约束精确重建下，以灵敏度下确界刻画结构。p10明确理论限于finite fully observed operation tables，把partial/noisy、formal recovery rates、sample complexity及gradient-based optimizers收敛列作未来挑战。标题/摘要的resolving central conjecture of Huh(2025)不能移作2026 OP2已解；O(n log n)-bit description也不是同数量随机观测一定可确定表或经验目标全局极小值恢复的证明。完整28页已取得，根未逐核所有附录证明及Lean，本条只承担适用范围证据。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1317-CODE-TRAINING",
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/09d320a5b92d74bbde3d0c4f52e680a9-Paper-Conference.pdf",
+      "locator": "AppendixA p12：11行HyperCube product/regularizer及训练策略；AppendixG.3 pp17–18 eq18–20",
+      "version": "ICLR2025正式25pp PDF; SHA256 b895cfa76b9607f466af7364cfab37c1a5d95839c84f863713abc64d426c1a34",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "正式刊发",
+      "review_status": "仅核关键步骤",
+      "note": "正文附的是张量乘积/正则einsum配方及实验训练设置，不是可证明对所有群/所有观测集成功的恢复算法。AppendixA采用全batch梯度下降；且明确正则常阻止完全拟合，故达到收敛指标后把ε设为0。不能把该调度实验等同固定正λ的全局极小者exact recovery定理。没有取得实际训练程序或采样器，更未运行。G.3写Ωtrain⊂(a,b,c)与Mabc；是否独立tensor标量mask，还是pair mask广播c，本支线无源码可以裁定。",
+      "formal_status": "已静态检查未复跑",
+      "claim_state": "完整稿已取得",
+      "rerun": {
+        "toolchain": "论文PyTorch einsum片段；未取得完整作者环境",
+        "theorem": "无本轮已验证的一般恢复界",
+        "cache": "〔私有材料定位已省略〕",
+        "axioms": "不适用：不是Lean证明，未运行程序。"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1317-CODE-LEANCLAIM",
+      "url": "https://arxiv.org/pdf/2511.23152v5",
+      "locator": "p3精确重建约束及Lean脚注；p10 Limitations and Future Work；p11 AI USE STATEMENT",
+      "version": "arXiv2511.23152v5 (2026-11-16); SHA256 ac903ee8792b2df013a37a6a37d1bdd7a8881d082c7750a58b6302cfb962c53f",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "形式化",
+      "publication": "预印本",
+      "review_status": "仅核关键步骤",
+      "note": "作者给出的Lean声明对应全观测exact reconstruction T(Θ)=δ下的复杂度地板/群isotopy等结构结果。本支线实际读代码相关段；p10明确partial/noisy observations、formal recovery rates、sample complexity、gradient optimizer convergence仍待研究。即使相关结构形式化成立，也不推出本题随机缺失表项的恢复保证。p11说数学想法/证明由作者完成，generativeAI辅助翻译成Lean及润色，不是AI独立找到同题界。其完整学术范围由origin另核；本支线未把全稿都称为独立验证。",
+      "formal_status": "他人声称已形式化验证",
+      "claim_state": "公开声称",
+      "claimant": "Dongsung Huh, Lior Horesh, Halyun Jeong",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1317-CODE-LEANACCESS",
+      "url": "https://anonymous.4open.science/r/HyperCube_Lean-4664/README.md",
+      "locator": "作者提供的README链接；web及公开file端点直接HTTP读取均失败",
+      "version": "linked from arXiv2511.23152v5；checked2026-11-27；仓库commit/文件版本未取得",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "review_status": "未读全文",
+      "note": "web不可访问；直接README与公开api/file/README均403，日志p1317_anonymous_access.json。没有任何Lean文件内容，因而不能检查定理终点、定义、sorry、axiom依赖、toolchain、CI或给出固定commit。GitHub精确HyperCube_Lean搜索0命中。本轮无Lean/lake/elan，未build；不把有仓库链接升级为独立形式化通过。",
+      "formal_status": "复跑受阻",
+      "claim_state": "公开声称",
+      "rerun": {
+        "commit": "未取得",
+        "toolchain": "未取得；本环境lean/lake/elan均未安装",
+        "cache": "〔私有材料定位已省略〕",
+        "axioms": "未读源码，未运行#print axioms，无法判断。"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "formal_evidence": "rerun_blocked",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1317-CODE-SUN",
+      "url": "https://github.com/AlkaiDynamics/Symphonia-Universalis-Numinous/blob/c159daf2285be47ccc1cf7fe73c5abd8507197ac/versions/v1b/SUN_PROSPECTIVE_TRIAL_0_CANDIDATE_ELECTION.md",
+      "locator": "文档开头Status/Empirical status及§C3、C4",
+      "version": "c159daf2285be47ccc1cf7fe73c5abd8507197ac",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "重述",
+      "publication": "代码仓库",
+      "review_status": "仅核关键步骤",
+      "note": "检索命中的公开候选框架明确写NO SUN EMPIRICAL PREDICTION EXISTS。Cayley-table completion只被列为未来prospective trial的候选对象，Native model是全体符合公理及可见单元的completion；不是已执行恢复结果，也无O(nlogn)界。读取该具体段后排除，未研究其其他题目。",
+      "formal_status": "未检到形式化",
+      "claim_state": "无声明",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1317-CODE-COVERAGE",
+      "url": "https://github.com/openai/math/tree/3344da59991ed94f9ba711217b29c1d760badfa6",
+      "locator": "实际GitHub搜索返回片段；固定overview.tex/CONTENTS.md全文regex；FC精确id和词组搜索",
+      "version": "OAI3344da59991ed94f9ba711217b29c1d760badfa6；本包最近FC头ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8；checked2026-11-27",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "代码仓库",
+      "review_status": "未读全文",
+      "note": "本范围未定位FC/OAI本题完整证明、反例或exact recovery终点。OAI Cayley+completion20条及Cayley+recovery18条是变换/群图/局部域等邻题，只读返回片段排除；精确Cayley-table0条。FC Cayley+completion和2605.29885均0条。目录regex无命中，blob分别1a56184b1f28a8750722dc2dd6306af8424da0b6、7d4a8770643439016a70f23a4524d0ebacc78900；不得由有限检索推出所有别名、未索引材料不存在。",
+      "formal_status": "未检到形式化",
+      "claim_state": "无声明",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1317-DUP-SELF",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001317.text.md",
+      "locator": "冻结text.md §§题面/形式化、人话、边界；meta.acceptance.criteria",
+      "version": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev b55ea6f1ee6e62af; text blob ebc6646810f5e9f3f4d3c535cda30555d368e71e; meta blob 5c724f3f2fff73808d613feffa7a53019779fdb3",
+      "subquestions": [
+        "有限群部分乘法表精确恢复的题面模型与库内关系"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "冻结题面未说明随机/任意/最佳观测位置、标签与身份先验、候选母类及具体优化器；人话又加入拟群。不能在这些量词未固定时把最小m视作单一数字或把任意部分表补全与原OP2等同。实际冻结版本已与附件对齐，未直接修改卡。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1317-DUP-OP2",
+      "url": "https://arxiv.org/pdf/2605.29885v1",
+      "locator": "pp2–4，§3结构张量/完全观测结论及§4 Open Problem 2",
+      "version": "arXiv:2605.29885v1, 2026-05-28; PDF SHA256 0623980c710a6001b9de91e9491e708feb8eb966c19eb30d2e4e7968aa496fdb",
+      "subquestions": [
+        "源问题的全局极小点、高概率及均匀O(n log n)观测模型"
+      ],
+      "role": "原始提出",
+      "publication": "预印本",
+      "scope_match": "尚未确认",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "本支只独立阅读定义/OP2相邻段，未复核作者整个算法或先验定理。OP2针对flatness正则经验损失的global minimizer，从O(n log n)均匀采样entries以高概率精确恢复群表；不是冻结卡的按群类精确最小m或任意拟群唯一补全。§3此前的几何极小值陈述是fully-observed limit，不能单靠它推出部分观测的保证。§3索引Ω⊂Q³使“一个entry”的具体观测粒度需要统一，本轮计算明确采用n²个乘法单元的模型。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "unconfirmed",
+        "role": "original",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1317-DUP-SMALL",
+      "url": "https://www.qunxingmath.org/p/QX-P-001317/",
+      "locator": "本回执内的独立核对note（题卡链接仅定位研究对象，非声称此证明已由题卡发布）；p1317_independent_checks.json.enumeration / identification_baselines",
+      "version": "本轮独立Python 2026-11-27; script SHA256 ce63669f1a1f92dc4f5198febb344de4d3b5f0a421938c2b69801461b2772500; result SHA256 239d4ed82b9f7e0d8fccef3bd41eaac47b1401cae80bedb6846ab2f19776d51a",
+      "subquestions": [
+        "标号精确辨识与同构辨识、单位元已知与未知、最佳/最坏/均匀位置的n≤4基线"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "command": "python internal/p1317_independent_checks.py",
+        "cache": "〔私有材料定位已省略〕",
+        "theorem": "有限精确枚举；不是渐近概率定理或Huh算法验证"
+      },
+      "note": "本轮独立计算/论证，非外部作者已发布结果。固定标签为0..n−1，行、列和输出符号共用同一标号；一次观测是一个无噪声乘积a·b=c。直接逐行枚举所有Latin表，不按同构删表，再检查双侧单位元及全部结合律三元组。n=1,2,3,4的Latin表数分别1,2,12,576；群表（身份未知）数1,2,3,16；已知单位元标签0时群表数1,1,1,4；同构类型数1,1,1,2。故同构类型不能代替精确标号候选，且m=0不一概有多个候选：n≤3且身份已知即唯一，n≤3只求群同构类也无需观测。n4真表为C4加法模4且单位元0已知时，一项1·1=2唯一确定群表，但同样一项0·0=0保留4个群候选；均匀从16格取一个时前者对应的整体唯一辨识概率为4/16=1/4。对真C4/V4，在所有身份未知标号群中的最佳定义集大小均2；身份0已知时分别1/2；在全部576个Latin方中分别4/5。对这些两张真表，从全部16格中任取m格都保证唯一的最小m均13（最近其他候选差4格）；这不是最佳观测位置下的最小m。所有位置子集已穷举，概率仅指从n²格中无放回均匀抽取m格；即使身份已知也允许抽到已可推知的单位行列，因此不能直接用于排除这些行列的取样口径。已知抽象群但标签未知仍需恢复标号：已知C4且e=0时有3张表；已知V4且e=0时仅1张。以上仅辨识性基线，不模拟Huh损失、正则权重或全局极小点。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1317-DUP-BLOCK",
+      "url": "https://www.qunxingmath.org/p/QX-P-001317/",
+      "locator": "本回执内的独立核对note（题卡链接仅定位研究对象，非声称此证明已由题卡发布）；block_trade_check；本条note给任意h的完整论证",
+      "version": "本轮独立数学核对2026-11-27; h=2代码日志 SHA256 239d4ed82b9f7e0d8fccef3bd41eaac47b1401cae80bedb6846ab2f19776d51a",
+      "subquestions": [
+        "将群母类扩为全部Latin方/拟群时的n²/4确定性辨识下界"
+      ],
+      "role": "反例",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "本轮独立计算/论证，非外部作者已发布结果。令n=2h，标签为C2×C_h；对任意ε∈{0,1}^{h×h}定义Lε((a,i),(b,j))=(a+b+εij mod2,i+j modh)。固定行(a,i)与所需输出第二坐标k，唯一j=k−i，随b取0/1输出第一坐标恰为0/1；固定列同理。因此每个ε都给Latin方，且不同ε在对应(i,j)的四格块上不同，总数2^{h²}。这些h²块是不交的输入位置分块。任意m<h²个已观测乘积最多触及m块，必有整块未观测；仅翻转该块εij，就得到不同的Latin方而保持全部观测值。特别真表ε=0本身是群C2×C_h，其任何定义集在所有Latin/拟群母类中也必须至少h²=n²/4项。因此把原问群母类擅自扩大到所有拟群，会使对所有此类目标的O(n log n)唯一恢复不可能；这不是Huh已知群母类/特定正则优化器的反例，因为翻转后的表通常不结合。若另外给定双侧单位元e=(0,0)且仅允许loop候选，应固定ε0j=εi0=0，仍有(h−1)²个自由块，相同论证给(h−1)²下界；不能在该加强先验下原样使用h²。n4标签编码2a+i时，ε00=1其余0的表为[[2,1,0,3],[1,0,3,2],[0,3,2,1],[3,2,1,0]]；(0·0)·1=3而0·(0·1)=1，且无双侧单位元。程序检查全部16种ε均Latin、只有4种结合；已知单位元0保留2种。全部697个大小0..3的观测位置子集均找到同值的另一块翻转表。另只翻ε11保留e=0并得到C4表，此特例改变同构类，并不意味着一般块翻转保持群。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "counterexample",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1317-DUP-RANK",
+      "url": "https://www.qunxingmath.org/p/QX-P-001317/",
+      "locator": "本回执内的独立核对note（题卡链接仅定位研究对象，非声称此证明已由题卡发布）；encoding_rank_check；本条note区分两种编码",
+      "version": "本轮独立数学核对2026-11-27; result SHA256 239d4ed82b9f7e0d8fccef3bd41eaac47b1401cae80bedb6846ab2f19776d51a",
+      "subquestions": [
+        "Latin表的数值矩阵秩与一位有效结构张量展平秩"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "本轮独立计算/论证，非外部作者已发布结果。必须说明“秩”的编码。V4的标号XOR乘法表M=[[0,1,2,3],[1,0,3,2],[2,3,0,1],[3,2,1,0]]若直接视为实数矩阵，有非零核向量(1,−1,−1,1)，左上3×3行列式12，故秩恰3<4。Latin性质本身不能推出这种数值编码的n×n矩阵满秩。相反，一位有效结构张量δabc=1{a·b=c}按a|(b,c)展平时，任意两行的支撑不交：固定b，Latin列性质使不同a输出不同c；每行恰n个1。因此展平矩阵的Gram矩阵为nI，行秩确为n。该区分不是对原稿 intended representation 的裁决，而是纠正把数值表、张量展平与算子因子秩混作同一对象；代码精确核了n4核向量、行列式与Gram矩阵。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001124",
+      "other_card_rev": "9da04b41b95cee70",
+      "relation": "相关但不等价",
+      "reason": "1124问是否存在两个有限生成群G1,G2，其一周期、另一非周期，并共享同一局部有限无向Cayley图；因非周期群存在无限阶元素，此对照不是固定阶n有限群。输入是无向图的邻接关系，生成元颜色/完整乘积值并未提供。1317则针对有限群有标签乘法表的部分观测和恢复样本量，原OP2再指定随机模型与正则优化器。一个是图呈现的歧义存在性，一个是部分乘积的恢复保证，不能因Cayley字样合并。",
+      "positions": {
+        "self": "冻结text.md §§题面/形式化、人话、边界；meta.acceptance.criteria",
+        "other": "冻结text.md §§题面/形式化、人话、原文12.88；meta.acceptance.criteria"
+      },
+      "note": "本轮未发现严格等价，不提合并。若未来补足定义并严格证明同题，按较小ID QX-P-001124 负责主卡/二审合并提议。冻结全文与meta、实际SHA均存p1317_duplicates_cache.json。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000677",
+      "other_card_rev": "8043bf05f25367f9",
+      "relation": "相关但不等价",
+      "reason": "677的可读完整子问是：对有限非交换G,H，ΓG≅ΓH且H幂零是否推出G幂零；ΓG只记录G\\Z(G)上xy≠yx。它恢复一个性质而非带标签的全部乘法值，没有观测个数m或随机取样。冻结题面/形式化较泛，但人话、原文16.1(b)与acceptance一致定位此子问，不能把“群重构”扩成1317。",
+      "positions": {
+        "self": "冻结text.md §§题面/形式化、人话、边界；meta.acceptance.criteria",
+        "other": "冻结text.md §§人话、原文16.1(b)；meta.acceptance.criteria（形式化栏本身残缺）"
+      },
+      "note": "本轮未发现严格等价，不提合并。若未来补足定义并严格证明同题，按较小ID QX-P-000677 负责主卡/二审合并提议。冻结全文与meta、实际SHA均存p1317_duplicates_cache.json。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000822",
+      "other_card_rev": "be6c9a1bb0af5ebd",
+      "relation": "仅相似",
+      "reason": "822对长度n的二元词定义完整k-deck为所有长度k子序列的多重集，求使每个词唯一确定的最小子序列长度k(n)及其阶。参数k不是采样的条目数，输入保留子序列重数而不提供原位置；对象没有群运算、结合律或算子损失。与1317仅共享离散重构/阈值术语。",
+      "positions": {
+        "self": "冻结text.md §§题面/形式化、人话、边界；meta.acceptance.criteria",
+        "other": "冻结text.md §§题面、形式化的k-deck定义与k(n)、人话；meta.acceptance.criteria"
+      },
+      "note": "本轮未发现严格等价，不提合并。若未来补足定义并严格证明同题，按较小ID QX-P-000822 负责主卡/二审合并提议。冻结全文与meta、实际SHA均存p1317_duplicates_cache.json。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001416",
+      "other_card_rev": "9c52dbd0902f1796",
+      "relation": "仅相似",
+      "reason": "1416的单个n×n矩阵使用n²个互异符号1..n²，考察两个矩阵在行内共现元素对的交叠，最大化一整族矩阵的个数m。1317单表仅n个元素标签、每行每列为排列，m指被观察的乘积条目数；极值设计族与恢复同一目标表既无相同对象，也无相同量词。",
+      "positions": {
+        "self": "冻结text.md §§题面/形式化、人话、边界；meta.acceptance.criteria",
+        "other": "冻结text.md §§题面、形式化max m、每矩阵n²符号与同行共现条件；meta.acceptance.criteria"
+      },
+      "note": "本轮未发现严格等价，不提合并。若未来补足定义并严格证明同题，按较小ID QX-P-001317 负责主卡/二审合并提议。冻结全文与meta、实际SHA均存p1317_duplicates_cache.json。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001850",
+      "other_card_rev": "6ecfef482f1b4094",
+      "relation": "相关但不等价",
+      "reason": "1850问每个给定的完整Latin方能否选出n−1个不同行、不同列且不同符号的格子，以及奇数阶的完整横贯分量。横贯是同一表内格子集合的存在性，不要求这些格子的值唯一确定原表；也不带群先验、随机采样或优化器。冻结卡对两个横贯分量的关系措辞不在本轮认证，但无论按哪个分量均非1317。",
+      "positions": {
+        "self": "冻结text.md §§题面/形式化、人话、边界；meta.acceptance.criteria",
+        "other": "冻结text.md §§人话、其他记录的n−1部分横贯/奇阶完整横贯；meta.acceptance.criteria"
+      },
+      "note": "本轮未发现严格等价，不提合并。若未来补足定义并严格证明同题，按较小ID QX-P-001317 负责主卡/二审合并提议。冻结全文与meta、实际SHA均存p1317_duplicates_cache.json。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000432",
+      "other_card_rev": "21cb026ca4ef9ba9",
+      "relation": "仅相似",
+      "reason": "432针对一般复三阶张量的CP generic秩/最大秩求值，冻结题面含格式参数m1,m2,m3与排除格式。1317的结构张量来自有限群运算的一位有效编码，原问涉及特定算子值因子分解和正则损失的样本恢复；一般张量秩公式不是该结构类的观测唯一性或优化保证。未因“张量/秩”合并，亦未在此独立认证432公式。",
+      "positions": {
+        "self": "冻结text.md §§题面/形式化、人话、边界；meta.acceptance.criteria",
+        "other": "冻结text.md §§题面、形式化、人话的复张量generic/maximal rank；meta.acceptance.criteria"
+      },
+      "note": "本轮未发现严格等价，不提合并。若未来补足定义并严格证明同题，按较小ID QX-P-000432 负责主卡/二审合并提议。冻结全文与meta、实际SHA均存p1317_duplicates_cache.json。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000896",
+      "other_card_rev": "1acb3cf6a78027b5",
+      "relation": "仅相似",
+      "reason": "896的乘法表是通常整数i·j（1≤i,j≤n）的不同乘积计数及归一化极限画像f_Mult，问∃x,y使f_Mult(x)≠f_Mult(y)。其值域不是固定n元素集且不是Latin表，也不存在部分观测恢复的m。1317是有限群内部运算与学习，二者“乘法表”同名但数学问题不同。",
+      "positions": {
+        "self": "冻结text.md §§题面/形式化、人话、边界；meta.acceptance.criteria",
+        "other": "冻结text.md §§题面、形式化、人话的整数乘法表极限画像；meta.acceptance.criteria"
+      },
+      "note": "本轮未发现严格等价，不提合并。若未来补足定义并严格证明同题，按较小ID QX-P-000896 负责主卡/二审合并提议。冻结全文与meta、实际SHA均存p1317_duplicates_cache.json。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "题面纠错",
+      "field": "题面/形式化表述/acceptance.criteria",
+      "old": "给定n阶群m个观测项，求按群类的精确最小m；唯一补回群或拟群表。",
+      "new": "先忠实标明原来源为2605.29885v1 OpenProblem2：对于未知n阶群的标号乘法表，能否在仅O(nlogn)均匀随机观测时，证明指定flatness正则经验目标的全局极小值以高概率恢复整个目标群表？原文尚未完全指定的采样单位、概率参数、正则形式与exact标准另列待定；按群类最小值/最优观测集/信息论唯一性只能作衍生子问题。",
+      "reason": "三个不同恢复问题不能借同一出处替换；原问并非求各群类精确最小m。",
+      "evidence_ids": [
+        "E1317-ORIGIN-OP2",
+        "E1317-ORIGIN-MODEL-CHECK"
+      ],
+      "small_case_check": "4阶knownidentity0、目标C4：同样一个观测，(0,1)不能唯一确定而(1,1)=2可唯一确定；观测数必须连同位置/随机法量化。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "观测模型/精确性/优化器/概率",
+      "new": "指定S⊂Q²的运算结果观测还是Ω⊂Q³的0/1张量坐标观测；有无替换、噪声及置信参数。指定全局最优对象：LΩ+λH、约束插值下minH、λ→0或训练退火；明确输出是T=δ还是逐行argmax正确，以及所有极小值或某种选择。求全局解的样本界与实际优化算法收敛界分开。",
+      "reason": "一条table cell给n个one-hot标量约束，不能把n²与n³总体量/不同损失的m混算；固定正lambda可有系统缩放偏差。",
+      "evidence_ids": [
+        "E1317-ORIGIN-OP2",
+        "E1317-ORIGIN-ICLR2025",
+        "E1317-ORIGIN-MODEL-CHECK"
+      ],
+      "small_case_check": "n=1,L=(abc−1)²+λ(a²b²+b²c²+c²a²)，λ>0下abc=1的点可同步缩小而降目标，但argmax仍正确。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版/边界与约定",
+      "old": "群/拟群并列叙述，后文引用群结构的结合律、单位元和逆元；m=0称多群拟合，小阶基线建议同构检测。",
+      "new": "OP2目标取群；拟群只保证各行列置换，不能附带结合律/统一单位。恢复按原标签比较，latent gauge与抽象同构/三个独立置换的isotopy区分；说明identity是否已知。n=1在零观测已唯一。",
+      "reason": "域与等价关系直接改变可辨识性；理论全局最优的isotopy分类不等于把目标表只恢复至同构类。",
+      "evidence_ids": [
+        "E1317-ORIGIN-OP2",
+        "E1317-ORIGIN-V5",
+        "E1317-ORIGIN-MODEL-CHECK"
+      ],
+      "small_case_check": "C3减法是Latin方且isotopic to group，但不结合；两个标号C2群表抽象同构却不同。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果/难度依据/所谓Huh2025精确算法",
+      "old": "Huh2025已给精确算法；界无结论。",
+      "new": "Huh2025 ICLR给HyperCube参数化、部分理论与实验恢复，严谨generalization bounds仍列open。2511.23152v5(2026-11-16)在全表精确约束下刻画sensitivity floor和群isotopy结构，明确尚未给partial/noisy恢复率、samplecomplexity或梯度收敛界。代码与Lean验证范围另据实际证据列出。",
+      "reason": "表达存在性、有限实验、全观测目标结构与随机少量观测算法保证不是同一结论。",
+      "evidence_ids": [
+        "E1317-ORIGIN-ICLR2025",
+        "E1317-ORIGIN-V5"
+      ],
+      "small_case_check": "已知regular representation能按trace公式重建全群表，但这并未提供从未知少量观测求该表示的算法保证。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "低秩比较的编码前提",
+      "new": "若比较线性rank，明确采用one-hot结构张量的指定展开；不要将Latin方每行列置换直接推成任意数值标签矩阵满秩，也不要把某个矩阵补全界无效等同所有几何方法不可能。",
+      "reason": "符号没有固有数值大小；原文§3的δ编码应带入比较。",
+      "evidence_ids": [
+        "E1317-ORIGIN-OP2",
+        "E1317-ORIGIN-MODEL-CHECK"
+      ],
+      "small_case_check": "V4用0,1,2,3标号的XOR矩阵rank3；one-hot a×(b,c)展开rank4，二者并不矛盾。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "known_results / difficulty.note",
+      "old": "Huh2025已给精确算法（算子值张量公式）/先验精确求解",
+      "new": "Huh2025提出HyperCube算子值张量模型并给有限经验恢复结果及训练配方；2026v5推进全观测结构/复杂度刻画。随机部分观测的正式恢复界、样本复杂度和优化收敛并未由这些材料给出。",
+      "reason": "经验全恢复、精确结构定理与一般恢复算法保证具有不同量词。",
+      "evidence_ids": [
+        "E1317-CODE-TRAINING",
+        "E1317-CODE-LEANCLAIM"
+      ],
+      "small_case_check": "静态检查论文调度：当ε被设为0以后得到的fit不证明固定ε>0同一目标的全局极小者精确恢复；只为范围核对，未运行训练。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "formal_statement / observation_model",
+      "new": "明确观测单位：Ω⊂Q²的一项(a,b)输出标签，或Ω⊂Q³的一项one-hot标量；同时写随机采样规律、失败概率、恢复到哪种标号等价以及固定/调度正则参数。源码未得时保留待核，不擅自把Mabc解释为pair广播。",
+      "reason": "不同观测模型的样本数m不能直接互换，且原问题并非任意m个位置的确定性唯一性保证。",
+      "evidence_ids": [
+        "E1317-CODE-TRAINING"
+      ],
+      "small_case_check": "手核单个输入pair的3维one-hot例：[0,1,0]作为已知输出1给出整条fiber；只观测第0维为0仍允许输出1或2。说明一个标量与一个输出标签的信息不同，不声称该局部例反驳群约束下的恢复问题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "formal_status / ai_claims",
+      "new": "加入作者v5的Lean链接与AI辅助形式化披露，注明其对象为全观测结构结果；本轮README和公共file端点403，未取得固定commit、源码、axioms或复跑日志。",
+      "reason": "有形式化声明可记录，但不能据此标本题已形式化解决。",
+      "evidence_ids": [
+        "E1317-CODE-LEANCLAIM",
+        "E1317-CODE-LEANACCESS"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text.题面/形式化/边界；card_metadata.acceptance.criteria",
+      "old": "给定n阶群的m项部分表，求最小m；按群类刻画。未规定随机、最坏或最佳位置。",
+      "new": "以原OP2为主问，写明有限群目标、作者指定的张量模型与flatness正则经验损失、全局极小点、均匀采样O(n log n)条目及高概率精确恢复。需固定entry粒度、抽样是否放回及失败概率口径；最佳定义集/任意位置保证/按群类精确阈值作为不同变体明确分列。",
+      "reason": "这几个最小量的量词不同；小阶同m不同位置已出现不同唯一性，不可用任意位置失败当随机高概率反例。",
+      "evidence_ids": [
+        "E1317-DUP-SELF",
+        "E1317-DUP-OP2",
+        "E1317-DUP-SMALL"
+      ],
+      "small_case_check": "C4,e=0已知，观察1·1=2可唯一确定群表；观察0·0=0仍4个群候选。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "card_text.题面/人话版的群或拟群；边界",
+      "old": "群（或拟群）部分表唯一恢复并列；m=0一律多群拟合。",
+      "new": "原OP2按群目标处理；拟群、loop等需另设候选类。明确同一组标签的精确全表恢复与只求抽象群同构类不同，单位元标签是否已知也要注明。m=0按先验和阶数讨论，不作统一非唯一结论。",
+      "reason": "扩大为所有Latin方时，C2×C_h真群表也有n²/4辨识下界；n≤3且身份已知的群表却无需任何观测。",
+      "evidence_ids": [
+        "E1317-DUP-SMALL",
+        "E1317-DUP-BLOCK"
+      ],
+      "small_case_check": "n4群表身份未知16张、身份0已知4张，却只有2个同构类型；不能仅枚举同构代表来估计精确恢复。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "card_text.人话版的低秩/群约束比较；已知结果与进展",
+      "old": "低秩几何约束与群代数约束未指定编码地比较；Huh2025精确求解易读作已有部分观测恢复定理。",
+      "new": "说明数值编码矩阵、一位有效结构张量的展平及算子值因子分解各自对象；完全观测几何刻画与部分观测高概率恢复分开，所引用2025结论按主审原文核对后的精确范围表述。",
+      "reason": "有限维数值例已表明Latin性质不强制任意编码矩阵满秩；fully-observed limit也不自动蕴含原OP2。",
+      "evidence_ids": [
+        "E1317-DUP-OP2",
+        "E1317-DUP-RANK"
+      ],
+      "small_case_check": "V4数值XOR表秩3，而其结构张量a|(b,c)展平秩4。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "novelty / informal_status / search_coverage",
+      "old": "novelty绑定旧0a5c0c919fd6d347；当前卡b55ea6f1ee6e62af；先验精确算法与按群类最少m混写。",
+      "new": "当前版本先标题面错误或缺条件；恢复源OP2后，本次范围未发现全解确证。2025经验结果、2026v5全观测结构定理及作者形式化声明逐项限定；覆盖逐题粗查有缺口。",
+      "reason": "题意一致性需先于开放/已解状态迁移；匿名代码及观测单位有明确缺口。修改只为回执建议，需项目二审后实施，不自动关题。",
+      "evidence_ids": [
+        "E1317-ORIGIN-OP2",
+        "E1317-ORIGIN-ICLR2025",
+        "E1317-ORIGIN-V5",
+        "E1317-ORIGIN-MODEL-CHECK",
+        "E1317-CODE-LEANACCESS"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "duplicates / merge",
+      "new": "已核冻结全库索引与候选全文/meta，未确认严格同题；不自动合并。",
+      "reason": "群表学习、表示、拟群结构与一般矩阵/张量低秩恢复的量词不同。若后续确认严格同题，再按较小ID主卡及二审规则处理。",
+      "evidence_ids": [
+        "E1317-DUP-SELF",
+        "E1317-DUP-OP2",
+        "E1317-DUP-SMALL",
+        "E1317-DUP-BLOCK",
+        "E1317-DUP-RANK"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {
+        "card_action": "no_change"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "原OP2自身未严格固定观测单位、抽样替换、失败概率、正则系数/约束形式、exact含义和全局极小值选择量词。",
+      "next_step": "二审先将这些参数写成明确数学命题；保留原OP2随机O(nlogn)研究目标，不能替作者选择最优观测/任意观测或把拟群扩入全域。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "2025正文有accuracy与tensorloss的明确区别，但未在本分工已读文字中取得argmax定义或完整采样器；2026Ω三元组写法与table-entry措辞不完全统一。",
+      "next_step": "合并代码支线对公开实验sampler和decoder的固定commit核验；若未得仍标未知，不从图例或常见实践猜测。代码实践也不自动补成作者OP2的唯一理论约定。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "v5全观测结构定理虽已读关键声明、定义及限制，本分工未逐步审完28页全部证明；它不提供原随机恢复定理。",
+      "next_step": "将主审核到的随机群表辨识性/恢复界与指定正则化优化目标逐一对齐；全观测定理只列有附加假设进展。若采用v5详细结构结论，保留证明及形式化二审。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "v5声明Lean4和AI辅助翻译；本分工只读其正文声明，未验仓库或重跑。OpenReview论坛出现验证墙。",
+      "next_step": "以代码分工实际源码/构建日志界定形式化覆盖，不报本分工已复跑；OpenReview未读全部评论的访问边界保留。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "已取得并核Vojtechovsky作者稿；Dénes/Drápal等更强密集观测界仅从参考文献得知，未取得其全部原证。",
+      "next_step": "若后续保留独立的组合唯一补全子卡，再按固定标签/已知单位元/允许的候选群类及最优、最坏或随机观测分别查原始最优界；不把该工作当Huh OP2的直接结案条件。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "HyperCube_Lean-4664公开入口403，未取得文件或commit，无法审定理/定义/sorry/axioms。",
+      "next_step": "如后续有作者公开可读的归档，固定版本后核全观测终点及依赖，必要时在已有Lean缓存环境复跑；本轮保留他人声明层。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "没有取得Huh2025训练仓库或实际采样器；正文einsum片段不足以决定mask单位、数据生成、seed与成功判据。",
+      "next_step": "以作者实际公开程序/补充材料核采样是pair广播还是tensor标量，再核具体试验群类与失败比例；未取到之前不宣称已复现。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "OpenReview主帖出现浏览器验证，评审和作者答复未读；GitHub、OAI和近期Web覆盖有topn/索引限制。",
+      "next_step": "后续发现具体新完整声明优先取原文和固定代码；当前无需无界追加搜索或大规模训练。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "2469条索引五组召回；自身和7候选的16份冻结全文/meta全部读取、版本和SHA核对；未发现严格同题。未逐字读取2469份全部正文。",
+      "next_step": "保持独立，不把Cayley图/非交换图重构、Latin横贯、整数乘法表或一般张量秩与本题合并。若出现新的强候选仍须正文量词等价及较小ID二审规则。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "本支已亲读原OP2与定义相邻段，但其均匀entries究竟为n²个乘积单元还是n³个结构张量标量，以及抽样方式/正则参数/所有极小点口径需由主审与出处线统一。",
+      "next_step": "将主审核实的原模型写入主回执；本支有限枚举和块翻转仅承担已明确标号乘积模型的辨识性边界，不作为Huh优化器或随机群恢复问题的反例。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "b55ea6f1ee6e62af",
+      "codes": {}
+    }
+  ]
+}

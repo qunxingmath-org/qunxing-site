@@ -1,0 +1,1964 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001236",
+  "card_rev": "63a08762640381cb",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-10"
+      ],
+      "parts": [
+        {
+          "subquestion": "较弱但严格突破1/6的统一上界c*=(3/(2π))arcsin(1/3)",
+          "value": "partial",
+          "note": "本轮独立核对作者稿§3.1–3.4的完整短论证，得到有限简单Δ≤3图的pw≤cw≤c*n+o(n)，c*≈0.16226<1/6。包括任意短环/不连通图，误差只依n；是上界进展，不给精确常数或极限存在。没有Lean独立复跑。"
+        },
+        {
+          "subquestion": "更强统一上界c3=3 arccos(5/6)/(4π)",
+          "value": "claimed_resolution",
+          "note": "2026完整稿声称对所有有限简单最大度≤3图统一成立pw≤c3*n+o(n)，c3≈0.139822124008。已核关键数学步骤并取得完整Lean发布归档，静态检查主定理及本地依赖；作者有构建和公理日志。本轮未复审全部Gaussian simplex及majority证明，未执行Lean，也未独立核构建commit与导出版本仅注释差异；不得据此报本轮独立全证通过。此界只覆盖原题上界进展，不给匹配下界、精确常数或普通极限存在。"
+        },
+        {
+          "subquestion": "极值路径宽度下界0.103295n−2",
+          "value": "partial",
+          "note": "Lichev–Mitsche2023正式刊给随机简单三次图a.a.s. bisection width≥0.103295n。结合最大度≤3的bw≤cw=search≤vertex separation+2=pw+2，推出每充分大允许偶数n存在三次图pw≥0.103295n−2；不是每个三次图都有该下界。本轮核了定理量词、模型与宽度迁移及search≤vs+2的关键证明；没有重做58页数值/组合证明。2026-11-03 arXiv v4摘要保留0.103295；v4全文访问失败，未逐项比对数值修订。"
+        },
+        {
+          "subquestion": "人话定义与正式目标的范围一致性",
+          "value": "statement_error",
+          "note": "人话版将跨割边数写成pathwidth并漏对排列取min，实际混淆cutwidth。形式化pw_max(n)须限定存在简单三次图的偶数n≥4；普通极限存在与limsup/最优统一渐近系数应分开。边界部分已说明只谈大n，不将K4当作标准渐近命题反例。保留本回执原card_rev；改变正式量词/目标/验收须另生成新rev。"
+        },
+        {
+          "subquestion": "定义区分小例K4",
+          "value": "partial",
+          "note": "本轮全部24排列穷举得vertex separation=3、cutwidth=4；另有直接路径分解证明pw(K4)=3。未运行n≤30图族。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://serggasp.github.io/pathwidth-site/lean/CubicPathwidth/C3/All.html"
+      ],
+      "note": "只覆盖：仅子问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://people.idsia.ch/~grandoni/Pubblicazioni/FGK05beatcs.pdf",
+      "review": "key_steps_checked"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "有部分进展",
+      "scope_note": "精确常数目标未获匹配上下界；现卡验收同时允许显著缩小差距，已检得直接相关2026上界新稿与较强下界链。最优统一系数/limsup与沿偶数n的普通极限须分清，不因新上界或作者Lean报告便称精确常数已求出。小图和人话定义错误另记，回执仍绑定当前63a08762640381cb。",
+      "evidence_ids": [
+        "Q019-R-FGK05",
+        "Q019-R-FH06",
+        "Q019-R-GASPERS-STATEMENT",
+        "Q019-ACAD-LM2023",
+        "Q019-ACAD-EST1994",
+        "Q019-ACAD-OPEN",
+        "E019-C01"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "较弱但严格突破1/6的统一上界c*=(3/(2π))arcsin(1/3)",
+      "math_status": "实质进展",
+      "scope_note": "本轮独立核对作者稿§3.1–3.4的完整短论证，得到有限简单Δ≤3图的pw≤cw≤c*n+o(n)，c*≈0.16226<1/6。包括任意短环/不连通图，误差只依n；是上界进展，不给精确常数或极限存在。没有Lean独立复跑。",
+      "evidence_ids": [
+        "Q019-R-CUTSWEEP"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "更强统一上界c3=3 arccos(5/6)/(4π)",
+      "math_status": "完整声明待核",
+      "scope_note": "2026完整稿声称对所有有限简单最大度≤3图统一成立pw≤c3*n+o(n)，c3≈0.139822124008。已核关键数学步骤并取得完整Lean发布归档，静态检查主定理及本地依赖；作者有构建和公理日志。本轮未复审全部Gaussian simplex及majority证明，未执行Lean，也未独立核构建commit与导出版本仅注释差异；不得据此报本轮独立全证通过。此界只覆盖原题上界进展，不给匹配下界、精确常数或普通极限存在。",
+      "evidence_ids": [
+        "Q019-ACAD-GASPERS",
+        "E019-C01",
+        "E019-C02",
+        "E019-C03",
+        "E019-C05"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "极值路径宽度下界0.103295n−2",
+      "math_status": "实质进展",
+      "scope_note": "Lichev–Mitsche2023正式刊给随机简单三次图a.a.s. bisection width≥0.103295n。结合最大度≤3的bw≤cw=search≤vertex separation+2=pw+2，推出每充分大允许偶数n存在三次图pw≥0.103295n−2；不是每个三次图都有该下界。本轮核了定理量词、模型与宽度迁移及search≤vs+2的关键证明；没有重做58页数值/组合证明。2026-11-03 arXiv v4摘要保留0.103295；v4全文访问失败，未逐项比对数值修订。",
+      "evidence_ids": [
+        "Q019-ACAD-LM2023",
+        "Q019-ACAD-EST1994",
+        "Q019-ACAD-MS1989",
+        "Q019-ACAD-KIN1992",
+        "Q019-R-LMV4"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "人话定义与正式目标的范围一致性",
+      "math_status": "题面有误",
+      "scope_note": "人话版将跨割边数写成pathwidth并漏对排列取min，实际混淆cutwidth。形式化pw_max(n)须限定存在简单三次图的偶数n≥4；普通极限存在与limsup/最优统一渐近系数应分开。边界部分已说明只谈大n，不将K4当作标准渐近命题反例。保留本回执原card_rev；改变正式量词/目标/验收须另生成新rev。",
+      "evidence_ids": [
+        "e-q019-definition",
+        "Q019-ACAD-KIN1992",
+        "Q019-ACAD-OPEN"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "定义区分小例K4",
+      "math_status": "仅特例",
+      "scope_note": "本轮全部24排列穷举得vertex separation=3、cutwidth=4；另有直接路径分解证明pw(K4)=3。未运行n≤30图族。",
+      "evidence_ids": [
+        "e-q019-definition"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "Wikipedia",
+      "query": "open https://en.wikipedia.org/wiki/Pathwidth；find \"0.082\"；find \"Fomin\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "当前打开条目与检索快照呈现不一；find0.082无匹配而搜索快照仍有旧常数。只作引文入口，后续读取原始论文；未用百科证明2026仍开放。",
+      "url": "https://en.wikipedia.org/wiki/Pathwidth",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "cubic graphs pathwidth 0.082 2026 constant（recency=365）",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Gaspers2026新稿作者站，随后读实际稿；旧卡“2024–2026未破”已不能维持。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"Pathwidth of cubic graphs\" \"Høie\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检得Fomin–Høie2006正式文章和作者存档，识别原卡作者错误。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "作者主页原稿",
+      "query": "open https://fedorvf.github.io/articles/2006/2006b.pdf；read §2,§3,§5及参考文献",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "6页正式论文实读：2005-11-28在线，2006刊；上界作者Fomin/Høie，下界.082来源Bezrukov等2004，§5提出缩小差距。",
+      "url": "https://fedorvf.github.io/articles/2006/2006b.pdf",
+      "locator": "pp191–195，Theorem5及§5",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2611.05146",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "工具返回DisabledError，改读作者公开全文；不以镜像索引当成arXiv定版全文。",
+      "url": "https://arxiv.org/abs/2611.05146",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Gaspers作者站",
+      "query": "open paper index；click §1 Introduction and §15 Conclusion",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "实际网页标version of3Nov2026（检索快照曾为2Nov，按实际读取版本记录）。统一c3≈.1398用于所有Δ≤3图，§15仍问最优系数并列新猜想.1322，不能把猜想当已证。",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/index.html",
+      "locator": "§1.1,§1.4,§15",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"New spectral lower bounds on the bisection width of graphs\" pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检得2004出版社摘要、WG2000早版及索引。确切.082历史先按FH06已读原稿引述，不宣称2004全文已核。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"Fomin\" \"Høie\" \"Pathwidth of cubic graphs\" 2004 report",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检得Report298及2005技术报告线索，无据把该题起年写2009。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"2611.05146\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "外部索引命中2026-11 arXiv号；原站直开失败的边界保留，核心读取作者站全文。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"New spectral lower bounds\" filetype:pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "取得出版社一级摘要及作者书目；未将无完整2004原稿等同无结果。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"cubic\" \"pathwidth\" \"cutwidth\" \"2\" Korach Solel",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中新稿给出的Δ≤3专用bw≤cw≤pw+2引文链；由学术路线读取原定理核迁移，不从pw≤cw反向推下界。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "ScienceDirect",
+      "query": "open https://www.sciencedirect.com/science/article/pii/S0304397504002130",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "note": "403；检索一级摘要可见但不算原稿全文。",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0304397504002130",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"Fomin\" \"Grandoni\" \"Kratsch\" \"4.3.1\" pathwidth 2005",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位2005综述，随后通过作者原稿实际读取§4.3.1。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Gaspers作者站",
+      "query": "click §3 Short proof；完整读取§3.1–3.4，L51–150",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "独立核对较弱c*上界全部短链：距离衰减球标签、球层权重、Gaussian阈值概率、方差、网格并集及统一渐近参数。未将此较弱证明当成c3强界完整通审。",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/03-warmup.html",
+      "locator": "Theorem3.1；Lemmas3.2–3.5；§3.4",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Fomin作者书目",
+      "query": "open https://fedorvf.github.io/articles/full_fvf_publications.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "用于找2005综述原稿，不据书目替代数学证据。",
+      "url": "https://fedorvf.github.io/articles/full_fvf_publications.html",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"Some new techniques in design\" \"2005\" pdf Fomin",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Grandoni作者PDF，日期2005-09-05。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Grandoni作者原稿",
+      "query": "open https://people.idsia.ch/~grandoni/Pubblicazioni/FGK05beatcs.pdf；find \"4.3.1\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "33页原稿§4.3.1 pp20–21直接讨论三次/最大度3图路径宽度最优上界及.082.. .167差距。是本轮最早直接核实的提问出处，早于2009。",
+      "url": "https://people.idsia.ch/~grandoni/Pubblicazioni/FGK05beatcs.pdf",
+      "locator": "§4.3.1 pp20–21",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-dedup-01",
+      "route": "库内查重",
+      "site": "附件全库查重简索引2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003714〕",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "note": "两组实际命中2及20条，含本题和cubic曲面等宽泛噪声。选线性布局/树宽939及path decomposition1695取全文比较；未凭标题判同题。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-dedup-02",
+      "route": "库内查重",
+      "site": "GitHub fetch_file固定快照",
+      "query": "qunxingmath-org/qunxing-data@73290369a8dcc632e25e555aec525565ea6e08f8: problems/001/QX-P-001236.{meta.json,text.md}; problems/000/QX-P-000939.{meta.json,text.md}; problems/001/QX-P-001695.{meta.json,text.md}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001236.text.md",
+      "locator": "三卡题面/形式化/acceptance和card_rev",
+      "result_count": 2,
+      "note": "三版本与索引一致。1695为边集分解成若干路径，1236为袋路径分解宽度，两者不同；1236为较小ID owner。939为maxLA复杂性问题且编号较小，不在本包，此侧仅记pair待核与文本对照，不重复最终判定。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-definition",
+      "route": "原题与出处",
+      "site": "Utrecht University原始技术报告PDF；Kinnersley期刊条目",
+      "query": "Kinnersley vertex separation number graph equals path-width 1992 paper; open UU-CS-2009-023; find Cutwidth; find 5.6",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://ics-archive.science.uu.nl/research/techreps/repo/CS-2009/2009-023.pdf",
+      "locator": "§5.3 Definition6、Theorem7，打印第8页/PDF第10页；§5.5，打印第9页/PDF第11页",
+      "note": "同题仅指pathwidth/vertex separation定义核对。原文明确对全部顶点排列取最小，计前缀中有跨割邻居的顶点；§5.5以跨割边数定义cutwidth。Kinnersley1992期刊标题/摘要经搜索读到，出版商直开403，未谎称读其全文。该报告不证明三次图精确渐近常数。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-K4",
+      "route": "其他：小例独立精确核对",
+      "site": "Python itertools全部4!顶点排列；独立路径分解证明",
+      "query": "verify_K4.py: enumerate permutations of four vertices; for every prefix count boundary vertices and crossing edges; take max then min over24 orders",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "result_count": 24,
+      "note": "K4的24排列全部给vertex separation=3、cutwidth=4。另由一个含4顶点的袋得pw≤3；四顶点的袋区间两两相交，区间Helly给共同袋，得pw≥3。跨边计数i(4-i)最大4。只算K4，没有跑n≤30图族，不据小例推断渐近常数。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "cubic graphs maximum pathwidth 0.082 1/6 Fomin Høie Kostochka Melnikov",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "命中FH06作者全文，并意外命中2026年Gaspers新稿。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "pathwidth cubic graphs asymptotic constant limit maximum pathwidth regular graphs 2025 2026",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "命中2026-11 Gaussian-sweep稿及同题作者站；未将旧Wikipedia快照当当前进展。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "Kostochka Melnikov pathwidth lower bound 0.082 cubic",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "历史链交根代理深核；随后读LM2023引言确认0.082属于Bezrukov等Ramanujan图bisection界，Kostochka–Melnikov是另一随机下界。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "\"Path Decompositions of Sparse Graphs via Gaussian Sweeps\" pathwidth",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "recency=60；命中作者主页和arXiv2611.05146检索记录。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "\"pathwidth\" \"0.082\" \"limit\" cubic",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未获max-pathwidth比值极限存在的原定理；不能将未命中当不存在证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "\"pathwidth\" \"limsup\" \"cubic\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "该实际查询执行两次，未取得极值序列普通极限存在的原稿。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "Lichev Mitsche 2023 bisection width random cubic 0.1032 pathwidth",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得EJC正式原稿，原定理是random cubic的bisection宽度，需额外宽度关系迁移。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "\"pathwidth\" \"limit exists\" \"maximum degree\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未取得本卡lim存在证明；新稿实际问题是最优统一渐近上界常数。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "\"Makedon\" \"Sudborough\" \"cutwidth\" \"search\" \"1989\"",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "出版社原始摘要明确最大度3时cw=search number。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "\"Ellis\" \"Sudborough\" \"Turner\" \"vertex separation\" \"search number\" pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得作者PDF并核Theorem2.1与Lemma2.2，search≤vertex separation+2。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "\"cutwidth\" \"pathwidth\" \"+ 2\" \"degree\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "核Δ≤3转换链，排除仅凭pw≤cw误推下界。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "\"On minimizing width in linear layouts\" pdf Makedon",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "取得1989出版社landing摘要，未取得其完整证明正文。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "\"The vertex separation number of a graph equals its path-width\" Kinnersley pdf",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "实际搜索返回此URL的出版社摘要/landing内容，未另作PDF open、未取得完整PDF；所需vs≤pw另作独立短核。",
+      "url": "https://www.sciencedirect.com/science/article/pii/002001909290234M/pdf?_valck=1&md5=7b149a0b4fd0e1d35cdc763f05913978&pid=1-s2.0-002001909290234M-main.pdf",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Fomin author site",
+      "query": "https://fedorvf.github.io/articles/2006/2006b.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "FH06 6页作者托管期刊PDF；本代理核题名/摘要和量词，历史结论段由根代理另核。",
+      "url": "https://fedorvf.github.io/articles/2006/2006b.pdf",
+      "locator": "Abstract; pp.191–192",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "https://arxiv.org/abs/2611.05146",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "直接open DisabledError；搜索引擎arXiv摘要记录命中，不冒称读取版本历史。",
+      "url": "https://arxiv.org/abs/2611.05146",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Gaspers author site",
+      "query": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/01-intro.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "当前页footer版本2026-11-03；旧搜索摘要写11-02，使用实际读取版。",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/01-intro.html",
+      "locator": "§1.1 Theorem1.1(a), Corollary1.2 and lower-bound paragraph",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Gaspers author site",
+      "query": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/sparse-pathwidth.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "下载作者191页完整PDF；只核本题相关章节，不宣称全191页审过。",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/sparse-pathwidth.pdf",
+      "locator": "§1, §3.1–3.4, §8.1–8.5 selected steps, Theorem10.1, §15",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Gaspers author site",
+      "query": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/08-cubic.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "读强界原证明：独立核connector及常数/统一量词；未完整重审Gaussian majority deformation Lemma8.11及simplex theorem。",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/08-cubic.html",
+      "locator": "Theorem8.1; Lemmas8.3–8.7; Lemma8.9 statement/coupling and §8.5",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Gaspers author site",
+      "query": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/03-warmup.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "读独立较弱改进c*=.16226<1/6的完整短证明。",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/03-warmup.html",
+      "locator": "§3.1–3.4 Theorem3.1, Lemmas3.2–3.5",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Gaspers author site",
+      "query": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/15-conclusion.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "精确最优常数仍为作者明确开放问题；0.13224778941是Conjecture15.1，不能作为已证上界。",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/15-conclusion.html",
+      "locator": "The constant for maximum degree3; Conjecture15.1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Gaspers author site",
+      "query": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/references.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "通过原站References链接读取参考文献元数据。",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/references.html",
+      "locator": "FH06, LM23, EST94, MS89, Kinnersley92",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Gaspers author site",
+      "query": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/22-references.html",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "此猜测地址不可访问，改由页面实际References链接取得references.html。",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/22-references.html",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Gaspers author site",
+      "query": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/08-switch.html",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "此猜测地址不可访问，实际§8链接为08-cubic.html。",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/08-switch.html",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Gaspers author site",
+      "query": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/10-algorithmic.html",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "urllib返回404；实际§10链接为10-algorithms.html。",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/10-algorithmic.html",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Gaspers author site",
+      "query": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/10-algorithms.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "经§8真实链接读取；另从本地PDF读Theorem10.1，未全审derandomization证明。",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/10-algorithms.html",
+      "locator": "Theorem10.1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Electronic Journal of Combinatorics",
+      "query": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v30i2p40/pdf/",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "正式58页PDF已取得，读引言、Theorem1、模型段及simple传递；未复审58页数值优化。",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v30i2p40/pdf/",
+      "locator": "pp.1–7; Theorem1 p3, configuration/simple model p7",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "https://arxiv.org/abs/2009.00598",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "实际页面显示v4 2026-11-03，备注minor numeric changes；本代理数学读取仍用2023正式刊PDF，未宣称v4全文复审。",
+      "url": "https://arxiv.org/abs/2009.00598",
+      "locator": "version history and abstract",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Turner author site",
+      "query": "https://www.arl.wustl.edu/~jon.turner/pubs/1994/ic1994ellis.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "作者26页稿：核edge-search定义、Theorem2.1、Lemma2.2及search1证明。",
+      "url": "https://www.arl.wustl.edu/~jon.turner/pubs/1994/ic1994ellis.pdf",
+      "locator": "PDF pp.6–9, Theorem2.1 and Lemma2.2",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "ScienceDirect",
+      "query": "https://www.sciencedirect.com/science/article/pii/0166218X89900164",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "一级出版社摘要明确最大度3时cutwidth=search number；完整证明未取得。",
+      "url": "https://www.sciencedirect.com/science/article/pii/0166218X89900164",
+      "locator": "On minimizing width in linear layouts, abstract",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C01",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者项目站 / Web open",
+      "query": "open https://serggasp.github.io/pathwidth-site/; open https://serggasp.github.io/pathwidth-site/blueprint/index.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://serggasp.github.io/pathwidth-site/",
+      "locator": "〔原始工具引用已私有留存〕、view1",
+      "note": "项目主页及blueprint声明Δ≤3的pw上界c3n+o(n)，c3=3 arccos(5/6)/(4π)≈0.139822124；先登记部分进展，再查实际源码，未以绿色蓝图当机器验证。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C02",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "Path Decompositions Sparse Gaussian Sweeps; topn=8",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/cslib-community/cslib-frontier",
+      "locator": "q19search",
+      "note": "命中衍生Python实验和cslib-frontier引用/适配代码，未据这些索引声称独立复核或精确常数已解决。作者真正发布包由官网release另取。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C03",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"cubic\" \"pathwidth\" \"Lean\" [recency=120]; \"pathwidth\" \"Gaussian\" \"proof\" \"AI\" [recency=120]",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/08-cubic.html",
+      "locator": "〔原始工具引用已私有留存〕–5",
+      "note": "命中Gaspers2026作者站的数学稿、形式化说明和结论；上界改进直接同题，但不确定最优常数。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C04",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者站 / Web click",
+      "query": "从主页点击formalisation、release；从blueprint点击CubicPathwidth.C3.c3MainClaim",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://serggasp.github.io/pathwidth-site/formalisation.html",
+      "locator": "〔原始工具引用已私有留存〕、view1、view2",
+      "note": "读取形式化覆盖表、release说明和声明索引。C3主结论声明无外部数学假设；degree4/5与其他结果各有H1/H2/H3/H6/H7，未混为全项目无条件。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C05",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API / search",
+      "query": "GET repos/serggasp/pathwidth-site; GET repos/serggasp/pathwidth-site/git/refs/tags/v1; GET repos/serggasp/pathwidth-site/contents?ref=v1; search c3MainClaim repository_name=serggasp/pathwidth-site topn=5",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://api.github.com/repos/serggasp/pathwidth-site",
+      "locator": "q19repometa/q19tag/q19root/q19claimsrc",
+      "note": "三个API均返回404 NOT_FOUND，限定代码搜索返回空。本记录不推定404具体成因，未绕权限；后从作者主动公开的站点及Zenodo取源码。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C06",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者站 / Web click",
+      "query": "读取evidence/build-info.txt、evidence/axioms.txt、Appendix B Formal verification",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://serggasp.github.io/pathwidth-site/evidence/build-info.txt",
+      "locator": "〔原始工具引用已私有留存〕、view1、view2",
+      "note": "作者构建记录为2026-11-04 +1100，commit3e9f58c32c99ddaea10f04c41e56b399b4c83d09、Lean4.34.0，lake build退出0；46个声明的作者axioms报告包括C3.c3MainClaim仅三标准公理。本轮尚未复跑。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C07",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者站 / Zenodo / Web click",
+      "query": "读取Lean project索引和AI methodology statement；点击DOI10.5281/zenodo.23883489",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/17-ai-methodology-statement.html",
+      "locator": "〔原始工具引用已私有留存〕–3；〔原始工具引用已私有留存〕、view1",
+      "note": "索引说明245模块/244默认built、规格由作者审批；AI声明明确Codex/Claude参与数学与Lean，人类作者负责核证明/题面。Web DOI跳转不可达，后来公开API的正规HTTP获取成功，不能永久记为档案缺失。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C08",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者站 / Web click",
+      "query": "读取CubicPathwidth/C3/All、C3Spec、lean-toolchain、lakefile.toml、lake-manifest.json、CubicPathwidth.lean链接",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://serggasp.github.io/pathwidth-site/lean/CubicPathwidth/C3/All.html",
+      "locator": "〔原始工具引用已私有留存〕–5",
+      "note": "实际All源码有末级无参数定理c3MainClaim，C3Spec只是定义且由All证明。manifest固定mathlib5ed2965256430c3649e86755f9576b54eca72435。Web对原始.lean/toolchain/toml因MIME不支持而失败，渲染HTML和后来直接下载可读。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C09",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者站 / Web click、find、open",
+      "query": "读取CubicPathwidth.html、C3/Switch.html、C3/StarFrontier.html、C3/Assembly.html；find theorem switchClaim、theorem starFrontier、theorem c3MainClaim_of_children",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://serggasp.github.io/pathwidth-site/lean/CubicPathwidth.html",
+      "locator": "〔原始工具引用已私有留存〕–3；〔原始工具引用已私有留存〕、view4；〔原始工具引用已私有留存〕",
+      "note": "核path-decomposition的覆盖和区间条件、bag≤w+1、∀ε∃N∀n∀G统一量词；Switch/StarFrontier都有实际证明体，All用已证明对象填补条件里程碑。源码的历史UNPROVED注释不能盖过末级定理，也不能据末级定理忽略依赖核验。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C10",
+      "route": "代码、公开 AI 和社区",
+      "site": "Sage 官方文档 / Zenodo Web open",
+      "query": "open https://doc.sagemath.org/html/en/reference/graphs/sage/graphs/graph_decompositions/vertex_separation.html; open https://zenodo.org/records/23883489; find vertex_separation_BAB",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://doc.sagemath.org/html/en/reference/graphs/sage/graphs/graph_decompositions/vertex_separation.html",
+      "locator": "〔原始工具引用已私有留存〕、view2；〔原始工具引用已私有留存〕",
+      "note": "Sage10.10文档提供单图pathwidth/vertex separation、branch-and-bound及MILP接口；明确vertex frontier而非crossing-edge数。未运行；单图算法不求全n极值常数。Zenodo网页仍工具不可达，后续APIHTTP成功。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C11",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1 / frozen release open",
+      "query": "\"cubic graphs\" \"pathwidth\" \"constant\" \"solved\" [recency=120]; site:isa-afp.org \"pathwidth\"; open frozen v/v1/lean/CubicPathwidth/C3/All.html and v/v1/evidence/build-info.txt",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/15-conclusion.html",
+      "locator": "〔原始工具引用已私有留存〕、search3、view0、view1",
+      "note": "作者结论仍问最小常数，并列[0.1032,c3]；0.13224778941是进一步猜想。AFP限定查询未返回同题条目，不作全站无形式化断言。冻结站两个URL在Web工具不可达，随后Zenodo归档已取得。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C12",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者公开静态文件 / Zenodo API（直接HTTP）",
+      "query": "GET https://serggasp.github.io/pathwidth-site/lean/CubicPathwidth/C3/All.lean; GET https://zenodo.org/api/records/23883489",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://zenodo.org/api/records/23883489",
+      "locator": "research/q019/download-attempt.json；zenodo-record.json",
+      "note": "两请求均HTTP200。保存All.lean及zenodo-record.json；API给v1、2026-11-03、site_v1.zip及其公开content链接、大小9989117、md5:0d35dd1cc1f1c644f8ae95b3ab6772c8。正规公开下载解决了Web MIME/渲染入口限制。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C13",
+      "route": "代码、公开 AI 和社区",
+      "site": "Zenodo 公开归档 / 本地静态核对",
+      "query": "GET https://zenodo.org/api/records/23883489/files/site_v1.zip/content；核ZIP MD5、解包；读取lean-toolchain/lakefile.toml/lake-manifest.json；扫描本地import闭包及去注释/字符串后的信任相关token",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://zenodo.org/api/records/23883489/files/site_v1.zip/content",
+      "locator": "research/q019/static_audit.json",
+      "note": "已取得完整703文件归档，MD5匹配API；SHA256=8f0e08124121b8637b915889e5bf242df8dd01c9237bced9c972e360b8158f68。245 Lean模块、默认闭包244(仅DiffMain排除)；C3.All本地闭包52模块、19外部imports、无本地缺失；全245模块静态未见sorry/admit/axiom/native_decide/unsafe/implemented_by/extern/ofReduceBool/ofReduceNat token。没有编译/执行证明或数值证书。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q019-C14",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地发布包版本核对",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003715〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://serggasp.github.io/pathwidth-site/release.html",
+      "locator": "research/q019/site_v1/evidence/build-info.txt；static_audit.json",
+      "note": "All.lean字节相同。记录作者构建commit3e9f58c32c99ddaea10f04c41e56b399b4c83d09、导出e1fa7cf、release源fef7110；导出仅改注释仍是作者声明，未得到两git版本独立diff。固定Zenodo v1及本轮ZIP哈希已使实际检查对象明确。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv原始版本元数据",
+      "query": "open https://arxiv.org/abs/2009.00598；检查v4日期、摘要下界与版本说明",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2009.00598",
+      "locator": "Abstract；Comments；Submission history v4",
+      "note": "实际读到v4为2026-11-03，摘要仍给严谨0.103295n下界，说明相对前版为minor numeric changes；Monte Carlo进一步上界明确非严谨。这里只读元数据和摘要，不能当v4全文已核。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv v4 PDF",
+      "query": "open https://arxiv.org/pdf/2009.00598v4",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://arxiv.org/pdf/2009.00598v4",
+      "note": "Web返回DisabledError；使用已实际取得的2023正式刊全文核定理与模型，另用v4摘要核数值未变，不宣称比对完整v4。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "Q019-R-FGK05",
+      "url": "https://people.idsia.ch/~grandoni/Pubblicazioni/FGK05beatcs.pdf",
+      "locator": "§4.3.1 Lower bounds，原稿pp20–21",
+      "version": "F.V.Fomin,F.Grandoni,D.Kratsch，2005-09-05作者稿；Bull.EATCS87(2005)综述",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "核过关键步骤",
+      "note": "明确提出最大度3、甚至3正则图的路径宽度最优上界/下界差距问题。没有断言普通极限存在；本轮未穷尽所有更早私人或非正式来源。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q019-R-FH06",
+      "url": "https://fedorvf.github.io/articles/2006/2006b.pdf",
+      "locator": "Theorem5 pp193–194；§5 p195；reference[3]",
+      "version": "F.V.Fomin,K.Høie，Information Processing Letters97(2006)191–196；online2005-11-28，DOI10.1016/j.ipl.2005.10.012",
+      "subquestions": [
+        "主问题",
+        "旧常数与原始出处"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "上界量词为每ε>0存在nε，所有足够大的有限简单最大度≤3图有pw≤(1/6+ε)n。§5将旧.082下界归于Bezrukov、Elsässer、Monien、Preis、Tillich2004的谱方法，并明确挑战缩小差距；不是Fomin–Lokshtanov–Saurabh或Chekuri的该项结果。未独立重审所有历史算法或2004谱下界全文。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q019-R-GASPERS-STATEMENT",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/index.html",
+      "locator": "abstract；§1.1 Theorem1.1；§15 The constant for maximum degree3",
+      "version": "实际HTML标2026-11-03稿，访问2026-11-26；检索快照Nov2不作定版依据",
+      "subquestions": [
+        "主问题",
+        "统一上界c3及精确常数边界"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Serge Gaspers",
+      "claim_date": "2026-11-03",
+      "note": "声明c3=3/(4π)arccos(5/6)≈.139822；o(n)对全部有限简单Δ≤3图统一，强于只对随机图或大围长图的界。网页说明未正式提交/出版；§15仍问最优c，并将≈.1322列为Conjecture15.1。本条只核statement/归属；数学关键与Lean版本核对由本回执其他证据分列。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q019-R-CUTSWEEP",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/03-warmup.html",
+      "locator": "Theorem3.1；Lemmas3.2–3.5；§3.4",
+      "version": "作者公开阅读稿2026-11-03，实际读取2026-11-26",
+      "subquestions": [
+        "较弱但严格突破1/6的统一上界c*=(3/(2π))arcsin(1/3)"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "他人声称已形式化验证",
+      "note": "本轮独立核关键完整链：每层球权重s_j2^-j在j≥1下降，重叠系数比在[1/√2,√2]，得corr≥(2√2/3)(1−1/R)。标准Gaussian用S=(U+V)/2、D=(U−V)/2独立及对称单峰密度，证任意阈值穿越概率≤acos(corr)/π。每顶点贡献依赖B_(R+1)，方差≤27·4^R·n；对12K+2个网格/尾部计数用Chebyshev，偏差n^(7/8)。R=K=floor(log2n/4)，并集失败概率O(log n/n^(1/4))，误差O(n/log n)+4n^(7/8)=o(n)，对G统一。不同顶点系数向量的唯一最大坐标不同，排除等标签；排序的割宽给袋宽。c*<1/6可由sin三倍角及2116<2187精确验证。本轮不审§3.5–3.6算法有限精度，也未Lean构建，且不将此替代c3强界证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "e-q019-definition",
+      "url": "https://ics-archive.science.uu.nl/research/techreps/repo/CS-2009/2009-023.pdf",
+      "locator": "§5.3 Definition6及Theorem7（打印第8页/PDF第10页）；§5.5（打印第9页/PDF第11页）",
+      "version": "UU-CS-2009-023, November2009",
+      "subquestions": [
+        "pathwidth与cutwidth定义核对"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "仅某子问",
+      "claim_state": "无声明",
+      "review_status": "已读，未核关键步骤",
+      "note": "实际读取定义段和Kinnersley等价定理陈述；本轮未重证一般图等价定理。K4的pw3/cw4则独立穷举和直接证明。本文不提供本题三次图精确渐近常数。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q019-ACAD-GASPERS",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/08-cubic.html",
+      "locator": "Theorem8.1; §8.1 Setting; Lemmas8.3–8.7; §8.5 uniform-ε proof; Theorem1.1(a)",
+      "version": "Serge Gaspers, Path Decompositions of Sparse Graphs via Gaussian Sweeps and Faster Exponential Algorithms, author manuscript/site version 3 November2026;191-page PDF downloaded2026-11-26, SHA256 6e997a3b0799d9cc0fa6791ae0a56ad2832c3a38329b89cbf2997a5cc1726e38",
+      "subquestions": [
+        "主问题",
+        "显著缩小上下界差距"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Serge Gaspers",
+      "claim_date": "2026-11-03",
+      "note": "声称所有有限简单Δ≤3图（含不连通和度0/1/2）满足pw≤c3*n+o(n)，c3=3/(4π)acos(5/6)=0.139822124008...，误差在全图类统一；因此覆盖cubic原题的上界改进子问，但不确定精确常数。独立核connector-order归纳、袋序列覆边/区间/大小、理想star常数及统一N(ε)链；未完整复审Gaussian-majority Lemma8.11和simplex theorem，也未复跑Lean。形式化状态仅作者声称，代码代理另审。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q019-ACAD-CUTSWEEP",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/03-warmup.html",
+      "locator": "Theorem3.1; Lemmas3.2–3.5; §3.4 complete proof",
+      "version": "same author manuscript,3 November2026",
+      "subquestions": [
+        "上界严格小于1/6的较弱独立可核进展"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "他人声称已形式化验证",
+      "note": "独立短证明给pw≤cw≤c_*n+o(n)，c_*=3/(2π)asin(1/3)=0.162260171954...<1/6。核了球层权重、统一边相关、Gaussian crossing概率、局部依赖方差、网格与Chebyshev/union bound；这是较弱上界全链，不把该核对升级为强c3全链。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q019-ACAD-OPEN",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/15-conclusion.html",
+      "locator": "The constant for maximum degree3; Conjecture15.1",
+      "version": "author manuscript/site version3 November2026",
+      "subquestions": [
+        "主问题",
+        "精确常数与极限存在性"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "作者明确仍问最小c使全体最大度3图pw≤cn+o(n)，给区间[0.1032,c3]；该表述是最优统一渐近上界（可定义为limsup），不是普通极限存在证明。Conjecture15.1的0.13224778941...是猜想。与卡cubic精确常数高度相关，但不擅自证明cubic与subcubic极值序列相同。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q019-ACAD-LM2023",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v30i2p40/pdf/",
+      "locator": "Theorem1 printedp3; definitionspp2–3; configuration/simple model printedp7; historical lower boundspp2–3",
+      "version": "Lyuben Lichev and Dieter Mitsche, EJC30(2) (2023),P2.40, published16June2023, DOI10.37236/11085;58-page PDF",
+      "subquestions": [
+        "随机三次图下界",
+        "主问题"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "原定理a.a.s. bw(G(n,3))≥0.103295n；不是全体cubic图的逐图下界。原文讨论configuration到simple模型的传递；由渐近概率趋1得到每充分大允许偶数n存在simple cubic例。结合Δ≤3的bw≤cw=s≤vs+2=pw+2给pw≥0.103295n−2，从而给extremal ratio的liminf下界。仅核定理量词、模型与迁移，不声称重审其58页first-moment/numeric proof。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q019-ACAD-EST1994",
+      "url": "https://www.arl.wustl.edu/~jon.turner/pubs/1994/ic1994ellis.pdf",
+      "locator": "authorPDF pp6–9: edge-search definition, Theorem2.1, Lemma2.2, procedure search1",
+      "version": "J.A.Ellis,I.H.Sudborough,J.S.Turner, The Vertex Separation and Search Number of a Graph, author26-page manuscript associated with Information and Computation113(1)(1994),50–79, DOI10.1006/INCO.1994.1064",
+      "subquestions": [
+        "bisection下界到pathwidth下界的桥"
+      ],
+      "role": "完整证明",
+      "publication": "作者主页",
+      "scope_match": "严格蕴含",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "已读并核s≤vs+2的search1证明：维护每个active vertex一名searcher，处理一个新顶点/边只加至多两名。文中还明确最大度3时s=cw以及vs=pw，分别追溯Makedon和Kinnersley。必须用此额外上界链，不能只靠bw≤cw与pw≤cw倒推。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "implies",
+        "role": "full_proof",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q019-ACAD-MS1989",
+      "url": "https://www.sciencedirect.com/science/article/pii/0166218X89900164",
+      "locator": "publisher abstract; cited Corollary3.3 in Gaspers §1",
+      "version": "F.Makedon,I.H.Sudborough, On minimizing width in linear layouts, Discrete Applied Mathematics23(3)(1989),243–265, DOI10.1016/0166-218X(89)90016-4",
+      "subquestions": [
+        "最大度3时cw=search number"
+      ],
+      "role": "完整证明",
+      "publication": "正式刊发",
+      "scope_match": "严格蕴含",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "出版社一级摘要明确最大度3时两参数相等；本轮没有取得该23页证明，不把摘要说成全文独立复核。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "implies",
+        "role": "full_proof",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q019-ACAD-KIN1992",
+      "url": "https://doi.org/10.1016/0020-0190(92)90234-M",
+      "locator": "publisher abstract; The vertex separation number of a graph equals its path-width",
+      "version": "Nancy G.Kinnersley, Information Processing Letters42(6)(1992),345–350",
+      "subquestions": [
+        "vs=pw及人话定义纠正"
+      ],
+      "role": "完整证明",
+      "publication": "正式刊发",
+      "scope_match": "严格蕴含",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "只读出版社摘要；所需vs≤pw另作独立短核：按path-decomposition首次出现袋排序，每个prefix中仍连向未排顶点的旧顶点与下一个顶点同处一袋，故boundary size≤bag size−1。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "implies",
+        "role": "full_proof",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E019-C01",
+      "url": "https://serggasp.github.io/pathwidth-site/lean/CubicPathwidth/C3/All.html",
+      "locator": "CubicPathwidth.C3.c3MainClaim；C3Spec.C3MainClaim/c3；CubicPathwidth.UniformPathwidthBound/PathDecomposition",
+      "version": "Zenodo10.5281/zenodo.23883489 v1(2026-11-03)；导出e1fa7cf（作者记录）；archive SHA2568f0e08124121b8637b915889e5bf242df8dd01c9237bced9c972e360b8158f68",
+      "subquestions": [
+        "最大度≤3有限简单图的统一pw上界",
+        "三次图极值常数的上界改进"
+      ],
+      "role": "形式化",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "Serge Gaspers",
+      "claim_date": "2026-11-03",
+      "rerun": {
+        "commit": "作者build为3e9f58c32c99ddaea10f04c41e56b399b4c83d09；本轮静态对象为Zenodo v1导出包e1fa7cf",
+        "theorem": "CubicPathwidth.C3.c3MainClaim",
+        "toolchain": "Lean4.34.0；mathlib5ed2965256430c3649e86755f9576b54eca72435",
+        "command": "未执行Lean构建或#print axioms；仅下载、校验归档及静态源码核对",
+        "cache": "未下载Lean/Mathlib缓存；Mathlib外部依赖未在本轮递归构建",
+        "axioms": "本轮未运行公理检查；作者报告仅propext/Classical.choice/Quot.sound；静态全245模块未检出sorry/admit/axiom/native_decide等信任相关token。"
+      },
+      "note": "最终c3MainClaim无外部数学假设，正文为c3MainClaim_of_switch switchClaim；conditional milestones由已定义证明填入，不是只有spec。定义c3为精确实表达式3/(4π)*arccos(5/6)，且∀ε>0∃N∀n≥N∀G(IsSubcubic G→存在合法path-decomposition，bag≤(c3+ε)n+1)。G为Fin n上简单无向图，可不连通；path-decomposition定义核vertex/edge覆盖与interval。静态import闭包52本地模块+19外部imports完整；未核内核编译。只证明上界，不给匹配下界、极限存在或最优常数。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E019-C02",
+      "url": "https://serggasp.github.io/pathwidth-site/evidence/build-info.txt",
+      "locator": "完整build-info；同站evidence/axioms.txt第CubicPathwidth.C3.c3MainClaim项",
+      "version": "构建2026-11-04T00:00:09至00:04:31+1100；source3e9f58c32c99ddaea10f04c41e56b399b4c83d09",
+      "subquestions": [
+        "作者形式化验证声明和实际覆盖"
+      ],
+      "role": "形式化",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Serge Gaspers",
+      "claim_date": "2026-11-04",
+      "note": "日志记Serges-MacBook-Pro、Lean4.34.0 arm64、cache get退出0、lake build退出0(165秒)、axioms退出0；axioms.txt实含C3.c3MainClaim只依赖propext/Classical.choice/Quot.sound。该文件是作者保留的运行记录，不是本轮或第三方独立复跑。站点CI只渲染不构建Lean。网站导出e1fa7cf与已构建3e9f58c仅改注释是作者说明，本轮未独立git diff。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E019-C03",
+      "url": "https://zenodo.org/records/23883489",
+      "locator": "公开API元数据、files/site_v1.zip及项目lean/与evidence/",
+      "version": "DOI10.5281/zenodo.23883489；v1；2026-11-03；ZIP MD5 0d35dd1cc1f1c644f8ae95b3ab6772c8",
+      "subquestions": [
+        "发布源代码与证书可复查性"
+      ],
+      "role": "形式化",
+      "publication": "原始档案",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "Web抓取DOI/record失败，但普通公开HTTP API和文件链接均成功；已下载9989117字节ZIP并校验API MD5一致。本轮SHA2568f0e08124121b8637b915889e5bf242df8dd01c9237bced9c972e360b8158f68，包含703文件/245 Lean模块；实际源码、manifest和作者日志均已取得，不能写成代码无法获得。静态闭包/信任token扫描及每个C3闭包源文件哈希保存在static_audit.json；不是Lean proof checking。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E019-C04",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/17-ai-methodology-statement.html",
+      "locator": "AI methodology statement全段",
+      "version": "作者站2026-11-03版本；访问2026-11-26；归档v1",
+      "subquestions": [
+        "公开AI参与与作者责任边界"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Serge Gaspers",
+      "note": "作者披露Codex早期及Claude后期参与创意、文献检索、推导、实验/证书/Lean代码、文字和审阅，GitHub Copilot参与维护。作者说明自己指导研究、贡献想法、检查证明与Lean题面、修订稿件并负责正确性及原创性。此为公开AI辅助研究，不应改写成AI独立新解、也不等同独立专家审稿。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E019-C05",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/19-formal.html",
+      "locator": "Appendix B：What each result rests on；Table8；Formal statements；What is not formalized；Routes",
+      "version": "2026-11-03稿，Zenodo v1",
+      "subquestions": [
+        "C3主上界对外部证明/数值证书的依赖范围",
+        "其他宽度定理的显式条件"
+      ],
+      "role": "进展",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "作者区分C3主结论与其他定理：C3使用三变量simplex的内部初等证明、无H1等外部输入、不依赖外部数值证书；H1(外部四变量simplex)及H2/H3/H6/H7属于其他度数/混合结论。对C3实际All的本地闭包已静态核，未见外部假设参数。算法Lean port覆盖合法分解及某些标签下界宽，不包含标签计算/全部运行时间；不能把PartII exact algorithms误读为精确计算全n极值。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E019-C06",
+      "url": "https://doc.sagemath.org/html/en/reference/graphs/sage/graphs/graph_decompositions/vertex_separation.html",
+      "locator": "Vertex separation and pathwidth；pathwidth/path_decomposition；vertex_separation_BAB；vertex_separation_MILP",
+      "version": "SageMath10.10官方Reference Manual；访问2026-11-26",
+      "subquestions": [
+        "单个有限图的pathwidth计算",
+        "题卡人话定义核对"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "文档定义布局代价为max_i |N(S_i)\\S_i|，再对布局取min；无向图的对应vertex separation等于pw。提供branch-and-bound、exponential与MILP实现及输出分解的接口，但这是单图精确问题；有限样本与n≤30计算不能证明整个无穷图类的渐近最优常数。本轮只读API，不运行Sage。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E019-C07",
+      "url": "https://serggasp.github.io/pathwidth-site/papers/sparse-pathwidth/15-conclusion.html",
+      "locator": "The constant for maximum degree3；ideal-wave bound conjecture",
+      "version": "2026-11-03版本；归档v1",
+      "subquestions": [
+        "新上界是否已确定精确常数",
+        "进一步0.13224778941..界的声明级别"
+      ],
+      "role": "进展",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "作者仍将最小统一系数列为开放问题，正文给区间[0.1032,c3]并引用Lichev–Mitsche2023随机三次图；更小c3−3p_ch≈0.13224778941列为猜想而非已证普适界。精确下界原源及专用宽度迁移由本轮学术路线独立核对，本代码路线不以作者结论转述替代它。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q019-R-LMV4",
+      "url": "https://arxiv.org/abs/2009.00598v4",
+      "locator": "Abstract；Comments；v4 submission history",
+      "version": "arXiv:2009.00598v4，2026-11-03；2026-11-26读取当前abs页",
+      "subquestions": [
+        "2023下界截至查新日的版本核对"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "未读全文",
+      "note": "最新摘要保留随机3-正则图bisection width≥0.103295n，下界首项没有摘要层面的改动；版本说明为minor numeric changes。全文请求DisabledError，因此仅作版本/数字核对，不替代已读正式刊或新增全证验证。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000939",
+      "other_card_rev": "e52c36267f45cb75",
+      "relation": "待核",
+      "reason": "索引因treewidth/linear arrangement命中。双方固定正文已取，939的目标函数为对边距离求和再取最大并问复杂性；本题为三次图pathwidth/n渐近极值。此对owner为编号较小的939，且不在本包；按负责人规则本侧只列文本对照与pair待核，不重复最终关系判断。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001236.text.md#题面与形式化表述",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000939.text.md#题面与形式化表述"
+      },
+      "note": "pair_id=QX-P-000939__QX-P-001236；owner=QX-P-000939。双方版本一致；不提合并。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-001695",
+      "other_card_rev": "d003a7230c462a27",
+      "relation": "仅相似",
+      "reason": "1695讨论(2k+1)-正则含完美匹配图把边集分解为路径的Favaron–Genest–Kouider问题；本题讨论顶点袋的路径分解最小宽度及其三次图渐近最大值。边分解与路径袋分解的定义、对象和验收量不同；共同词path decomposition不是同题证据。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001236.text.md#题面、人话版及metadata.acceptance.criteria",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001695.text.md#题面、人话版与查新备注"
+      },
+      "note": "pair_id=QX-P-001236__QX-P-001695；owner=QX-P-001236；固定版本已核，不提合并。未在本题重查1695自身状态。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "proposer/first_published/sources/旧界归属",
+      "old": "Fomin等框架；2009框架；上界Fomin–Lokshtanov–Saurabh；下界Chekuri等?",
+      "new": "本轮最早可核提问：Fomin–Grandoni–Kratsch2005-09-05综述§4.3.1；旧上界Fomin–Høie2005在线/2006正式刊，旧.082下界沿该文追溯Bezrukov等2004。另补2023下界与2026上界新证据。",
+      "reason": "已实际读取原始提问和上界全文定位；补引文/进展不改变主数学对象，无须仅因这项改动换card_rev。",
+      "evidence_ids": [
+        "Q019-R-FGK05",
+        "Q019-R-FH06"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "card_text/人话版/pathwidth定义",
+      "old": "把顶点按顺序排好，每个前缀与剩余部分之间的边构成一个交叉集，交叉集最大能有多大，就是这个图的 pathwidth。",
+      "new": "对顶点排列pi及每个前缀S_i，统计S_i中仍有邻居位于剩余部分的顶点数；先取各前缀的最大值，再在所有顶点排列中取最小值，得到pathwidth。若改统计跨割边数并同样min-max，得到的是cutwidth。等价地，pathwidth是路径分解最大袋大小减1的最小值。",
+      "reason": "原解释计边且遗漏对排列取min，混淆两个图参数。只修人话版且保留标准pw目标时通常不换版本；本卡另需修改正式参数域/渐近量词，若同次落实，须整体生成新card_rev。",
+      "evidence_ids": [
+        "e-q019-definition"
+      ],
+      "small_case_check": "已实际枚举K4全部24排列：前缀边界顶点数0,1,2,3,0，跨割边数0,3,4,3,0，故pw(K4)=3、cw(K4)=4；给出直接袋分解/区间Helly证明佐证。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text/题面/渐近上界",
+      "old": "每三次图pw≤(1/6+ε)n",
+      "new": "对每个ε>0，存在n0(ε)，使每个顶点数n≥n0(ε)且属于原文适用图类的三次图G满足pw(G)≤(1/6+ε)n；三次图可行n须为偶数。",
+      "reason": "题面主句省略渐近量词，但原卡边界已明确小图K4不适用，因此本轮不据此判标准主问题已被反驳；建议把已有渐近限定一致写入正式公式。若实际修改正式条件、参数域或验收，须生成新card_rev。",
+      "small_case_check": "K4是4顶点简单三次图，pw=3。取ε=1/12，(1/6+ε)n=1，故原字面“每三次图”版本失败；不构成对充分大n渐近上界的反例。 原卡边界已列此小图例；该检查仅要求文案一致。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "题面纠错",
+      "field": "card_text/形式化表述及card_metadata.acceptance.criteria",
+      "old": "确定 lim pw_max(n)/n ∈ [0.082, 0.167]。",
+      "new": "先明确图类C_n及n的可行域。对有限简单三次图可写p(2r)=max{pw(G):G∈C_{2r}}。若目标是最佳统一渐近首项常数，定义c*=limsup_{r→∞}p(2r)/(2r)，求其精确值；若坚持普通极限，则须另要求证明liminf=limsup后求值。不要把普通极限的存在当作已有上下界的推论。",
+      "reason": "3n=2|E|强制n偶；奇数n图类为空。原卡未给普通极限存在证明，区间上下界不推出极限。此处为可审核的修订选项而非已证明lim与limsup等价；改变参数域/极限目标/验收条件须新card_rev。不得把本旧版哈希硬填到修订后版本。",
+      "small_case_check": "K4提供最小简单三次图n=4；任何奇数n都因握手公式3n=2|E|不可行。K4的p(4)/4=3/4高于渐近界，说明有限点与渐近常数需分开。普通有界数列可交替两值而无极限，此逻辑例只说明上下界不足，不声称本图序列极限不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "known_results / novelty",
+      "old": "2024–2026相关未破；0.082..1/6",
+      "new": "登记2026-11-03 Gaspers完整稿的强上界声明c3=3 arccos(5/6)/(4π)≈0.139822124008：已核关键步骤且已静态检查代码，但未全证复核或独立Lean复跑。较弱c*=3 arcsin(1/3)/(2π)<1/6的短证已独立全链核。2023 Lichev–Mitsche正式刊下界经宽度桥为0.103295n−2，2026-11-03 v4摘要仍保留该数值。精确值未获确证；0.13224778941仅为猜想。",
+      "reason": "已取得直接同题原稿与真实明确范围，旧未破表述过期。",
+      "evidence_ids": [
+        "Q019-ACAD-GASPERS",
+        "Q019-ACAD-LM2023",
+        "Q019-ACAD-EST1994",
+        "Q019-ACAD-OPEN"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "acceptance",
+      "old": "精确极限或显著缩小.082和1/6之间差距",
+      "new": "精确值主问题与“缩小差距”进展子问分列；后者已有2026新稿，不把它上报为精确常数已解决。",
+      "reason": "同一题的宽泛验收与强主问题不能混为一种解决状态。",
+      "evidence_ids": [
+        "Q019-ACAD-GASPERS",
+        "Q019-ACAD-OPEN"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "formal_status/ai_claims",
+      "old": "形式化none；ai_claims空",
+      "new": "登记作者公开AI辅助声明、C3.c3MainClaim对应精确部分上界、Lean4.34.0/mathlib固定版本、Zenodo v1及包哈希。分记作者构建通过与本轮静态闭包检查；未进行本轮kernel复跑。其余度数的H1/H2/H3/H6/H7与算法运行时间不并入本题无条件形式化覆盖。",
+      "reason": "已取得实际证据，只有none会漏报；但把作者日志或静态无sorry扫描提升为本轮独立复跑也不成立。",
+      "evidence_ids": [
+        "E019-C01",
+        "E019-C02",
+        "E019-C03",
+        "E019-C04",
+        "E019-C05"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "2004谱下界全文本轮未取得，仅核出版社摘要和2005/2006原稿对其明确归属；不影响已追溯旧记录。",
+      "next_step": "若需把旧.082构造升级为本轮独立验证，再取得原始谱证明与图族构造；不再把Chekuri等?作为已确认归属。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "普通极限沿偶数n的存在性与最优统一上界系数不是自动等价；上下界及不交并的max性质不能推出收敛。",
+      "next_step": "保留精确常数目标，先明确偶数n及极限存在需证明；若改成limsup或最优统一系数，属于目标修改须新card_rev。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "正式参数域、简单/多重及连通图约定、普通极限存在性尚需与最初出处对齐；人话版确有pw/cw混淆。",
+      "next_step": "按原文确认图类和最优渐近常数定义；实施量词、参数域或验收修订时生成新card_rev，再查受影响的原题/学术路线。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "QX-P-000939是pair中较小ID owner且不在本包。",
+      "next_step": "由939负责包依据已固定的双方正文审定pair QX-P-000939__QX-P-001236；本侧不重复结论或提合并。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "完成2469条简索引筛选和两候选正文核对，未遍历全库正文。",
+      "next_step": "若新候选使用不同术语，继续依固定版本及双正文核对；索引未再命中不代表全库无重复。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "强c3完整原稿已获且部分关键步骤独立核，但非全篇证明复核。",
+      "next_step": "若需把强上界从完整声明/部分关键核提升为本轮全证核验，复核Gaussian simplex及Lemma8.11全链，并结合代码代理的固定版本Lean覆盖；不要将作者形式化声明直接写成独立复跑通过。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "题卡把渐近极值常数写成普通lim但缺极限存在依据。",
+      "next_step": "要求原题/编辑确认目标是普通极限（包含证明存在）还是limsup/最优统一常数；在获证明前不宣称二者等价。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "下界依据已读2023正式刊主定理；本轮未重审58页数值与组合全证明。已另读2026-11-03 v4摘要，仍保留0.103295n，但v4全文访问失败、minor numeric changes未逐项比对。",
+      "next_step": "如开展完整下界审计，再比对LM2023正式刊与2009.00598v4的numeric changes；本轮不把其非严格Monte Carlo数字混入严谨.103295下界。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "新稿问最大度≤3的精确系数，原卡问度恰3；上界包含关系明确，但精确系数相等/普通极限未证。",
+      "next_step": "如直接改主问题为subcubic最佳系数，单独证明其与cubic版本的渐近等价并新rev；当前仅用subcubic上界覆盖cubic。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮已固定并取得公开v1归档、核题面/闭包/占位；未安装或执行Lean，作者build3e9f58c与导出e1fa7cf的仅注释差别未独立diff。",
+      "next_step": "如需要将形式化级别提升到本轮独立验证，在固定Zenodo归档SHA2568f0e08124121b8637b915889e5bf242df8dd01c9237bced9c972e360b8158f68、Lean4.34.0/mathlib5ed2965256430c3649e86755f9576b54eca72435下重建C3.All并输出#print axioms CubicPathwidth.C3.c3MainClaim，保留命令与日志；当前仅报作者构建通过、本轮静态检查未复跑。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "取得的新证明只改善全图类上界；作者自己仍问精确常数。单图精确API、有限实验及理想波计算不覆盖所有n或所有三次图。",
+      "next_step": "后续跟踪能匹配下界的普适上界/极值构造以及极限存在性；在此之前保留“本轮未获精确常数解决的确证”这一限定结论，并将0.13224778941..严格标为猜想。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "63a08762640381cb",
+      "codes": {}
+    }
+  ]
+}

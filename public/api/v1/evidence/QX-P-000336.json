@@ -1,0 +1,2289 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000336",
+  "card_rev": "325a670ac7f6b9b3",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "k=3的已核上界进展与下界缺口",
+          "value": "partial",
+          "note": "KM整数1/12、BS1/9、Raghavan固定v3的1/6并带(loglogN)^(-1/6)先后改善上界；所核EHPS下界仍为N exp[-(常数+o(1))√logN]。它们没有给渐近等价，亦未给已匹配的Θ公式。Raghavan为预印本且本轮未审完核心证明；精确小因子以v3正文登记，并保留摘要较弱、正文更精确且逻辑相容的版本说明。"
+        },
+        {
+          "subquestion": "k=4及所有固定k≥5的旧上界链",
+          "value": "partial",
+          "note": "GT2017为k=4的N/(logN)^c；LSS2024为固定k≥5的N exp[-(loglogN)^{c_k}]且0<c_k<1。均只为上界；LSS的loglog不可改成log，2026新声明须单列来源和审核层级。"
+        },
+        {
+          "subquestion": "定义与固定参数范围",
+          "value": "statement_error",
+          "note": "标准目标应写：固定整数 k≥3，令 N→∞；[N]={1,…,N}，r_k(N)=max{|A|:A⊆[N] 且不存在 a,d∈Z、d≠0，使 a,a+d,…,a+(k−1)d 全属于 A}。反转顺序可把 d<0 化为 d>0。由于 d≠0，各项互异；若误许 d=0，任何非空 A 都含常值 k 项列，r_k 会退化为 0。卡人话第一句只说三项，误缩了标题和主问题的 k 项范围；A={1,2,3} 是 4-AP-free 但不是 3-AP-free，故两条件确不相同。固定 k 与随 N 增长的 k 不等价：取 k=N+1，则 r_k(N)=N，不能沿用固定 k 的 o(N) 结论。此处是题卡量词/解释复核，不将原研究问题判为反驳。"
+        },
+        {
+          "subquestion": "退化边界",
+          "value": "partial",
+          "note": "按题卡非平凡=公差非零的明确定义，若将 r_k 延伸到正整数 k 和 N≥0，则 r_1(N)=0：任意元素 a 可构成长度 1、任取非零公差的列；r_2(N)=min(N,1)：任意两个不同整数构成非零公差 2 项列，而单元素集合可行；r_k(0)=0：唯一子集为空集；k>N 时 r_k(N)=N：N 个点无法容纳 k 个互异项。这些交叠边界相容，例如 N=0。特别 k=1、2 的平凡情形不应验收成 k≥3 的研究目标。没有给 k=0 作未约定的延伸。小例 r_3(3)=2（任意两点可行，唯一三点集含 1,2,3），r_4(3)=3。以上均为定义推导，未调用程序。 注意这是“按题卡 d≠0 延伸”的条件化端点计算，并非所有文献/代码共享的约定：实际读到的 formal-conjectures/AP-Basic.lean 把长度≤1的 AP 一律视为 trivial，并明证 maxCard 1 N=N。两种约定在 k≥3 的本题范围一致，不能用 r_1=0 指责该源文件；新稿 Model.lean 则显式用 d>0 的 HasAP 定义。"
+        },
+        {
+          "subquestion": "渐近公式的可核验含义",
+          "value": "statement_error",
+          "note": "建议把目标精度明确为：指定适用整数集合 S⊆{3,4,…}；对每个固定 k∈S 给出明确描述、最终为正的函数 f_k(N)，证明 r_k(N)/f_k(N)→1，即对每个 ε>0 存在 N_0(k,ε)，使所有整数 N≥N_0 有 |r_k(N)/f_k(N)−1|<ε。S 为部分 k 时登记对应子问；不能把某些 k 的结论自动标作所有固定 k≥3 已解。渐近等价、常数倍同阶、仅对数尺度等价是不同精度，须分开登记。例如 f(N)=N 与 g(N)=2N 同阶但比值不趋于 1；log f/log g→1 也不蕴含 f/g→1，例如 N 和 N log N。卡写“某组 k（或全部 k）”却未规定哪组和主问题通过标准，存在验收歧义。"
+        },
+        {
+          "subquestion": "不存在渐近公式的验收分支",
+          "value": "statement_error",
+          "note": "“证明这样的公式不可能存在”未指定允许的函数/表达式类别，尚不是可验收的数学命题。对任意固定 k≥3，取 f_k(N)=r_k(N) 就使 N≥1 时比值恒为 1；这当然是循环重述，说明无条件的“存在某函数渐近等价”本身过弱，不能代表原问题要求的有信息量公式。对每个具体 N 还可有限穷举 2^N 个子集计算 r_k(N)，所以也不能从求显式渐近困难推出该函数不可计算。若要保留不可能性分支，需先规定一个有实际意义的候选公式类和所否定的精确命题；不能把它登记为已有独立性或算法不可判定结论。"
+        },
+        {
+          "subquestion": "构造、上界与有限计算的证据方向",
+          "value": "statement_error",
+          "note": "验证某个 A⊆[N] 不含 k 项非平凡 AP，只证明 r_k(N)≥|A|，是下界证书。上界 r_k(N)≤U 需要证明每个 AP-free 子集规模≤U；候选集合的 AP-free 性不能单独提供上界。若在固定 N 对所有子集做完可审计穷举，可证明该 N 的精确值或上界，但不能仅凭有限多个 N 证明 N→∞ 的渐近公式。要由上下界 L_k(N)≤r_k(N)≤U_k(N) 得渐近公式 f_k，需对所有充分大 N 证明两个比值 L_k/f_k 和 U_k/f_k 都趋于 1；仅展示某一边改进远不够。因此卡“上界候选构造的AP-free性程序验证”应改为“下界候选构造”，并分别登记普遍上界证明与有限数据作用。"
+        },
+        {
+          "subquestion": "新公开上界声明的范围",
+          "value": "claimed_resolution",
+          "note": "已取得并阅读固定提交的官方稿指定章节。Theorem ap:main 声称：每个固定 k≥3 存在 C_k,c_k,ε_k>0，对每个 N≥2 有 r_k(N)≤C_k N exp[-c_k(log N)^{ε_k}]。量词允许常数和指数依 k，不是 k 随 N 增长的统一界。这只给单边上界，不含匹配下界或 r_k/f_k→1，因此即使其证明成立也不能将本卡主问题登记为渐近公式已证。本轮未核上游完整证明。"
+        },
+        {
+          "subquestion": "密度阈值与上界的条件性互推",
+          "value": "partial",
+          "note": "独立核 ap:iteration:closure 后的代数反解：设 0<α≤1，C>0、A≥1，且 log N<C(2+log(1/α))^A，则 (log N/C)^(1/A)<2+log(1/α)，故 α<e² exp[-C^(-1/A)(log N)^(1/A)]。取 α=r_k(N)/N 便得所称上界形式；α=0 另行平凡处理。反向由 r_k(N)≤C N exp[-c(log N)^ε]，令 Cbar=max(1,C)，若 log N≥[log(2 Cbar/α)/c]^(1/ε)，则 r_k(N)≤αN/2<αN，故密度至少 α 的集合含 AP，包含阈值等号情况。根/指数正性和余量均正确；但这个检查以有限迭代闭合命题或上界为前提，未验证该前提的深层证明。"
+        },
+        {
+          "subquestion": "上界到倒数和推论的条件性归约",
+          "value": "partial",
+          "note": "独立核 Theorem ap:main→Corollary ap:reciprocal 和 Proposition ap:weighted:dyadic：若 A 无固定 k 项非平凡 AP，则每块 [2^m,2^{m+1})∩Z 平移后是 [2^m] 中 AP-free 集，故块基数≤r_k(2^m)，块倒数和≤2^(-m)r_k(2^m)。强界使 m≥1 的尾项≤C exp[-c(m log2)^ε]；ε,c>0 意味 m^ε/logm→∞，所以最终≤m^(-2)，总和收敛。m=0 块有限；对每个固定 k 分别用此推导即够，无需 k 一致常数。一般非负权重时，块上最大权重乘块基数后求和也成立，非负性保证极限步骤。此归约正确仍只是条件性推论，不证明上界本身。"
+        },
+        {
+          "subquestion": "所读 Lean 弱界与纸稿强界",
+          "value": "partial",
+          "note": "实际 Model.lean 正确要求 C,c,η>0，N≥3，给 C N exp[-c(log log N)^(1+η)]；它弱于纸稿 C N exp[-c(log N)^ε] 的形式，但仍足以推出倒数和有限：若计数函数 A(t)受弱界控制，部分求和尾积分≤常数倍 ∫ exp[-c(log log t)^(1+η)]dt/t。令 u=log t，变成 ∫exp[-c(log u)^(1+η)]du；由于η>0，充分大 u 时 c(logu)^η≥2，被积函数≤u^(-2)，故收敛。也可直接按 dyadic 块比较。η=0 时需额外 c>1 才能用同一积分结论，说明源码的η>0不可省。对这条初等蕴含的核对不等于 Lean 的上游证明、依赖、axioms 或工具链已验证；scope 文件也明确选定比较结论只是倒数和。 对比边界：仅有标量估计 A(t)=o(t/log t) 不能靠同一部分求和步骤保证收敛；例如增长尺度 t/(log t log log t) 是 o(t/log t)，却产生发散积分 ∫dt/(t log t log log t)。这只是说明该种简略求和论证不足，未构造具有此增长的 AP-free 集，也不否定借助额外 AP 结构得到更强推论的可能。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/AP/Basic.lean"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://www.renyi.hu/~p_erdos/1980-03.pdf",
+      "review": "read_unchecked"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "按每个固定整数k≥3、N→∞求r_k(N)的非循环渐近等价公式理解。已核原始提问、历史与2026新上下界；截至本轮有限检索没有取得r_k(N)∼F_k(N)的完整解。family159是所有固定k的强上界声明与倒数和推论，即使成立也不是本主问题的渐近公式；其强界尚未被本轮独立核完。当前页不可访问和有限P0覆盖不能证明全网无新解。",
+      "evidence_ids": [
+        "E336-A-ER80",
+        "E336-A-ER81",
+        "E336-A-KM",
+        "E336-A-BS",
+        "E336-A-GT",
+        "E336-A-LSS",
+        "E336-A-RAG26",
+        "E336-A-EHPS24",
+        "E336-A-F159"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "k=3的已核上界进展与下界缺口",
+      "math_status": "部分进展",
+      "scope_note": "KM整数1/12、BS1/9、Raghavan固定v3的1/6并带(loglogN)^(-1/6)先后改善上界；所核EHPS下界仍为N exp[-(常数+o(1))√logN]。它们没有给渐近等价，亦未给已匹配的Θ公式。Raghavan为预印本且本轮未审完核心证明；精确小因子以v3正文登记，并保留摘要较弱、正文更精确且逻辑相容的版本说明。",
+      "evidence_ids": [
+        "E336-A-KM",
+        "E336-A-BS",
+        "E336-A-RAG26",
+        "E336-A-EHPS24"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "k=4及所有固定k≥5的旧上界链",
+      "math_status": "部分进展",
+      "scope_note": "GT2017为k=4的N/(logN)^c；LSS2024为固定k≥5的N exp[-(loglogN)^{c_k}]且0<c_k<1。均只为上界；LSS的loglog不可改成log，2026新声明须单列来源和审核层级。",
+      "evidence_ids": [
+        "E336-A-GT",
+        "E336-A-LSS"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "定义与固定参数范围",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "标准目标应写：固定整数 k≥3，令 N→∞；[N]={1,…,N}，r_k(N)=max{|A|:A⊆[N] 且不存在 a,d∈Z、d≠0，使 a,a+d,…,a+(k−1)d 全属于 A}。反转顺序可把 d<0 化为 d>0。由于 d≠0，各项互异；若误许 d=0，任何非空 A 都含常值 k 项列，r_k 会退化为 0。卡人话第一句只说三项，误缩了标题和主问题的 k 项范围；A={1,2,3} 是 4-AP-free 但不是 3-AP-free，故两条件确不相同。固定 k 与随 N 增长的 k 不等价：取 k=N+1，则 r_k(N)=N，不能沿用固定 k 的 o(N) 结论。此处是题卡量词/解释复核，不将原研究问题判为反驳。",
+      "evidence_ids": [
+        "AP142-M-CARD",
+        "AP142-M-LSS24"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "退化边界",
+      "math_status": "仅特例",
+      "scope_note": "按题卡非平凡=公差非零的明确定义，若将 r_k 延伸到正整数 k 和 N≥0，则 r_1(N)=0：任意元素 a 可构成长度 1、任取非零公差的列；r_2(N)=min(N,1)：任意两个不同整数构成非零公差 2 项列，而单元素集合可行；r_k(0)=0：唯一子集为空集；k>N 时 r_k(N)=N：N 个点无法容纳 k 个互异项。这些交叠边界相容，例如 N=0。特别 k=1、2 的平凡情形不应验收成 k≥3 的研究目标。没有给 k=0 作未约定的延伸。小例 r_3(3)=2（任意两点可行，唯一三点集含 1,2,3），r_4(3)=3。以上均为定义推导，未调用程序。 注意这是“按题卡 d≠0 延伸”的条件化端点计算，并非所有文献/代码共享的约定：实际读到的 formal-conjectures/AP-Basic.lean 把长度≤1的 AP 一律视为 trivial，并明证 maxCard 1 N=N。两种约定在 k≥3 的本题范围一致，不能用 r_1=0 指责该源文件；新稿 Model.lean 则显式用 d>0 的 HasAP 定义。",
+      "evidence_ids": [
+        "AP142-M-CARD",
+        "AP142-M-FC-ENDPOINT"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "渐近公式的可核验含义",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "建议把目标精度明确为：指定适用整数集合 S⊆{3,4,…}；对每个固定 k∈S 给出明确描述、最终为正的函数 f_k(N)，证明 r_k(N)/f_k(N)→1，即对每个 ε>0 存在 N_0(k,ε)，使所有整数 N≥N_0 有 |r_k(N)/f_k(N)−1|<ε。S 为部分 k 时登记对应子问；不能把某些 k 的结论自动标作所有固定 k≥3 已解。渐近等价、常数倍同阶、仅对数尺度等价是不同精度，须分开登记。例如 f(N)=N 与 g(N)=2N 同阶但比值不趋于 1；log f/log g→1 也不蕴含 f/g→1，例如 N 和 N log N。卡写“某组 k（或全部 k）”却未规定哪组和主问题通过标准，存在验收歧义。",
+      "evidence_ids": [
+        "AP142-M-CARD",
+        "AP142-M-LSS24"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "不存在渐近公式的验收分支",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "“证明这样的公式不可能存在”未指定允许的函数/表达式类别，尚不是可验收的数学命题。对任意固定 k≥3，取 f_k(N)=r_k(N) 就使 N≥1 时比值恒为 1；这当然是循环重述，说明无条件的“存在某函数渐近等价”本身过弱，不能代表原问题要求的有信息量公式。对每个具体 N 还可有限穷举 2^N 个子集计算 r_k(N)，所以也不能从求显式渐近困难推出该函数不可计算。若要保留不可能性分支，需先规定一个有实际意义的候选公式类和所否定的精确命题；不能把它登记为已有独立性或算法不可判定结论。",
+      "evidence_ids": [
+        "AP142-M-CARD"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "构造、上界与有限计算的证据方向",
+      "math_status": "题面有误",
+      "scope_note": "验证某个 A⊆[N] 不含 k 项非平凡 AP，只证明 r_k(N)≥|A|，是下界证书。上界 r_k(N)≤U 需要证明每个 AP-free 子集规模≤U；候选集合的 AP-free 性不能单独提供上界。若在固定 N 对所有子集做完可审计穷举，可证明该 N 的精确值或上界，但不能仅凭有限多个 N 证明 N→∞ 的渐近公式。要由上下界 L_k(N)≤r_k(N)≤U_k(N) 得渐近公式 f_k，需对所有充分大 N 证明两个比值 L_k/f_k 和 U_k/f_k 都趋于 1；仅展示某一边改进远不够。因此卡“上界候选构造的AP-free性程序验证”应改为“下界候选构造”，并分别登记普遍上界证明与有限数据作用。",
+      "evidence_ids": [
+        "AP142-M-CARD"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "新公开上界声明的范围",
+      "math_status": "完整声明待核",
+      "scope_note": "已取得并阅读固定提交的官方稿指定章节。Theorem ap:main 声称：每个固定 k≥3 存在 C_k,c_k,ε_k>0，对每个 N≥2 有 r_k(N)≤C_k N exp[-c_k(log N)^{ε_k}]。量词允许常数和指数依 k，不是 k 随 N 增长的统一界。这只给单边上界，不含匹配下界或 r_k/f_k→1，因此即使其证明成立也不能将本卡主问题登记为渐近公式已证。本轮未核上游完整证明。",
+      "evidence_ids": [
+        "AP142-M-F159-PAPER",
+        "E336-A-F159",
+        "C336-OAI-SCOPE",
+        "C336-OAI-CODE"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "密度阈值与上界的条件性互推",
+      "math_status": "条件性结果",
+      "scope_note": "独立核 ap:iteration:closure 后的代数反解：设 0<α≤1，C>0、A≥1，且 log N<C(2+log(1/α))^A，则 (log N/C)^(1/A)<2+log(1/α)，故 α<e² exp[-C^(-1/A)(log N)^(1/A)]。取 α=r_k(N)/N 便得所称上界形式；α=0 另行平凡处理。反向由 r_k(N)≤C N exp[-c(log N)^ε]，令 Cbar=max(1,C)，若 log N≥[log(2 Cbar/α)/c]^(1/ε)，则 r_k(N)≤αN/2<αN，故密度至少 α 的集合含 AP，包含阈值等号情况。根/指数正性和余量均正确；但这个检查以有限迭代闭合命题或上界为前提，未验证该前提的深层证明。",
+      "evidence_ids": [
+        "AP142-M-F159-PAPER"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "上界到倒数和推论的条件性归约",
+      "math_status": "条件性结果",
+      "scope_note": "独立核 Theorem ap:main→Corollary ap:reciprocal 和 Proposition ap:weighted:dyadic：若 A 无固定 k 项非平凡 AP，则每块 [2^m,2^{m+1})∩Z 平移后是 [2^m] 中 AP-free 集，故块基数≤r_k(2^m)，块倒数和≤2^(-m)r_k(2^m)。强界使 m≥1 的尾项≤C exp[-c(m log2)^ε]；ε,c>0 意味 m^ε/logm→∞，所以最终≤m^(-2)，总和收敛。m=0 块有限；对每个固定 k 分别用此推导即够，无需 k 一致常数。一般非负权重时，块上最大权重乘块基数后求和也成立，非负性保证极限步骤。此归约正确仍只是条件性推论，不证明上界本身。",
+      "evidence_ids": [
+        "AP142-M-F159-PAPER"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "所读 Lean 弱界与纸稿强界",
+      "math_status": "条件性结果",
+      "scope_note": "实际 Model.lean 正确要求 C,c,η>0，N≥3，给 C N exp[-c(log log N)^(1+η)]；它弱于纸稿 C N exp[-c(log N)^ε] 的形式，但仍足以推出倒数和有限：若计数函数 A(t)受弱界控制，部分求和尾积分≤常数倍 ∫ exp[-c(log log t)^(1+η)]dt/t。令 u=log t，变成 ∫exp[-c(log u)^(1+η)]du；由于η>0，充分大 u 时 c(logu)^η≥2，被积函数≤u^(-2)，故收敛。也可直接按 dyadic 块比较。η=0 时需额外 c>1 才能用同一积分结论，说明源码的η>0不可省。对这条初等蕴含的核对不等于 Lean 的上游证明、依赖、axioms 或工具链已验证；scope 文件也明确选定比较结论只是倒数和。 对比边界：仅有标量估计 A(t)=o(t/log t) 不能靠同一部分求和步骤保证收敛；例如增长尺度 t/(log t log log t) 是 o(t/log t)，却产生发散积分 ∫dt/(t log t log log t)。这只是说明该种简略求和论证不足，未构造具有此增长的 AP-free 集，也不否定借助额外 AP 结构得到更强推论的可能。",
+      "evidence_ids": [
+        "AP142-M-F159-SCOPE",
+        "C336-OAI-SCOPE",
+        "C336-OAI-CODE"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "库内查重",
+      "site": "包内固定全库查重简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003828〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 14,
+      "note": "含本题、000025(P169)、001663(P3)、其他等差类问题和若干关键词误命中。选前两项取固定全文；不以索引扫过宣告全库无重复。",
+      "request_id": "QX-R3-11-000336-root-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "ErdosProblems",
+      "query": "open https://www.erdosproblems.com/142",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.erdosproblems.com/142",
+      "note": "工具报Failed to fetch restricted URL；没有将直接原页面记成全文已读。",
+      "request_id": "QX-R3-11-000336-root-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub/qunxingmath-org/qunxing-data",
+      "query": "fetch_file ref=73290369a8dcc632e25e555aec525565ea6e08f8: problems/000/QX-P-000336.meta.json与.text.md；problems/000/QX-P-000025.meta.json与.text.md；problems/001/QX-P-001663.meta.json与.text.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "六文件均成功、三版本核合。000025是无界集倒数和上确界f(k)相对logW(k)的k渐近；001663是倒数和发散整数集包含任意长AP；本题是固定k的有限区间极值r_k(N)渐近。邻卡所载Raghavan2026仅转为新检索线索，未直接当已核证明。",
+      "request_id": "QX-R3-11-000336-root-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "ErdosProblems搜索来源入口",
+      "query": "open 已返回的142页面搜索来源引用",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.erdosproblems.com/142",
+      "note": "搜索来源引用入口再次403；原页访问缺口不被其他索引状态替代。学术路线另有实际来源记录，按其访问结果区分。",
+      "request_id": "QX-R3-11-000336-root-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv固定v3正文",
+      "query": "open 已返回来源 https://arxiv.org/html/2603.27045v3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2603.27045v3",
+      "locator": "Theorems1.2–1.4，尤其1.4；页首v3/2026-05-15",
+      "note": "亲核k=3新上界定理，正文更具体为exp[-Ω((logN)^(1/6)(loglogN)^(-1/6))]N；页面摘要仍写(loglogN)^(-1)，按固定正文区分。是上界，不是渐近等价。",
+      "request_id": "QX-R3-11-000336-root-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Rényi Erdős档案原始PDF",
+      "query": "open https://renyi.hu/~p_erdos/1980-03.pdf 已返回来源；find unattackable；find asymptotic",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.renyi.hu/~p_erdos/1980-03.pdf",
+      "locator": "A survey of problems in combinatorial number theory，印刷p92/PDF第4页",
+      "note": "AP段明确希望asymptotic formula并欢迎合理上下界，不能说1980原文只有数量级目标。unattackable字样仅在其他主题命中，未据此为当前题卡引语定位。",
+      "request_id": "QX-R3-11-000336-root-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "已固定GitHub源码副本",
+      "query": "read family159-scope.md 与 142.lean（由本轮GitHub固定提交取得）",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "locator": "openai/math@3344da59991ed94f9ba711217b29c1d760badfa6 lean/docs/159.md；formal-conjectures@ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8 ErdosProblems/142.lean",
+      "note": "scope明确选定比较定理为倒数和发散AP推论，纸稿定量上界不在所选陈述。142.lean中的目标函数/定理仍占位；本轮此处仅静态读文件，未编译。",
+      "request_id": "QX-R3-11-000336-root-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A01",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "r_k N arithmetic progression free best bounds Kelley Meka Bloom Sisask Leng Sah Sawhney 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；命中原论文、近期综述和最新结果线索，逐项后读一手来源。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A02",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"Leng\" \"Sah\" \"Sawhney\" \"log\" \"Szemerédi\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2024一般k结果；随后读取固定v2，确认是loglog而非log。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A03",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "site:erdosproblems.com/142 \"Er80\" \"Er81\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中官方问题页索引与历史索引；原页面直接打开不可访问，不能把索引误报为当前完整页。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A04",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"r_5\" \"2026\" arithmetic progressions upper bound",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检索最新较长AP进展；最终范围以取得的一手声明为准。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A05",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "progression free sets new lower bound Behrend 2026 asymptotic",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；命中2024 EHPS改进Behrend常数的原文。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A06",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"r_k\" asymptotic formula solved erratum 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；未取得#142渐近等价公式的可核完整解；命中相关上下界/计数结果不能自动结案。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A07",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "site:github.com/openai/math \"Quasipolynomial Bounds for Arithmetic Progressions\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2026官方family159新稿；随后取得固定commit正式稿主文件及三章TeX。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A08",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"Quasipolynomial Bounds for Arithmetic Progressions\" erratum correction",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中官方范围说明和社区自动汇编；后者声明未人工核，不能充当独立审稿。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A09",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "Erdos \"A survey of problems in combinatorial number theory\" 1980 pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Rényi作者原稿档案，随后读印刷pp91–92。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A10",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "Erdos \"On the combinatorial problems which I would most like to see solved\" 1981 pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中1981原稿档案，随后读§II.1。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A11",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "site:renyi.hu/~p_erdos \"On the combinatorial problems which I would most like to see solved\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位作者档案1981-16.pdf；不能把档案PDF页4直接当正式刊物页4。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A12",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"Green\" \"Tao\" \"New bounds\" \"polylogarithmic\" \"1705\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "首次关键词查询未据题名猜arXiv编号；随后改用刊物题名获得原刊PDF。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A13",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"2603.27045\" correction erratum withdrawal",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定向查询版本/撤回线索；官方abs记录v3为修正typos，未取得撤回或推翻该界的原始声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A14",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "Green Tao \"New bounds\" \"polylogarithmic\" \"2017\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Cambridge原刊PDF并读取开头结论与定义。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A15",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "site:github.com/openai/math \"Quasipolynomial-Bounds\" correction erratum",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检索官方仓库修订线索；只固定本轮commit，未完整审计所有历史提交。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A16",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"Quasipolynomial Bounds for Arithmetic Progressions\" \"correction\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=90；命中官方scope和社区未审笔记，没有取得该纸稿强上界的独立完整审稿或撤回声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A17",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"r_k\" \"asymptotic formula\" solved arithmetic progression",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；官方问题索引、形式化题面及family159仍只提供题面/上下界；未获得渐近等价完整公式。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A18",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"Improved Bounds for 3-Progressions\" erratum correction withdrawal",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365；命中原arXiv及JST索引。JST“查看原站是否撤回”是通用提示，不是撤回声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A19",
+      "route": "原题与出处",
+      "site": "Erdős Problems / web open",
+      "query": "open https://www.erdosproblems.com/142；open https://erdosproblems.com/142；open https://www.erdosproblems.com/history/142；open 官方问题搜索ref",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "主页面/历史页直接访问及搜索ref打开均失败或403；搜索索引仍可读。未将旧索引的Open标签升级成截至今日已读live全页。",
+      "url": "https://www.erdosproblems.com/142",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A20",
+      "route": "原题与出处",
+      "site": "Rényi作者原文档案 / web open、find",
+      "query": "open https://renyi.hu/~p_erdos/1980-03.pdf；find \"order of magnitude\"、\"r3\"、\"desire\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "重定向作者档案www域后成功读原文；印刷p91定义阈值记号，p92确提希望渐近公式且好上下界也可接受。",
+      "url": "https://www.renyi.hu/~p_erdos/1980-03.pdf",
+      "locator": "A survey of problems in combinatorial number theory, Ann.Discrete Math.6(1980),89–115；印刷pp91–92",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A21",
+      "route": "原题与出处",
+      "site": "Rényi作者原文档案 / web open、find",
+      "query": "open https://www.renyi.hu/~p_erdos/1981-16.pdf；find \"asymptotic\"、\"r_k\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取原稿§II.1：最小强制基数定义、固定k≥3语境、r3及一般rk渐近公式、10000美元。另问超任意log幂上界，是较弱子问。",
+      "url": "https://www.renyi.hu/~p_erdos/1981-16.pdf",
+      "locator": "PDF第4页(P3)，§II.1；正式刊物Combinatorica1(1981),25–42",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A22",
+      "route": "学术",
+      "site": "arXiv / web open",
+      "query": "open https://arxiv.org/abs/2309.02353；open https://arxiv.org/pdf/2309.02353v1；open https://arxiv.org/html/2309.02353v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "abs核v1(2023-09-05)；PDF入口Disabled，固定HTML完整可读并核Theorem1的1/9上界。只属k=3进展，不给主问题渐近等价。",
+      "url": "https://arxiv.org/html/2309.02353v1",
+      "locator": "Theorem1及后续remark",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A23",
+      "route": "学术",
+      "site": "arXiv / web open、find",
+      "query": "open https://arxiv.org/abs/2402.17995；open https://arxiv.org/pdf/2402.17995v2；find \"Theorem 1.1\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "核v1/v2历史与最新v2(2024-02-29)，原PDF可读。Theorem1.1 p1明确每固定k≥5且0<c_k<1的loglog上界；§3迭代仍为此形状。",
+      "url": "https://arxiv.org/pdf/2402.17995v2",
+      "locator": "Theorem1.1 p1；§3 Lemma3.7与迭代收尾",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A24",
+      "route": "学术",
+      "site": "Wiley原刊 / web open、find",
+      "query": "open https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/jlms.70483；find \"Leng\"、\"Hunter\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "Ben Green2026综述原站全文可读；表2/3复核历史上下界，但其2026-03-15发表早于Raghavan初稿和family159，不能当11月纪录总表。",
+      "url": "https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/jlms.70483",
+      "locator": "Tables2–3；lower-bound discussion",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A25",
+      "route": "学术",
+      "site": "arXiv / web open、find",
+      "query": "open https://arxiv.org/abs/2406.12290；open https://arxiv.org/pdf/2406.12290v1；open https://arxiv.org/html/2406.12290v1；find \"Theorem 1.1\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "PDF直接访问失败，固定v1 HTML成功；Theorem1.1给k=3 Behrend型下界常数改进。没有把有限域Theorem1.2移给整数问题，也未称穷尽一般k的最佳下界。",
+      "url": "https://arxiv.org/html/2406.12290v1",
+      "locator": "Theorem1.1及§1说明",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A26",
+      "route": "学术",
+      "site": "arXiv / web open、find",
+      "query": "open https://arxiv.org/abs/2603.27045；open https://arxiv.org/pdf/2603.27045v3；open https://arxiv.org/html/2603.27045v3；find \"Theorem 1.1\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "官方abs核作者R.Raghavan、题名及v1/v2/v3；PDF Disabled但固定v3 HTML可读。正文Theorem1.4细式为(loglogN)^(-1/6)，摘要保留(-1)较弱式；以已核v3正文精确记录。",
+      "url": "https://arxiv.org/html/2603.27045v3",
+      "locator": "Theorems1.2–1.5；重点Theorem1.4；v3日期2026-05-15",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A27",
+      "route": "学术",
+      "site": "Cambridge原刊 / web open",
+      "query": "open Green–Tao2017 Cambridge原刊PDF搜索结果",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "原刊全文可读；标题、刊号/页码及开头结论为r4(N)≪N(logN)^(-c)，只属k=4上界。",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/B49E54D3411C1B7AE96B540FC02E6B79/S0025579317000316a.pdf/new_bounds_for_szemeredis_theorem_iii_a_polylogarithmic_bound_for_r4n.pdf",
+      "locator": "Mathematika63(2017),944–1040；abstract及§1 pp944–945",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A28",
+      "route": "学术",
+      "site": "GitHub官方仓库 / web open",
+      "query": "open https://github.com/openai/math",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "官方README说明论文生成与核验阶段不同、未形式化结果可能有问题；不是所有声明的人类复核证明。",
+      "url": "https://github.com/openai/math",
+      "locator": "README validation caveats",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A29",
+      "route": "代码、公开 AI 和社区",
+      "site": "社区自动索引 → Erdős Problems原帖 / web open、click",
+      "query": "open https://mathcommunity.github.io/oai-math-revised/papers/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/；click comment-thread link20",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "汇编页本身已读，明示2026-10-30 AI自动搜集且未人工检查；原始Bloom论坛thread/blog:10打开受限。汇编只能给线索，不当人工确认、独立复跑或数学审稿证据。",
+      "url": "https://www.erdosproblems.com/forum/thread/blog%3A10",
+      "locator": "primary blog/forum不可访问；自动汇编页的notes及links已读",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A30",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub官方固定commit文件 / 本地实际阅读",
+      "query": "读取共享已下载 family159-main.tex、family159-scope.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "pack_audit由官方仓库固定commit取得并共享，本分支实际读本地内容。main摘要为logN^ε上界；scope明确所选Lean只证明倒数和推论，定量上界在所选声明之外。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/docs/159.md",
+      "locator": "main.tex abstract；lean/docs/159.md Scope",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A31",
+      "route": "学术",
+      "site": "GitHub官方固定commit / github_fetch_file",
+      "query": "github_fetch_file openai/math @3344da59991ed94f9ba711217b29c1d760badfa6: build/sections/00-introduction.tex、08-iteration.tex、09-consequences.tex",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "三份正式稿章节均成功取得并保存到work_000336_sources。intro主定理ap:main及reciprocal证明、08迭代闭包/阈值倒算、09 dyadic命题已读；没有取得/逐条审完所有核心章节和附录，不冒称纸稿全证已核。",
+      "url": "https://github.com/openai/math/tree/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/build",
+      "locator": "00-introduction ap:main/ap:reciprocal；08-iteration ap:iteration:closure及main证明；09-consequences ap:weighted:dyadic",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-A32",
+      "route": "学术",
+      "site": "arXiv / web open",
+      "query": "open https://arxiv.org/abs/2302.05537；open https://arxiv.org/html/2302.05537v3；open https://arxiv.org/html/2302.05537v6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "abs核最新v6(2024-10-28)；v3 HTML失败，v6 HTML全文可访问。Theorems1.1–1.2及其后一段给整数三项AP上界指数1/12；不是有限域1/9移植。",
+      "url": "https://arxiv.org/html/2302.05537v6",
+      "locator": "Theorems1.1–1.2及Theorem1.2后计数推论",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C01",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub代码搜索",
+      "query": "repository=google-deepmind/formal-conjectures; query=142; topn=10",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中本题 FormalConjectures/ErdosProblems/142.lean；其他142页码/引用噪声不作同题证据。默认分支搜索返回固定提交 ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C02",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网络检索 system2",
+      "query": "\"Erdos 142\" Lean asymptotic\n\"Erdős 142\" AI proof\nsite:github.com \"erdos_142\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中正式Lean题面、issue4922/4923、Prove2Me k=2、AlphaProof尝试清单、公开AI失败尝试和多个聚合索引。只跟进明确本题与可能改变状态的候选，不把数字142等同题号。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C03",
+      "route": "代码、公开 AI 和社区",
+      "site": "ErdosProblems官方页直访",
+      "query": "open https://www.erdosproblems.com/142",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "url": "https://www.erdosproblems.com/142",
+      "note": "第一次直访Restricted URL；后续从搜索ref再次open返回403 Forbidden。未获得2026-11-27实时页面或完整评论，不能据旧缓存的'no claims'断言当日无新声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C04",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定提交文件全文",
+      "query": "GET google-deepmind/formal-conjectures/FormalConjectures/ErdosProblems/142.lean @ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/142.lean",
+      "note": "全文核：3个answer定义和4个定理各有sorry，共7处；主式与k=3为~[atTop]，另有Theta与little-o；k参数已经进入两个answer定义；当前无variants.upper，无formal_proof属性。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C05",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub issue及评论全文",
+      "query": "GET google-deepmind/formal-conjectures issue 4922; GET all issue comments",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/issues/4922",
+      "note": "2026-08-13提出，2026-09-12关闭。旧variants.upper可由r_k≤N及f(N)=N填空；评论指出旧Theta可取f=r_k反身性。作者声称有无sorry Lean证明，但本轮未解码Lean4Web或复跑。旧声明不应套在现提交；当前已移除upper且主式改~。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C06",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网络检索 system1",
+      "query": "\"Erdos 142\" \"upper\" \"4922\" (recency180)\n\"Erdős\" \"142\" \"family 159\" (recency365)\n\"142\" \"asymptotic formula\" site:erdosproblems.com",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核到官方缓存、公开AI新上界family159线索、Prove2Me与issue8176镜像。官方缓存最后编辑2026-04-04、抓取数月前，不代表当日状态。family159转官方仓库核，不用二手目录证明数学。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C07",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定依赖与仓库规范全文",
+      "query": "GET FormalConjecturesUtil.lean; lean-toolchain; lake-manifest.json; CONTRIBUTING.md @ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/CONTRIBUTING.md",
+      "locator": "#the-unknown-of-a-value-question / Problems that require answers",
+      "note": "Lean v4.33.1；mathlib 0df444a360eaa60ab8c11dca51a86af692955474；util导入Mathlib和FormalConjecturesForMathlib。规范'Problems that require answers'明确填answer及形式证明不自动算有数学意义的解。仅静态读取，无lake build/#print axioms。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C08",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub代码搜索及定义全文",
+      "query": "repository=google-deepmind/formal-conjectures; query=IsAPOfLengthFree; topn=5; query=maxCard (k (topn10); query=IsAPOfLengthFree.maxCard (topn20); GET FormalConjecturesForMathlib/Combinatorics/AP/Basic.lean @ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/AP/Basic.lean",
+      "note": "中间query=maxCard (k 返回HTTP422解析错误，未计无命中；后用完整限定名定位定义。maxCard是Icc1N内AP-free有限集card的sSup；AP定义要求集合card=k，k>1排除d=0；k≤1全视平凡，代码证明maxCard_zero N=maxCard_one N=N。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C09",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub issue8176官方全文",
+      "query": "GET google-deepmind/formal-conjectures issue 8176",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/issues/8176",
+      "note": "2026-11-22开放issue报告旧answer缺k；本轮固定提交已带k，不再沿用此缺陷。issue举r1=0不符当前Basic.lean的maxCard_one=N，引用须纠正；本轮只审其142部分，不处理其余题号。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C10",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/math定向代码搜索",
+      "query": "query=159 topn8; query=ErdosReciprocal topn7; query=quasipolynomial-arithmetic-progressions topn6; query=\"Quasipolynomial Bounds for Arithmetic Progressions\" topn8",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "默认分支返回固定提交 3344da59991ed94f9ba711217b29c1d760badfa6。确定位family159正式稿目录、scope和Comparator；README reasoning_traces链接只是推理摘要，另正式稿在preprints/.../paper.pdf；无关数字159命中排除。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C11",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub官方family159说明与摘要全文",
+      "query": "GET README.md; lean/docs/159.md; preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/README.md; build/main.tex @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/docs/159.md",
+      "note": "官方稿日期2026-09-23，摘要称每固定k≥3有C_kN exp[-c_k(logN)^epsilon_k]上界。scope明确选定Lean陈述只为倒数和发散推出AP，定量强上界在所选陈述外；根README称内部模型原始研究材料、验证阶段不一。正文各章节由学术路线另取，代码路线未冒充读完原稿。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C12",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub官方family159 Comparator与入口全文",
+      "query": "GET lean/ComparatorChallenges/ErdosReciprocal.lean; lean/ComparatorChallenges/ErdosReciprocal.json; lean/OAI/Combinatorics/Progressions/Main.lean @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/ComparatorChallenges/ErdosReciprocal.json",
+      "note": "Comparator中的sorry是题面模板；config将solution指定为OAI.Combinatorics.Progressions.Main，并只选择OAI.Erdos3.manuscriptReciprocalProgressionTheorem。permitted_axioms=propext/Quot.sound/Classical.choice，enable_nanoda=false。这是配置白名单，非本轮运行得到的axiom审计。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C13",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub官方family159实际定理与定义全文",
+      "query": "query=manuscriptReciprocalProgressionTheorem topn6; query=def QuantitativeDensityTheorem topn4; GET lean/OAI/Combinatorics/Progressions/Results/Conclusions.lean; GET lean/OAI/Combinatorics/Progressions/Model.lean @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/Progressions/Model.lean",
+      "note": "实际Conclusions顶层无sorry，声明QuantitativeDensityTheorem和ReciprocalProgressionTheorem；Model里quantitative是CN exp[-c(loglogN)^(1+eta)]而非纸稿logN^epsilon。k≥3、N≥3及C,c,eta>0明确。未完整追溯全部传递依赖，未构建或运行Comparator。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C14",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub family159依赖全文",
+      "query": "GET lean/lean-toolchain; lean/lake-manifest.json @3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/lake-manifest.json",
+      "note": "Lean v4.34.1；mathlib d13f23b723b8a846827a245b89c10fc7d3f11612；checkdecls 3d425859e73fcfbef85b9638c2a91708ef4a22d4；manifest共59package。仅固定依赖记录，不等于已安装或编译。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C15",
+      "route": "代码、公开 AI 和社区",
+      "site": "Prove2Me公开页面全文",
+      "query": "open /theorems/84d9ff4b-9a29-4e00-9b0f-5fb04161be63; open /theorems/69f669e4-4854-4e52-b36a-667049c5b82b",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://prove2.me/theorems/84d9ff4b-9a29-4e00-9b0f-5fb04161be63",
+      "note": "k=2子项页面标Proved，署2026-09-24、Mathlib0df444a/Lean4.33.1；公开显示的是by sorry的题面，未获完成证明体。全k>1 little-o父页标Open。两者均不是k≥3精确渐近公式。父页旧Theta/upper叙述不等于现固定FC源码；旧开放性和标准求和说明亦不能当当前数学证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C16",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开AI尝试作者页面全文",
+      "query": "open https://www.erdosproblemaday.com/day/142-white-whale",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.erdosproblemaday.com/day/142-white-whale",
+      "note": "2026-07-26作者标NO PROOF TODAY，称多模型尝试未解；后附2026-10-06family159为新上界、精确渐近公式仍未取得。仅采用其自身无解声明和新线索，不采用其关于所有候选公式必要形态、Fekete绝对无用或最新最佳界等未经本轮证明的一般断言。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C17",
+      "route": "代码、公开 AI 和社区",
+      "site": "AlphaProof Nexus官方尝试清单全文",
+      "query": "GET google-deepmind/alphaproof-nexus-results/erdos_problems_attempted.txt (default branch)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/alphaproof-nexus-results/blob/main/erdos_problems_attempted.txt",
+      "note": "精确本题行是erdos_142.variants.lower，另erdos_1142为不同题号。文件名及内容仅表示attempted，不是success/checked proof；仅取得blob d01a75de0185696f21a30145fa1a308f6cda81c2，未将其视作主问题解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-C18",
+      "route": "代码、公开 AI 和社区",
+      "site": "社区与官方讨论定向检索 system2",
+      "query": "site:mathoverflow.net \"Erdos\" \"142\" \"asymptotic\"\nsite:erdosproblems.com/forum \"142\"\n\"Erdos142\" \"proof\" -\"142.lean\" -site:erdosproblemaday.com -site:prove2.me",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "MO返回其他题/浏览量142等噪声，未命中精确主问题解决帖。官方forum报robots不可访问，缓存有一般讨论和旧142页。另索引列mangeshraut712/erdos142为OPEN、JaredWilder erdos-close-campaigns为did-not-close；本轮未据二手索引升级为完成声明，也未遍历全部Erdos项目。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-M01",
+      "route": "原题与出处",
+      "site": "erdosproblems.com",
+      "query": "直接打开 https://www.erdosproblems.com/142",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "url": "https://www.erdosproblems.com/142",
+      "locator": "本轮 web open 返回 403 Forbidden",
+      "note": "没有把本次访问失败登记成已阅原页；原题语义先以本包题卡和已取得的一手论文交叉核对。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-M02",
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "site.erdosproblems.com/142 \"r_k\" \"non-trivial\"（recency=90）；\"Quasipolynomial bounds on inverse theorems for the Gowers\" \"Szemerédi\" \"r_k\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "检得 formal-conjectures/142.lean 索引、LSS 2024 论文线索及 OpenAI math family 159 的二手公开声称线索。后者已交根及学术分支核官方稿；本查询结果本身不充作新定理或形式化通过证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-M03",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "直接打开 https://arxiv.org/html/2402.17995v2 和 https://arxiv.org/abs/2402.17995；阅读引言、Theorem 1.1 和 §1.2 记号",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2402.17995v2",
+      "locator": "§1 Introduction, Theorem 1.1, §1.2 Organization and notation",
+      "note": "原文明确固定 k≥5，存在 c_k∈(0,1)，给 r_k(N)≪N exp(-(log log N)^{c_k})。只核定理陈述、参数依赖和上界性质，未重核完整证明，也不把该 2024 界称为截至本轮的最终纪录。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-M04",
+      "route": "其他：本轮独立数学核对",
+      "site": "本地原题包与定义推导",
+      "query": "读取任务.jsonl 的 QX-P-000336 / card_rev=325a670ac7f6b9b3；按非零公差定义逐项核 k=1、2、k>N、N=0、固定 k 量词、上下界证据方向和渐近验收",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "任务.jsonl 对应题卡；独立纸面推导详见 math_results",
+      "note": "未运行穷举或数值拟合；边界结论均由定义直接推出。没有把有限数据外推为渐近证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-M05",
+      "route": "学术",
+      "site": "openai/math 固定提交本地副本",
+      "query": "阅读共享目录 family159-main.tex、family159-00-introduction.tex、family159-09-consequences.tex、family159-08-iteration.tex 末段，以及 family159-scope.md 和 family159-Model.lean；独立复核阈值反解及 dyadic/积分求和归约",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/build/sections/00-introduction.tex",
+      "locator": "Theorem ap:main；Corollary ap:reciprocal；Proposition ap:weighted:dyadic；ap:iteration:closure 后的主定理反解；Model.lean QuantitativeDensityBound",
+      "note": "副本由本轮学术/代码分支从固定 commit 3344da59991ed94f9ba711217b29c1d760badfa6 取得，本分支实际逐段读取。独立核对仅覆盖声明范围与这些初等归约；未复核上游长证明，未运行 Lean。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000336-M06",
+      "route": "代码、公开 AI 和社区",
+      "site": "formal-conjectures 本地原码副本",
+      "query": "读取 work_000336_sources/AP-Basic.lean 的 Set.IsAPOfLengthFree、isAPOfLengthFree_one 和 maxCard_one",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "locator": "Set.IsAPOfLengthFree；isAPOfLengthFree_one；maxCard_one；commit ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8，blob c081b077c0faaaa69dd9d4d8e993766bb0254d0c",
+      "note": "核到该形式化约定把长度≤1的 AP 均视为 trivial，故 maxCard 1 N=N。不可把它与题卡仅以公差非零定义后延伸得到的 r_1(N)=0 混为同一约定。此区别不影响固定 k≥3 的研究范围。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/AP/Basic.lean",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E336-A-ER80",
+      "url": "https://www.renyi.hu/~p_erdos/1980-03.pdf",
+      "locator": "印刷pp91–92；AP极值函数定义与渐近公式提问",
+      "version": "P.Erdős, A survey of problems in combinatorial number theory, Annals of Discrete Mathematics6(1980),89–115；作者原稿档案",
+      "subquestions": [
+        "主问题",
+        "本轮最早可核同题出处",
+        "原记号约定"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "p92确希望获得渐近公式，也接受良好上下界；不能据站点二手概述说Er80只问数量级。p91的r_k用最小强制AP的基数约定，比现代最大AP-free定义大1。仅称本轮最早已读该渐近问题出处，不宣称历史上绝对最早；1936密度猜想是相关前史。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E336-A-ER81",
+      "url": "https://www.renyi.hu/~p_erdos/1981-16.pdf",
+      "locator": "PDF第4页(P3) §II.1；原始阈值定义、k≥3语境、渐近公式及10000美元段",
+      "version": "P.Erdős, On the combinatorial problems which I would most like to see solved, Combinatorica1(1981),25–42，DOI10.1007/BF02579174；所读作者档案PDF页码不同于刊物",
+      "subquestions": [
+        "主问题",
+        "固定k≥3范围",
+        "渐近公式与超log幂上界不同"
+      ],
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "原文分别谈r3与一般rk的渐近公式，并另问rk=o(N/(logN)^c)对每固定k,c成立；后一上界目标较弱。原稿收到日期1979不等于正式发表年份；现代最大集与原阈值记号相差1。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E336-A-EP142IDX",
+      "url": "https://www.erdosproblems.com/142",
+      "locator": "官方主页面/历史页搜索索引；直接打开403或受限",
+      "version": "本轮2026-11-27所见索引（显示此前2026-04-04编辑），不是今日live正文完整快照",
+      "subquestions": [
+        "现代主问题重述",
+        "问题站状态来源范围"
+      ],
+      "role": "重述",
+      "publication": "个人索引",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "索引给最大非平凡kAP-free集及渐近公式，列Open和旧纪录链；仅用作现代问题识别和追原始文献。其纪录列早于Raghavan及family159，不能据此确认2026-11-27无新进展。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E336-A-KM",
+      "url": "https://arxiv.org/html/2302.05537v6",
+      "locator": "Theorems1.1–1.2及紧随Theorem1.2的非平凡解计数推论",
+      "version": "Z.Kelley、R.Meka, Strong Bounds for 3-Progressions, arXiv2302.05537v6（2024-10-28）；v1为2023-02-10",
+      "subquestions": [
+        "k=3历史上界",
+        "整数与有限域区别"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "note": "整数A⊆[N]、密度≥2^{-d}时三项AP计数≥2^{-O(d^{12})}N²；去除至多N个平凡三元组即得r3(N)≤N exp[-c(logN)^{1/12}]。文中有限域d^9结果不直接等于整数指数1/9。全文可访问，读定理与推论而未独立审完整证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E336-A-BS",
+      "url": "https://arxiv.org/html/2309.02353v1",
+      "locator": "Theorem1；紧随其后的remark",
+      "version": "T.F.Bloom、O.Sisask, An improvement to the Kelley–Meka bounds on three-term arithmetic progressions, arXiv2309.02353v1（2023-09-05）",
+      "subquestions": [
+        "k=3改进上界"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "Theorem1给r3(N)≤N exp[-c(logN)^{1/9}]。remark另说更繁细参数可得5/41，但本轮不把未在该主定理完整展开的细化作主要核验界。只改上界，不提供渐近等价或匹配下界。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E336-A-GT",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/B49E54D3411C1B7AE96B540FC02E6B79/S0025579317000316a.pdf/new_bounds_for_szemeredis_theorem_iii_a_polylogarithmic_bound_for_r4n.pdf",
+      "locator": "abstract及§1，印刷pp944–945",
+      "version": "B.Green、T.Tao, New bounds for Szemerédi’s theorem, III: A polylogarithmic bound for r4(N), Mathematika63(2017),944–1040；DOI10.1112/S0025579317000316",
+      "subquestions": [
+        "k=4已刊上界"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "固定k=4的r4(N)≪N(logN)^{-c}，c>0；全文可访问，本轮核主结论和定义，未独立重证全部技术论证。其他系列旧论文的勘误不能自动套给该2017论文。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E336-A-LSS",
+      "url": "https://arxiv.org/pdf/2402.17995v2",
+      "locator": "Theorem1.1 p1；§3 Lemma3.7与最终迭代",
+      "version": "J.Leng、A.Sah、M.Sawhney, Improved bounds for Szemerédi’s theorem, arXiv2402.17995v2（2024-02-29；v1为2024-02-28）",
+      "subquestions": [
+        "所有固定k≥5的2024上界",
+        "loglog与log区分"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "note": "Theorem1.1为每固定k≥5存在c_k∈(0,1)，r_k(N)≪_k N exp[-(loglogN)^{c_k}]。常数依k，不是对增长k统一，也不是logN指数。原卡这条公式基本正确；“准多项式逆定理”不能误译作“量子多项式”。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E336-A-RAG26",
+      "url": "https://arxiv.org/html/2603.27045v3",
+      "locator": "Theorem1.4；abstract页面版本历史；Theorem1.5为不同的有限域范围",
+      "version": "Rushil Raghavan, Improved Bounds for 3-Progressions, arXiv2603.27045v3（2026-05-15）；v1为2026-03-27、v2为2026-05-01",
+      "subquestions": [
+        "k=3最新所核上界进展",
+        "摘要与固定版本正文差异"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "note": "固定v3 Theorem1.4给r3(N)≤N exp[-Ω((logN)^{1/6}(loglogN)^{-1/6})]，亦写(logN)^{1/6-o(1)}。官方abs仍列(loglogN)^{-1}较弱式；两式逻辑相容，正文更精确。应标版本并以本轮已读正文为准，未取得固定PDF复核此差异。abs称修正typos，没有看到撤回标记；未独立审完整证明，不当作人工审稿证书。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E336-A-EHPS24",
+      "url": "https://arxiv.org/html/2406.12290v1",
+      "locator": "Theorem1.1；Theorem1.2有限域范围另行区分",
+      "version": "C.Elsholtz、Z.Hunter、L.Proske、L.Sauermann, Improving Behrend’s construction: Sets without arithmetic progressions in integers and over finite fields, arXiv2406.12290v1（2024-06-18）",
+      "subquestions": [
+        "k=3已核下界",
+        "上下界未匹配"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "Theorem1.1给r3(N)≥N·2^{-(C+o(1))√(log₂N)}，C=2√(log₂(24/7))；换自然对数为N exp[-(2√ln(24/7)+o(1))√lnN]。该已核下界与当前所核上界尚不匹配；不宣称本轮穷尽全部k的一切最强下界。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E336-A-F159",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/build/sections/00-introduction.tex",
+      "locator": "主定理label ap:main；ap:reciprocal；08-iteration中ap:iteration:closure及main证明；09-consequences中ap:weighted:dyadic",
+      "version": "OpenAI, Quasipolynomial Bounds for Arithmetic Progressions, 署稿日期2026-09-23；官方仓库固定commit 3344da59991ed94f9ba711217b29c1d760badfa6",
+      "subquestions": [
+        "所有固定k≥3的2026强上界声明",
+        "该声明不等于渐近公式",
+        "倒数和推论"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "claimant": "OpenAI（官方仓库说明为内部模型生成论文）",
+      "claim_date": "2026-09-23",
+      "note": "实际取得主文件与正式稿三章TeX；主定理精确为∀固定k≥3，∃C_k,c_k,ε_k>0，∀N≥2，r_k(N)≤C_kN exp[-c_k(logN)^{ε_k}]。未声称改善k=3已知指数。08收尾由多项式log密度阈值倒算强上界；09和intro用dyadic求和推出倒数和命题。没有给r_k的渐近等价或匹配下界；本轮未读/独立核所有核心增量章节及附录。 claim_date仅登记稿面日期，不据此确认首次公开日期。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E336-A-F159SCOPE",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/docs/159.md",
+      "locator": "Scope；Comparator links；与主文件abstract比较",
+      "version": "官方仓库固定commit 3344da59991ed94f9ba711217b29c1d760badfa6；本轮由代码分支取回后本分支实际读共享文件",
+      "subquestions": [
+        "形式化声明范围与纸稿范围",
+        "Erdős#3与#142不同"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "官方scope明确所选Lean声明是发散倒数和推出任意有限长度、正公差的AP；纸稿定量上界不在所选声明中。本轮另已静态核Model弱loglog界，本条不代替其静态审计，更不声称已独立复跑。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E336-A-GREEN26",
+      "url": "https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/jlms.70483",
+      "locator": "Tables2–3及lower-bound discussion",
+      "version": "Ben Green, Arithmetic progressions at the Journal of the LMS, J.London Math.Soc.113(2026),e70483；first published2026-03-15",
+      "subquestions": [
+        "2026早期综述的时间范围"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "用于交叉核2024以前界的形状，发表早于Raghavan初稿和family159；不能借其best-known措辞声称11月最新全覆盖。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "C336-FORMAL142",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/142.lean",
+      "locator": "全文；r别名、3个answer定义、erdos_142/variants.lower/variants.isTheta/variants.three",
+      "version": "commit ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8; blob aca2f133afab04729b71bf0715fa33dcd4a603c9; 访问2026-11-27",
+      "subquestions": [
+        "精确渐近公式",
+        "形式化状态",
+        "量词与精度"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "rerun": {
+        "commit": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+        "theorem": "Erdos142.erdos_142; Erdos142.erdos_142.variants.three; variants.isTheta; variants.lower",
+        "toolchain": "leanprover/lean4:v4.33.1; mathlib=0df444a360eaa60ab8c11dca51a86af692955474",
+        "command": "未执行Lean/lake/Comparator；只取固定源码及依赖静态核对",
+        "cache": "未安装/下载oleans",
+        "axioms": "7处sorry：3个answer定义+4个定理；未执行#print axioms，不能宣称无sorryAx依赖"
+      },
+      "note": "主式~[atTop]和k=3~表达相对误差趋0；Theta是弱得多的阶问题，little-o又是单侧界。两个一般answer已显式带k，但主定理k:ℕ未限k≥3。没有可用完成证明或formal_proof属性。即使将answer k N填为r k N，反身关系也不会给出有信息的新渐近公式；此数学意义判定必须在代码外约束。 本条原题对应仅在本轮采用的固定k≥3研究范围成立；退化端点约定另列。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C336-APDEF",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/AP/Basic.lean",
+      "locator": "Set.IsAPOfLengthWith; Set.IsAPOfLengthFree; maxCard及maxCard_zero/one",
+      "version": "commit ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8; blob c081b077c0faaaa69dd9d4d8e993766bb0254d0c",
+      "subquestions": [
+        "原题定义与k域",
+        "形式化边界"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "AP要求ENat.card s=l并s={a+n•d:n<l}；AP-free定义∀t⊆s,t.IsAPOfLength l→l≤1。在ℕ且k>1时集合card=k排除d=0并给k不同项，吻合非平凡AP；k≤1全视平凡，所以r0(N)=r1(N)=N（源码具证明），而k2,N≥1可至多1且单元素达到。主研究范围应固定k≥3，不能用k≤2完成任意某组k验收。未跑这些基础定理。 本条原题对应仅在本轮采用的固定k≥3研究范围成立；退化端点约定另列。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C336-ANSWER-SCOPE",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/CONTRIBUTING.md",
+      "locator": "The unknown of a value question / Problems that require answers",
+      "version": "commit ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8; blob 0b0cbf1895e05451a60214bf5621b45312678bb6",
+      "subquestions": [
+        "验收条件",
+        "形式化意义"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "官方规范明确answer应按定理参数取值，且填写answer并证明命题不自动是数学解；可把未知对象自身复制为答案形成tautology，数学意义不由该仓库自动裁定。因此本卡的“存在某函数”或“对某组k”不能接受f_k=r_k和k=2等平凡代入。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C336-MISFORMAL",
+      "url": "https://github.com/google-deepmind/formal-conjectures/issues/4922",
+      "locator": "issue正文及唯一评论https://github.com/google-deepmind/formal-conjectures/issues/4922#issuecomment-5303863018；对照issue8176与当前固定文件",
+      "version": "issue4922 created2026-08-13、closed2026-09-12；old commits d16e05aded22b8c467a0a27c14b2311f53185006及638da20efd8eeeed2993fc2550fc596dc90c1ce8；8176 created2026-11-22；访问2026-11-27",
+      "subquestions": [
+        "公开形式化声称",
+        "题面修订历史"
+      ],
+      "role": "勘误",
+      "publication": "社区帖子",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "仅核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "#4922作者明确旧upper用r≤N就完成，不解142；评论披露AI辅助并指出旧Theta可反身完成。其无sorry证明是作者声称，本轮未复跑。当前固定142.lean已无upper且主式为~，所以不把旧代码误报现况。#8176称answer缺k，当前已带k；其示例r1=0也不符本轮Basic.lean的r1=N。该issue仍Open并不代表每个旧缺陷仍在现源码。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "revised",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "C336-OAI-SCOPE",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/docs/159.md",
+      "locator": "Scope；formalization catalogue family159；正式稿build/main.tex摘要；主仓库README",
+      "version": "commit 3344da59991ed94f9ba711217b29c1d760badfa6；稿日期2026-09-23；scope blob 66ef29e1f3a887a47889812669e9b736c4294b94；访问2026-11-27",
+      "subquestions": [
+        "一般k上界进展",
+        "公开AI声明",
+        "与精确渐近公式区别"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "OpenAI未公开名内部模型；官方openai/math仓库",
+      "claim_date": "2026-09-23",
+      "note": "正式稿路径preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/paper.pdf，main.tex摘要称每固定k≥3有C_kN exp[-c_k(logN)^epsilon_k]上界；不是匹配上下界或r_k/f_k→1。scope明确所选Lean陈述只为倒数和发散推出每个有限长AP，纸稿量化强界在陈述外。官方README称材料属模型原始研究且验证阶段不一。本代码路线只读摘要/范围文档，全文及关键数学步骤由学术/数学路线另审，不据此单独宣布强界证实。 claim_date仅登记稿面日期，不据此确认首次公开日期。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C336-OAI-CODE",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/Progressions/Model.lean",
+      "locator": "QuantitativeDensityBound/QuantitativeDensityTheorem/ReciprocalProgressionTheorem；Results/Conclusions.lean最终定理；ComparatorChallenges/ErdosReciprocal.json",
+      "version": "commit 3344da59991ed94f9ba711217b29c1d760badfa6；Model blob156947ed5e96871e0d5eb7eba8293971cffc0d16；Conclusions blobca90287d54ff26e7a16e531b342974726f369327",
+      "subquestions": [
+        "公开AI形式化范围",
+        "单侧上界",
+        "倒数和推论"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "rerun": {
+        "commit": "3344da59991ed94f9ba711217b29c1d760badfa6",
+        "theorem": "OAI.Erdos3.manuscriptQuantitativeDensityTheorem; OAI.Erdos3.manuscriptReciprocalProgressionTheorem",
+        "toolchain": "leanprover/lean4:v4.34.1; mathlib=d13f23b723b8a846827a245b89c10fc7d3f11612; checkdecls=3d425859e73fcfbef85b9638c2a91708ef4a22d4",
+        "command": "未执行lake build/Comparator/#print axioms；仅读Model、Conclusions、Main imports、Comparator题面和配置",
+        "cache": "未下载构建缓存或全库",
+        "axioms": "Comparator配置仅许可propext,Quot.sound,Classical.choice且enable_nanoda=false；这是许可配置，非本轮全依赖审计结果"
+      },
+      "note": "Model完整定义：HasAP A k:=∃a d:ℕ,0<d∧∀i<k,a+i*d∈A；extremalNumber为Icc1N幂集中APFree的最大card。QuantitativeDensityBound k:=∃C c η:ℝ,0<C∧0<c∧0<η∧∀N:ℕ,3≤N→extremalNumber k N≤C*N*exp[-c*(log(logN))^(1+η)]；∀固定k≥3。Conclusions以既有引理链给quantitative及reciprocal顶层证明，无局部sorry/新axiom；传递依赖未全读，不能宣称全库无sorry。该量化目标较纸稿的logN^epsilon弱；选定Comparator只比较reciprocal theorem，模板by sorry不能与solution混淆。无论哪一界均非r_k~f_k，亦非精确阶结论。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C336-PROVE2ME",
+      "url": "https://prove2.me/theorems/84d9ff4b-9a29-4e00-9b0f-5fb04161be63",
+      "locator": "标题、Proved状态、正式题面、Source；父条目69f669e4-4854-4e52-b36a-667049c5b82b",
+      "version": "页面署2026-09-24；Mathlib0df444a/Leanv4.33.1；访问2026-11-27的可读抓取，非提交固定证明",
+      "subquestions": [
+        "公开AI/社区完成声称",
+        "k=2特例"
+      ],
+      "role": "形式化",
+      "publication": "社区帖子",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Prove2Me用户junyihjy",
+      "claim_date": "2026-09-24",
+      "note": "页面自标Proved，仅主张r2=o(N/logN)。其公开代码仍为theorem...:=by sorry题面，未取得完成证明体/提交；不能独立确认kernel输出。父条目（2026-09-10）对全k>1仍标Open。k2数学为任意两不同数构成2-AP，故N≥1时r2=1，完全不解决k≥3主问题。父页旧upper/Theta说明及最新状态、‘little-o由标准求和即推出倒数和’的简述均不据为数学证明；最终归约交独立数学路线。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "formalization",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "C336-AI-ATTEMPT",
+      "url": "https://www.erdosproblemaday.com/day/142-white-whale",
+      "locator": "NO PROOF TODAY、作者尝试叙述、2026-10-06新声明注记",
+      "version": "帖子2026-07-26并附2026-10-06注记；2026-11-27读取；页面抓取约一月前",
+      "subquestions": [
+        "公开AI状态"
+      ],
+      "role": "重述",
+      "publication": "作者主页/个人索引",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "作者公开标记其多模型尝试未解主问题，后附family159只为上界并指出渐近公式仍未获解。无可采纳的新精确公式证明；其文献地图仅作线索。对其任何关于公式必须有固定log幂形状等进一步说法，本轮未核并不采纳。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "AP142-M-CARD",
+      "url": "https://www.qunxingmath.org/p/QX-P-000336/",
+      "locator": "本包任务.jsonl 的同 id/card_rev 题卡：题面、人话版、acceptance.criteria、边界与约定",
+      "version": "QX-R3-11 原包 QX-P-000336 / card_rev=325a670ac7f6b9b3；2026-11-27 读取",
+      "subquestions": [
+        "定义与固定参数范围",
+        "退化边界",
+        "验收语义",
+        "构造与上下界方向"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "note": "实际读取的是用户提供原包内的题卡，不声称已经访问此在线群星页面。独立推导仅审数学语义和边界，不是原问题的渐近公式证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "AP142-M-LSS24",
+      "url": "https://arxiv.org/html/2402.17995v2",
+      "locator": "§1 定义；Theorem 1.1；§1.2 渐近记号",
+      "version": "arXiv:2402.17995v2，2024-02-29；本轮 2026-11-27 读取",
+      "subquestions": [
+        "既有上界的量词和记号",
+        "渐近等价与界估计的区别"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "James Leng、Ashwin Sah、Mehtaab Sawhney, Improved Bounds for Szemerédi’s Theorem。Theorem 1.1 固定整数 k≥5，c_k∈(0,1)，r_k(N)≪N exp(-(log log N)^{c_k})；§1.2 明确 ≪ 为充分大参数下的常数倍上界，脚标表示常数依赖。这里只核陈述，未核其全证明或最新性。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "AP142-M-F159-PAPER",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/build/sections/00-introduction.tex",
+      "locator": "Theorem ap:main；Corollary ap:reciprocal；同 build/sections/08-iteration.tex 的 ap:iteration:closure 后反解；09-consequences.tex 的 ap:weighted:dyadic",
+      "version": "OpenAI, Quasipolynomial Bounds for Arithmetic Progressions, 2026-09-23；openai/math commit 3344da59991ed94f9ba711217b29c1d760badfa6；2026-11-27 读取指定章节",
+      "subquestions": [
+        "新公开上界声明的范围",
+        "密度阈值与上界的条件性互推",
+        "上界到倒数和推论的条件性归约"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "note": "正文主定理声称对每个固定整数 k≥3 存在依 k 的 C_k,c_k,ε_k>0，对所有 N≥2 有 r_k(N)≤C_k N exp[-c_k(log N)^{ε_k}]。没有给出渐近公式或匹配下界。本轮仅独立核量词、最后阈值反解和 dyadic 求和；未核三角增量、有限迭代闭合命题等核心上游证明，故不将主上界声明升级为独立复核通过。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "AP142-M-F159-SCOPE",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/Progressions/Model.lean",
+      "locator": "lean/OAI/Combinatorics/Progressions/Model.lean 的 HasAP、extremalNumber、QuantitativeDensityBound、QuantitativeDensityTheorem；另实际读取 family159 scope.md（Erdős’s reciprocal-sum conjecture and quasipolynomial Szemerédi bounds），其定位由代码分支并入总回执",
+      "version": "openai/math commit 3344da59991ed94f9ba711217b29c1d760badfa6；2026-11-27 静态读取；Model blob 156947ed5e96871e0d5eb7eba8293971cffc0d16",
+      "subquestions": [
+        "论文强界与所读 Lean 弱界的区别",
+        "形式化范围",
+        "弱界到倒数和的条件性归约"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "scope 明确选定形式化结论为倒数和推论，论文的定量上界不在该比较陈述内。实际 Model.lean 中的 QuantitativeDensityBound 为 ∃C,c,η>0,∀N≥3, extremalNumber k N≤C N exp[-c(log log N)^{1+η}]，QuantitativeDensityTheorem 再量化每个 k≥3。这个式子与论文 log N 的幂的更强界不同；读到定义/比较范围不能替代核验证明依赖或运行 Lean。本轮仅核正参数足以使倒数和归约收敛。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "AP142-M-FC-ENDPOINT",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/AP/Basic.lean",
+      "locator": "Set.IsAPOfLengthFree 定义及 isAPOfLengthFree_one、maxCard_one",
+      "version": "commit ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8；blob c081b077c0faaaa69dd9d4d8e993766bb0254d0c；2026-11-27 静态读取",
+      "subquestions": [
+        "退化边界"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "已静态检查未复跑",
+      "note": "此源用 IsAPOfLengthFree(s,l):=∀t⊆s,t.IsAPOfLength(l)→l≤1；因此 l=1 时任意 s 都可行，最大基数为N，与源码 maxCard_one 相符。只作定义层面的独立检查，无 Lean 运行；该约定不同于仅按d≠0延伸的一项列，不影响本题k≥3。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000025",
+      "other_card_rev": "a04c746840103d8d",
+      "relation": "待核",
+      "reason": "配对000025--000336由较小号000025负责人负责。已读双方固定全文：本题固定k≥3、N→∞研究区间内最大基数；对方以无界正整数集的倒数和上确界f(k)及van der Waerden数W(k)研究k→∞的比值。对象、权重、极限参数及验收不同；共同AP-free术语不足合并，提交范围对照由小号裁决。",
+      "positions": {
+        "self": "problems/000/QX-P-000336.text.md §题面、形式化表述、边界；meta acceptance；commit73290369a8dcc632e25e555aec525565ea6e08f8",
+        "other": "problems/000/QX-P-000025.text.md §题面、形式化表述、边界与约定；meta acceptance；同一commit"
+      },
+      "note": "000025不在本包，未替其执行查新；无合并建议。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-001663",
+      "other_card_rev": "79259b3b29b1fb8f",
+      "relation": "同源不同问",
+      "reason": "配对000336--001663由本卡较小号负责。P142求有限区间无k项AP极值函数的精确渐近，P3求倒数和发散的无界整数集是否含任意长AP。特定足够强的r_k上界可对P3有蕴含，但P142的渐近公式目标不等同P3的定性结论；得到上界或某k结果不能互相当作整题结案。",
+      "positions": {
+        "self": "problems/000/QX-P-000336.text.md §题面、已知结果、边界；meta acceptance；commit73290369a8dcc632e25e555aec525565ea6e08f8",
+        "other": "problems/001/QX-P-001663.text.md §题面、人话版与其他记录；meta acceptance；同一commit"
+      },
+      "note": "只完成正文问题关系核对，不以该卡旧查新备注代替本轮独立文献核验，也不修改其数学状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "duplicate_relation": "related"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补条件量词",
+      "field": "题面 / 形式化表述 / acceptance.criteria",
+      "old": "r_k(N)渐近公式；给出对某组k（或全部k）的公式，或证明这样的公式不可能存在。",
+      "new": "建议明确固定整数k≥3，r_k(N)=max{|A|:A⊆[N]不含公差非零的k项AP}，N→∞。区分指定k的子问题与对所有固定k的主目标；将渐近等价r_k/F_k→1、Θ_k数量级、指数数量级和单侧上界分别验收。若保留“不存在公式”，先限定可接受公式/函数类别。",
+      "reason": "仅解k=2或单个指定k不能自动关闭全k问题；未限定公式类别时F_k=r_k本身使“不存在公式”目标不成精确数学命题。修改核心量词或验收标准需更新card_rev，当前只提出建议。",
+      "evidence_ids": [
+        "E336-A-ER81",
+        "E336-A-EP142IDX",
+        "C336-ANSWER-SCOPE",
+        "C336-APDEF",
+        "AP142-M-CARD"
+      ],
+      "small_case_check": "N≥1时现代r2(N)=1；它的精确值是平凡边界，不能作为k≥3渐近问题结案。固定k>N时r_k(N)=N亦不能冒充固定k、N→∞的结果。 k≤1的延伸依非平凡约定而异：本轮所读Lean把长度≤1一律视为平凡，r1=N；题卡按d≠0延伸则r1=0。研究范围k≥3无此差别。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版一句话及开放性说明",
+      "old": "1到N里最长的“无三项等差”子集；k≥5结果更弱，因此Erdős认为短期内无从下手。",
+      "new": "改为固定k≥3时，1到N中不含非平凡k项AP的子集最多多大；k=3只是其中一项。历史评价须标出处年份，当前开放性仅表述为本轮未获渐近公式完整解，不由2024旧上界推断Erdős当年或2026现状。",
+      "reason": "现卡人话缩小到k=3，且把历史评论与后来论文形成错误因果。",
+      "evidence_ids": [
+        "E336-A-ER80",
+        "E336-A-ER81",
+        "AP142-M-CARD"
+      ],
+      "small_case_check": "{1,2,3}不含4项非平凡AP，却含3项AP，直接说明人话版缩成三项会改变适用对象。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "first_published / sources / proposer",
+      "old": "见上述文献年份；站点页面活跃维护。",
+      "new": "补本轮最早已读同题来源Er80印刷pp91–92及Er81作者档案PDF第4页§II.1（正式刊物1981 pp25–42）。注明原r_k为最小强制AP阈值，现代最大无AP集比其少1；不把网站整理人当共同提出者。",
+      "reason": "已亲读一手原段；Er80确有渐近公式愿望，不能只沿用网站“只问order of magnitude”的概括。尚未核此前所有文献，避免声称绝对最早。",
+      "evidence_ids": [
+        "E336-A-ER80",
+        "E336-A-ER81"
+      ],
+      "small_case_check": "k=3,N=3时最大无3AP集有2个元素，而最小强制AP基数为3，验证两约定差1。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "题面Erdős引语",
+      "old": "Erdős: probably unattackable at present（未定位具体原篇）。",
+      "new": "未定位原文前，改为已核释义“Er80希望获得渐近公式，良好上下界亦有价值；Er81另有该问题极难的评价”，或保留引语但明确仅来自站点索引且原始出处待核。",
+      "reason": "不能把二手索引引语自动归给已读Er80的AP段。Er97c/Va99尚未取原页；本轮再次核对确认Er80该句未在AP段定位。",
+      "evidence_ids": [
+        "E336-A-ER80",
+        "E336-A-ER81",
+        "E336-A-EP142IDX"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展 / 纪录链",
+      "old": "k=3 Kelley–Meka(2023)为当前纪录；k=4 GT2017；k≥5 LSS2024。",
+      "new": "保留KM1/12历史结果，补BS2023 Theorem1的1/9；补Raghavan2603.27045v3 Theorem1.4：N exp[-Ω((logN)^{1/6}(loglogN)^{-1/6})]，注明预印本及与摘要旧式差异。GT2017、LSS2024按准确范围保留，不把旧链视为2026-11全局纪录。",
+      "reason": "当前原始论文显示k=3已有明显后续进展；v3正文精确式与abs不同必须固定版本。",
+      "evidence_ids": [
+        "E336-A-KM",
+        "E336-A-BS",
+        "E336-A-RAG26",
+        "E336-A-GT",
+        "E336-A-LSS"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "相关进展与声称解决 / ai_claims / formal",
+      "old": "未列family159；formal_status=none。",
+      "new": "单列2026官方family159：纸稿对每个固定k≥3声称C_k N exp[-c_k(logN)^ε_k]强上界；本轮读指定章节并独立核阈值反解及倒数和归约，未核完整核心。实际Lean Model定义的是C N exp[-c(loglogN)^(1+η)]、C,c,η>0且N≥3的较弱定量界；所选Comparator只比较倒数和AP推论。静态已读顶层、定义及配置，未运行构建或#print axioms。强弱界与Comparator范围分别登记；三者均不提供#142渐近等价，不据“Erdős conjecture solved”标题关闭本卡。",
+      "reason": "原题#142与倒数和#3不同；纸稿强界、代码弱界、Comparator选定定理需保持各自范围和审核层级。",
+      "evidence_ids": [
+        "E336-A-F159",
+        "E336-A-F159SCOPE",
+        "C336-OAI-SCOPE",
+        "C336-OAI-CODE",
+        "AP142-M-F159-PAPER",
+        "AP142-M-F159-SCOPE"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展 / 下界与适用范围",
+      "old": "只列上界，未说明与下界缺口。",
+      "new": "补EHPS2024 Theorem1.1的k=3下界N·2^{-(2√log₂(24/7)+o(1))√log₂N}；与所核上界不匹配。此为已核下界，不宣称穷尽所有k的最佳下界。",
+      "reason": "不能把指数级形状改善当成渐近等价；上下界应共同展示验收缺口。",
+      "evidence_ids": [
+        "E336-A-EHPS24",
+        "E336-A-RAG26"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定 / 独立验证建议",
+      "old": "上界候选构造的AP-free性程序验证（中等N）。",
+      "new": "一个已验证AP-free构造给下界；上界须排除所有超阈值集合或给覆盖全体的理论/完备枚举证书。有限N核验仅检验样例，不能验证N→∞渐近等价。",
+      "reason": "上界与构造方向相反，单一有限证书不覆盖渐近量词。",
+      "evidence_ids": [
+        "E336-A-ER81",
+        "E336-A-KM",
+        "E336-A-EHPS24",
+        "AP142-M-CARD"
+      ],
+      "small_case_check": "[3]中A={1,2}确无3AP，只证明r3(3)≥2；若要r3(3)≤2还需排除唯一3元集合[3]。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "题面纠错",
+      "field": "difficulty.note方法名称",
+      "old": "量子多项式逆定理刚成熟",
+      "new": "准多项式定量逆定理（quasipolynomial inverse theorem）",
+      "reason": "LSS原文使用quasipolynomial，不是quantum算法；此为术语释义修正。",
+      "evidence_ids": [
+        "E336-A-LSS"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "informal_status / novelty / 开放状态证据",
+      "old": "2026-11-20 live确认Open；旧novelty.card_rev仍为2f458e1bd1feae2c。",
+      "new": "按本轮实际记录标部分进展且渐近公式未获确证；旧页面记录保留历史日期，今日主页面未读全文。旧novelty绑定版本与当前325a670ac7f6b9b3不同，不能由旧deep标签替代本轮回执。",
+      "reason": "状态依据必须区分当前完整原文、搜索索引、旧版历史和新界声明；当前题卡rev需精确绑定。",
+      "evidence_ids": [
+        "E336-A-EP142IDX",
+        "E336-A-RAG26",
+        "E336-A-F159"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "formal/status/formal数组",
+      "old": "formal=[]，形式化状态none；备注只有笼统形式化陈述Yes",
+      "new": "补正式142.lean固定commit与Lean/mathlib依赖，标‘仅有形式化题面或骨架’：7处sorry；主式~、Theta阶、little-o上界分开。k2平台Proved属于受限特例且未取得完成体。",
+      "reason": "形式化题面确实存在，不能由none或Yes推断证明状态；静态访问层级已明确。",
+      "evidence_ids": [
+        "C336-FORMAL142",
+        "C336-PROVE2ME"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "形式化历史/公开勘误引用",
+      "new": "#4922旧upper已删，#8176旧缺k已在当前固定文件修复；仍保留未定义answer与数学意义检查。引用旧版本必须并列commit，勿把issue开启状态当现源码未修复。",
+      "reason": "已逐字对照本轮固定142.lean及APBasic；#8176中r1=0举例也不符合当前定义。",
+      "evidence_ids": [
+        "C336-MISFORMAL",
+        "C336-FORMAL142",
+        "C336-APDEF"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "库内查重",
+      "reason": "000025--000336的较小号负责人在包外；其他AP关键词候选未全部取正文。",
+      "next_step": "将双方固定版本与本文位置交000025负责人。001663已按同源不同问记录，不合并；若后续具体结果需跨卡迁移，分别核公式强度、每个固定k的量词和倒数和推论，而非直接迁移状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "Erdős Problems142及history直访/搜索ref打开失败，只有官方索引可读；Er97c与Va99原页未取得。",
+      "next_step": "如需核今日站点评论/状态与未定位的probably unattackable引语，取得当前原页或可靠导出及原始引文页；不要把索引或旧卡live字段当今日完整正文。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Raghavan固定v3 HTML Theorem1.4与官方abs给不同loglog小因子；直接固定PDF入口Disabled。",
+      "next_step": "在需要精确引用最强小因子时再核v3 PDF/源码及修订说明；目前显式区分v3正文(-1/6)与摘要较弱(-1)，不静默统一，也不凭该差异断言定理被撤回。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "family159只实际读取主文件、introduction、iteration、consequences，未逐条核核心increment与foundations；官方范围声明不覆盖纸稿定量上界。",
+      "next_step": "若要将纸稿强上界升级为独立核验通过，应从其主增量定理及宽度/维数三角预算依赖开始核完整证明链或取得可核独立审稿。纸稿强界与Lean弱目标仅有覆盖强度差异，不能据此推断原稿错误；当前只登记完整强界声明及已核归约，不能结案#142。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "社区digest明确自动生成未人工检查，原Bloom论坛帖不可访问；本轮未取得第三方完整验证日志。实际Comparator、Model定量定义、顶层源码与配置已静态核对，但未做传递依赖完整审计或复跑。",
+      "next_step": "人工评论和第三方通过须取得原帖/日志；不以digest当验证证据。若进一步运行形式核验，固定已登记commit/toolchain并记录构建输出及实际axiom审计，不把允许axiom配置当审计结果。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "所核原论文/有限P0检索能给具体进展而不能穷尽全部最新一般k上下界、所有修订或未知完整解。",
+      "next_step": "未来遇渐近公式声明时先核固定k≥3、目标为r/F→1、是否匹配上下界且未把AP-free集合数量或倒数和问题当本题；闭合原题结论须按包规独立二审。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {}
+    },
+    {
+      "route": "其他：题卡验收",
+      "reason": "“某组k或全部k”“证明公式不可能存在”没有区分子问/主问与可接受表达式类别。",
+      "next_step": "维护者若采用所提核心量词和验收精度修订，须更新card_rev；当前回执仍绑定325a670ac7f6b9b3，不以解释修订伪造原题全解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "正式FC主题及三个变体仍有sorry；公开Prove2Me仅可见k2题面，AlphaProof清单只表attempted。没有本轮可独立复跑的k≥3精确渐近公式完成证明。",
+      "next_step": "保留形式化题面与有限特例的准确状态。未来若出现完成项目，先核固定k≥3、非平凡AP与f_k的非循环独立定义，再核r_k/f_k→1是否真为主定理；不能凭标题、Open/Proved标签、有限N数据或尝试清单改为已解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "family159已取得实际定理顶层、定义、配置及纸稿指定章节，未完成全部传递依赖审计、Comparator构建或#print axioms，也未核完纸稿核心证明。纸稿强界与Lean实际弱界不同。",
+      "next_step": "若要把公开AI新上界升级为已独立形式验证，须在固定commit/toolchain重建并运行Comparator与axiom审计，另就纸稿logN^epsilon强界核正文关键链。当前只报告已静态检查未复跑；此缺口不阻止本题查新回执收束，也不允许声称精确渐近公式已解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "ErdosProblems当前直访403/Restricted URL、forum robots拒绝；搜索只给旧缓存。未获得当日全部官方评论与撤回/修订记录。",
+      "next_step": "未来可访问时补核142官方讨论与版本历史的新声明。现仅承认旧缓存所载题面与历史注释，不把缓存无claims当2026-11-27无新声明的证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "325a670ac7f6b9b3",
+      "codes": {}
+    }
+  ]
+}

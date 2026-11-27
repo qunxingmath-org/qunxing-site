@@ -1,0 +1,2452 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000908",
+  "card_rev": "83957faa23e235bd",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "003及三角格图/六边形铺砌的准确对应",
+          "value": "statement_error",
+          "note": "Propp定义图trimer为三个顶点的连通诱导子图对应的顶点集合；此处再限制允许的五种原型为两种stone与三种bone，排除弯折phone。对偶铺砌中一个图顶点对应一个单位六边形，而不是一个单位三角形。bone是三个连续、中心共线的六边形；三个方向分别各自构成一种原型。T_ijk前两位指右stone/左stone是否允许，末位是允许的bone方向种数。所以T003禁止两种stone、允许三种方向bone；003不是一块“细长梯形”的形状代码，也不是要求每方向恰3块。T计固定区域内所有合法分割，不默认再按旋转/反射同一化。Kim–Propp§8特别指出k3各方向bone数量可变；k2每方向同数不能推广。"
+        },
+        {
+          "subquestion": "k=1、负k、空区域与交换参数的边界",
+          "value": "partial",
+          "note": "k1给(a,b)=(1,2)，不在原benzel域。若另行将三坐标不等式自然延拓过去，三个循环差均≥0且和0，迫i=j=h，而3i=1无整数解，故延拓区域为空；约定空铺砌数1是合法延拓，但不是原k≥2题域中的额外实质铺砌。k0亦不在原域。负k只交换正k时a,b；交换j,h把三个循环差变成原差的取负排列，给V(a,b)→V(b,a)的反射双射，并保持三方向bone集合，所以T003(a,b)=T003(b,a)。从而无需另外把负k作为独立任务。小边界B(2,2)只含(1,0,0),(0,1,0),(0,0,1)，是一个stone：若允许该stone有1铺砌，但003没有共线bone，计数0；这区分“所有连通trimer”与本题003。"
+        },
+        {
+          "subquestion": "五边形数参数的必要性与存在性定理的范围",
+          "value": "partial",
+          "note": "以已知Conway–Lagarias不变量及原稿公式为外部输入，纯bone铺砌迫不变量0。a+b≡2模3时原公式为[3(a−b)²+a+b−2]/2>0；a+b≡1时不变量等于正面积，均不可能。a+b≡0时零条件为3(a−b)²=a+b。令k=|a−b|，立刻得无序参数{a,b}={k(3k−1)/2,k(3k+1)/2}；原域排除k0、k1，所以k≥2。代回确使不变量0，但“零不变量”本身只给必要条件；Kim–Propp Theorem3另用§7构造证明充分性。已发表的充分性只说明T003>0，不计算T003；不能把这项完整可铺性结果写成Problem1计数公式已解。该项核查独立核上面的代数，未重审全部拓扑不变量和几何构造。"
+        },
+        {
+          "subquestion": "区域面积与bone数量：纠正单位后的一致性检查",
+          "value": "partial",
+          "note": "Kim–Propp§3明确每个hexagonal cell面积1。其Theorem1在a+b≡0时给hex cell数N=(−a²+4ab−b²−a−b)/2。令s=a+b=3k²、d=b−a=k，代入N=(s²−3d²−2s)/4=9k²(k²−1)/4；每个bone覆盖3cells，故每铺砌bone数为3k²(k²−1)/4。k2为27cells/9bones，k3为162cells/54bones。B(2,2)面积公式给3而它只有1块stone，也核准公式单位是hex cells。以上单位以原刊明确约定和本轮坐标枚举双重核定，不将面积公式再乘3。"
+        },
+        {
+          "subquestion": "k2精确计数证书：T003(5,7)=2",
+          "value": "partial",
+          "note": "只运行首个合法参数k2=(5,7)。设M=max(a−1,b−1)。三个两两坐标差的绝对值均≤M且坐标和1，所以每坐标离均值1/3至多2M/3，枚举i,j∈[−M,M]不会漏点（M≥1）；h=1−i−j。对三个方向枚举连续共线三点，固定方向正号只计一次每个bone，生成42个候选。对剩余cell集合S，选一个有最少可用bone的顶点v，所有精确铺砌唯一选择某个含v且全在S中的boneτ，故F(S)=ΣτF(S\\τ)，F(∅)=1；归纳给精确计数，不会因枢轴选择或记忆化重复/漏计。实际输出27cells、42候选、2铺砌；全部两见证各9bones，代码逐对检查不交且并为全域。缓存总记录40状态（包含见证提取时调用），不是全k复杂度证明。 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。"
+        },
+        {
+          "subquestion": "递推/算法验收：正确性与效率不能靠有限项替代",
+          "value": "statement_error",
+          "note": "若提供递推，应明确状态、边界/初值、全部合法k的终止及正确性证明；若称比暴力更高效，应说明输入规模（这里N=Θ(k⁴)）、比较基线、时间/空间及整数位复杂度或可复现性能范围。泛式F(S)=ΣτF(S\\τ)本身只是精确cover回溯的重写；记忆化和更好枢轴可以改善具体小例，但不能仅据k2=2和40个状态就当作Problem1的全参数高效解。本题原文容许算法/递推进展而不强制封闭乘积式，不应反向擅加“必须多项式”才能接受；同时“更高效”原文没有给严格复杂度阈值，需在候选声明核验时解释实质改善。拟合任何有限计数列也不是全k递推证明；k3/k4公开大数本轮未重算。"
+        },
+        {
+          "subquestion": "同单Problem6与本族仅在k2相交的精确范围桥",
+          "value": "partial",
+          "note": "Propp原Problem6计T103(n,2n−3)，其中允许右stone及三种bone。当前族满足2a−b=3k(k−1)/2；与b=2a−3相交要求k(k−1)=2，原域k≥2仅k2，此时(a,b)=(5,7)、n=5。当前族CL=0，在T103禁左stone时也迫右stone数0，故该交点T103(5,7)=T003(5,7)。原Problem6公式在n5给(3·5+3)(3·5−7)!/((5−5)!(2·5−1)!)=18·8!/(0!·9!)=2，与本轮精确枚举相符。因此Problem6结果可以覆盖本题一个参数，不能覆盖一般k；也不应说它与本题完全无数学联系。对b=2a−4族，3k(k−1)/2恒为3的倍数，不可能为4，所以原k域无交点。本条只核代数/不变量范围桥，没有独立审任何Li新稿的全证明或形式化声明。"
+        },
+        {
+          "subquestion": "小k已公布数据与本轮计算层级",
+          "value": "partial",
+          "note": "原v1附录和2023正式稿一致列k2=2,k3=42705,k4=7501790059160666750，作者程序k5内存不足。该项核查独立只数区域cells：27/162/540；数学路线另给k2铺砌exactcover复跑，不能把原作者较大数表称本轮已全部验证。"
+        },
+        {
+          "subquestion": "学术路线的全k精确公式或已公开高效递推",
+          "value": "no_evidence_in_scope",
+          "note": "本轮列明的官方原稿、作者2025跟踪页及2022–2026定向查询中，未取得Problem1的全k公式或符合其算法兴趣目标的新完整稿；这是有限检索结论，不证明不存在可用通用计数算法。若本轮另建frontier递推，其正确性/复杂度与验收比较由独立数学及代码路线单列。"
+        },
+        {
+          "subquestion": "同题单后续成果的范围排除",
+          "value": "partial",
+          "note": "2024/2025 generalizedcompression解5/12/13，2025EJC四题解8–11；与003题1不同。Problem6本身是T103(n,2n−3)且n≥5，允许rightstone，不是T003。本轮只核其区别；2026AI/作者稿声明另由代码路线记录，未把它当题1答案。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "claimed_verified",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/crabsatellite/peripheral-benzel-tilings/blob/5d1983de4592261dd0b915987ebcc9c0c8ae11b8/README.md"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://arxiv.org/abs/2206.06472v4",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "按原Problem1的标准含义，求所有整数k≥2时paired-pentagonal benzel的T003精确计数式，或具有实质效率改善的完整递推/算法。四路线已核固定v1/v4原题、作者有日期的跟踪页、2023可铺性定理与历史计数、2024/2025相邻题论文、实际代码/公开AI/社区索引和固定邻题README；未取得覆盖此全k计数目标的完整新解。这里不是全网无解/不存在通用算法的断言。已独立精确复算k2=2，给完整程序与两见证；k3/k4只为原作者数据。T003是三方向六边形bone-only，human误写三角形；k域/面积与验收边界修订另列。Kim–Propp存在性、Li题4/6构造或缺陷恒等式、compression解5/12/13和BCL解8–11都不使本题结案。",
+      "evidence_ids": [
+        "R0908-CARD",
+        "a0908_propp_original",
+        "a0908_propp_v4",
+        "a0908_kim_propp",
+        "a0908_compression",
+        "a0908_bcl2025",
+        "Q908-M-E3",
+        "E908-C-OEIS",
+        "E908-C-LI6",
+        "E908-C-LI4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "003及三角格图/六边形铺砌的准确对应",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "Propp定义图trimer为三个顶点的连通诱导子图对应的顶点集合；此处再限制允许的五种原型为两种stone与三种bone，排除弯折phone。对偶铺砌中一个图顶点对应一个单位六边形，而不是一个单位三角形。bone是三个连续、中心共线的六边形；三个方向分别各自构成一种原型。T_ijk前两位指右stone/左stone是否允许，末位是允许的bone方向种数。所以T003禁止两种stone、允许三种方向bone；003不是一块“细长梯形”的形状代码，也不是要求每方向恰3块。T计固定区域内所有合法分割，不默认再按旋转/反射同一化。Kim–Propp§8特别指出k3各方向bone数量可变；k2每方向同数不能推广。",
+      "evidence_ids": [
+        "Q908-M-E1",
+        "Q908-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "benzel的精确坐标与原题k域",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "用第三坐标h避免与族参数k混淆：V(a,b)={(i,j,h)∈Z³:i+j+h=1，−(a−1)≤j−i,h−j,i−h≤b−1}。相邻顶点的坐标差L1范数为2。允许bone集合为{v,v+d,v+2d}⊆V，其中d取(1,−1,0),(1,0,−1),(0,1,−1)，反方向给相同集合而不重复。几何benzel是包络六边形内完整六边形单元的并，锯齿边界不应当作连续平面六边形直接铺三角块。原域a,b≥2且a≤2b,b≤2a。特殊参数a=k(3k−1)/2,b=k(3k+1)/2的原题k为整数≥2；均为整数，a+b=3k²,b−a=k，包络边长交替2a−b=3k(k−1)/2与2b−a=3k(k+1)/2，故k≥2为非退化包络。原卡宜明确恢复此域。",
+      "evidence_ids": [
+        "Q908-M-E1",
+        "Q908-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "k=1、负k、空区域与交换参数的边界",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "k1给(a,b)=(1,2)，不在原benzel域。若另行将三坐标不等式自然延拓过去，三个循环差均≥0且和0，迫i=j=h，而3i=1无整数解，故延拓区域为空；约定空铺砌数1是合法延拓，但不是原k≥2题域中的额外实质铺砌。k0亦不在原域。负k只交换正k时a,b；交换j,h把三个循环差变成原差的取负排列，给V(a,b)→V(b,a)的反射双射，并保持三方向bone集合，所以T003(a,b)=T003(b,a)。从而无需另外把负k作为独立任务。小边界B(2,2)只含(1,0,0),(0,1,0),(0,0,1)，是一个stone：若允许该stone有1铺砌，但003没有共线bone，计数0；这区分“所有连通trimer”与本题003。",
+      "evidence_ids": [
+        "Q908-M-E1",
+        "Q908-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "五边形数参数的必要性与存在性定理的范围",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "以已知Conway–Lagarias不变量及原稿公式为外部输入，纯bone铺砌迫不变量0。a+b≡2模3时原公式为[3(a−b)²+a+b−2]/2>0；a+b≡1时不变量等于正面积，均不可能。a+b≡0时零条件为3(a−b)²=a+b。令k=|a−b|，立刻得无序参数{a,b}={k(3k−1)/2,k(3k+1)/2}；原域排除k0、k1，所以k≥2。代回确使不变量0，但“零不变量”本身只给必要条件；Kim–Propp Theorem3另用§7构造证明充分性。已发表的充分性只说明T003>0，不计算T003；不能把这项完整可铺性结果写成Problem1计数公式已解。该项核查独立核上面的代数，未重审全部拓扑不变量和几何构造。",
+      "evidence_ids": [
+        "Q908-M-E1",
+        "Q908-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "区域面积与bone数量：纠正单位后的一致性检查",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "Kim–Propp§3明确每个hexagonal cell面积1。其Theorem1在a+b≡0时给hex cell数N=(−a²+4ab−b²−a−b)/2。令s=a+b=3k²、d=b−a=k，代入N=(s²−3d²−2s)/4=9k²(k²−1)/4；每个bone覆盖3cells，故每铺砌bone数为3k²(k²−1)/4。k2为27cells/9bones，k3为162cells/54bones。B(2,2)面积公式给3而它只有1块stone，也核准公式单位是hex cells。以上单位以原刊明确约定和本轮坐标枚举双重核定，不将面积公式再乘3。",
+      "evidence_ids": [
+        "Q908-M-E2",
+        "Q908-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "k2精确计数证书：T003(5,7)=2",
+      "math_status": "仅特例",
+      "scope_note": "只运行首个合法参数k2=(5,7)。设M=max(a−1,b−1)。三个两两坐标差的绝对值均≤M且坐标和1，所以每坐标离均值1/3至多2M/3，枚举i,j∈[−M,M]不会漏点（M≥1）；h=1−i−j。对三个方向枚举连续共线三点，固定方向正号只计一次每个bone，生成42个候选。对剩余cell集合S，选一个有最少可用bone的顶点v，所有精确铺砌唯一选择某个含v且全在S中的boneτ，故F(S)=ΣτF(S\\τ)，F(∅)=1；归纳给精确计数，不会因枢轴选择或记忆化重复/漏计。实际输出27cells、42候选、2铺砌；全部两见证各9bones，代码逐对检查不交且并为全域。缓存总记录40状态（包含见证提取时调用），不是全k复杂度证明。 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "evidence_ids": [
+        "Q908-M-E1",
+        "Q908-M-E2",
+        "Q908-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "递推/算法验收：正确性与效率不能靠有限项替代",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "若提供递推，应明确状态、边界/初值、全部合法k的终止及正确性证明；若称比暴力更高效，应说明输入规模（这里N=Θ(k⁴)）、比较基线、时间/空间及整数位复杂度或可复现性能范围。泛式F(S)=ΣτF(S\\τ)本身只是精确cover回溯的重写；记忆化和更好枢轴可以改善具体小例，但不能仅据k2=2和40个状态就当作Problem1的全参数高效解。本题原文容许算法/递推进展而不强制封闭乘积式，不应反向擅加“必须多项式”才能接受；同时“更高效”原文没有给严格复杂度阈值，需在候选声明核验时解释实质改善。拟合任何有限计数列也不是全k递推证明；k3/k4公开大数本轮未重算。",
+      "evidence_ids": [
+        "Q908-M-E1",
+        "Q908-M-E2",
+        "Q908-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "同单Problem6与本族仅在k2相交的精确范围桥",
+      "math_status": "仅特例",
+      "scope_note": "Propp原Problem6计T103(n,2n−3)，其中允许右stone及三种bone。当前族满足2a−b=3k(k−1)/2；与b=2a−3相交要求k(k−1)=2，原域k≥2仅k2，此时(a,b)=(5,7)、n=5。当前族CL=0，在T103禁左stone时也迫右stone数0，故该交点T103(5,7)=T003(5,7)。原Problem6公式在n5给(3·5+3)(3·5−7)!/((5−5)!(2·5−1)!)=18·8!/(0!·9!)=2，与本轮精确枚举相符。因此Problem6结果可以覆盖本题一个参数，不能覆盖一般k；也不应说它与本题完全无数学联系。对b=2a−4族，3k(k−1)/2恒为3的倍数，不可能为4，所以原k域无交点。本条只核代数/不变量范围桥，没有独立审任何Li新稿的全证明或形式化声明。",
+      "evidence_ids": [
+        "Q908-M-E1",
+        "Q908-M-E2",
+        "Q908-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "小k已公布数据与本轮计算层级",
+      "math_status": "部分进展",
+      "scope_note": "原v1附录和2023正式稿一致列k2=2,k3=42705,k4=7501790059160666750，作者程序k5内存不足。该项核查独立只数区域cells：27/162/540；数学路线另给k2铺砌exactcover复跑，不能把原作者较大数表称本轮已全部验证。",
+      "evidence_ids": [
+        "a0908_propp_original",
+        "a0908_kim_propp",
+        "a0908_coordinate_check"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "学术路线的全k精确公式或已公开高效递推",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "本轮列明的官方原稿、作者2025跟踪页及2022–2026定向查询中，未取得Problem1的全k公式或符合其算法兴趣目标的新完整稿；这是有限检索结论，不证明不存在可用通用计数算法。若本轮另建frontier递推，其正确性/复杂度与验收比较由独立数学及代码路线单列。",
+      "evidence_ids": [
+        "a0908_propp_v4",
+        "a0908_tracker",
+        "a0908_compression",
+        "a0908_bcl2025"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "同题单后续成果的范围排除",
+      "math_status": "部分进展",
+      "scope_note": "2024/2025 generalizedcompression解5/12/13，2025EJC四题解8–11；与003题1不同。Problem6本身是T103(n,2n−3)且n≥5，允许rightstone，不是T003。本轮只核其区别；2026AI/作者稿声明另由代码路线记录，未把它当题1答案。",
+      "evidence_ids": [
+        "a0908_propp_v4",
+        "a0908_tracker",
+        "a0908_compression",
+        "a0908_bcl2025"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "原包与固定GitHub正文/meta",
+      "query": "读取任务；fetch_file problems/000/QX-P-000908.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "当前card_rev83957faa23e235bd；textblobe3602cbc32dc6879e238f6864f9c5dc8ad772660；metablob5d330fea11c35a98f7eacad05cb46d367b5f735b。核心是特殊paired-pentagonal参数族的T003计数，acceptance还接受显著优于蛮力的算法/递推。旧novelty对应d92118496e1fb865，旧批量/无命中/空legacy不当本轮完成证据。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000908.text.md",
+      "request_id": "QX-R3-11-000908-root-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"benzel\" \"003\" formula",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检到作者benzel状态页、2023 abacus、2025 BCL论文和2026 Li/EulerSolve相邻题。Problem4/6/7的完整声明或部分结果不自动属于Problem1；后以来源/参数/瓦片种类比对。另有Mercedes零件/商业瓷砖等benzel/003字串噪声，仅筛除索引，未读为数学证据。",
+      "request_id": "QX-R3-11-000908-root-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Trimer Covers\" \"Problem 1\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检到作者benzel状态页、2023 abacus、2025 BCL论文和2026 Li/EulerSolve相邻题。Problem4/6/7的完整声明或部分结果不自动属于Problem1；后以来源/参数/瓦片种类比对。另有Mercedes零件/商业瓷砖等benzel/003字串噪声，仅筛除索引，未读为数学证据。",
+      "request_id": "QX-R3-11-000908-root-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Propp\" \"benzel\" solved 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检到作者benzel状态页、2023 abacus、2025 BCL论文和2026 Li/EulerSolve相邻题。Problem4/6/7的完整声明或部分结果不自动属于Problem1；后以来源/参数/瓦片种类比对。另有Mercedes零件/商业瓷砖等benzel/003字串噪声，仅筛除索引，未读为数学证据。",
+      "request_id": "QX-R3-11-000908-root-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"AMR-123-0001\" (recency=365)",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "实际这次返回AMR市政招标、卫星数据等字串噪声，没有可读本题结果；这是有限检索未取得同题材料，不是无解证明，也不将返回噪声记为执行0条。",
+      "request_id": "QX-R3-11-000908-root-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"benzel\" \"T_003\" recurrence (recency=730)",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "实际这次返回AMR市政招标、卫星数据等字串噪声，没有可读本题结果；这是有限检索未取得同题材料，不是无解证明，也不将返回噪声记为执行0条。",
+      "request_id": "QX-R3-11-000908-root-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "James Propp作者页",
+      "query": "open https://faculty.uml.edu/jpropp/benzels.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "主审完整读46行：benzels是hexagonal cells的并，三角格是图论对偶；首讲2021-11-29、2022-05-18题单报告。网页明确进展表as of June2025、last modified2025-08-06；1/4/6/7等列open，2/3=DLPY、5/12/13=DFLPY、8–11=BCL。不把2026抓取日当内容更新日，也不据此抹掉2026相邻题新声明。",
+      "url": "https://faculty.uml.edu/jpropp/benzels.html",
+      "locator": "全页，特别是原型说明、论文链接、进度表日期及末尾修改日期",
+      "request_id": "QX-R3-11-000908-root-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv官方",
+      "query": "open https://arxiv.org/abs/2206.06472",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "亲读作者/标题/Comments/版本历史：v1 2022-06-13，v2 2022-07-03，v3 2022-11-11，v4 2024-01-17。Comments仍写2022 OPAC conference proceedings to appear；不能仅据此给2022正式卷刊年份。正文固定v4后另读，不以摘要替Problem1。",
+      "url": "https://arxiv.org/abs/2206.06472",
+      "locator": "Submission history、Comments",
+      "request_id": "QX-R3-11-000908-root-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "已下载Propp固定v4全文",
+      "query": "读取propp2206v4.txt §§1–2 pp1–8，核定义/Table1/Problem1及紧后P2/3区别",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "原域2≤a≤2b、2≤b≤2a；三重坐标i+j+l=1及−(a−1)≤j−i,l−j,i−l≤b−1明确给所有细胞。tile为相邻六边形的并；bone是三个中心共线，003允许三种方向且两种stone都不许。原§2特殊族k≥2；Problem1求计数而前面的Kim构造只证能铺。解释三角格为单元中心/顶点，不能把它变成铺三角形；只读与本题相关段，没有通审其余19题。",
+      "url": "https://arxiv.org/pdf/2206.06472v4",
+      "locator": "§1 pp2–7；§2 pp7–8 Problem1",
+      "request_id": "QX-R3-11-000908-root-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "OEIS",
+      "query": "open https://oeis.org/A364134",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "实际403 Forbidden；不能将条目或b-file算作已读，更不能凭地址推断递推/公式存在。计数数据由已取得原作者文章和独立小例路线另核。",
+      "url": "https://oeis.org/A364134",
+      "request_id": "QX-R3-11-000908-root-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "OEIS internal",
+      "query": "open https://oeis.org/A364134/internal",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "主审这次仍403；代码路线另一次实际成功获取内容，两次访问结果分别记录，不能把主审失败概括为本轮完全未取得OEIS。也不将其它路线内容冒写成本次请求已读。",
+      "url": "https://oeis.org/A364134/internal",
+      "request_id": "QX-R3-11-000908-root-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Kim–Propp2023正式全文本地副本",
+      "query": "rg定位Theorem1/Theorem3/42705后实际读§3单位说明、Thm1、§7末Thm3及§8全文",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "主审亲读每个hex cell面积1；Thm1面积多项式应计细胞而非三格bone数。Thm3是paired-pentagonal族k≥2可铺的充要条件；§8报告k2=2、k3=42705、k4=7501790059160666750，k5当时程序内存不足。以上后三点为原作者计算，非本轮重算；§8还指出k3不同铺法的三个bone方向数并非恒定。未把可铺性/有限表当全k计数通式，也不把当年内存失败称2026算力上限。",
+      "url": "https://doi.org/10.37236/11326",
+      "locator": "§3单位与Thm1；Thm3；§8 pp18–19",
+      "request_id": "QX-R3-11-000908-root-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Crab Research作者项目页",
+      "query": "open https://crabresearch.com/research/peripheral-benzel-tilings?lang=en",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整读项目说明：Li Problem6 T103(n,2n−3)，first public2026-08-22/revised2026-09-05，另述one-defect diagonal b=2a−4。页称有Lean Kernel-Only材料，此处仅作者说明，不冒称本轮已取/编译核验。其题号、允许right stone和边界族不同于当前Problem1；后续完整材料的实际取得范围由代码路线登记。旧卡2022–24年代不符。",
+      "url": "https://crabresearch.com/research/peripheral-benzel-tilings?lang=en",
+      "locator": "原问题、abstract、dates、Mathematical review及materials链接",
+      "request_id": "QX-R3-11-000908-root-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本轮k2证书主审静态复核",
+      "query": "完整读check_benzel_k2.py及check_benzel_k2.json的27坐标、3方向和2个完整见证",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "坐标遍历依据j−i,l−j,i−l约束，三个方向互为不同无向共线轴；每个bone恰3合法cells。递归固定一个未盖cell并分支覆盖它，分支互斥穷尽；witnesses另按最低位枚举并检查覆盖、互斥与数量2。实际本轮运行在数学路线记录；主审本次读代码/结果而未另执行第二遍。只核k2=27cells/42候选bone/2铺法，不声称通用递归已经证明显著优于原枚举或求出更大k。",
+      "locator": "math_results内嵌完整Python代码和输出",
+      "request_id": "QX-R3-11-000908-root-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "EulerSolve原页有界补取",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://eulersolve.org/papers/,timeout=30)，拟用标准库HTMLParser读取完整目录并查AMR-123-0001 〔私有记录编号：PR-003964〕",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "为补代码路线缺bs4而未执行HTTP的缺口，主审改用标准库后确实发出请求，返回HTTP403 Forbidden。没有得到完整HTML或完成字面全页扫描；只能保留先前索引中Problem7的0003片段，不能宣称该站全目录没有0001，更不能把访问失败当作数学无解证据。",
+      "url": "https://eulersolve.org/papers/",
+      "request_id": "QX-R3-11-000908-root-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003965〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中：QX-P-000908,QX-P-001368,QX-P-001369,QX-P-001376,QX-P-002243。相同作者Propp和来源编号003不构成同题；benzel/T003索引没有另一明确同题标题。选算法目标相近1983及铺砌类别相近2243完整读双卡，未对其余同词候选重新查新。",
+      "result_count": 5,
+      "request_id": "QX-R3-11-000908-root-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003966〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中：QX-P-000003,QX-P-000373,QX-P-000596,QX-P-000908。相同作者Propp和来源编号003不构成同题；benzel/T003索引没有另一明确同题标题。选算法目标相近1983及铺砌类别相近2243完整读双卡，未对其余同词候选重新查新。",
+      "result_count": 4,
+      "request_id": "QX-R3-11-000908-root-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003967〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中：QX-P-000441,QX-P-000613,QX-P-000908,QX-P-001264,QX-P-001830,QX-P-001832,QX-P-001924,QX-P-001983,QX-P-002111,QX-P-002243,QX-P-002492。相同作者Propp和来源编号003不构成同题；benzel/T003索引没有另一明确同题标题。选算法目标相近1983及铺砌类别相近2243完整读双卡，未对其余同词候选重新查新。",
+      "result_count": 11,
+      "request_id": "QX-R3-11-000908-root-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/001/QX-P-001983.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；完整逐卡读",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "other_card_rev=a59ae99202d0756c；textblob9a3d1fe351ecb7c7beee39aba358363d239ac883；metablob3b49859567ed59c36e856200527a7514d5a3d6b6。按区域、瓦片种类、问题输出及acceptance逐项比较，不按共同tiling词归并；只用于当前题查重。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001983.text.md",
+      "request_id": "QX-R3-11-000908-root-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/002/QX-P-002243.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；完整逐卡读",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "other_card_rev=2b0877ac03382cde；textblobf43a23b4a06eb628fb0452a281ef2f092699b738；metablob6ab7d53749e6b95072a6a98d389d5d7ceec30dd9。按区域、瓦片种类、问题输出及acceptance逐项比较，不按共同tiling词归并；只用于当前题查重。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002243.text.md",
+      "request_id": "QX-R3-11-000908-root-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地题包",
+      "query": "读取work_000908_sources/task.json完整字段并沿用本包Schema",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "本题QX-P-000908,rev83957faa23e235bd；旧novelty.card_rev=d92118496e1fb865与当前不同。只研究原队列当前题，不重查其它Problems。",
+      "request_id": "QX-R3-11-000908-academic-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv官方记录",
+      "query": "open https://arxiv.org/abs/2206.06472，读作者/摘要/完整版本历史",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "James Propp；v1=2022-06-13,v2=2022-07-03,v3=2022-11-11,v4=2024-01-17，当前官方记录最新v4。",
+      "url": "https://arxiv.org/abs/2206.06472",
+      "request_id": "QX-R3-11-000908-academic-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv固定PDF",
+      "query": "urllib下载2206.06472v4；pdftotext -layout；读§1–2和Problem1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "18页3507687bytes；SHA25660199b37d06dccfe6c74c468acf8e0935187c852532c10e085af9f25b5781f39。实际读区域坐标、5种tile及Tijk定义、Table1和Problem1；没有把其余19题作为本轮任务。",
+      "url": "https://arxiv.org/pdf/2206.06472v4",
+      "locator": "work_000908_sources/propp2206v4.pdf/.txt，pp3–8",
+      "request_id": "QX-R3-11-000908-academic-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv固定PDF",
+      "query": "urllib下载2206.06472v1；pdftotext -layout；对照Problem1与Appendix1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "3200256bytes；SHA256b2e1df16e142a4510398880c4ec2c204c81738782df14254bb41fc8b2dcb71fe。原始Problem1 p6与v4题式相同；Appendix1 p16已经给k2..4三项。v4删附录改指OEIS不是新算法。",
+      "url": "https://arxiv.org/pdf/2206.06472v1",
+      "locator": "work_000908_sources/propp2206v1.pdf/.txt，p6及p16",
+      "request_id": "QX-R3-11-000908-academic-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"benzel\" \"Problem 1\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency1460；命中作者跟踪页，随后亲读；其open列表实际截至June2025。",
+      "request_id": "QX-R3-11-000908-academic-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"T_{003}\" tilings",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中若干三元组/张量符号碰撞及benzel相关论文；没有从符号命中直接判同题。",
+      "request_id": "QX-R3-11-000908-academic-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "Propp benzel progress 2026 solution",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency730；命中2025四题解答及2026Problem4/6作者工作页，同时有无关progress词命中；只跟原题相关入口。",
+      "request_id": "QX-R3-11-000908-academic-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"T003\" \"benzel\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "精确符号搜索，主要原题/会议稿；没有取得Problem1全k公式新稿。",
+      "request_id": "QX-R3-11-000908-academic-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Propp\" \"Problem 1\" \"benzel\" solved",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency1460；作者页与同单其它题成果，不等同Problem1闭合。",
+      "request_id": "QX-R3-11-000908-academic-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"benzel\" \"recurrence\" \"003\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未取得本题全参数递推原稿；查询结果非零不记成执行无命中。",
+      "request_id": "QX-R3-11-000908-academic-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Trimer covers in the triangular grid\" correction withdrawn solution",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency1460；命中正式题单与相关问题进展，没有取得影响Problem1的正式撤回/勘误声明。",
+      "request_id": "QX-R3-11-000908-academic-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"benzel\" \"003\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "原题与符号/商业词碰撞；以原稿定义判同一性。",
+      "request_id": "QX-R3-11-000908-academic-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"benzel\" \"Problem 1\" recurrence proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中题单、跟踪页和其它Propp问题，没有取得同题完整公式或递推声明。",
+      "request_id": "QX-R3-11-000908-academic-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"A pentagonal number theorem for tribone tilings\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位Kim–Propp2023正式原刊与2206.04223，后取全文区分可铺性和计数。",
+      "request_id": "QX-R3-11-000908-academic-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"10.1090/pspum/110/02008\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "domains=ams.org；未取得AMS可读原刊落地页，会议作者稿可读；正式卷页日期不从二手索引升级为该项核查亲核。",
+      "request_id": "QX-R3-11-000908-academic-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"benzel\" \"Problem 1\" formula 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中原题、跟踪页及Problem7不同范围的作者工作；没有迁移它们为003计数全解。",
+      "request_id": "QX-R3-11-000908-academic-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"tribone tilings\" \"recurrence\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中其它三角形/缺孔区域及通用铺砌综述，不能代替paired-pentagonal benzel精确计数。",
+      "request_id": "QX-R3-11-000908-academic-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Propp作者主页",
+      "query": "open benzels.html并读取完整46行",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际进度列表自称asofJune2025，页面lastmodified2025-08-06；Problem1、Problem6均列Open。作者首次benzel报告为2021-11-29，但未由此宣称具体Problem1已在该报告提出。",
+      "url": "https://faculty.uml.edu/jpropp/benzels.html",
+      "locator": "〔原始工具引用已私有留存〕；lines22–45",
+      "request_id": "QX-R3-11-000908-academic-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "EJC正式原刊",
+      "query": "open v32i4p35/pdf/，读首页、§1及§3定义入口",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "Byun–Ciucu–Lee，2025-11-03正式刊发，58页；p2明确仅解决Propp Problems8–11，不是Problem1。全文可读但该项核查不审其58页全部证明。",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v32i4p35/pdf/",
+      "locator": "〔原始工具引用已私有留存〕，pp1–2、§3 p13",
+      "request_id": "QX-R3-11-000908-academic-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "EJC正式原刊",
+      "query": "click作者页link12到Kim–Propp原刊，再click DownloadPDF；urllib下载、pdftotext",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "20页3597293bytes；SHA256414f2d3969deeb1498373cde4aa81dd1819a4cfa0fb8962088e960da8acc605c。读定义、§6必要条件、§7结尾Thm3及§8计数。",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v30i3p26/pdf/",
+      "locator": "〔原始工具引用已私有留存〕→〔原始工具引用已私有留存〕；kim_propp2023.pdf/.txt",
+      "request_id": "QX-R3-11-000908-academic-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方记录",
+      "query": "open abs2206.04223版本历史",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "Kim–Propp可铺性论文：v1=2022-06-09，最新v6=2023-07-07。后正式2023-08-25刊发EJC30(3)P3.26；不是Problem1已被计数公式解决。",
+      "url": "https://arxiv.org/abs/2206.04223",
+      "request_id": "QX-R3-11-000908-academic-021",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方记录与固定全文",
+      "query": "click作者页link14到abs2403.07663；clickHTML；urllib下载固定v1PDF",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "当前只v1=2024-03-12；正式SIAM J.DiscreteMath39(1)(2025)146–162,DOI10.1137/24M1648247。本地1235564bytes，SHA256b53d10c5f4026a2519ea3779d0b72417448cae9e81dd119ff9d6dff6105d6d6b。读§1–2定义/Thm1.1及§5范围，不追无关全部证明。",
+      "url": "https://arxiv.org/pdf/2403.07663v1",
+      "locator": "〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕；compression2403v1.pdf/.txt",
+      "request_id": "QX-R3-11-000908-academic-022",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方HTML",
+      "query": "find vertical bone is forbidden并读上下文/§2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "compression明确排除至少一种bone，得到4种3-ribbon；解决Problems5/12/13，另把8–11改写为perfectmatchings，不能直接适用003的全三方向bones。",
+      "url": "https://arxiv.org/html/2403.07663v1",
+      "request_id": "QX-R3-11-000908-academic-023",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "OEIS",
+      "query": "open A364134；后open搜索ref 〔原始工具引用已私有留存〕 〔私有记录编号：PR-003968〕",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "该项核查两次均403，非0命中。k2..4数据已有Proppv1及Kim–Propp正式原刊可直接支撑。",
+      "url": "https://oeis.org/A364134",
+      "locator": "〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕",
+      "request_id": "QX-R3-11-000908-academic-024",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "OEIS",
+      "query": "open A364134/internal；再open代码路线成功ref 〔原始工具引用已私有留存〕 〔私有记录编号：PR-003969〕",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "该项核查两次仍403；代码路线已实际取得internal完整内容并另交，故最终合并回执不应把OEIS一概写成不可读。",
+      "url": "https://oeis.org/A364134/internal",
+      "locator": "〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕",
+      "request_id": "QX-R3-11-000908-academic-025",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "AMS DOI",
+      "query": "open DOI10.1090/pspum/110/02008",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "工具返回notaccessible；不以ResearchGate等二手卷页为该项核查已读AMS出版记录。",
+      "url": "https://doi.org/10.1090/pspum/110/02008",
+      "request_id": "QX-R3-11-000908-academic-026",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "OPAC会议作者稿",
+      "query": "open proceedings/propp.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整14页会议排版稿；§2 p6保留Problem1同题式、k≥2及算法兴趣段；仅该PDF未显示足够出版日期，不能将会议2022等同正式出版年份。",
+      "url": "https://www.samuelfhopkins.com/OPAC/files/proceedings/propp.pdf",
+      "locator": "〔原始工具引用已私有留存〕，§1–2 pp2–6",
+      "request_id": "QX-R3-11-000908-academic-027",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核验",
+      "site": "本地Python整数坐标枚举",
+      "query": "按x=j−i,y=k−j的整数约束枚举k=2,3,4的细胞，核对面积式",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "仅数hex cells，不枚举铺砌；分别27、162、540个cells，固定bones数9、54、180；日志academic_area_check.json。独立代入一般式cells=9k²(k²−1)/4，避免单位误乘3。",
+      "url": "https://arxiv.org/pdf/2206.06472v4",
+      "locator": "§1 p5面积式；work_000908_sources/academic_area_check.json",
+      "request_id": "QX-R3-11-000908-academic-028",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原题包当前完整记录",
+      "query": "完整读取work_000908_sources/task.json，核特殊a,b、003人话、k域与公式/递推验收",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.qunxingmath.org/p/QX-P-000908/",
+      "locator": "card_rev=83957faa23e235bd",
+      "note": "未编辑源卡；核心援引的Propp Problem1可识别，释义把三角格顶点与三角形面片混淆。",
+      "request_id": "QX-R3-11-000908-math-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web定向检索与原稿入口",
+      "query": "system2_search_query: Propp 2206.06472 T_003 benzel Problem 1 k 3k 1；open https://arxiv.org/html/2206.06472；因结果大量无关、HTML Disabled，改system1_search_query两词串：\"Trimer covers in the triangular grid\" Propp Problem 1 benzel；\"T003\" benzel",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.samuelfhopkins.com/OPAC/files/proceedings/propp.pdf",
+      "locator": "检索后实际open会议原稿，读取§1–2及Problem1",
+      "note": "记录最初失败和搜索噪声，不把它们当无结果证明。成功取得原稿后逐字核定义、面积公式及Problem1。",
+      "request_id": "QX-R3-11-000908-math-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "固定arXiv原稿的本地副本（学术路线下载）",
+      "query": "实际读取work_000908_sources/propp2206v4.txt的§1–2，和会议版对照三坐标定义、T_ijk下标、原域k≥2及Problem1原句",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/2206.06472v4",
+      "locator": "v4，2024-01-17，pp3–8；原题初稿2022",
+      "note": "固定v4的文字与已打开会议原稿核心一致；未只看文件名或摘要。",
+      "request_id": "QX-R3-11-000908-math-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Kim–Propp正式2023原刊的本地副本",
+      "query": "实际读取work_000908_sources/kim_propp2023.txt的Introduction、§3面积单位/Theorem1、§6整数参数归约、Theorem3、§8计数和方向数说明",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://doi.org/10.37236/11326",
+      "locator": "A Pentagonal Number Theorem for Tribone Tilings，EJC30(3)(2023)#P3.26；pp7–9、14–18",
+      "note": "可铺性 iff 参数族是存在性定理，不是T003计数公式。该项核查没有逐图复核§7全部构造，仅核参数代数与结论范围。",
+      "request_id": "QX-R3-11-000908-math-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "Python3标准库精确cover枚举",
+      "query": "实际执行 python work_000908_sources/check_benzel_k2.py；只输入k2=(5,7)，原三坐标定义和全部三方向连续共线三点bone；记忆化精确cover并输出全部见证",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "本片段证书条目内嵌完整程序、完整输入/输出和正确性理由",
+      "note": "实际输出27 cells、42候选bones、exact_tiling_count=2，得到两组各9bones的完整铺砌。没有复跑k3/k4、没有随机/浮点计算、没有把该递归称为新高效算法。",
+      "request_id": "QX-R3-11-000908-math-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "OEIS普通条目入口",
+      "query": "open https://oeis.org/A364134",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://oeis.org/A364134",
+      "note": "本次数学路线普通页403；代码路线另有成功internal全文。这里不冒称亲读OEIS内容，也不凭失败否定其k1退化约定。",
+      "request_id": "QX-R3-11-000908-math-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q908C-fc_benzel",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/google-deepmind/formal-conjectures",
+      "query": "benzel",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "指定仓库、topn=20，返回空结果；这是当前工具索引的 benzel 字面检索，不是逐文件证明不存在。",
+      "result_count": 0,
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "locator": "github_search；topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q908C-cb_benzel",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/bespokelabsai/conjecture-bench",
+      "query": "benzel",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "指定仓库、topn=20，返回空结果；未取得可执行的同题 challenge 或 checker。",
+      "result_count": 0,
+      "url": "https://github.com/bespokelabsai/conjecture-bench",
+      "locator": "github_search；topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q908C-openai_benzel",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/openai/math",
+      "query": "benzel",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "指定仓库、topn=20，返回空结果；不据此推断所有公开 AI 项目无结果。",
+      "result_count": 0,
+      "url": "https://github.com/openai/math",
+      "locator": "github_search；topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q908C-global_problem1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 全库代码索引",
+      "query": "\"AMR-123-0001\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "全 GitHub 索引精确词串检索，topn=20，返回空结果；未取得 AMR-123-0001 代码文件。",
+      "result_count": 0,
+      "url": "https://github.com/search",
+      "locator": "github_search；topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q908C-global_benzel",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 全库代码索引",
+      "query": "benzel",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "topn=20，返回 20 个词形/人名等噪声结果；只覆盖该批结果，不声称穷尽 GitHub。",
+      "result_count": 20,
+      "url": "https://github.com/search",
+      "locator": "github_search；topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "Q908C-global_T003",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 全库代码索引",
+      "query": "\"T003\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "topn=20，返回 20 个任务编号等噪声结果；T003 字符串本身不足定位题目。",
+      "result_count": 20,
+      "url": "https://github.com/search",
+      "locator": "github_search；topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "Q908C-fc_Propp",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/google-deepmind/formal-conjectures",
+      "query": "Propp",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "指定仓库、topn=20，返回空结果；本题未定位到可进一步审定义、sorry、公理或编译的 Lean 文件。",
+      "result_count": 0,
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "locator": "github_search；topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q908C-openai_Propp",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/openai/math",
+      "query": "Propp",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回 14 个结果，所列固定提交 3344da59991ed94f9ba711217b29c1d760badfa6；实际读搜索片段为 TeX \\propP 或 Propp–Wilson/双二聚体文献等，无同题 benzel 计数目标。该项核查未逐篇下载这些无关全文。",
+      "result_count": 14,
+      "url": "https://github.com/openai/math",
+      "locator": "github_search；topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "Q908C-global_benzel_tilings",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 全库代码索引",
+      "query": "\"benzel\" \"tilings\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "topn=20，返回 20 个结果；定位 Li 的 Problem 4/6 仓库并另取固定 README 全文。其余片段包括 Problem 7、15–18、20 等，未取得 Problem 1 全参数计数实现；不把邻题目录当本题证明。",
+      "result_count": 20,
+      "url": "https://github.com/search",
+      "locator": "github_search；topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-global_sequence",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 全库代码索引",
+      "query": "\"A364134\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "topn=20，返回 20 个散列/标识符包含 a364134 等噪声结果，未取得该 OEIS 数列的同题程序。",
+      "result_count": 20,
+      "url": "https://github.com/search",
+      "locator": "github_search；topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "Q908C-web_initial-system2-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"benzel\" \"003\" formula",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索词完整保留；本批结果含原 Propp 题单、作者主页和其他 benzel 问题，未取得 Problem 1 全参数公式的完整声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_initial-system2-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Propp\" \"Problem 1\" benzel solved",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索词完整保留；本批结果含原 Propp 题单、作者主页和其他 benzel 问题，未取得 Problem 1 全参数公式的完整声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_initial-system2-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"AMR-123-0001\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索词完整保留；本批结果含原 Propp 题单、作者主页和其他 benzel 问题，未取得 Problem 1 全参数公式的完整声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_initial-system2-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "benzel tilings github code",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索词完整保留；本批结果含原 Propp 题单、作者主页和其他 benzel 问题，未取得 Problem 1 全参数公式的完整声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_exact-system1-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"AMR-123-0001\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索词完整保留；recency=730 天。本批命中 EulerSolve 的 AMR-123-0003/Problem 7 与 Li 的 Problem 4/6，随后按精确计数对象排除；未取得 AMR-123-0001 的精确原始条目。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_exact-system1-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"benzel\" \"Problem 1\" formula",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索词完整保留；recency=730 天。本批命中 EulerSolve 的 AMR-123-0003/Problem 7 与 Li 的 Problem 4/6，随后按精确计数对象排除；未取得 AMR-123-0001 的精确原始条目。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_exact-system1-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"benzel\" \"003\" recurrence",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索词完整保留；recency=730 天。本批命中 EulerSolve 的 AMR-123-0003/Problem 7 与 Li 的 Problem 4/6，随后按精确计数对象排除；未取得 AMR-123-0001 的精确原始条目。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_sources-system2-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"A364134\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索词完整保留；命中 OEIS A364134 及作者/计算线索，实际可访问层级另逐项记录。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_sources-system2-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "site:mathoverflow.net benzel",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "实际检索词完整保留；本次定向检索未取得同题 MathOverflow 原帖或解答，不声称社区无此讨论。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q908C-web_sources-system2-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"benzel\" \"code\" enumeration",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索词完整保留；命中 OEIS A364134 及作者/计算线索，实际可访问层级另逐项记录。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_last_exact-system1-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"42705\" \"benzel\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索词完整保留；recency=730 天。命中 OEIS 与 Kim–Propp 2023 原刊 p.18 的 TilingCount 有限数据段；该段随后在共享固定原稿文本中实际复阅。未取得程序源代码或一般递推。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_last_exact-system1-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"T_003\" \"benzel\" algorithm",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索词完整保留；recency=730 天。命中 OEIS 与 Kim–Propp 2023 原刊 p.18 的 TilingCount 有限数据段；该段随后在共享固定原稿文本中实际复阅。未取得程序源代码或一般递推。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_sources-open-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "EulerSolve",
+      "query": "open https://eulersolve.org/papers/",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "已读首页窗口与后续 find 返回的定位片段；没有逐行读完该 3903 行索引。当前不能据此证明 AMR-123-0001 不在全站。",
+      "url": "https://eulersolve.org/papers/",
+      "locator": "〔原始工具引用已私有留存〕；后续 lines 2863–2869",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_sources-open-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Crab Research",
+      "query": "open https://crabresearch.com/research/peripheral-benzel-tilings?lang=en",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读取完整 58 行项目介绍：Problem 6 的 T103(n,2n−3) 与 d=4；首次公开 2026-08-22、修订 2026-09-05。Kernel-Only 是该项目自述；本轮未审其 Lean 全闭包或运行验证器。",
+      "url": "https://crabresearch.com/research/peripheral-benzel-tilings?lang=en",
+      "locator": "〔原始工具引用已私有留存〕 lines 7–50",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q908C-web_sources-open-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "James Propp 作者主页",
+      "query": "open https://faculty.uml.edu/jpropp/benzels.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整页面已读。状态表明确只截至 June 2025，其 Problem 1 Open 不是 2026-11 的独立核实。页面把 tilings 定义为六角格上三连六边形，并说明三角格是对偶图。",
+      "url": "https://faculty.uml.edu/jpropp/benzels.html",
+      "locator": "〔原始工具引用已私有留存〕 lines 0–43",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q908C-web_follow-find-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "EulerSolve papers 索引",
+      "query": "find \"AMR-123-0001\" in https://eulersolve.org/papers/",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "工具返回邻近 AMR-123-0003 的上下文，未取得字面 0001 命中；不能把 find 的附近窗口当全索引阴性证明。",
+      "url": "https://eulersolve.org/papers/",
+      "locator": "tool ref 〔原始工具引用已私有留存〕；returned 〔原始工具引用已私有留存〕；lines 2863–2869",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_follow-find-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "EulerSolve papers 索引",
+      "query": "find \"Benzel\" in https://eulersolve.org/papers/",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位片段为 AMR-123-0003、Propp Problem 7 的 type-103 可铺性部分声明；不是 Problem 1 的计数公式。",
+      "url": "https://eulersolve.org/papers/",
+      "locator": "tool ref 〔原始工具引用已私有留存〕；returned 〔原始工具引用已私有留存〕；lines 2863–2869",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_follow-find-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "EulerSolve papers 索引",
+      "query": "find \"AMR-123-0003\" in https://eulersolve.org/papers/",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位片段为 AMR-123-0003、Propp Problem 7 的 type-103 可铺性部分声明；不是 Problem 1 的计数公式。",
+      "url": "https://eulersolve.org/papers/",
+      "locator": "tool ref 〔原始工具引用已私有留存〕；returned 〔原始工具引用已私有留存〕；lines 2863–2869",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q908C-web_follow-open-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "OEIS",
+      "query": "open https://oeis.org/A364134",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "note": "普通入口返回 HTTP 403，随后 internal 入口实际成功；不能把本次普通入口失败扩展成 OEIS 全记录不可读。",
+      "url": "https://oeis.org/A364134",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "Q908C-web_follow-open-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "OEIS",
+      "query": "open https://oeis.org/A364134/internal",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整 43 行已读；记录 %I #91 Jul 23 2023 08:49:42、%O 1,2、四项 1,2,42705,7501790059160666750，无 formula/program/recurrence 字段。网站页脚 2026 日期不是该条目的更新日期。",
+      "url": "https://oeis.org/A364134/internal",
+      "locator": "〔原始工具引用已私有留存〕 lines 16–31",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q908C-li6_readme",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/crabsatellite/peripheral-benzel-tilings",
+      "query": "github_fetch_file {\"repository_full_name\":\"crabsatellite/peripheral-benzel-tilings\",\"path\":\"README.md\",\"ref\":\"5d1983de4592261dd0b915987ebcc9c0c8ae11b8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整固定 README 已读。显式公式只为 d=3，另有 d=4 生成函数及一般 finite-defect 结构恒等式；未显示当前所有 k 的 T003 计数。未取其 Lean 全文，也未运行 python verify_all.py。",
+      "url": "https://github.com/crabsatellite/peripheral-benzel-tilings/blob/5d1983de4592261dd0b915987ebcc9c0c8ae11b8/README.md",
+      "locator": "README.md；Git blob 5fd91139c29f7887d8431ea5a52dab0925bf0658",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q908C-li4_readme",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/crabsatellite/benzel-problem4",
+      "query": "github_fetch_file {\"repository_full_name\":\"crabsatellite/benzel-problem4\",\"path\":\"README.md\",\"ref\":\"f8f91033216ba16fa851adbb9d6a9cf005509619\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整固定 README 已读。type-013 的存在性及一套构造的 collar 递归不能自动给所有 bone-only 铺砌的数目。未取其 Lean 全文，也未执行 PowerShell 验证命令。",
+      "url": "https://github.com/crabsatellite/benzel-problem4/blob/f8f91033216ba16fa851adbb9d6a9cf005509619/README.md",
+      "locator": "README.md；Git blob 90de75306ce66fc51c68b7967224a5444f7b282c",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q908C-euler_raw",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地 Python / EulerSolve 原页获取尝试",
+      "query": " 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。 公开来源：https://eulersolve.org/papers/ 〔私有记录编号：PR-003970〕",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "实际脚本在 import bs4 处 ModuleNotFoundError，退出码 1，发生于 HTTP 请求之前；没有下载原页，没有执行 AMR-123-0001 的全页扫描。完整原命令与输出已保存在 code_request_log.json；本轮按收束要求不追加重试。 主审随后另用标准库发出HTTP请求，实际403；该后续访问单列，不补写成此原命令已成功。",
+      "url": "https://eulersolve.org/papers/",
+      "locator": "Q908C-euler_raw actual exec_command",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q908C-local-program-excerpts",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地固定原稿复阅",
+      "query": "LOCAL READ kim_propp2023.txt: find('8     Further questions') fallback find('Further questions'); propp2206v4.txt: find('TilingCount')",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取 Kim–Propp §8 和后续致谢/参考文献窗口，以及 Propp v4 pp.6–7 的程序介绍。原稿由学术路线下载，该项核查未冒认下载；作者报告 TilingCount 的小 k 值，愿分享代码/data，当前未取得软件版本和可复跑源程序。",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v30i3p26/pdf/",
+      "locator": "Kim–Propp 2023 p.18 §8；Propp arXiv:2206.06472v4 pp.6–7",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R0908-CARD",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000908.text.md",
+      "locator": "当前题面、原文、human、已知进展、acceptance及novelty",
+      "version": "commit73290369a8dcc632e25e555aec525565ea6e08f8；card_rev83957faa23e235bd",
+      "subquestions": [
+        "主问题",
+        "题面/人话忠实度",
+        "库内查重"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "当前数学符号T003与参数对应原Problem1；human将六边形误作三角形且未说明三个允许方向，k≥2和区域定义缺展开。按原定义修释义不把目标换成另一铺砌问题；只有实际改核心参数/域/验收才需要新rev。旧Li年代/状态随当前来源另核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R0908-AUTHOR",
+      "url": "https://faculty.uml.edu/jpropp/benzels.html",
+      "locator": "完整作者页、June2025状态表、last modified2025-08-06",
+      "version": "访问2026-11-27；作者内容修改日期2025-08-06",
+      "subquestions": [
+        "题目出处历史",
+        "Problem1与同单其他题区别",
+        "本轮状态证据时效"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "作者页只给截至2025-06的状态，不证明2026尚无新结果。把图中心与六边形tiling的关系写清；引用中2023Kim–Propp为tileability线，BCL解8–11、DFLPY解5/12/13，均不能按标题Solved推本Problem1闭合。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "a0908_propp_original",
+      "url": "https://arxiv.org/pdf/2206.06472v1",
+      "locator": "§1定义；§2/Problem1 p6；Appendix1 p16",
+      "version": "James Propp,Trimer covers in the triangular grid:twenty mostly open problems；arXiv2206.06472v1,2022-06-13；SHA256b2e1df16e142a4510398880c4ec2c204c81738782df14254bb41fc8b2dcb71fe",
+      "subquestions": [
+        "Problem1原题及宽口径算法目标",
+        "原始小k数表"
+      ],
+      "scope_match": "原题等价",
+      "role": "原始提出",
+      "publication": "预印本",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "note": "亲读原Problem1及其后算法兴趣段。原问求paired-pentagonal benzel的003计数；Appendix1已有k2..4值2、42705、7501790059160666750。公式与新v4一致，数据是作者计算结果，该项核查不冒称独立复跑这些铺数。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a0908_propp_v4",
+      "url": "https://arxiv.org/pdf/2206.06472v4",
+      "locator": "§1 pp3–7的区域/骨块/Tijk/表1；§2 pp7–8/Problem1；Problem6 p10",
+      "version": "arXiv2206.06472v4,2024-01-17，当前官方最新；18页；SHA25660199b37d06dccfe6c74c468acf8e0935187c852532c10e085af9f25b5781f39",
+      "subquestions": [
+        "精确003定义和k域",
+        "三角格图与六边格细胞的对偶",
+        "同单其它问题区别"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "预印本",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "note": "003禁止左右stone而允许全部三方向bone；bone是连续三个六边形中心共线，非三个三角形。区域为规定boundinghexagon中完整hex cells之并；可用Z³和为1的重心坐标不等式完全定义。k≥2；Propp没有指定多项式复杂度或定阶递推，但要求算法优于蛮力是兴趣目标，不能凭有限表宣告全k公式。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a0908_tracker",
+      "url": "https://faculty.uml.edu/jpropp/benzels.html",
+      "locator": "作者报告历史、论文列表、Problems1–20进度、末尾lastmodified",
+      "version": "进度明确asofJune2025；lastmodified2025-08-06；本轮访问2026-11-27",
+      "subquestions": [
+        "作者跟踪页的时效和范围",
+        "同单Problem1与Problem6旧状态"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "作者主页",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "2025列表Problem1与6仍Open；2/3由DLPY、5/12/13由DFLPY、8–11由BCL解决。抓取时间不能刷新作者判断日期；本轮当前状态仍须结合2026定向检索。2021首次benzel报告仅为主题历史，未亲读该视频来确认本题首次提出。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "a0908_kim_propp",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v30i3p26/pdf/",
+      "locator": "§2 pp4–6定义；§5 Theorem2 pp13–14；§6必要条件p14；§7 Theorem3 p18；§8 p18计数与内存限制",
+      "version": "Jesse Kim、James Propp,A Pentagonal Number Theorem for Tribone Tilings；EJC30(3)(2023),P3.26，DOI10.37236/11326；published2023-08-25；arXiv2206.04223最新v6=2023-07-07；正式PDF SHA256414f2d3969deeb1498373cde4aa81dd1819a4cfa0fb8962088e960da8acc605c",
+      "subquestions": [
+        "可铺性而非计数公式",
+        "已公布k2..4数据",
+        "参数k≥2与面积"
+      ],
+      "scope_match": "仅某子问",
+      "role": "进展",
+      "publication": "正式刊发",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "note": "Theorem3给有bone tiling iff两参数为配对五边形数且k≥2；§6的必要条件代数该项核查核过，§7长几何构造未完整独立重证。§8作者TilingCount值依次为2、42705、7501790059160666750；k5耗尽内存。这不是三项之外的计数公式，也不证明指数增长猜测。源与题单有镜像/不变量符号差异，零值条件不受影响。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0908_compression",
+      "url": "https://arxiv.org/pdf/2403.07663v1",
+      "locator": "§1 pp2–3，Theorem1.1；§2 pp3–4；§3.1 Propositions3.3/3.4及§5结论",
+      "version": "Defant–Foster–Li–Propp–Young,Tilings of Benzels via Generalized Compression；arXiv2403.07663v1,2024-03-12；SIAM J.DiscreteMath39(1)(2025),146–162，DOI10.1137/24M1648247；SHA256b53d10c5f4026a2519ea3779d0b72417448cae9e81dd119ff9d6dff6105d6d6b",
+      "subquestions": [
+        "compression能否直接解决003",
+        "同单Problems5/12/13进展"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "note": "全文取得，定义/主定理范围已读。本文明确先禁止verticalbone，使其余四tile成3-ribbons；Theorem1.1解102的Problem5，Prop3.3/3.4解112的12/13。003允许全三方向bone，不能不加证明迁移该compression双射或perfectmatching算法。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a0908_bcl2025",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v32i4p35/pdf/",
+      "locator": "首页；§1 p2列Problems8–11；§3 pp13起定义与四问题解答",
+      "version": "Seok Hyun Byun、Mihai Ciucu、Yi-Lin Lee,Propp’s benzels and Lai’s nearly symmetric hexagons with holes；EJC32(4)(2025),P4.35；DOI10.37236/13772；submitted2025-01-14,accepted2025-07-12,published2025-11-03",
+      "subquestions": [
+        "2025四个Propp问题已解是否包括1"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "正式刊发",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "note": "可访问58页完整PDF；本轮实际读首页/§1与§3定义入口，范围明确仅Problems8–11。没有审其它Lai问题或该篇全部证明，不把标题“四题解答”算作本题计数式。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0908_coordinate_check",
+      "url": "https://arxiv.org/pdf/2206.06472v4",
+      "locator": "§1 p3重心坐标V、p5面积式；本轮academic_area_check.json",
+      "version": "2026-11-27本轮独立Python整数枚举；输入为固定arXiv2206.06472v4定义",
+      "subquestions": [
+        "细胞数与三聚体数单位",
+        "小k参数边界的独立核验"
+      ],
+      "scope_match": "仅某子问",
+      "role": "证书",
+      "publication": "项目报告",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "以x=j−i,y=k−j枚举整数V；k2、3、4的hex cells为27、162、540，除3才是每个tiling的bone数9、54、180。代入区域面积式得9k²(k²−1)/4 cells。不曾用该枚举声称重新算出k3/k4的铺砌数。 可复现的有限域是x,y∈[−(a−1),b−1]，再要求−x−y也在该区间、1−2x−y≡0(mod3)；取i=(1−2x−y)/3、j=i+x、h=j+y，每一对(x,y)唯一一个cell。相应输出[(k,a,b,cells,bones)]=(2,5,7,27,9),(3,12,15,162,54),(4,22,26,540,180)。此为细胞计数的数学算法说明，不冒充另一次完整tiling枚举。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q908-M-E1",
+      "url": "https://arxiv.org/abs/2206.06472v4",
+      "locator": "§1定义pp3–6、§2及Problem1 pp7–8；会议版对应§1–2亦已打开",
+      "version": "James Propp, Trimer covers in the triangular grid: twenty mostly open problems, arXiv2206.06472v4,2024-01-17",
+      "subquestions": [
+        "003记号与三角格/六边形双重描述",
+        "benzel及k域",
+        "Problem1验收含义"
+      ],
+      "scope_match": "原题等价",
+      "role": "原始提出",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "固定本地文本和会议PDF均实际读定义及Problem1；只以原稿指明的范围解释，不用作者旧开放标签冻结2026状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q908-M-E2",
+      "url": "https://doi.org/10.37236/11326",
+      "locator": "§3每hex cell面积1与Theorem1；§6参数整数解；§7 Theorem3；§8有限计数",
+      "version": "Jesse Kim–James Propp, A Pentagonal Number Theorem for Tribone Tilings, Electronic Journal of Combinatorics30(3)(2023)#P3.26；2023-08-25发表",
+      "subquestions": [
+        "参数族正是可铺性族",
+        "面积单位和k边界",
+        "已公布的小k计数与计数主问之区别"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "实际读所列正文并独立代数核；未重证Conway–Lagarias不变量的全部前提或§7逐图构造。文献报告k2=2、k3=42705、k4=7501790059160666750；本轮只独立复跑k2。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q908-M-E3",
+      "url": "https://www.qunxingmath.org/p/QX-P-000908/",
+      "locator": "本回执“k2精确计数证书”内嵌原始代码、坐标输入和完整输出；URL仅标识所核目标，不声称代码发表于该页",
+      "version": "2026-11-27本轮独立Python3标准库精确执行；只k=2",
+      "subquestions": [
+        "首个合法区域的003定义一致性",
+        "T003(5,7)=2有限精确证书"
+      ],
+      "scope_match": "特例",
+      "role": "证书",
+      "publication": "项目报告",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "rerun": {
+        "command": "python work_000908_sources/check_benzel_k2.py"
+      },
+      "note": "无外部数据依赖，输入直接从原文三坐标不等式产生。完整脚本和输出已嵌入math_results，续会话不依赖临时路径。Schema验证不当数学证明，脚本正确性另有精确cover归纳论证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E908-C-OEIS",
+      "url": "https://oeis.org/A364134/internal",
+      "locator": "完整记录 %I/%S/%N/%e/%O/%A；〔原始工具引用已私有留存〕 lines 16–31",
+      "version": "OEIS A364134，%I #91 Jul 23 2023 08:49:42；本次访问 2026-11-27",
+      "subquestions": [
+        "T003 特殊 benzel 族的有限数值"
+      ],
+      "role": "进展",
+      "publication": "原始档案",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "James Propp 署名记录：k 从 1 开始的四项为 1,2,42705,7501790059160666750。未列公式、程序或递推。原 Problem 1 的非退化域由原题限定 k≥2，不能由 OEIS offset 擅改原题。该项核查没有重算 k=3、4；k=2 的独立证书由数学路线另交。普通页面本轮 403，internal 实际成功。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E908-C-PROPP-SITE",
+      "url": "https://faculty.uml.edu/jpropp/benzels.html",
+      "locator": "页面全文 lines 0–43，尤其定义 lines 2–5 和状态日期 lines 22–23",
+      "version": "实际访问 2026-11-27；状态表明确 as of June 2025",
+      "subquestions": [
+        "题面对象校正",
+        "Problem 1 的有日期状态记录"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "Benzel 是六角格区域，trihex 由三个相邻六边形格元组成；三角格描述来自格元中心的对偶图。该页面 2025-06 的 Problem 1 Open 只作有日期的原作者记录。本次有限新检索没有找到精确全解，但不能把旧表当今日开放性的证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E908-C-TILINGCOUNT",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v30i3p26/pdf/",
+      "locator": "Kim–Propp, A pentagonal number theorem for tribone tilings, §8 p.18；另对照 Propp 2206.06472v4 pp.6–7",
+      "version": "Electronic Journal of Combinatorics 30(3) (2023), #P3.26；本地 PDF SHA256 414f2d3969deeb1498373cde4aa81dd1819a4cfa0fb8962088e960da8acc605c",
+      "subquestions": [
+        "有限计数程序及可复跑性"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "实际复阅程序段：作者使用 David desJardins 的 TilingCount 得到 k=2,3,4 的 2、42705、7501790059160666750，并报告当时 k=5 内存不足。Propp v4 说明愿分享代码与数据；本轮未取得该软件源代码、版本、输入集或运行日志，因此没有独立复跑这些历史计算，也不把一般枚举工具认定为本题所求高效递推。论文由学术路线下载，该项核查仅亲读所列段落。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E908-C-LI6",
+      "url": "https://github.com/crabsatellite/peripheral-benzel-tilings/blob/5d1983de4592261dd0b915987ebcc9c0c8ae11b8/README.md",
+      "locator": "完整 README Main results / Formal verification；另实读 https://crabresearch.com/research/peripheral-benzel-tilings?lang=en",
+      "version": "commit 5d1983de4592261dd0b915987ebcc9c0c8ae11b8；README Git blob 5fd91139c29f7887d8431ea5a52dab0925bf0658，SHA256 959667833bd6377fe823d8922dcf9518159848e2c56ca6c363609a53b4e0739c",
+      "subquestions": [
+        "同题单 Problem 6 与有限缺陷结果的范围排除"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Alex Chengyu Li / Crab Research",
+      "claim_date": "2026-08-22",
+      "rerun": {
+        "commit": "5d1983de4592261dd0b915987ebcc9c0c8ae11b8",
+        "theorem": "README 所列 BenzelProblem6Kernel.manuscript_main_theorem_proved；FiniteDefects.generalFiniteDefectKernelOnly；d4GeneratingFunctionKernelOnly 等，未亲读 Lean 定理文件",
+        "toolchain": "README 声称 Lean 4.16.0 / Mathlib 4.16.0，--trust=0；本轮没有搭建或复跑",
+        "command": "README 提供 python verify_all.py；本轮未执行",
+        "axioms": "README 自述只用 propext、Classical.choice、Quot.sound，无 project axiom/sorry/admit；本轮未独立审完整依赖闭包"
+      },
+      "note": "完整 README 与项目页已读，论文/Lean 全文未审。明确公式 T103(n,2n−3)=(3n+3)(3n−7)!/((n−5)!(2n−1)!)，n≥5；另有 d=4 的生成函数和一般 d 的缺陷结构恒等式。这些不同于所有 k 的 T003 计数。当前族 d=2a−b=3k(k−1)/2，因此 d=3 仅 k=2 交会，d=4 无 k≥2 交点；一般 finite-defect 恒等式本身不等于总计数公式。项目页标首次 2026-08-22、修订 2026-09-05，SSRN 7344859；不得改写为 2022–24。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E908-C-LI4",
+      "url": "https://github.com/crabsatellite/benzel-problem4/blob/f8f91033216ba16fa851adbb9d6a9cf005509619/README.md",
+      "locator": "完整 README Main result / Formal verification",
+      "version": "commit f8f91033216ba16fa851adbb9d6a9cf005509619；README Git blob 90de75306ce66fc51c68b7967224a5444f7b282c，SHA256 b308b629dd238c1b96485942c084c048105493a895a01bf467f275cf57cafb49",
+      "subquestions": [
+        "同题单 Problem 4 构造递归的范围排除"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "他人声称已形式化验证",
+      "rerun": {
+        "commit": "f8f91033216ba16fa851adbb9d6a9cf005509619",
+        "theorem": "README 所列 BenzelProblem4Kernel.publication_problem4 / publication_problem4_with_spine；未亲读 Lean 定理文件",
+        "command": "README 提供 scripts\\verify_kernel.ps1 / scripts\\verify_all.ps1；本轮未执行",
+        "axioms": "仅 README 声称无 project axiom/sorry/admit、标准三公理；本轮未独立检查"
+      },
+      "note": "实际只读固定 README 全文。目标是所有 Conway–Lagarias invariant≤0 的有效 benzel 存在 type-013 铺砌，以 collar 递归到 bone-only 基例或三个小基例，并描述所构造铺砌的左石位置。这是存在性/一套构造，不能当作当前 T003 所有铺砌数的递推。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E908-C-EULER7",
+      "url": "https://eulersolve.org/papers/",
+      "locator": "实际 find 返回 lines 2863–2869，AMR-123-0003；DOI 10.5281/zenodo.23483633",
+      "version": "索引访问 2026-11-27；未取得该稿固定版本",
+      "subquestions": [
+        "公开 AI 同源邻题声明排除"
+      ],
+      "role": "进展",
+      "publication": "个人索引",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "claimant": "Alper Ferudun / EulerSolve",
+      "note": "索引声称 Propp Problem 7 的 type-103 可铺性部分进展，覆盖一个无限族及所列有限参数；不是 AMR-123-0001 的 T003 总数公式。仅索引片段已阅，不为该邻题声称做独立证明背书。find 0001 返回附近 0003 上下文；原页另取扫描在 bs4 导入阶段失败，不能据此声称整个索引没有 0001。 主审另用标准库补取该原页，实际HTTP403；全目录扫描仍未完成，最终缺口不是只因缺bs4。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001983",
+      "other_card_rev": "a59ae99202d0756c",
+      "relation": "仅相似",
+      "reason": "1983问输入一般方格区域是否恰有一个domino铺法及算法复杂度，正文还承认区域编码未明；908已固定六边形网格上的paired-pentagonal benzel族，允许三种bone且禁止stone，问所有铺法总数的公式/高效计数。2-cell匹配/唯一性判定与3-cell精确覆盖总计数不相同；不能因都可写算法验收而合并，也未建立可把前者结果直接迁移的归约。",
+      "positions": {
+        "self": "000908题面、原文及meta.acceptance；原Propp§1–2定义",
+        "other": "001983人话方格/domino/唯一性、编码缺口及meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000908__QX-P-001983；pair_owner=QX-P-000908。完整双卡核对，仅相似，不代审1983状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-002243",
+      "other_card_rev": "2b0877ac03382cde",
+      "relation": "仅相似",
+      "reason": "2243以四格正方形tetromino铺砌为输入，当前human/acceptance问邻接图4染色，备注另提2n×2n及每块各色一次的窄口径；无论该卡两种未统一口径，都不是908的六边形bone-only benzel铺法计数。瓦片单元、区域、输入输出和全称量词不同。此次未用2243内部旧备注的真实性作为908数学证据，也未代它重做源题审校。",
+      "positions": {
+        "self": "000908题面T003、特殊参数和meta.acceptance",
+        "other": "002243人话四连方、查新备注口径差异、meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000908__QX-P-002243；pair_owner=QX-P-000908。只保留近邻索引，不能合并或计为本包额外完成题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "修正人话版",
+      "field": "human中的三聚体/003/benzel释义",
+      "old": "三个单位三角形排成一排构成细长梯形；两组平行线截出的六边形",
+      "new": "benzel是正六边形网格中完全落在规定包络六边形内的单元并，单元中心构成三角格子图；bone由三个中心共线、依次相邻的六边形组成。003表示禁止左右两种stone、允许三个方向的bone；由原文坐标不等式精确定义区域。",
+      "reason": "明确单位单元与允许瓦片，保持核心T003问题而非换成triamond铺砌。人话纯修复不自动换card_rev；如将完整新定义写入核心系统/改变域则依包规重定版本。",
+      "evidence_ids": [
+        "R0908-CARD",
+        "R0908-AUTHOR"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述／边界与约定",
+      "old": "如上(T003(a,b)计数)，k域未给",
+      "new": "明确k∈Z,k≥2；a=k(3k−1)/2,b=k(3k+1)/2。可用V={(u,v,w)∈Z³:u+v+w=1,−(a−1)≤v−u,w−v,u−w≤b−1}定义cells，三方向相邻步长的三点直线块分割V。计数不商掉区域旋转或反射。",
+      "reason": "原k≥2和区域定义应内联；三坐标都允许负整数，不因某一句i的记号说明误限非负。原原型只用平移，全三方向已列为不同允许原型。",
+      "evidence_ids": [
+        "a0908_propp_v4",
+        "a0908_kim_propp"
+      ],
+      "small_case_check": "k1得(1,2)不满足a,b≥2；Kim–Propp Figure15明确将(0,0),(1,2),(2,1)排为spurious。OEIS若加入初项1需另声明扩展约定。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "benzel形状与面积",
+      "old": "两组平行线切出的六边形区域",
+      "new": "benzel是规定外接六边形中所有完整六边形cells的并，其离散边界与外接几何六边形不同；可采用原文六顶点或等价重心坐标定义。本族cells数9k²(k²−1)/4，每铺法bones数3k²(k²−1)/4。",
+      "reason": "两组平行线不足以说明原三方向边界；应区分hex cells、三cell骨块和三角格图顶点。",
+      "evidence_ids": [
+        "a0908_propp_v4",
+        "a0908_coordinate_check"
+      ],
+      "small_case_check": "k2/3/4细胞数27/162/540，骨块数9/54/180；不把面积公式再乘3。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "sources／first_published／原文摘录",
+      "new": "补固定原题arXiv2206.06472v1(2022-06-13)§2 p6及最新v4(2024-01-17)§2 pp7–8；题单伴随2022-05-18 OPAC报告。会议排版作者稿§2 p6亦可读；正式AMS卷页/出版年月若需精确字段应另核原刊记录，不能用2022会议年代替。",
+      "reason": "原题、最新预印本和会议出版是不同版本层级；本轮未亲读2021报告来声称具体题1更早提出。",
+      "evidence_ids": [
+        "a0908_propp_original",
+        "a0908_propp_v4",
+        "a0908_tracker"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展",
+      "new": "补Kim–Propp2023 Theorem3的可铺性 iff 配对五边形数及原k2..4数表；说明该定理没有完成计数公式。补2025当前学术近邻的准确题号5/12/13与8–11及其tile集合限制。",
+      "reason": "可铺性、有限数值与全参数计数是不同验收对象；compression禁止至少一种bone，不自动覆盖003。",
+      "evidence_ids": [
+        "a0908_kim_propp",
+        "a0908_compression",
+        "a0908_bcl2025"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "已知结果与进展/相关进展与声称解决",
+      "old": "Li（A.C.）有限缺陷路径模型解 Problem 6（2022–24）。",
+      "new": "Li 的公开项目页标首次 2026-08-22、修订 2026-09-05，目标是 Problem 6 的 T103(n,2n−3) 及 d=4 计数；Kernel-Only 为项目自述，本轮仅核固定 README 和目标范围。",
+      "reason": "日期错置且邻题不能代替本题全参数计数；两族 d=3 仅在当前 k=2 交会。",
+      "evidence_ids": [
+        "E908-C-LI6"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "acceptance.criteria／“精确公式或高效递推”",
+      "new": "保留原问的公式目标与算法兴趣分支分别验收。算法分支应指定输入k、全k正确性、递推状态与初值、位复杂度或运算模型、所比较的枚举基线；有限k拟合、常数特例或把全部铺砌重新写成一个求和式不自动算解决。",
+      "reason": "原文不要求多项式或固定阶递推；不可擅加此强限制，也不能把未量化“高效得多”当无需证明的结案条件。",
+      "evidence_ids": [
+        "a0908_propp_original",
+        "a0908_propp_v4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "informal_status／novelty／命题对应PASS",
+      "old": "confirmed open、检索无Problem1解决记录、无命题偏差；旧noveltyrev=d92118496e1fb865",
+      "new": "更新到当前rev的实际查询与正文对照：核心计数目标可恢复，人话及参数域须修；作者页面仅是June2025判断。当前未取得全解限于本轮具体覆盖，不写全网绝无新结果。",
+      "reason": "旧自动PASS忽略了tile对象误译；旧rev和目录/作者列表不能代替当前学术查新。",
+      "evidence_ids": [
+        "a0908_propp_v4",
+        "a0908_tracker",
+        "a0908_compression",
+        "a0908_bcl2025"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "核心/参数域/验收与版本",
+      "new": "本轮仅交回执与修订建议，不执行题库写回。按原定义修human、来源日期、进展不自动新rev；若把k≥2、完整坐标域或新的算法性能门槛实质写入并改变核心/验收，则须换新card_rev并按受影响路线复核。",
+      "reason": "保持原Problem1计数与算法兴趣范围，不用别题已解或单个小例取代全参数验收。",
+      "evidence_ids": [
+        "R0908-CARD",
+        "a0908_propp_original",
+        "Q908-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {
+        "card_action": "no_change"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "reason": "列明定向查询未取得Problem1全k公式/递推的新完整稿，作者状态页仅更新到2025；没有由有限无命中证明不存在算法。",
+      "next_step": "若出现具体题1完整计数/算法声明，固定版本并核全k正确性及复杂度，对照003允许集合和k≥2后独立二审。当前不继续无界扩搜同题单其它问题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {}
+    },
+    {
+      "route": "其他：算法验收",
+      "reason": "“比暴力枚举高效得多”未给基线与复杂度阈值，通用frontier算法与简洁闭式/定阶递推不是同一成果。",
+      "next_step": "主审分别登记精确公式分支和算法分支；本轮若提出新递推，给全k证明、明确运算复杂度并作独立验证，不能仅用小k数据或运行时间结案。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "AMS DOI原刊入口本轮不可访问，正式会议卷页/日期未充分核定；OEIS虽部分访问403，代码路线实际已读internal，故不是最终OEIS内容缺口。Kim–Propp全部几何拼接未从头重证。",
+      "next_step": "若需精确正式出版字段，补AMS一手记录；可铺性全文从头复证不作为本题计数查新的新增任务。使用本轮已读OEIS内容时保留其2023条目版本和k1退化项区别。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本次 FC/CB/openai/math 指定仓库检索和有限 GitHub/网页精确查询没有取得同题主定理代码或全参数公式；这不是全网穷尽，也不是数学开放性的证明。",
+      "next_step": "若出现精确覆盖 Problem 1、k≥2 的新稿或代码，固定版本后核 literal benzel、三方向 bones、计数等价与全 k 量词；效率声明另核复杂度或明确递推的可计算性。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "TilingCount 仅取得原作者的使用报告与愿分享说明；未取得可复跑源程序、commit、输入和日志。历史 k=3、4 没有本轮独立复跑。",
+      "next_step": "后续若有实际公开源码入口，再核算法、输入对象和数据版本；不把当前没有源码归因为源代码从未公开，不为追有限复算延迟本题收束。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "EulerSolve AMR-123-0001精确条目未取得；find只返回0003邻题，代码路线初始原页扫描缺bs4未执行HTTP，主审随后标准库补取实际403，仍未完成全目录检索。Li4/6仅已读固定README/项目说明，未审Lean全文或依赖闭包。",
+      "next_step": "仅在出现与本题实质相关的精确链接或覆盖声明时补取原稿/代码；邻题的 Lean 全闭包审计不作为当前回执有效性的阻断。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "83957faa23e235bd",
+      "codes": {}
+    }
+  ]
+}

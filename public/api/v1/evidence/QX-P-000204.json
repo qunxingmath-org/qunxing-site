@@ -1,0 +1,2209 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000204",
+  "card_rev": "0fb978dc0030887d",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "有限digraph、简单路、子集和空对象约定",
+          "value": "statement_error",
+          "note": "采用有限D=(V,A)，A⊆{(u,v)∈V²:u≠v}，同方向不重复弧，允许u→v与v→u并存。稳定集的任意两不同顶点间两个方向均无弧。路径为非空顶点互异序列(v1,…,vk)，k≥1且相邻顶点有正向弧；按顶点数k或边数k−1取最长的家族相同，单点是合法路。不能替换为可重复顶点的walk，有向圈会产生无界长walk。S应明确写⊆；若⊂只是非严格包含的习惯符号，是记号澄清，若强制真子集则单点无弧图已反驳错版。一般非空无弧图每个单点都是最长路，必须S=V。空图在非空路径约定下路径族为空，S=∅满足全称条件；不把空顶点序列作为必须相交的路径。"
+        },
+        {
+          "subquestion": "alpha=1对应半完全图，而不只竞赛图",
+          "value": "statement_error",
+          "note": "非空digraph有alpha=1，当且仅当每对不同顶点间至少一个方向有弧，即semicomplete。双向2点图已有alpha=1但不是tournament；只有在oriented假设下两者一致。每对顶点选一个弧方向可得生成竞赛图，含Hamilton有向路。其存在性可插入归纳：已有路径时，新点若指向首点则前置；否则在首个由新点指向的路径顶点前插入；若无此顶点则后置。因此原半完全图的所有最长路都覆盖全部顶点，任一单点稳定集即可横截，无须强连通。"
+        },
+        {
+          "subquestion": "kernel、DAG与无向图特例",
+          "value": "partial",
+          "note": "kernel K稳定且吸收，即每个外点v都有弧v→k指向某k∈K。若最长简单路P避开K，其末点可追加该未出现的k，矛盾。有限DAG有kernel：选所有sink，删去这些点及所有指向它们的点，再对剩余DAG递归；选中点间无弧，删除的外点皆指向某选中点。无向图每边双向化后，任意极大独立集都成为kernel，因为它支配所有外点，故无向对应成立。kernel不是必要条件：有向三圈没有kernel，但其最长路均Hamilton，任一单点即可横截。这些短证不意味着一般digraph有kernel。"
+        },
+        {
+          "subquestion": "只枚举maximum会漏解：完整6点证书",
+          "value": "statement_error",
+          "note": "maximal是不能再加入顶点，maximum是大小达到alpha。横截性质对集合包含向上保持，有限图中有效稳定集可扩张成有效极大稳定集，因此枚举所有极大稳定集完备；不能仅枚举最大稳定集。自含证书：V={0,1,2,3,4,5}，仅弧0→1、0→4、0→5、2→1、3→1。弧全部从L={0,2,3}指向R={1,4,5}，没有两弧有向路，所以全部最长路恰为这5条单弧，顶点长度2。含0的稳定集至多是{0,2,3}的子集，含1者至多是{1,4,5}的子集；两点均不含则包含于四叶{2,3,4,5}。故唯一maximum是四叶集合，大小4，却漏掉最长路0→1。L、R都是3点极大稳定集且都命中全部最长路，R还是kernel。因此maximum-only会误报这个满足LPX的DAG为反例。仅任取一个极大集也不足，完整搜索须允许全部极大候选。"
+        },
+        {
+          "subquestion": "有限搜索的实际覆盖及复核限度",
+          "value": "partial",
+          "note": "实际穷尽有标号无自环digraph n=0,1,2,3,4，数量1、1、4、64、4096，反向弧独立允许，未在此范围找到maximum-only漏解证书。随后固定seed20261127抽样5点10000次、6点1868次，找到证书即停止；抽样可重复，不是互异图计数，未穷尽5/6点。DP对每个顶点子集存储可作简单路径终点的顶点集合；最终6点证书又以全排列独立枚举全部路径、以组合枚举全部稳定集确认，列出5条全部最长有序路与唯一最大集。主审另独立手核。没有证明6点最小，没有从小图推出一般LPX。"
+        },
+        {
+          "subquestion": "LE2原文过强子路句的局部反例",
+          "value": "partial",
+          "note": "Theorem4原证明称最长路若用最后耳x0→…→xr，必含整段x0,…,x(r−1)或x1,…,xr作为子路，字面不成立。旧图取a→b→c→a，加入耳a→u→v→w→b；路径(v,w,b,c,a,u)覆盖全部6点而最长，却既不含(a,u,v,w)也不含(u,v,w,b)为连续子路。它仍包含所有内点u,v,w，并不反驳定理结论。这是本轮局部措辞反例，不冒称作者勘误，不据此否定LE2结果。"
+        },
+        {
+          "subquestion": "LE2最后耳的内点引理及归纳修补",
+          "value": "partial",
+          "note": "设D恰为D′加最后耳E=(x0,…,xr)，r≥2条边，内点全新，允许闭耳x0=xr。各内点在D中只有耳上的前驱和后继。正确引理：最长简单路P若用耳内点，便包含全部内点。P与内点的交至多为两个沿耳连续块；除完整穿耳外，只可能是P开头通向xr的尾块、P结尾从x0出发的头块。单块若漏相邻内点，可从P首或尾补入；若有两块且中有缺口，从P末尾头块沿耳继续到开头尾块之前，可加入未用顶点而不重复，矛盾。因此无缺口。P还含至少一个耳端点，否则仅为内点链，可再补端点。若P不使用耳，则它是D′的最长路，由旧横截S命中。使用耳时，按两端在S的情况统一选S′：两端均在S保留S；均不在S加x1；仅x0在S且r≥3加x2；仅xr在S且r≥3加x1；新增点均不与旧S相邻，且被内点引理保证在P中。r=2且仅一端在S时保留S：若P漏选中端点，可从首或尾追加它变长。闭耳只有两端同时在/不在的情况，也被覆盖。基础有向圈取非空单点S。此论证明确替代原文过强子路句，只核LE2附加类的关键归纳；主审独立复核了内点块与4种选点。未审该稿其他定理，未声称一般LPX已闭合。"
+        },
+        {
+          "subquestion": "稳定数至多2的有向图",
+          "value": "partial",
+          "note": "Havet2003报告、2004正式发表。已核正式摘要与作者目录，长证明全文未取得，不能把来源一致性写成独立重证。"
+        },
+        {
+          "subquestion": "一般稳定数3的有向图",
+          "value": "no_evidence_in_scope",
+          "note": "定向查询未取得覆盖全部α=3的完整论文；3-deficient、最长路径短、4-transitive和LE2都是不同限制。未命中不等于证明不存在结果。"
+        },
+        {
+          "subquestion": "oriented且最长路径至多4条边",
+          "value": "partial",
+          "note": "UNAM作者稿Theorem4.2；最多5个顶点，不能改作最多4个顶点，亦不能推广给允许双向弧的一般图。未审全长分类证明。"
+        },
+        {
+          "subquestion": "4-transitive有向图",
+          "value": "partial",
+          "note": "2017Theorem13的类限制是4-transitive；不是所有最长路只有4条边的图，也不是所有稳定数4的图。全文已取得，结构分类长证明未独立审完。"
+        },
+        {
+          "subquestion": "公开AI部分稿的关键数学复核与量词范围",
+          "value": "partial",
+          "note": "首稿：H=D−x为DAG时，最长权值L的critical顶点满足p(v)+q(v)−w(v)=L，区间(p(v)−w(v),p(v)]同层给稳定横截。比较x的入/出邻居区间，或者得到比H更重且经x的路，或者得到与x全不相邻的层，从而构造含x的S；该S可依赖权值。retry：按SCC逆拓扑序，B为当前分量向已选S出弧的顶点。反馈点x∉B时选{x}，避x路若末端回到旧点就会在C−x成环；x∈B时在C−B取DAG核，末端可接到核或后继S。Hamilton圈类选C−B中一点，任何避S路进入末端分量的入口a都可沿圈展开全分量Hamilton路，替换尾段产生严格顶点超集。稳定性由逆凝聚序和避B保证，故retry同一S横截所有正权最重路。两核心论证由主审和代码路线分别核关键步骤，附加条件不能删除，新颖性/全形式化未确认。"
+        },
+        {
+          "subquestion": "由LPX归纳推出Gallai–Roy的条件性蕴涵",
+          "value": "partial",
+          "note": "令λ(D)为最长简单有向路的顶点数，空图λ=0。假设LPX对每个有限digraph均真。非空D取所给稳定横截S，D−S不含D的最长路，故λ(D−S)≤λ(D)−1。对顶点数归纳，将D−S的底层无向图以至多λ(D−S)色染色，再为稳定集S加一色，得χ(D)≤λ(D)。空图基例χ=λ=0。这只核原卡声称的蕴涵；没有用已知Gallai–Roy反推LPX，也没有以归纳假设冒充LPX已证。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "rerun_partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/stable_set_meeting_all_longest_directed_paths/output.md"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000204.text.md",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "按原题可辨的标准有限无自环digraph范围解释，允许双向弧，路径为非空简单有向路径，存在稳定集S⊆V横截全部全局最长路。本轮取得Havet稳定数≤2正式摘要、已读的若干结构特例，以及2025LE2关键归纳和两份2026公开AI附加类部分稿；没有取得一般无附加条件全解或反例。有限性/空图/⊆约定、α=1误等同tournament和maximum-only验收错误另列，不以这些说明错误取代核心存在问题。仍绑定输入rev，不改原卡。",
+      "evidence_ids": [
+        "R204-CARD",
+        "E0204-A01",
+        "E0204-A02",
+        "E0204-A04",
+        "E0204-A05",
+        "E0204-A06",
+        "R204-AI-FVS1",
+        "R204-AI-SCC",
+        "m0204_manual"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限digraph、简单路、子集和空对象约定",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "采用有限D=(V,A)，A⊆{(u,v)∈V²:u≠v}，同方向不重复弧，允许u→v与v→u并存。稳定集的任意两不同顶点间两个方向均无弧。路径为非空顶点互异序列(v1,…,vk)，k≥1且相邻顶点有正向弧；按顶点数k或边数k−1取最长的家族相同，单点是合法路。不能替换为可重复顶点的walk，有向圈会产生无界长walk。S应明确写⊆；若⊂只是非严格包含的习惯符号，是记号澄清，若强制真子集则单点无弧图已反驳错版。一般非空无弧图每个单点都是最长路，必须S=V。空图在非空路径约定下路径族为空，S=∅满足全称条件；不把空顶点序列作为必须相交的路径。",
+      "evidence_ids": [
+        "m0204_card",
+        "m0204_kernel",
+        "m0204_le2",
+        "m0204_manual"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "alpha=1对应半完全图，而不只竞赛图",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "非空digraph有alpha=1，当且仅当每对不同顶点间至少一个方向有弧，即semicomplete。双向2点图已有alpha=1但不是tournament；只有在oriented假设下两者一致。每对顶点选一个弧方向可得生成竞赛图，含Hamilton有向路。其存在性可插入归纳：已有路径时，新点若指向首点则前置；否则在首个由新点指向的路径顶点前插入；若无此顶点则后置。因此原半完全图的所有最长路都覆盖全部顶点，任一单点稳定集即可横截，无须强连通。",
+      "evidence_ids": [
+        "m0204_opg",
+        "m0204_kernel",
+        "m0204_manual"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "kernel、DAG与无向图特例",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "kernel K稳定且吸收，即每个外点v都有弧v→k指向某k∈K。若最长简单路P避开K，其末点可追加该未出现的k，矛盾。有限DAG有kernel：选所有sink，删去这些点及所有指向它们的点，再对剩余DAG递归；选中点间无弧，删除的外点皆指向某选中点。无向图每边双向化后，任意极大独立集都成为kernel，因为它支配所有外点，故无向对应成立。kernel不是必要条件：有向三圈没有kernel，但其最长路均Hamilton，任一单点即可横截。这些短证不意味着一般digraph有kernel。",
+      "evidence_ids": [
+        "m0204_kernel",
+        "m0204_manual"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "只枚举maximum会漏解：完整6点证书",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "maximal是不能再加入顶点，maximum是大小达到alpha。横截性质对集合包含向上保持，有限图中有效稳定集可扩张成有效极大稳定集，因此枚举所有极大稳定集完备；不能仅枚举最大稳定集。自含证书：V={0,1,2,3,4,5}，仅弧0→1、0→4、0→5、2→1、3→1。弧全部从L={0,2,3}指向R={1,4,5}，没有两弧有向路，所以全部最长路恰为这5条单弧，顶点长度2。含0的稳定集至多是{0,2,3}的子集，含1者至多是{1,4,5}的子集；两点均不含则包含于四叶{2,3,4,5}。故唯一maximum是四叶集合，大小4，却漏掉最长路0→1。L、R都是3点极大稳定集且都命中全部最长路，R还是kernel。因此maximum-only会误报这个满足LPX的DAG为反例。仅任取一个极大集也不足，完整搜索须允许全部极大候选。",
+      "evidence_ids": [
+        "m0204_certificate",
+        "m0204_manual",
+        "m0204_card"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "有限搜索的实际覆盖及复核限度",
+      "math_status": "仅特例",
+      "scope_note": "实际穷尽有标号无自环digraph n=0,1,2,3,4，数量1、1、4、64、4096，反向弧独立允许，未在此范围找到maximum-only漏解证书。随后固定seed20261127抽样5点10000次、6点1868次，找到证书即停止；抽样可重复，不是互异图计数，未穷尽5/6点。DP对每个顶点子集存储可作简单路径终点的顶点集合；最终6点证书又以全排列独立枚举全部路径、以组合枚举全部稳定集确认，列出5条全部最长有序路与唯一最大集。主审另独立手核。没有证明6点最小，没有从小图推出一般LPX。",
+      "evidence_ids": [
+        "m0204_certificate"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "LE2原文过强子路句的局部反例",
+      "math_status": "仅特例",
+      "scope_note": "Theorem4原证明称最长路若用最后耳x0→…→xr，必含整段x0,…,x(r−1)或x1,…,xr作为子路，字面不成立。旧图取a→b→c→a，加入耳a→u→v→w→b；路径(v,w,b,c,a,u)覆盖全部6点而最长，却既不含(a,u,v,w)也不含(u,v,w,b)为连续子路。它仍包含所有内点u,v,w，并不反驳定理结论。这是本轮局部措辞反例，不冒称作者勘误，不据此否定LE2结果。",
+      "evidence_ids": [
+        "m0204_le2",
+        "m0204_manual"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "LE2最后耳的内点引理及归纳修补",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "设D恰为D′加最后耳E=(x0,…,xr)，r≥2条边，内点全新，允许闭耳x0=xr。各内点在D中只有耳上的前驱和后继。正确引理：最长简单路P若用耳内点，便包含全部内点。P与内点的交至多为两个沿耳连续块；除完整穿耳外，只可能是P开头通向xr的尾块、P结尾从x0出发的头块。单块若漏相邻内点，可从P首或尾补入；若有两块且中有缺口，从P末尾头块沿耳继续到开头尾块之前，可加入未用顶点而不重复，矛盾。因此无缺口。P还含至少一个耳端点，否则仅为内点链，可再补端点。若P不使用耳，则它是D′的最长路，由旧横截S命中。使用耳时，按两端在S的情况统一选S′：两端均在S保留S；均不在S加x1；仅x0在S且r≥3加x2；仅xr在S且r≥3加x1；新增点均不与旧S相邻，且被内点引理保证在P中。r=2且仅一端在S时保留S：若P漏选中端点，可从首或尾追加它变长。闭耳只有两端同时在/不在的情况，也被覆盖。基础有向圈取非空单点S。此论证明确替代原文过强子路句，只核LE2附加类的关键归纳；主审独立复核了内点块与4种选点。未审该稿其他定理，未声称一般LPX已闭合。",
+      "evidence_ids": [
+        "m0204_le2",
+        "m0204_manual"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "稳定数至多2的有向图",
+      "math_status": "仅特例",
+      "scope_note": "Havet2003报告、2004正式发表。已核正式摘要与作者目录，长证明全文未取得，不能把来源一致性写成独立重证。",
+      "evidence_ids": [
+        "E0204-A02",
+        "E0204-A03"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "一般稳定数3的有向图",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "定向查询未取得覆盖全部α=3的完整论文；3-deficient、最长路径短、4-transitive和LE2都是不同限制。未命中不等于证明不存在结果。",
+      "evidence_ids": [
+        "E0204-A07"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "oriented且最长路径至多4条边",
+      "math_status": "仅特例",
+      "scope_note": "UNAM作者稿Theorem4.2；最多5个顶点，不能改作最多4个顶点，亦不能推广给允许双向弧的一般图。未审全长分类证明。",
+      "evidence_ids": [
+        "E0204-A04"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "4-transitive有向图",
+      "math_status": "仅特例",
+      "scope_note": "2017Theorem13的类限制是4-transitive；不是所有最长路只有4条边的图，也不是所有稳定数4的图。全文已取得，结构分类长证明未独立审完。",
+      "evidence_ids": [
+        "E0204-A05"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "公开AI部分稿的关键数学复核与量词范围",
+      "math_status": "仅特例",
+      "scope_note": "首稿：H=D−x为DAG时，最长权值L的critical顶点满足p(v)+q(v)−w(v)=L，区间(p(v)−w(v),p(v)]同层给稳定横截。比较x的入/出邻居区间，或者得到比H更重且经x的路，或者得到与x全不相邻的层，从而构造含x的S；该S可依赖权值。retry：按SCC逆拓扑序，B为当前分量向已选S出弧的顶点。反馈点x∉B时选{x}，避x路若末端回到旧点就会在C−x成环；x∈B时在C−B取DAG核，末端可接到核或后继S。Hamilton圈类选C−B中一点，任何避S路进入末端分量的入口a都可沿圈展开全分量Hamilton路，替换尾段产生严格顶点超集。稳定性由逆凝聚序和避B保证，故retry同一S横截所有正权最重路。两核心论证由主审和代码路线分别核关键步骤，附加条件不能删除，新颖性/全形式化未确认。",
+      "evidence_ids": [
+        "R204-AI-FVS1",
+        "R204-AI-SCC"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "由LPX归纳推出Gallai–Roy的条件性蕴涵",
+      "math_status": "条件性结果",
+      "scope_note": "令λ(D)为最长简单有向路的顶点数，空图λ=0。假设LPX对每个有限digraph均真。非空D取所给稳定横截S，D−S不含D的最长路，故λ(D−S)≤λ(D)−1。对顶点数归纳，将D−S的底层无向图以至多λ(D−S)色染色，再为稳定集S加一色，得χ(D)≤λ(D)。空图基例χ=λ=0。这只核原卡声称的蕴涵；没有用已知Gallai–Roy反推LPX，也没有以归纳假设冒充LPX已证。",
+      "evidence_ids": [
+        "E0204-A01",
+        "m0204_manual"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-11-000204-root-001",
+      "route": "原题与出处",
+      "site": "题包与GitHub固定题卡",
+      "query": "读取任务.jsonl QX-P-000204；fetch_file problems/000/QX-P-000204.{text.md,meta.json} @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "当前rev0fb978dc0030887d；bodyblob7d4c2aa7f9bcd8234eaf36605310b20027b2e12d；metablob1fdf6d296649a5b95778aa009c38a8d24efe9d24；novelty内嵌旧rev9d57aea560d2e2f4。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000204-root-002",
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003853〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "选004、1710取双方固定正文，不凭标题合并。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000204-root-003",
+      "route": "原题与出处",
+      "site": "OPG／web system2",
+      "query": "open https://www.openproblemgarden.org/op/stable_set_meeting_all_longest_directed_paths；\"Laborde\" \"Payan\" \"Xuong\" conjecture；\"stable set\" \"longest directed paths\" Havet",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "亲读OPG全文。2013为编录日期，书目给1982会议/1983出版；返回Havet2004、2009局部类、2017四传递特例，不把爬取日期当发表年。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000204-root-004",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Laborde\" \"Payan\" \"Xuong\" conjecture solved [recency=730]；\"independent transversal\" \"longest paths\" digraph [recency=730]",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "主要返回题目目录与特类论文，未取得一般全解；不等于全网不存在。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000204-root-005",
+      "route": "学术",
+      "site": "UNAM作者原稿",
+      "query": "open https://www.matem.unam.mx/~rgomez/trans/transversals.pdf；读定义、§2关键段",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "digraph允许反向双弧，oriented排除2-cycle；path顶点互异，length为边数。kernel末端延长已核；最长路≤4的特例指4边/5点。未审整篇所有依赖。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000204-root-006",
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003854〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "另命中Berge路分划586，取固定正文进一步比对。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000204-root-007",
+      "route": "库内查重",
+      "site": "GitHub固定双方题卡",
+      "query": "fetch_file QX-P-000004、QX-P-001710、QX-P-000586 的text.md与meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "004无向三路共点，1710弦图单点/三路复合，586正交路分划；均无同题合并依据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000204-root-008",
+      "route": "其他：独立数学核对",
+      "site": "主审手核",
+      "query": "V={0,…,5}, A={01,04,05,21,31}；核唯一maximum与5条最长路；kernel、无向极大稳定集的端点延长",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "含0或1的稳定集最多3点；唯一4点maximum为{2,3,4,5}而漏01，{0,2,3}却横截全部。程序发现/枚举由数学路线完成，主审另给手证，不重复报机器运行。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000204-root-009",
+      "route": "学术",
+      "site": "arXiv固定全文",
+      "query": "open https://arxiv.org/html/2504.01918v1；find Theorem4；读§1定义、§2 LPX证明",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "LE2须强且每耳至少2边。亲核最后耳内点全包含的修补及4类选点。原连续前/后缀子路措辞过强，七点Hamilton路给反例；只修补该特例的关键证明，不代表一般LPX或整篇其他定理已核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000204-root-010",
+      "route": "学术",
+      "site": "2017原刊PDF",
+      "query": "open https://www.dmgt.uz.zgora.pl/publish/pdf.php?doi=1922；超时后读bibliotekanauki.pl/articles/31342166.pdf已命中全文；find Theorem13",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "亲读§4 Lemma11–12、Theorem13的核与末端分量证明，限4-transitive。未重证前面结构分类全部依赖。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000204-root-011",
+      "route": "代码、公开 AI 和社区",
+      "site": "固定GitHub源码本地副本",
+      "query": "读取work_000204_sources/manifest.json、attacks_opg-output.md与attacks_retry-output.md主体",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "固定Graph-Theory-LLM-Proofs@96f91048c5282ac2b8bed0b7e8dc454cf38ba636；两稿均partial且新颖性未核。独立核FVS1 critical层二分及SCC逆序4类延长/替换，不把AI自评high当数学证据。无Lean编译。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "Laborde Payan Xuong stable set every longest directed path Havet independence number two",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中OPG、Havet正式摘要、1983会议论文书目及后续直接相关文献。",
+      "request_id": "QX-R3-11-000204-academic-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "Laborde Payan Xuong conjecture longest path stable set original 1982",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中OPG、Havet正式摘要、1983会议论文书目及后续直接相关文献。",
+      "request_id": "QX-R3-11-000204-academic-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Open Problem Garden",
+      "query": "open: stable_set_meeting_all_longest_directed_paths",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/op/stable_set_meeting_all_longest_directed_paths",
+      "locator": "2013-03-01 fhavet发布；Conjecture与Bibliography",
+      "note": "原页是重述/编录，不是1983原论文。其α=1即tournament的括注不能搬到允许双向弧的一般digraph定义。",
+      "request_id": "QX-R3-11-000204-academic-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Stable set meeting every longest path\" Havet pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核到正式刊物书目及作者机构稿件入口；1983原章未取得。",
+      "request_id": "QX-R3-11-000204-academic-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Independent sets and longest directed paths in digraphs\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核到正式刊物书目及作者机构稿件入口；1983原章未取得。",
+      "request_id": "QX-R3-11-000204-academic-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Laborde\" \"Payan\" \"Xuong\" conjecture solved [recency=730]",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回特定图类论文和旧问题页，未取得无附加条件完整解决声明。",
+      "request_id": "QX-R3-11-000204-academic-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "UNAM作者主页",
+      "query": "open: Independent transversals of longest paths in locally semicomplete and locally transitive digraphs",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.matem.unam.mx/~rgomez/trans/transversals.pdf",
+      "locator": "§1 definitions；Theorems2.6、3.1、4.2",
+      "note": "已读一般digraph/oriented/path定义和特例结果；最长路径长≤4按文中边数计，不能误写为4个顶点。",
+      "request_id": "QX-R3-11-000204-academic-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "INRIA作者机构目录",
+      "query": "open: Publications of year 2004",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www-sop.inria.fr/mascotte/Publications/Year/2004.complete.html",
+      "locator": "Hav04b",
+      "note": "确认Havet2004题名、页码和FTP稿件链接；不是证明全文。",
+      "request_id": "QX-R3-11-000204-academic-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "INRIA稿件入口",
+      "query": "open: https://ftp-sop.inria.fr/mascotte/Publications/Hav04b.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://ftp-sop.inria.fr/mascotte/Publications/Hav04b.pdf",
+      "note": "工具未取得PDF。",
+      "request_id": "QX-R3-11-000204-academic-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "INRIA稿件入口",
+      "query": "open: http://ftp-sop.inria.fr/mascotte/Publications/Hav04b.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "http://ftp-sop.inria.fr/mascotte/Publications/Hav04b.pdf",
+      "note": "重写为HTTPS后仍未取得，不声称读过全文。",
+      "request_id": "QX-R3-11-000204-academic-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "ScienceDirect",
+      "query": "open: Stable set meeting every longest path",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0012365X04003681",
+      "note": "原站open实际403；正式摘要仍可从搜索索引核。",
+      "request_id": "QX-R3-11-000204-academic-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"undirected\" \"independent set\" \"every longest path\" theorem",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未取得单独无向定理出处；后用已读kernel引理及独立端点延长证明核无向结论。",
+      "request_id": "QX-R3-11-000204-academic-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Independent sets and longest directed paths in digraphs\" Laborde 173 177",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "多份正式/作者文献一致引用Prague1982会议、Teubner-Texte Math.59(1983)173–177；原章未取得。",
+      "request_id": "QX-R3-11-000204-academic-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Library of Science原刊全文",
+      "query": "open: Some results on 4-transitive digraphs; read first page and §4",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://bibliotekanauki.pl/articles/31342166.pdf",
+      "locator": "DMGT37(2017)117–129；§1、§4 Lemma11/Theorem13",
+      "note": "已核实际年份2017，非搜索引擎显示的最近抓取年。有限、无自环、无同向重弧，允许对称弧。",
+      "request_id": "QX-R3-11-000204-academic-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"undirected graphs\" \"independent detour transversal\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回已知特例、作者目录及3-deficient论文线索；未取得一般α=3完整结论。",
+      "request_id": "QX-R3-11-000204-academic-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Laborde\" \"Payan\" \"Xuong\" \"independence number three\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回已知特例、作者目录及3-deficient论文线索；未取得一般α=3完整结论。",
+      "request_id": "QX-R3-11-000204-academic-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Stable set meeting every longest path\" pdf Hav04b",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回已知特例、作者目录及3-deficient论文线索；未取得一般α=3完整结论。",
+      "request_id": "QX-R3-11-000204-academic-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "independent detour transversal undirected graph theorem",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "用于定位正式来源与范围；没有将相似path partition或path-kernel结果视作原题全解。",
+      "request_id": "QX-R3-11-000204-academic-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "Havet RR 5009 stable set longest path pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "用于定位正式来源与范围；没有将相似path partition或path-kernel结果视作原题全解。",
+      "request_id": "QX-R3-11-000204-academic-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "stable independent set meets all longest paths undirected known theorem",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "用于定位正式来源与范围；没有将相似path partition或path-kernel结果视作原题全解。",
+      "request_id": "QX-R3-11-000204-academic-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "INRIA作者目录",
+      "query": "open: Publications of F. Havet",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www-sop.inria.fr/mascotte/Publications/Author/HAVET-F.html",
+      "locator": "2003报告RR5009及2004期刊条目",
+      "note": "机构目录确认2003报告与2004正式刊发，报告/论文全文未在该页展示。",
+      "request_id": "QX-R3-11-000204-academic-021",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Havet\" \"5009\" \"Stable\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "得到RR5009和I3S/RR-2003-29-FR的确切官方链接；3-deficient不能等同α=3。",
+      "request_id": "QX-R3-11-000204-academic-022",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Stable set meeting every longest path\" hal",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "得到RR5009和I3S/RR-2003-29-FR的确切官方链接；3-deficient不能等同α=3。",
+      "request_id": "QX-R3-11-000204-academic-023",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Laborde-Payan-Xuong\" \"three\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "得到RR5009和I3S/RR-2003-29-FR的确切官方链接；3-deficient不能等同α=3。",
+      "request_id": "QX-R3-11-000204-academic-024",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "HAL尝试入口",
+      "query": "open candidate: https://hal.inria.fr/inria-00071599/document",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://hal.inria.fr/inria-00071599/document",
+      "note": "候选路径未取到文稿，未核为本论文记录；不作为已确认来源。",
+      "request_id": "QX-R3-11-000204-academic-025",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "I3S机构报告入口",
+      "query": "open: http://www.i3s.unice.fr/~mh/RR/2003/RR-03.29-F.HAVET.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "http://www.i3s.unice.fr/~mh/RR/2003/RR-03.29-F.HAVET.pdf",
+      "note": "沿作者机构目录明确给出的路径访问，仍不可取。",
+      "request_id": "QX-R3-11-000204-academic-026",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "INRIA机构报告入口",
+      "query": "open: http://www.inria.fr/rrrt/rr-5009.html",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "url": "http://www.inria.fr/rrrt/rr-5009.html",
+      "note": "实际返回Anubis Access Denied；没有尝试绕过。",
+      "request_id": "QX-R3-11-000204-academic-027",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Polish Digital Mathematics Library",
+      "query": "open: DOI10.7151/dmgt.1650 record",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://pldml.icm.edu.pl/pldml/element/bwmeta1.element.doi-10_7151_dmgt_1650",
+      "note": "403，后读到Geodesic元信息及摘要，未取得这篇全文。",
+      "request_id": "QX-R3-11-000204-academic-028",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Laborde-Payan-Xuong\" \"2025\" OR \"2026\" [recency=730]",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2025 Long-eared digraphs特例；另有更强path-kernel命题的反例，范围不同，不用作LPX反例。",
+      "request_id": "QX-R3-11-000204-academic-029",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Laborde\" \"Payan\" \"Xuong\" \"counterexample\" OR \"erratum\" OR \"solved\" [recency=730]",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2025 Long-eared digraphs特例；另有更强path-kernel命题的反例，范围不同，不用作LPX反例。",
+      "request_id": "QX-R3-11-000204-academic-030",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "HAL官方公共API",
+      "query": "GET search q=title_t:\"Stable set meeting every longest path\", fl=halId_s,title_s,uri_s,fileMain_s,producedDate_s,docType_s",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://api.archives-ouvertes.fr/search/",
+      "note": "Python urllib实际收到HTTP503，未获得搜索记录。",
+      "request_id": "QX-R3-11-000204-academic-031",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "open: arXiv:2504.01918 abstract; click HTML",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2504.01918v1",
+      "locator": "v1=2025-04-02；§1定义；§2 Theorem4及其证明",
+      "note": "LE_i,i≥2的强连通特例，非一般LPX；已把证明中较强子路措辞交独立数学路线核。",
+      "request_id": "QX-R3-11-000204-academic-032",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Geodesic / Library of Science记录",
+      "query": "open: Independent Detour Transversals in 3-Deficient Digraphs",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://geodesic.mathdoc.fr/item/DMGT_2013_33_2_a1/",
+      "locator": "DMGT33(2013)261–275；摘要及书目",
+      "note": "p-deficient定义为总顶点数减最长路顶点数；不是稳定数p。摘要只说研究3-deficient，不能由此写所有α=3已解。",
+      "request_id": "QX-R3-11-000204-academic-033",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Library of Science",
+      "query": "click original notice 30146646; open 30146646.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://bibliotekanauki.pl/articles/30146646.pdf",
+      "note": "记录页与PDF尝试均403；仅取得此前Geodesic摘要/元信息。",
+      "request_id": "QX-R3-11-000204-academic-034",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "site:hal.science \"Stable set meeting every longest path\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "仍未补到Havet原文或一般α=3全解；有界检索至此收束，不无限追全部相关文献。",
+      "request_id": "QX-R3-11-000204-academic-035",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"RR-5009\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "仍未补到Havet原文或一般α=3全解；有界检索至此收束，不无限追全部相关文献。",
+      "request_id": "QX-R3-11-000204-academic-036",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Laborde-Payan-Xuong\" \"alpha\" \"3\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "仍未补到Havet原文或一般α=3全解；有界检索至此收束，不无限追全部相关文献。",
+      "request_id": "QX-R3-11-000204-academic-037",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网页搜索system2",
+      "query": "\"Laborde\" \"Payan\" \"Xuong\" \"Lean\"; \"Laborde\" \"Payan\" \"Xuong\" \"AI\"; \"stable set\" \"longest directed paths\" \"code\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行三条。命中graph-theory-AI目录第75项、二手条目及部分论文；未据摘要断言全解或形式化。",
+      "request_id": "QX000204-code-web-initial",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search / google-deepmind/formal-conjectures",
+      "query": "Laborde；repository_name=google-deepmind/formal-conjectures, topn=20",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "results=[]，仅本词查询。",
+      "result_count": 0,
+      "request_id": "QX-R3-11-000204-code-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search / google-deepmind/formal-conjectures",
+      "query": "longest directed；repository_name=google-deepmind/formal-conjectures, topn=20",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "results=[]。",
+      "result_count": 0,
+      "request_id": "QX-R3-11-000204-code-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search / google-deepmind/formal-conjectures",
+      "query": "longest paths；repository_name=google-deepmind/formal-conjectures, topn=20",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8的FormalConjectures/Arxiv/2606.03696/BondyLongestCycles.lean和FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Circumference.lean。前者是高连通无向图最长圈余图问题，后者是无向周长API；所读题名和摘录不构成LPX同题形式化。未冒称读取二者全文。",
+      "result_count": 2,
+      "url": "https://github.com/google-deepmind/formal-conjectures/tree/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "request_id": "QX-R3-11-000204-code-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search / google-deepmind/formal-conjectures",
+      "query": "Payan；repository_name=google-deepmind/formal-conjectures, topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "results=[]。以上均有限关键词检索，不证明全仓库无同题声明。",
+      "result_count": 0,
+      "request_id": "QX-R3-11-000204-code-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / graph-theory-AI/graph-conjectures",
+      "query": "OPG_digraph_stable_set_meets_longest_paths（topn=20）；stable_set_meeting_all_longest_directed_paths（topn=20）；GET branches/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "两次代码检索分别返回3和8文件；读取分支元数据固定main=c4f7fb172098a9a98561e11d49435408937a6760，提交时间2026-11-23T16:11:59Z。",
+      "url": "https://api.github.com/repos/graph-theory-AI/graph-conjectures/branches/main",
+      "request_id": "QX-R3-11-000204-code-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / graph-theory-AI/graph-conjectures",
+      "query": "GET git/trees/c4f7fb172098a9a98561e11d49435408937a6760?recursive=1（执行及一次重试）",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "两次Transport closed，未取得完整树。后改读data目录与实际已知文件成功；不得将失败树遍历报告为全仓无代码。",
+      "request_id": "QX-R3-11-000204-code-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / graph-theory-AI/graph-conjectures",
+      "query": "固定c4f7fb172098a9a98561e11d49435408937a6760读取README.md、BONDY_MURTY_APPENDIX_A.md、data/〔私有材料定位已省略〕；GET contents/data?ref=c4f7fb172098a9a98561e11d49435408937a6760 〔私有记录编号：PR-003855〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取同题review与prompt全文及README相关段落、Appendix legend/第75项。P=present as own record，不是proved；review为2026-05-08 Claude Sonnet4.6自动综述，open/medium，报告两不可访问来源。prompt仅提示及OPG镜像，其内部搜索词不是本轮查询。",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/data/reviews/stable_set_meeting_all_longest_directed_paths.json",
+      "locator": "status/summary/notes/model/reviewed_at；Appendix legend/75",
+      "request_id": "QX-R3-11-000204-code-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / graph-theory-AI/graph-conjectures",
+      "query": "固定c4f7fb172098a9a98561e11d49435408937a6760读取data/llm_proof_results.json、data/openai_math_results.json；逐对象匹配本题slug/canonical name/Laborde-Payan-Xuong",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "两表完整读取，本题标识匹配0。仅限两个导入表；随后原始attacks目录实际发现两份partial稿，不能把导入表未收录解释成无尝试。",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/data/llm_proof_results.json",
+      "result_count": 0,
+      "request_id": "QX-R3-11-000204-code-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网页搜索system1",
+      "query": "\"Laborde\" \"Payan\" \"Xuong\" proof counterexample 2026（recency=365）；\"Laborde\" \"longest\" site:github.com Lean；\"stable set\" \"longest directed paths\" site:mathoverflow.net",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行三条；返回学术主页及特例论文，未取得同题完整全解或MO正式解答声明。4-transitive等线索交学术路线。搜索页面Published/Crawled不替代原刊日期。",
+      "request_id": "QX000204-code-web-current",
+      "url": "https://dwest.web.illinois.edu/regs/lapaxuo.html",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / graph-theory-AI/Graph-Theory-LLM-Proofs",
+      "query": "Laborde；repository_name=graph-theory-AI/Graph-Theory-LLM-Proofs, topn=10；随后固定返回commit读attacks_opg及attacks_retry本题output.md/meta.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "检索命中6文件，固定96f91048c5282ac2b8bed0b7e8dc454cf38ba636。两output、两meta全文已阅并exact-byte保存核git blob。均partial、would_publish=false；model=gpt-6-astra，started分别2026-09-16T18:14:05Z及23:34:35Z，lean:null。started是运行元数据，非独立核验的首次公开日期。",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_retry/stable_set_meeting_all_longest_directed_paths/output.md",
+      "result_count": 6,
+      "locator": "两output正文与两meta",
+      "request_id": "QX-R3-11-000204-code-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / graph-theory-AI/Graph-Theory-LLM-Proofs",
+      "query": "GET contents/attacks_retry/stable_set_meeting_all_longest_directed_paths?ref=96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "目录列meta.json、output.md、prompt.md、usage.json、verdict.json共5文件，无目录内Lean或可执行算法文件。未声称整个仓库无关联代码；没有运行作者算法或编译Lean。",
+      "url": "https://api.github.com/repos/graph-theory-AI/Graph-Theory-LLM-Proofs/contents/attacks_retry/stable_set_meeting_all_longest_directed_paths?ref=96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+      "result_count": 5,
+      "request_id": "QX-R3-11-000204-code-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地独立Python精确枚举",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003856〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "只核首稿§6的五顶点例。遍历1至5长的全顶点排列并筛连续弧，得到12条非空简单路，最长阶3且恰abc、abx；X={x,y}稳定且极大但漏abc，{b}命中全部。非一般LPX复跑。",
+      "locator": "实际stdout；script SHA256=f8f11224dcffb232e06950cb64320a7ccca16f4887c77b33ecd62cc9323c2f1c",
+      "request_id": "QX-R3-11-000204-code-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地原题包",
+      "query": "读取QX-P-000204全文；核card_rev=0fb978dc0030887d、S⊂符号、alpha=1与仅枚举最大独立集建议",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "urn:qunxing:private-material",
+      "locator": "QX-P-000204完整记录",
+      "note": "不修改题卡、不写资料库。",
+      "request_id": "QX-R3-11-000204-math-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Open Problem Garden",
+      "query": "直接打开条目，读取命题、alpha=1/2说明及Bibliography [H]、[LPX]",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/op/stable_set_meeting_all_longest_directed_paths",
+      "locator": "Conjecture和Bibliography",
+      "note": "原页也把alpha=1称tournament；本轮不原样继承这个在一般digraph下过窄的等同。",
+      "request_id": "QX-R3-11-000204-math-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "UNAM作者稿",
+      "query": "打开transversals.pdf，读取§1 digraph/oriented/path/maximal/kernel定义和Lemma2.1；另打开学术共享2017 4-transitive稿查loop未命中，不据此作额外数学结论",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.matem.unam.mx/~rgomez/trans/transversals.pdf",
+      "locator": "§1及Lemma2.1",
+      "note": "亲读文本层；2017额外入口https://bibliotekanauki.pl/articles/31342166.pdf。未读Havet2004或LPX1983完整证明。",
+      "request_id": "QX-R3-11-000204-math-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv固定v1",
+      "query": "直接读取2504.01918v1 §1耳分解、LE_i与§2 Theorem4归纳证明",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2504.01918v1",
+      "locator": "Theorem4及证明，抽取行92–108",
+      "note": "核原文过强子路句的局部反例及可替代内点引理；不把本轮修补写成作者勘误，不把LE2当一般猜想。",
+      "request_id": "QX-R3-11-000204-math-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：有限计算与独立数学核验",
+      "site": "Python本地实际运行",
+      "query": "执行work_000204_small_search.py：穷尽n=0…4；seed20261127抽样n5共10000次、n6至1868次，寻找所有maximum失败但较小stable有效的证书",
+      "date": "2026-11-27",
+      "outcome": "不适用",
+      "url": "urn:qunxing:private-material",
+      "locator": "exhaustive_counts、random_counts、witness、independent_permutation_check",
+      "note": "穷尽数量1、1、4、64、4096；5/6点仅抽样次数，可能重复。精确子集/终点DP求路径；最后证书再以独立全排列路径及组合稳定集复核。找到即停止，不称6点最小。",
+      "request_id": "QX-R3-11-000204-math-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "query_outcome": "not_applicable"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R204-CARD",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000204.text.md",
+      "locator": "题面／形式化／人话／小例建议；meta.novelty",
+      "version": "commit73290369a8dcc632e25e555aec525565ea6e08f8；card_rev0fb978dc0030887d",
+      "subquestions": [
+        "主问及验证建议",
+        "历史版本"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索",
+      "note": "主问要求存在稳定集，不要求maximum；只枚举最大稳定集的建议有明确反例。补有限无自环、简单有向路及S⊆V约定；本轮不改原卡。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "R204-AI-FVS1",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/stable_set_meeting_all_longest_directed_paths/output.md",
+      "locator": "§2关键层引理、§3反馈点二分",
+      "version": "commit96f91048c5282ac2b8bed0b7e8dc454cf38ba636；blobc641d3fc9980b33e09f34950431d3682af9f74b8",
+      "subquestions": [
+        "公开AI受限图类部分证明"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "D−x无环为附加前提。对每组正权构造含x的稳定横截；S可随权值改变。主审核critical intervals稳定性、最小左端点与前后缀拼接。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "R204-AI-SCC",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_retry/stable_set_meeting_all_longest_directed_paths/output.md",
+      "locator": "§3逆凝聚序、§4 Cases A–D",
+      "version": "commit96f91048c5282ac2b8bed0b7e8dc454cf38ba636；blob546fd64ede9598344b47c535c1ab78d048594f71",
+      "subquestions": [
+        "公开AI受限图类部分证明"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "每个SCC可删除一顶点变无环或含Hamilton有向圈（不是仅有Hamilton路）。主审核4类末端延长/尾段替换，所得同一S适用所有正权。仅附加类，未核新颖性，未运行Lean。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E0204-A01",
+      "url": "https://www.openproblemgarden.org/op/stable_set_meeting_all_longest_directed_paths",
+      "locator": "Conjecture；Bibliography [LPX]/[H]；页面发布时间",
+      "version": "fhavet编录，2013-03-01；本轮2026-11-27访问",
+      "subquestions": [
+        "主问题",
+        "原始出处及年代",
+        "Havet特例的原页记录"
+      ],
+      "role": "重述",
+      "publication": "作者主页/个人索引",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "原页为一般digraph的稳定集横截所有最长有向路问题。其[LPX]指向1982 Prague会议、1983 Teubner-Texte Math.59 pp173–177。OPG本身是2013重述，不是原始发表；原章尚未读到。原页α=1即tournament措辞需按其隐含oriented约定审慎处理。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E0204-A02",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0012365X04003681",
+      "locator": "正式刊物摘要及元信息；全文open403",
+      "version": "Frédéric Havet, Stable set meeting every longest path, Discrete Mathematics289(1–3)(2004)169–173；2004-12-28；DOI10.1016/j.disc.2004.07.013",
+      "subquestions": [
+        "α(D)≤2特例"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "note": "原出版社摘要明确肯定稳定数至多2的digraph。结论与作者OPG记载及后续一手论文一致；本轮未取得其原始长证明，不冒充独立复核，也不凭二手记录登记更强端点版本已核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E0204-A03",
+      "url": "https://www-sop.inria.fr/mascotte/Publications/Author/HAVET-F.html",
+      "locator": "2003 RR5009/I3S-RR-2003-29-FR条目；2004期刊条目",
+      "version": "INRIA作者目录（页尾最后修改2013-10-10）；本轮2026-11-27访问",
+      "subquestions": [
+        "Havet报告与刊发年份"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "证实该结果已有2003研究报告，2004正式刊发。FTP、I3S、INRIA报告与HAL检索入口未补到全文；年份取目录/出版记录，不取引擎抓取日期。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E0204-A04",
+      "url": "https://www.matem.unam.mx/~rgomez/trans/transversals.pdf",
+      "locator": "§1定义与kernel观察；Theorem2.6；Theorem3.1；Theorem4.2",
+      "version": "H. Galeana-Sánchez, R. Gómez, J.J. Montellano-Ballesteros, Independent transversals of longest paths in locally semicomplete and locally transitive digraphs；UNAM作者主页未标固定版号稿，本轮2026-11-27读取",
+      "subquestions": [
+        "digraph/oriented/simple path范围",
+        "短路径与局部结构特例",
+        "kernel蕴涵"
+      ],
+      "role": "进展",
+      "publication": "作者主页",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "明定无loop，oriented禁止互反双弧；路径顶点互异，长度按边数。Theorem4.2限oriented且最长路径≤4条边，稳定横截可选在最长路终点集中；局部半完全/传递结果另有条件，未把所有条目都独立验完。 主审另核kernel端点延长短证；该层级仅覆盖该关键步骤，不代表Theorems2.6、3.1、4.2的完整长证明均独立审完。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E0204-A05",
+      "url": "https://bibliotekanauki.pl/articles/31342166.pdf",
+      "locator": "§1有限digraph定义；§4 Lemma11、Theorem13，pp125–126",
+      "version": "P.R. García-Vázquez, C. Hernández-Cruz, Some results on 4-transitive digraphs, Discussiones Mathematicae Graph Theory37(2017)117–129；DOI10.7151/dmgt.1922",
+      "subquestions": [
+        "有限和双向弧边界",
+        "4-transitive特例",
+        "kernel与无向特例"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "论文明确有限、无loop及同向重弧，允许互反弧。Theorem13限4-transitive，即每条4边有向路径的首尾有相应弧。已读定理和范围，未独立审完结构分类；Lemma11的kernel端点延长论证可直接核，无向极大独立集结论由完全双向化独立推出。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E0204-A06",
+      "url": "https://arxiv.org/html/2504.01918v1",
+      "locator": "§1 LE_i定义；§2 Theorem4及归纳证明",
+      "version": "Germán Benítez-Bobadilla, Hortensia Galeana-Sánchez, César Hernández-Cruz, Long-eared digraphs, arXiv:2504.01918v1, 2025-04-02；abs本轮只列v1",
+      "subquestions": [
+        "2025直接特例进展"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "限有限强连通LE2（耳分解每条新增耳至少2条边），不是所有strong digraph。原稿称最长路含整耳前缀或后缀为连续子路的句子过强；本轮给出局部反例，并由独立数学路线与主审分别验证“使用最后耳内点的最长路包含全部内点”引理及四种端点选集归纳，修补该关键步骤。修补全文见本回执math_results；不是作者正式勘误，未审其他定理，不声称一般LPX解决。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E0204-A07",
+      "url": "https://geodesic.mathdoc.fr/item/DMGT_2013_33_2_a1/",
+      "locator": "摘要、p-deficient定义及引用表",
+      "version": "S. van Aardt, M. Frick, J. Singleton, Independent Detour Transversals in 3-Deficient Digraphs, DMGT33(2)(2013)261–275；DOI10.7151/dmgt.1650",
+      "subquestions": [
+        "3-deficient与α=3范围排除"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "尚未确认",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "note": "仅核摘要/元信息；3-deficient指|V(D)|−最长路顶点数=3，完全不同于α(D)=3。本轮未取得正文，不登记该文证明了所有3-deficient图，更不能登记所有α=3。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E000204-code-catalog",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/BONDY_MURTY_APPENDIX_A.md",
+      "locator": "Legend与第75项；README自动综述说明",
+      "version": "c4f7fb172098a9a98561e11d49435408937a6760；本轮2026-11-27",
+      "subquestions": [
+        "主问题",
+        "公开AI状态识别"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "P仅指present as its own record，不是proved；canonical name=OPG_digraph_stable_set_meets_longest_paths。README说明Claude生成的综述只是advisory。Appendix SHA256=f07eb8709031a370e02e0e7d1c295d5380347889a0d1a6bc48db669c1ff06b7c。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E000204-code-review",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/data/reviews/stable_set_meeting_all_longest_directed_paths.json",
+      "locator": "status/confidence/summary/notes/reviewed_at/model；两个proof-import表精确标识",
+      "version": "c4f7fb172098a9a98561e11d49435408937a6760；reviewed_at=2026-05-08，非本轮状态日期",
+      "subquestions": [
+        "主问题",
+        "公开AI检索线索"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "graph-theory-AI自动综述，claude-sonnet-4-6 (worker 03)",
+      "note": "review自报open/medium，只确认Havet2004等早期结果并报告DMGT/AJC访问失败，不能作为今日无进展的穷尽证据。两个proof-import表无本题匹配也不排除原始AI尝试。git blob=9cbb79a1567baa7a8b75ee84b2843bc85fb4b0c6；SHA256=4035036c6044ee135c2d67de0edd01666aec017474b4058a8489c15371c72f8b。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E000204-code-AI-feedback1",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/stable_set_meeting_all_longest_directed_paths/output.md",
+      "locator": "header；§1模型/定理；§2关键层；§3拼接；§5共同邻域推广；§6边界",
+      "version": "96f91048c5282ac2b8bed0b7e8dc454cf38ba636；meta.started=2026-09-16T18:14:05Z",
+      "subquestions": [
+        "主问题",
+        "单反馈点特例",
+        "公开AI部分解"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "claimant": "graph-theory-AI/Graph-Theory-LLM-Proofs；meta model=gpt-6-astra",
+      "note": "自标partial、would_publish=false、未核新颖性。域有限无自环digraph，允许反向双弧；路径顶点互异；stable禁止任一方向的弧。若给定x使D−x为DAG，则任意正顶点权下存在含x的稳定集横截全部最大权路；给定x时称线性时间构造。该项核查与主审分别静态核核心：DAG保证最大前后缀只在中点相交；J_v=(p(v)−w(v),p(v)]关键层稳定；拼接前后缀若相交，得到v→u而使p(u)−w(u)≥p(v)>s，矛盾。没有把任意walk拼成简单path。§5推广另需非空稳定反馈集X在D−X内拥有相同出邻域或入邻域。未删去无环条件、未运行全算法或取得Lean证明。git blob=c641d3fc9980b33e09f34950431d3682af9f74b8；SHA256=e98e4c97699f95c0c96f040758bda315fb25bf2e7bb4caecd3868a492b9da7c5。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E000204-code-AI-SCC",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_retry/stable_set_meeting_all_longest_directed_paths/output.md",
+      "locator": "header；§1(F)/(H)；§3逆SCC序；§4Case A–D；§5兼容条件；§7限制",
+      "version": "96f91048c5282ac2b8bed0b7e8dc454cf38ba636；meta.started=2026-09-16T23:34:35Z",
+      "subquestions": [
+        "主问题",
+        "SCC特例",
+        "正权同步横截",
+        "公开AI部分解"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "claimant": "graph-theory-AI/Graph-Theory-LLM-Proofs；meta model=gpt-6-astra",
+      "note": "模型同首稿。每个强连通分量C须满足(F)删一顶点后无有向环，或(H)有有向Hamilton圈。构造固定稳定集S使每条避开S的简单路P可替换成V(P)严格包含于V(Q)的路Q，所以同一S横截所有正顶点权下最大权路；若全部用F则可在终点加一点。该项核查与主审分别核核心：逆凝聚序使跨分量反向弧不存在；B_i为指向后续已选S的点；F且x∈B_i用DAG kernel末端延长，x∉B_i时回到旧路将构成C−x内有向环；H按原入口旋转Hamilton圈替换末段，保持原前缀并严格增加顶点。§5稳定反馈集推广仍须相同分量外出邻域。核心论证成立于所列SCC类，不能升主问题；新颖性未核，未形式化或算法复跑。原文明言一般LPX未解决。git blob=546fd64ede9598344b47c535c1ab78d048594f71；SHA256=b69183137e5fb9c8cb22daedc982b52a27d7fd178dea133df3a7d9d405ed4f0b。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E000204-code-five-vertex",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/stable_set_meeting_all_longest_directed_paths/output.md",
+      "locator": "§6五顶点例；本轮独立全排列路径枚举",
+      "version": "原稿96f91048c5282ac2b8bed0b7e8dc454cf38ba636；独立验算2026-11-27",
+      "subquestions": [
+        "主问题量词边界",
+        "任意极大稳定集强化"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "复跑仅覆盖部分",
+      "rerun": {
+        "commit": "96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+        "command": "python 〔私有材料定位已省略〕",
+        "toolchain": "Python 3标准库；无Lean/SAT/SMT",
+        "theorem": "唯一五顶点局部证书，不是一般LPX"
+      },
+      "note": "自足数据V=(a,b,c,x,y)，A={(a,b),(b,c),(a,x),(b,x),(y,c)}。对k=1..5枚举permutations(V,k)，保留所有连续点对在A中的序列，共12条非空简单路；最长阶3恰abc、abx。X={x,y}内部无弧，对每个外点加入后不再稳定，所以X极大；但X漏abc，而{b}横截两条最长路。它只否定任意极大稳定集都有效/任意给定稳定反馈集都可扩充的强化，不否定原题存在量词。script SHA256=f8f11224dcffb232e06950cb64320a7ccca16f4887c77b33ecd62cc9323c2f1c；未声称一般猜想复跑通过。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "rerun_partial",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "m0204_card",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000204.text.md",
+      "locator": "题面、形式化与计算建议",
+      "version": "commit73290369a8dcc632e25e555aec525565ea6e08f8；card_rev0fb978dc0030887d",
+      "subquestions": [
+        "定义与边界",
+        "maximum搜索建议"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "原始档案",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索",
+      "note": "核心存在命题与LPX一致；说明和验收方法需要纠正。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "m0204_opg",
+      "url": "https://www.openproblemgarden.org/op/stable_set_meeting_all_longest_directed_paths",
+      "locator": "命题和[H]、[LPX]",
+      "version": "fhavet发布2013-03-01；读取2026-11-27",
+      "subquestions": [
+        "来源题义",
+        "alpha=1范围"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "作者主页/个人索引",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索",
+      "note": "未据编录页声称独立复核Havet2004或1983原章长证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "m0204_kernel",
+      "url": "https://www.matem.unam.mx/~rgomez/trans/transversals.pdf",
+      "locator": "§1与Lemma2.1",
+      "version": "H.Galeana-Sánchez、R.Gómez、J.J.Montellano-Ballesteros作者稿，读取2026-11-27",
+      "subquestions": [
+        "digraph/path/kernel定义",
+        "kernel特例"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "作者主页",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索",
+      "note": "核定义和端点延长一步证明；未审全文其他定理。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "m0204_certificate",
+      "url": "urn:qunxing:private-material",
+      "locator": "本回执math_results内嵌的完整六点弧表、全部最长路、唯一maximum手证及其他自含数学核验",
+      "version": "本轮Python与手核2026-11-27；脚本work_000204_small_search.py",
+      "subquestions": [
+        "maximum-only漏解"
+      ],
+      "scope_match": "仅子问",
+      "role": "证书",
+      "publication": "项目报告",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索",
+      "note": "独立排列/组合枚举通过；主审另手核唯一最大集与无两弧路径。不是LPX反例。 所需证书和论证已内嵌于本行JSON，不以临时文件可访问为前提；程序枚举与主审手核分别记录。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "m0204_le2",
+      "url": "https://arxiv.org/html/2504.01918v1",
+      "locator": "§1及§2 Theorem4",
+      "version": "G.Benítez-Bobadilla、H.Galeana-Sánchez、C.Hernández-Cruz，Long-eared digraphs，2504.01918v1，2025-04-02",
+      "subquestions": [
+        "LE2关键归纳",
+        "原文子路措辞与修补"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索",
+      "note": "原文过强句有局部反例，本轮给内点覆盖修补；主审另核关键修补。只核该归纳，不为全稿或一般LPX闭合背书。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "m0204_manual",
+      "url": "urn:qunxing:private-material",
+      "locator": "本回执math_results内嵌的完整六点弧表、全部最长路、唯一maximum手证及其他自含数学核验",
+      "version": "本轮独立数学核验，2026-11-27",
+      "subquestions": [
+        "定义",
+        "kernel/DAG",
+        "semicomplete",
+        "极大扩张",
+        "最后耳引理"
+      ],
+      "scope_match": "仅子问",
+      "role": "证书",
+      "publication": "项目报告",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索",
+      "note": "手证和运行记录分开；未进行形式化编译。 所需证书和论证已内嵌于本行JSON，不以临时文件可访问为前提；程序枚举与主审手核分别记录。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000004",
+      "other_card_rev": "80b48f660aae4c1f",
+      "relation": "仅相似",
+      "reason": "004问无向连通图任三条最长路交于同一点；204允许多点稳定集且横截全部有向最长路。图域、路径族和量词不同，不能以无向共点替代LPX。",
+      "positions": {
+        "self": "QX-P-000204.text.md题面、formal及meta.acceptance",
+        "other": "QX-P-000004.text.md：题面与formal的三条vertex-simple最长路、meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000004__QX-P-000204；owner=QX-P-000004；双方固定正文/rev已核于73290369a8dcc632e25e555aec525565ea6e08f8；不合并，不改其他卡。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001710",
+      "other_card_rev": "08df63cdab56d796",
+      "relation": "仅相似",
+      "reason": "1710混合连通弦图单点全横截与三路共点；204研究有向路且允许稳定集多点。1710自身复合范围不在本题修复，现有正文不支持同题合并。",
+      "positions": {
+        "self": "QX-P-000204.text.md题面、formal及meta.acceptance",
+        "other": "QX-P-001710.text.md：人话单点/三路两个版本、查新备注、meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000204__QX-P-001710；owner=QX-P-000204；双方固定正文/rev已核于73290369a8dcc632e25e555aec525565ea6e08f8；不合并，不改其他卡。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000586",
+      "other_card_rev": "288935430ffa4ca9",
+      "relation": "仅相似",
+      "reason": "586问每个最小k-范数路分划配正交部分k-染色，参数、分划和色类不同于204全体最长路的单一稳定横截；未取得双向等价。586题面/验收无环而引文loopless另有范围不一致，本题不替其修订或查新。",
+      "positions": {
+        "self": "QX-P-000204.text.md题面、formal及meta.acceptance",
+        "other": "QX-P-000586.text.md：题面、formal、原文摘录与meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000204__QX-P-000586；owner=QX-P-000204；双方固定正文/rev已核于73290369a8dcc632e25e555aec525565ea6e08f8；不合并，不改其他卡。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "建议修订",
+      "field": "novelty.card_rev／历史来源身份",
+      "old": "当前rev0fb978dc0030887d；novelty旧rev9d57aea560d2e2f4且证据链空",
+      "new": "保留旧记录为历史，本回执独立绑定当前rev，以实际全文和附加条件记录本轮结果。",
+      "reason": "目录open、旧未命中、AI自评和旧statement pass均不能代替题面与证明范围核对。",
+      "evidence_ids": [
+        "R204-CARD"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "statement/formal_statement/acceptance",
+      "old": "∀有向图D，∃独立集S⊂V(D)；未明确有限、路径不重复顶点、空对象",
+      "new": "明确有限无loop digraph D=(V,A)，A⊆{(u,v)∈V²:u≠v}，允许(u,v),(v,u)同时存在。S⊆V，任意两不同点之间两个方向均无弧。路径是顶点互异的非空序列并逐步沿弧，最长按顶点数（等价边数）比较。空图路径族取空，S=∅使结论真。",
+      "reason": "排除walk造成有向环上无有限最长路的问题；⊆允许单点图或无边图中S=V。若验收域因此实质改变，必须生成新card_rev。",
+      "evidence_ids": [
+        "E0204-A04",
+        "E0204-A05"
+      ],
+      "small_case_check": "单点图唯一最长路含该点，须S=V；非空无边图每个单点都是最长路，须S=V且独立；空图在非空路径约定下全称命题真。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "题面纠错",
+      "field": "known_results/human_explanation/boundary",
+      "old": "稳定数1即竞赛图",
+      "new": "一般digraph中α=1为semicomplete，可有双向弧；只有再假设oriented才是tournament。semicomplete可选一个spanning tournament，Hamilton有向路保留，故该特例仍成立。",
+      "reason": "OPG括注不能用于覆盖本文明确允许双向弧的全部范围。",
+      "evidence_ids": [
+        "E0204-A01",
+        "E0204-A04",
+        "E0204-A05"
+      ],
+      "small_case_check": "两个顶点间双向弧的digraph稳定数1，但不是tournament；仍有跨两点的有向路径。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "human_explanation",
+      "new": "保留“无向对应成立”，并附极大独立集支配最长路端点的简短证明；说明有向图的邻接可能方向不利，不能同样直接延长。最长指全图中最多顶点，不能改成仅不可延长。",
+      "reason": "无向断言现在有自含核验，而非复述旧卡。",
+      "evidence_ids": [
+        "E0204-A05"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "first_published/proposer/sources",
+      "old": "1980年前后；原始猜想1980s；OPG2013为original",
+      "new": "Jean-Marie Laborde、Charles Payan、N.H. Xuong；1982 Prague会议，1983书面文献Independent sets and longest directed paths in digraphs，Graphs and other Combinatorial Topics，Teubner-Texte Math.59，pp173–177。OPG2013改为重述来源。",
+      "reason": "已核准确书目，但尚未亲阅1983原章；标记书目已核、原稿待取，不伪称首版全文已读。",
+      "evidence_ids": [
+        "E0204-A01",
+        "E0204-A07"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "known_progress",
+      "new": "Havet结果补2003机构报告和2004正式刊发。补已核特类：kernel、oriented最长路≤4边、2017四传递图；2025LE2论文按其独立复核层级登记。",
+      "reason": "旧卡仅Havet/竞赛图而称近年文献稀少，漏了直接相关进展；特类不能升级为一般解。",
+      "evidence_ids": [
+        "E0204-A02",
+        "E0204-A03",
+        "E0204-A04",
+        "E0204-A05",
+        "E0204-A06"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "known_progress/search_scope",
+      "new": "分开α=3、3-deficient、4-transitive、最长路≤4边和LE2这些条件。不要把path partition或更强path-kernel命题的反例当LPX反例。",
+      "reason": "定向结果中这些相似题频繁混杂，需保持量词和对象同一性。",
+      "evidence_ids": [
+        "E0204-A04",
+        "E0204-A05",
+        "E0204-A06",
+        "E0204-A07"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "独立验证建议",
+      "old": "只枚举所有最长路和最大独立集",
+      "new": "精确枚举全部最长简单路及所有稳定集，或只枚举全部极大稳定集；不得限制最大基数。反例须对每个极大候选给出不相交的最长路并核全局最长性。",
+      "reason": "6点double-star唯一最大集失败，但两个3点极大集有效。",
+      "evidence_ids": [
+        "m0204_certificate",
+        "m0204_manual"
+      ],
+      "small_case_check": "仅弧01,04,05,21,31；唯一maximum四叶2345漏01，023与145各命中五路。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "可核特例及审阅强度",
+      "new": "附kernel/DAG短证。LE2作为附加类结果另列，并记录原稿子路句的局部反例及本轮内点引理修补。",
+      "reason": "不能将特例、局部可修文字或小图搜索解释为一般问题解决。",
+      "evidence_ids": [
+        "m0204_kernel",
+        "m0204_le2",
+        "m0204_manual"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "公开AI/形式化验收",
+      "new": "登记两份运行元数据为2026-09-16的公开partial稿：单反馈点正权特例与满足F/H的SCC特例。核心定理已该项核查与主审分别静态核对，保留新颖性未核、无Lean/无全算法复跑标签；一般主问题不升级。",
+      "reason": "两份完整正文均明确一般LPX未解决；目录P只是已有记录。",
+      "evidence_ids": [
+        "E000204-code-catalog",
+        "E000204-code-AI-feedback1",
+        "E000204-code-AI-SCC"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "库内查重",
+      "reason": "两组标题索引筛选后逐正文核004、1710、586；其他longest/path候选未全部逐文读。",
+      "next_step": "保留具体三对关系；新明确同命题线索出现时补双方固定rev与正文，不作全库绝无重复保证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "1983原章的书目已由OPG及后续一手文献交叉核，但原章全文未取得。",
+      "next_step": "需要原始逐字题式或绝对最早出处时，再定向取得Teubner-Texte Math.59 pp173–177；目前保留访问层级，不把OPG当初刊。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Havet2004/2003结果的正式摘要与作者机构记录可核；原证明PDF入口、报告站或HAL查询失败。",
+      "next_step": "后续若需独立审该特例证明，再取得可读原稿；当前只报已正式发表的α≤2结论，不声称本轮重证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "3-deficient2013论文仅得摘要，所有α=3的结论本轮未取得；2017/UNAM部分长证明未独立完整审计。",
+      "next_step": "仅在需要提升对应特例证据层级或出现明确α=3/一般解声明时再定向取稿；停止无界扩展特类文献。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "截至本轮定向最新/反例/勘误搜索，未取得无附加条件全解；该搜索不穷尽全网。",
+      "next_step": "将结论限定为本次来源范围未获一般解，后续有具体新版本或完整声明再核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "formal-conjectures四组定向词查询未取得同题Lean源码，因此没有可审同题theorem、toolchain、sorry或导入axiom链。",
+      "next_step": "如以后出现明确同题源码，固定commit核finite/digraph/oriented域、两向稳定性、简单路径、全局最长及空图约定，再区分题面占位和证明并决定是否编译；当前不报告形式化通过，也不宣称全仓或全网无形式化。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "两份AI稿核心论证该项核查和主审均已静态核对，但稿件自称未核新颖性，未取得Lean或运行完整算法。",
+      "next_step": "若需把部分稿提升为正式新进展，先与既有single-feedback/SCC/kernel文献比对新颖性，再完成全稿独立审阅和复杂度/形式化验证。现仅登记所列附加条件下的公开部分稿与关键数学核对，不升级一般LPX状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "LE2的原文过强子路句已由本轮内点引理和归纳选点修补，并有两路线关键步骤复核；这不等于作者正式修订或整篇所有定理审核。",
+      "next_step": "后续引用该特例时连同本回执修补及范围一起交审；若获得作者新版本，核其是否处理该句。当前不再把关键修补本身标成待核，也不据此要求一般猜想升级。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "0fb978dc0030887d",
+      "codes": {}
+    }
+  ]
+}

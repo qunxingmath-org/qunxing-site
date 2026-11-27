@@ -1,0 +1,1917 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000836",
+  "card_rev": "8166660afec814ab",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-07"
+      ],
+      "parts": [
+        {
+          "subquestion": "按标准Alice先手规则解释的意图主问",
+          "value": "partial",
+          "note": "按标准 Alice 先手、双方每步自由选未染顶点及合法颜色、全染 Alice 胜、任一未染点无色 Bob 胜理解。Hollom 的同题 Question 1.1 未被其论文解决；本轮可读的 2026 一手论文给完全多部图特例。已列查询范围内未取得任意有限图的完整肯定证明或标准游戏反例声明，不能用 ordered、connected、greedy 等变体关闭主问。"
+        },
+        {
+          "subquestion": "arboricity 变体",
+          "value": "partial",
+          "note": "Hollom Theorem 2.1 证明 Breaker 在 k+1 色边森林着色游戏赢则 k 色也赢，等价于该变体中 Maker 的赢色数上闭；不是普通顶点 proper-colouring 的结论。"
+        },
+        {
+          "subquestion": "ordered 反例范围",
+          "value": "partial",
+          "note": "Hollom 的 H_1 在预先规定顶点顺序的游戏中 3 色 Alice 赢、4 色 Bob 赢；构造证明给 k≥3、l>k 的广义例。固定次序是实质额外规则，不能转为标准游戏反例。connected 与普通游戏色数不等式也不等同于同一标准游戏的 palette 非单调。"
+        },
+        {
+          "subquestion": "完全多部图特例",
+          "value": "partial",
+          "note": "2026 论文 §5 末段的肯定单调性范围是完全多部图。已补核动态颜色重命名至 q 色胜局的策略：用尽 q 种颜色前必须完成各部的首次着色，之后每部专属旧色一直可用。这证明了该图类的 q→q+1 单调性，未推广任意图。"
+        },
+        {
+          "subquestion": "定理头部量词核对",
+          "value": "statement_error",
+          "note": "此行仅针对 Hollom ordered 变体定理的转述精度：正式版 Theorem 1.4 和 arXiv v2 标头字面任意整数 k，但已给证明仅覆盖 k≥3；k=1 不可能有这样的反例，因为 1 色能全染当且仅当无边。回执仅采用明确已构造的 k≥3 范围，不把量词瑕疵解读成整篇撤回或主问已解决。"
+        },
+        {
+          "subquestion": "χ_g定义及基本边界",
+          "value": "partial",
+          "note": "标准有限简单图规则下最小可赢色数无需单调性就有定义，k≥Δ(G)+1时必能染完；k=1可赢只可能无边，故该边界单调。这些不证明全k的递增性质。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/6/clank-lab/blob/307cef5c4049c57132cd4d4134448858e87a6111/results/game-chromatic-arboricity/lean/Main.lean"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/783c410d-beaf-4192-a97a-7ca47e08335f/content",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "固定版本8166660afec814ab的主句意指标准Alice/Bob顶点染色单调性，但人话又按轮到哪方判堵点失败，且形式化χ_g^k没有定义、先手约定混乱；K2一色已使两种规则胜者相反，必须修复后固定新版本再核受影响路线。这是当前卡规则一致性问题，不是标准单调性猜想已被反驳。按主句预期的有限简单图、Alice先手、自由逐点合法着色、全染Alice胜/任一堵点Bob胜解释，本轮仅取得完全多部图特例及相关变体结果，未取得一般图的完整证明或反例确证；另列意图主问结果。",
+      "evidence_ids": [
+        "O0836-HOLLOM-RULES",
+        "A0836-E01",
+        "A0836-E04",
+        "D0836-SELF",
+        "D0836-SMALLGAMES",
+        "D0836-RULES"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "按标准Alice先手规则解释的意图主问",
+      "math_status": "部分进展",
+      "scope_note": "按标准 Alice 先手、双方每步自由选未染顶点及合法颜色、全染 Alice 胜、任一未染点无色 Bob 胜理解。Hollom 的同题 Question 1.1 未被其论文解决；本轮可读的 2026 一手论文给完全多部图特例。已列查询范围内未取得任意有限图的完整肯定证明或标准游戏反例声明，不能用 ordered、connected、greedy 等变体关闭主问。",
+      "evidence_ids": [
+        "A0836-E01",
+        "A0836-E03",
+        "A0836-E04",
+        "C0836-01",
+        "C0836-02",
+        "C0836-03",
+        "C0836-04"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "arboricity 变体",
+      "math_status": "部分进展",
+      "scope_note": "Hollom Theorem 2.1 证明 Breaker 在 k+1 色边森林着色游戏赢则 k 色也赢，等价于该变体中 Maker 的赢色数上闭；不是普通顶点 proper-colouring 的结论。",
+      "evidence_ids": [
+        "A0836-E02"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "ordered 反例范围",
+      "math_status": "部分进展",
+      "scope_note": "Hollom 的 H_1 在预先规定顶点顺序的游戏中 3 色 Alice 赢、4 色 Bob 赢；构造证明给 k≥3、l>k 的广义例。固定次序是实质额外规则，不能转为标准游戏反例。connected 与普通游戏色数不等式也不等同于同一标准游戏的 palette 非单调。",
+      "evidence_ids": [
+        "A0836-E03"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "完全多部图特例",
+      "math_status": "仅特例",
+      "scope_note": "2026 论文 §5 末段的肯定单调性范围是完全多部图。已补核动态颜色重命名至 q 色胜局的策略：用尽 q 种颜色前必须完成各部的首次着色，之后每部专属旧色一直可用。这证明了该图类的 q→q+1 单调性，未推广任意图。",
+      "evidence_ids": [
+        "A0836-E04"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "定理头部量词核对",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "此行仅针对 Hollom ordered 变体定理的转述精度：正式版 Theorem 1.4 和 arXiv v2 标头字面任意整数 k，但已给证明仅覆盖 k≥3；k=1 不可能有这样的反例，因为 1 色能全染当且仅当无边。回执仅采用明确已构造的 k≥3 范围，不把量词瑕疵解读成整篇撤回或主问已解决。",
+      "evidence_ids": [
+        "A0836-E03"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "χ_g定义及基本边界",
+      "math_status": "部分进展",
+      "scope_note": "标准有限简单图规则下最小可赢色数无需单调性就有定义，k≥Δ(G)+1时必能染完；k=1可赢只可能无边，故该边界单调。这些不证明全k的递增性质。",
+      "evidence_ids": [
+        "O0836-BOUND"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "vertex coloring game monotonicity k k+1 colors Alice Bob open problem Hollom (recency1095)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/783c410d-beaf-4192-a97a-7ca47e08335f/content",
+      "locator": "当前定向搜索及后续全文",
+      "note": "命中Hollom2024作者库正式版与2022/2020一手论文回引Zhu1999；根节点随后核Hollom定义与Question1.1。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "Bodlaender On the complexity of some coloring games 1991 pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://ics-archive.science.uu.nl/research/techreps/repo/CS-1989/1989-27.pdf",
+      "locator": "Utrecht作者论文列表、1989技术报告",
+      "note": "作者列表确认1991期刊版DOI10.1142/S0129054191000091及会议版；取得的是1989技术报告，不能冒称1991排印版已读。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"2610.29650\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://borowiecki.dev/abs/2610.29650",
+      "locator": "搜索索引候选",
+      "note": "显示Connected Coloring Games on Corona Products of Graphs；非完整多部图论文。不是官方原稿读取；交学术路线核官方URL和另查完整多部图真实出处。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "Zhu 1999 \"game coloring number of planar graphs\" \"Question 1\"; Zhu 1999 game coloring number planar graphs pdf monotonicity",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.math.nsysu.edu.tw/~zhu/papers/game/planar.pdf",
+      "locator": "作者原稿索引、刊方元数据和作者论文列表",
+      "note": "作者稿索引首段明确有限图、Alice先手，期刊题目/DOI可核；未由此声称亲读Question1。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Utrecht技术报告档案",
+      "query": "open CS-1989/1989-27.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://ics-archive.science.uu.nl/research/techreps/repo/CS-1989/1989-27.pdf",
+      "locator": "PDF20页；文本抽取无可读行",
+      "note": "文件可渲染但open无文本；随后用截图读指定原始图页，不把无文本当全文已阅。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Utrecht技术报告图页",
+      "query": "screenshot CS-1989/1989-27.pdf pages1,2 (0-based)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://ics-archive.science.uu.nl/research/techreps/repo/CS-1989/1989-27.pdf",
+      "locator": "报告印刷pp.2–3",
+      "note": "已读有限无向图框架与Ordered COL、Ordered COL2两种不同胜负目标：前者无法行动者输，后者player1仅在全图染完时赢。定序博弈不能直接替代主问自由选点博弈；不声称整篇读完。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Zhu作者主页",
+      "query": "open https://www.math.nsysu.edu.tw/~zhu/papers/game/planar.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://www.math.nsysu.edu.tw/~zhu/papers/game/planar.pdf",
+      "locator": "原稿PDF",
+      "note": "TimeoutError，未取得Question1正文。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "ScienceDirect",
+      "query": "open https://www.sciencedirect.com/science/article/pii/S0095895698918780",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0095895698918780",
+      "locator": "Zhu1999正式版",
+      "note": "403；搜索中有元数据但不作全文阅读。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Zhu作者主页 / Web system1",
+      "query": "open http://www.math.nsysu.edu.tw/~zhu/papers/game/planar.pdf; \"The game coloring number of planar graphs\" \"Question 1\" \"k\"; \"Zhu\" \"planar.pdf\" \"game\" monotone",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.math.nsysu.edu.tw/~zhu/papers/game/planar.pdf",
+      "locator": "改HTTP自动重定向仍超时；定向索引",
+      "note": "索引只给作者稿p1和后续明确回引，发现可用Wayback出处但未取得原Question1。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Internet Archive",
+      "query": "open https://web.archive.org/web/20191124231557id_/http://www.math.nsysu.edu.tw/~zhu/papers/game/planar.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://web.archive.org/web/20191124231557id_/http://www.math.nsysu.edu.tw/~zhu/papers/game/planar.pdf",
+      "locator": "已观察到的历史存档URL",
+      "note": "工具报告不可访问；不继续反复请求，留原件复核。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Cambridge作者机构库",
+      "query": "open Hollom published PDF",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/783c410d-beaf-4192-a97a-7ca47e08335f/content",
+      "locator": "印刷pp.131–132：Introduction、Question1.1；§2/§3范围",
+      "note": "清楚Alice=Maker先手、全染完赢；Bob=Breaker在任何未染点无色时赢。Q1.1明确回引Zhu1999 Q1，same k→k+1问题。Maker–Breaker本身不是不同顶点规则。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本轮定义推导",
+      "query": "核Win_A(G,k)、χ_g最小值存在性及k=1/最大度边界",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/783c410d-beaf-4192-a97a-7ca47e08335f/content",
+      "locator": "标准规则下直接有限性论证",
+      "note": "对有限简单图和k≥Δ(G)+1，任一未染点看到的颜色数≤Δ(G)<k，所以任何合法过程都染完全图，Alice赢；最小可赢k因此有定义，不依赖单调性。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A0836-Q01",
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "Hollom 2024 graph colouring game monotonicity Alice k k+1 colors",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "找到 Hollom 正式论文及 Cambridge 公开原稿入口。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A0836-Q02",
+      "route": "学术",
+      "site": "Web search / system2",
+      "query": "arxiv 2610.29650",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "索引命中 Connected Coloring Games on Corona Products of Graphs，非卡所暗示的完全多部图题名；官方原文访问失败另列，未将镜像元数据当成已核一手身份。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A0836-Q03",
+      "route": "学术",
+      "site": "Web search / system1；recency=730",
+      "query": "\"coloring game\" \"complete multipartite\" monotonicity 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "找到 Furtado 等 2026 Discrete Mathematics 论文刊方条目，随后经作者主页取得全文。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A0836-Q04",
+      "route": "学术",
+      "site": "Web search / system1；recency=1460",
+      "query": "\"Hollom\" \"monotonicity\" (correction OR erratum OR retraction OR solved)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回原论文及作者机构记录，没有取得一手撤回/勘误声明；后续核 arXiv v2 与刊方排版稿。有限查询不等同证明不存在勘误。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A0836-Q05",
+      "route": "学术",
+      "site": "Web search / system1；recency=730",
+      "query": "\"vertex colouring game\" \"monotonicity\" 2025 2026 proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未从返回结果取得全体有限图标准游戏的完整证明或反例稿；相关图类和游戏变体逐项另核。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A0836-Q06",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"Coloring game on complete multipartite with singletons and equal sized parts\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中作者 Celina de Figueiredo 的公开出版物列表及 PDF 链接。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A0836-Q07",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"coloring game\" \"complete\" \"monotonicity\" \"2026\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回完全多部图论文和 greedy/普通游戏比较的公开声明。后者入口已交代码路线，不以题名相似判定主问题解决。",
+      "url": "https://hexagonmath.org/2611.00872v1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A0836-Q08",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"2610.29650\" site:arxiv.org",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "本次域名限定检索没有取得可核的官方结果；不据此认定 arXiv 记录不存在。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "A0836-Q09",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"115291\" (\"correction\" OR \"erratum\" OR \"retraction\") \"coloring\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中原论文以及同文章号但不同期刊的医药勘误；后者按刊名/DOI 排除。未取得本数学论文的一手更正文本。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A0836-Q10",
+      "route": "学术",
+      "site": "Web search / system1；recency=730",
+      "query": "\"vertex coloring game\" monotonicity counterexample 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回 ordered / majority 变体材料和其他图类工作；没有取得标准游戏一般调色板单调性的完整反例稿。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A0836-Q11",
+      "route": "学术",
+      "site": "Cambridge institutional repository",
+      "query": "open https://api.repository.cam.ac.uk/server/api/core/bitstreams/783c410d-beaf-4192-a97a-7ca47e08335f/content；定位 Introduction、Question 1.1、Theorems 1.3–1.4",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "已取得 8 页正式论文：Maker=Alice 先手；双方合法逐点着色；全部完成 Maker 胜，任一未染点无合法颜色 Breaker 胜。Question 1.1 与主问题一致；该问未被本文解决。",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/783c410d-beaf-4192-a97a-7ca47e08335f/content",
+      "locator": "印 pp.131–132；Introduction、Question 1.1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "A0836-Q12",
+      "route": "学术",
+      "site": "Cambridge institutional repository",
+      "query": "open https://api.repository.cam.ac.uk/server/api/core/bitstreams/783c410d-beaf-4192-a97a-7ca47e08335f/content at line 80；find Lemma 3.1；find 5.",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "读 arboricity 边染色单调定理、ordered 定义与 H_r 构造、connected 变体以及未来问题。只把有额外顺序或连通性约束的反例用于排除误归类。",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/783c410d-beaf-4192-a97a-7ca47e08335f/content",
+      "locator": "Theorem 2.1 pp.133–134；Definition 3.1、Lemmas 3.2–3.3 pp.134–135；§5 p.136",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A0836-Q13",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2308.03528",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "核版本史：v1 2023-08-07，v2 2024-11-08；摘要仍明示未解决普通顶点染色主问题。",
+      "url": "https://arxiv.org/abs/2308.03528",
+      "locator": "abstract、submission history",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A0836-Q14",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/html/2308.03528v2；find Theorem 1.4；find Lemma 3.2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核 v2 规则与 Question 1.1，并读 ordered 范围；Thm 1.4 标头仍写 any integer k，而后续证明只覆盖 k=3 和 k>3。",
+      "url": "https://arxiv.org/html/2308.03528v2",
+      "locator": "§§1–3；Definition 3.1；Theorem 1.4 proof",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "A0836-Q15",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2610.29650",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "返回 DisabledError；没有读到官方摘要或版本信息。",
+      "url": "https://arxiv.org/abs/2610.29650",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "A0836-Q16",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/html/2610.29650v1；open https://arxiv.org/pdf/2610.29650；open https://export.arxiv.org/abs/2610.29650",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "官方 HTML/PDF 返回 DisabledError，export 端点不可访问。保留该书目同一性缺口，不以搜索镜像直接替代官方版本核查。",
+      "url": "https://arxiv.org/abs/2610.29650",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "A0836-Q17",
+      "route": "学术",
+      "site": "ScienceDirect",
+      "query": "open https://www.sciencedirect.com/science/article/pii/S0012365X26003158",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "note": "网页正文返回 403；搜索返回的刊方元数据固定 DOI 10.1016/j.disc.2026.115291。全文后经作者公开 PDF 成功取得。",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0012365X26003158",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "A0836-Q18",
+      "route": "学术",
+      "site": "作者主页 / UFRJ",
+      "query": "open https://pesc.coppe.ufrj.br/~celina/publications.html；click 对应论文 pdf (link 10)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得作者公开的 8 页期刊排版稿；标题、作者、DOI 与刊方条目匹配。",
+      "url": "https://pesc.coppe.ufrj.br/~celina/publications.html",
+      "locator": "2026 complete multipartite 论文链接",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A0836-Q19",
+      "route": "学术",
+      "site": "作者公开期刊稿 / UFRJ",
+      "query": "open https://pesc.coppe.ufrj.br/~celina/ftp/j/j.disc.2026.115291.pdf；find monoton；find Theorem；find Conjecture；open lines 20、345",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "核 Alice 先手标准规则、完全多部图定义、各类结果范围及 §5 末段。最后一段明确宣称完全多部图满足调色板单调性，且一般问题仍留待解决。文本 find monoton 先报无命中，但读取完整结论段实际找到了相关文字，未把 find 阴性当作论文没有此结果。",
+      "url": "https://pesc.coppe.ufrj.br/~celina/ftp/j/j.disc.2026.115291.pdf",
+      "locator": "pp.1–2 规则与 fixing move；§5 p.7 最后完整段",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A0836-Q20",
+      "route": "学术",
+      "site": "Cambridge PDF screenshot / arXiv PDF",
+      "query": "screenshot Cambridge published PDF page index 1；open https://arxiv.org/pdf/2308.03528v2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "视觉核正式版印 p132 的 Theorem 1.4 标头确实写 any integer k，没有 k≥3，非该处 OCR 丢符号；v2 PDF p3 与 HTML 相同。构造证明实际从 k=3 起。",
+      "url": "https://arxiv.org/pdf/2308.03528v2",
+      "locator": "正式版印 p132；v2 PDF p3 与 pp.6–8",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system1",
+      "query": "\"colouring game\" \"monotonicity\" Lean proof; recency=365",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "检出Hollom论文与Nov2026图类arboricity AI稿；前者交学术路线，后者核实际范围排除为主题全解。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system1",
+      "query": "\"graph colouring game\" \"Hollom\" github; recency=365",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "检出Hollom论文与Nov2026图类arboricity AI稿；前者交学术路线，后者核实际范围排除为主题全解。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system1",
+      "query": "\"game chromatic number\" \"monotone\" AI proof; recency=365",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "检出Hollom论文与Nov2026图类arboricity AI稿；前者交学术路线，后者核实际范围排除为主题全解。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repo:google-deepmind/formal-conjectures \"coloring game\"; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "只说明所列字串代码搜索无匹配，未宣称全部形式化生态不存在主题实现。",
+      "result_count": 0,
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repo:google-deepmind/formal-conjectures \"game chromatic\"; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "只说明所列字串代码搜索无匹配，未宣称全部形式化生态不存在主题实现。",
+      "result_count": 0,
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repo:google-deepmind/formal-conjectures \"colouring game\"; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "只说明所列字串代码搜索无匹配，未宣称全部形式化生态不存在主题实现。",
+      "result_count": 0,
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/6/clank-lab/commits/game-chromatic-arboricity-v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "发布ref解析到307cef5c4049c57132cd4d4134448858e87a6111（2026-11-19）。",
+      "url": "https://api.github.com/repos/6/clank-lab/commits/game-chromatic-arboricity-v1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system2",
+      "query": "site:huggingface.co \"1392\" \"coloring\"",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "命中ulamai/UnsolvedMath实际1392行，随后读viewer原文。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system2",
+      "query": "\"GRAPH-007\" \"monotonicity\"",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "与1392同题行匹配；随后核列名、旧编号及空来源字段。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system2",
+      "query": "\"vertex coloring game\" solver github monotonicity",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "检出边染色solver等异题入口，未见主题反例或全域证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system2",
+      "query": "site:github.com/google-deepmind/formal-conjectures \"colouring game\"",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "未见对应形式化文件候选；另已用三组GitHub代码检索交叉。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web / Hugging Face",
+      "query": "OPEN https://huggingface.co/datasets/ulamai/UnsolvedMath/viewer/default/train?p=3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取表头及1392实际行（经随后find定位）；不是仅凭文件名/搜索标题匹配。",
+      "url": "https://huggingface.co/datasets/ulamai/UnsolvedMath/viewer/default/train?p=3",
+      "locator": "id1392 / GRAPH-007 / statement / status / source fields",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web / Hexagon",
+      "query": "OPEN https://hexagonmath.org/2611.00872v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "原作者摘要：普通χg=5而greedyΓg=6，改变游戏规则，非普通k→k+1。",
+      "url": "https://hexagonmath.org/2611.00872v1",
+      "locator": "Abstract / Provenance / Version history",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/6/clank-lab/contents/results/game-chromatic-arboricity?ref=307cef5c4049c57132cd4d4134448858e87a6111",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "列README、lean、paper并按固定commit读代码。",
+      "url": "https://api.github.com/repos/6/clank-lab/contents/results/game-chromatic-arboricity?ref=307cef5c4049c57132cd4d4134448858e87a6111",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repo:openai/math \"coloring game\"; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "该关键词未命中；无同题完整证明候选。",
+      "result_count": 0,
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web / Hugging Face",
+      "query": "FIND viewer/default/train?p=3 pattern=\"1,392\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "准确读1392行及对应表头：简短statement与题卡逐字匹配；proposed_by/year、source_url/source_citation、solution_reference空。background有截断，未称raw全行已取。",
+      "url": "https://huggingface.co/datasets/ulamai/UnsolvedMath/viewer/default/train?p=3",
+      "locator": "1392行",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web / Hexagon",
+      "query": "CLICK https://hexagonmath.org/2611.00872v1 link11 (View PDF)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得8页PDF，随后按首段与后段定位读Theorem1及证书范围。",
+      "url": "https://hexagonmath.org/pdf/2611.00872v1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=6/clank-lab path=results/game-chromatic-arboricity/README.md ref=307cef5c4049c57132cd4d4134448858e87a6111",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整读取定义、图类闭包结论、显式Kühn–Osthus假设及作者AI披露。",
+      "url": "https://github.com/6/clank-lab/blob/307cef5c4049c57132cd4d4134448858e87a6111/results/game-chromatic-arboricity/README.md",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/6/clank-lab/contents/results/game-chromatic-arboricity/lean?ref=307cef5c4049c57132cd4d4134448858e87a6111",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "定位Main.lean后读取；没有下载全工程或复跑。",
+      "url": "https://api.github.com/repos/6/clank-lab/contents/results/game-chromatic-arboricity/lean?ref=307cef5c4049c57132cd4d4134448858e87a6111",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repo=6/clank-lab path=results/game-chromatic-arboricity/lean/Main.lean ref=307cef5c4049c57132cd4d4134448858e87a6111",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "读取Main完整文件及最终exists_subgraph_bob_wins/bounded_arboricity声明；不是一般AliceWins G k→AliceWins G(k+1)。未审所有import或构建。",
+      "url": "https://github.com/6/clank-lab/blob/307cef5c4049c57132cd4d4134448858e87a6111/results/game-chromatic-arboricity/lean/Main.lean",
+      "locator": "C4FreeSubgraphTheorem / exists_subgraph_bob_wins / bounded_arboricity",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web / Hexagon",
+      "query": "OPEN https://hexagonmath.org/pdf/2611.00872v1 lineno=0",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "读pp1–5的定理、游戏规则、11点27边图及有限证书证明；明确两种游戏比较。",
+      "url": "https://hexagonmath.org/pdf/2611.00872v1",
+      "locator": "Theorem1 / §2 / §4",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system1",
+      "query": "\"coloring game\" \"solver\" \"Alice\" github; recency=365",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "检出CS StackExchange的SAT/QBF方法讨论及边染色游戏solver，非本题全域数学证据。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web Search / system1",
+      "query": "\"colouring game\" \"monotonicity\" \"proof\" AI; recency=365",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "检出已交学术的Hollom以及邻近AI声称；未发现同规则k→k+1完整解候选。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web / Hugging Face",
+      "query": "CLICK viewer page link5 Files",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "打开dataset树；后续读取v1.8.0与当前commit，原JSON约80MB未下载。",
+      "url": "https://huggingface.co/datasets/ulamai/UnsolvedMath/tree/main",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web / Hexagon",
+      "query": "OPEN https://hexagonmath.org/pdf/2611.00872v1 lineno=184",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "读至末页：Theorem1证明明说不依赖普通winning palette单调性；§5三份证书为ordinary5 Alice、greedy5 Bob、greedy6 Alice。未取/运行这些证书。",
+      "url": "https://hexagonmath.org/pdf/2611.00872v1",
+      "locator": "§4 Theorem1 proof / §5 Table2",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web / CS StackExchange",
+      "query": "OPEN https://cs.stackexchange.com/questions/170899/encoding-whether-alice-has-a-winning-strategy-in-the-coloring-game-as-sat/170944",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整读问题和回答：Alice先手、双方合法着色、任何点blocked为Bob胜；仅讨论固定图/k的交替量词编码，没有主单调性证明或反例。",
+      "url": "https://cs.stackexchange.com/questions/170899/encoding-whether-alice-has-a-winning-strategy-in-the-coloring-game-as-sat/170944",
+      "locator": "question / accepted answer / comments",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web / Hugging Face",
+      "query": "OPEN https://huggingface.co/datasets/ulamai/UnsolvedMath/tree/main lineno=65",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "读文件树及v1.8.0；当前短hashd371ee9，数据格式JSON。",
+      "url": "https://huggingface.co/datasets/ulamai/UnsolvedMath/tree/main",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web / Hugging Face",
+      "query": "CLICK tree/main commit link51 d371ee9",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "取完整commit d371ee917ac9647fbb06cd6fc529deec6f3dda82；仅确认当前树版本，未把viewer缓存行冒称此commit原始JSON已验。",
+      "url": "https://huggingface.co/datasets/ulamai/UnsolvedMath/commit/d371ee917ac9647fbb06cd6fc529deec6f3dda82",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web / Hugging Face datasets-server",
+      "query": "OPEN https://datasets-server.huggingface.co/filter?dataset=ulamai%2FUnsolvedMath&config=default&split=train&where=%22id%22%3D1392",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具报告URL不可访问；viewer statement/字段已读取，但原始未截断row和其固定commit字节未取得。",
+      "url": "https://datasets-server.huggingface.co/filter?dataset=ulamai%2FUnsolvedMath&config=default&split=train&where=%22id%22%3D1392",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002879〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 2,
+      "note": "实际命中：QX-P-000836,QX-P-001228。只用索引筛选；最终强候选001228另读固定正文/meta，不由标题定同题。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002880〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 3,
+      "note": "实际命中：QX-P-000195,QX-P-000836,QX-P-001228。只用索引筛选；最终强候选001228另读固定正文/meta，不由标题定同题。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002881〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 14,
+      "note": "实际命中：QX-P-000034,QX-P-000399,QX-P-000514,QX-P-000836,QX-P-001211,QX-P-001228,QX-P-001515,QX-P-001718,QX-P-001720,QX-P-002131,QX-P-002136,QX-P-002168,QX-P-002172,QX-P-002269。只用索引筛选；最终强候选001228另读固定正文/meta，不由标题定同题。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内 current_task.json",
+      "query": "读取 QX-P-000836 的 card_text/card_metadata/prior_evidence 全文",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核当前题面、相互冲突的人话胜负条件、未定义χ_g^k与验收；不以旧OPEN字段作本轮状态依据。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/001/QX-P-001228.meta.json",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001228.meta.json",
+      "note": "固定全文已取得；Git blob SHA f588c98e4557f50baafd191b360294f26dd6a1b3",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/001/QX-P-001228.text.md",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001228.text.md",
+      "note": "固定全文已取得；Git blob SHA a42634c5c01f557d95e07f288a32d4da83898e37",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本地 Python 3",
+      "query": "对 K1、2 个孤立点、K2(k=1,2)、P4(k=2) 以递归极小极大计算 Alice 必胜性；分别运行标准规则、当前方遇堵点即输的混合规则、normal-play；P4另核Bob先手",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "仅五个指定小实例，不遍历所有图，不搜索未知主问反例。固定有序图、每步不跳过不改色，缓存完整状态；any/all短路仍返回精确minimax值。完整源码与输出嵌证据note。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本轮人工量词与度数计数",
+      "query": "定义W_A(G,k)；核k≥Δ(G)+1保证每个未染顶点有可用颜色，从而χ_g最小值定义不依赖单调性",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "独立逐点禁色计数证明；没有核定低色数主问。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O0836-HOLLOM-RULES",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/783c410d-beaf-4192-a97a-7ca47e08335f/content",
+      "locator": "正式版pp.131–132：游戏定义、Question1.1及其[23,Question1]回引",
+      "version": "Discrete Applied Mathematics347(2024),131–138；DOI10.1016/j.dam.2024.01.007，accepted2024-01-10；读取2026-11-27",
+      "subquestions": [
+        "主问题",
+        "原规则",
+        "提出人与出处"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "本轮已核实际定义及重述：双方轮流自由选未染点并用给定色板合法染色，Maker/Alice先手；全图染完Alice胜，任何未染点不可染Bob胜。它明确回引Zhu1999 Question1的颜色单调性。现卡人话‘轮到哪方有堵点就该方输’不符合此规则。作者说未解决普通顶点问题；Hollom确定定理范围由A0836另核。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "O0836-BODLAENDER",
+      "url": "https://ics-archive.science.uu.nl/research/techreps/repo/CS-1989/1989-27.pdf",
+      "locator": "技术报告图页印刷pp.2–3：abstract/introduction末段、Ordered COL及Ordered COL2定义",
+      "version": "Utrecht technical report RUU-CS-89-27，1989；1991发表信息仅作者机构书目核实，读取2026-11-27",
+      "subquestions": [
+        "不同胜负约定",
+        "来源校正"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读，未核关键步骤",
+      "note": "已渲染读取报告指定页面，未读全篇。论文明确分开normal-play无法行动者输与player1仅在全部染完时赢两种目标，而且这里定义的是按编号定序版本。题卡不能把这两种目标拼接，再归到Zhu式普通顶点单调性。背景引用Bodlaender不等于他是该单调问题原提出人。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "O0836-ZHU-TRACE",
+      "url": "https://www.math.nsysu.edu.tw/~zhu/papers/game/planar.pdf",
+      "locator": "作者稿首段搜索索引；正式版元数据；原Question1正文未取得",
+      "version": "作者稿标May1998/revisedAugust1998/printedJune4,1999（索引）；JCTB75(1999),245–258，DOI10.1006/jctb.1998.1878",
+      "subquestions": [
+        "提出人与历史原文"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "本记录只保存已核的书目和后续一手原文Hollom的明确回引，不假装已直接看到Zhu Question1页。作者PDF两种scheme均超时，刊方403，观察到的Wayback链接也不可达。应以O0836-HOLLOM-RULES提供本轮实际题面对应。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "O0836-BOUND",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/783c410d-beaf-4192-a97a-7ca47e08335f/content",
+      "locator": "以Introduction标准定义为前提的本轮有限性与边界推导",
+      "version": "2026-11-27独立数学核对",
+      "subquestions": [
+        "χ_g定义与高色数边界",
+        "k=1"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "令Win_A(G,k)表示标准空白初局Alice先手在恰给k种可用颜色时有必胜策略（并不要求实际全用完）。有限简单图若k≥Δ(G)+1，则任一未染v已着色邻居最多Δ(G)个，永远有可用色；每步染一个新点，至多|V|步全染完，故Alice必胜。于是{正整数k:Win_A(G,k)}非空，χ_g(G)=min该集合总能定义，完全不需要先假设它是上闭集。主问题正是是否Win_A(G,k)⇒Win_A(G,k+1)，不能以χ_g(G)≤k替换前件而循环论证。k=1时赢当且仅当图无边：有边则不可能完成合法1染色，无边则任何过程完成；故k=1→2的边界肯定，但不解决一般k。空图可约定初局已完成、Alice立即胜；k≥1避免0色约定分歧。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "A0836-E01",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/783c410d-beaf-4192-a97a-7ca47e08335f/content",
+      "locator": "Introduction 印 p131；Question 1.1 印 p132；§5 印 p136",
+      "version": "Lawrence Hollom, On monotonicity in Maker–Breaker graph colouring games；Discrete Applied Mathematics 347 (2024),131–138；DOI 10.1016/j.dam.2024.01.007；accepted 2024-01-10；本轮 2026-11-27 读 Cambridge 正式公开版",
+      "subquestions": [
+        "主问题",
+        "标准规则与题卡人话"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读，未核关键步骤",
+      "note": "文中 Maker 与 Breaker 即 Alice 与 Bob，Maker 先手；合法顶点着色；全部完成 Maker 胜，任一未染顶点不可着色 Breaker 胜。Question 1.1 正是 k 色 Alice 必胜是否推出 k+1 色必胜；该文明确没有解决它。不能只因 Maker–Breaker 名称把这条主问误当另一个变体。作者将提问溯源 Zhu 1999，原始提出由根代理另核。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "A0836-E02",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/783c410d-beaf-4192-a97a-7ca47e08335f/content",
+      "locator": "Theorems 1.3、2.1；§2 印 pp.132–134",
+      "version": "Hollom, Discrete Applied Mathematics 347 (2024),131–138；DOI 10.1016/j.dam.2024.01.007",
+      "subquestions": [
+        "arboricity 变体"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读，未核关键步骤",
+      "note": "肯定的单调性定理是对边着色且每个颜色类须为森林的 arboricity game。其 Breaker k+1→k 的 imagination strategy 是该边游戏的证明，不能移植成普通顶点 proper-colouring game 已获解决。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "A0836-E03",
+      "url": "https://arxiv.org/pdf/2308.03528v2",
+      "locator": "Theorem 1.4 PDF p3；Definition 3.1 pp.5–6；Lemmas 3.2–3.3、Figure 1、构造证明 pp.6–8；对照正式版 pp.132、134–135",
+      "version": "arXiv:2308.03528v2，2024-11-08；v1 2023-08-07；与 2024 正式稿相关条文对照",
+      "subquestions": [
+        "ordered 反例范围",
+        "定理头部量词核对"
+      ],
+      "role": "反例",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读，未核关键步骤",
+      "note": "固定顶点线性顺序的 ordered 游戏中，H_r 有 2r+7 个顶点，Maker 用 3 色胜而 Breaker 用 3+r 色胜；r=1 给 3→4 非单调例。随后加前缀构造覆盖 k≥3、l>k。不能删除固定顺序限制。正式版截图和 v2 的 Thm 1.4 标头均写 any integer k，但已读证明只从 k=3 起；k=1 若 Maker 能全染则图无边，多色仍必胜，故本轮不接受字面任意 k 的扩大范围，待作者/勘误核对。未独立重跑 H_r 博弈树或 connected 数值反例。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "A0836-E04",
+      "url": "https://pesc.coppe.ufrj.br/~celina/ftp/j/j.disc.2026.115291.pdf",
+      "locator": "规则 p1；fixing move 定义 p2；§5 Conclusion p7 最后一段",
+      "version": "Ana L. C. Furtado、Simone Dantas、Celina M. H. de Figueiredo、Miguel Del-Rio-Palma, Coloring game on complete multipartite with singletons and equal sized parts；Discrete Mathematics 349(12) (2026),115291；DOI 10.1016/j.disc.2026.115291；received 2025-08-26，revised 2026-06-11，accepted 2026-06-16；作者公开期刊排版 PDF；具体 online 日期本轮未从一手元数据核出",
+      "subquestions": [
+        "主问题",
+        "完全多部图特例"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "论文 p1 是 Alice 先手的标准顶点染色游戏；§5 末段明确给完全多部图的颜色数单调性，说明一旦每部已有已染点即出现 fixing move，之后各部可复用其已有颜色。本轮对该短论证补核：把 q+1 色实际局中已出现颜色动态重命名到 q 色虚拟局，跟随已知 q 色 Alice 必胜策略；若用满 q 种颜色时仍有整部未触及，该部在虚拟局邻接全部已用颜色、已不可染，与胜策矛盾。因此首次使用第 q+1 种颜色前必已触及所有部，之后无法堵死。只核此单调性关键步骤，未独立审完本文其他精确 χ_g 公式。图类限制不能删去；不是一般图完整解。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "C0836-01",
+      "url": "https://huggingface.co/datasets/ulamai/UnsolvedMath/viewer/default/train?p=3",
+      "locator": "列名表头；id1392、problem_number GRAPH-007、old_problem_number GRAPH-005行",
+      "version": "2026-11-27读取viewer；同轮仓库树v1.8.0 / d371ee917ac9647fbb06cd6fc529deec6f3dda82；未验证固定commit原JSON行",
+      "subquestions": [
+        "主问题",
+        "旧卡HF来源追溯"
+      ],
+      "role": "重述",
+      "publication": "二手索引",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "note": "已实际读取英文问句，与题卡原文完全匹配；不是只看标题。行status=open，proposed_by/year、source_url/source/source_citation及solution_reference均空。它可以补回可追溯HF入口，不能独立证明当下开放或Bodlaender为最早出处；2024-01-01的created/updated字段不能当数学首次提出日。background显示截断；filter API不可达，未取得完整raw行或数据字节绑定。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_state": "none",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "secondary_index"
+      }
+    },
+    {
+      "evidence_id": "C0836-02",
+      "url": "https://github.com/6/clank-lab/blob/307cef5c4049c57132cd4d4134448858e87a6111/results/game-chromatic-arboricity/lean/Main.lean",
+      "locator": "C4FreeSubgraphTheorem；exists_subgraph_bob_wins；bounded_arboricity；同目录README",
+      "version": "307cef5c4049c57132cd4d4134448858e87a6111，tag game-chromatic-arboricity-v1，2026-11-19",
+      "subquestions": [
+        "图类对子图封闭与有界arboricity（邻近问题）"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "Peter Graham / 6/clank-lab（披露OpenAI及Anthropic模型协助）",
+      "claim_date": "2026-11-19",
+      "rerun": {
+        "commit": "307cef5c4049c57132cd4d4134448858e87a6111",
+        "theorem": "GCG.exists_subgraph_bob_wins / GCG.bounded_arboricity",
+        "command": "未构建；仅固定commit读取README、Main.lean最终定理与证明体",
+        "axioms": "C4FreeSubgraphTheorem在两条最终声明中作为显式假设；本轮未#print axioms或审计全部import"
+      },
+      "note": "实际最终定理：∀K∃d，高平均度图有某子图H对所有k≤K都使Alice败；继而对子图封闭且每图某k≤K使Alice胜的图类给统一arboricity界。这里monotone是图类对取子图封闭，不是同一G上palette k→k+1。没有声称或提供主问题的策略转移或反例；邻近定理的正确性本轮未认证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C0836-03",
+      "url": "https://hexagonmath.org/pdf/2611.00872v1",
+      "locator": "Theorem1（印刷p1）；§2 Games and proof overview；p5 Theorem1证明；§5 Table2",
+      "version": "hexagon:2611.00872v1；页面Nov23,2026；PDF自报Oct23首发、Oct29修订",
+      "subquestions": [
+        "普通与greedy染色博弈比较（邻近问题）"
+      ],
+      "role": "反例",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Peter Graham（披露AI生成证明、程序与文本；未专家审稿）",
+      "claim_date": "2026-10-23",
+      "note": "读8页稿的定理、规则及证书范围：11点27边图满足普通χg=5、greedyΓg=6。普通双方可选任意合法颜色，greedy必须选最小可用色；它比较同5色的不同规则，不是普通5色Alice胜而普通6色Bob胜。§4明确不使用普通winning palette单调性。三份证书仅ordinary5/Alice、greedy5/Bob、greedy6/Alice。本轮未下载或复跑证书；作为异题声明排除，不给主问题结案。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "C0836-04",
+      "url": "https://cs.stackexchange.com/questions/170899/encoding-whether-alice-has-a-winning-strategy-in-the-coloring-game-as-sat/170944",
+      "locator": "2025-01-04问题；2025-01-08回答与后续QBF评论",
+      "version": "2025-01-04–12帖子；2026-11-27读取",
+      "subquestions": [
+        "固定图固定palette的博弈计算方法"
+      ],
+      "role": "进展",
+      "publication": "社区帖子",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "note": "提出标准Alice先手、双方合法着色、任一未染点不可染即Bob胜的规则，并讨论minimax/SAT/QBF交替量词表示。没有展示k→k+1全域证明、反例图或已核有限策略证书；不可将可计算固定实例推为一般单调性。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_state": "none",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "D0836-SELF",
+      "url": "https://www.qunxingmath.org/p/QX-P-000836/",
+      "locator": "本包 current_task.json：题面、人话、形式化、边界、metadata.acceptance 与 difficulty.note",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=8166660afec814ab",
+      "subquestions": [
+        "主问题",
+        "题面规则"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "review_status": "已读未核关键步骤",
+      "note": "主题面写 Bob 使某点无法合法着色则 Bob 胜；人话改成“轮到某方时存在无法着色的顶点则该方负”，胜负方向冲突。形式化χ_g^k未定义，先手、有限简单图与k域没完整写出；边界又提Bob先手细节。metadata.difficulty.note说博弈色数定义依赖k单调性，但最小必胜k的存在无需先证必胜集合向上封闭。此证据只作题卡内部审校，不核该题最新数学状态。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D0836-C001228",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001228.text.md",
+      "locator": "固定全文题面、AliceWin形式化、人话、原文摘录、边界与 metadata.acceptance",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=b29f80e0edcaa6df; text_sha=a42634c5c01f557d95e07f288a32d4da83898e37; meta_sha=f588c98e4557f50baafd191b360294f26dd6a1b3",
+      "subquestions": [
+        "主问题",
+        "查重候选001228"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "review_status": "已读未核关键步骤",
+      "note": "001228 题名、形式化与验收均指Alice颜色数加一单调性，摘录明确Alice先手；但人话写“无合法落子者输”的normal-play，边界又写Alice完成全图获胜，并混入没有定义的Bob改色次数。与当前836有相同题意，但固定版本规则存在实质残缺/冲突。按完整固定文本不能在不修正规则时直接标严格同题。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D0836-SMALLGAMES",
+      "url": "https://www.qunxingmath.org/p/QX-P-000836/",
+      "locator": "本轮独立小图博弈树：K1、2孤立点、K2、P4；源码及输出全嵌 note",
+      "version": "2026-11-27（Asia/Shanghai）；Python 3；目标 card_rev=8166660afec814ab",
+      "subquestions": [
+        "主问题",
+        "胜负规则与先手小例"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "review_status": "本轮独立数学核对",
+      "note": "本轮独立的有限游戏树核验，只用于分清规则，不把错误规则的反例当标准主问反例。\nstandard：Alice先手（另标的对照除外）；两方每步给一个未染点合法上色，不跳过、不改色。全部顶点完成即Alice胜，无论最后一手是谁；只要仍有一个未染点被邻居用满k色即Bob胜，无论谁刚走或下一轮谁走。\nblocked_player_loses：为了精确模拟836错误人话，仍保留全染完Alice胜，但若轮到某方时已有堵点，则该方输。\nnormal_play：模拟1228错误人话，当前方若没有任何合法落子则输；全图染完后也按下一手无子可走决定，不额外给Alice完成全图奖赏。\nK2、k=1：Alice染一端后另一端被堵，标准立刻Bob胜；另外两种规则轮到Bob无合法着色，反而Alice胜。K2、k=2：标准必完成而Alice胜；normal-play恰走两手后Alice无子可走，Bob胜。因此normal-play在同一K2上出现“1色Alice胜、2色Alice败”，这是规则误写制造的伪主问反例。\n两个孤立点、1色：标准无论策略完成全图Alice胜；normal-play按两手的奇偶性判Alice负。说明“谁最后走”不是标准Alice目标。\nP4、2色的完整局部minimax值为Alice先手负、Bob先手时Alice正，说明先手约定会实质改变同一小图的结果。此点不蕴含色数单调性结论。 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "D0836-RULES",
+      "url": "https://www.qunxingmath.org/p/QX-P-000836/",
+      "locator": "本轮独立规则/量词审校及k≥Δ+1平凡上界",
+      "version": "2026-11-27（Asia/Shanghai）；目标 card_rev=8166660afec814ab",
+      "subquestions": [
+        "主问题",
+        "定义与高色数边界"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅某子问",
+      "review_status": "本轮独立数学核对",
+      "note": "独立定义及量词建议（与原始规则路线合并后作为修订稿）：G是有限简单图，k为正整数；Alice先手。每手由当前玩家选一个未染顶点和k色中的一种，保持相邻已染顶点不同色；不允许跳过或改色。全图完成为Alice胜；存在未染顶点因已染邻居覆盖全部k色而无合法颜色为Bob胜，胜负不按当前玩家身份交换。\n用W_A(G,k)表示Alice对Bob所有合法策略都能保证全图完成，命题为∀有限简单G∀k≥1，W_A(G,k)⇒W_A(G,k+1)。χ_g^k(G)<∞不是本卡已定义的量，应用明确谓词代替。一般图域不应偷偷扩为无限图，因为有限步终局与策略验收均会变化；若含空图，按全图已完成约定Alice起局即胜，单调性平凡。\n博弈色数χ_g(G)=min{k≥1:W_A(G,k)}不要求先证明W_A对k向上封闭。对非空有限简单图，若k≥Δ(G)+1，则任何未染顶点的已染邻居至多Δ(G)个，至多禁用Δ(G)种颜色，始终有合法颜色；游戏每手增加一个已染顶点，至多|V|手全图完成，因此Alice必胜，必胜k集合非空且有最小正整数。此结论只是高色数平凡范围，不能据此推出任意较小k的加色单调性。\n一个反例证书若针对正确主问，需同一明确G、同一Alice先手规则与某k，分别给k色Alice的强制获胜策略和k+1色Bob的强制获胜策略/经独立验证的完整游戏树。仅找到某一失败对局、有限随机样本或把normal-play反例套入均不够。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001228",
+      "other_card_rev": "b29f80e0edcaa6df",
+      "relation": "同意图但残缺",
+      "reason": "已读双方固定正文和metadata：均以Alice的k⇒k+1必胜性为意图；但836主题面是Bob堵点即胜、其人话按轮到谁判负，1228人话是normal-play而边界又要求Alice完成全图。先手、改色和胜负不统一，不能按现文本直接裁定严格同题。",
+      "positions": {
+        "self": "题面；人话第1段；χ_g^k形式化；边界Bob先手；metadata.acceptance",
+        "other": "题面/AliceWin形式化/原文摘录；人话无合法落子者输；边界Bob改色与全图完成"
+      },
+      "note": "pair_key=QX-P-000836__QX-P-001228；较小编号000836负责；D0836-SELF,D0836-C001228,D0836-SMALLGAMES。先修正规则并生成新版本后可复核严格同题/主卡关联，不在本轮合并题卡。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "duplicate_relation": "same_intent_incomplete"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "proposer / sources / 原文摘录",
+      "old": "社区；HF id1392；Bodlaender1991背景，无可访问出处",
+      "new": "补Zhu1999《The game coloring number of planar graphs》Question1的正式书目，并引用本轮实际可读Hollom2024 Question1.1及标准规则重述；Zhu原Question1页待直接核验，HF记录另作数据来源。",
+      "reason": "背景框架、数据导入来源与问题提出来源应分清；Hollom明确回引Zhu1999，Bodlaender报告又同时讨论多种目标。",
+      "evidence_ids": [
+        "O0836-HOLLOM-RULES",
+        "O0836-BODLAENDER",
+        "O0836-ZHU-TRACE"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "card_text.人话版胜负条件",
+      "old": "若某一步轮到某方时存在无法着色的顶点，则该方判负。",
+      "new": "若有未染顶点因邻居用满全部k色而无法合法着色，则Bob获胜；如果全部顶点最终完成合法着色，则Alice获胜，无论最后一步由谁完成。",
+      "reason": "原人话把不对称目标改成依轮到谁判负，改变胜负。",
+      "evidence_ids": [
+        "D0836-SELF",
+        "D0836-SMALLGAMES",
+        "D0836-RULES"
+      ],
+      "small_case_check": "K2、1色：Alice首步造成另一端堵点，标准Bob胜，原人话却判接下来轮到的Bob负。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "修复公式",
+      "field": "card_text.形式化表述",
+      "old": "χ_g^k(G)<∞（k 色可完成）⟹ χ_g^{k+1}(G)<∞ ?",
+      "new": "∀有限简单图G，∀正整数k，W_A(G,k)⇒W_A(G,k+1)，其中W_A按Alice先手、双方逐点合法染色、全图完成Alice胜/任一堵点Bob胜定义。",
+      "reason": "χ_g^k未定义，不能替代固定k的策略存在谓词；正确判定需对Bob所有合法策略量化。",
+      "evidence_ids": [
+        "D0836-SELF",
+        "D0836-RULES",
+        "D0836-SMALLGAMES"
+      ],
+      "small_case_check": "P4静态可2染色，但标准Alice先手2色必败；故必须写对Bob全部策略取量词的W_A，不能只说存在可完成染色。K2一色的胜负又区分标准与人话混合规则。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "card_action": "fix_formula"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text.边界与约定",
+      "new": "固定有限简单图、k≥1、Alice先手、每手一顶点、不跳过且不改色。空图按完成全图处理；Bob先手版本单列，不与本命题混合。",
+      "reason": "先手与终局条件会改变同一小图胜负；旧边界Bob先手和候选的改色次数未定义。",
+      "evidence_ids": [
+        "D0836-SELF",
+        "D0836-SMALLGAMES",
+        "D0836-RULES"
+      ],
+      "small_case_check": "P4、2色：标准Alice先手时Alice负，Bob先手时Alice胜；完整局部游戏树已记录。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "card_metadata.difficulty.note 中χ_g定义依赖单调性之句",
+      "old": "博弈染色数 χ_g 定义依赖 k 的单调性假设",
+      "new": "χ_g可定义为Alice必胜的最小正整数色数；其存在由k≥Δ(G)+1保证，不依赖必胜色数集合是否向上封闭。",
+      "reason": "最小值存在与加一单调性是不同命题。",
+      "evidence_ids": [
+        "D0836-SELF",
+        "D0836-RULES"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "与QX-P-001228的关系",
+      "new": "先统一双方标准规则和先手并生成新card_rev，再由较小编号000836侧重新判断是否严格同题；当前保留同意图但残缺，不作合并或主卡判定。",
+      "reason": "两卡意图相同，但当前完整文本中的胜负规则冲突可由K2直接区分。",
+      "evidence_ids": [
+        "D0836-SELF",
+        "D0836-C001228",
+        "D0836-SMALLGAMES"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "card_text/已知结果与进展",
+      "old": "maker-breaker 版单调性与一般顶点染色博弈分列；Hollom 2024：maker-breaker 染色博弈 Breaker k+1 色策略转移技术。",
+      "new": "Hollom (2024) 的 Maker–Breaker 普通顶点游戏就是 Alice/Bob 标准游戏，其 Question 1.1 与本题相同。已证单调的对象是 arboricity 边游戏；非单调构造属于预先固定顶点顺序的 ordered 变体（明确构造 k≥3），不能当作普通游戏反例。",
+      "reason": "玩家名称不构成规则变更，必须按着色对象、合法性和顺序限制分类。",
+      "evidence_ids": [
+        "A0836-E01",
+        "A0836-E02",
+        "A0836-E03"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "card_text/已知结果与进展、sources",
+      "new": "补 Furtado–Dantas–de Figueiredo–Del-Rio-Palma (2026), DOI 10.1016/j.disc.2026.115291；该文 Conclusion 最后段给完全多部图的颜色数单调性。原卡 arXiv:2610.29650 的官方身份和版本本轮读取失败，暂不作为这篇完全多部图论文的标识。",
+      "reason": "已取得匹配题名与 DOI 的作者公开全文；特殊图类肯定结论是主问的局部进展，号码相近或二手索引不可替代书目核验。",
+      "evidence_ids": [
+        "A0836-E04"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "informal_status、card_text/相关进展与声称解决",
+      "old": "open / confirmed；一般情形开放。",
+      "new": "本轮核到完全多部图肯定特例与有关变体结果；在列明查询和已读原文范围内未取得一般图主问的完整解决确证。论文中‘开放’表述保留各自版本日期，不据有限阴性检索升级为 2026-11-27 确认开放。",
+      "reason": "数学结论、论文当时陈述与本轮检索覆盖应分别记载。",
+      "evidence_ids": [
+        "A0836-E01",
+        "A0836-E04"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "sources / HF来源",
+      "old": "HF id=1392，无URL；GRAPH-007",
+      "new": "ulamai/UnsolvedMath viewer/default/train?p=3，id1392、GRAPH-007、旧编号GRAPH-005；用该入口追溯题卡短问句。",
+      "reason": "实际行正文与题卡匹配；该数据没有原始proposer/year/source citation，须另用原论文补历史。",
+      "evidence_ids": [
+        "C0836-01"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "related work / AI claims范围注",
+      "new": "邻近AI稿分别为图类arboricity和普通/greedy参数比较，按同源不同问记，不能归入本题已解决。",
+      "reason": "monotone含义及game规则不同，实际定理未给同G同规则k→k+1转移或反例。",
+      "evidence_ids": [
+        "C0836-02",
+        "C0836-03"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "当前题卡版本的胜负目标、先手和策略谓词不一致，直接称PASS或按错误normal-play举反例会改变问题。",
+      "next_step": "将修订建议交题卡维护者二审，固定新card_rev；按规则重查受影响的原题、学术和代码对应。保留本回执绑定旧rev，不把旧哈希直接迁移到新题面。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "Zhu1999原稿Question1页的直接读取被超时/403/存档不可访问挡住；当前同题对应和提出年份由Hollom正式原文清楚回引。",
+      "next_step": "若需原始提出的逐字/页码复核，取得作者稿或正式排印版Question1；保留当前已读后续一手重述，不把访问失败补写成全文已阅。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "题卡 arXiv:2610.29650 的官方 abs、HTML、PDF 均无法读取；非官方索引给出 connected corona-products 题名，与完全多部图关联疑似混淆，但未取得官方原件。",
+      "next_step": "以后官方端点恢复时核题名、作者、版本和所述定理；目前完全多部图进展使用已取得的 DOI 10.1016/j.disc.2026.115291 全文，不把 2610.29650 当作已核相同文献。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Hollom Theorem 1.4 的正式版截图与 arXiv v2 标头均缺 k≥3，而构造只覆盖 k≥3；定向检索未取得作者正式勘误。",
+      "next_step": "若要精确转录此 ordered 变体定理的全量词，应查作者更正或原始源文件；当前只引用 H_1 的 3→4 或已证明 k≥3 范围，不传播字面‘任意整数 k’。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮核完全多部图单调性的关键策略及 Hollom 的规则/结果范围，未复跑各图的完整博弈树，也未逐一审完 2026 论文其余精确游戏色数公式。",
+      "next_step": "仅在后续要把具体图、具体数值公式提升为独立验证证书时补全算法或证明审计；这些未复跑不影响本轮区分标准游戏与变体。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "近期完整解、撤回与勘误查询为记录中的固定请求；没有遍历所有数据库和非公开稿件。",
+      "next_step": "有新增同规则的完整声明时固定文献版本，核先手、自由选点、固定调色板、立即阻塞获胜等条件后再评估，不把本轮阴性当作无解证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "HF viewer已读完整短statement及关键字段，background被截断，datasets-server filter不可访问；未下载原始约80MB JSON。",
+      "next_step": "若要保存与固定数据commit绑定的完整原始HF记录，再从d371ee917ac9647fbb06cd6fc529deec6f3dda82的dataset.json抽id1392；目前仅把已读字段当追溯证据，不用空来源字段推断提出人或年代。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮未检到主题形式化工程；邻近AI代码只做statement范围检查，未构建、未复跑策略证书。",
+      "next_step": "保持‘本轮范围未发现主题确证’；仅当出现同一胜负规则且有普通k/普通k+1结果的实质候选时，再固定代码/证书及全分支覆盖进行独立复跑。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "001228与当前题同意图，但现有固定版本的normal-play、堵点判负、先手/改色说明互相冲突。",
+      "next_step": "保留pair_key=QX-P-000836__QX-P-001228及双方旧版本。用本轮一手规则证据统一题面并生成新版本后，再复核是否严格同题与主卡关系；不启动001228的新一轮查新，不按错误规则合并或判主问已反驳。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "8166660afec814ab",
+      "codes": {}
+    }
+  ]
+}

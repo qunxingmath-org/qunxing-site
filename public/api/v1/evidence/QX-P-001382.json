@@ -1,0 +1,2072 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001382",
+  "card_rev": "818c56d6b662969e",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-07"
+      ],
+      "parts": [
+        {
+          "subquestion": "全维较弱体积阈值",
+          "value": "partial",
+          "note": "Milman–Pajor Corollary3(2) 给 vol(K∩(-K))≥2^(-n)vol K。若 vol K>4^n，令 C=K∩(-K)，则 C 为原点对称凸体，C⊂K∪(-K)，vol C>2^n。4^n 高于原题阈值 α_n，因此没有覆盖全部 vol K>α_n 的情形。这里附加的是输入体积假设，不是论文未经证明的假设。"
+        },
+        {
+          "subquestion": "n=2 的几何构造",
+          "value": "partial",
+          "note": "对任意平面重心零凸体 K，先由连续径向差取得原点二等分弦。选弦的一侧 A，使 A∪(-A) 凸（支持线相交侧；平行时任取）。Winternitz 每半面积≥4/9 area K，故 C=A∪(-A)⊂K∪(-K)，area C=2area A≥8/9 area K。因此 area K>9/2 时 area C>4，正好给出 n=2 原阈值。该结论是对 E02/E03 平面构造的独立串接，不是从“格点面积≤9/2”反推。原始1955论文未取得，不宣称读过。"
+        },
+        {
+          "subquestion": "平面半体反射凸性的独立核查",
+          "value": "partial",
+          "note": "把被原点二等分的弦线性归一化为[-1,1]×{0}。K 的水平截面是 [l(y),r(y)]，l凸、r凹，w=r−l凹，且 l(0)=-1,r(0)=1。由 w'_-(0)≥w'_+(0)，至少有 w'_+(0)≤0 或 w'_-(0)≥0。第一种取上半体；其反射并的右边界在0的左导数是 l'_+(0)，右导数是 r'_+(0)，前者≥后者，凹接缝成立；左边界对应凸接缝也成立。第二种对下半体反射后同理。故至少一半反射并为凸体。这样修补网页任意选线可能遗漏的条件，不把任意过重心的弦都当作对称弦。 主节点独立核：0在满维凸体内部，l、r在0附近有限，所用单侧导数存在；左右边界各自凸/凹且在0连续，接缝不等式确使整个反射并凸。外部输入Winternitz的4/9比例按作者讲义引用，本轮未重新证明该经典定理。"
+        },
+        {
+          "subquestion": "n=1 与原点对称 K",
+          "value": "partial",
+          "note": "n=1 的重心零区间已经原点对称，直接取 C=K。任意维若另假设 K=-K，也可取 C=K，因为 AM–GM 给 n!≤((n+1)/2)^n，从而 α_n≥2^n。故旧卡首句把重心条件写成 K 中心对称，会使其误写版本变为直接成立，丢失原题实质。"
+        },
+        {
+          "subquestion": "任意维质心零单纯形子类",
+          "value": "partial",
+          "note": "T_n={x_i≥−1,Σx_i≤1}的体积为α_n、质心0；对Q_n=[−1,1]^n内每点按Σx_i≤1与否分情况，得Q_n⊆T_n∪(-T_n)。每个质心0单纯形K=A T_n，取C=AQ_n，volC=2^n volK/α_n>2^n。核的是整个立方体的包含而非只验顶点；没有一般凸体或最优体积结论。"
+        },
+        {
+          "subquestion": "容器与严格门槛的独立小例",
+          "value": "partial",
+          "note": "二维K=(11/10)conv{(-1,-1),(2,-1),(-1,2)}，质心0、面积1089/200>9/2；C=(11/10)[−1,1]^2在union中，面积121/25>4；但K∩(-K)面积363/100<4。含完整半空间证明及实际Fraction面积核验，证明不能把union静默换成intersection。该例不是n>2原题反例。另(3,0)属于标准T−T而不属于T∪(-T)，区分差体。"
+        },
+        {
+          "subquestion": "与格点体积结果的逻辑方向",
+          "value": "partial",
+          "note": "本轮核得union命题借Minkowski定理蕴含唯一内格点体积上界；反向蕴含未建立。2026格点结果即使验证成立，也须另给对任意重心0凸体构造/存在C的论证，不能凭同常数与同作者名迁移。"
+        },
+        {
+          "subquestion": "相关2026格点体积定理的公开完整声明与形式化范围",
+          "value": "claimed_resolution",
+          "note": "取得OpenAI更新2026-08-06的报告与固定commit94bc0f… Lean代码。其主定理额外假设intK∩Z^n={0}，结论为volK≤α_n；没有无格点前提的union内C存在性。已静态核定义、最终statement、作者manifest和Comparator配置；未复跑Lean/Comparator/Nanoda，未独立核整段证明或实际公理依赖。仅记录相关问题完整证明声称，不是本题的全解声称或本轮独立形式化认证。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/openai/ten-proofs/blob/94bc0feb6a9ff12c7d31d6de640a725c9d43d2b6/EhrhartVolumeInequality.lean"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "当前card_rev818c56d6b662969e首句把“重心在原点”写成“K关于原点中心对称”，与人话/形式化及已读授权重述不一致。后者会使字面版本由AM–GM及C=K立即成立。原文要求C=-C且C⊆K∪(-K)，不是K本身、交集、凸包或差体；未解专节另限n>2。先保留P0纠错及新版本重核要求。意图原题的数学查新另列部分进展，不能把题面错误当作原问题被反驳。",
+      "evidence_ids": [
+        "O1382-REPRINT",
+        "D1382-SELF",
+        "D1382-SYMMETRIC-CASE",
+        "D1382-CONTAINERS"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "意图原题：任意n>2的重心零凸体及精确体积门槛",
+      "math_status": "部分进展",
+      "scope_note": "以α_n=(n+1)^n/n!，问每个重心0且volK>α_n的n维凸体是否有C=-C、C凸、C⊆K∪(-K)、volC>2^n。本轮确认n≤2、任意维单纯形子类及volK>4^n的肯定范围；未取得一般n>2精确门槛的完整证明或反例。旧索引的未解栏和本轮定向查询阴性均不作为2026仍开放的确证。相关2026格点结果另列，不迁移结论。",
+      "evidence_ids": [
+        "O1382-REPRINT",
+        "A1382-E01",
+        "A1382-E02",
+        "A1382-E03",
+        "D1382-SIMPLEX",
+        "C1382-01",
+        "C1382-02"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "全维较弱体积阈值",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "Milman–Pajor Corollary3(2) 给 vol(K∩(-K))≥2^(-n)vol K。若 vol K>4^n，令 C=K∩(-K)，则 C 为原点对称凸体，C⊂K∪(-K)，vol C>2^n。4^n 高于原题阈值 α_n，因此没有覆盖全部 vol K>α_n 的情形。这里附加的是输入体积假设，不是论文未经证明的假设。",
+      "evidence_ids": [
+        "A1382-E01"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "n=2 的几何构造",
+      "math_status": "仅特例",
+      "scope_note": "对任意平面重心零凸体 K，先由连续径向差取得原点二等分弦。选弦的一侧 A，使 A∪(-A) 凸（支持线相交侧；平行时任取）。Winternitz 每半面积≥4/9 area K，故 C=A∪(-A)⊂K∪(-K)，area C=2area A≥8/9 area K。因此 area K>9/2 时 area C>4，正好给出 n=2 原阈值。该结论是对 E02/E03 平面构造的独立串接，不是从“格点面积≤9/2”反推。原始1955论文未取得，不宣称读过。",
+      "evidence_ids": [
+        "A1382-E02",
+        "A1382-E03"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "平面半体反射凸性的独立核查",
+      "math_status": "仅特例",
+      "scope_note": "把被原点二等分的弦线性归一化为[-1,1]×{0}。K 的水平截面是 [l(y),r(y)]，l凸、r凹，w=r−l凹，且 l(0)=-1,r(0)=1。由 w'_-(0)≥w'_+(0)，至少有 w'_+(0)≤0 或 w'_-(0)≥0。第一种取上半体；其反射并的右边界在0的左导数是 l'_+(0)，右导数是 r'_+(0)，前者≥后者，凹接缝成立；左边界对应凸接缝也成立。第二种对下半体反射后同理。故至少一半反射并为凸体。这样修补网页任意选线可能遗漏的条件，不把任意过重心的弦都当作对称弦。 主节点独立核：0在满维凸体内部，l、r在0附近有限，所用单侧导数存在；左右边界各自凸/凹且在0连续，接缝不等式确使整个反射并凸。外部输入Winternitz的4/9比例按作者讲义引用，本轮未重新证明该经典定理。",
+      "evidence_ids": [
+        "A1382-E02",
+        "A1382-E03"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "n=1 与原点对称 K",
+      "math_status": "仅特例",
+      "scope_note": "n=1 的重心零区间已经原点对称，直接取 C=K。任意维若另假设 K=-K，也可取 C=K，因为 AM–GM 给 n!≤((n+1)/2)^n，从而 α_n≥2^n。故旧卡首句把重心条件写成 K 中心对称，会使其误写版本变为直接成立，丢失原题实质。",
+      "evidence_ids": [
+        "D1382-SYMMETRIC-CASE"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "任意维质心零单纯形子类",
+      "math_status": "仅特例",
+      "scope_note": "T_n={x_i≥−1,Σx_i≤1}的体积为α_n、质心0；对Q_n=[−1,1]^n内每点按Σx_i≤1与否分情况，得Q_n⊆T_n∪(-T_n)。每个质心0单纯形K=A T_n，取C=AQ_n，volC=2^n volK/α_n>2^n。核的是整个立方体的包含而非只验顶点；没有一般凸体或最优体积结论。",
+      "evidence_ids": [
+        "D1382-SIMPLEX"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "容器与严格门槛的独立小例",
+      "math_status": "仅特例",
+      "scope_note": "二维K=(11/10)conv{(-1,-1),(2,-1),(-1,2)}，质心0、面积1089/200>9/2；C=(11/10)[−1,1]^2在union中，面积121/25>4；但K∩(-K)面积363/100<4。含完整半空间证明及实际Fraction面积核验，证明不能把union静默换成intersection。该例不是n>2原题反例。另(3,0)属于标准T−T而不属于T∪(-T)，区分差体。",
+      "evidence_ids": [
+        "D1382-CONTAINERS"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "与格点体积结果的逻辑方向",
+      "math_status": "条件性结果",
+      "scope_note": "本轮核得union命题借Minkowski定理蕴含唯一内格点体积上界；反向蕴含未建立。2026格点结果即使验证成立，也须另给对任意重心0凸体构造/存在C的论证，不能凭同常数与同作者名迁移。",
+      "evidence_ids": [
+        "O1382-AI-SCOPE",
+        "O1382-IMPLICATION"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "相关2026格点体积定理的公开完整声明与形式化范围",
+      "math_status": "完整证明/反例声明待核",
+      "scope_note": "取得OpenAI更新2026-08-06的报告与固定commit94bc0f… Lean代码。其主定理额外假设intK∩Z^n={0}，结论为volK≤α_n；没有无格点前提的union内C存在性。已静态核定义、最终statement、作者manifest和Comparator配置；未复跑Lean/Comparator/Nanoda，未独立核整段证明或实际公理依赖。仅记录相关问题完整证明声称，不是本题的全解声称或本轮独立形式化认证。",
+      "evidence_ids": [
+        "C1382-01",
+        "C1382-02",
+        "O1382-AI-SCOPE",
+        "O1382-IMPLICATION"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Ehrhart\" \"6089\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/i315111",
+      "locator": "official issue table of contents",
+      "note": "命中1980 AMM87(6)p495条目，后续查目录及书目索引，不能只凭Solutions栏目认解决。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Ehrhart\" \"symmetric\" \"union\" convex body 1977",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://paulscott.info/lattice-points/8centreofgravity.html",
+      "locator": "search results",
+      "note": "命中格点体积问题及对称化讨论，另有多项式等噪声；没有直接获得本题完整解。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "direct original/source access",
+      "query": "open http://stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "http://stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "locator": "access attempt",
+      "note": "转https后502 Bad Gateway",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "direct original/source access",
+      "query": "open https://stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "locator": "access attempt",
+      "note": "502 Bad Gateway",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "direct original/source access",
+      "query": "open https://www.stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "locator": "access attempt",
+      "note": "not accessible",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "direct original/source access",
+      "query": "open http://www.stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "http://www.stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "locator": "access attempt",
+      "note": "转https后not accessible",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "direct original/source access",
+      "query": "open https://www.jstor.org/stable/2320274",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.jstor.org/stable/2320274",
+      "locator": "access attempt",
+      "note": "not accessible，1980同题条目正文未取得",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "direct original/source access",
+      "query": "open https://www.jstor.org/stable/pdf/2320274.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.jstor.org/stable/pdf/2320274.pdf",
+      "locator": "access attempt",
+      "note": "not accessible，未见原页",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "direct original/source access",
+      "query": "open https://doi.org/10.2307/2320274",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://doi.org/10.2307/2320274",
+      "locator": "access attempt",
+      "note": "not accessible",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "direct original/source access",
+      "query": "open https://www.tandfonline.com/doi/abs/10.1080/00029890.1980.11995081",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.tandfonline.com/doi/abs/10.1080/00029890.1980.11995081",
+      "locator": "access attempt",
+      "note": "403；这是未经身份确认的尝试性候选地址，未用作本题书目或证据",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "direct original/source access",
+      "query": "open https://www.jstor.org/stable/2318235",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.jstor.org/stable/2318235",
+      "locator": "access attempt",
+      "note": "not accessible，1976原期刊问题页未取得",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "JSTOR",
+      "query": "open https://www.jstor.org/stable/i315070",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/i315070",
+      "locator": "AMM83(4), April1976, Advanced Problems6084–6089",
+      "note": "官方目录给pp292–293及DOI10.2307/2318235，与Rabinowitz年代索引的6089原页293一致；卡1977应改1976。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"6089\" \"Ehrhart\" \"495\"; \"Ehrhart\" \"6089\" \"union\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/i315111",
+      "locator": "search results",
+      "note": "第一式同题1980目录命中；第二式未取得同题union正文，结果含无关labor union噪声，不作数学证据。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"2320274\" \"6089\"; \"problems_1975-1979.pdf\" Ehrhart; \"6089\" \"Ehrhart\" solution convex",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://mathoverflow.net/questions/27271/is-there-an-index-for-solutions-to-american-mathematical-monthly-problems/507020",
+      "locator": "search results and coeditor public-upload route",
+      "note": "命中作者/编者Mark Bowron公开发布免费电子索引的说明，给mathematrucker.com地址；随后实际取得书全文。该社区帖仅作为找到授权索引的导航。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "JSTOR",
+      "query": "open https://www.jstor.org/stable/i315111",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/i315111",
+      "locator": "AMM87(6), Jun–Jul1980, p495, 6089",
+      "note": "官方目录确有E.Ehrhart条目DOI10.2307/2320274置于Solutions of Advanced Problems，但栏目分类不是证明全文。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "JSTOR",
+      "query": "click 1976目录的XML44 https://www.jstor.org/doi/xml/10.2307/2318235; click 1980目录的XML41 https://www.jstor.org/doi/xml/10.2307/2320274",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/doi/xml/10.2307/2320274",
+      "locator": "returned one-line titles/redirects",
+      "note": "两项返回仅标题/一行摘要，不包含题文、证明或评论内容；没有算成原页已读。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Coeditor public website",
+      "query": "open http://www.mathematrucker.com/problems_1975-1979.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://mathematrucker.com/problems_1975-1979.pdf",
+      "locator": "520-page PDF; find6089; pp112,285,414",
+      "note": "成功恢复编者公开电子索引，刊有授权重述；首序注明电子版有修订、问题可能压缩改述，故不冒称取得1976原期刊扫描。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "ResearchGate author upload",
+      "query": "open https://www.researchgate.net/publication/267164498_Index_to_Mathematical_Problems_1975-1979",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.researchgate.net/publication/267164498_Index_to_Mathematical_Problems_1975-1979",
+      "locator": "author upload and PDF availability metadata",
+      "note": "显示Mark Bowron上传2018-11-11，网页无PDF预览；实际书内容来自其官网。网页March2002与PDF版权1999不混为已核出版日期。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Coeditor PDF",
+      "query": "find \"6089\"; find \"Jordan\"; screenshot PDF page indexes422,423,121,294",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://mathematrucker.com/problems_1975-1979.pdf",
+      "locator": "p112/PDFindex121, p414/PDFindex423, p285/PDFindex294; p413/PDFindex422为章节说明",
+      "note": "图页核明确centroid在原点、C关于原点对称、容器union。未解专节p414另限n>2；卡p413只是该章节标题页。年代索引1980p495c。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Coeditor PDF",
+      "query": "find \"comment\"; find \"unsolved in\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://mathematrucker.com/problems_1975-1979.pdf",
+      "locator": "p282/PDFindex291 code legend and p1 reading instructions",
+      "note": "c=comment，s=solution，x=partial solution；本题495c不能按s计。未解章节是该索引所用时间截面，非2026仍开放证据；unsolved in精确串未命中。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"6089\" \"Ehrhart\" \"n = 2\"; \"6089\" \"Ehrhart\" \"comment\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "",
+      "locator": "returned result set",
+      "note": "未取得1980评论正文或可验证二维完整证明；命中索引转载和数字噪声。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "OpenAI primary report",
+      "query": "open https://cdn.openai.com/pdf/ten-proofs-oai.pdf; find \"Theorem 1.1 (Ehrhart\"; find \"The only lattice point\"; find \"Let K ⊂ R\"; open line18990",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://cdn.openai.com/pdf/ten-proofs-oai.pdf",
+      "locator": "updated2026-08-06; Chapter8 §1 Theorem1.1, printed p220/PDFindex223",
+      "note": "根节点独立读声明条件：centroid0且intK∩Z^n={0}⇒volK≤αn；不提供本题union内的对称凸体。find部分返回其他章噪声，最终已定位实际Chapter8定理；没有审完全部253页或认证其证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A1382-Q01",
+      "route": "学术",
+      "site": "web/search system2",
+      "query": "Ehrhart 6089 1977 symmetric convex body union K -K",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "初始依旧卡年份检索；命中 Ehrhart 格点体积猜想、作者平面讲义及 2026 相关声明入口。1977 不是经本轮确认的原题年份，原题路线另核。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "A1382-Q02",
+      "route": "学术",
+      "site": "web/search system2",
+      "query": "Ehrhart centroid symmetric convex body union conjecture volume",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "与 Q01 同批检索。命中格点版和交集对称化资料；后续只深读直接相关材料。OpenAI/Lean 候选交代码路线，本分片不冒称读过或复跑该稿。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "A1382-Q03",
+      "route": "学术",
+      "site": "web/search system1",
+      "query": "\"6089\" \"Ehrhart\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/i315111",
+      "note": "命中 1976 Advanced Problems:6084–6089 与 1980 p495 的 6089 条目；只据 JSTOR 栏目标题不能判定该条已解决，正文及题册年代由原题路线核。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "A1382-Q04",
+      "route": "学术",
+      "site": "web/search system1",
+      "query": "\"Ehrhart\" \"union\" \"symmetric\" \"convex\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://paulscott.info/lattice-points/8centreofgravity.html",
+      "note": "命中作者 Scott 的平面论证以及 Arkinstall 1980；随后读取。原文主要陈述格点限制结论，但半体反射构造可单独核对为本题 n=2 特例。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A1382-Q05",
+      "route": "学术",
+      "site": "web/search system1",
+      "query": "\"Ehrhart\" \"symmetrization\" conjecture",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "命中 2026 equality-case 稿索引中的 Milman–Pajor 引文，随后转读 ESI 原始预印本。未以二手摘录或该新稿的格点版陈述认定 union 题已解。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "A1382-Q06",
+      "route": "学术",
+      "site": "web/search system1（recency=1460）",
+      "query": "\"Ehrhart\" \"6089\" (proof OR counterexample OR correction OR erratum)",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "针对近1460天的6089精确编号与证明/反例/更正/勘误组合，未取得可核的同题完整解决或撤回/勘误稿；同批返回旧期刊条目和无关 Ehrhart 多项式材料。这只是这组查询的阴性，不能证明不存在。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "A1382-Q07",
+      "route": "学术",
+      "site": "web/search system1",
+      "query": "\"Ehrhart\" \"union\" \"2^n\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "与 Q08 同批。返回 Ehrhart 级数、格多胞体资料等，未取得同量词、同容器的完整解决稿；不得由有限查询阴性认定当前开放。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "A1382-Q08",
+      "route": "学术",
+      "site": "web/search system1",
+      "query": "\"Entropy and asymptotic geometry of non-symmetric convex bodies\" pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.esi.ac.at/preprints/esi686.pdf",
+      "note": "找到原始 ESI686 全文，且出版社和作者机构记录核对正式刊发信息。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A1382-Q09",
+      "route": "学术",
+      "site": "Cambridge University Press / web open",
+      "query": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/6DCC1D3AEBAE3FBA75793D6E7FF5539D/S0004972700006560a.pdf/div-class-title-minimal-requirements-for-minkowskiandapos-s-theorem-in-the-plane-i-div.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "locator": "Arkinstall 1980 pp259–263；find References、Scott",
+      "note": "已读定义、Theorems 1–3、对称弦存在与半体反射构造。取得全文不等于逐行审核全部 16 页；格点面积界自身不是原题全维存在性结果。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A1382-Q10",
+      "route": "学术",
+      "site": "作者 Paul Scott / web open + click",
+      "query": "https://paulscott.info/lattice-points/8centreofgravity.html；click [YB]/bibliography link 2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "locator": "Winternitz's Theorem；Proof of Ehrhart's Theorem；Further results (2)–(3)；References",
+      "note": "作者讲义明给半体反射与 4/9 比例，并明确该构造只适用平面。网页选择弦时没有明确先要求被原点二等分；本轮用 Arkinstall 的连续性论证及截面导数补核这一条件。链接 2 跳至本页参考书目；未因此取得 Ehrhart 1955 原论文。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A1382-Q11",
+      "route": "学术",
+      "site": "Erwin Schrödinger Institute / web open + find",
+      "query": "https://www.esi.ac.at/preprints/esi686.pdf；find Corollary 3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "locator": "§2 Theorem 2、Corollary 3(2)，原稿印 pp5–6，式(1)–(4)",
+      "note": "核出重心零时 |K∩(-K)|≥2^(-n)|K|。该结果可推原题的更大输入阈值版本，不能达到指定常数。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "A1382-Q12",
+      "route": "学术",
+      "site": "web screenshot / local PDF rendering",
+      "query": "esi686.pdf PDF page index 6；Arkinstall PDF page index 3；本地 urllib 下载并渲染 esi686.pdf 第7页",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.esi.ac.at/preprints/esi686.pdf",
+      "locator": "印 p6 的式(2)：2 的指数为 −n；式(3)及差体、凸包比较",
+      "note": "Web screenshot 回传只有占位文本，未把它计为看过页图；随后用 urllib 取得 274158-byte 原 PDF，以 pdftoppm 本地渲染并实际查看。首个 Python requests 下载尝试因模块不存在失败，随后 urllib 成功。确认交集、负号和 2^(-n)，未将 PDF 文本抽取的符号丢失沿用。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1",
+      "query": "\"Ehrhart\" \"6089\" proof (recency=365)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 AMM 1976 原题与 1980 p.495 目录，已交原题路线；不能因栏目叫 Solutions 就把该条判为解。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1",
+      "query": "\"Ehrhart\" \"centrally symmetric\" \"barycenter\" proof AI (recency=365)",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "命中 Astra sharp volume 的 2026 声称及二手解释；随后固定实际原文与 Lean 定理核范围。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/math",
+      "query": "\"Ehrhart\"; topn=10",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回 8 个 anticanonical / weighted Ehrhart polynomial 文件或引文，非本题对称子凸体；转向搜索实际发布的 openai/ten-proofs。",
+      "result_count": 8,
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "site:github.com \"EhrhartVolumeInequality.lean\"",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "定位 openai/ten-proofs 原始证明仓库及 formalization.yaml；开始实际代码范围检查。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "\"Ehrhart\" \"K union\" \"symmetric\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "本次精确 union 表述未得主题解题候选；不据此断言全部文献无解。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "site:mathoverflow.net \"Ehrhart\" \"symmetric\"",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "命中 88153 几何数论参考问题及多项式主题噪声；后续打开 88153 原文。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub google-deepmind/formal-conjectures",
+      "query": "\"Ehrhart\"; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "代码索引返回空数组；不把仓库关键词无命中升级为所有可能形式化均不存在。",
+      "result_count": 0,
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "AI result index",
+      "query": "open https://aimath.robertj1.com/",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "打开二手 AI 结果索引作为定位线索；不凭其 zero-sorry / verified 标签认定主问已解决。",
+      "url": "https://aimath.robertj1.com/",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "secondary walkthrough",
+      "query": "open https://www.abhirupghosh.com/blog/astra/08-ehrhart-volume",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "500 redirect 到无 www 地址后工具报告不可访问；未读全文。后续已用官方 PDF 与源码替代。",
+      "url": "https://www.abhirupghosh.com/blog/astra/08-ehrhart-volume",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/ten-proofs",
+      "query": "fetch https://api.github.com/repos/openai/ten-proofs/commits/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "固定当前 head 94bc0feb6a9ff12c7d31d6de640a725c9d43d2b6，日期 2026-08-02T00:22:31Z；commit 文件表将 Ehrhart 源文件绑定至 blob 842c602ab882dfae64352fed0bce2d83c19b31e8。当前 head 父为空不被解释成历史从未改写。",
+      "url": "https://api.github.com/repos/openai/ten-proofs/commits/main",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/ten-proofs",
+      "query": "fetch_file EhrhartVolumeInequality.lean (default branch)",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "API 只返回文件 sha 和空 content，未实际取得源码；随后改用该 sha 的 blob API 成功恢复。",
+      "url": "https://github.com/openai/ten-proofs/blob/main/EhrhartVolumeInequality.lean",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/ten-proofs",
+      "query": "fetch_file formalization.yaml (default branch)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "读取作者 manifest：目标 ehrhart_volume_inequality_for_sets，作者报告 sorry_count=0、三项标准公理、agent-reviewed；随后按固定 commit 复取相同 blob。",
+      "url": "https://github.com/openai/ten-proofs/blob/main/formalization.yaml",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "OpenAI primary manuscript",
+      "query": "open https://cdn.openai.com/pdf/ten-proofs-oai.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读取版本首页标 Updated August 6, 2026，253 PDF 页；初始摘要指唯一内格点凸体的体积界，后续定位 Chapter 8。",
+      "url": "https://cdn.openai.com/pdf/ten-proofs-oai.pdf",
+      "locator": "Title/Abstract/update footnote; contents",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "OpenAI primary manuscript",
+      "query": "find \"harmonic\" in ten-proofs-oai.pdf",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回球面码章节的 harmonic 噪声，没有由该查询定位到本题对称子凸体定理；改直接阅读 Chapter 8。",
+      "url": "https://cdn.openai.com/pdf/ten-proofs-oai.pdf",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "OpenAI primary manuscript",
+      "query": "find \"Theorem 1.1 (Ehrhart\" in ten-proofs-oai.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "工具宽匹配返回多处 Theorem 1.1，含 Chapter 8 的实际格点定理；没有误将别章定理当 Ehrhart 结论。",
+      "url": "https://cdn.openai.com/pdf/ten-proofs-oai.pdf",
+      "locator": "Chapter 8, Theorem 1.1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "AI result index",
+      "query": "find \"Ehrhart’s sharp\" in https://aimath.robertj1.com/",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际看到索引的唯一内格点条件、sharp inequality 与 equality 分类分列及 primary 链接；仅作导航。",
+      "url": "https://aimath.robertj1.com/",
+      "locator": "Ehrhart’s sharp volume conjecture",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "OpenAI primary manuscript",
+      "query": "open ten-proofs-oai.pdf at text line 18420",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "读取 Chapter 8 开头、Theorem 1.1、等号范围说明、证明概述及后续基本构造。主结论含 int(K)∩Z^n={0}，无 ∃C⊂K∪(-K)。未逐步复核该格点问题完整长证明。",
+      "url": "https://cdn.openai.com/pdf/ten-proofs-oai.pdf",
+      "locator": "Chapter 8, printed pp.219–222 / PDF pp.223–226; Theorem 1.1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/ten-proofs",
+      "query": "fetch_blob 842c602ab882dfae64352fed0bce2d83c19b31e8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "成功取得完整 2,100,339 字符 / 55,756 行 Lean 文件；实际读取定义、最终定理与尾部依赖调用，静态全文词法扫描 sorry/admit/显式 axiom 声明均 0。未运行 Lean 或 Comparator。",
+      "url": "https://github.com/openai/ten-proofs/blob/94bc0feb6a9ff12c7d31d6de640a725c9d43d2b6/EhrhartVolumeInequality.lean",
+      "locator": "definitions lines 13–53; final theorem lines 55733–55749",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/ten-proofs",
+      "query": "fetch_file ComparatorChallenges/F_EhrhartVolumeInequality.json @94bc0feb6a9ff12c7d31d6de640a725c9d43d2b6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "配置目标为格点体积主不等式、达到等号的单纯形及其体积/重心；允许 propext, Quot.sound, Classical.choice，enable_nanoda=true。只读配置，未执行它。",
+      "url": "https://github.com/openai/ten-proofs/blob/94bc0feb6a9ff12c7d31d6de640a725c9d43d2b6/ComparatorChallenges/F_EhrhartVolumeInequality.json",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/ten-proofs",
+      "query": "fetch_file formalization.yaml @94bc0feb6a9ff12c7d31d6de640a725c9d43d2b6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "固定版本复取与先前同 blob；作者声明不等同本轮 kernel / 依赖图复验。",
+      "url": "https://github.com/openai/ten-proofs/blob/94bc0feb6a9ff12c7d31d6de640a725c9d43d2b6/formalization.yaml",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1",
+      "query": "\"Ehrhart\" \"ten-proofs\" correction retraction (recency=365)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "发现不同索引的格点结果状态、当前 commit 的第三方重构声称与早期仓库历史改写讨论；未发现 AMM 6089 union 强命题的同题解决/撤回。未把二手 kernel verified 标签视为本轮验证，也不将早期历史讨论写成已核数学漏洞。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "MathOverflow",
+      "query": "open https://mathoverflow.net/questions/88153/reference-request-ehrharts-conjecture-on-the-geometry-of-numbers",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "读题与唯一回答；问题和弱渐近进展都含唯一格点条件，另讨论对偶体体积，未构造 AMM 6089 的 C。",
+      "url": "https://mathoverflow.net/questions/88153/reference-request-ehrharts-conjecture-on-the-geometry-of-numbers",
+      "locator": "question; answer by alvarezpaiva, including June 2013 addendum",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub formal-conjectures community",
+      "query": "open https://github.com/google-deepmind/formal-conjectures/issues/4716",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "社区 issue 更新至 2026-09-11，仍 Open，将 Ehrhart volume bound 列为需要逐项评估的导入候选；不是 AMM 6089 的证明或已合并题面，亦不构成数学撤回。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/issues/4716",
+      "locator": "description and activity",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002885〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 2,
+      "note": "实际命中：QX-P-001374,QX-P-001382。索引用于筛选，三个凸体/体积候选另取固定全文；未因Ehrhart同名或Minkowski关键词断言重复。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002886〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 3,
+      "note": "实际命中：QX-P-000113,QX-P-001332,QX-P-002360。索引用于筛选，三个凸体/体积候选另取固定全文；未因Ehrhart同名或Minkowski关键词断言重复。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002887〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "result_count": 4,
+      "note": "实际命中：QX-P-000111,QX-P-000403,QX-P-002113,QX-P-002358。索引用于筛选，三个凸体/体积候选另取固定全文；未因Ehrhart同名或Minkowski关键词断言重复。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "本包 current_task.json",
+      "query": "读取 QX-P-001382 完整正文、metadata及prior_evidence",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "绑定当前rev818c56d6b662969e；题面“原点中心对称K”与人话/摘录“质心0”冲突；o(K)无定义，C中心边界注记与本轮原题路线实读结论不符。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/000/QX-P-000111.meta.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000111.meta.json",
+      "note": "完整固定文件已取得；Git blob SHA 0095066255263cc0c11c57d0b9a0dce2cf9d1e38",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/000/QX-P-000111.text.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000111.text.md",
+      "note": "完整固定文件已取得；Git blob SHA 67645b8da643e989984ef4504f40f84519c5628d",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/000/QX-P-000113.meta.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000113.meta.json",
+      "note": "完整固定文件已取得；Git blob SHA 9f0b6b4d90cf69595bdc22e69ae6faf26baefbac",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/000/QX-P-000113.text.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000113.text.md",
+      "note": "完整固定文件已取得；Git blob SHA 60a62e2bfb7947e39c3c70e8f5b1a76fc0f61850",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/001/QX-P-001332.meta.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001332.meta.json",
+      "note": "完整固定文件已取得；Git blob SHA 93a66723ae4bdb7018d90bce7e9cae2e544116b2",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/001/QX-P-001332.text.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001332.text.md",
+      "note": "完整固定文件已取得；Git blob SHA f0a7d7f09d8c10e20bc3b28f7502185d6044cd75",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "人工AM–GM与一维区间",
+      "query": "核A_n=(n+1)^n/n!≥2^n，以及字面K=-K时取C=K；n=1质心0区间",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全维常数比较有直接证明，不由几个n的数值拟合。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "人工单纯形/立方体构造",
+      "query": "T_n={x_i≥−1,Σx_i≤1}；核质心、行列式体积及Q_n=[−1,1]^n⊆T_n∪(-T_n)，再作可逆线性变换",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "只核单纯形子类，未扩大为一般凸体或作全局优化。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本地Python Fraction/鞋带公式",
+      "query": "精确核T=conv{(-1,-1),(2,-1),(-1,2)}、Q=[-1,1]^2、I=T∩(-T)六边形面积及λ=11/10缩放",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "无浮点、无优化搜索。包含性另由完整不等式证明；源码和输出嵌note。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "root independent primary-source reading",
+      "query": "open https://paulscott.info/lattice-points/8centreofgravity.html; open Arkinstall DOI10.1017/S0004972700006560原刊PDF",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://paulscott.info/lattice-points/8centreofgravity.html",
+      "locator": "Scott全文；Arkinstall pp259–263，尤其p261径向差与p262–263半体反射",
+      "note": "主节点独立读取作者讲义及原刊相关段落，核n=2几何构造。随后复核截面函数的两侧导数接缝；不是从格点面积界反推本题，不声称读过1955原证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "root independent original PDF + rendered page",
+      "query": "open https://www.esi.ac.at/preprints/esi686.pdf; view sources_001382/milman_pajor_p6.png",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.esi.ac.at/preprints/esi686.pdf",
+      "locator": "Corollary3(2)，印刷p6式(2)实际页图",
+      "note": "主节点独立读原PDF相关定理/推论，并看实际渲染页确认负指数−n和交集符号。由体积>4^n推出目标，未达到α_n门槛。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "root local fixed-source inspection",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002888〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/openai/ten-proofs/blob/94bc0feb6a9ff12c7d31d6de640a725c9d43d2b6/EhrhartVolumeInequality.lean",
+      "locator": "CenteredBody、interiorLatticePoints、最终ehrhart_volume_inequality_for_sets",
+      "note": "主节点独立核定义和最后定理：hlattice明确要求内部整点集合为{0}，结论仅体积上界。未执行Lean、依赖核验或#axioms。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "O1382-REPRINT",
+      "url": "https://mathematrucker.com/problems_1975-1979.pdf",
+      "locator": "p112 Geometry/Convex sets, AMM6089; p414 Unsolved Problems, AMM6089；图页PDFindexes121/423",
+      "version": "Rabinowitz–Bowron, Index to Mathematical Problems1975–1979, Vol.2；PDF版权1999、电子版前言标有修订；编者官网读取2026-11-27",
+      "subquestions": [
+        "主问题",
+        "题面忠实性",
+        "对称中心与维数"
+      ],
+      "role": "重述",
+      "publication": "二手索引",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "授权重述要求K的重心为0，不要求K=-K；C必须关于0对称，且C⊂K∪(-K)，两处严格体积不等号。p112未列n>2；p414未解专节明确n>2。卡将K对称与重心混用、声称C中心原文未明、把题文页标413均不准确。此PDF并非1976原刊扫描，电子版前言允许压缩/重述；已逐图核符号和边界。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "secondary_index"
+      }
+    },
+    {
+      "evidence_id": "O1382-ORIGINAL-DATE",
+      "url": "https://www.jstor.org/stable/i315070",
+      "locator": "AMM83(4), April1976, Advanced Problems6084–6089, pp292–293; 对照索引p285的6089行",
+      "version": "official issue metadata; DOI10.2307/2318235; accessed2026-11-27",
+      "subquestions": [
+        "最早出处与年代"
+      ],
+      "role": "最早可核实出处",
+      "publication": "原始档案",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "官方原刊目录与索引6089=83(1976)293吻合，纠正题卡1977。原刊题文页尚未取得；不能把目录当完整原文，更不把1980评论日当提出日。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "earliest_source",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "O1382-COMMENT1980",
+      "url": "https://mathematrucker.com/problems_1975-1979.pdf",
+      "locator": "p285 problem chronology row6089; p282 code legend；JSTOR87(6)1980 p495目录",
+      "version": "电子索引读取2026-11-27；1980条目DOI10.2307/2320274",
+      "subquestions": [
+        "历史解答声明与勘误",
+        "未解状态历史截面"
+      ],
+      "role": "重述",
+      "publication": "二手索引",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "本题对应87(1980)495c，c在书中定义为comment，区别于s解答和x部分解。JSTOR虽置于Solutions栏目，不足认完整解。1980评论原页实际访问失败，内容及与n>2限定的关系待补；没有据该条目把主问改已解决，也不把旧书未解清单迁移为2026开放证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "secondary_index"
+      }
+    },
+    {
+      "evidence_id": "O1382-AI-SCOPE",
+      "url": "https://cdn.openai.com/pdf/ten-proofs-oai.pdf",
+      "locator": "Chapter8 §1 Theorem1.1, printed p220 (PDFindex223); abstracti update note",
+      "version": "Ten Advances in Mathematics and Theoretical Computer Science, updated2026-08-06；读取2026-11-27",
+      "subquestions": [
+        "与格点体积结果的关系"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "已读，未核关键步骤",
+      "note": "根节点独立核声明属于唯一内格点的Ehrhart体积上界，不是本题∃C⊂union。代码路线记录真实Lean与其具体前提；本条只核同一性与量词，不对新稿的完整正确性背书。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "O1382-IMPLICATION",
+      "url": "https://www.qunxingmath.org/p/QX-P-001382/",
+      "locator": "本轮独立逻辑方向核对：union几何命题⇒格点体积界，含严格缩放边界处理",
+      "version": "2026-11-27；目标card_rev818c56d6b662969e",
+      "subquestions": [
+        "与格点体积结果的关系"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅某子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "记αn=(n+1)^n/n!。若本题union命题对给定n成立，设centroid0凸体K仅有内格点0而volK>αn，取0<λ<1充分接近1使vol(λK)>αn。重心0在K内部，故λK⊂intK。对λK套union命题得原点对称凸体C⊂λK∪(-λK)且volC>2^n；由Minkowski凸体定理C含非零整点z。按所属一侧，z或-z属于λK⊂intK，矛盾。因此union命题蕴含格点体积上界。此推导使用经典Minkowski定理，不是对2026新稿的复核；反向推导在本轮未建立，不能由格点上界直接把本题标为解决。缩放λ用于明确排除只得到边界格点的逻辑缺口。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "A1382-E01",
+      "url": "https://www.esi.ac.at/preprints/esi686.pdf",
+      "locator": "§2，Corollary 3(2)，原稿印 pp5–6，式(1)–(4)，尤其印 p6 式(2)；PDF第7页图已核",
+      "version": "ESI Preprint 686 (1999), 1999-04-02；正式版 Advances in Mathematics 152(2) (2000),314–335, DOI10.1006/aima.1999.1903",
+      "subquestions": [
+        "全维较弱体积阈值",
+        "交集与差体的范围"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "V.D. Milman–A. Pajor：重心为0的凸体满足 vol(K∩(-K))≥2^(-n)vol K。全文可取得，已读相关定理/推论与公式，未对全篇其它结果作独立证明审计。直接取 C=K∩(-K) 可得 vol K>4^n⇒vol C>2^n，属于原题更强输入假设下的肯定结果。 主节点另读原PDF并查看同一公式页图；常数门槛的推导经独立核对。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "A1382-E02",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/6DCC1D3AEBAE3FBA75793D6E7FF5539D/S0004972700006560a.pdf/div-class-title-minimal-requirements-for-minkowskiandapos-s-theorem-in-the-plane-i-div.pdf",
+      "locator": "J.R. Arkinstall, Minimal requirements for Minkowski's theorem in the plane I, pp259–263；p261 对称弦连续性，p262–263 半体与其反射；p273 references[3],[6],[7]",
+      "version": "Bulletin of the Australian Mathematical Society 22 (1980),259–274；DOI10.1017/S0004972700006560",
+      "subquestions": [
+        "n=2 对称弦与反射构造",
+        "格点面积界的范围"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "原刊全文读取相关段落。p261 将一条直线的两侧径向长度差作为连续函数，在相反方向变号，从而取得原点二等分弦。p262–263 明确使用支持线相交一侧的半体与原点反射的对称凸并。论文整体研究有格点限制的平面面积；未将其 Theorem 2 的格点界直接当作本题的反向推论。 主节点独立读pp259–263并核截面接缝证明；未对全篇16页作逐行审计。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "A1382-E03",
+      "url": "https://paulscott.info/lattice-points/8centreofgravity.html",
+      "locator": "§8 Centre of Gravity：Winternitz's Theorem；Proof of Ehrhart's Theorem；Further results (2)–(3)；References",
+      "version": "作者 Paul Scott 讲义，页面未给可核发布日期；访问2026-11-27",
+      "subquestions": [
+        "n=2 的体积比例构造",
+        "旧 Ehrhart 格点证明与本题的关系"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "作者本人展示平面构造；这不是 Ehrhart 1955 原论文。引用 Winternitz：过重心直线的每侧面积≥4/9总面积，反射一侧可造面积≥8/9总面积的对称凸体。网页略去了应先选原点二等分弦的条件；本轮以 E02 的弦存在性及截面函数接缝论证补齐。作者明确指出这种构造不能直接推广高维。其旧文中开放状态措辞不用于证明2026当前状态。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "C1382-01",
+      "url": "https://github.com/openai/ten-proofs/blob/94bc0feb6a9ff12c7d31d6de640a725c9d43d2b6/EhrhartVolumeInequality.lean",
+      "locator": "Ehrhart.CenteredBody; Ehrhart.interiorLatticePoints; Ehrhart.Volume.ehrhart_volume_inequality_for_sets (lines 55733–55749); companion formalization.yaml and ComparatorChallenges/F_EhrhartVolumeInequality.json",
+      "version": "commit 94bc0feb6a9ff12c7d31d6de640a725c9d43d2b6, 2026-08-02T00:22:31Z; source blob 842c602ab882dfae64352fed0bce2d83c19b31e8",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "OpenAI; manifest attributes agent work to Astra",
+      "claim_date": "2026-08-01",
+      "rerun": {
+        "commit": "94bc0feb6a9ff12c7d31d6de640a725c9d43d2b6",
+        "theorem": "Ehrhart.Volume.ehrhart_volume_inequality_for_sets",
+        "command": "未运行 lake build、Lean、Comparator 或 Nanoda；仅取得源码、核 statement 及执行静态词法计数/文件 blob 核验",
+        "axioms": "作者 manifest 声称 propext, Classical.choice, Quot.sound；本轮未执行 #print axioms"
+      },
+      "note": "实际最终定理预设 n>0、Convex、IsCompact、非空 interior、barycenter=0，并额外预设 interiorLatticePoints S={0}，结论仅是 normalizedVolume S≤(n+1)^n/n!。CenteredBody 结构本身亦含唯一内格点字段。未声明对任意重心零大体积 K 存在 C⊂K∪(-K)。静态原文 sorry/admit/显式 axiom 声明均 0 只是文本检查，不是 kernel 验证或整条依赖检查。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C1382-02",
+      "url": "https://cdn.openai.com/pdf/ten-proofs-oai.pdf",
+      "locator": "Chapter 8, Theorem 1.1; proof overview; equality qualification in introduction",
+      "version": "PDF 首页注明 Updated August 6, 2026；本轮取得 253 页版本，Chapter 8 从印刷 p.219 开始",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "完整证明",
+      "publication": "项目报告",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "OpenAI",
+      "claim_date": "2026-08-01",
+      "note": "论文声称所有维数的 Ehrhart 格点体积不等式，并明确不判定全部等号情形。读到的主定理与实际 Lean 目标都有唯一内格点条件；正文以输运势、格点 Bergman 空间、消失阶和斜率比较证明体积界，没有将 AMM 6089 的 union 对称子凸体存在性列作结论。该较弱相关结果不能反推原题。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "full_proof",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "C1382-03",
+      "url": "https://mathoverflow.net/questions/88153/reference-request-ehrharts-conjecture-on-the-geometry-of-numbers",
+      "locator": "original question; answer and June 2013 addendum",
+      "version": "question 2012-02-10; answer 2012-02-29, edited 2013-06-06; page read 2026-11-27",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "进展",
+      "publication": "社区帖子",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "原作者讨论的是带唯一格点条件的 Ehrhart 体积猜想和常数 C^n 的弱版本；回答涉及对偶体下界与 Blaschke–Santaló，不给出所需 C⊂K∪(-K)。本轮用其确认社区命中的范围，不把历史讨论的 open 用作 2026 主问题状态证据。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "C1382-04",
+      "url": "https://github.com/google-deepmind/formal-conjectures/issues/4716",
+      "locator": "description: contribution candidates table; statement fidelity qualifications; status Open",
+      "version": "opened 2026-08-04; body updated against FC 2a0126f6 on 2026-09-11; read 2026-11-27",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "社区帖子",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "issue 将十证明中 Ehrhart 格点体积界列作未来需要独立评估的贡献候选，明确不能靠 workspace 或链接替代题面核对与维护者接受。不属于 AMM 6089 的形式化，也不表示现已导入 FC；本轮 FC 的 Ehrhart 代码关键词检索为空仅按该入口记录。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "D1382-C000111",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000111.text.md",
+      "locator": "固定正文题面、形式化、人话和metadata.acceptance全文比较",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=e864458953251265; text_sha=67645b8da643e989984ef4504f40f84519c5628d; meta_sha=0095066255263cc0c11c57d0b9a0dce2cf9d1e38",
+      "subquestions": [
+        "主问题",
+        "库内查重"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "review_status": "已读未核关键步骤",
+      "note": "固定正文为两个原点对称凸体K,L的对数Brunn–Minkowski体积不等式，量化对数/Wulff组合及参数λ；本题是单个质心0凸体K的K∪(-K)中存在原点对称凸体C，阈值(n+1)^n/n!与2^n。容器、运算、量词及验收均不同。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D1382-C000113",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000113.text.md",
+      "locator": "固定正文题面、形式化、人话和metadata.acceptance全文比较",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=b6f94832ab50f40f; text_sha=60a62e2bfb7947e39c3c70e8f5b1a76fc0f61850; meta_sha=9f0b6b4d90cf69595bdc22e69ae6faf26baefbac",
+      "subquestions": [
+        "主问题",
+        "库内查重"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "review_status": "已读未核关键步骤",
+      "note": "固定正文为R^(2n)中原点/中心对称凸体的EHZ辛容量与体积关系，c_EHZ(X)^n≤n!vol(X)；本题没有辛结构/容量，且不预设K对称，要求C存在于反射并集。仅有对称凸体、体积与阶乘词汇相似。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D1382-C001332",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001332.text.md",
+      "locator": "固定正文题面、形式化、人话和metadata.acceptance全文比较",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=37febc4bd1e55d7d; text_sha=f0a7d7f09d8c10e20bc3b28f7502185d6044cd75; meta_sha=93a66723ae4bdb7018d90bce7e9cae2e544116b2",
+      "subquestions": [
+        "主问题",
+        "库内查重"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "review_status": "已读未核关键步骤",
+      "note": "固定正文和meta问mixed-integer量及格宽门槛下的Oertel体积不等式，且未完整内联其不等式；没有Ehrhart6089的centroid0、K∪(-K)、对称C及两个常数的配置。现正文不足以形式比较全部Oertel版本，但所列对象/验收并非本题。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D1382-SELF",
+      "url": "https://www.qunxingmath.org/p/QX-P-001382/",
+      "locator": "当前题面、人话、形式化、标题、已知进展及边界约定",
+      "version": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8; card_rev=818c56d6b662969e",
+      "subquestions": [
+        "主问题",
+        "题面一致性"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "review_status": "已读未核关键步骤",
+      "note": "题面把K写成原点中心对称；人话和摘录写质心在原点；形式化o(K)=0未定义。题面/一句话的“含”容易误读为C⊆K，公式才写C⊆K∪(-K)。标题差体容易误指K−K；边界称C中心原文未明，但本轮原题路线已共享重印原文明确C关于原点对称。此分片不把自己的几何小例当作原稿出处证据；原文位置及历史未解范围由原题路线另绑定。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "D1382-SYMMETRIC-CASE",
+      "url": "https://www.qunxingmath.org/p/QX-P-001382/",
+      "locator": "本轮独立AM–GM证明、一维与对称K子类",
+      "version": "2026-11-27（Asia/Shanghai）；目标card_rev818c56d6b662969e",
+      "subquestions": [
+        "题面错误的独立检查",
+        "一维/原点对称K特例"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "review_status": "本轮独立数学核对",
+      "note": "独立常数与退化范围检查：对每个整数n≥1，AM–GM给n!=∏_{j=1}^n j≤((n+1)/2)^n，故A_n=(n+1)^n/n!≥2^n；n=1取等，n≥2严格。因此若按卡题面字面假定K=-K，则volK>A_n时直接取C=K就有C=-C、C⊆K∪(-K)=K、volC>2^n。若“⊂”被刻意解释为真包含，也可取足够接近1的0<λ<1使λ^n volK>2^n，C=λK为真子体。故把centroid0误写为K原点中心对称会把本题变成直接平凡情形。\n一维中凸体是正长度闭区间，质心0即K=[-a,a]。门槛A_1=2；长2a>2时C=K（或稍缩）即可。该一维核验不证明高维一般非对称K。\n质心须定义为g(K)=vol(K)^(-1)∫_K x dx=0，不等同于K=-K。体积门槛正保证满维；通常凸体约定为紧、凸且有非空内部。C的原点对称写C=-C，不能任意平移C后仍假定在同一K∪(-K)中。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "D1382-SIMPLEX",
+      "url": "https://www.qunxingmath.org/p/QX-P-001382/",
+      "locator": "本轮独立单纯形子类构造与线性变换证明",
+      "version": "2026-11-27（Asia/Shanghai）；目标card_rev818c56d6b662969e",
+      "subquestions": [
+        "质心0单纯形特例"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "review_status": "本轮独立数学核对",
+      "note": "独立核全部质心0单纯形子类，未证明一般凸体：\n令T_n={x∈R^n:x_i≥−1 (1≤i≤n), Σ_i x_i≤1}。其n+1个顶点为v_0=−1⃗和v_i=−1⃗+(n+1)e_i，所以顶点平均为0，亦即单纯形质心为0。相对v_0的n条边组成(n+1)I，故vol(T_n)=(n+1)^n/n!=A_n。\n令Q_n=[−1,1]^n，vol(Q_n)=2^n且Q_n=-Q_n。对Q_n内任一点，若Σx_i≤1，则它满足T_n全部不等式；否则Σx_i>1≥−1，而每个x_i≤1，故它属于−T_n。于是整个Q_n⊆T_n∪(−T_n)。这里用对任意点的半空间分情况证明，并非只检查立方体顶点；后者对非凸并集一般不足。\n任一满维质心0单纯形K都是A T_n，其中A可逆且无需平移。取C=AQ_n，则C=-C并包含于K∪(-K)，volC=2^n|detA|=2^n volK/A_n。若volK>A_n，即得到volC>2^n。此为单纯形子类的精确构造；没有声称该C在容器中最大，也没有证明原题常数最优或所有质心0凸体满足结论。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "D1382-CONTAINERS",
+      "url": "https://www.qunxingmath.org/p/QX-P-001382/",
+      "locator": "本轮独立二维半空间包含证明与有理面积核验；λ=11/10",
+      "version": "2026-11-27（Asia/Shanghai）；Python Fraction；目标card_rev818c56d6b662969e",
+      "subquestions": [
+        "容器与严格门槛边界",
+        "二维单纯形特例"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "review_status": "本轮独立数学核对",
+      "note": "二维独立例严格区分union、intersection及difference body：\nT=conv{(-1,-1),(2,-1),(-1,2)}={x≥−1,y≥−1,x+y≤1}，质心0、面积9/2。它不原点对称，例如(2,-1)∈T而(-2,1)不在T。\nQ=[-1,1]^2原点对称、面积4。对Q内任一点，x+y≤1时属于T，否则属于−T（后者条件x≤1,y≤1,x+y≥−1），所以整个Q⊆T∪(-T)。同时(1,1)∈Q而不在T，不能把结论容器缩写成K。\nI=T∩(-T)={|x|≤1,|y|≤1,|x+y|≤1}，是列在代码中的六边形，面积3。取λ=11/10、K=λT、C=λQ：\nvolK=1089/200>9/2；volC=121/25>4；vol(K∩(-K))=363/100<4。\n因此满足严格体积门槛的这个K确有要求的C位于union，但任何位于intersection的可测子体积均<4。把union静默改成intersection会改变命题并在此二维例失败。此二维例只说明容器差异；若历史未解专节限定n>2，不把二维例当作该未解范围的反例。\n差体定义为K−K={x−y:x,y∈K}=K+(-K)，不是K∪(-K)。例如(3,0)=(2,-1)-(-1,-1)∈T−T，但不属于T∪(-T)。质心0使0∈K，因而union包含于difference body；用后者的体积界不能直接提供原union内的C。这里没有宣称Rogers–Shephard等工具与本题完全无关，只排除容器被替换的直接推论。\n精确面积 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000111",
+      "other_card_rev": "e864458953251265",
+      "relation": "待核",
+      "reason": "固定正文为两个原点对称凸体K,L的对数Brunn–Minkowski体积不等式，量化对数/Wulff组合及参数λ；本题是单个质心0凸体K的K∪(-K)中存在原点对称凸体C，阈值(n+1)^n/n!与2^n。容器、运算、量词及验收均不同。 对方编号更小，按小号主责制留最终配对归类；本题不启动其查新。",
+      "positions": {
+        "self": "题面/形式化中的K∪(-K)/质心与对称中心/metadata.acceptance",
+        "other": "固定题面、形式化、人话及metadata.acceptance"
+      },
+      "note": "pair_key=QX-P-000111__QX-P-001382；D1382-C000111；未发现严格同题依据。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-000113",
+      "other_card_rev": "b6f94832ab50f40f",
+      "relation": "待核",
+      "reason": "固定正文为R^(2n)中原点/中心对称凸体的EHZ辛容量与体积关系，c_EHZ(X)^n≤n!vol(X)；本题没有辛结构/容量，且不预设K对称，要求C存在于反射并集。仅有对称凸体、体积与阶乘词汇相似。 对方编号更小，按小号主责制留最终配对归类；本题不启动其查新。",
+      "positions": {
+        "self": "题面/形式化中的K∪(-K)/质心与对称中心/metadata.acceptance",
+        "other": "固定题面、形式化、人话及metadata.acceptance"
+      },
+      "note": "pair_key=QX-P-000113__QX-P-001382；D1382-C000113；未发现严格同题依据。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-001332",
+      "other_card_rev": "37febc4bd1e55d7d",
+      "relation": "待核",
+      "reason": "固定正文和meta问mixed-integer量及格宽门槛下的Oertel体积不等式，且未完整内联其不等式；没有Ehrhart6089的centroid0、K∪(-K)、对称C及两个常数的配置。现正文不足以形式比较全部Oertel版本，但所列对象/验收并非本题。 对方编号更小，按小号主责制留最终配对归类；本题不启动其查新。",
+      "positions": {
+        "self": "题面/形式化中的K∪(-K)/质心与对称中心/metadata.acceptance",
+        "other": "固定题面、形式化、人话及metadata.acceptance"
+      },
+      "note": "pair_key=QX-P-001332__QX-P-001382；D1382-C001332；未发现严格同题依据。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "题面纠错",
+      "field": "card_text/题面",
+      "old": "中心对称于原点位置的凸体是否必含…",
+      "new": "设n>2，K⊂R^n是重心为原点、体积大于(n+1)^n/n!的凸体，是否存在关于原点中心对称的凸体C⊂K∪(-K)，使vol(C)>2^n？如保留全维版本，应另列n≤2状态。",
+      "reason": "K的重心位置与K本身中心对称不同；原题容器是union，不是K或交体，C的中心原文已明。主问题量词修复需新card_rev。",
+      "evidence_ids": [
+        "O1382-REPRINT",
+        "D1382-SYMMETRIC-CASE",
+        "D1382-CONTAINERS"
+      ],
+      "small_case_check": "重心0单纯形一般不中心对称；若真加K=-K，AM–GM给(n+1)^n/n!≥2^n，直接C=K，变成平凡的不同问题。详细独立例见D1382。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "proposer/first_published/sources/原文摘录",
+      "old": "E.Ehrhart（AMM6089,1977）；Rabinowitz索引p413",
+      "new": "E.Ehrhart，AMM6089，83(4)(April1976),293，问题集合DOI10.2307/2318235。实际读到授权重述：Rabinowitz–Bowron索引p112、未解专节p414；1980p495为索引标c的评论条目，原页待补。",
+      "reason": "分清原提出、后续评论与后版重述；p413只是未解章节说明页。",
+      "evidence_ids": [
+        "O1382-ORIGINAL-DATE",
+        "O1382-REPRINT",
+        "O1382-COMMENT1980"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "title/title_en/keywords/边界与约定",
+      "old": "Ehrhart差体体积常数问题；C是否须以原点对称——原文未明",
+      "new": "Ehrhart原点对称子凸体问题（AMM6089）；明确K∪(-K)为并集，C=-C，K仅重心0。差体K-K与交体K∩(-K)只是相关对象，不作为题面替换。",
+      "reason": "“差体”通常指Minkowski差K+(-K)，不是原题并集；C原点对称已在实际重述写明。",
+      "evidence_ids": [
+        "O1382-REPRINT",
+        "D1382-CONTAINERS"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "novelty/statement_audit",
+      "old": "statement_fidelity audited/pass；novelty.card_rev49566d530b85a87e",
+      "new": "当前818c56d6b662969e存在P0译义/量词冲突；修正后固定新版本并重核受影响路线。本回执仅绑定当前rev，旧批量搜索记录不作为本轮完成证据。",
+      "reason": "任务版本与旧novelty绑定不同，且旧PASS没有覆盖已查出的题面问题。",
+      "evidence_ids": [
+        "O1382-REPRINT"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text.形式化表述/边界的C中心说明",
+      "old": "o(K)=0；中心对称C；原文未明C是否须以原点对称",
+      "new": "g(K)=vol(K)^(-1)∫_K x dx=0；C=-C；C⊆K∪(-K)；两处体积不等式均严格。写明n为正整数，并将原未解专节的n>2范围与低维核验分列。",
+      "reason": "本轮原题路线已核C原点对称，不能保留“原文未明”；g(K)定义消除中心/重心混淆。n>2是原题路线核得的来源范围，不是从本分片小例推断。",
+      "evidence_ids": [
+        "D1382-SELF",
+        "D1382-SYMMETRIC-CASE",
+        "D1382-CONTAINERS",
+        "O1382-REPRINT"
+      ],
+      "small_case_check": "n=1门槛2与2^n一致；λ=11/10二维例同时满足两处严格大于。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展；低维范围",
+      "old": "仅 Rogers–Shephard/Brunn–Minkowski 工具；特定常数无文献命中",
+      "new": "补 n=1 直接成立；n=2 由二等分弦、半体反射凸性及 Winternitz 4/9 比例成立；全维 Milman–Pajor 交集体积界可给 vol K>4^n 的弱化版本。原题路线的单纯形结果另行合并。",
+      "reason": "这些结果实际控制并集内部可用的对称凸体，范围比只列差体界清楚。",
+      "evidence_ids": [
+        "A1382-E01",
+        "A1382-E02",
+        "A1382-E03"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "边界/经本轮核验的特例",
+      "new": "n=1、原点对称K子类以及全部质心0单纯形子类有本轮独立构造；后者由标准T_n与立方体Q_n及线性变换给volC=2^n volK/A_n。不得据这些子类宣称一般凸体问题已解或常数最优。",
+      "reason": "明确独立核验的适用范围，为题面修订提供可复查证据。",
+      "evidence_ids": [
+        "D1382-SYMMETRIC-CASE",
+        "D1382-SIMPLEX",
+        "D1382-CONTAINERS"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "informal_status/novelty与相关完整声明",
+      "old": "open/weak及旧版statement_fidelity pass；差体常数无检索命中",
+      "new": "当前题卡标题面错误或缺条件；意图n>2精确并集存在性标部分进展并列核验子类。2026格点体积结果按其完整声明、唯一内格点假设和静态未复跑状态另记，不能据其关闭本题。",
+      "reason": "有限查询阴性不证明开放；完整稿/静态无sorry不等于本轮复跑或主命题同一。",
+      "evidence_ids": [
+        "O1382-REPRINT",
+        "A1382-E01",
+        "A1382-E02",
+        "D1382-SIMPLEX",
+        "C1382-01",
+        "C1382-02",
+        "O1382-IMPLICATION"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "1976原刊p293及1980评论p495正文未取得；原站Rabinowitz链接失败但作者官网授权重述已恢复。",
+      "next_step": "取得AMM6089的原刊两页，核1980评论内容及其是否解释二维范围；目前只凭真实目录和c标记，不认完整解或反例。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "现卡首句把centroid改为central symmetry，边界又称C中心不明，与已读重述相冲突。",
+      "next_step": "先将修订建议二审，生成新card_rev，再重核受影响的题文/学术/代码范围；保留此回执绑定旧版本，不机械迁移哈希。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "未取得一般 n≥3、精确阈值 α_n 下的完整并集存在性证明或反例；本轮只做已列定向查询，未声称穷尽。",
+      "next_step": "如出现后续完整声明，先核原命题是否要求 C=-C⊂K∪(-K) 且覆盖任意重心零凸体，再审核关键构造。不要把格点上界、差体或凸包界直接关闭本题。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "n=2 的几何链条已按作者讲义和 Arkinstall 原刊构造作本轮独立核查，但未取得 Ehrhart 1955 原论文以及 Winternitz 原始证明；不据此冒称已读历史原证。",
+      "next_step": "需要完善历史归属时，核 Ehrhart, Une généralisation du théorème de Minkowski, C.R. Acad. Sci. Paris 240 (1955),483–485，以及讲义所引 Convex Figures 的 Winternitz 定理；这不是本轮一般维数完整解的证据。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "已找到并静态核的是相关格点体积界，不是 AMM 6089 的 union 存在性工程；因此未作本轮 Lean/Comparator 复跑。",
+      "next_step": "仅当发现明确输出 C⊂K∪(-K)、原点对称、凸且体积超过 2^n 的同题候选时，再固定代码和依赖复验。不要用 lattice volume theorem、K−K 或 convexHull(K∪−K) 结果替代主问。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "三个已读候选编号均小于001382，当前完整文本显示不同对象/量词；001332还未内联完整Oertel不等式。",
+      "next_step": "按稳定pair_key及双方card_rev由较小编号侧负责最终配对归类；本题不查新对方、不仅凭标题判合并。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "818c56d6b662969e",
+      "codes": {}
+    }
+  ]
+}

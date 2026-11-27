@@ -1,0 +1,2804 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000117",
+  "card_rev": "c9f4e5f088817ea5",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "当前整数核心与模5形式化是否同题",
+          "value": "partial",
+          "note": "在经典的有限无向多重图语境中，两种核心表述忠实且等价：一是存在定向及整数边值1,2,3,4，使每点流入=流出；二是存在定向及非零Z/5Z边值，使每点净流模5为0。可先固定任意定向D，令关联矩阵B在非环边的尾记−1、头记+1，环列为0。整数版等价于存在f∈Z^E，Bf=0且1≤|f_e|≤4；将负值边反向便恢复全正1至4。模版为φ∈(F5∖{0})^E且Bφ=0。每次反向同时把值取负，故存在性不依赖先选哪个定向。5流的上界是严格小于5，非零正值只有四档；允许边值5会使模5为0，并非同一条件。"
+        },
+        {
+          "subquestion": "固定模k流也有逐边同余的有界整数提升：独立完整证明",
+          "value": "partial",
+          "note": "以下对任意整数k≥2成立。固定定向，给非零Z/kZ流φ，取每条边的正代表a_e∈{1,…,k−1}。Ba=kb，其中b∈Z^V。令z=a/k，则0≤z≤1且Bz=b。证明存在z*∈{0,1}^E保持Bz*=b：先把环坐标任意取整（环列为0）。对其余非整数坐标形成的多重子图，若某顶点只关联一条此类边，则Bz=b在该顶点除一个±z_e外全为整数，不可能成立。因此这个子图若非空，每个非孤立顶点至少有2条关联边，必含一条无向圈。沿圈取与固定定向一致为+1、相反为−1的循环向量c，Bc=0；在z+t c中取最大允许t>0，使坐标仍落[0,1]。至少一条圈边达到0或1，其他已取整数的边未动，所以非整数边数严格减少。有限步后得到z*。于是f=a−kz*满足Bf=0、f_e≡φ_e(mod k)，每值要么a_e要么a_e−k，均非0且绝对值<k。反向对负边取正得到通常的整数k流。另一方向直接将整数k流模k即可。故等价不仅是存在某个新流，实际每个给定模流都能作这种有界同余提升；错误的是未经调整直接拿所有正代表当整数流。"
+        },
+        {
+          "subquestion": "朴素正代表提升失败的两平行边证书",
+          "value": "partial",
+          "note": "完整手算输入：V={u,v}，两条平行边e1,e2均定向u→v，B=[[-1,-1],[1,1]]，模5赋值(1,4)。整数代表a=(1,4)给Ba=(−5,5)，模5确为0但整数不为0。取z*=(0,1)，则Bz*=(−1,1)=Ba/5，f=a−5z*=(1,−1)，Bf=(0,0)，且逐边仍同余(1,4)。反向e2后两边均取正值1。这同时排除一种算法误用：在任意固定定向只允许整数正值1至4，发现不可行，并不能否定该图有5流；须允许正负值或同时选择方向。此处为手算，未声称执行程序。"
+        },
+        {
+          "subquestion": "桥定义的非连通边界与无桥必要性",
+          "value": "statement_error",
+          "note": "正确定义是删除边e后连通分量数增加：c(G−e)>c(G)，等价于e的两个端点在G−e中不连通；对环永不成立。人话“删掉之后会让图不连通”仅在先假定G连通时可直接使用。例G=C3⊔K1本来就不连通，删除三角形任意一边后仍有2个分量，并无桥。无桥是有限图上任意非零阿贝尔群流的必要条件：若e为桥，取其所在分量删e后的任一侧S，累加S中各顶点守恒，内部边相消，唯一横跨边贡献±f(e)=0，故桥上值必须0。非连通情形同样有效，不需全图连通。"
+        },
+        {
+          "subquestion": "删除所有桥后的人话与原猜想的逻辑关系",
+          "value": "partial",
+          "note": "有限图中，非桥边恰为处在某个圈上的边（允许环为1圈、平行边为2圈）。原桥不在任何圈中，因此删去全部原桥不会破坏原非桥边所处的圈；剩余图H=G−Br(G)确实无桥。于是“对任意图，删全部桥后的剩余图都有5流”与原猜想等价：正向对H应用原猜想，逆向令G本身无桥。但须明确流只要求在剩余边上非零。把桥重新添回可以赋0保守恒，却不能给原图一个处处非零流。人话这一句只需补“剩余的每条边”，不应误判成原核心已被反驳。"
+        },
+        {
+          "subquestion": "环、孤立点、空边集、多分量与简单图约化",
+          "value": "partial",
+          "note": "环在关联矩阵中为零列，可独立赋1，既不造成守恒障碍也不是桥；删去环不影响其余边的流可行性。孤立点满足0=0；无边图的唯一空赋值对“每条边非零”是空真。非连通有限图有5流当且仅当各分量分别有5流，可逐分量合并。平行边须分别记值，不能随意合并。若要比较简单图版本与多重图版本，可将每条非环边细分一次、每个环换成有两个新顶点的3圈，所得图简单；每个新度2顶点强制沿路径的流量相同，因而细分前后有k流等价，且无桥性亦保持。故经典全称问题可在这些等价约化间工作，但不能把某个删边/收缩操作未经守恒延拓证明当作等价约化。"
+        },
+        {
+          "subquestion": "无桥给某个整数流不等于给统一5流",
+          "value": "partial",
+          "note": "完整初等边界：对有限无桥非空图，选有限个圈C0,…,C_(t−1)覆盖所有边。固定全图定向，将每圈的单位循环写成c_j∈{−1,0,1}^E，Bc_j=0。令f=Σ_(j=0)^(t−1)2^j c_j，则Bf=0；任意边的最高非零项绝对值2^j大于全部较低项绝对值之和至多2^j−1，所以f在每边非零，且|f_e|≤2^t−1。因此总存在某个k=2^t整数流。这没有把k压到5，不能作为猜想证明。该论证只在有限图使用：双向无限路径Z上，所有边定向i→i+1并赋1，每点守恒但每条边均为桥，说明无限图不能未经说明沿用有限cut累加的必要性。原题按经典有限图范围解读，不用这个无限图例伪称反驳。"
+        },
+        {
+          "subquestion": "有限反例验收与颜色术语的限度",
+          "value": "partial",
+          "note": "给出一个有限无桥图并仅证明它没有某个指定整数正向赋值，不够否证。固定任意定向后，需要排除所有φ∈{1,2,3,4}^E满足Bφ=0(mod5)；这与所有定向的无流等价，因为反向可由取负吸收。有限图原则上可作4^|E|精确枚举，故存在反例一支可有限核验；实际大规模运行必须保留完整图及可靠不可行证书，随机抽样或浮点失败不够。本轮没有运行此类枚举，也未新增Petersen计算。术语“5流可着色”若只定义为此种守恒边赋值可以作简称；不能把它未经额外论证等同于普通顶点5着色或边5着色。平面图对偶的流–着色对应有平面/对偶前提，不适用于任意图的直接改写。"
+        },
+        {
+          "subquestion": "公开AI稿的割准则和整数流修正：关键链独立二审",
+          "value": "partial",
+          "note": "稿件明确限有限连通无环三正则多重图，指定2-factor F，M=E∖F为perfect matching。若bisection V=A⊔B使所有M边跨两色，把F各圈循环定向、M定向A→B，则每点单位基流的out−in在A为+1、B为−1。对S设d=|S∩A|−|S∩B|、c=|δ(S)|，出入边数p,q满足d=p−q,c=p+q，故5|d|≤3c恰等价p≤4q和q≤4p。修正网络取source→B、A→sink容量1，各原图弧容量3；source侧原顶点为S的割容量为|B∖S|+3p+|A∩S|=|B|+4p−q≥|B|。因|A|=|B|，积分maxflow可同时饱和所有源汇弧，原弧修正x取0至3；其失衡恰抵消单位基流，所以f=1+x是整数NZ5流。反向由割上的最小/最大边值立即得两不等式。因此这个指定定向的准则准确。本轮手核该证明，不声称运行maxflow。"
+        },
+        {
+          "subquestion": "公开AI稿的奇圈分离充分条件及受限算法范围",
+          "value": "partial",
+          "note": "在F的每个偶圈取perfect matching、每个奇圈取缺一个顶点的matching N，若F有2t个奇圈，则H=M∪N由交错偶圈和t条交错奇长路径组成。各组件二染色给bisection；缺配点Z在A/B各t个。记z(S)=|Z∩A∩S|−|Z∩B∩S|，matching计数得|d|≤c_M、|d−z|≤c_N，故d≥0时c≥2d−z≥2d−t。若5d>3c，由c≡d(mod2)设j=(c−d)/2≥0，则d≥3j+1且d≤2j+t，所以j≤t−1和c≤5t−4。还得z≥d−2j≥j+1及c_F≤c−d=2j；每个被割开F圈至少贡献2条割边，故最多j个圈部分跨割，而S内至少j+1个A色缺配点来自不同奇圈，至少一奇圈全在S。补集同理有一完整奇圈。因此若每个分开两完整奇圈的割都≥5t−3，全部割满足准则，得到NZ5流；t0改容量2得NZ4流。t2时障碍仅(c,|d|)=(2,2)或(6,4)，对应稿中固定M,N的有限profile。读到其2SAT搜索只枚举canonical bisections，最多两可翻色偶圈组件参与每个相关6割；没有证明这两次2SAT必有一次可满足。故受限搜索失败不排除其他5流；该稿自己亦明确partial和无novelty声明。"
+        },
+        {
+          "subquestion": "公开Lean源码仅定义目标，不是5流证明",
+          "value": "no_evidence_in_scope",
+          "note": "47行源码中，有限simple graph上的整数流定义与本轮数学定义相符：反对称、support iff adjacency、所有|f(u,v)|<5、每点Σ_u f(v,u)=0。最终只写def conjecture : Prop := ∀…，没有证明它的定理，也没有在定义中假设其为真。simple→multigraph的细分与环约化只在注释；本轮可给数学桥接，但并未编译或形式化桥接。不能将文件存在、平台收录或没有sorry误报成全猜想已形式化通过。"
+        },
+        {
+          "subquestion": "Li–Su2025有界曲面子结果：Euler归约独立核对",
+          "value": "partial",
+          "note": "只核最后短链：取固定曲面内极小反例G1，依其Lemma2/3和嵌入论输入，G1三正则、girth≥9且可取不增加所需genus的2-cell嵌入，面边界长至少9。于是2m=3n、9f≤2m，Euler式给χ=n−m+f≤−n/6，即n≤−6χ。可定向genus h≤10时χ=2−2h≥−18，非定向genus k≤20时χ=2−k≥−18，均得n≤108；再用该文Cor1（≤113顶点无桥图有5流）矛盾。这一数值与依赖方向正确，标准Euler genus≤20对应可定向genus≤10或非定向genus≤20。本轮没有把G1擅认作全局极小G0，因而没有给它套用G0的girth≥11；亦没有独立重证Lemma3的网络替换和Cor1依赖的cage/极小反例结果。此为限定子类进展，不是全猜想证明。"
+        },
+        {
+          "subquestion": "相关4流进展中的Petersen子图与minor不能互换",
+          "value": "statement_error",
+          "note": "当前5流主核心不受此影响，但进展字段“4流（Petersen-子图自由）”错误恢复了相关猜想的图类。Diestel §6.6所述为Petersen-minor-free，不是普通subgraph-free。区别有自含小例：把Petersen图每条边细分一次，所得图仍含Petersen minor（逐条收缩）；却不含Petersen作为普通子图，因为任何3正则子图的顶点必须取原图中度3的旧顶点，而这些旧顶点在全细分后两两不相邻。故两个条件真有区别，不能当同义词。本轮只修相关字段，不扩查或裁定4流问题当前状态。"
+        },
+        {
+          "subquestion": "一般6流上界及oddness≤4子类",
+          "value": "partial",
+          "note": "Seymour给所有无桥图6流；Mazzuoccolo–Steffen给循环6边连通cubic且oddness≤4的5流。前者不是5，后者不能去附加连通性。"
+        },
+        {
+          "subquestion": "非定向亏格≤5与2025 Euler亏格≤20",
+          "value": "partial",
+          "note": "≤5源自Steffen1996；2025 Li–Su正式稿进一步到orientable≤10/nonorientable≤20，即Euler≤20。短归约关键链已核；外引cage唯一性与Kochol秩输入未独立重证，不称所有亏格成立。"
+        },
+        {
+          "subquestion": "题卡声称的最小反例阶≥244",
+          "value": "no_evidence_in_scope",
+          "note": "本轮读到1996≥44、2025≥114，且1909.09870不提供244；没有据此逻辑否定更强244下界。244仍缺可核原始出处，应从已证背景中暂移为待核。"
+        },
+        {
+          "subquestion": "近期完整解决与撤回线索的学术路线覆盖",
+          "value": "no_evidence_in_scope",
+          "note": "截至本次日期和已列关键词/入口，未取得可核全称5流新证明或反例。2008.07152撤回仅影响重复等价重述；不得写成不存在任何全解声称，亦不由开放目录标签推全网状态。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "statement_only",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://provetogether.ai/api/v1/submissions/241/source"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch6.pdf",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "核心是每个有限无桥多重图都有整数NZ5流（可变定向、正值1..4），与Z5非零流存在性等价，本轮已给独立完整提升证明。当前四路线未取得可确认的全称5流新证明或反例；已取得Tutte1954原文、Li–Su2025 Euler genus≤20/≤113点子结果与循环6边连通且oddness≤4子类，均限定适用范围和未重证长依赖。卡内244点下界本轮未获原始支持，不能据114较弱界断言其假；非定向亏格5为1996旧结果。真实Lean源只是Prop题面，AI稿只是指定2-factor/割条件的部分结果。人话桥定义、旧日期与相关4流字段待纠偏，不把核心整数/模5两种正确表述误判成主命题错误。",
+      "evidence_ids": [
+        "R0117-CARD",
+        "a0117_tutte1954",
+        "Q117-M-E1",
+        "a0117_li_su2025",
+        "a0117_mazzuoccolo_steffen",
+        "Q117-M-E2",
+        "C117-PT"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "当前整数核心与模5形式化是否同题",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "在经典的有限无向多重图语境中，两种核心表述忠实且等价：一是存在定向及整数边值1,2,3,4，使每点流入=流出；二是存在定向及非零Z/5Z边值，使每点净流模5为0。可先固定任意定向D，令关联矩阵B在非环边的尾记−1、头记+1，环列为0。整数版等价于存在f∈Z^E，Bf=0且1≤|f_e|≤4；将负值边反向便恢复全正1至4。模版为φ∈(F5∖{0})^E且Bφ=0。每次反向同时把值取负，故存在性不依赖先选哪个定向。5流的上界是严格小于5，非零正值只有四档；允许边值5会使模5为0，并非同一条件。",
+      "evidence_ids": [
+        "Q117-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "固定模k流也有逐边同余的有界整数提升：独立完整证明",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "以下对任意整数k≥2成立。固定定向，给非零Z/kZ流φ，取每条边的正代表a_e∈{1,…,k−1}。Ba=kb，其中b∈Z^V。令z=a/k，则0≤z≤1且Bz=b。证明存在z*∈{0,1}^E保持Bz*=b：先把环坐标任意取整（环列为0）。对其余非整数坐标形成的多重子图，若某顶点只关联一条此类边，则Bz=b在该顶点除一个±z_e外全为整数，不可能成立。因此这个子图若非空，每个非孤立顶点至少有2条关联边，必含一条无向圈。沿圈取与固定定向一致为+1、相反为−1的循环向量c，Bc=0；在z+t c中取最大允许t>0，使坐标仍落[0,1]。至少一条圈边达到0或1，其他已取整数的边未动，所以非整数边数严格减少。有限步后得到z*。于是f=a−kz*满足Bf=0、f_e≡φ_e(mod k)，每值要么a_e要么a_e−k，均非0且绝对值<k。反向对负边取正得到通常的整数k流。另一方向直接将整数k流模k即可。故等价不仅是存在某个新流，实际每个给定模流都能作这种有界同余提升；错误的是未经调整直接拿所有正代表当整数流。",
+      "evidence_ids": [
+        "Q117-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "朴素正代表提升失败的两平行边证书",
+      "math_status": "仅特例",
+      "scope_note": "完整手算输入：V={u,v}，两条平行边e1,e2均定向u→v，B=[[-1,-1],[1,1]]，模5赋值(1,4)。整数代表a=(1,4)给Ba=(−5,5)，模5确为0但整数不为0。取z*=(0,1)，则Bz*=(−1,1)=Ba/5，f=a−5z*=(1,−1)，Bf=(0,0)，且逐边仍同余(1,4)。反向e2后两边均取正值1。这同时排除一种算法误用：在任意固定定向只允许整数正值1至4，发现不可行，并不能否定该图有5流；须允许正负值或同时选择方向。此处为手算，未声称执行程序。",
+      "evidence_ids": [
+        "Q117-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "桥定义的非连通边界与无桥必要性",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "正确定义是删除边e后连通分量数增加：c(G−e)>c(G)，等价于e的两个端点在G−e中不连通；对环永不成立。人话“删掉之后会让图不连通”仅在先假定G连通时可直接使用。例G=C3⊔K1本来就不连通，删除三角形任意一边后仍有2个分量，并无桥。无桥是有限图上任意非零阿贝尔群流的必要条件：若e为桥，取其所在分量删e后的任一侧S，累加S中各顶点守恒，内部边相消，唯一横跨边贡献±f(e)=0，故桥上值必须0。非连通情形同样有效，不需全图连通。",
+      "evidence_ids": [
+        "Q117-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "删除所有桥后的人话与原猜想的逻辑关系",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "有限图中，非桥边恰为处在某个圈上的边（允许环为1圈、平行边为2圈）。原桥不在任何圈中，因此删去全部原桥不会破坏原非桥边所处的圈；剩余图H=G−Br(G)确实无桥。于是“对任意图，删全部桥后的剩余图都有5流”与原猜想等价：正向对H应用原猜想，逆向令G本身无桥。但须明确流只要求在剩余边上非零。把桥重新添回可以赋0保守恒，却不能给原图一个处处非零流。人话这一句只需补“剩余的每条边”，不应误判成原核心已被反驳。",
+      "evidence_ids": [
+        "Q117-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "环、孤立点、空边集、多分量与简单图约化",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "环在关联矩阵中为零列，可独立赋1，既不造成守恒障碍也不是桥；删去环不影响其余边的流可行性。孤立点满足0=0；无边图的唯一空赋值对“每条边非零”是空真。非连通有限图有5流当且仅当各分量分别有5流，可逐分量合并。平行边须分别记值，不能随意合并。若要比较简单图版本与多重图版本，可将每条非环边细分一次、每个环换成有两个新顶点的3圈，所得图简单；每个新度2顶点强制沿路径的流量相同，因而细分前后有k流等价，且无桥性亦保持。故经典全称问题可在这些等价约化间工作，但不能把某个删边/收缩操作未经守恒延拓证明当作等价约化。",
+      "evidence_ids": [
+        "Q117-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "无桥给某个整数流不等于给统一5流",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "完整初等边界：对有限无桥非空图，选有限个圈C0,…,C_(t−1)覆盖所有边。固定全图定向，将每圈的单位循环写成c_j∈{−1,0,1}^E，Bc_j=0。令f=Σ_(j=0)^(t−1)2^j c_j，则Bf=0；任意边的最高非零项绝对值2^j大于全部较低项绝对值之和至多2^j−1，所以f在每边非零，且|f_e|≤2^t−1。因此总存在某个k=2^t整数流。这没有把k压到5，不能作为猜想证明。该论证只在有限图使用：双向无限路径Z上，所有边定向i→i+1并赋1，每点守恒但每条边均为桥，说明无限图不能未经说明沿用有限cut累加的必要性。原题按经典有限图范围解读，不用这个无限图例伪称反驳。",
+      "evidence_ids": [
+        "Q117-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限反例验收与颜色术语的限度",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "给出一个有限无桥图并仅证明它没有某个指定整数正向赋值，不够否证。固定任意定向后，需要排除所有φ∈{1,2,3,4}^E满足Bφ=0(mod5)；这与所有定向的无流等价，因为反向可由取负吸收。有限图原则上可作4^|E|精确枚举，故存在反例一支可有限核验；实际大规模运行必须保留完整图及可靠不可行证书，随机抽样或浮点失败不够。本轮没有运行此类枚举，也未新增Petersen计算。术语“5流可着色”若只定义为此种守恒边赋值可以作简称；不能把它未经额外论证等同于普通顶点5着色或边5着色。平面图对偶的流–着色对应有平面/对偶前提，不适用于任意图的直接改写。",
+      "evidence_ids": [
+        "Q117-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "公开AI稿的割准则和整数流修正：关键链独立二审",
+      "math_status": "条件性结果",
+      "scope_note": "稿件明确限有限连通无环三正则多重图，指定2-factor F，M=E∖F为perfect matching。若bisection V=A⊔B使所有M边跨两色，把F各圈循环定向、M定向A→B，则每点单位基流的out−in在A为+1、B为−1。对S设d=|S∩A|−|S∩B|、c=|δ(S)|，出入边数p,q满足d=p−q,c=p+q，故5|d|≤3c恰等价p≤4q和q≤4p。修正网络取source→B、A→sink容量1，各原图弧容量3；source侧原顶点为S的割容量为|B∖S|+3p+|A∩S|=|B|+4p−q≥|B|。因|A|=|B|，积分maxflow可同时饱和所有源汇弧，原弧修正x取0至3；其失衡恰抵消单位基流，所以f=1+x是整数NZ5流。反向由割上的最小/最大边值立即得两不等式。因此这个指定定向的准则准确。本轮手核该证明，不声称运行maxflow。",
+      "evidence_ids": [
+        "Q117-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "公开AI稿的奇圈分离充分条件及受限算法范围",
+      "math_status": "条件性结果",
+      "scope_note": "在F的每个偶圈取perfect matching、每个奇圈取缺一个顶点的matching N，若F有2t个奇圈，则H=M∪N由交错偶圈和t条交错奇长路径组成。各组件二染色给bisection；缺配点Z在A/B各t个。记z(S)=|Z∩A∩S|−|Z∩B∩S|，matching计数得|d|≤c_M、|d−z|≤c_N，故d≥0时c≥2d−z≥2d−t。若5d>3c，由c≡d(mod2)设j=(c−d)/2≥0，则d≥3j+1且d≤2j+t，所以j≤t−1和c≤5t−4。还得z≥d−2j≥j+1及c_F≤c−d=2j；每个被割开F圈至少贡献2条割边，故最多j个圈部分跨割，而S内至少j+1个A色缺配点来自不同奇圈，至少一奇圈全在S。补集同理有一完整奇圈。因此若每个分开两完整奇圈的割都≥5t−3，全部割满足准则，得到NZ5流；t0改容量2得NZ4流。t2时障碍仅(c,|d|)=(2,2)或(6,4)，对应稿中固定M,N的有限profile。读到其2SAT搜索只枚举canonical bisections，最多两可翻色偶圈组件参与每个相关6割；没有证明这两次2SAT必有一次可满足。故受限搜索失败不排除其他5流；该稿自己亦明确partial和无novelty声明。",
+      "evidence_ids": [
+        "Q117-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "公开Lean源码仅定义目标，不是5流证明",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "47行源码中，有限simple graph上的整数流定义与本轮数学定义相符：反对称、support iff adjacency、所有|f(u,v)|<5、每点Σ_u f(v,u)=0。最终只写def conjecture : Prop := ∀…，没有证明它的定理，也没有在定义中假设其为真。simple→multigraph的细分与环约化只在注释；本轮可给数学桥接，但并未编译或形式化桥接。不能将文件存在、平台收录或没有sorry误报成全猜想已形式化通过。",
+      "evidence_ids": [
+        "Q117-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "Li–Su2025有界曲面子结果：Euler归约独立核对",
+      "math_status": "仅特例",
+      "scope_note": "只核最后短链：取固定曲面内极小反例G1，依其Lemma2/3和嵌入论输入，G1三正则、girth≥9且可取不增加所需genus的2-cell嵌入，面边界长至少9。于是2m=3n、9f≤2m，Euler式给χ=n−m+f≤−n/6，即n≤−6χ。可定向genus h≤10时χ=2−2h≥−18，非定向genus k≤20时χ=2−k≥−18，均得n≤108；再用该文Cor1（≤113顶点无桥图有5流）矛盾。这一数值与依赖方向正确，标准Euler genus≤20对应可定向genus≤10或非定向genus≤20。本轮没有把G1擅认作全局极小G0，因而没有给它套用G0的girth≥11；亦没有独立重证Lemma3的网络替换和Cor1依赖的cage/极小反例结果。此为限定子类进展，不是全猜想证明。",
+      "evidence_ids": [
+        "Q117-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "相关4流进展中的Petersen子图与minor不能互换",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "当前5流主核心不受此影响，但进展字段“4流（Petersen-子图自由）”错误恢复了相关猜想的图类。Diestel §6.6所述为Petersen-minor-free，不是普通subgraph-free。区别有自含小例：把Petersen图每条边细分一次，所得图仍含Petersen minor（逐条收缩）；却不含Petersen作为普通子图，因为任何3正则子图的顶点必须取原图中度3的旧顶点，而这些旧顶点在全细分后两两不相邻。故两个条件真有区别，不能当同义词。本轮只修相关字段，不扩查或裁定4流问题当前状态。",
+      "evidence_ids": [
+        "Q117-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "一般6流上界及oddness≤4子类",
+      "math_status": "部分进展",
+      "scope_note": "Seymour给所有无桥图6流；Mazzuoccolo–Steffen给循环6边连通cubic且oddness≤4的5流。前者不是5，后者不能去附加连通性。",
+      "evidence_ids": [
+        "a0117_seymour1981",
+        "a0117_diestel",
+        "a0117_mazzuoccolo_steffen"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "非定向亏格≤5与2025 Euler亏格≤20",
+      "math_status": "部分进展",
+      "scope_note": "≤5源自Steffen1996；2025 Li–Su正式稿进一步到orientable≤10/nonorientable≤20，即Euler≤20。短归约关键链已核；外引cage唯一性与Kochol秩输入未独立重证，不称所有亏格成立。",
+      "evidence_ids": [
+        "a0117_steffen1996",
+        "a0117_li_su2025"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "题卡声称的最小反例阶≥244",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "本轮读到1996≥44、2025≥114，且1909.09870不提供244；没有据此逻辑否定更强244下界。244仍缺可核原始出处，应从已证背景中暂移为待核。",
+      "evidence_ids": [
+        "a0117_steffen1996",
+        "a0117_li_su2025",
+        "a0117_snarks2019"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "近期完整解决与撤回线索的学术路线覆盖",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "截至本次日期和已列关键词/入口，未取得可核全称5流新证明或反例。2008.07152撤回仅影响重复等价重述；不得写成不存在任何全解声称，亦不由开放目录标签推全网状态。",
+      "evidence_ids": [
+        "a0117_mkrtchyan_withdrawal"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "原包与固定GitHub正文/meta",
+      "query": "读取任务；fetch_file problems/000/QX-P-000117.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "当前c9f4e5f088817ea5；textblobd5cb8417b9cdba146831b62dcbd08960f74a0588；metablobea99bbeeae186001b165a291cc0ec28321be2357。旧novelty使用3f30b61742f79b1d，不作本轮。核心整数1..4流与Z5非零流在存在性上等价，需说明提升/重定向，不能因表示不同误判题面已被反驳。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000117.text.md",
+      "request_id": "QX-R3-11-000117-root-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Tutte\" \"5-flow\" proof 2026 (recency=365)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际返回West题录、2025 Li/Su亏格≤20论文、Seymour6-flow新证明、2026 4-flow stability、2025 reconfiguration以及ProveTogether等。未把标题含proof/最新抓取日当作5-flow全解；244来源交学术原稿路线核。ProveTogether定义/解答实物交代码路线另取，不以搜索摘录报告形式化证明。",
+      "request_id": "QX-R3-11-000117-root-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"5-flow conjecture\" \"proof\" arxiv (recency=1095)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际返回West题录、2025 Li/Su亏格≤20论文、Seymour6-flow新证明、2026 4-flow stability、2025 reconfiguration以及ProveTogether等。未把标题含proof/最新抓取日当作5-flow全解；244来源交学术原稿路线核。ProveTogether定义/解答实物交代码路线另取，不以搜索摘录报告形式化证明。",
+      "request_id": "QX-R3-11-000117-root-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"nowhere-zero 5-flow\" \"244\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际返回West题录、2025 Li/Su亏格≤20论文、Seymour6-flow新证明、2026 4-flow stability、2025 reconfiguration以及ProveTogether等。未把标题含proof/最新抓取日当作5-flow全解；244来源交学术原稿路线核。ProveTogether定义/解答实物交代码路线另取，不以搜索摘录报告形式化证明。",
+      "request_id": "QX-R3-11-000117-root-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "West作者问题页",
+      "query": "open https://www.dwest.web.illinois.edu/openp/tut5flow.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际全文18行：Tutte1954全称bridgeless5-flow、Seymour1981六流、Celmins旧cyclic5/girth7边界、射影平面及有向5圈双覆盖蕴含线索。此页无明确更新日，只作题源与历史定位；不称其旧最小反例界为本轮最新，不以页面在列证明当前开放。",
+      "url": "https://www.dwest.web.illinois.edu/openp/tut5flow.html",
+      "locator": "全文问题、Comments及References",
+      "request_id": "QX-R3-11-000117-root-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Operations Research Transactions正式页",
+      "query": "open https://www.ort.shu.edu.cn/EN/10.15960/j.cnki.issn.1007-6093.2025.03.006",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "主审亲读正式摘要及参考文献，明确所有无桥Euler genus≤20；2025卷29(3)124–134，Received2025-02-26、Online2025-09-15、Published2025-09-09均按页面原字段记录。Ref22 Steffen1996是nonorientable genus5；ref20 oddness4论文为2017。正文与准确额外条件由学术路线另取，摘要不充完整核证。",
+      "url": "https://www.ort.shu.edu.cn/EN/10.15960/j.cnki.issn.1007-6093.2025.03.006",
+      "locator": "摘要、Dates、References[3]/[8]/[20]/[22]",
+      "request_id": "QX-R3-11-000117-root-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Diestel作者官方网站第6章",
+      "query": "open Ch6.pdf；find Five-flow / Five-Flow；open lineno380核提升证明余段",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "先读pp156–157循环流/loop和桥cut守恒；pp162–164 Thm6.3.3及其完整改流证明随后续取，核有限偏差极小化和沿正值路径±k校正。§6.6 p171明确bridgeless multigraph，p172为Seymour6-flow定理。原稿解析若负号缺字按上下文与数学路线PDF确认，不以模5正代表逐点普通等号作等价证明。只核相关定义/提升/命题，未称通读全章各长证明。",
+      "url": "https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch6.pdf",
+      "locator": "§6.1 pp156–157；Thm6.3.3 pp162–164；§6.6 pp171–172",
+      "request_id": "QX-R3-11-000117-root-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003950〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中：QX-P-000117,QX-P-000313,QX-P-000525,QX-P-000581,QX-P-000861,QX-P-001686；编号001717仅中文主流词误命中，nowhere-zero也泛命中线性映射，不以共享词语判同题。结合provenance明确001686，选6组完整双卡核定义、域、参数和验收。",
+      "result_count": 6,
+      "request_id": "QX-R3-11-000117-root-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003951〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中：QX-P-000117,QX-P-000319,QX-P-000581,QX-P-000582,QX-P-000856,QX-P-000892,QX-P-001685,QX-P-001686,QX-P-001717；编号001717仅中文主流词误命中，nowhere-zero也泛命中线性映射，不以共享词语判同题。结合provenance明确001686，选6组完整双卡核定义、域、参数和验收。",
+      "result_count": 9,
+      "request_id": "QX-R3-11-000117-root-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003952〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中：QX-P-002432；编号001717仅中文主流词误命中，nowhere-zero也泛命中线性映射，不以共享词语判同题。结合provenance明确001686，选6组完整双卡核定义、域、参数和验收。",
+      "result_count": 1,
+      "request_id": "QX-R3-11-000117-root-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/002/QX-P-002432.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；完整读text及meta身份/来源/acceptance",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "other_card_rev=d8cc649895d0600f；textblob230426aca350fb393e26916707c3fbcc0d3112c2；metablobfd446334ff3ad6539f331a4c14631ba866beef60。比较明确数学目标，不以旧进展标签或共同flow词汇归并。只将候选用于本题查重，不重新查其数学状态。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002432.text.md",
+      "request_id": "QX-R3-11-000117-root-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/000/QX-P-000319.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；完整读text及meta身份/来源/acceptance",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "other_card_rev=090f3cd2e646731c；textblob91d08dd98ae6b1d926eafa03244e1db07e816354；metablobc6a036829807f24a5a6bdfb1269fec90d7d63c35。比较明确数学目标，不以旧进展标签或共同flow词汇归并。只将候选用于本题查重，不重新查其数学状态。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000319.text.md",
+      "request_id": "QX-R3-11-000117-root-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/000/QX-P-000861.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；完整读text及meta身份/来源/acceptance",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "other_card_rev=c61b86996573cba5；textblob815b75601bc8c5d1586e988dea85d2c7099c93e3；metablob52aec240a14c2b5347898da5c19a2b625796de27。比较明确数学目标，不以旧进展标签或共同flow词汇归并。只将候选用于本题查重，不重新查其数学状态。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000861.text.md",
+      "request_id": "QX-R3-11-000117-root-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/000/QX-P-000582.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；完整读text及meta身份/来源/acceptance",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "other_card_rev=3e2cc5f6a0836405；textblobec4834a7cb3da421aa4cc5906db671e7cb03b487；metablob569de57a9965ee4974d6a905f76dbf43ca0ee02e。比较明确数学目标，不以旧进展标签或共同flow词汇归并。只将候选用于本题查重，不重新查其数学状态。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000582.text.md",
+      "request_id": "QX-R3-11-000117-root-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/000/QX-P-000581.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；完整读text及meta身份/来源/acceptance",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "other_card_rev=bdf1329917b43115；textblobaddd7c3765dde3152b37565421d8df9d8867b6b4；metablob8a9e0c4f21022d54f81338afc8468f92c948b362。比较明确数学目标，不以旧进展标签或共同flow词汇归并。只将候选用于本题查重，不重新查其数学状态。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000581.text.md",
+      "request_id": "QX-R3-11-000117-root-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/001/QX-P-001686.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；完整读text及meta身份/来源/acceptance",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "other_card_rev=24a4d4d2b8a41538；textblob603c2d69691cae021b3f381226a23278b06be7fd；metablob03c3939f42304c8227aac5e429128dba84000323。比较明确数学目标，不以旧进展标签或共同flow词汇归并。只将候选用于本题查重，不重新查其数学状态。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001686.text.md",
+      "request_id": "QX-R3-11-000117-root-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "Steffen本人发布的OPG原条目",
+      "query": "open https://www.openproblemgarden.org/op/circular_flow_numbers_of_r_graphs",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "000319核心/formal没有具体界且人话把r-graph错作全偶度图，所以为判断pair补读作者2015-08-06原帖。实际(2t+1)-regular且每奇数顶点集的边割≥2t+1，t>1，猜Fc≤2+2/t。作者给偶t经Jaeger模定向到Tutte5-flow的蕴含链，未在此提供完整归约证明；本轮只据明确不同参数与验收排除严格同题，不以319错误定义作等价桥，也不重新审其求解状态。",
+      "url": "https://www.openproblemgarden.org/op/circular_flow_numbers_of_r_graphs",
+      "locator": "定义、Conjecture、随后蕴含段与ES_2015参考",
+      "request_id": "QX-R3-11-000117-root-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "已下载Tutte1954原始刊本",
+      "query": "读取tutte1954.txt pp80–83；view_image tutte1954_p83.png",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "主审实际读finite graph/loops/links、Q_n和非零1-cycle定义及isthmus cut说明，并看p83原始页图确认ConjectureII为n≥5，绝非抽取文字的n>5。刊本1954、稿件Received1952-10-01、数字化页面日期分别记录。原式量化所有n≥5与固定5-flow通过原刊紧后单调性/本轮提升证明一致。",
+      "url": "https://doi.org/10.4153/CJM-1954-010-9",
+      "locator": "pp80–83；p83 ConjectureII实际页图",
+      "request_id": "QX-R3-11-000117-root-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "已下载Li–Su2025正式全文",
+      "query": "完整读取li_su2025.txt相关§1–3；view_image li_su2025_p131.png",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "主审读Thm2–6、Cor1/2、Lemma3–7和Thm8/9。核global最小G0的girth11与固定曲面最小G1的girth9不同；Lemma6网络计数/线性空间拼接短链和Euler n≤−6χ≤108<114均核。外引112-cage唯一性/Hamiltonian事实、Kochol的C5..C8矩阵秩数据未独立重算。p131页图确认orientable genus=t/2，抽取作2t是OCR误序，不能误报原稿错误或推出orientable≤40。该文Thm5为≥114，未支持卡≥244；这不证明任何更强244界必假。",
+      "url": "https://www.ort.shu.edu.cn/CN/article/downloadArticleFile.do?attachType=PDF&id=21516",
+      "locator": "§1 Thm5/Cor1；§2 Lemma4/Thm8/9；§3 Lemma6/7",
+      "request_id": "QX-R3-11-000117-root-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "固定公开AI稿的本地全文独立核对",
+      "query": "完整读取llm-5-flow-output.md；纸面核§2–4关键算式与§5–7限定",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "稿明确partial、would_publish=false、不声称新颖性。核5|d|≤3c与p≤4q且q≤4p等价；capacity3改流cut=|B|+4p−q和积分maxflow正确。两matching计数与parity j=(c−d)/2得d≥3j+1、d≤2j+t、c≤5t−4，分隔两完整奇圈；t=2只给7阈值，弱于已知6。固定M,N的两次2SAT只是限制类搜索，失败不证原题反例；未执行算法或声称实测。",
+      "locator": "LLM公开output.md全文；固定commit与URL见代码路线证据",
+      "request_id": "QX-R3-11-000117-root-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "ProveTogether实际Lean源静态核对",
+      "query": "完整读取ProveTogether-TutteFiveFlow.lean 47行",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "2315bytes；SHA256db291859ebe85b1ba4bfb1add3535f84702d8e8a47954de74c75dae4dba68088。finite SimpleGraph、antisymm、support非零当且仅当邻接、bounded<5、Kirchhoff均对齐。主对象是def conjecture : Prop，既无证明theorem，也未假定为axiom；无sorry不等于猜想已证。注释的简单图/多重图等价需数学桥，本轮自行给出细分与loop处理，源文件没有形式化该桥。未本机Lean编译。",
+      "locator": "Bridgeless、IsNowhereZeroFlow与def conjecture全部源码",
+      "request_id": "QX-R3-11-000117-root-021",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "Tutte 5 flow conjecture proof 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "近期365天；命中原题/局部进展/开放问题目录，未取得全称5流的完整解决稿。",
+      "request_id": "QX-R3-11-000117-academic-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"5-flow\" \"244\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未定位到支持244顶点下界的一手正文。",
+      "request_id": "QX-R3-11-000117-academic-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"5-flow\" \"nonorientable\" \"5\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Steffen1996正式原刊摘要，非2024–26新结果。",
+      "request_id": "QX-R3-11-000117-academic-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "Tutte 1954 five flow conjecture Contribution chromatic polynomials Seymour 1981",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中原始Tutte1954及Seymour1981正式出版入口。",
+      "request_id": "QX-R3-11-000117-academic-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"5-flow\" \"244\" graph counterexample",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未取得244来源。",
+      "request_id": "QX-R3-11-000117-academic-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Nowhere-zero 5-flows for graphs with bounded genus\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Li–Su2025正式原刊，后来取得全文。",
+      "request_id": "QX-R3-11-000117-academic-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Tutte\" \"5-flow\" \"proof\" arxiv",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "近期730天；命中子类、重配置与其它流概念，未命中可取得的本题全解原稿。",
+      "request_id": "QX-R3-11-000117-academic-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"5-flow conjecture\" \"solved\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "近期365天；命中开放问题/AI工作页等，未取得本题全解。",
+      "request_id": "QX-R3-11-000117-academic-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "Tutte \"244\" graph",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未定位244一手依据。",
+      "request_id": "QX-R3-11-000117-academic-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"5-flow\" \"244 vertices\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未定位244一手依据。",
+      "request_id": "QX-R3-11-000117-academic-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"five-flow\" \"244\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未定位244一手依据。",
+      "request_id": "QX-R3-11-000117-academic-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"5-flow conjecture\" proof counterexample arxiv claim",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "取得Kochol2010、Korcsok2015及相关原稿入口；未取得全称解决稿。",
+      "request_id": "QX-R3-11-000117-academic-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Tutte\" \"5-flow\" \"proof\" \"2026\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "结果包括ProofAtlas未完成路线、单位向量流等，未取得本题全称证明。",
+      "request_id": "QX-R3-11-000117-academic-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"5-flow conjecture\" \"244\" \"Korcsok\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未定位244；Korcsok2015作为学位论文线索，不冒称全文已读。",
+      "request_id": "QX-R3-11-000117-academic-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Tutte\" \"5-flow conjecture\" \"proof\" \"withdrawn\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2008.07152撤回线索，后核原arXiv记录；只撤回等价重述稿。",
+      "request_id": "QX-R3-11-000117-academic-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Tutte\" \"244\" \"counterexample\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未得到244的原始定理。",
+      "request_id": "QX-R3-11-000117-academic-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"5-flow\" \"244\" -site:proofatlas.ai -site:mathconjectures.com",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "无可核244来源；搜索到其它数字/参考文献编号不作数学证据。",
+      "request_id": "QX-R3-11-000117-academic-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Nowhere-zero 5-flows for graphs with bounded genus\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "原刊明确Euler genus≤20，完整PDF后由页面meta取得。",
+      "request_id": "QX-R3-11-000117-academic-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"2008.07152\" \"withdrawn\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "搜索只给二手撤回线索；之后原arXiv页面本地取得。",
+      "request_id": "QX-R3-11-000117-academic-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Nowhere-zero 6-flows\" Seymour 1981 pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Elsevier原刊摘要及Princeton作者机构记录。",
+      "request_id": "QX-R3-11-000117-academic-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"5-flow conjecture\" \"proof\" \"2025\" \"2026\" -site:proofatlas.ai -site:emergentmind.com -site:graph-theory-ai.github.io -site:mathconjectures.com",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中cycle double cover/重配置/几何流等近邻；未取得本题5流完整证明或反例。",
+      "request_id": "QX-R3-11-000117-academic-021",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地题包",
+      "query": "读取 work_000117_sources/task.json，核id=QX-P-000117, card_rev=c9f4e5f088817ea5；读取本包Schema字段",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "旧novelty.card_rev=3f30b61742f79b1d，与当前卡rev不同；旧检索不能计本轮证据。",
+      "request_id": "QX-R3-11-000117-academic-022",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Open Problem Garden",
+      "query": "open 5_flow_conjecture 全页",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "页面2007-03-07发布；读原问、解释与参考文献，不以开放标签证明全网无解。",
+      "url": "https://www.openproblemgarden.org/op/5_flow_conjecture",
+      "request_id": "QX-R3-11-000117-academic-023",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "doi.org / Cambridge",
+      "query": "open https://doi.org/10.4153/CJM-1954-010-9（两次入口尝试）",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "DOI直开未取得可读正文；后面searchref→Cambridge页面和本地PDF已经补足。",
+      "url": "https://doi.org/10.4153/CJM-1954-010-9",
+      "request_id": "QX-R3-11-000117-academic-024",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Cambridge Core",
+      "query": "open 搜索ref 〔原始工具引用已私有留存〕；本地urllib下载同一正式落地页并提取citation_pdf_url 〔私有记录编号：PR-003953〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "原刊1954，网页数字化上线2018-11-20；两者不得混写。",
+      "url": "https://www.cambridge.org/core/journals/canadian-journal-of-mathematics/article/contribution-to-the-theory-of-chromatic-polynomials/E1EE1F053B494D08746F0EE23F736CC2",
+      "request_id": "QX-R3-11-000117-academic-025",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Cambridge Core原刊PDF",
+      "query": "urllib下载citation_pdf_url；pdftotext读取pp80–84；pdftoppm第4页并view_image真实像素",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "1187736 bytes；SHA256 783f9c2fa248c4c58c889a8027de7fe970f5076eec3d9595fcc37cd3c20a024c。p83原印n≥5，文本抽取丢等号；不是原稿错。",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/E1EE1F053B494D08746F0EE23F736CC2/S0008414X00023543a.pdf/div-class-title-a-contribution-to-the-theory-of-chromatic-polynomials-div.pdf",
+      "locator": "§1 pp80–81；§2 pp82–84，Conjecture II p83；本地图tutte1954_p83.png",
+      "request_id": "QX-R3-11-000117-academic-026",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Diestel作者官方预览",
+      "query": "open Ch6.pdf；find 6.3.3、6.3.4；本地下载、pdftotext读取§6.1/6.3/6.6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得全文；实际阅读multigraph/loop定义、Tutte模流提升定理及其证明、Seymour6流重述和证明；未逐一重证全部引理。",
+      "url": "https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch6.pdf",
+      "locator": "Thm6.3.3 pp162–164；§6.6 pp171–174；refs 〔原始工具引用已私有留存〕/2",
+      "request_id": "QX-R3-11-000117-academic-027",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Operations Research Transactions官网",
+      "query": "open Li–Su2025正式落地页，读取摘要/作者/日期/引文",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "作者LI Jiaao、SU Bo；29(3)(2025)124–134。页面列Received2025-02-26、Online2025-09-15、Published2025-09-09，保留原字段。",
+      "url": "https://www.ort.shu.edu.cn/EN/10.15960/j.cnki.issn.1007-6093.2025.03.006",
+      "request_id": "QX-R3-11-000117-academic-028",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Operations Research Transactions官网",
+      "query": "click原页link17 PDF和link16 RichHTML",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "两个web click均返回同一落地页，不算已取得全文；随后本地metadata PDF入口补足。",
+      "url": "https://www.ort.shu.edu.cn/EN/10.15960/j.cnki.issn.1007-6093.2025.03.006",
+      "request_id": "QX-R3-11-000117-academic-029",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Operations Research Transactions官网",
+      "query": "urllib下载网页；提取citation_pdf_url后下载PDF，pdftotext读取全部§1–3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际662879 bytes，SHA256 d3e5bef0b6bb9760c89986ac720248c7da7efbf4907ef0905c9743094126bf2a；结果仅子类与反例限制，非全称5流。",
+      "url": "https://www.ort.shu.edu.cn/CN/article/downloadArticleFile.do?attachType=PDF&id=21516",
+      "locator": "Thm5/Cor1–2 pp127–128；Lemma3–4/Thm8–9 pp130–131；Lemma6–7 pp132–133",
+      "request_id": "QX-R3-11-000117-academic-030",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Operations Research Transactions官网",
+      "query": "web open实际PDF链接",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "web入口报not accessible；同一PDF已由urllib成功取得，此失败不是最终正文缺口。",
+      "url": "https://www.ort.shu.edu.cn/CN/article/downloadArticleFile.do?attachType=PDF&id=21516",
+      "request_id": "QX-R3-11-000117-academic-031",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地原刊图像",
+      "query": "pdftoppm Li–Su2025第8页并view_image",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际像素确认p131定向亏格是t/2，pdftotext次序变成2t；Thm8的orientable≤10/nonorientable≤20与Thm9的Euler≤20一致。",
+      "url": "https://www.ort.shu.edu.cn/CN/article/downloadArticleFile.do?attachType=PDF&id=21516",
+      "locator": "印刷p131；work_000117_sources/li_su2025_p131.png",
+      "request_id": "QX-R3-11-000117-academic-032",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Wiley Online Library",
+      "query": "open Steffen1996 doi/full入口",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "实际跳转abs页面：原刊1996-08，非定向亏格≤5、最小反例≥44；文献列1994 SFB-preprint94–016，但未取得那份预印本。",
+      "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/(SICI)1097-0118(199608)22:4%3C309::AID-JGT5%3E3.0.CO;2-P",
+      "request_id": "QX-R3-11-000117-academic-033",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open abs1412.5398；click PDF link7；固定v1本地下载",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际v1=2014-12-17，10页；读取§1和Thm1.2。完整证明已取得但未全面独立重审。",
+      "url": "https://arxiv.org/pdf/1412.5398v1",
+      "locator": "〔原始工具引用已私有留存〕 / 〔原始工具引用已私有留存〕，Thm1.2 p2",
+      "request_id": "QX-R3-11-000117-academic-034",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open abs1909.09870；click PDF link8；find全文244；读取pp1–7",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "v1=2019-09-21；244无匹配。§3/Table1仅snarks≤36顶点的circular flow number；算法在≥5时不区分=5与>5，不能凭该返回判Tutte反例。",
+      "url": "https://arxiv.org/pdf/1909.09870v1",
+      "locator": "〔原始工具引用已私有留存〕 / 〔原始工具引用已私有留存〕 / 〔原始工具引用已私有留存〕",
+      "request_id": "QX-R3-11-000117-academic-035",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Charles University学位论文档案",
+      "query": "urllib下载Korcsok2015 Minimal Counterexamples to Flow Conjectures原PDF",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "请求读超时；仅命中原档案索引、Li–Su2025对girth≥13学位论文的引用。未将该论文提升为本轮已审定理，更未由它推244。",
+      "url": "https://dspace.cuni.cz/bitstream/handle/20.500.11956/62557/DPTX_2013_2_11320_0_392261_0_148932.pdf?isAllowed=y&sequence=1",
+      "request_id": "QX-R3-11-000117-academic-036",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Elsevier / ScienceDirect",
+      "query": "检索并open Seymour1981正式原刊页面",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "搜索取得原刊摘要：所有无桥图有整数6流；直接open403，未取得1981六页正文。Diestel作者预览另给完整现代证明。",
+      "url": "https://www.sciencedirect.com/science/article/pii/0095895681900587",
+      "locator": "〔原始工具引用已私有留存〕 / 〔原始工具引用已私有留存〕",
+      "request_id": "QX-R3-11-000117-academic-037",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "web open abs2008.07152、abs2008.07152v2及重试unversioned",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "web多次DisabledError；之后本地urllib已取得官方摘要/撤回记录，故元信息缺口补足。",
+      "url": "https://arxiv.org/abs/2008.07152",
+      "locator": "〔原始工具引用已私有留存〕 / 〔原始工具引用已私有留存〕 / 〔原始工具引用已私有留存〕",
+      "request_id": "QX-R3-11-000117-academic-038",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方记录",
+      "query": "urllib下载abs2008.07152，读取title、摘要、comments、Submission history",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "v1=2020-08-17，v2=2020-10-07 withdrawn；原因是等价重述与Kochol2002既有结果重复。原稿并非证明或反驳5流猜想；没有把撤回记成数学全解失败。",
+      "url": "https://arxiv.org/abs/2008.07152v2",
+      "locator": "work_000117_sources/mkrtchyan2008_abs.html；官方comments和history",
+      "request_id": "QX-R3-11-000117-academic-039",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地原题包",
+      "query": "完整读取work_000117_sources/task.json，逐项核核心整数定义、形式化模5定义、人话桥定义、验收和图类边界",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.qunxingmath.org/p/QX-P-000117/",
+      "locator": "当前card_rev=c9f4e5f088817ea5",
+      "note": "核心整数版和模5版等价，不因两种写法直接判题面失真；非连通图的桥定义和“删桥后每条边”属于人话澄清。未编辑源卡。",
+      "request_id": "QX-R3-11-000117-math-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Diestel官方作者书籍网站",
+      "query": "site:diestel-graph-theory.com chapter 6 flows k-flow Z_k Tutte；open basic.html并click 6.Flows取得官方Chapter6 PDF",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch6.pdf",
+      "locator": "Graph Theory第6版(2025)，Chapter6",
+      "note": "由官方预览页实际点击完整章节，不把搜索摘要当定义依据。预览页https://diestel-graph-theory.com/basic.html明确第6版2025。",
+      "request_id": "QX-R3-11-000117-math-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Diestel官方Chapter6 PDF",
+      "query": "实际读取§6.1、§6.3 Theorem6.3.3和完整证明；find 5-flow/Conjecture并读§6.6原五流猜想",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch6.pdf",
+      "locator": "pp156–157、162–164、171；Corollary6.1.2、Theorem6.3.3、Five-Flow Conjecture",
+      "note": "核有限多重图、环在守恒中抵消、桥上流必为0、整数k流与Z_k流等价。Seymour6流及其他历史状态不凭该项核查这一本来源冻结到2026，近期声明由其他路线核。",
+      "request_id": "QX-R3-11-000117-math-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "手工图论与整数流论证",
+      "query": "独立证明固定模k流的有界整数同余提升；手核两平行边(1,4)例；核非连通桥、删桥、分量、环、孤立点与子分边界",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "math_results内嵌全部证明与小例输入输出",
+      "note": "本轮没有运行图枚举、ILP、GAP、浮点测试或Lean；没有把一个固定定向上的正数可行性失败当成无流证书。全部小例为明示的手算。",
+      "request_id": "QX-R3-11-000117-math-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "固定GitHub公开AI稿及ProveTogether原源码",
+      "query": "完整读取work_000117_sources/llm-5-flow-output.md和ProveTogether-TutteFiveFlow.lean；读取code_manifest.json核固定来源与snapshot；手审AI §2–4和2SAT适用域",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/5_flow_conjecture/output.md",
+      "locator": "AI稿§2–4、§5–7；Lean47行完整目标源码",
+      "note": "源文件由代码路线从固定commit/平台接口取得；本次数学路线实际读取文件并独立核短证明，没有运行其2SAT/maxflow算法或编译Lean。AI稿明确partial、无novelty、restricted failure不是反例。",
+      "request_id": "QX-R3-11-000117-math-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "运筹学学报官方原稿（学术路线下载后本地读取）",
+      "query": "rg并读取work_000117_sources/li_su2025.txt的Lemma4、Theorems8/9、Corollary1和surface极小G1定义；仅手核Euler计数与最后归约",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.ort.shu.edu.cn/CN/article/downloadArticleFile.do?attachType=PDF&id=21516",
+      "locator": "Li–Su2025，Lemma4 p130；Theorem8/9 p130–131；Corollary1 p128",
+      "note": "只核n≤−6χ≤108和引用Cor1产生的矛盾；Lemma3的girth≥9网络替换、Cor1的cage/其他输入未由该项核查完整重证。不能把全局极小G0的girth≥11直接挪给固定曲面极小G1。",
+      "request_id": "QX-R3-11-000117-math-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "q117_task",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地原题包",
+      "query": "实际读取 work_000117_sources/task.json，核 id/card_rev、整数与 Z/5Z 两种流表述、formal 空数组及所引计算范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "本次只处理 QX-P-000117 / c9f4e5f088817ea5。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "q117_fc",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub google-deepmind/formal-conjectures",
+      "query": "\"Tutte\" \"flow\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "result_count": 0,
+      "note": "此组合词未返回结果；后续单词 Tutte 有命中，不能据此断言仓库无相关文件。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "q117_openai",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/math",
+      "query": "\"5-flow\" OR \"five-flow\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://github.com/openai/math",
+      "result_count": 0,
+      "note": "有限字面组合查询；未据无结果推断没有全部相关形式化。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "q117_cb_full",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 固定文件",
+      "query": "读取 problems/conjectures/cb-0012.json @ 8d494791ace5894b860585d67ba8e69dbfed6376",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0012.json",
+      "note": "完整923字节；Git blob 校验一致。题面之外只有38点反例目标和状态元数据，没有实际图、搜索器源码或证书。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "q117_global",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 全局代码搜索",
+      "query": "\"5-flow conjecture\"；topn=10",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/search?q=%225-flow+conjecture%22&type=code",
+      "result_count": 10,
+      "note": "筛到 AI 完整稿、Petersen 域审计、Petersen 着色/半流对/重构连通性等近邻。后者只读搜索摘录，不当5-flow解；相关 AI 稿和审计说明另取全文。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "q117_fc_more",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub google-deepmind/formal-conjectures",
+      "query": "\"nowhereZero\" OR \"FiveFlow\" OR \"Tutte\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "result_count": 0,
+      "note": "组合检索返回0，但后续单词检索找到文件，故这一结果只记请求返回，不作目录穷尽证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "q117_openai_tutte",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/math",
+      "query": "\"Tutte\"；topn=15",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/openai/math/tree/3344da59991ed94f9ba711217b29c1d760badfa6",
+      "result_count": 15,
+      "note": "实际返回15个结果，含完美匹配多面体、Tutte criterion、树打包、Tutte 多项式/交叉数等。只核搜索摘录未逐文件展开，未取得同题全称5-flow证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "q117_web-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "网页搜索 system1",
+      "query": "\"Tutte\" \"5-flow\" \"proof\" \"2026\"；recency=730",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本次与另外三词组同批查询；命中 Prove Together、公开 AI 与近邻记录，具体候选另取正文。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "q117_web-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "网页搜索 system1",
+      "query": "\"5-flow\" \"244\" code",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "结果没有给该项核查可复核的244界原始证明/代码。该界由学术路线继续核，不能据此判假。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "q117_web-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "网页搜索 system1",
+      "query": "\"Tutte\" \"5-flow\" \"Lean\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "Prove Together 的题面候选随后实际取47行源码和 API；不凭检索片段标为已证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "q117_web-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "网页搜索 system1",
+      "query": "\"Tutte\" \"5-flow\" \"AI\" proof；recency=730",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "Jain 的 S² 单位向量流反例、4-flow 稳定性等按摘录排为不同流值域/不同题；未把这些近邻声称当整数5-flow反例，也未深审它们。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "q117_target",
+      "route": "代码、公开 AI 和社区",
+      "site": "Prove Together",
+      "query": "打开 /targets/227 与 /problems/217 实际页面",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://provetogether.ai/targets/227",
+      "locator": "target 227；problem 217",
+      "note": "真实页面将 Corpus.TutteFiveFlow.conjecture 标为 formal target；页面不是证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "q117_llm_dir",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST contents",
+      "query": "列出 attacks_opg/5_flow_conjecture @ 96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/graph-theory-AI/Graph-Theory-LLM-Proofs/contents/attacks_opg/5_flow_conjecture?ref=96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+      "note": "目录实际只有 meta.json/output.md/prompt.md/usage.json/verdict.json；此目录未给 Lean 文件或可执行程序。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "q117_audit_dir",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST contents",
+      "query": "列出 benchmarks/datasets/conjecture-probes-v1/tutte-flow-domain-audit @ f693b76a600f8ee0d95a4e429a53bb576e9aeac1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/morluto/jacobian/contents/benchmarks/datasets/conjecture-probes-v1/tutte-flow-domain-audit?ref=f693b76a600f8ee0d95a4e429a53bb576e9aeac1",
+      "note": "是有限 Petersen 图的验证器约定审计；目录存在不等于本轮已运行或证成一般定理。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "q117_llm_output+q117_llm_verdict+q117_llm_meta",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 固定文件",
+      "query": "完整读取同一固定提交下 output.md、verdict.json、meta.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/5_flow_conjecture/output.md",
+      "note": "完整稿13,454字节，两个元数据文件也读取并校验 Git blob。稿自限 partial、no novelty、restricted family；本轮实际读全文并核关键割/最大流链，不是运行程序。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "q117_ptlinks-target",
+      "route": "代码、公开 AI 和社区",
+      "site": "Prove Together API",
+      "query": "读取 /api/v1/targets/227",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://provetogether.ai/api/v1/targets/227",
+      "note": "实际 JSON 给 submission241、artifact233、environment460、declaration 和 solution_submission_ids=[]，truncated=false；创建时间2026-09-11T18:28:06.913483Z。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "q117_ptlinks-solutions",
+      "route": "代码、公开 AI 和社区",
+      "site": "Prove Together API",
+      "query": "读取 /api/v1/targets/227/solutions?limit=20",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://provetogether.ai/api/v1/targets/227/solutions?limit=20",
+      "result_count": 0,
+      "note": "实际返回 items=[]、next_cursor=null；只穷尽该公开 accepted-solutions 集合，不推断全网无解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "q117_ptlinks-submission+q117_ptsources-submission",
+      "route": "代码、公开 AI 和社区",
+      "site": "Prove Together",
+      "query": "读取 /submissions/241 和 /api/v1/submissions/241",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://provetogether.ai/api/v1/submissions/241",
+      "note": "kind=formalization、state=accepted、solved_target_id=null；输入 environment460、发布 environment469。未读取469环境，不能把它与460混同。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "q117_ptsources-source",
+      "route": "代码、公开 AI 和社区",
+      "site": "Prove Together 源码接口",
+      "query": "读取 /api/v1/submissions/241/source 全文；随后原字节 HTTP 下载并 SHA256 校验",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://provetogether.ai/api/v1/submissions/241/source",
+      "note": "47行/2315字节；实际 SHA256 db291859ebe85b1ba4bfb1add3535f84702d8e8a47954de74c75dae4dba68088 与平台相符。仅 Prop 定义，没有证明猜想的 theorem。未本机编译。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "q117_ptlinks-env+q117_ptsources-env",
+      "route": "代码、公开 AI 和社区",
+      "site": "Prove Together 环境页面/API/prelude",
+      "query": "读取 environment460 页面、API 与 prelude",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://provetogether.ai/environments/460",
+      "note": "实际 API 固定 Lean4.33.1、mathlib0df444a360eaa60ab8c11dca51a86af692955474；prelude 仅 import Mathlib。这是平台环境记录，不是本轮 kernel 重放日志。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "q117_cb_literal",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub bespokelabsai/conjecture-bench",
+      "query": "\"cb-0012\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/tree/8d494791ace5894b860585d67ba8e69dbfed6376",
+      "result_count": 2,
+      "note": "实际返回该 JSON 和汇总 CSV 两条；没有由这次检索取得独立 checker。 初始两次CB组合查询原始字面未随传输记录保留，未纳入本回执可复现查询计数，也不补造表达式；此后本条literal查询及固定cb-0012全文提供可核覆盖。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "q117_fc_literal",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub google-deepmind/formal-conjectures",
+      "query": "\"Tutte\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/google-deepmind/formal-conjectures/tree/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "result_count": 2,
+      "note": "返回 Erdos627 的 Tutte–Zykov 染色结论和 BergeFulkersonConjecture.lean；前者只看摘录排除，后者取完整文件。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "q117_fc_bf",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 固定文件",
+      "query": "读取 FormalConjectures/Wikipedia/BergeFulkersonConjecture.lean @ ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Wikipedia/BergeFulkersonConjecture.lean",
+      "note": "实际4个主定理皆 by sorry：六完美匹配双覆盖、五匹配覆盖、Fan–Raspaud 三匹配和 Petersen 完美匹配。文件不是5-flow证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "q117_audit_instruction+q117_audit_solution",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 固定文件/目录",
+      "query": "读取 tutte-flow-domain-audit/instruction.md；列出 solution 目录",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/morluto/jacobian/blob/f693b76a600f8ee0d95a4e429a53bb576e9aeac1/benchmarks/datasets/conjecture-probes-v1/tutte-flow-domain-audit/instruction.md",
+      "note": "完整说明要求 Petersen 图模5平衡而恰一个零边的负面验证器测试与修复后非零流；solution 中列出 solve.py/solve.sh，但未读取程序、图输入或运行输出，不报复跑。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "q117_local_source_audit",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地固定源码与传输记录",
+      "query": "复阅完整 Lean 与 AI 稿；核六份 Git blob 和 Prove Together 原字节 SHA256；读 code_transport.json/code_manifest.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "源码校验均一致；数学复核由该项核查、主审、数学路线分别完成关键链。没有运行 Lean、GAP、Sage、最大流程序或38点穷举。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R0117-CARD",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000117.text.md",
+      "locator": "题面、formal、human、已知进展及meta.acceptance/provenance",
+      "version": "commit73290369a8dcc632e25e555aec525565ea6e08f8；card_revc9f4e5f088817ea5",
+      "subquestions": [
+        "主问题",
+        "与001686同一性",
+        "题面忠实度"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "核心两种表示的存在性等价，保留本题数学目标。人话应按分量数增加定义桥，解释模5/整数守恒区别；相关进展年代、奇度条件和Petersen子图/minor混淆另行修。旧novelty及空legacy不是本轮完成证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R0117-DIESTEL",
+      "url": "https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch6.pdf",
+      "locator": "Cor6.1.2；Thm6.3.3；§6.6 Five-Flow Conjecture、Thm6.6.1",
+      "version": "作者网站第6版第6章快照，访问2026-11-27",
+      "subquestions": [
+        "整数与模流等价",
+        "multigraph/桥边界",
+        "5-flow与Seymour6-flow区别"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "主审亲读桥cut论证、提升完整短证明和猜想/六流定理表述。虽书中称flow时默认nowhere-zero，与普通任意可为零circulation区别已核；5流允许整数幅值严格小于5。未将整章其他定理或全Seymour证明冒称独立重证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "R0117-RGRAPH",
+      "url": "https://www.openproblemgarden.org/op/circular_flow_numbers_of_r_graphs",
+      "locator": "Steffen2015-08-06作者原帖：定义/猜想/蕴含说明",
+      "version": "实际访问2026-11-27；引用JGT79(2015)1–7",
+      "subquestions": [
+        "000319查重条件与原题区别"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "r-graph是奇正则且奇割下界条件，不是全偶度图；家族Fc≤2+2/t通过作者指出的Jaeger链与5-flow有关，当前未重证归约，也不替319作完整查新。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "a0117_tutte1954",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/E1EE1F053B494D08746F0EE23F736CC2/S0008414X00023543a.pdf/div-class-title-a-contribution-to-the-theory-of-chromatic-polynomials-div.pdf",
+      "locator": "§1 pp80–81定义有限图及环；§2 pp82–84 colour-cycle定义、桥障碍、Conjecture II p83与后续提升论证",
+      "version": "Canadian Journal of Mathematics 6 (1954),80–91；received1952-10-01；DOI10.4153/CJM-1954-010-9；本轮固定PDF SHA256783f9c2fa248c4c58c889a8027de7fe970f5076eec3d9595fcc37cd3c20a024c",
+      "subquestions": [
+        "原始题文、提出年份与图的范围",
+        "整数5流与模5流的关系"
+      ],
+      "scope_match": "原题等价",
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "note": "实际阅读pp80–84并看p83像素。原问为无isthmus有限图的非零模n循环存在，n≥5；允许环和平行边。只把1954视为公开刊发年份，1952是稿件收到日期。网页2018是数字化上线。p83以模流到整数流提升推出n到n+1单调，外引原1950定理未另追全文。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0117_opg",
+      "url": "https://www.openproblemgarden.org/op/5_flow_conjecture",
+      "locator": "Problem、Comments及References",
+      "version": "mdevos发布2007-03-07；本轮读取2026-11-27",
+      "subquestions": [
+        "题卡原文摘录对应",
+        "原始参考文献"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "原始档案",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "题文同本题；列Tutte1954、Seymour1981等。开放问题页及其状态不能单独证明本轮全网没有解决。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "a0117_diestel",
+      "url": "https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch6.pdf",
+      "locator": "§6.1 pp155–156；Thm6.3.3 pp162–164；§6.6 Five/Four-Flow Conjectures pp171–172及Thm6.6.1 pp172–174",
+      "version": "作者官方Ch6预览，读取2026-11-27；PDF SHA256483b0c28d13779a6d735eb880eeb86e62f7e48e197d1246823ae112b78eedd75；未从单章臆定版次",
+      "subquestions": [
+        "有限多重图、环与Kirchhoff定义",
+        "模k流与整数k流等价",
+        "Seymour6流及4流近邻边界"
+      ],
+      "scope_match": "仅某子问",
+      "role": "重述",
+      "publication": "作者主页",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "note": "Thm6.3.3给multigraph上k-flow iff Z_k-flow，读到构造证明；Thm6.6.1陈述所有无桥多重图有6流，读到现代归纳证明。未独立重证全部外引。4流近邻须排Petersen minor（或等价topological minor），不是仅排原图作为普通子图。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "a0117_seymour1981",
+      "url": "https://www.sciencedirect.com/science/article/pii/0095895681900587",
+      "locator": "正式原刊摘要及卷页元信息",
+      "version": "P.D.Seymour, Nowhere-zero 6-flows, JCTB30(2),April1981,130–135；DOI10.1016/0095-8956(81)90058-7",
+      "subquestions": [
+        "一般6流上界"
+      ],
+      "scope_match": "仅某子问",
+      "role": "进展",
+      "publication": "正式刊发",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "note": "原始摘要给任意无isthmus图整数流值±1,…,±5。1981全文入口403；这个访问限制不影响另已取得Diestel现代证明，但不可把原六页证明称为该项核查已审。6流不是5流。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0117_steffen1996",
+      "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/(SICI)1097-0118(199608)22:4%3C309::AID-JGT5%3E3.0.CO;2-P",
+      "locator": "摘要；原刊pp309–319；参考文献4的1994预印本记录",
+      "version": "E.Steffen, J.Graph Theory22(4),August1996,309–319；DOI10.1002/(SICI)1097-0118(199608)22:4<309::AID-JGT5>3.0.CO;2-P",
+      "subquestions": [
+        "非定向亏格≤5的原始出处与年代",
+        "44与244的区分"
+      ],
+      "scope_match": "特例",
+      "role": "进展",
+      "publication": "正式刊发",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "note": "已读原刊摘要：无桥且非定向亏格≤5有5流；最小反例阶≥44。该成果不是2024–26新结果。参考文献指同作者1994预印本，但其全文未取得。没有证据把44直接纠改成题卡244或推断244必假。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0117_li_su2025",
+      "url": "https://www.ort.shu.edu.cn/CN/article/downloadArticleFile.do?attachType=PDF&id=21516",
+      "locator": "Def1/Conj1 p125；Thm5及Cor1–2 pp127–128；Lemma2–4/Thm8–9 pp130–131；Lemma5–7 pp132–133",
+      "version": "Jiaao Li、Bo Su, Operations Research Transactions29(3)(2025),124–134；DOI10.15960/j.cnki.issn.1007-6093.2025.03.006；PDF SHA256d3e5bef0b6bb9760c89986ac720248c7da7efbf4907ef0905c9743094126bf2a",
+      "subquestions": [
+        "Euler genus≤20子类",
+        "有限顶点反例下界",
+        "全局极小与曲面内极小区别"
+      ],
+      "scope_match": "特例",
+      "role": "进展",
+      "publication": "正式刊发",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "note": "全§1–3已读。Thm5给按v+e极小反例≥114，Cor1称≤113顶点无桥图成立，Cor2称≤112奇度顶点成立；不是244。Thm8明确可定向亏格≤10或非定向≤20，Thm9等价写Euler≤20；p131像素确认定义t/2。已核Lemma6网络计数张成的矛盾步骤及Euler 9f≤3n、n≤−6χ≤108<114的短链。girth11、唯一112顶点cage的结构、Kochol网络计数与C5–C8秩结论是外部输入，未复跑/重证。此结果不覆盖任意亏格。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0117_mazzuoccolo_steffen",
+      "url": "https://arxiv.org/pdf/1412.5398v1",
+      "locator": "§1、Theorem1.2 p2；全文10页取得",
+      "version": "arXiv1412.5398v1,2014-12-17；正式JGT85(2)(2017),363–371，DOI10.1002/jgt.22065；PDF SHA25625095463e66bc68742aef6b4e84d4b9430552573b4ccf65d595a64dc7df0fa09",
+      "subquestions": [
+        "oddness≤4子类精确假设"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "note": "主定理要求cyclically6-edge-connected cubic graph，且oddness≤4；不能省去循环6边连通，也不能把原稿2014与正式2017误写2026新结果。长证明未在该项核查独立重审。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a0117_snarks2019",
+      "url": "https://arxiv.org/pdf/1909.09870v1",
+      "locator": "§1 pp1–2的算法适用范围；§3/Table1 pp6–7；全文244字符串无命中",
+      "version": "Goedgebeur–Mattiolo–Mazzuoccolo, arXiv1909.09870v1,2019-09-21；官方记录本次仅v1",
+      "subquestions": [
+        "244候选出处排查",
+        "有限snark搜索与反例判定区别"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "note": "研究circular flow number算法和若干snark族，Table1覆盖≤36顶点。作者明确算法对Φc≥5只报告≥5，不能区分允许的=5与真正Tutte反例>5；没有从正文取得≥244的结果。未独立复跑其全部计算。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a0117_mkrtchyan_withdrawal",
+      "url": "https://arxiv.org/abs/2008.07152v2",
+      "locator": "官方标题/abstract/comments/Submission history；本地mkrtchyan2008_abs.html",
+      "version": "Vahan Mkrtchyan, Sublinear bounds for nullity of flows and approximating Tutte’s flow conjectures；v1 2020-08-17；v2 2020-10-07 withdrawn",
+      "subquestions": [
+        "定向撤回核查及范围"
+      ],
+      "scope_match": "同源不同问",
+      "role": "撤回",
+      "publication": "预印本",
+      "claim_state": "完全撤回",
+      "review_status": "未读全文",
+      "note": "作者官方comments说明结果此前已在Kochol2002 DiscreteMath254,221–230出现。该稿声称的是sublinear-defect与5/4/3流猜想的等价重述，并非全称5流解答。本轮只取得官方撤回记录，未取得v1完整证明；不追审已重复结果。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "fully_retracted",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "retraction",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q117-M-E1",
+      "url": "https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch6.pdf",
+      "locator": "Chapter6 §6.1 pp156–157、§6.3 pp162–164、§6.6 p171",
+      "version": "Reinhard Diestel, Graph Theory，官方第6版预览，2025；23页章节文件",
+      "subquestions": [
+        "原五流猜想的定义域",
+        "整数流与模流等价",
+        "桥和环的边界",
+        "当前核心题面的忠实性"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "作者主页",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "读完Theorem6.3.3对应证明，并另给不依赖该证明的分数圈消元提升。官方书中Five-Flow Conjecture为每个bridgeless multigraph有5-flow，整数流取0<|f(e)|<5。来源用于定义与范围，不据教科书仍列猜想直接判定2026当前进展；没有重审本章所有其他长定理。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q117-M-E2",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/5_flow_conjecture/output.md",
+      "locator": "完整公开AI partial稿，特别§2的割准则/积分maxflow和§3–4的odd-cycle-cut界",
+      "version": "graph-theory-AI/Graph-Theory-LLM-Proofs@96f91048c5282ac2b8bed0b7e8dc454cf38ba636；SHA256 9a5380792e16e9e570d94fd4779589621b6215317ef7fa343be18afc2e3a3784",
+      "subquestions": [
+        "公开AI子类定理的关键证明",
+        "四奇圈受限2SAT搜索的边界"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "代码仓库",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "该项核查实际读完整稿，独立核§2至§4的关键链，并读§5–7辨明算法量词。Theorem1限finite connected loopless cubic multigraph及指定2-factor的奇圈分离条件；Theorem2限固定M,N的canonical bisections。没有执行算法，不把partial自评变成全题证明或原创性认定。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q117-M-E3",
+      "url": "https://provetogether.ai/api/v1/submissions/241/source",
+      "locator": "submission241完整47行源码，Corpus.TutteFiveFlow namespace",
+      "version": "2026-11-27取得的snapshot；SHA256 db291859ebe85b1ba4bfb1add3535f84702d8e8a47954de74c75dae4dba68088",
+      "subquestions": [
+        "Lean目标定义的实际范围"
+      ],
+      "scope_match": "原题等价",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "完整静态审读：Bridgeless为∀e∈G.edgeSet,¬G.IsBridge e；IsNowhereZeroFlow给整数反对称、非零当且仅当邻接、绝对值<k和每点有限和0；conjecture仅定义Prop。没有证明该Prop的theorem。模型为finite SimpleGraph，多重图约化仅在注释说明，本轮数学短证可桥接但未在该文件形式化。未编译或复跑，不将定义无sorry当成证明完成。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q117-M-E4",
+      "url": "https://www.ort.shu.edu.cn/CN/article/downloadArticleFile.do?attachType=PDF&id=21516",
+      "locator": "Lemma4及Theorems8/9，pp130–131；Corollary1 p128",
+      "version": "LI Jiaao、SU Bo，Nowhere-zero 5-flows for graphs with bounded genus，运筹学学报29卷3期(2025)；DOI10.15960/j.cnki.issn.1007-6093.2025.03.006",
+      "subquestions": [
+        "有界Euler genus子结果的最后归约"
+      ],
+      "scope_match": "特例",
+      "role": "进展",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "该项核查读取本地官方PDF文本对应段，独立核Euler不等式及Theorem8的依赖方向。没有重证Lemma3的Kochol网络输入或Theorem5/Cor1的cage/全局极小反例依赖；不据这段短证称全篇已独立通过。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "C117-PT",
+      "url": "https://provetogether.ai/api/v1/submissions/241/source",
+      "locator": "47行完整源码；target227；submission241；target accepted-solutions API",
+      "version": "submission241，2026-09-11；2026-11-27实际读取并原字节下载；SHA256 db291859ebe85b1ba4bfb1add3535f84702d8e8a47954de74c75dae4dba68088",
+      "subquestions": [
+        "一般有限无桥图存在整数 nowhere-zero 5-flow 的形式化题面"
+      ],
+      "role": "形式化",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "只有形式化题面",
+      "claimant": "Prove Together corpus curator shard 3",
+      "claim_date": "2026-09-11",
+      "rerun": {
+        "theorem": "Corpus.TutteFiveFlow.conjecture 是 def : Prop，不是其证明 theorem",
+        "toolchain": "平台输入环境460：Lean v4.33.1；mathlib 0df444a360eaa60ab8c11dca51a86af692955474；repl bbeedf38e0898869fc3b7c009e1ea877b46204e4；kimina fb2393de3461db35eda4c714e3fd21187e92ec90；kernel-replay-v1；image sha256:19696375e8089db30d01a27aed0eca39cdc5f39cbeb174c60796998240762ae2。发布环境469未独立读取。",
+        "command": "未执行本机 Lean 编译或 kernel 重放；只实际获取原字节并校验哈希。",
+        "axioms": "本文件 import Mathlib；没有 sorry，也没有假设猜想为真的 axiom，因为这里只定义命题。未展开全部 Mathlib 依赖闭包。"
+      },
+      "note": "量词为任意有限 V:Type 及 SimpleGraph V；Bridgeless 要求所有 edgeSet 元素非 IsBridge。见证 f:V→V→ℤ 满足反对称、f u v≠0↔Adj u v、所有值绝对值<5、每个顶点的整数和为0。有限简单图与有限多重图的通常细分/环处理桥在源码注释陈述，并未在此47行中形式化；本轮纸面核语义，不冒称 kernel 证明这座桥。实际2315字节原下载哈希与平台完全一致。submission API kind=formalization, state=accepted, solved_target_id=null；target solution_submission_ids=[] 且 not truncated，另 solutions?limit=20 为 items=[]/next_cursor=null。可据此补形式化题面，不能据 accepted 或源码无 sorry 报猜想已证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "C117-AI-PARTIAL",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/5_flow_conjecture/output.md",
+      "locator": "完整 output.md，§2–4；同目录 verdict.json 和 meta.json",
+      "version": "commit96f91048c5282ac2b8bed0b7e8dc454cf38ba636；output Git blob5aece13636b2595d0c690f2b85776ef3d194b0ed；SHA2569a5380792e16e9e570d94fd4779589621b6215317ef7fa343be18afc2e3a3784；公开记录2026-09-16T19:42:18Z",
+      "subquestions": [
+        "指定二因子、奇圈数与分离割条件下的5-flow",
+        "固定两匹配构造内的多项式搜索"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "claimant": "graph-theory-AI/Graph-Theory-LLM-Proofs；metadata model=gpt-6-astra",
+      "claim_date": "2026-09-16",
+      "note": "完整13454字节已读并校验。对象是有限连通无环三正则多重图，固定二因子F有2t个奇圈及补完美匹配M，另选F内匹配N每奇圈恰留一缺点。主充分条件：t≥1时所有分离两个完整奇圈的割大小≥5t−3，则存在5-flow；t=0分支给4-flow。固定构造产生二分A/B，对S置d=|S∩A|−|S∩B|、c=|δ(S)|；5|d|≤3c等价所选方向p≤4q且q≤4p，实际纸面核初始1流、容量3的整数最大流修补。缺点计数给坏割c≤5t−4且两侧各含完整奇圈。四奇圈(t=2)时，固定F,M,N和路径翻转选择内只需检查(c,|d|)=(2,2),(6,4)，转成2-SAT和最大流；搜索失败只排除此固定构造。主审与数学路线也完整读稿并独立核割容量/奇圈割界关键链。未运行程序，目录无执行文件/Lean；不声称穷尽核所有算法实现。作者 verdict 自称 partial、would_publish=false、no novelty，且t=2充分连通度7弱于其提及的已知6；本轮未独立完成文献新颖性判断，不把作者自评当已证新进展。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C117-CB",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0012.json",
+      "locator": "statement/counterexample/status_observation/provenance",
+      "version": "commit8d494791ace5894b860585d67ba8e69dbfed6376；blobda877c39a7b4dfe8e89b71bf8e41ddc6248bc1b5；SHA256e5632f37f409f8eacd5034449287bec3bf9f8db6501793f2cd9c13a174ba0ba4",
+      "subquestions": [
+        "一般5-flow猜想的题库重述",
+        "限定38顶点三正则反例目标的可行性"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "实际完整 JSON 923字节。general statement 同题，但 counterexample 限 connected bridgeless cubic 38 vertices、无 Z/5Z nowhere-zero flow。文字声称 complete modular-flow search，不附搜索器、输入图、证书或执行日志，不能当现成验证器或已经找到反例。open 的 as_of 是2026-07-22，不能替代今日查新。支撑 URL1909.09870经同轮学术读原稿仅涉及≤36点 snarks 的计算等，不能据它核244。学术/主审另取得 Li–Su2025正式原刊 Theorem5最小反例≥114及Corollary1≤113顶点有5-flow，故本38点目标处于该已知覆盖范围；本次代码路线没有复跑该论文的112-cage输入或其证明。244界仍没有本轮可核原始出处；不据114界的存在断言244错误。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C117-FC-NEARBY",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Wikipedia/BergeFulkersonConjecture.lean",
+      "locator": "IsCubic、IsPerfectMatchingCover 及四个 conjecture/theorem 主声明",
+      "version": "commitea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8；blob2100b095a518ffeab7b5fbe02629467b4101c563；SHA2564c2e9462b190a0a3677138cc66611aba0a760f51b7f664d714740b899790c59f",
+      "subquestions": [
+        "匹配覆盖近邻形式化与5-flow的区分"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "rerun": {
+        "commit": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+        "command": "完整源码静态读取及 blob/hash 校验；未编译。",
+        "axioms": "四个主要声明实际均 by sorry；已有API小引理不等于主定理证明。"
+      },
+      "note": "全文4901字节；有限简单三正则图上的六完美匹配每边双覆盖、Berge五匹配覆盖、Fan–Raspaud三匹配及Petersen完美匹配定理各有 sorry。后者虽然标签 research solved，源码仍是占位；与5-flow题面不同，文件没有其向5-flow的正式归约。实际 import FormalConjecturesUtil；未获取完整依赖闭包或本题工具链，不能给 kernel 验证结论。literal Tutte 搜索的另一 Erdos627 仅查摘录，是染色结论。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C117-FINITE-AUDIT",
+      "url": "https://github.com/morluto/jacobian/blob/f693b76a600f8ee0d95a4e429a53bb576e9aeac1/benchmarks/datasets/conjecture-probes-v1/tutte-flow-domain-audit/instruction.md",
+      "locator": "完整 instruction.md；solution 目录条目",
+      "version": "commitf693b76a600f8ee0d95a4e429a53bb576e9aeac1；blobd0ae04671b6f3569a6a02b68306d0b617176afbc；SHA25627442d7a3d9b6e3792f6b30ac691ffa1d808b50e388f5d8f38b3f6caf466e8eb",
+      "subquestions": [
+        "Petersen 单图验证器遗漏非零约束的有限域审计"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "实际1259字节说明只要求在Petersen15边输入上给模5平衡但恰一个零边的流，展示只验平衡的 validator 漏洞，并提供满足 nowhere-zero 条件的修复流。目录列出solve.py/solve.sh，但本轮未取这两个文件、图数据或实际输出，未执行。不能把文件名、预期证书或单图contract审计当一般5-flow的证明或本轮复跑通过。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001686",
+      "other_card_rev": "24a4d4d2b8a41538",
+      "relation": "严格同题",
+      "reason": "两卡均问所有有限无桥图是否有处处非零5-flow，目标整数绝对值1..4/模5非零、顶点守恒及证明全称或给无流反例的验收相同。001686题面仅写题名，但human和meta.acceptance完整恢复同一命题；整数与模形式的存在性等价已有本轮证明。其五档措辞、奇度4进展缺条件和旧状态不是新问题，需按新回执纠正后合并出处。",
+      "positions": {
+        "self": "QX-P-000117.text.md题面、形式化、human；meta.acceptance",
+        "other": "QX-P-001686.text.mdhuman定义及猜想句；meta.acceptance、title_en"
+      },
+      "note": "pair_id=QX-P-000117__QX-P-001686；pair_owner=QX-P-000117。完整双卡比较后判严格同题，建议117为主卡，1686保留来源/旧进展索引；未执行源卡合并。不能把原包外1686算作本包新完成题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "duplicate_relation": "same"
+      }
+    },
+    {
+      "other_id": "QX-P-000581",
+      "other_card_rev": "bdf1329917b43115",
+      "relation": "相关但不等价",
+      "reason": "581量化4-edge-connected图并要求Z3非零流；117量化全部无桥图并要求Z5非零流。源域和允许流范围不同；3-flow与5-flow不是同一个参数，旧CB有限阶反例目标也不改变完整原问。Tutte相关猜想间可能有归约不代表逐字同题，本轮不作未经核准的等价合并。",
+      "positions": {
+        "self": "QX-P-000117.text.md题面/形式化与meta.acceptance",
+        "other": "QX-P-000581.text.md 题面λ≥4、Z3形式化、meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000117__QX-P-000581；pair_owner=QX-P-000117。已读双卡排除严格同题，仅本题查重，不代审候选状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000582",
+      "other_card_rev": "3e2cc5f6a0836405",
+      "relation": "相关但不等价",
+      "reason": "582针对flow-admissible signed graphs的integer6-flow，117针对普通无桥图的5-flow。符号双定向、flow-admissibility和整数界均不同；把582限全正图只得到普通6-flow弱界，不能自动得到5-flow。582正文自身admissible误写不用于当前同一性论证。",
+      "positions": {
+        "self": "QX-P-000117.text.md题面/形式化与meta.acceptance",
+        "other": "QX-P-000582.text.md 题面、formal原文Bouchet6-flow及meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000117__QX-P-000582；pair_owner=QX-P-000117。已读双卡排除严格同题，仅本题查重，不代审候选状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000861",
+      "other_card_rev": "c61b86996573cba5",
+      "relation": "相关但不等价",
+      "reason": "861带曲面嵌入、edge-width阈值c和面边界局部张力条件，验收要定临界c或否定常数存在；117没有曲面阈值并直接要求无桥图顶点守恒流。平面对偶或局部张力相关性不足以同一化所有曲面参数。861人话顶点高度与边值张力混用，按原文/验收比对，不据其错误解释建立等价。",
+      "positions": {
+        "self": "QX-P-000117.text.md题面/形式化与meta.acceptance",
+        "other": "QX-P-000861.text.md 题面/原文embedded loopless graph、edge-width≥c及meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000117__QX-P-000861；pair_owner=QX-P-000117。已读双卡排除严格同题，仅本题查重，不代审候选状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-002432",
+      "other_card_rev": "d8cc649895d0600f",
+      "relation": "相关但不等价",
+      "reason": "2432当前开放验收是最小不可Petersen染色无桥三次图的顶点数，染色定义为边映射保顶点星；117仍是全体无桥图的非零5-flow存在性。普通/正常5边染色不是5-flow，不可Petersen染色也不能未经桥接论证直接用作无5-flow的证书。本轮只读2432的定义与验收，不重跑其52点证书，也不沿用卡内局部双射同态的额外等价声称。",
+      "positions": {
+        "self": "QX-P-000117.text.md题面/形式化与meta.acceptance",
+        "other": "QX-P-002432.text.md 题面边星映射、当前最小阶问题、meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000117__QX-P-002432；pair_owner=QX-P-000117。已读双卡排除严格同题，仅本题查重，不代审候选状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000319",
+      "other_card_rev": "090f3cd2e646731c",
+      "relation": "待核",
+      "reason": "319有Steffen圈流r-graph家族标题却未给具体界，错误地把r-graph写成欧拉图；补读其作者原出处后实际是∀t>1对(2t+1)-graph要求Fc≤2+2/t。该家族通过另一定理链与Tutte5-flow相关，不是117固定5-flow全无桥图命题。原出处的相关意图可辨但现行核心残缺；当前暂不裁定正式强化/等价关系，不表示已证明两题等价。",
+      "positions": {
+        "self": "QX-P-000117.text.md固定5-flow/所有无桥图；meta.acceptance",
+        "other": "QX-P-000319.text.md题面/formal/错误r-graph定义；meta.sources的OPG原页与acceptance"
+      },
+      "note": "pair_id=QX-P-000117__QX-P-000319；pair_owner=QX-P-000117。先补足319核心再审强化/归约关系；本轮不合并、不更改319、不将其视为本包完成题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "建议主卡",
+      "field": "库内重复关系000117↔001686",
+      "new": "建议QX-P-000117作为Tutte5-flow主卡；001686作为同题来源记录归并或跳转，保留其来源和修订历史，先纠正旧奇度条件/五档措辞。",
+      "reason": "对同一有限无桥图、5-flow定义及全称/反例验收已逐项实读核同一性。此为建议，未执行题库写回；本包完成数不额外增加。",
+      "evidence_ids": [
+        "R0117-CARD",
+        "R0117-DIESTEL"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "suggest_main"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版.桥定义及删桥表述",
+      "old": "桥是指删掉之后会让图不连通的边；去掉所有桥之后，每条边…",
+      "new": "桥是删除后使连通分量数增加的边；删去所有桥后，仅要求剩余图的每条边非零。",
+      "reason": "修正非连通图的释义，不变更原bridgeless核心；按包内只修人话规则不自动要求新card_rev。源卡未编辑。",
+      "evidence_ids": [
+        "Q117-M-E1"
+      ],
+      "small_case_check": "C3⊔K1删三角形边后分量数仍2，无桥；把桥添回时其流只能为0。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "定义等价说明/验证建议",
+      "new": "注明整数NZ5流与Z5流等价，固定模流可经守恒调整得到逐边同余的有界整数提升；不可直接以正代表替代整数守恒。",
+      "reason": "当前核心整数版与模版均正确，无须据此把主题判为错误。给出的消元证明和两平行边证书可解释准确等价及验证方式。",
+      "evidence_ids": [
+        "Q117-M-E1"
+      ],
+      "small_case_check": "同向两平行边模值(1,4)净整数(−5,5)；改成同余整数(1,−1)后净流0。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "5流的取值及“可着色”简称",
+      "new": "非零模5值为4个；正整数流取1至4。若保留“流可着色”须说明指满足守恒的边赋值，不是普通图着色。",
+      "reason": "保持原命题与验收不变的术语澄清；不会自动触发数学版本变更。若以后实际改变核心图类/量词/验收，才另按改版规则处理。",
+      "evidence_ids": [
+        "Q117-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展中的相关4流条目",
+      "old": "4流（Petersen-子图自由）",
+      "new": "相关4流命题的条件是Petersen-minor-free；普通子图自由不能替代。",
+      "reason": "仅校正相关进展引用范围，不改变当前Tutte5流主核心或验收，不因此自动新card_rev。",
+      "evidence_ids": [
+        "Q117-M-E1"
+      ],
+      "small_case_check": "全细分Petersen图保有Petersen minor但无普通Petersen子图。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "sources / first_published / 原文摘录",
+      "old": "first_published=null；原始来源仅笼统教科书/综述与Wikipedia",
+      "new": "补Tutte1954 A Contribution to the Theory of Chromatic Polynomials, Can.J.Math6,80–91, DOI10.4153/CJM-1954-010-9，ConjectureII p83；1952-10-01只为收到稿件日期。",
+      "reason": "原始全文与实际页图已取得；OPG现代一句话是重述，不冒充1954逐字引文。",
+      "evidence_ids": [
+        "a0117_tutte1954",
+        "a0117_opg"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "题面 / 边界与约定",
+      "new": "明确有限无向多重图，可有环与平行边，可非连通；无桥按每条边删除不增加连通分支数定义。流在各分量独立，空边集守恒条件真。",
+      "reason": "忠实原问的约定；不是把主问题限制成有限小图或连通简单图。",
+      "evidence_ids": [
+        "a0117_tutte1954",
+        "a0117_diestel"
+      ],
+      "small_case_check": "一个带环的孤立顶点可给环非零流；两条平行边构成回路可反向赋1；单条非环桥无法非零守恒。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展 / difficulty.note",
+      "old": "2024–26：非定向亏格≤5等新部分结果",
+      "new": "Steffen1996已证非定向亏格≤5；Li–Su2025已发表Euler亏格≤20，即定向亏格≤10或非定向≤20的子类结果。",
+      "reason": "修正年代并补实际近期原刊，保留子类范围。",
+      "evidence_ids": [
+        "a0117_steffen1996",
+        "a0117_li_su2025"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "已知结果与进展：最小反例阶≥244",
+      "old": "最小反例阶≥244，作为2024–26既知结果无来源",
+      "new": "244暂列待核；本轮可直接支持Li–Su2025 Thm5极小反例≥114及其Cor1/2。日后取得244原始定理再按其准确最小性/图类/计算依赖恢复。",
+      "reason": "查询和候选原稿均未支持244；较弱114并不反驳较强244，因此不写244为已否定。",
+      "evidence_ids": [
+        "a0117_li_su2025",
+        "a0117_snarks2019"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "进展及共享题卡001686的oddness注记",
+      "new": "Mazzuoccolo–Steffen Theorem1.2须保留cyclically6-edge-connected cubic及oddness≤4；原预印本2014，正式2017。",
+      "reason": "省去循环6边连通会夸大结果；这里只记录范围，重复卡处置由主审负责。",
+      "evidence_ids": [
+        "a0117_mazzuoccolo_steffen"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "相关进展与声称解决 / informal_status / novelty",
+      "old": "无完整解决声称；confirmed/open；旧noveltyrev=3f30b61742f79b1d",
+      "new": "改为截至2026-11-27本轮明确检索入口与关键词范围未取得可核完整解决稿；保留可验证子类进展并关联当前rev。旧open标签及不同rev旧检索不能代替本轮查新。",
+      "reason": "有限覆盖不得写全网不存在声明；另2008.07152撤回只指重复等价结果，不能污染全部现有流理论。",
+      "evidence_ids": [
+        "a0117_mkrtchyan_withdrawal",
+        "a0117_li_su2025"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "formal / progress",
+      "old": "formal: []",
+      "new": "可补 Prove Together 的真实固定形式化题面及哈希；明确 Corpus.TutteFiveFlow.conjecture 是 Prop 定义，accepted 的是 formalization，公开解列表本次为空。",
+      "reason": "已读取完整47行源和平台API；无 sorry 的纯定义不构成猜想证明。",
+      "evidence_ids": [
+        "C117-PT"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "formal / statement representation",
+      "new": "有限简单图 Lean 模型用反对称整数函数、仅邻接边非零、绝对值<5和整数 Kirchhoff 等式。与通常有限多重图版本的数学细分/环桥及与模5版本的存在等价应分别说明；此平台源注释没有形式化这两座桥。",
+      "reason": "避免把模5守恒对某一赋值直接当作同一整数赋值的精确守恒，也避免将注释桥接当已编译 theorem。",
+      "evidence_ids": [
+        "C117-PT"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "public_ai",
+      "new": "登记2026-09-16公开AI部分稿：指定二因子2t奇圈和分离割≥5t−3的充分条件；t=2时固定两匹配构造内的2-SAT/最大流搜索。本轮读全文并独立核关键链；未证明一般猜想，未确认文献新颖性，未程序复跑。",
+      "reason": "全文、元数据及自限声明一致；限制来自实际定理与构造，并非仅依赖作者 verdict。",
+      "evidence_ids": [
+        "C117-AI-PARTIAL"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "counterexample_challenge / computation bounds",
+      "old": "CB 38顶点反例目标；题卡称最小反例≥244。",
+      "new": "CB仅有38点目标JSON和文字上的complete check，未取得实施代码。该38点目标与本轮学术取得的Li–Su2025≤113点正式结果冲突。题卡244界目前仍待原始出处，保留未确认，不写成已核或已被114否定。",
+      "reason": "目标设计、作者公开结果、独立运行与更强界的出处四层须分开。",
+      "evidence_ids": [
+        "C117-CB"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "库内查重",
+      "reason": "001686与本题严格同题的建议未写回源库；000319正文欠缺真实界且误写r-graph，其更强家族到5-flow的归约没有在本轮重证。",
+      "next_step": "汇总时按117为pair_owner落实重复卡关系；319先补完整核心及参数后再裁强化/等价。其余4组只作相关索引，均不合并或计作本包已查。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "题卡/策展层244没有在本轮原稿中定位；1909.09870不提供该结论；Korcsok2015原PDF请求超时。",
+      "next_step": "若保留244，需提供具体作者、定理、年份与原文；当前仅以114和已读子类结果为可核证据，不通过数字猜测补出244。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Li–Su2025关键短链已读，但依赖Kochol网络计数与C5–C8秩、girth11限制及112点cage唯一性/三边着色，未在本轮逐一复跑；奇度顶点Cor2只登记作者结果。",
+      "next_step": "如需要把该子类升级为本轮全证明验证，另审/复跑这些外部输入；本题查新无需为有限已发表子类重做全历史计算。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "Seymour1981六页正文直接入口403，Steffen1996取得摘要未取得完整证明；1994预印本只从正式原刊书目知道。",
+      "next_step": "日后若需逐步审核早期原证明，补合法全文；当前已用原刊摘要锁日期/结论，且Diestel作者预览提供6流现代证明，不冒称1981/1996全文已审。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮近期P0是有限关键词与来源覆盖，未取得同题全解；不是不存在完整声明的证明。",
+      "next_step": "如出现新的具体5流全称证明/反例，按固定版本取得全文、核关键步骤并独立二审，再更新主问题；不从单位向量流、cycle double cover或flow重配置的解决直接迁移。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "平台源为纯题面，未取得一般猜想的完整证明对象；本轮没有本机 Lean 编译/重放，也未展开环境469或全 Mathlib 闭包。",
+      "next_step": "若以后出现实际 proof submission，优先对其固定环境、目标类型、证明对象及依赖公理逐项核对；当前资料只登记形式化题面，不据此阻断本题查新回执。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "AI 稿已完整读及核关键数学链，但没有附可运行程序/Lean；其文献新颖性不由本轮有限代码路线确定。",
+      "next_step": "若需要评价这份部分稿的新颖性或可执行性，再针对其已明确的F/M/N固定构造与5t−3条件比对原文及实际实现；不把固定构造搜索失败当一般反例。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "c9f4e5f088817ea5",
+      "codes": {}
+    }
+  ]
+}

@@ -1,0 +1,2351 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001057",
+  "card_rev": "66e9c305b42dd48e",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "outer/multilinear换位子词的准确递归范围",
+          "value": "partial",
+          "note": "按实际原文，w=x₁是重量1的边界；递归地，若u、v为此类词且变量集不交，则[u,v]也是，除此之外无其他词。这里采用[a,b]=a⁻¹b⁻¹ab。每个变量在括号树中只占一个叶子，允许任意树形，例如[[x₁,x₂],[x₃,x₄]]和[[[x₁,x₂],x₃],x₄]都在范围内；并非只准左结合的低中心词。变量名必须不同，但实际代入群元素g_i可相同、可为单位元；“多线性”不是说群乘法意义下的全局线性映射。Engel式[x₁,x₂,x₂]和幂词x³不属于此类。若w=x₁，则G_w=G，目标立即成立；若G阿贝尔且w重量≥2，则w(G)=1，目标也平凡成立。"
+        },
+        {
+          "subquestion": "目标必须是Q=〈Q∩G_w〉，不是生成后取Sylow的定义",
+          "value": "statement_error",
+          "note": "固定有限G、合法词w、素数p，定义G_w={w(g₁,…,g_n):g_i∈G}，N=w(G)=〈G_w〉。题意是对每个Q∈Syl_p(N)，Q=〈Q∩G_w〉。生成元必须本身是落在Q内的实际w值；不是任选N的生成元再取Sylow，也不是要求Q每个元素本身都是单个w值。旧人话括号“取w值生成的子群再取Sylow仍够用”只重复了N及Q的构造，未表达受限生成集的要求。若p不整除|N|，Q=1，空集或{1}都生成它。若给反例，须证明H=〈Q∩G_w〉严格小于Q，而不是仅找某个元素不是单个w值或某个小的生成列表不够。原题面、原摘录和acceptance的核心仍可忠实恢复；本问题不是因为这句人话错误而被反驳。"
+        },
+        {
+          "subquestion": "Q∈Syl_p(w(G))与P∩w(G)的双向等价",
+          "value": "partial",
+          "note": "任意自同构把w值送到w值，故N=w(G)特征于G，特别正规。若P∈Syl_p(G)，则PN是子群且[N:P∩N]=[PN:P]整除[G:P]，为p′整数，因此P∩N是N的Sylow p子群。反向，对任意Q∈Syl_p(N)，由有限群Sylow包含定理可取P∈Syl_p(G)包含Q；P∩N是N的p子群且包含最大p子群Q，所以P∩N=Q。又G_w⊆N，故P∩G_w=Q∩G_w。因此原题与“对每个P∈Syl_p(G)，P∩w(G)=〈P∩G_w〉”完全等价。固定(G,w,p)的不同Q在N内共轭，而G_w在G共轭下不变，所以验证一个确定的Sylow代表可传到该实例所有Sylow；这不减少对所有有限G、合法w、p的全称要求。以上为本轮手证。"
+        },
+        {
+          "subquestion": "S3自含证书：必须允许在G中代入，而不是只在Q中代入",
+          "value": "partial",
+          "note": "令G=S₃，r=(123)、s=(12)，满足r³=s²=1及srs=r⁻¹；取w=[x,y]=x⁻¹y⁻¹xy。于是[r,s]=r⁻¹srs=r⁻²=r。所有换位子都在A₃内，且r为换位子，故w(G)=A₃=〈r〉。对p=3，Q=A₃，r∈Q∩G_w已经生成Q。另一方面Q循环，任意a,b∈Q都有[a,b]=1，所以Q_w={1}，w(Q)=1≠Q。这里r来自允许的外部代入s∉Q，证明“变量都在Q”会把一个满足原目标的实例错判为反例。此为关系式手算，未运行S₃枚举、GAP或其他程序。"
+        },
+        {
+          "subquestion": "有限p群和有限幂零群的自含肯定特例",
+          "value": "partial",
+          "note": "若G是有限p群，则w(G)也是p群，它唯一的Sylow p子群就是w(G)，由定义被所有G_w生成；其他素数的Sylow平凡。更一般，有限幂零群分解为Sylow直积G=∏_q P_q。任意群词都按直积坐标求值，且各坐标的代入可独立选择，故G_w=∏_q(P_q)_w，w(G)=∏_q w(P_q)。目标Sylow p子群是嵌入G的w(P_p)，由在P_p内代入得到的实际w值生成（其余坐标代单位元）。因此这个特例甚至对任意通常的无常量群词都成立，不需要outer假设。不能由所有p群/幂零群都成立，推断一般有限群成立；其Sylow子群通常不形成这样的直积分解。以上均为结构手证，没有用有限抽样推广。"
+        },
+        {
+          "subquestion": "词类限制必要：S3的幂词反例不在本题范围",
+          "value": "partial",
+          "note": "仍取G=S₃，但改用不合法于本题的v=x³。单位元和两个3循环的立方都是1，三个换位的立方各为自身，所以G_v={1,(12),(13),(23)}，这些值生成整个S₃。对p=3，Q=A₃，Q∩G_v={1}，从而〈Q∩G_v〉=1<Q。这自含证书否定“任意群词都可”的扩域命题，且直接见于AFS引言；它不能反驳当前外换位子词问题。与前条不冲突，因为S₃不是幂零群。"
+        },
+        {
+          "subquestion": "一般有限群的m次幂焦点定理与实际值生成之间的准确差别",
+          "value": "partial",
+          "note": "实际读取的AFS Theorem A设|G|=p^a m、(p,m)=1，结论为P∩w(G)=〈P∩G_{w^m}〉，其中G_{w^m}={x^m:x∈G_w}。必须先对整个G_w取m次幂，再与P相交；不是先把原值限在P。若原值x∈P，因m与|x|互素，〈x^m〉=〈x〉，因此〈{x^m:x∈G_w∩P}〉=〈G_w∩P〉，这个更窄集合确可去幂。但x^m∈P并不保证x∈P：例如C₆=〈a〉、p=3、m=2，a²在Sylow3子群而a不在。一般m次幂定理允许这样的原值贡献，不能不加证明把结果中的G_{w^m}换成G_w。这里没有断言所有外换位子词的幂都不能再表示成同词值；只是精确指出已读定理不提供所需去幂归约。该项核查没有重证Theorem A整篇。"
+        },
+        {
+          "subquestion": "正常p元集在商中的提升引理：独立手证",
+          "value": "partial",
+          "note": "设有限G中N⊲G、P∈Syl_p(G)，Y是G共轭不变的p元素集合。要证YN∩PN=(Y∩P)N。只需对y∈Y∩PN找n∈N使y^n∈P：〈y〉是PN的p子群，由PN中的Sylow共轭定理存在c∈PN使〈y〉^c≤P；写c=np（n∈N,p∈P），再以p⁻¹共轭就得到y^n∈P。正常性给y^n∈Y，且y^nN=yN，所以原陪集由Y∩P代表。逆包含显然。这解释了DMS Lemma3.2为何要求正常p元素集合；任意w值在商中变成p元素，不能直接假定其原值已经是p元素。"
+        },
+        {
+          "subquestion": "DMS Prop1.3有限可解情形的末端归约核验",
+          "value": "partial",
+          "note": "正式Prop1.3证明对全部有限可解G、全部outer w、全部P∈Syl_p(G)的实际值结论。独立重走§3如下，明确使用三个外部输入：Lemma3.3的素数幂阶、换位子封闭生成集X；Prop2.1的w(G)=〈X_w〉；Lemma3.1的w(i⁺)=1⇒w(i)阿贝尔。可给X添1而不破坏性质。令X_{w,p}为X_w中的p元（含1），Y为它们的G共轭并。换位子封闭保证X_w⊆X，所以值仍为素数幂阶；取商后，q≠p的q元只有像1时才成为p元，而1可由p元1提升，因此取p值集与取商相容。假设对某(G,X,w,p)命题Q=〈P∩Y〉失败且|G|最小，令H=〈P∩Y〉。利用前条提升引理和商中的归纳假设，对每个非平凡N⊲G得到正确式Q=〈H,Q∩N〉。若存在非平凡正规p′子群，则Q∩N=1，矛盾。由于G可解，非平凡w(i)=w(G^(i₁),…,G^(i_n))中可选坐标偏序极大的i（每坐标受导出长度限制）；于是w(i⁺)=1，故w(i)阿贝尔。它正规且无非平凡p′特征部分，只能是p群，故w(i)≤P。把每个变量替换为相应derived word得到outer扩展w_i，Prop2.1给w(i)=〈X_{w_i}〉。关键是X换位子封闭，所以这些替换的值仍在X，因而X_{w_i}⊆X_w；再因w(i)是p群，X_{w_i}⊆P∩Y，故w(i)≤H。在正确提升式取N=w(i)，便得Q=H，矛盾。这核了实际值生成的关键链，不把可解结论推广到一般有限群。三个输入的完整外引或长word-tree证明未在本轮重新证明。"
+        },
+        {
+          "subquestion": "DMS式(3-1)任意N表述的交项补足不影响后续两用途",
+          "value": "statement_error",
+          "note": "此项仅指所读正式原刊文本的局部证明表述，不指群星核心或Prop1.3为假。原文先任取非平凡N⊲G，却写P∩w(G)=〈P∩N,P∩Y〉。对任意N，归纳提升应给P∩w(G)=〈P∩w(G)∩N,P∩Y〉；只有N≤w(G)时可直接省掉w(G)交项。无此限制的旧等式可由G=C₂、w=[x,y]、p=2、N=G排错：左边1，而旧右边含P=G。原证明实际后续只在N为p′群和N=w(i)≤w(G)时使用该式，前者两个核交项均1，后者两式相同，所以用正确提升式即可保持Prop1.3论证。该小例不是Prop1.3的反例，不是作者已经发布的勘误；该项核查核了网页PDF抽取及本地原刊文字，未独立声称看过页图像素。"
+        },
+        {
+          "subquestion": "word-tree生成桥的有限群末端与未复核输入",
+          "value": "partial",
+          "note": "实际读Prop2.1末端：设w=[α,β]，T=〈X_w〉。树高/defect归纳和Theorem2.9若已给[w(G),α(G)]≤T（另一分支对称），则对a∈X_α,b∈X_β及u∈α(G)，[a,b]^u=[a,b][[a,b],u]∈T，所以T被α(G)正规化。又[a,b]∈α(G)=〈X_α〉，将其写成X_α及逆元的乘积；用[xy,z]=[x,z]^y[y,z]与[x⁻¹,z]=([x,z]⁻¹)^(x⁻¹)，可把[[a,b],b̃]展开成T内元素的α(G)共轭乘积，故T^{b̃}⊆T。当前有限群范围内共轭保持有限子群阶，因此此包含为等号，T也被β(G)正规化。取商后所有α生成元与β生成元对易，得到[α(G),β(G)]≤T；逆包含明显，故w(G)=T。这说明末端生成桥确实使用换位子封闭/树扩展输入；本轮未声称逐一重证Theorem2.9全部树截面论证或将有限性处理擅自推广至任意无限群。Frattini论证在原文后面的rank结果中，不是这里Prop1.3的必要末端。"
+        },
+        {
+          "subquestion": "经典换位子和有限单群的范围，不能按组成因子拼成全题",
+          "value": "partial",
+          "note": "AFS引言直接重述经典焦点子群定理：w=[x,y]时，任意有限G的P∩G′由落在P的实际换位子生成，代入允许一个变量在G中。另DMS §4明确使用Ore定理。以Ore“每个非阿贝尔有限单群元素是单个换位子”为外部输入，对outer括号树归纳：若u、v的值映射已满射S，则任给g=[a,b]，分别用互不相交变量实现a=u(…)与b=v(…)，得到g=[u,v](…)；故任意outer w在非阿贝尔有限单群S上满射，所有Sylow元素自身都是w值。阿贝尔单群已由前述边界覆盖。该项核查核该树归约而未重证Ore或经典焦点定理。有限可解群与有限单群两个范围均已知，不自动经组成列拼出任意有限群的结论；商中值的提升与Sylow控制仍需独立论证。"
+        },
+        {
+          "subquestion": "有限可解群的actual-values结论",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；仅此子类：有限可解G、任意多线性词w和任意Sylow p子群。正式Prop1.3已有证明；本轮§3关键归约与局部提升修补获独立复核，未重证所有树引理/外引。不能删去soluble而宣布全域主问题已证。"
+        },
+        {
+          "subquestion": "1511.07843与21.98是否解决本题的有限Sylow生成要求",
+          "value": "statement_error",
+          "note": "旧题卡进展归属错误。循环覆盖推出finite-by-(pro)cyclic及有限秩不等于actual-values生成Sylow；这也不能支撑“本题只剩抽象/一般群情形”的改域说法。"
+        },
+        {
+          "subquestion": "本轮近期完整声明、反例及更正线索筛选",
+          "value": "no_evidence_in_scope",
+          "note": "2023–2026定向精确查询、作者2026列表、两篇直接原稿及Notebook交叉后，未取得去掉soluble且去掉powers的完整全域证明或反例；结论只针对实际查询范围，不由Notebook无标注推出全网无解。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/leanprover-community/mathlib4/blob/2a7a1fb7323dcb7f2c1bcc87b675c8396a116112/Mathlib/GroupTheory/Focal.lean"
+      ],
+      "note": "只覆盖：特例"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://www.qunxingmath.org/p/QX-P-001057/",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "当前66e9c305b42dd48e核心与acceptance忠实于18.119：对每个有限G、outer multilinear commutator w、素数p及Q∈Syl_p(w(G))，问Q=〈Q∩G_w〉，代入变量在ambient G。AFS2011/2012给所有有限G的powers-of-values生成定理，不能去掉powers；DMS2021online/2022正式Prop1.3给有限可解G的actual-values特例。DMS短证明(3-1)对任意N漏交w(G)，已用正确提升式独立核其两处实际应用仍成立；词树与外引引理未全重证，不夸报整篇验证。普通换位子、有限p群/幂零群及以Ore为输入的非阿贝尔有限单群特例不自动覆盖任意有限群扩张。固定mathlib普通focal源码静态完整但未复跑，仅w=[x,y]。本轮有界原题/学术/代码AI检索未取得一般actual-values全题完整解答或反例，不能以无命中或v50无标记断言开放。旧21.98循环覆盖/有限秩簇式进展不回答本题，应移出直接进展；2014是收录年，至少2011-08-10已有原始母题。两邻卡范围不同，984低号包外待其负责人核关联，无合并。",
+      "evidence_ids": [
+        "R1057-CARD",
+        "R1057-AFS",
+        "R1057-DMS",
+        "R1057-COVER",
+        "R1057-DUP",
+        "E1057-C-FOCAL"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "outer/multilinear换位子词的准确递归范围",
+      "math_status": "部分进展",
+      "scope_note": "按实际原文，w=x₁是重量1的边界；递归地，若u、v为此类词且变量集不交，则[u,v]也是，除此之外无其他词。这里采用[a,b]=a⁻¹b⁻¹ab。每个变量在括号树中只占一个叶子，允许任意树形，例如[[x₁,x₂],[x₃,x₄]]和[[[x₁,x₂],x₃],x₄]都在范围内；并非只准左结合的低中心词。变量名必须不同，但实际代入群元素g_i可相同、可为单位元；“多线性”不是说群乘法意义下的全局线性映射。Engel式[x₁,x₂,x₂]和幂词x³不属于此类。若w=x₁，则G_w=G，目标立即成立；若G阿贝尔且w重量≥2，则w(G)=1，目标也平凡成立。",
+      "evidence_ids": [
+        "Q1057-M-E1",
+        "Q1057-M-E2",
+        "Q1057-M-E3",
+        "Q1057-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "目标必须是Q=〈Q∩G_w〉，不是生成后取Sylow的定义",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "固定有限G、合法词w、素数p，定义G_w={w(g₁,…,g_n):g_i∈G}，N=w(G)=〈G_w〉。题意是对每个Q∈Syl_p(N)，Q=〈Q∩G_w〉。生成元必须本身是落在Q内的实际w值；不是任选N的生成元再取Sylow，也不是要求Q每个元素本身都是单个w值。旧人话括号“取w值生成的子群再取Sylow仍够用”只重复了N及Q的构造，未表达受限生成集的要求。若p不整除|N|，Q=1，空集或{1}都生成它。若给反例，须证明H=〈Q∩G_w〉严格小于Q，而不是仅找某个元素不是单个w值或某个小的生成列表不够。原题面、原摘录和acceptance的核心仍可忠实恢复；本问题不是因为这句人话错误而被反驳。",
+      "evidence_ids": [
+        "Q1057-M-E1",
+        "Q1057-M-E2",
+        "Q1057-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "Q∈Syl_p(w(G))与P∩w(G)的双向等价",
+      "math_status": "部分进展",
+      "scope_note": "任意自同构把w值送到w值，故N=w(G)特征于G，特别正规。若P∈Syl_p(G)，则PN是子群且[N:P∩N]=[PN:P]整除[G:P]，为p′整数，因此P∩N是N的Sylow p子群。反向，对任意Q∈Syl_p(N)，由有限群Sylow包含定理可取P∈Syl_p(G)包含Q；P∩N是N的p子群且包含最大p子群Q，所以P∩N=Q。又G_w⊆N，故P∩G_w=Q∩G_w。因此原题与“对每个P∈Syl_p(G)，P∩w(G)=〈P∩G_w〉”完全等价。固定(G,w,p)的不同Q在N内共轭，而G_w在G共轭下不变，所以验证一个确定的Sylow代表可传到该实例所有Sylow；这不减少对所有有限G、合法w、p的全称要求。以上为本轮手证。",
+      "evidence_ids": [
+        "Q1057-M-E1",
+        "Q1057-M-E2",
+        "Q1057-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "S3自含证书：必须允许在G中代入，而不是只在Q中代入",
+      "math_status": "仅特例",
+      "scope_note": "令G=S₃，r=(123)、s=(12)，满足r³=s²=1及srs=r⁻¹；取w=[x,y]=x⁻¹y⁻¹xy。于是[r,s]=r⁻¹srs=r⁻²=r。所有换位子都在A₃内，且r为换位子，故w(G)=A₃=〈r〉。对p=3，Q=A₃，r∈Q∩G_w已经生成Q。另一方面Q循环，任意a,b∈Q都有[a,b]=1，所以Q_w={1}，w(Q)=1≠Q。这里r来自允许的外部代入s∉Q，证明“变量都在Q”会把一个满足原目标的实例错判为反例。此为关系式手算，未运行S₃枚举、GAP或其他程序。",
+      "evidence_ids": [
+        "Q1057-M-E1",
+        "Q1057-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限p群和有限幂零群的自含肯定特例",
+      "math_status": "仅特例",
+      "scope_note": "若G是有限p群，则w(G)也是p群，它唯一的Sylow p子群就是w(G)，由定义被所有G_w生成；其他素数的Sylow平凡。更一般，有限幂零群分解为Sylow直积G=∏_q P_q。任意群词都按直积坐标求值，且各坐标的代入可独立选择，故G_w=∏_q(P_q)_w，w(G)=∏_q w(P_q)。目标Sylow p子群是嵌入G的w(P_p)，由在P_p内代入得到的实际w值生成（其余坐标代单位元）。因此这个特例甚至对任意通常的无常量群词都成立，不需要outer假设。不能由所有p群/幂零群都成立，推断一般有限群成立；其Sylow子群通常不形成这样的直积分解。以上均为结构手证，没有用有限抽样推广。",
+      "evidence_ids": [
+        "Q1057-M-E1",
+        "Q1057-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "词类限制必要：S3的幂词反例不在本题范围",
+      "math_status": "仅特例",
+      "scope_note": "仍取G=S₃，但改用不合法于本题的v=x³。单位元和两个3循环的立方都是1，三个换位的立方各为自身，所以G_v={1,(12),(13),(23)}，这些值生成整个S₃。对p=3，Q=A₃，Q∩G_v={1}，从而〈Q∩G_v〉=1<Q。这自含证书否定“任意群词都可”的扩域命题，且直接见于AFS引言；它不能反驳当前外换位子词问题。与前条不冲突，因为S₃不是幂零群。",
+      "evidence_ids": [
+        "Q1057-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "一般有限群的m次幂焦点定理与实际值生成之间的准确差别",
+      "math_status": "部分进展",
+      "scope_note": "实际读取的AFS Theorem A设|G|=p^a m、(p,m)=1，结论为P∩w(G)=〈P∩G_{w^m}〉，其中G_{w^m}={x^m:x∈G_w}。必须先对整个G_w取m次幂，再与P相交；不是先把原值限在P。若原值x∈P，因m与|x|互素，〈x^m〉=〈x〉，因此〈{x^m:x∈G_w∩P}〉=〈G_w∩P〉，这个更窄集合确可去幂。但x^m∈P并不保证x∈P：例如C₆=〈a〉、p=3、m=2，a²在Sylow3子群而a不在。一般m次幂定理允许这样的原值贡献，不能不加证明把结果中的G_{w^m}换成G_w。这里没有断言所有外换位子词的幂都不能再表示成同词值；只是精确指出已读定理不提供所需去幂归约。该项核查没有重证Theorem A整篇。",
+      "evidence_ids": [
+        "Q1057-M-E3",
+        "Q1057-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "正常p元集在商中的提升引理：独立手证",
+      "math_status": "部分进展",
+      "scope_note": "设有限G中N⊲G、P∈Syl_p(G)，Y是G共轭不变的p元素集合。要证YN∩PN=(Y∩P)N。只需对y∈Y∩PN找n∈N使y^n∈P：〈y〉是PN的p子群，由PN中的Sylow共轭定理存在c∈PN使〈y〉^c≤P；写c=np（n∈N,p∈P），再以p⁻¹共轭就得到y^n∈P。正常性给y^n∈Y，且y^nN=yN，所以原陪集由Y∩P代表。逆包含显然。这解释了DMS Lemma3.2为何要求正常p元素集合；任意w值在商中变成p元素，不能直接假定其原值已经是p元素。",
+      "evidence_ids": [
+        "Q1057-M-E3",
+        "Q1057-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "DMS Prop1.3有限可解情形的末端归约核验",
+      "math_status": "仅特例",
+      "scope_note": "正式Prop1.3证明对全部有限可解G、全部outer w、全部P∈Syl_p(G)的实际值结论。独立重走§3如下，明确使用三个外部输入：Lemma3.3的素数幂阶、换位子封闭生成集X；Prop2.1的w(G)=〈X_w〉；Lemma3.1的w(i⁺)=1⇒w(i)阿贝尔。可给X添1而不破坏性质。令X_{w,p}为X_w中的p元（含1），Y为它们的G共轭并。换位子封闭保证X_w⊆X，所以值仍为素数幂阶；取商后，q≠p的q元只有像1时才成为p元，而1可由p元1提升，因此取p值集与取商相容。假设对某(G,X,w,p)命题Q=〈P∩Y〉失败且|G|最小，令H=〈P∩Y〉。利用前条提升引理和商中的归纳假设，对每个非平凡N⊲G得到正确式Q=〈H,Q∩N〉。若存在非平凡正规p′子群，则Q∩N=1，矛盾。由于G可解，非平凡w(i)=w(G^(i₁),…,G^(i_n))中可选坐标偏序极大的i（每坐标受导出长度限制）；于是w(i⁺)=1，故w(i)阿贝尔。它正规且无非平凡p′特征部分，只能是p群，故w(i)≤P。把每个变量替换为相应derived word得到outer扩展w_i，Prop2.1给w(i)=〈X_{w_i}〉。关键是X换位子封闭，所以这些替换的值仍在X，因而X_{w_i}⊆X_w；再因w(i)是p群，X_{w_i}⊆P∩Y，故w(i)≤H。在正确提升式取N=w(i)，便得Q=H，矛盾。这核了实际值生成的关键链，不把可解结论推广到一般有限群。三个输入的完整外引或长word-tree证明未在本轮重新证明。",
+      "evidence_ids": [
+        "Q1057-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "DMS式(3-1)任意N表述的交项补足不影响后续两用途",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "此项仅指所读正式原刊文本的局部证明表述，不指群星核心或Prop1.3为假。原文先任取非平凡N⊲G，却写P∩w(G)=〈P∩N,P∩Y〉。对任意N，归纳提升应给P∩w(G)=〈P∩w(G)∩N,P∩Y〉；只有N≤w(G)时可直接省掉w(G)交项。无此限制的旧等式可由G=C₂、w=[x,y]、p=2、N=G排错：左边1，而旧右边含P=G。原证明实际后续只在N为p′群和N=w(i)≤w(G)时使用该式，前者两个核交项均1，后者两式相同，所以用正确提升式即可保持Prop1.3论证。该小例不是Prop1.3的反例，不是作者已经发布的勘误；该项核查核了网页PDF抽取及本地原刊文字，未独立声称看过页图像素。",
+      "evidence_ids": [
+        "Q1057-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "word-tree生成桥的有限群末端与未复核输入",
+      "math_status": "条件性结果",
+      "scope_note": "实际读Prop2.1末端：设w=[α,β]，T=〈X_w〉。树高/defect归纳和Theorem2.9若已给[w(G),α(G)]≤T（另一分支对称），则对a∈X_α,b∈X_β及u∈α(G)，[a,b]^u=[a,b][[a,b],u]∈T，所以T被α(G)正规化。又[a,b]∈α(G)=〈X_α〉，将其写成X_α及逆元的乘积；用[xy,z]=[x,z]^y[y,z]与[x⁻¹,z]=([x,z]⁻¹)^(x⁻¹)，可把[[a,b],b̃]展开成T内元素的α(G)共轭乘积，故T^{b̃}⊆T。当前有限群范围内共轭保持有限子群阶，因此此包含为等号，T也被β(G)正规化。取商后所有α生成元与β生成元对易，得到[α(G),β(G)]≤T；逆包含明显，故w(G)=T。这说明末端生成桥确实使用换位子封闭/树扩展输入；本轮未声称逐一重证Theorem2.9全部树截面论证或将有限性处理擅自推广至任意无限群。Frattini论证在原文后面的rank结果中，不是这里Prop1.3的必要末端。",
+      "evidence_ids": [
+        "Q1057-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "经典换位子和有限单群的范围，不能按组成因子拼成全题",
+      "math_status": "仅特例",
+      "scope_note": "AFS引言直接重述经典焦点子群定理：w=[x,y]时，任意有限G的P∩G′由落在P的实际换位子生成，代入允许一个变量在G中。另DMS §4明确使用Ore定理。以Ore“每个非阿贝尔有限单群元素是单个换位子”为外部输入，对outer括号树归纳：若u、v的值映射已满射S，则任给g=[a,b]，分别用互不相交变量实现a=u(…)与b=v(…)，得到g=[u,v](…)；故任意outer w在非阿贝尔有限单群S上满射，所有Sylow元素自身都是w值。阿贝尔单群已由前述边界覆盖。该项核查核该树归约而未重证Ore或经典焦点定理。有限可解群与有限单群两个范围均已知，不自动经组成列拼出任意有限群的结论；商中值的提升与Sylow控制仍需独立论证。",
+      "evidence_ids": [
+        "Q1057-M-E3",
+        "Q1057-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限可解群的actual-values结论",
+      "math_status": "原题已证明",
+      "evidence_ids": [
+        "a1057_dms_soluble",
+        "a1057_dms31_audit"
+      ],
+      "scope_note": "仅此子类：有限可解G、任意多线性词w和任意Sylow p子群。正式Prop1.3已有证明；本轮§3关键归约与局部提升修补获独立复核，未重证所有树引理/外引。不能删去soluble而宣布全域主问题已证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "1511.07843与21.98是否解决本题的有限Sylow生成要求",
+      "math_status": "题面错误",
+      "evidence_ids": [
+        "a1057_notebook",
+        "a1057_cover_scope"
+      ],
+      "scope_note": "旧题卡进展归属错误。循环覆盖推出finite-by-(pro)cyclic及有限秩不等于actual-values生成Sylow；这也不能支撑“本题只剩抽象/一般群情形”的改域说法。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "本轮近期完整声明、反例及更正线索筛选",
+      "math_status": "本次范围未发现确证",
+      "evidence_ids": [
+        "a1057_2026_scope",
+        "a1057_dms_soluble",
+        "a1057_afs_powers"
+      ],
+      "scope_note": "2023–2026定向精确查询、作者2026列表、两篇直接原稿及Notebook交叉后，未取得去掉soluble且去掉powers的完整全域证明或反例；结论只针对实际查询范围，不由Notebook无标注推出全网无解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "原题包",
+      "query": "读取任务.jsonl中QX-P-001057完整task/card_metadata/card_text/prior_evidence",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "当前rev66e9c305b42dd48e；旧novelty.rev9b6829875e1b345d仅作历史，编目无解答标记不能证明当前开放。",
+      "request_id": "QX-R3-11-001057-root-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "GitHub connector",
+      "query": "fetch problems/001/QX-P-001057.text.md + .meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整读取两文件。text blob a0542274aa699dfdaeaf8d46a1e9ce4dc0c9f63a；meta blob e9bd419a6f6f193cf23659572b8f9669f68f93d8。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001057.text.md",
+      "request_id": "QX-R3-11-001057-root-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "18[.]119|21[.]98",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "在2469条title/title_en/aliases上作大小写不敏感正则筛查；仅984与2390继续全文及验收比较，其他命中未作全文排尽。",
+      "result_count": 2,
+      "request_id": "QX-R3-11-001057-root-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "multilinear|多线性换位|多线性对易",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "在2469条title/title_en/aliases上作大小写不敏感正则筛查；仅984与2390继续全文及验收比较，其他命中未作全文排尽。",
+      "result_count": 4,
+      "request_id": "QX-R3-11-001057-root-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "Sylow.*w|verbal|言语子群|w.values",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "在2469条title/title_en/aliases上作大小写不敏感正则筛查；仅984与2390继续全文及验收比较，其他命中未作全文排尽。",
+      "result_count": 18,
+      "request_id": "QX-R3-11-001057-root-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector",
+      "query": "fetch problems/000/QX-P-000984.text.md + .meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读取正文/形式化及meta.acceptance；只做当前题查重和范围排除，未转为对方独立查新。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000984.text.md",
+      "request_id": "QX-R3-11-001057-root-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector",
+      "query": "fetch problems/002/QX-P-002390.text.md + .meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读取正文/形式化及meta.acceptance；只做当前题查重和范围排除，未转为对方独立查新。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002390.text.md",
+      "request_id": "QX-R3-11-001057-root-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地已取得官方PDF缓存",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-004016〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际复用v50原始PDF/文本而非旧结论；定位18.119在印刷/PDF p139，21.98在p193，仅后者作范围比较。PDF SHA256 b7027dd8e29cc5b187304f4bb0f3bddb30839089c44967f5fadaa4c0e5e60dc7。",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "18.119，p139；21.98，p193",
+      "request_id": "QX-R3-11-001057-root-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"focal subgroup theorem\" \"multilinear\" w values",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中AFS2011/2012、DMS2022及Around the focal subgroup theorem等线索；下列实际读原文的项另记，不把检索摘要当证明。",
+      "request_id": "QX-R3-11-001057-root-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"18.119\" Shumyatsky",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Kourovka档案及数字同号噪声；Manchester 18tkt.pdf仅本主审见检索摘要。",
+      "request_id": "QX-R3-11-001057-root-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "open https://arxiv.org/abs/1108.2284",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核作者、摘要、版本史：v1=2011-08-10，v2=2011-08-13，v3=2011-12-26。原问题至少见于2011稿，不能以2014题号收录当首次提出。",
+      "url": "https://arxiv.org/abs/1108.2284",
+      "locator": "摘要；Submission history",
+      "request_id": "QX-R3-11-001057-root-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "click abs/1108.2284 HTML id10；完整读取1108.2284v3 HTML",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读7页正文对应HTML全215行，包括Question、Theorem A、Lemma1.1/1.2、Theorem1.4及§2词树证明。独立核Lemma1.1短证明及powers与values语义；Ore、Gaschütz、外引词树Theorem2.6没有独立重证，不写整篇通过。",
+      "url": "https://arxiv.org/html/1108.2284v3",
+      "locator": "全文；重点Question/Theorem A/Lemma1.1",
+      "request_id": "QX-R3-11-001057-root-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "open https://arxiv.org/abs/1511.07843；click HTML id8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "两作者Cristina Acciarri/Pavel Shumyatsky，2015-11-24 v1，20页综述。并非仅Acciarri作者，也不是所有outer words的Sylow实际值生成定理。",
+      "url": "https://arxiv.org/abs/1511.07843",
+      "locator": "摘要、作者及版本史",
+      "request_id": "QX-R3-11-001057-root-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "find Theorem 2.2.；find Proposition 5.5.；find finite-by-procyclic；find finite rank",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读取Problem2.5、Thms2.9–2.12及§4 Theorems4.5/4.6；Proposition5.5字面查询无匹配。Thm2.10只给普通commutators覆盖的G′有限-by-procyclic；一般outer-word abstract cyclic-cover在Problem2.5仍为另一问题。Thm4.5为覆盖下有限秩结论，均非本题Sylow实际词值生成。未声称读全20页证明。",
+      "url": "https://arxiv.org/html/1511.07843v1",
+      "locator": "Problem2.5；Thm2.10；Thm4.5",
+      "request_id": "QX-R3-11-001057-root-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge官方",
+      "query": "open On the rank of a verbal subgroup of a finite group DOI10.1017/S1446788721000069",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "主审初读页面摘要/作者/出版元数据/参考文献；online2021-05-12，J.Aust.Math.Soc.113(2)(2022)145–159。Prop1.3的精确内容随后读取正式PDF确认，不从rank摘要推导。",
+      "url": "https://www.cambridge.org/core/journals/journal-of-the-australian-mathematical-society/article/on-the-rank-of-a-verbal-subgroup-of-a-finite-group/929779098A50F767EA173649EC7D0CE8",
+      "locator": "摘要与元数据、参考文献",
+      "request_id": "QX-R3-11-001057-root-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地Cambridge正式PDF文本",
+      "query": "读取dms2022_cambridge.txt pp145–146、§3 pp152–154及§4开头；回看§3完整段落",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "正式Prop1.3假设G有限可解，结论P∩w(G)=〈P∩G_w〉。主审复核两位独立核查者指出的(3-1)任意N版本需交w(G)；用正确提升式后无正常p′子群及N=w(i)两分支可接续。其余词树Prop2.1和外引Lemma3.1/3.3只作依赖，未全重证。",
+      "url": "https://doi.org/10.1017/S1446788721000069",
+      "locator": "Prop1.3 p146；§3 pp152–154，式(3-1)",
+      "request_id": "QX-R3-11-001057-root-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system2_search_query",
+      "query": "\"Kourovka\" \"18.119\"",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "a1057_initial_overflow",
+      "note": "请求实际已执行，但最初批次返回超过上下文可用输出而截断，未把该批次当作已读结果或零命中；下列重试另记。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system2_search_query",
+      "query": "\"focal subgroup theorem\" \"outer commutator words\"",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "a1057_initial_overflow",
+      "note": "请求实际已执行，但最初批次返回超过上下文可用输出而截断，未把该批次当作已读结果或零命中；下列重试另记。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system2_search_query",
+      "query": "\"1511.07843\"",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "a1057_initial_overflow",
+      "note": "请求实际已执行，但最初批次返回超过上下文可用输出而截断，未把该批次当作已读结果或零命中；下列重试另记。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地原包",
+      "query": "读取 work_001057_sources/task.json 全记录",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.qunxingmath.org/p/QX-P-001057/",
+      "locator": "当前包原记录，id QX-P-001057 / card_rev 66e9c305b42dd48e",
+      "note": "读取正文、验收、人话、原文摘录、旧 novelty 与 prior_evidence；旧 novelty 绑定的是9b6829875e1b345d，不当成本轮有效回执。",
+      "request_id": "QX-R3-11-001057-academic-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "固定 Kourovka 本地原 PDF/text",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-004017〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "18.119 印刷/PDF第139页；21.98 第193页",
+      "note": "本轮实际读取缓存 work_001159_sources/kourovka_v50.pdf/.txt；有限群、任意多线性外换位子词和 P. Shumyatsky 署名确认。18.119 未带评论只属该版本的编目事实。",
+      "request_id": "QX-R3-11-001057-academic-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system2_search_query",
+      "query": "\"focal subgroup theorem\" \"outer commutator words\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-R3-11-001057-academic-006",
+      "note": "命中1108.2284、JGT2012原文及DMS2022 Proposition1.3；后续实际取全文。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system2_search_query",
+      "query": "\"Kourovka\" \"18.119\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-R3-11-001057-academic-007",
+      "note": "命中Notebook转存索引；题文以本地固定v50原稿复核，不以转存状态断言全网开放。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system2_search_query",
+      "query": "\"1511.07843\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-R3-11-001057-academic-008",
+      "note": "命中Acciarri–Shumyatsky综述，后续固定v1读取。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv官方abs",
+      "query": "open https://arxiv.org/abs/1108.2284",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/1108.2284",
+      "request_id": "QX-R3-11-001057-academic-009",
+      "locator": "标题、作者、摘要和Submission history",
+      "note": "v1 2011-08-10 20:32:18 UTC；v2 2011-08-13；v3 2011-12-26 18:31:30 UTC。当前记录未标撤回；这不证明无外部争议。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方abs",
+      "query": "open https://arxiv.org/abs/1511.07843",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/1511.07843",
+      "request_id": "QX-R3-11-001057-academic-010",
+      "locator": "标题/作者/摘要/版本史",
+      "note": "Coverings of commutators in profinite groups，Cristina Acciarri、Pavel Shumyatsky；仅v1，2015-11-24 19:41:52 UTC；摘要明说survey。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge原刊PDF",
+      "query": "open https://www.cambridge.org/core/services/aop-cambridge-core/content/view/929779098A50F767EA173649EC7D0CE8/S1446788721000069a.pdf/on_the_rank_of_a_verbal_subgroup_of_a_finite_group.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/929779098A50F767EA173649EC7D0CE8/S1446788721000069a.pdf/on_the_rank_of_a_verbal_subgroup_of_a_finite_group.pdf",
+      "request_id": "QX-R3-11-001057-academic-011",
+      "locator": "pp145–146，Proposition1.3；§3 pp152–154",
+      "note": "整份PDF可达15页；实际阅读定义、主结果及§3证明，未宣称全文所有长证明已独立复核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1_search_query",
+      "query": "\"18.119\" Shumyatsky solution",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-R3-11-001057-academic-012",
+      "note": "实际 recency=730。返回Notebook转存，未获得该题新完整解或反例。 搜索中的最近抓取时间不作为原论文发表时间。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1_search_query",
+      "query": "\"Sylow\" \"w-values\" \"soluble\" 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-R3-11-001057-academic-013",
+      "note": "实际 recency=730。命中2026作者论文列表及旧相关稿；作者列表中最新论文是秩/自同构/互素换位子等不同目标。 搜索中的最近抓取时间不作为原论文发表时间。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1_search_query",
+      "query": "\"focal subgroup theorem\" \"outer commutator\" correction",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-R3-11-001057-academic-014",
+      "note": "实际 recency=3650。返回原稿、正式索引及相关引用，未得到可辨识的正式更正或撤回文献。 搜索中的最近抓取时间不作为原论文发表时间。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "公开原始PDF/机构仓储 urllib GET",
+      "query": "GET https://arxiv.org/pdf/1108.2284v3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1108.2284v3",
+      "locator": "afs2011_v3",
+      "note": "HTTP 200；128730 bytes；SHA256 956086844bb68a78aa377e2b25e97082e44859f28554d576a905ae3c0e7ce971；存于 work_001057_sources/afs2011_v3.pdf/.txt。",
+      "request_id": "QX-R3-11-001057-academic-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "公开原始PDF/机构仓储 urllib GET",
+      "query": "GET https://cris.unibo.it/retrieve/handle/11585/907265/2a92eeef-81f1-4194-9722-f8499a2d269f/DMS22-on-the-rank-of-a-verbal-subgroup-of-a-finite-group.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://cris.unibo.it/retrieve/handle/11585/907265/2a92eeef-81f1-4194-9722-f8499a2d269f/DMS22-on-the-rank-of-a-verbal-subgroup-of-a-finite-group.pdf",
+      "locator": "dms2022_journal",
+      "note": "<HTTPError 403: 'Forbidden'>。该机构入口失败，后续Cambridge同刊全文已取得，非最终全文缺失。",
+      "request_id": "QX-R3-11-001057-academic-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "公开原始PDF/机构仓储 urllib GET",
+      "query": "GET https://arxiv.org/pdf/1511.07843v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/1511.07843v1",
+      "locator": "acciarri2015_v1",
+      "note": "HTTP 200；232964 bytes；SHA256 09e20935a54c8424ebb279c7ec0ee26ee23320f3864d1ca7f8b97e0e7e37dd34；存于 work_001057_sources/acciarri2015_v1.pdf/.txt。",
+      "request_id": "QX-R3-11-001057-academic-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "公开原始PDF/机构仓储 urllib GET",
+      "query": "GET https://arxiv.org/pdf/1108.2284v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1108.2284v1",
+      "locator": "afs2011_v1",
+      "note": "HTTP 200；117924 bytes；SHA256 0b7fb666c769fda55ab9da7119a04a4669212a7f0bf9f618a778b073511d9ab2；存于 work_001057_sources/afs2011_v1.pdf/.txt。",
+      "request_id": "QX-R3-11-001057-academic-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "公开原始PDF/机构仓储 urllib GET",
+      "query": "GET https://www.cambridge.org/core/services/aop-cambridge-core/content/view/929779098A50F767EA173649EC7D0CE8/S1446788721000069a.pdf/on_the_rank_of_a_verbal_subgroup_of_a_finite_group.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/929779098A50F767EA173649EC7D0CE8/S1446788721000069a.pdf/on_the_rank_of_a_verbal_subgroup_of_a_finite_group.pdf",
+      "locator": "dms2022_cambridge",
+      "note": "HTTP 200；516866 bytes；SHA256 ad3affc0e3bc93a3b235e4a1223557d687bd1cc8800a951b7881ae077b75e390；存于 work_001057_sources/dms2022_cambridge.pdf/.txt。",
+      "request_id": "QX-R3-11-001057-academic-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge原刊PDF",
+      "query": "open https://www.cambridge.org/core/services/aop-cambridge-core/content/view/929779098A50F767EA173649EC7D0CE8/S1446788721000069a.pdf/on_the_rank_of_a_verbal_subgroup_of_a_finite_group.pdf at line 240",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/929779098A50F767EA173649EC7D0CE8/S1446788721000069a.pdf/on_the_rank_of_a_verbal_subgroup_of_a_finite_group.pdf",
+      "request_id": "QX-R3-11-001057-academic-020",
+      "locator": "§2 Proposition2.1及其证明；§3 Lemmas3.1–3.3与Proposition1.3",
+      "note": "实际读网页返回相关原文，继以本地完整§3读取。长word-tree辅助命题仅读取/理解使用，未把所有外引证明当本轮重证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者主页",
+      "query": "open https://acciarric.github.io/publications/",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://acciarric.github.io/publications/",
+      "request_id": "QX-R3-11-001057-academic-021",
+      "locator": "2026 Preprints及2026 Journal Articles条目",
+      "note": "实际读Rank properties of commutators、Local--global generation property of commutators in finite π-soluble groups等作者所列摘要；均非全体有限群、任意w的actual-values Sylow生成定理。不额外展开不同目标长稿。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "1511.07843v1 本地原文",
+      "query": "读取§2 Problem2.5、Theorem2.10及§4 Theorem4.5",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/1511.07843v1",
+      "locator": "p6 Problem2.5；pp8–9 Theorem2.10；pp14–16 Theorem4.5及讨论",
+      "note": "普通commutators的profinite procyclic覆盖与一般multilinear循环覆盖问题分开；finite-rank结论亦不是实际词值生成Sylow。",
+      "request_id": "QX-R3-11-001057-academic-022",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system2_search_query",
+      "query": "\"On the rank of a verbal subgroup of a finite group\" corrigendum OR correction OR erratum",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "request_id": "QX-R3-11-001057-academic-023",
+      "note": "未取得可归属该文的正式勘误；该合并批次出现大量与18.119数字碰撞的结果，不能当零结果。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system2_search_query",
+      "query": "\"18.119\" \"2026\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "request_id": "QX-R3-11-001057-academic-024",
+      "note": "结果为采购编号、价格等数字碰撞，均排除，不能凭此断言群论问题无新结果。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system2_search_query",
+      "query": "\"Sylow\" \"w-values\" \"generated\" \"2025\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "request_id": "QX-R3-11-001057-academic-025",
+      "note": "该合并批次未提供可认定同题的新完整声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1_search_query",
+      "query": "\"multilinear commutator\" \"generated by\" \"w-values\" solution",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-R3-11-001057-academic-026",
+      "note": "recency=1095；命中DMS2022、旧powers结论及2024 BFC/2023阶有界等邻近结果，未得到全体有限群actual-values生成新完整稿。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web.system1_search_query",
+      "query": "\"On the rank of a verbal subgroup\" correction erratum",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-R3-11-001057-academic-027",
+      "note": "命中原刊、机构索引及arXiv2103.04102；未得到明确正式勘误，随后核官方版本史。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地原刊像素核验",
+      "query": "fitz渲染 dms2022_cambridge.pdf 第10页并实际view_image",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/929779098A50F767EA173649EC7D0CE8/S1446788721000069a.pdf/on_the_rank_of_a_verbal_subgroup_of_a_finite_group.pdf",
+      "locator": "印刷p154，式(3-1)及其前后；work_001057_sources/dms2022_p154.png",
+      "note": "确认原印式的P∩N确无w(G)项，非OCR丢失。正确提升写入下列本轮审阅说明，不冒称作者勘误。",
+      "request_id": "QX-R3-11-001057-academic-028",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Kourovka v50序言",
+      "query": "本地读取archive/♯/∗说明段",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "序言第4页",
+      "note": "♯指未由数学家确认的AI拟解；∗是proper solution标记，不能一概译作AI确认解；无标注不足证明当前世界范围未解决。",
+      "request_id": "QX-R3-11-001057-academic-029",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方abs",
+      "query": "open https://arxiv.org/abs/2103.04102",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2103.04102",
+      "request_id": "QX-R3-11-001057-academic-030",
+      "locator": "Submission history及related DOI",
+      "note": "v1=2021-03-06 11:33:31 UTC，v2=2021-06-21 20:57:12 UTC；DOI10.1017/S1446788721000069。正文审阅采用正式刊版，未逐行比对两个arXiv版本。记录含text-overlap admin note，不等于撤回/数学错误声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原包题卡及Kourovka固定v50",
+      "query": "完整读取 work_001057_sources/task.json；在已取得的 work_001159_sources/kourovka_v50.txt 定位并定点读取18.119，核有限群、outer word和Sylow的范围。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "18.119；task的card_text全文及acceptance.criteria",
+      "note": "当前QX-P-001057 rev66e9c305b42dd48e。原核心可恢复且与原文一致；该项核查不因正式字段空数组或人话括号不准而把它改成另一题。未写源卡。",
+      "request_id": "QX-R3-11-001057-math-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "网页检索及作者机构原稿",
+      "query": "实际system2查询 \"On the rank of a verbal subgroup of a finite group\" Proposition 1.3，以及 \"A focal subgroup theorem for outer commutator words\" 1108.2284；随后open机构PDF，读取AFS v3引言、Question与Theorem A完整跨页声明。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://iris.unimore.it/retrieve/e31e124f-c53c-987f-e053-3705fe0a095a/1108.2284.pdf",
+      "locator": "arXiv1108.2284v3的pp1–2：原Question、Theorem A、outer word定义",
+      "note": "实际搜索turn902233276search24/25/26；机构PDF全文入口turn410734248view1。所读页眉标arXiv1108.2284v3、2011-12-26。该项核查核精确范围与小例，不声称独立复核Theorem A的全部证明。",
+      "request_id": "QX-R3-11-001057-math-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge正式原刊PDF",
+      "query": "open正式PDF，读取Prop1.3、§2递归定义及Prop2.1声明/末端证明、§3 Lemmas3.1–3.3和Prop1.3完整归约、§4首段Ore应用。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/929779098A50F767EA173649EC7D0CE8/S1446788721000069a.pdf/on_the_rank_of_a_verbal_subgroup_of_a_finite_group.pdf",
+      "locator": "印刷p146 Prop1.3；pp147、152的Prop2.1；pp153–154 §3；p154末至155初",
+      "note": "实际网页turn410734248view0、。2022正式卷113，pp145–159，online2021-05-12，DOI10.1017/S1446788721000069。没有把全文的rank主定理误认成本题一般有限群解答。",
+      "request_id": "QX-R3-11-001057-math-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "DMS正式PDF本地文本的证明复核",
+      "query": "实际读取 work_001057_sources/dms2022_cambridge.txt 的Prop2.1末端及§3，独立核正常p元集在商中的提升、最小反例、最大derived-index层及式(3-1)的交项。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/929779098A50F767EA173649EC7D0CE8/S1446788721000069a.pdf/on_the_rank_of_a_verbal_subgroup_of_a_finite_group.pdf",
+      "locator": "印刷pp152–154，尤其式(3-1)与其后两次应用",
+      "note": "对应PDF SHA256 ad3affc0e3bc93a3b235e4a1223557d687bd1cc8800a951b7881ae077b75e390。核的是文本中的数学条件及必要补足；该项核查未渲染页图，未重证长word-tree Theorem2.9、外引Lemmas3.1/3.3或Ore定理。未运行GAP、Lean或有限群枚举。",
+      "request_id": "QX-R3-11-001057-math-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1057-C-openai_focal",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/math",
+      "query": "focal subgroup",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回2项，仅不同段分别含focal/subgroup的矩阵控制与随机簇项目；语义无关，未深读别题。 实际topn=10。",
+      "result_count": 2,
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "Q1057-C-fc_word",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub google-deepmind/formal-conjectures",
+      "query": "multilinear commutator",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "指定仓库本次multilinear commutator返回0；仅字面索引范围，不能推断mathlib无基础定理。 实际topn=10。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q1057-C-web_exact",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1",
+      "query": "\"Kourovka\" \"18.119\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一批次中的实际literalquery，recency=730天。出现旧Kourovka转录、Nilradical21.35、mathlib普通Focal、powers-of-values论文；随后按具体目标分流原文。未检得本题全称完整解声明，负面仅限该次返回范围。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1057-C-web_exact",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1",
+      "query": "\"Sylow\" \"w-values\" \"Lean\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一批次中的实际literalquery，recency=730天。出现旧Kourovka转录、Nilradical21.35、mathlib普通Focal、powers-of-values论文；随后按具体目标分流原文。未检得本题全称完整解声明，负面仅限该次返回范围。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1057-C-web_exact",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1",
+      "query": "\"focal subgroup\" \"multilinear\" \"AI\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一批次中的实际literalquery，recency=730天。出现旧Kourovka转录、Nilradical21.35、mathlib普通Focal、powers-of-values论文；随后按具体目标分流原文。未检得本题全称完整解声明，负面仅限该次返回范围。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1057-C-gh_18119",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 全站代码入口",
+      "query": "\"18.119\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "全站topn12返回12个IP地址/网络数据等无关片段；按实际语义排除，随后限定Budden重查。该请求无同题结果，不把12误计作12数学候选。 实际topn=12。",
+      "result_count": 12,
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "Q1057-C-mathlib_focal",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub leanprover-community/mathlib4",
+      "query": "inf_commutator_eq_focalSubgroup",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "旧次序名称inf_commutator_eq_focalSubgroup返回0；文档当前名为commutator_inf_eq_focalSubgroup，随后直接固定源码成功，不能据此无命中说Focal定理未形式化。 实际topn=5。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q1057-C-openai_quoted",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/math",
+      "query": "\"multilinear commutator\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "指定仓库精确短语返回0，未取得本题完整证明；不是全库逐文件审计。 实际topn=8。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q1057-C-budden_exact",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub maxvonhippel/budden-bench",
+      "query": "18.119",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回1项，18.119/problem.json；随后固定全文与目录核对。 实际topn=8。",
+      "result_count": 1,
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1057-C-alunik_exact",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub alunik/kourovka-lean",
+      "query": "18.119",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "指定公开Kourovka Lean仓库本次18.119返回0；另对实际命中21.35项目说明作语义排除，不把相邻题解当本题解。 实际topn=5。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q1057-C-budden_tree",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/maxvonhippel/budden-bench/contents/problems/kourovka/problem_18.119?ref=66a10282fec151c6ca447e28cebf050e5a815fb8",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/maxvonhippel/budden-bench/contents/problems/kourovka/problem_18.119?ref=66a10282fec151c6ca447e28cebf050e5a815fb8",
+      "note": "固定目录只1文件problem.json；此目录没有formalization.lean、proof文件或计算日志。不扩大为整个仓库无相关成果。",
+      "result_count": 1,
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1057-C-mathlib_head",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/leanprover-community/mathlib4/commits/master",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/leanprover-community/mathlib4/commits/master",
+      "note": "实际GET master提交取得完整SHA与作者时间2026-11-26T22:20:26Z；随后所有本题源码按该SHA固定。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1057-C-budden_problem",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 固定文件",
+      "query": "fetch_file maxvonhippel/budden-bench problems/kourovka/problem_18.119/problem.json ref=66a10282fec151c6ca447e28cebf050e5a815fb8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/maxvonhippel/budden-bench/blob/66a10282fec151c6ca447e28cebf050e5a815fb8/problems/kourovka/problem_18.119/problem.json",
+      "locator": "problems/kourovka/problem_18.119/problem.json",
+      "note": "已读完整336bytes，同题有限群/多线性词英文原句，page_number128；无证明或checker字段。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1057-C-mathlib_focal_source",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 固定文件",
+      "query": "fetch_file leanprover-community/mathlib4 Mathlib/GroupTheory/Focal.lean ref=2a7a1fb7323dcb7f2c1bcc87b675c8396a116112",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/leanprover-community/mathlib4/blob/2a7a1fb7323dcb7f2c1bcc87b675c8396a116112/Mathlib/GroupTheory/Focal.lean",
+      "locator": "Mathlib/GroupTheory/Focal.lean",
+      "note": "完整8879bytes静态读；实际focalSubgroup定义、transferFocal、指数幂映射与最终commutator_inf_eq_focalSubgroup证明均有内容。主定理参数为P:Sylow p G、Fact p.Prime、P.FiniteIndex；finite G是其适用情形。没有任意outer-word参数。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1057-C-mathlib_toolchain",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 固定文件",
+      "query": "fetch_file leanprover-community/mathlib4 lean-toolchain ref=2a7a1fb7323dcb7f2c1bcc87b675c8396a116112",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/leanprover-community/mathlib4/blob/2a7a1fb7323dcb7f2c1bcc87b675c8396a116112/lean-toolchain",
+      "locator": "lean-toolchain",
+      "note": "完整lean-toolchain=leanprover/lean4:v4.37.0-rc1；本机lean/lake不存在，未安装/构建。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1057-C-fc_number",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub google-deepmind/formal-conjectures",
+      "query": "18.119",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "指定仓库18.119返回0；不据此宣称全网没有对应形式化。 实际topn=5。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q1057-C-global_words",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 全站代码入口",
+      "query": "\"w-values\" \"Sylow\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回10项；同题为Budden和CB/old-CB题面、math-agents 2014 corpus；其余nilpotency、w-maximal、算术K理论rational w-values语义不同。只展开当前CB及已核Budden，未把语料/索引计证明。 实际topn=10。",
+      "result_count": 10,
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1057-C-cb_problem",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 固定文件",
+      "query": "fetch_file bespokelabsai/conjecture-bench problems/extended-catalog/kourovka-notebook/kourovka-main-18-119.json ref=8d494791ace5894b860585d67ba8e69dbfed6376",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-18-119.json",
+      "locator": "problems/extended-catalog/kourovka-notebook/kourovka-main-18-119.json",
+      "note": "完整1275bytes；pdf-text-entry纯题面、status_observation listed-unsolved as_of2026-07-03、review_flags要求current-status/exact-polarity；无可执行checker或证明内容。旧状态不是2026-11-27已验证状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1057-C-official_find",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka 官方AI Repository",
+      "query": "find https://kourovkanotebookorg.wordpress.com/repository/ pattern=\"18.119\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "locator": "此次272行目录文本",
+      "note": "本次实际find字面无匹配；目录覆盖不等于全网没有候选解。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q1057-C-official_find",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka 官方AI报告",
+      "query": "find https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf pattern=\"18.119\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "locator": "此次92页/5557行可搜索报告",
+      "note": "随后实际开首页核Version4/2026-09-19；本次字面无匹配，未逐篇审其余45项候选。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q1057-C-official_find",
+      "route": "代码、公开 AI 和社区",
+      "site": "Nilradical 原项目说明",
+      "query": "open https://nilradical.ai/notes/kourovka-21-35/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://nilradical.ai/notes/kourovka-21-35/",
+      "locator": "The question and the answer / Credit and formal record",
+      "note": "实际读页面177行；2026-09-21 agent-generated、not-refereed说明。目标p-nilpotency iff元素阶条件(P)，非18.119。文中称Lean保留Thompson minimal-simple与quasisimple(Q)两数学hypotheses；本轮未核别题源码或重跑。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1057-C-focal_docs",
+      "route": "代码、公开 AI 和社区",
+      "site": "mathlib 文档",
+      "query": "open https://leanprover.github.io/hex/docs/Mathlib/GroupTheory/Focal.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://leanprover.github.io/hex/docs/Mathlib/GroupTheory/Focal.html",
+      "locator": "Main definitions、Main Theorems、实际生成元方程",
+      "note": "文档用于定位普通Focal theorem；当前固定源码实际主名commutator_inf_eq_focalSubgroup与旧搜索片段的inf_commutator顺序不同，以固定源码为准。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1057-C-focal_docs",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka 官方AI报告首页",
+      "query": "open https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf lineno=1",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "locator": "首页版本与目录",
+      "note": "实际核Version4—19September2026；这是AI数学报告，不是Notebook v50，也不是本题已解证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1057-C-static_focal",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地固定源码静态审计",
+      "query": "逐行读取Mathlib/GroupTheory/Focal.lean；扫描正则\\b(?:sorry|admit|axiom|sorryAx)\\b与直接imports",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/leanprover-community/mathlib4/blob/2a7a1fb7323dcb7f2c1bcc87b675c8396a116112/Mathlib/GroupTheory/Focal.lean",
+      "locator": "focalSubgroup、transferFocal、commutator_inf_eq_focalSubgroup",
+      "note": "本文件direct_holes=[]；imports是Mathlib.GroupTheory.Transfer及Abelianization.Defs。没有展开全部依赖闭包或#print axioms；无本机kernel结果。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1057-C-env",
+      "route": "代码、公开 AI 和社区",
+      "site": "本机环境只读检查",
+      "query": "shutil.which(\"lean\"), shutil.which(\"lake\"), shutil.which(\"gap\")",
+      "date": "2026-11-27",
+      "outcome": "不适用",
+      "note": "三者均None；本轮没有Lean编译/GAP枚举、没有新装工具链。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "not_applicable"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R1057-CARD",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001057.text.md",
+      "locator": "题面/形式化/人话及meta.acceptance、novelty",
+      "version": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；当前card_rev66e9c305b42dd48e；text blob a0542274aa699dfdaeaf8d46a1e9ce4dc0c9f63a；meta blob e9bd419a6f6f193cf23659572b8f9669f68f93d8",
+      "subquestions": [
+        "当前核心与验收",
+        "旧人话/进展/历史rev"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "核心与acceptance均是任意有限G、任意outer multilinear commutator w、每个Sylow p-subgroup Q≤w(G)是否Q=〈Q∩G_w〉；原核心忠实。词变量取ambient G而非Q，人话“取w-值生成再取Sylow”几近同义反复，应仅澄清。21.98循环覆盖、finite-by-cyclic与finite-rank不是本题的等价进展；旧novelty绑定另一rev不作当前完成凭据。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R1057-AFS",
+      "url": "https://arxiv.org/html/1108.2284v3",
+      "locator": "Introduction Question；Theorem A；Lemma1.1及证明；§2",
+      "version": "Acciarri–Fernández-Alcober–Shumyatsky，arXiv1108.2284v3，2011-12-26；首次v1=2011-08-10",
+      "subquestions": [
+        "原问题早期来源",
+        "所有有限群的powers版本",
+        "正常p元素集合提升"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "Theorem A在|G|=p^a m、p∤m时给P∩w(G)=〈P∩G_(w^m)〉，生成元是w值的m次幂，不是直接证明P∩w(G)=〈P∩G_w〉。主审独立核Lemma1.1：对g∈X∩PN选z∈P同N陪集，H=〈g〉N=〈z〉N且H′≤N；P∩H为H的Sylow，将p元素g在H内共轭到x∈P∩H，X正常故x∈X，g∈xH′⊆xN，反向显然。X是正常p元素集合的条件不能被随意丢掉。Theorem A全证明依赖Ore、Gaschütz与外引词树定理，未声称独立完整证明。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "R1057-COVER",
+      "url": "https://arxiv.org/html/1511.07843v1",
+      "locator": "Problem2.5；Theorem2.10；§4 Theorem4.5",
+      "version": "Cristina Acciarri/Pavel Shumyatsky，Coverings of commutators in profinite groups，arXiv1511.07843v1，2015-11-24",
+      "subquestions": [
+        "旧簇式进展的范围排除"
+      ],
+      "scope_match": "同源不同问",
+      "role": "重述",
+      "publication": "预印本",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "这是20页综述。本主审实际读指定章节而未审全证明。Thm2.10的finite-by-procyclic是普通commutator情形的G′；Thm4.5是countably finite-rank subgroups覆盖w-values推出w(G)finite rank。Problem2.5讨论一般abstract G的finite cyclic cover，对应另一题984。在有限G上finite-by-cyclic本就可取有限正常核w(G)、商为1，finite rank与有限个循环覆盖也自动成立；都不能给每个Q的实际w值生成，旧卡把它们列为18.119直接进展需纠正。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "R1057-DMS",
+      "url": "https://doi.org/10.1017/S1446788721000069",
+      "locator": "Proposition1.3 p146；§3 pp152–154；式(3-1)",
+      "version": "Detomi–Morigi–Shumyatsky，J.Aust.Math.Soc.113(2022)145–159；online2021-05-12；DOI10.1017/S1446788721000069",
+      "subquestions": [
+        "有限可解G的完整特例",
+        "正常子群提升式"
+      ],
+      "scope_match": "特例",
+      "role": "进展",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "Prop1.3证明finite soluble G的实际w-values结论，并明确当时对arbitrary finite G未知。主审读完整§3并复核两路线的短桥：对任意正常N，(3-1)正确交项为P∩w(G)∩N，而非P∩N；G=C2,w=[x,y],N=G说明原字面式过强。N为p′群时交项为1，N=w(i)≤w(G)时等于P∩N，故论文实际后续两处论证不受此修补影响。这里是本轮数学补注，未取得作者正式勘误；不由可修的中间式否定Prop1.3，也不声称重证词树Prop2.1和外引Lemmas3.1/3.3。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "R1057-DUP",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001057.text.md",
+      "locator": "与984、2390的完整题面/形式化和meta.acceptance比较",
+      "version": "同一固定commit 73290369a8dcc632e25e555aec525565ea6e08f8；双方rev及blob见duplicates",
+      "subquestions": [
+        "库内候选范围"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "984是一般abstract群有限cyclic cover⇒finite-by-cyclic，2390是在w-values的阶条件下推出p-nilpotency/normal p-complement；当前无这些额外假设且目标是Q=〈Q∩G_w〉。没有严格同题候选，不能凭“同族”合并；984低号负责人不在包内，按包规记待核交回。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "a1057_notebook",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "p139 18.119；p193 21.98；p4序言",
+      "version": "1401.0300v50，2026-11-02；本轮读固定本地原稿",
+      "subquestions": [
+        "原题量词与值所在集合",
+        "循环覆盖近邻及编目标记"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "原始档案",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "18.119署名P.Shumyatsky，有限G、多线性换位子词，问w(G)的每个Sylow p子群能否由w-values生成。目标实际是Q=〈Q∩G_w〉，G_w={w(g_1,…,g_n):g_i∈G}。21.98另问循环覆盖推出finite-by-cyclic，非同题。题目所在章标签18th Issue(2014)，不等于这个方向首次提出在2014。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "a1057_afs_origin",
+      "url": "https://arxiv.org/pdf/1108.2284v1",
+      "locator": "p1 引言的问题及Theorem A",
+      "version": "v1，2011-08-10 20:32:18 UTC；6页；SHA256 0b7fb666c769fda55ab9da7119a04a4669212a7f0bf9f618a778b073511d9ab2",
+      "subquestions": [
+        "母问题与多线性特化的可核历史"
+      ],
+      "scope_match": "同源不同问",
+      "role": "目前最早可核实出处",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Cristina Acciarri、Gustavo A. Fernández-Alcober、Pavel Shumyatsky",
+      "claim_date": "2011-08-10",
+      "note": "本轮直接取得v1并读p1，已明确写P∩w(G)=〈P∩G_w〉母问题，并专门研究outer commutator特化。v1母问题允许一般词，不能把它对任意词的潜在肯定答案当作本卡定理；v3加入S3、x³、p=3的反例来排除一般词。历史只定位至少2011已有该方向，不强定单人最早提出日期。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "earliest_source",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a1057_afs_powers",
+      "url": "https://arxiv.org/pdf/1108.2284v3",
+      "locator": "pp1–2 Theorem A与外换位子定义；§1 Lemmas1.1–1.2；§2",
+      "version": "v3，2011-12-26；7页；SHA256 956086844bb68a78aa377e2b25e97082e44859f28554d576a905ae3c0e7ce971；正式J.GroupTheory15(3)(2012)397–405，DOI10.1515/jgt.2011.113",
+      "subquestions": [
+        "一般有限群的词值幂生成定理",
+        "词值本身与幂的区分"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "设|G|=p^a m且p不整除m，P∈Syl_p(G)，则P∩w(G)=〈P∩G_{w^m}〉，其中G_{w^m}={w(g_1,…,g_n)^m:g_i∈G}。并未证明这些m次幂仍是原w值；原w值也未必先落在P。已读定义与提升引理，并理解其Sylow共轭/商映射短桥；Theorem A长归纳、Ore/CFSG、Gaschütz及外换位子系列外部输入未全部重证。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a1057_dms_soluble",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/929779098A50F767EA173649EC7D0CE8/S1446788721000069a.pdf/on_the_rank_of_a_verbal_subgroup_of_a_finite_group.pdf",
+      "locator": "p146 Proposition1.3；§3 pp152–154，Lemmas3.1–3.3及proof；§2 Proposition2.1",
+      "version": "J.Aust.Math.Soc.113(2022)145–159；online2021-05-12；DOI10.1017/S1446788721000069；15页516866B，SHA256 ad3affc0e3bc93a3b235e4a1223557d687bd1cc8800a951b7881ae077b75e390",
+      "subquestions": [
+        "有限可解群中actual w-values生成Sylow"
+      ],
+      "scope_match": "特例",
+      "role": "完整证明",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Eloisa Detomi、Marta Morigi、Pavel Shumyatsky",
+      "claim_date": "2021-05-12",
+      "note": "Proposition1.3确为有限soluble G的P∩w(G)=〈P∩G_w〉。§3从prime-power、commutator-closed生成集和Proposition2.1降至非零阿贝尔w(i)，经商提升收束。实际已读§3全证明并核关键归约；依赖3.1、3.3和Prop2.1树论证未全部重证。式(3-1)局部补注另列，不把此附加可解性删掉。arXiv2103.04102官方史v1为2021-03-06，v2为2021-06-21；本轮审阅采用正式刊版，不以摘要声称所有有限群已解。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "full_proof",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a1057_dms31_audit",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/929779098A50F767EA173649EC7D0CE8/S1446788721000069a.pdf/on_the_rank_of_a_verbal_subgroup_of_a_finite_group.pdf",
+      "locator": "印刷p154 式(3-1)，本地实际页图dms2022_p154.png",
+      "version": "2022正式刊版；本轮2026-11-27局部数学核对，非作者发布勘误",
+      "subquestions": [
+        "商提升式的局部范围与可解证明修补"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "原印从任意非平凡正规N写P∩w(G)=〈P∩N,P∩Y〉。准确提升应为P∩w(G)=〈P∩w(G)∩N,P∩Y〉，或先仅取左边包含于原右边；当N≤w(G)时原等式成立。其后N为p′群时交项为1，N=w(i)时本来包含于w(G)，故两处实际应用仍闭合。另X_{w_i}⊆X_w需用X为commutator-closed，原稿确有此假设。数学路线已独立二审该补注；并非反驳Proposition1.3，也未检到正式作者更正。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a1057_cover_scope",
+      "url": "https://arxiv.org/pdf/1511.07843v1",
+      "locator": "p6 Problem2.5；pp8–9 Theorem2.10；pp14–16 Theorem4.5及讨论",
+      "version": "v1，2015-11-24；20页；SHA256 09e20935a54c8424ebb279c7ec0ee26ee23320f3864d1ca7f8b97e0e7e37dd34",
+      "subquestions": [
+        "旧循环覆盖与finite-rank进展的适用范围"
+      ],
+      "scope_match": "同源不同问",
+      "role": "重述",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "这是Acciarri–Shumyatsky综述。Theorem2.10针对普通commutators在profinite群中的可数procyclic覆盖与G′ finite-by-procyclic；Problem2.5另问一般multilinear词在抽象群中有限cyclic覆盖；Theorem4.5是有限秩结果。上述均不给本题有限群Sylow由actual w-values生成的结论，不能用作18.119已解或将18.119改成抽象群开放。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a1057_2026_scope",
+      "url": "https://acciarric.github.io/publications/",
+      "locator": "2026 Preprints及2026 Journal Articles首部",
+      "version": "作者主页2026-11-27访问快照；只读作者列出的标题/摘要/书目，未取这些近邻长稿",
+      "subquestions": [
+        "近期候选完整声明的范围筛选"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "作者主页",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "note": "Rank properties of commutators in finite groups及Local--global generation property of commutators in finite π-soluble groups研究Carter子群、自同构换位子集合及秩界，附加假设和结论不同；作者页相关2026coprime/profinite覆盖论文亦非18.119全体actual-values生成结论。只作范围排除，不将仅作者摘要记为独立验证的新定理。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q1057-M-E1",
+      "url": "https://www.qunxingmath.org/p/QX-P-001057/",
+      "locator": "原包完整card_text和acceptance.criteria",
+      "version": "QX-P-001057 rev66e9c305b42dd48e",
+      "subquestions": [
+        "目标等式",
+        "代入变量范围",
+        "人话套话及反例验收"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "原始档案",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "核心是有限群的外换位子词值生成问题；不是profinite循环覆盖或有限秩问题。仅读取原包，不声称打开群星网页。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q1057-M-E2",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "Kourovka Notebook v50，18.119",
+      "version": "arXiv:1401.0300v50，已取得本地全文",
+      "subquestions": [
+        "原题的有限群/词类/每个Sylow量词"
+      ],
+      "scope_match": "原题等价",
+      "role": "原始提出",
+      "publication": "原始档案",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "定点全文核原题，不以无星号或旧编目状态代替查新。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q1057-M-E3",
+      "url": "https://iris.unimore.it/retrieve/e31e124f-c53c-987f-e053-3705fe0a095a/1108.2284.pdf",
+      "locator": "pp1–2，引言的经典focal theorem、Question、S3/x³例与Theorem A",
+      "version": "Acciarri–Fernández-Alcober–Shumyatsky，arXiv:1108.2284v3，2011-12-26；后刊J.Group Theory15(2012),397–405",
+      "subquestions": [
+        "值的幂与实际值",
+        "经典换位子特例",
+        "任意单词扩域反例"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "该项核查已读精确声明及定义并独立核小例，没有把一般有限群的m次幂生成定理升级为实际w值生成。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q1057-M-E4",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/929779098A50F767EA173649EC7D0CE8/S1446788721000069a.pdf/on_the_rank_of_a_verbal_subgroup_of_a_finite_group.pdf",
+      "locator": "Prop1.3及§3；Prop2.1末端；§4首段Ore应用",
+      "version": "Detomi–Morigi–Shumyatsky，J.Austral.Math.Soc.113(2022),145–159，DOI10.1017/S1446788721000069；online2021-05-12",
+      "subquestions": [
+        "有限可解群的实际值定理",
+        "正常p元集提升",
+        "word-tree生成桥",
+        "非阿贝尔有限单群特例"
+      ],
+      "scope_match": "有附加假设",
+      "role": "完整证明",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "已独立重走§3主归约并补全任意N时的正确交项，原后续两用途均有效。长word-tree输入、外引Lemmas3.1/3.3及Ore未在本轮重证。其2022一般情形未知的文字不是独立排除2026新结果的证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "full_proof",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1057-C-BUDDEN",
+      "url": "https://github.com/maxvonhippel/budden-bench/blob/66a10282fec151c6ca447e28cebf050e5a815fb8/problems/kourovka/problem_18.119/problem.json",
+      "locator": "problem_18.119/problem.json全文及同目录API清单",
+      "version": "66a10282fec151c6ca447e28cebf050e5a815fb8",
+      "subquestions": [
+        "18.119实际题面与可执行性"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "内容确为finite G、multilinear commutator w、Sylow p-subgroups of w(G) generated by w-values。固定目录实际只含problem.json；无本题Lean骨架或证明/测试文件。JSON336bytes，SHA256b6323cfc4547c354ac92fdd1741669bf8a0326583e6b634fad859cbf77a712bd，Gitblob9cc51752ec7a5b69464b011f15d96c38641bb8d7与API一致；仅记录本目录，不宣称全GitHub无形式化。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1057-C-CB",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-18-119.json",
+      "locator": "statement/status_observation/provenance/review_flags完整JSON",
+      "version": "8d494791ace5894b860585d67ba8e69dbfed6376；status_observation快照2026-07-03",
+      "subquestions": [
+        "同题目录记录与当前状态界限"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "pdf-text-entry复述原题，无形式化源码、可执行checker、候选证书或证明。contains_placeholder=false只描述题面字符串，不表示已证明。listed-unsolved仅截至July3的来源观察，不能当Nov27最新状态。JSON1275bytes SHA2564d483a50511e63f395b4e592c90130038a3a3d5e6ee4edc89721a43334908a28；Gitblob0598e4516d6dc63da31c0ab2390e7ed2533e5d50。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1057-C-FOCAL",
+      "url": "https://github.com/leanprover-community/mathlib4/blob/2a7a1fb7323dcb7f2c1bcc87b675c8396a116112/Mathlib/GroupTheory/Focal.lean",
+      "locator": "Subgroup.focalSubgroup定义；section FocalSubgroupTheorem；commutator_inf_eq_focalSubgroup实际证明",
+      "version": "2a7a1fb7323dcb7f2c1bcc87b675c8396a116112；master metadata作者时间2026-11-26T22:20:26Z；toolchain4.37.0-rc1",
+      "subquestions": [
+        "普通换位子w=[x,y]特例的形式化证据",
+        "变量与生成元约束"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "mathlib；文件作者Boyang Hu",
+      "rerun": {
+        "commit": "2a7a1fb7323dcb7f2c1bcc87b675c8396a116112",
+        "theorem": "Subgroup.commutator_inf_eq_focalSubgroup : commutator G ⊓ P = P.focalSubgroup，P:Sylow p G，[Fact p.Prime]，[P.FiniteIndex]；finite G属于适用范围。",
+        "toolchain": "leanprover/lean4:v4.37.0-rc1；直接imports Mathlib.GroupTheory.Transfer、Mathlib.GroupTheory.Abelianization.Defs；本机lean/lake/GAP不存在。",
+        "command": "本轮只读源码/扫描，不执行Lean。可复现目标应在固定mathlib checkout以匹配toolchain执行 lake env lean Mathlib/GroupTheory/Focal.lean，并另建当前词目标的桥接与#print axioms；这些命令本轮未运行。",
+        "cache": "Focal.lean8879bytes SHA25643573092adf22fe036f1b730891b33ec343dd38de57ae263588e71f216e99a94，Gitblobbd24daec6aebfd8c71afdfe9294ea1db14ca160f。",
+        "axioms": "文件内无直接sorry/admit/axiom/sorryAx；未审完整import闭包、未取得#print axioms或编译日志，不能称kernel独立复跑通过。"
+      },
+      "note": "实际focalSubgroup H=closure{g | g∈H∧∃x∈H,∃u:G,g=⁅x,u⁆}，随后transfer、coprime指数幂映射和abelianization核推出G′∩P=focalSubgroup P；是普通换位子的值本身，u在ambient G。没有一般outer-word语法树、任意w定理或18.119目标。应用到Q∈Syl_p(G′)尚需选择包含Q的ambient Sylow P并用Q=P∩G′的数学桥，不能假装该文件直接给出∀w代码。本轮没有把特例升级全题，也没有把proof中指数幂映射误作最后只能用commutator powers生成。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1057-C-NILRADICAL",
+      "url": "https://nilradical.ai/notes/kourovka-21-35/",
+      "locator": "The question and the answer L31–45；Credit and formal record L132–136",
+      "version": "页面Revised21September2026，Nilradicalv1.0.0；2026-11-27实读",
+      "subquestions": [
+        "公开AI相邻完整声明的范围排除"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Nilradical v1.0.0",
+      "claim_date": "2026-09-21",
+      "note": "实际目标Kourovka21.35：给定G,w,p，若所有x,y∈G_w满足p∤ord(x)且p∣ord(y)⇒p∣ord(xy)，则w(G)有normal p-complement（页面表述为iff）。这不是无条件每个Sylow由actual w-values生成。页面定义outer words与G_w含ambient G变量，并称Lean恰保留Thompson minimal-simple classification与quasisimple commutator结果(Q)为外部假设。该项核查读此说明页与目标/假设披露，未取完整别题证明及Lean源码、未核两个外部定理或复跑，因此review_status未读全文指完整证明而非没有读说明页。定向仓库18.119搜索无命中；不能据相邻项目的kernel-checked目录文字称本题已解决。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000984",
+      "other_card_rev": "88ad818495a5f47a",
+      "relation": "待核",
+      "reason": "已读两卡，数学目标明显不同：984为一般abstract G的有限循环覆盖⇒finite-by-cyclic；本题为有限G的Sylow实际词值生成。有限G上的cover/finite-by-cyclic自动成立却不证明本生成命题。低号984负责人在包外，按归属规则待其复核关联，不据此合并。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001057.text.md：题面/形式化及同名meta.acceptance",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000984.text.md：完整题面/形式化及同名meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000984__QX-P-001057；对方text blob0343f2bb155067616f7e882be05166043fcb9c27、meta blob1d85ad3ed6e5ef044ff52d8047c6acba85df6f9c；实际全文比较，未独立查对方新状态、不改卡、不合并。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-002390",
+      "other_card_rev": "baab676256ee237f",
+      "relation": "同源不同问",
+      "reason": "2390另加∀x,y∈G_w，p∤|x|且p∣|y|⇒p∣|xy|，目标w(G)p-nilpotent/具有normal p-complement；当前无阶条件且要求每个Sylow由实际w值生成，既不能直接迁移其AI声明，也没有等价桥。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001057.text.md：题面/形式化及同名meta.acceptance",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002390.text.md：完整题面/形式化及同名meta.acceptance"
+      },
+      "note": "pair_id=QX-P-001057__QX-P-002390；对方text blob12bc70f813c45cf6cb57fc2a984615ab8065d11d、meta blob26b6575c4091c53b1e8f71e0748965437acf55ee；实际全文比较，未独立查对方新状态、不改卡、不合并。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "duplicate_relation": "related"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补进展",
+      "field": "相关进展与声称解决 / 开放状态证据",
+      "old": "PARTIAL(21.98/18.119)以1511.07843循环覆盖与finite rank作本题进展；v50无标记⇒OPEN",
+      "new": "按范围列：AFS1108.2284的powers-of-w-values定理适用所有有限G；DMS2021online/2022正式Prop1.3给有限可解G的actual-values特例；普通换位子focal及simple/nilpotent特例分别列。循环覆盖仅保留为相邻问题背景，有限检索未取得一般题完整解决不等于证明开放。",
+      "reason": "已取得并实际读原始声明与特例证明；核心/验收保持原范围，仅修正状态证据和背景不自动新rev。",
+      "evidence_ids": [
+        "R1057-AFS",
+        "R1057-DMS",
+        "R1057-COVER"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版及词定义",
+      "old": "n重换位子；即取w-值生成的子群再取该Sylow仍够用",
+      "new": "outer word允许任意二叉括号嵌套且叶变量彼此不同；例如[[x1,x2],[x3,x4]]。明确G_w={w(g1,…,gn):gi∈G}，对Q∈Syl_p(w(G))问Q=〈Q∩G_w〉。每个生成元在Q中，但代入变量仍在G中。",
+      "reason": "当前核心与acceptance原已忠实；本建议限于修正人话版，可不换版本。若采纳时修改了题面、定义、量词、参数域或验收条件，必须按包规生成新card_rev并重查受影响路线，不能以“澄清原意”豁免；本轮只提建议。",
+      "evidence_ids": [
+        "R1057-CARD",
+        "R1057-AFS"
+      ],
+      "small_case_check": "S3普通换位子时Q=A3非平凡，但Q自身交换，故把变量全部限在Q会错误得到1；有限群中finite-by-cyclic取自身作核是自动事实而不回答实际值生成。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "first_published / sources",
+      "old": "2014年辑",
+      "new": "本轮至少可核到Acciarri–Fernández-Alcober–Shumyatsky2011-08-10的1108.2284v1引言Question；2014保留为Kourovka第18辑收录年份，不冒称问题绝对首创年份。",
+      "reason": "原始v1已由学术路线直接取得并读，时间早于题号收录；引文/历史字段变更本身不改变数学范围。",
+      "evidence_ids": [
+        "R1057-AFS"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "反例计算记录规范",
+      "new": "若后续实际计算，记录完整有限群输入、完整括号树w、p、Q的Sylow验证、在整个G中得到G_w的方法，以及H=〈Q∩G_w〉的精确阶/生成证书。只求Q内部词值、只测少量随机代入或只找到非单值元素均不构成反例。",
+      "reason": "避免变量域和生成性量词误检。此处为未执行的核验接口建议，不记作本轮GAP/枚举结果；若仅作为说明不自动更版，正式改变验收再按包规处理。",
+      "evidence_ids": [
+        "Q1057-M-E1",
+        "Q1057-M-E3"
+      ],
+      "small_case_check": "S₃内部变量误检会错判；S₃/x³虽真失败，但该词不在合法outer域。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "编目符号与状态依据",
+      "old": "无♯(AI拟解)/∗(AI确认解)/评论⇒OPEN",
+      "new": "♯表示未由数学家确认的AI拟解；∗是已给适当解答标记而非统一AI标签。18.119无评论只记v50编目状态；本轮数学结论另依原始文献和实际查询。",
+      "reason": "不从缺标记推断世界范围未解决，亦不把所有∗称为AI确认。",
+      "evidence_ids": [
+        "a1057_notebook"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "DMS Proposition1.3证据审阅备注",
+      "new": "本轮在原刊p154核见式(3-1)应增加w(G)交项；后续应用可保持有效。注明这是本轮独立局部补注，未检得作者正式勘误，且未完整重证所有外部输入。",
+      "reason": "既不掩盖实际发现的量词问题，也不因可补公式而误宣告正式可解子类结论失效。",
+      "evidence_ids": [
+        "a1057_dms31_audit"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "旧novelty与回执范围",
+      "old": "novelty.card_rev=9b6829875e1b345d，仅编目查新；当前题卡66e9c305b42dd48e",
+      "new": "旧novelty只保留历史；本轮新回执绑定实际当前rev，记录有限可解子类与一般powers定理，并由主审单独裁定主问题。",
+      "reason": "历史记录未必针对现版，不能仅因旧OPEN或basic扫描沿用为当前核验。",
+      "evidence_ids": [
+        "a1057_notebook",
+        "a1057_dms_soluble"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "formal_evidence / public_claims / search_coverage",
+      "old": "formal_status none；只依据编目无标记及同族cover论文",
+      "new": "增列固定mathlib普通Focal特例源码（静态未复跑）、Budden/CB仅题面记录，以及Nilradical21.35范围排除；官方AI目录与报告字面无18.119只是有限覆盖。仅增加引文/核验等级，不自动换核心card_rev。",
+      "reason": "已有可追溯的普通换位子形式化，但没有本次取得的任意outer-word完整代码/证明；不可把别题AI或旧快照代替当前结论。",
+      "evidence_ids": [
+        "E1057-C-FOCAL",
+        "E1057-C-BUDDEN",
+        "E1057-C-CB",
+        "E1057-C-NILRADICAL"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "库内查重",
+      "reason": "低号984不在本包，已完整读其当前rev并判目标不同；按包内责任规则仍标待核。宽词余下命中仅索引筛查。",
+      "next_step": "把984与1057的固定双边范围证据交984负责人复核关联；无严格同题证据不合并。不要把2390或984另开成此包任务。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "已审DMS §3关键链，但依赖的Lemma3.1、Lemma3.3及Prop2.1完整树归纳未全部独立重证；AFS2011亦依赖Ore/CFSG、Gaschütz等外部结果。",
+      "next_step": "若后续要求强化到全证明独立验收，按依赖逐项核原证明；当前只报告正式已刊子类结果与本轮关键归约审阅，不扩大独立验证强度。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "DMS p154的局部显示式已给可行修补且二审通过，但本轮有限更正查询未取到作者正式corrigendum。",
+      "next_step": "如更新该论文证据，核后续作者版本/正式更正是否补全N交项；本回执不把本轮补注署为作者勘误，也不把它当主定理反例。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "2011v1、v3实际全文及v50原题已取；未穷尽18.119首次加入Kourovka arXiv各版的历史。DMS逐版仅核官方元数据，正文读正式刊本。",
+      "next_step": "若需要精确到Notebook首次加入日期或DMS各版本变化，再按固定版本比对；当前历史写2014辑收录、2011母问题可核，避免伪精确。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "近期有限定向检索未得到全体有限群actual-values版本的完整证明或反例；作者页近邻仅摘要级筛选。",
+      "next_step": "若出现去掉soluble且明确保留actual w-values的新完整声明，优先取得固定全文并独立核取商/非可解极小正规子群等关键桥；不要以power值或循环覆盖定理代结案。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮有界入口未取得18.119一般outer-word完整证明/反例或Lean目标；普通Focal只核固定源码且工具链不可用。",
+      "next_step": "若后续出现精确候选，先核∀finite G、∀outer multilinear w、∀p/Q及Q=⟨Q∩G_w⟩语义，再取得完整固定证明和依赖/公理审计。本轮无命中不能说全网无解；无需为别题21.35的整个形式化项目扩大复跑。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "题卡仅建议GAP计算，没有实际提供有限群、词、Sylow或值集证书；本机GAP不存在，本轮未做枚举。",
+      "next_step": "未来若有有限反例候选，应对全部G^n计算实际G_w，确认Q是w(G)的Sylow并精确比较⟨Q∩G_w⟩与Q，保存群表示、词树、输入、版本和完整日志；单个群的成功例或只算Q内的值不能证本题全称。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "66e9c305b42dd48e",
+      "codes": {}
+    }
+  ]
+}

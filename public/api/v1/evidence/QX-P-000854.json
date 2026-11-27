@@ -1,0 +1,2029 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000854",
+  "card_rev": "322b4a4ae60342dc",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "有限简单同顶点图的定义、边并与退化顺序",
+          "value": "partial",
+          "note": "按原文采用有限简单无向图；G=(V,E_F∪E_D)，F为森林，D为2退化。d退化指每个非空子图有度≤d的顶点，等价存在删除顺序使每次删除时该顶点当前度≤d。这是存在一种顺序，不是所有顺序都行；也不是最大度≤d。1退化恰为森林。若两部分有重边，可从D删去交集边，保留G不变且D仍2退化，故edge union与允许先消重的edge partition在此等价。不同顶点集可添孤点统一；并不要求两图连通。空图及孤点不妨碍结论，非空无边图可用一色，各连通分量可分别用同一套颜色。两个部分的退化顺序一般不同，不能直接相加得到并图3退化。"
+        },
+        {
+          "subquestion": "六色标准上界：乘积着色与边数/退化两种独立证明",
+          "value": "partial",
+          "note": "证明一：森林有proper2-colouring c_F，2退化图按删除顺序反向贪心有proper3-colouring c_D；给v颜色(c_F(v),c_D(v))。并图每条边至少属于一部分，对应坐标必不同，故有proper6-colouring。这是2×3=6，不是3+2=7，更不能一般改成色数相加。证明二：n≥2的2退化图按删除顺序计向后边，至多2(n−2)+1=2n−3；森林至多n−1，故e(G)≤3n−4。相同上界对每个至少2顶点子图成立，其平均度≤6−8/n<6，必有度≤5顶点；单顶点另平凡处理。因此G为5退化，反向贪心同样给6色。此计数没有把5退化误写为5可染。"
+        },
+        {
+          "subquestion": "K5完整分解证书：五色确实必要",
+          "value": "partial",
+          "note": "取V={1,2,3,4,5}。森林F的边为12,23,34,45，是路径P5；D的边为13,14,15,24,25,35，两边集不交且并为K5全部10条边。D按2,4,1,3,5删除，当次度依次为2,1,2,1,0，故D为2退化。K5的每对顶点相邻，χ=5；这说明若猜想成立则5不可降低。D含三角形1,3,5，因此本例两部分χ分别2和3，而并图χ=5>2+3−1，也排除简单相加减一上界。该有限证书为逐项手核，没有声称运行枚举。"
+        },
+        {
+          "subquestion": "旧同型退化并断言的K4反例与不同顺序障碍",
+          "value": "statement_error",
+          "note": "旧记录“k退化+k退化=(k+1)退化”在k=1已错：K4的边可分为路径1-2-3-4（12,23,34）与路径3-1-4-2（13,14,24）。两部分均1退化，然而K4每点度3，其退化度为3而非2。对当前(1,2)类，上条K5同样表明不能得3退化，因为K5退化度4。两部各自存在有界出度的无环定向，合并定向未必无环；例如K5证书中，将F按1,2,3,4,5顺序、D按2,4,1,3,5顺序从早指向晚，则并定向含1→2→4→1。故不同退化顺序不能未经证明合并。"
+        },
+        {
+          "subquestion": "有一部分最大度较小的直接五色特例",
+          "value": "partial",
+          "note": "若Δ(F)≤2，对并图任何非空子图，选其D部分中度≤2的顶点，其F部分度也≤2，故总度≤4；因此并图4退化、5可染。若Δ(D)≤3，则在F部分选度≤1的顶点，总度≤4，同样结论。更一般，d退化部分与最大度Δ部分之并为(d+Δ)退化。这里只是附加最大度条件下的自含特例；一般森林可有任意大度，2退化图也可有任意大度，不能借这些特例替代全问。"
+        },
+        {
+          "subquestion": "反例验收与极小反例的可核必要条件",
+          "value": "partial",
+          "note": "由于已有无条件χ≤6，一个不5可染且带有效F/D分解的图就自动恰需6色。只给6色图、只给e≤3n−4，或只给程序未找到5色，都不是完整反例证书。有效有限证书应包括全边集、森林无圈证明、D删除顺序，以及不可5染的严格证明/可核证书。K6虽然6色，但有15边，超过其6顶点分解上限14，故不属于本类。若反例存在，取先最少顶点再最少边者，因本类对子图封闭，它是6-critical，δ≥5。令L={v:d(v)=5}，R其余顶点，ell=|L|、h=|R|、η=Σ_R(d(v)−6)≥0，则5ell+6h+η=2e≤6(ell+h)−8，故ell≥8+η。这不排除所有大图。AJC§3特别说明边计数不足，并展示合乎数量界的6-critical图还需另证不属于分解类；本轮不把该数量界当充分判据。"
+        },
+        {
+          "subquestion": "AI retry Lemma4：颜色块障碍与唯一性的独立核验",
+          "value": "partial",
+          "note": "已逐段核其有限Gallai树degree-list引理。设连通T各块为clique或奇圈，|A(v)|≥d_T(v)。若有严格不等式，根于该点的生成树按子先父后顺序可着色，故不着色时处处等号。删末端块B，割点x的禁色数至多d_B(x)：clique由Hall定理；奇圈的禁色必须同时在删x后路径的两个端点列表中，至多2个，两个都禁时各列表必须为同一二元集（不等相邻列表可预着一个对方没有的颜色，再用生成树严格余量完成）。若删掉少于d_B(x)个禁色，剩图在x产生严格余量而可染，矛盾；故可归纳得到每块palette S_B，clique K_s大小s−1、奇圈大小2、同一顶点各块palette不交，且A(v)=并_{B含v}S_B。反向也按末端块归纳。对固定颜色α，其palette块两两顶点不交并覆盖恰好所有含α列表的顶点。若存在两套不同块覆盖同一顶点集，删除共同块后，在块-顶点关联树的对称差中每个顶点节点度2、每个块节点度至少2，产生非空最小度≥2有限森林，不可能；故颜色的块成员关系唯一。这证明了稿中重新合色时保持其余颜色palette不变的核心桥。没有程序枚举。"
+        },
+        {
+          "subquestion": "AI retry Proposition5：h=3或4且低度子图连通的排除关键链",
+          "value": "partial",
+          "note": "审阅范围和外部输入：以该稿前置局部归约及经典Gallai低度定理为输入，T=G[L]为Gallai森林、无K5块，K4块彼此顶点不交；这条经典定理本轮未重证。以下独立核retry§4全链。令q=2ell−e(T)、r=e(G[R])、c为T分量数。块计数q=2c+#K2块+Σ奇圈块(|B|−2)，以及e(G)=3ell+q+r给q+r≤3h−4。假设T连通，R在五色中互异着色，未用色ζ出现在所有列表。由Lemma4，含ζ的base块分割V(T)，所有未用色都用同一块分割。对base B设P_B为其palette的五色补集所对应的R顶点；对connecting C设S_C为其palette对应R子集。每个v∈B有不交分解P_B=N_R(v)⊔并_{C含v}S_C。若R中非邻x,y共邻某L点，合两色产生严格列表余量而使连通T可染；否则仍不可染，未变色的块成员关系唯一。若x,y同时属于P_B，旧B palette全部保持且已填满，但原y色变成未用色必须进入每个base块，矛盾。故每P_B为clique。令J为这些clique之并；任意proper五色φ着色J都可用base palette=[5]\\φ(P_B)、connecting palette=φ(S_C)复原不可染列表。临界性迫G[R]=J，否则删去J外一边仍不可染。P_B覆盖R、相邻base集合经非空S_C相交，故G[R]连通、r≥h−1。若z只出现在一个P_B且B=K_s，则z不能属于connecting palette，N_L(z)=V(B)、N_R(z)=P_B\\{z}，|P_B|=6−s，故d(z)=s+6−s−1=5，与z∈R矛盾。以上palette/临界性桥均已独立核。"
+        },
+        {
+          "subquestion": "AI retry Proposition5的势函数和h=3/4末端计数",
+          "value": "partial",
+          "note": "延续前条假设。h=4时R=K4会使q≤2，T只能单K4或单点，违ell≥8；因此base块仅K4或奇圈，P_B大小分别2或3。connecting K4需四个base的P_B都容其三色，迫四个base奇圈，q≥6；但q≤2h−3≤5，矛盾。故connecting块仅K2/奇圈。令b为base数、t为connecting奇圈数、W为base对q的总贡献、w=Σ_B(|P_B|−2)，则W≥w。收缩base星得到树，b−1=a+Σ_conn奇圈(|C|−1)，从而q=b+1+W−t。按树从根暴露P_B，h≤b+1+w−Σ_conn奇圈(|C|−1)，故q−h≥W−w+Σ_conn奇圈(|C|−2)≥0。等号迫base只K3/K4、connecting只K2，且h=b+1+w。h=3时q+r≤5、r≥2、q≥3，故q3,r2；R为路径，所有P_B是边，b2，其叶端只属一个base，违d=5引理。h=4时r3或4。r4迫q4,b+w3：若w0，只有3条base边不能覆盖R的4条边；否则b2,w1（单base大小≤3不能覆盖4点，所以b≥2），两个base集大小3和2且交1，独属顶点再次违反d=5。r3时R为4点树，所有base为K4；q=b+1−t≤5给b≤4+t。每个connecting奇圈所邻base标记是同一R边，移除connecting K2后至少有3种边标记，给b≥3+2t，故t≤1,b≤5。R若为星，每条叶边至少出现两次，需b≥6；R若为路径，标记至少2,1,2，故b5,t1，该唯一connecting奇圈必须三角形且迫同一标记至少3次，与2,1,2矛盾。因此在指定前提下h=3/4不能有连通T。此独立纸面审阅未发现缺口，不是全猜想证明，也未声称任何新颖性。"
+        },
+        {
+          "subquestion": "Hajós连接产生的一类6色候选已排除",
+          "value": "partial",
+          "note": "Klein–Schönheim1995 Theorem2保持non-composed性质，其短退化序证明该项核查已核。以不(1,2)-composed的K6为基，经反复Hajós conjunction所得的6色图仍不(1,2)-composed，因此不能成为反例；作者明确这不覆盖所有6-critical图/一般Ore merger。"
+        },
+        {
+          "subquestion": "所有至多12顶点图及极小反例的进一步结构",
+          "value": "partial",
+          "note": "固定2026-09-16 AI retry稿声称并且本轮关键链已分工人工核准：所有本类有限简单图n≤12都5可染；若有反例，取先最少顶点后最少边者，令L为度5顶点、R其余，必|L|≥8、|R|≥4，且|R|=4时G[L]不连通，特别至少13顶点。审核链：两局部归约排度5 K5和K6-e内部K4；经典Gallai低度子图结构（外部输入）+列表palette引理和q势函数排h3/h4的连通低度子图；再排h3不连通与n12的r0/1/2分类。代码路线和主审核前后归约，数学路线独立核Lemma4/Prop5，主审另完整交叉阅读。h4,r4支的b≥2省略已补说明。无计算枚举、无Lean代码构建或公理审计；未核历史新颖性，原稿自标partial/would_publish=false，不能关全题。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "none_found",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_retry/coloring_the_union_of_degenerate_graphs/output.md"
+      ],
+      "note": "只覆盖：特例"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://www.qunxingmath.org/p/QX-P-000854/",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "按原文有限简单图的同顶点边并语境，题卡核心forest∪2-degenerate图是否总可5染色与OPG/Tarsi原问相符。本轮有限学术/代码/社区检索未取得一般5色完整证明或带有效分解的6色反例；不以OPG仍在列、旧AI review或无小反例当开放性证明。已独立核通用6色上界、K5达5的小例及K4对错误背景的反例，另核1995 Hajós连接族排除特例。公开AI retry稿对n≤12与极小反例结构的完整关键链经本轮分工和主审交叉手核；使用的经典Gallai低度子图定理已另定位学术原稿一般k的Theorem1.4，作为外部已知输入，未重证或形式化该定理。结论只到≤12/结构约束，不改善一般6色上界，不宣称新颖性、Lean通过或全图枚举。卡中“3+2=7”“同型并(k+1)-退化”是错误背景须单列修订，不能据此误判核心猜想已反驳。所有结果保留原rev；涉及核心/定义/参数/验收修改须新rev，结案/合并仍按包规二审。",
+      "evidence_ids": [
+        "R0854-CARD",
+        "a0854_opg",
+        "a0854_ks95",
+        "a0854_hajos",
+        "Q854-M-E2",
+        "R0854-AI-AUDIT",
+        "E854-CODE-AI12",
+        "R0854-GALLAI"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限简单同顶点图的定义、边并与退化顺序",
+      "math_status": "部分进展",
+      "scope_note": "按原文采用有限简单无向图；G=(V,E_F∪E_D)，F为森林，D为2退化。d退化指每个非空子图有度≤d的顶点，等价存在删除顺序使每次删除时该顶点当前度≤d。这是存在一种顺序，不是所有顺序都行；也不是最大度≤d。1退化恰为森林。若两部分有重边，可从D删去交集边，保留G不变且D仍2退化，故edge union与允许先消重的edge partition在此等价。不同顶点集可添孤点统一；并不要求两图连通。空图及孤点不妨碍结论，非空无边图可用一色，各连通分量可分别用同一套颜色。两个部分的退化顺序一般不同，不能直接相加得到并图3退化。",
+      "evidence_ids": [
+        "Q854-M-E1",
+        "Q854-M-E2",
+        "Q854-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "六色标准上界：乘积着色与边数/退化两种独立证明",
+      "math_status": "部分进展",
+      "scope_note": "证明一：森林有proper2-colouring c_F，2退化图按删除顺序反向贪心有proper3-colouring c_D；给v颜色(c_F(v),c_D(v))。并图每条边至少属于一部分，对应坐标必不同，故有proper6-colouring。这是2×3=6，不是3+2=7，更不能一般改成色数相加。证明二：n≥2的2退化图按删除顺序计向后边，至多2(n−2)+1=2n−3；森林至多n−1，故e(G)≤3n−4。相同上界对每个至少2顶点子图成立，其平均度≤6−8/n<6，必有度≤5顶点；单顶点另平凡处理。因此G为5退化，反向贪心同样给6色。此计数没有把5退化误写为5可染。",
+      "evidence_ids": [
+        "Q854-M-E2",
+        "Q854-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "K5完整分解证书：五色确实必要",
+      "math_status": "仅特例",
+      "scope_note": "取V={1,2,3,4,5}。森林F的边为12,23,34,45，是路径P5；D的边为13,14,15,24,25,35，两边集不交且并为K5全部10条边。D按2,4,1,3,5删除，当次度依次为2,1,2,1,0，故D为2退化。K5的每对顶点相邻，χ=5；这说明若猜想成立则5不可降低。D含三角形1,3,5，因此本例两部分χ分别2和3，而并图χ=5>2+3−1，也排除简单相加减一上界。该有限证书为逐项手核，没有声称运行枚举。",
+      "evidence_ids": [
+        "Q854-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "旧同型退化并断言的K4反例与不同顺序障碍",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "旧记录“k退化+k退化=(k+1)退化”在k=1已错：K4的边可分为路径1-2-3-4（12,23,34）与路径3-1-4-2（13,14,24）。两部分均1退化，然而K4每点度3，其退化度为3而非2。对当前(1,2)类，上条K5同样表明不能得3退化，因为K5退化度4。两部各自存在有界出度的无环定向，合并定向未必无环；例如K5证书中，将F按1,2,3,4,5顺序、D按2,4,1,3,5顺序从早指向晚，则并定向含1→2→4→1。故不同退化顺序不能未经证明合并。",
+      "evidence_ids": [
+        "Q854-M-E1",
+        "Q854-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "有一部分最大度较小的直接五色特例",
+      "math_status": "仅特例",
+      "scope_note": "若Δ(F)≤2，对并图任何非空子图，选其D部分中度≤2的顶点，其F部分度也≤2，故总度≤4；因此并图4退化、5可染。若Δ(D)≤3，则在F部分选度≤1的顶点，总度≤4，同样结论。更一般，d退化部分与最大度Δ部分之并为(d+Δ)退化。这里只是附加最大度条件下的自含特例；一般森林可有任意大度，2退化图也可有任意大度，不能借这些特例替代全问。",
+      "evidence_ids": [
+        "Q854-M-E2",
+        "Q854-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "反例验收与极小反例的可核必要条件",
+      "math_status": "部分进展",
+      "scope_note": "由于已有无条件χ≤6，一个不5可染且带有效F/D分解的图就自动恰需6色。只给6色图、只给e≤3n−4，或只给程序未找到5色，都不是完整反例证书。有效有限证书应包括全边集、森林无圈证明、D删除顺序，以及不可5染的严格证明/可核证书。K6虽然6色，但有15边，超过其6顶点分解上限14，故不属于本类。若反例存在，取先最少顶点再最少边者，因本类对子图封闭，它是6-critical，δ≥5。令L={v:d(v)=5}，R其余顶点，ell=|L|、h=|R|、η=Σ_R(d(v)−6)≥0，则5ell+6h+η=2e≤6(ell+h)−8，故ell≥8+η。这不排除所有大图。AJC§3特别说明边计数不足，并展示合乎数量界的6-critical图还需另证不属于分解类；本轮不把该数量界当充分判据。",
+      "evidence_ids": [
+        "Q854-M-E3",
+        "Q854-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "AI retry Lemma4：颜色块障碍与唯一性的独立核验",
+      "math_status": "仅特例",
+      "scope_note": "已逐段核其有限Gallai树degree-list引理。设连通T各块为clique或奇圈，|A(v)|≥d_T(v)。若有严格不等式，根于该点的生成树按子先父后顺序可着色，故不着色时处处等号。删末端块B，割点x的禁色数至多d_B(x)：clique由Hall定理；奇圈的禁色必须同时在删x后路径的两个端点列表中，至多2个，两个都禁时各列表必须为同一二元集（不等相邻列表可预着一个对方没有的颜色，再用生成树严格余量完成）。若删掉少于d_B(x)个禁色，剩图在x产生严格余量而可染，矛盾；故可归纳得到每块palette S_B，clique K_s大小s−1、奇圈大小2、同一顶点各块palette不交，且A(v)=并_{B含v}S_B。反向也按末端块归纳。对固定颜色α，其palette块两两顶点不交并覆盖恰好所有含α列表的顶点。若存在两套不同块覆盖同一顶点集，删除共同块后，在块-顶点关联树的对称差中每个顶点节点度2、每个块节点度至少2，产生非空最小度≥2有限森林，不可能；故颜色的块成员关系唯一。这证明了稿中重新合色时保持其余颜色palette不变的核心桥。没有程序枚举。",
+      "evidence_ids": [
+        "Q854-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "AI retry Proposition5：h=3或4且低度子图连通的排除关键链",
+      "math_status": "仅特例",
+      "scope_note": "审阅范围和外部输入：以该稿前置局部归约及经典Gallai低度定理为输入，T=G[L]为Gallai森林、无K5块，K4块彼此顶点不交；这条经典定理本轮未重证。以下独立核retry§4全链。令q=2ell−e(T)、r=e(G[R])、c为T分量数。块计数q=2c+#K2块+Σ奇圈块(|B|−2)，以及e(G)=3ell+q+r给q+r≤3h−4。假设T连通，R在五色中互异着色，未用色ζ出现在所有列表。由Lemma4，含ζ的base块分割V(T)，所有未用色都用同一块分割。对base B设P_B为其palette的五色补集所对应的R顶点；对connecting C设S_C为其palette对应R子集。每个v∈B有不交分解P_B=N_R(v)⊔并_{C含v}S_C。若R中非邻x,y共邻某L点，合两色产生严格列表余量而使连通T可染；否则仍不可染，未变色的块成员关系唯一。若x,y同时属于P_B，旧B palette全部保持且已填满，但原y色变成未用色必须进入每个base块，矛盾。故每P_B为clique。令J为这些clique之并；任意proper五色φ着色J都可用base palette=[5]\\φ(P_B)、connecting palette=φ(S_C)复原不可染列表。临界性迫G[R]=J，否则删去J外一边仍不可染。P_B覆盖R、相邻base集合经非空S_C相交，故G[R]连通、r≥h−1。若z只出现在一个P_B且B=K_s，则z不能属于connecting palette，N_L(z)=V(B)、N_R(z)=P_B\\{z}，|P_B|=6−s，故d(z)=s+6−s−1=5，与z∈R矛盾。以上palette/临界性桥均已独立核。",
+      "evidence_ids": [
+        "Q854-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "AI retry Proposition5的势函数和h=3/4末端计数",
+      "math_status": "仅特例",
+      "scope_note": "延续前条假设。h=4时R=K4会使q≤2，T只能单K4或单点，违ell≥8；因此base块仅K4或奇圈，P_B大小分别2或3。connecting K4需四个base的P_B都容其三色，迫四个base奇圈，q≥6；但q≤2h−3≤5，矛盾。故connecting块仅K2/奇圈。令b为base数、t为connecting奇圈数、W为base对q的总贡献、w=Σ_B(|P_B|−2)，则W≥w。收缩base星得到树，b−1=a+Σ_conn奇圈(|C|−1)，从而q=b+1+W−t。按树从根暴露P_B，h≤b+1+w−Σ_conn奇圈(|C|−1)，故q−h≥W−w+Σ_conn奇圈(|C|−2)≥0。等号迫base只K3/K4、connecting只K2，且h=b+1+w。h=3时q+r≤5、r≥2、q≥3，故q3,r2；R为路径，所有P_B是边，b2，其叶端只属一个base，违d=5引理。h=4时r3或4。r4迫q4,b+w3：若w0，只有3条base边不能覆盖R的4条边；否则b2,w1（单base大小≤3不能覆盖4点，所以b≥2），两个base集大小3和2且交1，独属顶点再次违反d=5。r3时R为4点树，所有base为K4；q=b+1−t≤5给b≤4+t。每个connecting奇圈所邻base标记是同一R边，移除connecting K2后至少有3种边标记，给b≥3+2t，故t≤1,b≤5。R若为星，每条叶边至少出现两次，需b≥6；R若为路径，标记至少2,1,2，故b5,t1，该唯一connecting奇圈必须三角形且迫同一标记至少3次，与2,1,2矛盾。因此在指定前提下h=3/4不能有连通T。此独立纸面审阅未发现缺口，不是全猜想证明，也未声称任何新颖性。",
+      "evidence_ids": [
+        "Q854-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Hajós连接产生的一类6色候选已排除",
+      "math_status": "仅特例",
+      "scope_note": "Klein–Schönheim1995 Theorem2保持non-composed性质，其短退化序证明该项核查已核。以不(1,2)-composed的K6为基，经反复Hajós conjunction所得的6色图仍不(1,2)-composed，因此不能成为反例；作者明确这不覆盖所有6-critical图/一般Ore merger。",
+      "evidence_ids": [
+        "a0854_hajos"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "所有至多12顶点图及极小反例的进一步结构",
+      "math_status": "仅特例",
+      "scope_note": "固定2026-09-16 AI retry稿声称并且本轮关键链已分工人工核准：所有本类有限简单图n≤12都5可染；若有反例，取先最少顶点后最少边者，令L为度5顶点、R其余，必|L|≥8、|R|≥4，且|R|=4时G[L]不连通，特别至少13顶点。审核链：两局部归约排度5 K5和K6-e内部K4；经典Gallai低度子图结构（外部输入）+列表palette引理和q势函数排h3/h4的连通低度子图；再排h3不连通与n12的r0/1/2分类。代码路线和主审核前后归约，数学路线独立核Lemma4/Prop5，主审另完整交叉阅读。h4,r4支的b≥2省略已补说明。无计算枚举、无Lean代码构建或公理审计；未核历史新颖性，原稿自标partial/would_publish=false，不能关全题。",
+      "evidence_ids": [
+        "E854-CODE-AI11",
+        "E854-CODE-AI12",
+        "Q854-M-E4",
+        "R0854-AI-AUDIT",
+        "R0854-GALLAI"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "GitHub qunxing-data固定快照",
+      "query": "fetch_file problems/000/QX-P-000854.text.md ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整固定正文/元数据与包内任务已对照；核心同顶点边并，与背景/旧PASS的错误分别审阅。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000854.text.md",
+      "request_id": "QX-R3-11-000854-root-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "GitHub qunxing-data固定快照",
+      "query": "fetch_file problems/000/QX-P-000854.meta.json ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整固定正文/元数据与包内任务已对照；核心同顶点边并，与背景/旧PASS的错误分别审阅。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000854.meta.json",
+      "request_id": "QX-R3-11-000854-root-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"union\" \"forest\" \"2-degenerate\" \"5\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际命中OPG规范条目及Tarsi、Klein论文和固定AI目录线索。对OPG另取全文；网页索引的平面图vertex partition/degeneracy移位定义不能当本题边并全解。",
+      "request_id": "QX-R3-11-000854-root-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"OPG\" \"46533\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际命中OPG规范条目及Tarsi、Klein论文和固定AI目录线索。对OPG另取全文；网页索引的平面图vertex partition/degeneracy移位定义不能当本题边并全解。",
+      "request_id": "QX-R3-11-000854-root-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"1-degenerate\" \"2-degenerate\" \"5-colourable\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际命中OPG规范条目及Tarsi、Klein论文和固定AI目录线索。对OPG另取全文；网页索引的平面图vertex partition/degeneracy移位定义不能当本题边并全解。",
+      "request_id": "QX-R3-11-000854-root-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Open Problem Garden",
+      "query": "open https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整题面、退化度定义、颜色对6色、K5、一般(m_i)-composed猜想及三条书目均实际读到。作者Michael Tarsi，上帖fhavet2013-03-03，原始appearance星号指Klein1994。",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "locator": "Conjecture、discussion、Bibliography",
+      "request_id": "QX-R3-11-000854-root-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"forest\" \"2-degenerate\" \"Tarsi\" proof; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "有界最新检索返回同题OPG、AI目录、镜像和相关平面分解条目；未在该结果中取到全体5色证明或6色反例。未将旧源仍收录升级为当前全网开放证明。",
+      "request_id": "QX-R3-11-000854-root-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"coloring the union of degenerate graphs\" counterexample; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "有界最新检索返回同题OPG、AI目录、镜像和相关平面分解条目；未在该结果中取到全体5色证明或6色反例。未将旧源仍收录升级为当前全网开放证明。",
+      "request_id": "QX-R3-11-000854-root-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "附件全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003990〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际命中：QX-P-000031,QX-P-000274,QX-P-000499,QX-P-000740,QX-P-000854,QX-P-001235,QX-P-001676,QX-P-002497。仅作候选；无字面命中不等于全库不重复。",
+      "result_count": 8,
+      "request_id": "QX-R3-11-000854-root-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "附件全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003991〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际命中：QX-P-000370,QX-P-000854,QX-P-000910,QX-P-000964,QX-P-001264,QX-P-001436,QX-P-001816,QX-P-002221,QX-P-002335。仅作候选；无字面命中不等于全库不重复。",
+      "result_count": 9,
+      "request_id": "QX-R3-11-000854-root-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "附件全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003992〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际命中：QX-P-000854,QX-P-001657,QX-P-002345。仅作候选；无字面命中不等于全库不重复。",
+      "result_count": 3,
+      "request_id": "QX-R3-11-000854-root-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定快照",
+      "query": "fetch_file problems/000/QX-P-000370.text.md ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整正文/版本已比对；只服务当前题查重，不开展其他包问题的查新。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000370.text.md",
+      "request_id": "QX-R3-11-000854-root-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定快照",
+      "query": "fetch_file problems/000/QX-P-000370.meta.json ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整正文/版本已比对；只服务当前题查重，不开展其他包问题的查新。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000370.meta.json",
+      "request_id": "QX-R3-11-000854-root-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定快照",
+      "query": "fetch_file problems/001/QX-P-001657.text.md ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整正文/版本已比对；只服务当前题查重，不开展其他包问题的查新。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001657.text.md",
+      "request_id": "QX-R3-11-000854-root-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定快照",
+      "query": "fetch_file problems/001/QX-P-001657.meta.json ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整正文/版本已比对；只服务当前题查重，不开展其他包问题的查新。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001657.meta.json",
+      "request_id": "QX-R3-11-000854-root-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "1995官方PDF本地副本",
+      "query": "read_text work_000854_sources/klein_schonheim1995.txt；view_image klein1995_p5.png",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "本轮学术路线下载官方8页PDF；根实际读全文提取文本（部分公式OCR不可用），再实看印刷p205像素并独立核Thm2的退化序挪边论证。没有将未完整核的其他merger区间定理并入已证范围。",
+      "url": "https://ajc.maths.uq.edu.au/pdf/12/ocr-ajc-v12-p201.pdf",
+      "locator": "pp201–208提取；p205页图/Theorem2证明",
+      "request_id": "QX-R3-11-000854-root-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "固定AI稿本地副本",
+      "query": "完整read_text work_000854_sources/llm_retry.md；读取code_source_manifest.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "代码路线实际取得固定commit；根完整读25039字节retry证明并独立核§§2–6关键链，与数学/代码路线交叉核对。是解析人工核验，无Lean或穷举运行。",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_retry/coloring_the_union_of_degenerate_graphs/output.md",
+      "locator": "retry全文；Lemmas1,2,4、Proposition5、§§5–6",
+      "request_id": "QX-R3-11-000854-root-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2（核特例的经典输入）",
+      "query": "\"critical graph\" \"degree k-1\" \"Gallai tree\" site:arxiv.org",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "为已核AI特例补经典低度子图定理的精确学术来源；返回作者网站研究论文，随后定点读取原PDF。未开展别的4-critical密度问题。",
+      "request_id": "QX-R3-11-000854-root-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2（核特例的经典输入）",
+      "query": "\"k-critical\" \"degree k − 1\" \"Gallai\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "为已核AI特例补经典低度子图定理的精确学术来源；返回作者网站研究论文，随后定点读取原PDF。未开展别的4-critical密度问题。",
+      "request_id": "QX-R3-11-000854-root-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Molloy作者网站研究论文",
+      "query": "open https://www.cs.toronto.edu/~molloy/webpapers/gallai.pdf; find Theorem 1.4; find Gal63",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "亲读首页身份、§1.2 p6 Theorem1.4及p36原始引文。研究论文题名虽为4-critical，所引用的Theorem1.4明确对一般k-critical成立，故可用k6；论文后续特殊4色密度定理未用于本题。",
+      "url": "https://www.cs.toronto.edu/~molloy/webpapers/gallai.pdf",
+      "locator": "§1.2 p6 Theorem1.4；p36 [Gal63]",
+      "request_id": "QX-R3-11-000854-root-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"OPG46533\" forest",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "note": "首轮命中OPG规范源及同题二手镜像、Bondy–Murty书附录索引；随后实际open原OPG。另有degenerate coloring采用小于k的移位定义，不能混用该索引中的“2-degenerate=forest”。",
+      "request_id": "QX-R3-11-000854-academic-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"forest\" \"2-degenerate\" \"5-colourable\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "note": "首轮命中OPG规范源及同题二手镜像、Bondy–Murty书附录索引；随后实际open原OPG。另有degenerate coloring采用小于k的移位定义，不能混用该索引中的“2-degenerate=forest”。",
+      "request_id": "QX-R3-11-000854-academic-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"union\" \"1-degenerate\" \"2-degenerate\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "note": "首轮命中OPG规范源及同题二手镜像、Bondy–Murty书附录索引；随后实际open原OPG。另有degenerate coloring采用小于k的移位定义，不能混用该索引中的“2-degenerate=forest”。",
+      "request_id": "QX-R3-11-000854-academic-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Open Problem Garden / web open",
+      "query": "open https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "note": "全文已读。作者Michael Tarsi，fhavet于2013-03-03上帖；正文明确product coloring给6色、K5为下界，原始出处星号指Klein1994。无回答/评论正文或解决标记不能证明2026仍未解。",
+      "locator": "statement, discussion, bibliography",
+      "request_id": "QX-R3-11-000854-academic-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1, recency730（第二词组recency3650）",
+      "query": "\"Coloring the union of degenerate graphs\" solved proof",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "note": "定向最新/证明/反例查询命中原OPG、Klein1994官方摘要及Klein–Schönheim1995官方全文；本组返回未取得较新同题全解或反例。后两论文范围另行实际核读；不是以OPG在列推出全网开放。",
+      "request_id": "QX-R3-11-000854-academic-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1, recency730（第二词组recency3650）",
+      "query": "Tarsi Klein 1994 union degenerate graphs coloring",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "note": "定向最新/证明/反例查询命中原OPG、Klein1994官方摘要及Klein–Schönheim1995官方全文；本组返回未取得较新同题全解或反例。后两论文范围另行实际核读；不是以OPG在列推出全网开放。",
+      "request_id": "QX-R3-11-000854-academic-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1, recency730（第二词组recency3650）",
+      "query": "\"forest\" \"2-degenerate\" \"6-chromatic\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "note": "定向最新/证明/反例查询命中原OPG、Klein1994官方摘要及Klein–Schönheim1995官方全文；本组返回未取得较新同题全解或反例。后两论文范围另行实际核读；不是以OPG在列推出全网开放。",
+      "request_id": "QX-R3-11-000854-academic-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Australasian Journal of Combinatorics / web open",
+      "query": "open https://ajc.maths.uq.edu.au/pdf/12/ocr-ajc-v12-p201.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://ajc.maths.uq.edu.au/pdf/12/ocr-ajc-v12-p201.pdf",
+      "note": "取得官方8页完整稿；读定义、上下界、Conjectures1–2、Hajós结构结果和后续受限merger结果。文字层大量OCR缺失，另本地渲染看p203/205核关键公式与证明。",
+      "locator": "pp201–208; especially Definitions1–3, Propositions4–6, Theorem2",
+      "request_id": "QX-R3-11-000854-academic-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Elsevier / web open",
+      "query": "open https://www.sciencedirect.com/science/article/pii/0012365X94900256",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.sciencedirect.com/science/article/pii/0012365X94900256",
+      "note": "返回403 Forbidden；当前只从官方搜索结果读元信息与摘要，未取得该1994十页全文，不称全文已核。",
+      "request_id": "QX-R3-11-000854-academic-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Open Problem Garden / web click",
+      "query": "click revisions link from OPG46533",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/node/46533/revisions",
+      "note": "修订表实际已读：6项，当前2013-03-11 07:52，另2013-03-11 07:51及2013-03-03四项（最早显示04:04）。这是网页修订时间，不是Tarsi首次提出时间；未逐个重读旧修订内容。",
+      "request_id": "QX-R3-11-000854-academic-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Australasian Journal of Combinatorics / urllib",
+      "query": "GET https://ajc.maths.uq.edu.au/pdf/12/ocr-ajc-v12-p201.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://ajc.maths.uq.edu.au/pdf/12/ocr-ajc-v12-p201.pdf",
+      "note": "HTTP200，698546bytes，SHA256 bacfc6ec4048f8458a3df409e4455a326c29b4fc228ad2f9d8f606a4c37080e1；存work_000854_sources/klein_schonheim1995.pdf/.txt；实际render+view_image PDFp3/p5（印刷203/205），核2Σm_i−1退化、2Σm_i色以及Hajós证明。",
+      "locator": "fixed journal1995; pp203,205",
+      "request_id": "QX-R3-11-000854-academic-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"3194\" \"coloring\" \"degenerate\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "只返回数字3194作页码等无关条目及其他退化着色索引；未定位“HF id=3194”的具体数据集、仓库、版本或行。不能用孤立行号充当出处。",
+      "request_id": "QX-R3-11-000854-academic-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"On the colorability of m-composed graphs\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://www.sciencedirect.com/science/article/pii/0012365X94900256",
+      "note": "命中Elsevier官方摘要/元信息及文献索引；核R.Klein、Discrete Mathematics133(1–3)(1994)181–190、1994-10-15、DOI10.1016/0012-365X(94)90025-6。未取得该原文PDF。",
+      "request_id": "QX-R3-11-000854-academic-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Tarsi\" \"forest\" \"2-degenerate\" conjecture proof",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "note": "命中同题OPG与1995稿、二手索引；旁见2026 flow-reconfiguration/Cereceda稿，其索引研究重新配置及另一2-degenerate对象，不作为本题5色全解。代码/AI具体项目交相应路线核。",
+      "request_id": "QX-R3-11-000854-academic-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1, recency730",
+      "query": "\"Tarsi\" \"5-colorable\" \"forest\" counterexample",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "note": "本组2025–2026定向返回仍为本题历史OPG/1994/1995源和索引；未取得同题全称解决或反例/正式勘误。旁见2026 Weak Degeneracy of Planar Graphs的修正摘要（DOI10.1002/jgt.70070），对象为平面图弱退化参数，不是森林与2-退化图任意边并；不迁移其更正结论。",
+      "request_id": "QX-R3-11-000854-academic-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1, recency730",
+      "query": "\"Tarsi\" \"5-colourable\" \"degenerate\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "note": "本组2025–2026定向返回仍为本题历史OPG/1994/1995源和索引；未取得同题全称解决或反例/正式勘误。旁见2026 Weak Degeneracy of Planar Graphs的修正摘要（DOI10.1002/jgt.70070），对象为平面图弱退化参数，不是森林与2-退化图任意边并；不迁移其更正结论。",
+      "request_id": "QX-R3-11-000854-academic-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1, recency730",
+      "query": "\"m-composed\" graphs conjecture solved",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "note": "本组2025–2026定向返回仍为本题历史OPG/1994/1995源和索引；未取得同题全称解决或反例/正式勘误。旁见2026 Weak Degeneracy of Planar Graphs的修正摘要（DOI10.1002/jgt.70070），对象为平面图弱退化参数，不是森林与2-退化图任意边并；不迁移其更正结论。",
+      "request_id": "QX-R3-11-000854-academic-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1, recency730",
+      "query": "\"On the colorability\" \"degenerate\" erratum correction",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "note": "本组2025–2026定向返回仍为本题历史OPG/1994/1995源和索引；未取得同题全称解决或反例/正式勘误。旁见2026 Weak Degeneracy of Planar Graphs的修正摘要（DOI10.1002/jgt.70070），对象为平面图弱退化参数，不是森林与2-退化图任意边并；不迁移其更正结论。",
+      "request_id": "QX-R3-11-000854-academic-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "附包任务记录",
+      "query": "完整读取work_000854_sources/task.json，QX-P-000854 rev322b4a4ae60342dc；核题面、定义、acceptance及两条旧进展。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.qunxingmath.org/p/QX-P-000854/",
+      "locator": "完整题卡和旧回传记录",
+      "note": "不把旧PASS/open标签代替本轮定义和数学核对。",
+      "request_id": "QX-R3-11-000854-math-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Open Problem Garden",
+      "query": "open https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "locator": "Conjecture、pair colouring六色说明、K5 sharp说明、书目",
+      "note": "实际读取完整页面；原页署Michael Tarsi，fhavet于2013-03-03发布，书目标1994 Klein为原出处。",
+      "request_id": "QX-R3-11-000854-math-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Australasian Journal of Combinatorics官方PDF",
+      "query": "open https://ajc.maths.uq.edu.au/pdf/12/ocr-ajc-v12-p201.pdf；定点核Definitions1–3、Propositions1–6及§3边计数局限。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://ajc.maths.uq.edu.au/pdf/12/ocr-ajc-v12-p201.pdf",
+      "locator": "1995 pp201–204；全文文本已取得",
+      "note": "OCR部分公式损坏，六色界、边数式及小图分解由本轮另给完整手证；不把OCR损坏当原印错误。未独立重证整篇merger分类。",
+      "request_id": "QX-R3-11-000854-math-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "固定GitHub公开AI部分稿",
+      "query": "实际读取共享固定源码llm_output.md及llm_retry.md；对retry§4 Lemma4和Proposition5完整逐段复核，补读§3计数前提。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_retry/coloring_the_union_of_degenerate_graphs/output.md",
+      "locator": "retry§§3–4，尤其palette唯一性、P_B clique、q-h计数及h=3/4两分支",
+      "note": "固定commit96f91048c5282ac2b8bed0b7e8dc454cf38ba636。retry25040字节SHA256 e0adb92e098d731748ced3880ef51a7dc86cf05cb3fc82bf33e8818fb5d46ec0；初稿13658字节SHA256 1b6956d031c88d67184dae2fab2c8b4c85521d0de97040cefe21583690e15bba。该项核查非再次下载仓库；读取的是代码路线保存的固定完整内容。 合并时核定数学路线所读副本各比Git原blob多一个末尾LF：根实际计算SHA256(canonical_bytes+LF)与上述两hash完全一致，无正文差异。canonical首稿13657bytes SHA256df122698ed83ec522517dfbe32251a266084bc23852849ddfacc986b53cad1eb；canonical retry25039bytes SHA256af8965adb32998c9cf1a3d1ca45f0974d5a60d19ebbb015b73689d04241296f5。固定仓库源字节以代码路线Git blob核验结果为准，数学审阅副本hash不伪称原blob哈希。",
+      "request_id": "QX-R3-11-000854-math-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "手工证明",
+      "query": "手证product六色、3n-4边界及5退化；核K5与K4完整边分解；核最大度子类和极小反例计数；独立二审AI Lemma4→Proposition5。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "locator": "本片段全部自含证明",
+      "note": "未运行图枚举、SAT、ILP或Lean。小图为手工完整证书；实际Python只读取文件/计算来源哈希/验证JSON Schema。",
+      "request_id": "QX-R3-11-000854-math-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-web_exact",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "Web system2",
+      "query": "\"forest\" \"2-degenerate\" \"5-colourable\"",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一请求3条精确检索，取得OPG、UnsolvedMath与graph-conjectures映射等；Lean关键词命中还包括诱导森林/极值数等不同问题。按题面范围筛，未把相似词或索引作为证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-web_exact",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "Web system2",
+      "query": "\"forest\" \"2-degenerate\" \"Lean\"",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一请求3条精确检索，取得OPG、UnsolvedMath与graph-conjectures映射等；Lean关键词命中还包括诱导森林/极值数等不同问题。按题面范围筛，未把相似词或索引作为证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-web_exact",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "Web system2",
+      "query": "\"46533\" \"graph\"",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一请求3条精确检索，取得OPG、UnsolvedMath与graph-conjectures映射等；Lean关键词命中还包括诱导森林/极值数等不同问题。按题面范围筛，未把相似词或索引作为证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-fc_forest",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "GitHub代码搜索：google-deepmind/formal-conjectures",
+      "query": "\"degenerate\" \"forest\"",
+      "outcome": "命中已排除",
+      "note": "指定FC仓库、topn=20，返回1项GraphConjecture65；检索片段是诱导森林阶数问题，degenerate指distMin退化情形，不是forest∪2-degenerate五色命题。只按所示片段排除，未把该文件当本题形式化。",
+      "result_count": 1,
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-github_opg",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "GitHub代码搜索：graph-theory-AI/graph-conjectures",
+      "query": "OPG_forest_plus_2_degenerate_5_colorable",
+      "outcome": "仅标题/索引或摘要",
+      "note": "指定graph-theory-AI/graph-conjectures，返回3个映射文件，精确slug对应当前题；索引P含义随后由固定本地全文图例核为present，非proved。",
+      "result_count": 3,
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-openai_2deg",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "GitHub代码搜索：openai/math",
+      "query": "\"2-degenerate\"",
+      "outcome": "执行无命中",
+      "note": "指定openai/math、topn=20返回0；仅此字面检索，不断言其他命名下全仓或全网均无证明。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-llm_output",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "GitHub文件API",
+      "query": "repository_full_name=graph-theory-AI/Graph-Theory-LLM-Proofs; path=attacks_opg/coloring_the_union_of_degenerate_graphs/output.md; ref=96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/coloring_the_union_of_degenerate_graphs/output.md",
+      "outcome": "原文已阅且同题",
+      "note": "固定commit完整解析稿，有限简单图；声明n≤11与两个极小反例局部禁形。标partial、would_publish=false、未核新颖性，明确非全解和非枚举；本轮纸面核关键链。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-catalog_review",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "GitHub文件API",
+      "query": "repository_full_name=graph-theory-AI/graph-conjectures; path=data/〔私有材料定位已省略〕 ref=c4f7fb172098a9a98561e11d49435408937a6760 〔私有记录编号：PR-003993〕",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/data/reviews/coloring_the_union_of_degenerate_graphs.json",
+      "outcome": "原文已阅且同题",
+      "note": "固定commit完整读取2519字节JSON。reviewed_at=2026-05-08、model=claude-sonnet-4-6；其旧6条查询不计为本轮实际查询，旧open/medium也不作为今日数学状态证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-fc_2deg",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "GitHub代码搜索：google-deepmind/formal-conjectures",
+      "query": "\"2-degenerate\"",
+      "outcome": "命中已排除",
+      "note": "指定FC、topn=20返回Erdos583、926两项：检索片段分别为路径分解参考文献和极值数特例，均不是本题五染色命题。未展开无关Lean依赖。",
+      "result_count": 2,
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-llm_search",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "GitHub代码搜索：graph-theory-AI/Graph-Theory-LLM-Proofs",
+      "query": "coloring_the_union_of_degenerate_graphs",
+      "outcome": "仅标题/索引或摘要",
+      "note": "指定Graph-Theory-LLM-Proofs返回7项，定位opg/retry同slug的prompt/meta/verdict与ledger；同固定commit，分别partial11阶和12阶，随后取完整output/meta。",
+      "result_count": 7,
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-llm_retry",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "GitHub文件API",
+      "query": "repository_full_name=graph-theory-AI/Graph-Theory-LLM-Proofs; path=attacks_retry/coloring_the_union_of_degenerate_graphs/output.md; ref=96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_retry/coloring_the_union_of_degenerate_graphs/output.md",
+      "outcome": "原文已阅且同题",
+      "note": "固定commit完整取得25039字节重试稿；主定理仅n≤12，并给极小反例|L|≥8、|R|≥4以及|R|=4时G[L]不连通。明确general unresolved、no enumeration、novelty unchecked。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-llm_meta",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "GitHub文件API",
+      "query": "repository_full_name=graph-theory-AI/Graph-Theory-LLM-Proofs; path=attacks_opg/coloring_the_union_of_degenerate_graphs/meta.json; ref=96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/coloring_the_union_of_degenerate_graphs/meta.json",
+      "outcome": "原文已阅且同题",
+      "note": "固定meta：started2026-09-16T17:16:36Z、gpt-6-astra、record.lean=null、record.status=open。题文/来源映射对应当前题；状态是生成输入编目，不是数学验收。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-llm_retry_meta",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "GitHub文件API",
+      "query": "repository_full_name=graph-theory-AI/Graph-Theory-LLM-Proofs; path=attacks_retry/coloring_the_union_of_degenerate_graphs/meta.json; ref=96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_retry/coloring_the_union_of_degenerate_graphs/meta.json",
+      "outcome": "原文已阅且同题",
+      "note": "固定retry meta：started2026-09-16T22:20:23Z、gpt-6-astra、retry_of首稿，prior_verdict=partial、review_verdict=null。其prior_writeup是同首稿重复输入，不算第三份独立证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-web_claims",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "Web system1",
+      "query": "\"forest\" \"2-degenerate\" \"5-colorable\" proof",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一请求3条精确检索，recency=730。所得含OPG/镜像与平面图顶点分拆、无圈着色和MO标签页等邻近结果；没有从返回片段取得本题全称解。顶点分拆为诱导森林+2退化图不等于同顶点边并，未沿邻题扩查。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-web_claims",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "Web system1",
+      "query": "\"Tarsi\" \"union\" \"forest\" \"counterexample\"",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一请求3条精确检索，recency=730。所得含OPG/镜像与平面图顶点分拆、无圈着色和MO标签页等邻近结果；没有从返回片段取得本题全称解。顶点分拆为诱导森林+2退化图不等于同顶点边并，未沿邻题扩查。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-web_claims",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "Web system1",
+      "query": "\"forest\" \"2-degenerate\" site:mathoverflow.net",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同一请求3条精确检索，recency=730。所得含OPG/镜像与平面图顶点分拆、无圈着色和MO标签页等邻近结果；没有从返回片段取得本题全称解。顶点分拆为诱导森林+2退化图不等于同顶点边并，未沿邻题扩查。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q854-CODE-LOCAL-APPENDIX",
+      "route": "代码、公开 AI 和社区",
+      "date": "2026-11-27",
+      "site": "固定仓库本地文件复阅",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003994〕",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/BONDY_MURTY_APPENDIX_A.md",
+      "outcome": "原文已阅且同题",
+      "note": "复用此前已下载固定字节，本题实际核图例22–29行与当前题行99，非冒认新的HTTP下载。P=present as its own record；该行French2025编号47，未据此宣称证明。完整源复制到work_000854_sources/catalog-BONDY_MURTY_APPENDIX_A.md供复核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R0854-DUP-000370",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000370.text.md",
+      "locator": "题面、形式化/人话、meta.acceptance及card_rev",
+      "version": "73290369a8dcc632e25e555aec525565ea6e08f8; ab4ff90731286178",
+      "subquestions": [
+        "库内查重"
+      ],
+      "scope_match": "尚未确认",
+      "note": "双方固定正文与版本已读。text blob=2abc322e1aa959b3827757d5a15293551a4a7a20；meta blob=42b3a15b4bda5bd11619d828347ad3d9d458c5bf。仅比较对象和量词，不背书其他卡既有数学状态。",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R0854-DUP-001657",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001657.text.md",
+      "locator": "题面、形式化/人话、meta.acceptance及card_rev",
+      "version": "73290369a8dcc632e25e555aec525565ea6e08f8; 951772762d7574e0",
+      "subquestions": [
+        "库内查重"
+      ],
+      "scope_match": "尚未确认",
+      "note": "双方固定正文与版本已读。text blob=9269508c3ef84922d0114381326b916e9b630086；meta blob=c2270cf66da302a7cf8be756df8d42946999dce8。仅比较对象和量词，不背书其他卡既有数学状态。",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R0854-CARD",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000854.text.md",
+      "locator": "题面/形式化/人话；已知进展、旧核对PASS；meta.acceptance及novelty",
+      "version": "73290369a8dcc632e25e555aec525565ea6e08f8; card_rev322b4a4ae60342dc",
+      "subquestions": [
+        "主问题",
+        "背景错误修订"
+      ],
+      "scope_match": "原题等价",
+      "note": "text blobbc2ef0bc30cef6f337009a7d28fdc189661961e7；meta blob42474e3ae7d66870f2539f266df69f8c4298f55a。核心问题匹配OPG，而“3+2=7”及“同型并退化度”是背景错误；不能因错误背景就把正确核心换成另一问题。旧novelty内hash27b85691f5ee3896不迁移为本轮证据。",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R0854-OPG",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "locator": "原Conjecture及完整discussion、Bibliography",
+      "version": "2013-03-03帖；本轮2026-11-27读取",
+      "subquestions": [
+        "主问题",
+        "源身份",
+        "上下界"
+      ],
+      "scope_match": "原题等价",
+      "note": "标准有限简单图的同顶点边并；森林2色与2退化图3色用有序对给6色，K5说明5下界。Michael Tarsi是作者，2013是上帖非最初提出。原条目未说7色或同型并(k+1)-退化。",
+      "role": "重述",
+      "publication": "社区帖子",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "R0854-AI-AUDIT",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_retry/coloring_the_union_of_degenerate_graphs/output.md",
+      "locator": "完整retry稿§§1–7；自含局部归约及Gallai-forest/block-palette计数",
+      "version": "commit96f91048c5282ac2b8bed0b7e8dc454cf38ba636; SHA256 af8965adb32998c9cf1a3d1ca45f0974d5a60d19ebbb015b73689d04241296f5; blob a1f48b986314e7d8c6b73aead098a16857aba490",
+      "subquestions": [
+        "至多12顶点特例",
+        "极小反例结构"
+      ],
+      "scope_match": "特例",
+      "note": "本轮三路线分工并根复核完整关键链，通过有限特例的手工数学核对，明确以经典Gallai低度临界图定理为外部标准输入。局部Lemma1通过删K5、forest连接或D退化序端点换边，最后以6点2deg至多9边矛盾；Lemma2对K6-e内4个低度点删去再识别非邻端点，保持分解。Lemma4的颜色块覆盖唯一性由块-顶点树的对称差不能有有限最小度≥2子森林证明。Prop5需保留临界性、连通低度子图和h∈{3,4}；根核q=b+1+W−t及q−h≥W−w+Σ(|C|−2)≥0、所有h3/h4分支。h4,r4分支补显式b≥2：单个P_B大小≤3不能覆盖R4；这为省略说明，非未修复漏洞。末节n12迫ℓ8,h4、低度子图不连通，r≤2；r2时任一识别两个R非邻点给3色，至多一种识别会使孤立K4阻塞，而R有4个非边，可避开。核验结论仅n≤12及h≥4/边界结构，不是通用5色。无机器形式化、无全图枚举、新颖性未核；稿自标partial/would_publish=false。",
+      "role": "进展",
+      "publication": "代码仓库",
+      "claim_state": "公开声称",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R0854-GALLAI",
+      "url": "https://www.cs.toronto.edu/~molloy/webpapers/gallai.pdf",
+      "locator": "§1.2 p6 Theorem1.4及low/high定义；p36 [Gal63]",
+      "version": "Babak Farzad/Michael Molloy, On the edge-density of 4-critical graphs；作者站37页稿，本轮2026-11-27定点读取",
+      "subquestions": [
+        "AI有限特例的经典外部输入"
+      ],
+      "scope_match": "仅子问",
+      "note": "Theorem1.4明确：任意k-critical图的度k−1顶点诱导子图是k-Gallai forest，块为完全图或奇圈。代k6正好给AI稿所用G[L]结构；这里不采用该研究论文另一个仅k4的主密度定理。文后原始引用Gallai, Kritische Graphen I, Magyar Tud.Akad.Mat.Kutató Int.Közl.8(1963)165–192。已核学术原稿中的陈述及适用参数，未重证1963原定理；外部经典输入与本轮证明审查边界明确。",
+      "role": "重述",
+      "publication": "作者主页",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "a0854_opg",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "locator": "原Conjecture；product coloring段、K5段；Bibliography及星号图例",
+      "version": "OPG node46533，posted2013-03-03 by fhavet；修订列表当前2013-03-11 07:52；2026-11-27完整读取",
+      "subquestions": [
+        "源身份与原命题",
+        "原出处和提出者",
+        "6色上界与5色下界",
+        "有限同顶点边并语义"
+      ],
+      "role": "重述",
+      "publication": "社区帖子",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "核过关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "OPG明确署Michael Tarsi；帖主fhavet不是猜想提出者。正文为森林与2-degenerate图之边并可5染色；接着给分别2/3色的颜色对构造和K5下界。原文并无“3+2=7”或“两个k退化图之并必(k+1)退化”。其标星原始出处是R.Klein1994。当前页面列作Conjecture仅是这一来源的状态，不证明检索日全网仍开放。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "a0854_klein94",
+      "url": "https://doi.org/10.1016/0012-365X(94)90025-6",
+      "locator": "Elsevier官方搜索可读摘要及卷期页码；OPG原始出处星号",
+      "version": "R.Klein, On the colorability of m-composed graphs, Discrete Mathematics133(1–3)(1994)181–190；1994-10-15",
+      "subquestions": [
+        "较2013更早的正式来源",
+        "Tarsi归属",
+        "一般m-composed语义"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "本轮核的是正式元信息和官方摘要：m-composed定义为m-degenerate与无圈图的边并，给2m+2上界，并把m=2特例归为Tarsi问题；直访正文403，不能声称独立读完其十页。1995原稿也直接引用这篇。此前1991报告/1992论文线索尚未取得，故1994仅为本轮可核的早期正式记录，不宣称绝对首提年份。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0854_ks95",
+      "url": "https://ajc.maths.uq.edu.au/pdf/12/ocr-ajc-v12-p201.pdf",
+      "locator": "Definitions1–3 pp201–202；Propositions1–6 pp202–203；(1,2)讨论p203；§3 pp203–204；Conjecture1",
+      "version": "R.Klein and J.Schönheim, On the colorability of graphs decomposable into degenerate graphs with specified degeneracy, Australas.J.Combin.12(1995)201–208；received1995-01-26/revised1995-06-05；SHA256 bacfc6ec4048f8458a3df409e4455a326c29b4fc228ad2f9d8f606a4c37080e1",
+      "subquestions": [
+        "有限图退化定义",
+        "edge partition与同顶点边并等价",
+        "正确通用上界",
+        "计数论证的适用边界",
+        "当时已知和未决范围"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "核过关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "完整8页取得；文字层全读但OCR严重缺失，实际查看p203/205页图确认相关式子。Definition2使用有限顶点排列，Definition3明确边集划分为不同退化度层。Prop4给∏(m_i+1)色，Prop5给(2Σm_i−1)-退化，Prop6给2Σm_i色；对(1,2)均仅6色。p203给K5下界，并明确该时点尚不知有无6色例。§3排K6用边数15>14，但指出11点6-critical H的边数满足必要上限，故只计数不能全解；随后结构定理另排该H族。没有把1995的开放语句转成2026状态证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0854_hajos",
+      "url": "https://ajc.maths.uq.edu.au/pdf/12/ocr-ajc-v12-p201.pdf",
+      "locator": "Definition4 / Theorem2 pp204–205及其完整短证；p205紧随范围限制",
+      "version": "同上1995原刊；本轮实际页图核p205并独立重作退化序证明",
+      "subquestions": [
+        "Hajós连接族的既有部分排除结果"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "Thm2：若两图都不能边分解为(m1,…,ms)-composed，Hajós conjunction仍不能。独立短核：若连接图有分解，新边b1b2落第j层，取该层退化序b1<b2。若a>b1，则将该outgoing边换回b1a，可复原G1而不增允许出度；若a<b1,b2，则a在两侧出度之和≤m_j，至少一侧<m_j（m_j≥1因有新边），给该侧添回ab_i也得矛盾。因此K6反复作此连接所得的6-chromatic族均不是本题候选。作者紧接说明此操作不足生成所有非5可染图，一般Ore merger也不保该性质，故不是本题全解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0854_revision",
+      "url": "https://www.openproblemgarden.org/node/46533/revisions",
+      "locator": "revisions完整表6条",
+      "version": "当前2013-03-11 07:52；最早列表2013-03-03 04:04；2026-11-27实际读取",
+      "subquestions": [
+        "网页建立与修订日期",
+        "更新状态证据层级"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "已读，未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "修订表无2025–2026更新不等于当前无进展；本轮另作有限近期全解/反例/勘误检索。没有逐篇打开历史修订正文，不能据此证明历次文本完全相同。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q854-M-E1",
+      "url": "https://www.qunxingmath.org/p/QX-P-000854/",
+      "locator": "附包task.json完整题卡",
+      "version": "QX-P-000854 rev322b4a4ae60342dc",
+      "subquestions": [
+        "定义与域",
+        "平凡上界误记",
+        "同型退化并误记"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "原始档案",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "实际读取附包内容，不声称打开群星网页。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q854-M-E2",
+      "url": "https://www.openproblemgarden.org/op/coloring_the_union_of_degenerate_graphs",
+      "locator": "Conjecture与紧随其后的2×3 colouring/K5说明",
+      "version": "2013-03-03发布；2026-11-27本轮完整读取",
+      "subquestions": [
+        "标准有限图问题",
+        "六色上界",
+        "五色下界"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "社区帖子",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "原页明确六色，并未写卡中的3+2=7；原页开放标签不单独作为当前无解证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "Q854-M-E3",
+      "url": "https://ajc.maths.uq.edu.au/pdf/12/ocr-ajc-v12-p201.pdf",
+      "locator": "Definitions1–3 pp201–202；Propositions4–6 pp202–203；§3–4 pp203–205",
+      "version": "R.Klein/J.Schönheim，Australas.J.Combin.12(1995),201–208；PDF SHA256 bacfc6ec4048f8458a3df409e4455a326c29b4fc228ad2f9d8f606a4c37080e1",
+      "subquestions": [
+        "edge partition定义",
+        "product与退化上界",
+        "边计数不能单独结案"
+      ],
+      "scope_match": "原题等价",
+      "role": "进展",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "数学路线独立核基础界与分解，未重证全文Hajos/merger全部结果；1995开放性描述不当作2026现状唯一证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q854-M-E4",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_retry/coloring_the_union_of_degenerate_graphs/output.md",
+      "locator": "retry§§3–4 Lemma4、Proposition5；全文自标partial",
+      "version": "固定commit96f91048c5282ac2b8bed0b7e8dc454cf38ba636；canonical retry SHA256af8965adb32998c9cf1a3d1ca45f0974d5a60d19ebbb015b73689d04241296f5；审阅副本末尾另有LF，详note",
+      "subquestions": [
+        "degree-list障碍的颜色块唯一性",
+        "极小反例h=3/4时低度子图不能连通"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "代码仓库",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "该项核查核指定Lemma4/Proposition5及所用计数，未声称独立审完所有前置归约和≤12末端分类；后两项由代码路线另审。经典Gallai临界图低度定理作为外部输入，本轮未重证。公开稿不声称一般解、不声称新颖性，也不是运行日志或Lean证书。 合并时核定数学路线所读副本各比Git原blob多一个末尾LF：根实际计算SHA256(canonical_bytes+LF)与上述两hash完全一致，无正文差异。canonical首稿13657bytes SHA256df122698ed83ec522517dfbe32251a266084bc23852849ddfacc986b53cad1eb；canonical retry25039bytes SHA256af8965adb32998c9cf1a3d1ca45f0974d5a60d19ebbb015b73689d04241296f5。固定仓库源字节以代码路线Git blob核验结果为准，数学审阅副本hash不伪称原blob哈希。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E854-CODE-AI11",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/coloring_the_union_of_degenerate_graphs/output.md",
+      "locator": "完整output.md §§1–6；同目录meta.json；定义有限简单图类C={F∪D:F森林,D为2退化图}",
+      "version": "固定commit 96f91048c5282ac2b8bed0b7e8dc454cf38ba636；meta started=2026-09-16T17:16:36Z；2026-11-27取得并核读",
+      "subquestions": [
+        "至多11顶点特例",
+        "极小反例局部禁形"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "claimant": "graph-theory-AI/Graph-Theory-LLM-Proofs，meta标gpt-6-astra",
+      "claim_date": "2026-09-16",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "rerun": {
+        "commit": "96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+        "theorem": "解析稿Theorem(1) n≤11；Lemma1度5 K5可约；Lemma2度5内部K6−e可约",
+        "toolchain": "Markdown数学解析稿，无本题Lean工具链或编译运行",
+        "command": "完整源静态阅读与纸面数学核验；以Git blob SHA1及SHA256核定取得字节，未计算枚举",
+        "cache": "work_000854_sources/llm_output.md; llm_meta.json; code_source_manifest.json",
+        "axioms": "数学输入为经典Gallai临界图低度子图定理、Hall匹配定理及基础贪心列表染色；没有机器公理闭包可审，本轮未重新证明经典Gallai定理"
+      },
+      "note": "稿件主动标partial/would_publish=false/新颖性未核，未声称一般五色或改进通用六色上界。该项核查完整读并手核：删K5后向外邻加边，F分量通路或D退化序释放位置保留分解；反设时六点2退化图≥10边与≤9边矛盾。K6−xy的14边饱和迫F[S]树、D[S]达到9边；删内部K4并识别x/y保持森林及2退化序，可延伸五色。后续Gallai低度子图计数和n≤11的r=0/1/2三分支亦已核。结论只覆盖有限阶和极小反例约束，非全称解决；未核其历史新颖性。源码13657bytes SHA256 df122698ed83ec522517dfbe32251a266084bc23852849ddfacc986b53cad1eb，Git blob cd517faebe8a7fa66ba26622f71b14f237b952bb；meta2985bytes SHA25654d5e0240d506f9e37cf161947eb7e23f1e54da8aaea55a6d015f5679c9c8544。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E854-CODE-AI12",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_retry/coloring_the_union_of_degenerate_graphs/output.md",
+      "locator": "完整output.md §§1–7；Lemma4度列表调色板刻画/唯一性、Proposition5、§5和§6；同目录meta.json",
+      "version": "固定commit 96f91048c5282ac2b8bed0b7e8dc454cf38ba636；meta started=2026-09-16T22:20:23Z；2026-11-27完整取得及分工复核",
+      "subquestions": [
+        "至多12顶点特例",
+        "极小反例|L|≥8、|R|≥4以及|R|=4时G[L]不连通"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "claimant": "graph-theory-AI/Graph-Theory-LLM-Proofs，meta标gpt-6-astra；首稿的retry",
+      "claim_date": "2026-09-16",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "rerun": {
+        "commit": "96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+        "theorem": "Theorem1: n≤12五色；Theorem2:极小反例L={deg5},R=V\\L满足|L|≥8、|R|≥4且|R|=4⇒G[L]不连通",
+        "toolchain": "纯Markdown解析证明；未取得本题Lean/Isabelle/Coq构建目标，未运行图枚举",
+        "command": "该项核查读全文并纸核§2局部归约、§6全分类；数学路线独立逐段核Lemma4/Proposition5，主审另读全文交叉核验；无机器证明复跑",
+        "cache": "work_000854_sources/llm_retry.md; llm_retry_meta.json; code_source_manifest.json",
+        "axioms": "经典Gallai低度子图定理作为已知数学输入；稿中另证度列表调色板刻画和唯一性；本轮未重证经典Gallai定理，不称Lean kernel验证"
+      },
+      "note": "原文明确partial、would_publish=false、无计算枚举、未核当前文献或新颖性。新增关键链已分工复核：调色板唯一性由block–vertex incidence树的对称差森林推出；共用未使用色固定base blocks，合非邻R色迫P_B为clique，边临界性迫G[R]=各clique并；势函数q=2|L|−e(G[L])与q+r≤3h−4排h3/4的连通低度子图。h4,r4分支b+w=3所需b≥2由单P_B≤3不能覆盖4个R顶点补明，未见实质漏洞。§6 n12中|L|8、h4、η0、G[L]不连通，再按r=0/1/2染色；末K4列表失败只有外邻pair集合{ac,bc}对应一种非边合色，而R有4种非边，可选另一个。两局部归约和所有末端分类该项核查与主审均已核，数学路线独立核新增核心；结果仍仅至12阶/结构限制，一般上界仍6。源码25039bytes SHA256 af8965adb32998c9cf1a3d1ca45f0974d5a60d19ebbb015b73689d04241296f5，Git blob a1f48b986314e7d8c6b73aead098a16857aba490；retry meta21710bytes SHA256a7f3b95d2cbf866ee5805689ae704084b8a8074b800ad45d0762f235089f34a8，含首稿重复输入，非第三个独立证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E854-CODE-REVIEW",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/data/reviews/coloring_the_union_of_degenerate_graphs.json",
+      "locator": "完整同题review JSON的summary/search_queries/verified_urls/notes/reviewed_at/model",
+      "version": "固定commit c4f7fb172098a9a98561e11d49435408937a6760；reviewed_at=2026-05-08，2026-11-27读取",
+      "subquestions": [
+        "公开AI旧检索与当前数学状态的区分"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "仓库自动review，model=claude-sonnet-4-6",
+      "note": "旧review称open/medium，通用上界2×3=6、K5下界5，列六次过去查询并坦承当时OPG拒绝访问及一份thesis不可读。本轮只核该review全文，不冒认执行其六条旧搜索，不据其2026-05-08开放标签当今日证明。其提到2601.15245为相关退化图染色非本题，该项核查未展开该邻题原稿。文件2519bytes SHA256 b02758e07ec7e42717ccf1368a93bd9931a20c1426713786781d123185bd0cb3，blob84a316629c5e932fcf2d2b3384cccea5b006030b。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E854-CODE-MAPPING",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/BONDY_MURTY_APPENDIX_A.md",
+      "locator": "Legend的P/E/M/X表及本题row47；本题实际复阅文件22–29行及99行",
+      "version": "固定commit c4f7fb172098a9a98561e11d49435408937a6760，文内cross-check2026-09-09；本轮2026-11-27复阅此前取得本地固定源",
+      "subquestions": [
+        "OPG46533与公开AI仓库题号映射"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "精确映射coloring_the_union_of_degenerate_graphs↔OPG_forest_plus_2_degenerate_5_colorable。P的图例是present as its own record，不是proved；本题状态栏空白也只是该编目检查范围。该表依2025法语版编号47，不能与2008英语版编号直接混同。完整文件20303bytes SHA256 f07eb8709031a370e02e0e7d1c295d5380347889a0d1a6bc48db669c1ff06b7c。本轮仅读取图例/同题行，不声称核了整表所有问题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000370",
+      "other_card_rev": "ab4ff90731286178",
+      "relation": "待核",
+      "reason": "对编号QX-P-000370__QX-P-000854。低号负责人000370不在本包，提交差异索引不代其结案：对方给定d退化图和k=d+2，问已有proper着色之间逐点改变的重配置直径O(n²)；本题给两种退化度的边分解，问静态5色存在。退化类、输入和验收均不同，无合并依据。",
+      "positions": {
+        "self": "73290369a8dcc632e25e555aec525565ea6e08f8:problems/000/QX-P-000854.text.md ##题面/###形式化表述；meta.acceptance.criteria",
+        "other": "73290369a8dcc632e25e555aec525565ea6e08f8:problems/000/QX-P-000370.text.md ##题面/###形式化表述/##人话版；meta.acceptance.criteria"
+      },
+      "note": "低号负责；双方全文版本已核，不因都涉及退化与染色就判同题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-001657",
+      "other_card_rev": "951772762d7574e0",
+      "relation": "仅相似",
+      "reason": "对编号QX-P-000854__QX-P-001657，本题低号负责。两题都问5色，但对方是triangle-free且Δ≤6的图类；本题是有forest+2deg边分解的图类，没有triangle-free或最大度6条件，且K5就是本类5色例、含三角形。对象条件不等价，未建立任一方向完整蕴含，不合并。",
+      "positions": {
+        "self": "73290369a8dcc632e25e555aec525565ea6e08f8:problems/000/QX-P-000854.text.md ##题面/###形式化表述；meta.acceptance.criteria",
+        "other": "73290369a8dcc632e25e555aec525565ea6e08f8:problems/001/QX-P-001657.text.md ##题面/##人话版；meta.acceptance.criteria"
+      },
+      "note": "仅评本对正文差异，不开展001657的数学查新或修正其人话。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "proposer / first_published / sources",
+      "old": "proposer=OPG条目（2013-03）；HF id3194无URL；原文无作者论文",
+      "new": "提出者据OPG及1994/1995原作者记录为Michael Tarsi。OPG由fhavet于2013-03-03发布，不能当首次提出；补Klein1994 DOI10.1016/0012-365X(94)90025-6及Klein–Schönheim1995官方全文。更早绝对首提未确认。",
+      "reason": "区分提出人、网页发布者、期刊出现日期和数据集行号。",
+      "evidence_ids": [
+        "a0854_opg",
+        "a0854_klein94",
+        "a0854_ks95"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "题面纠错",
+      "field": "known_results / difficulty / 命题对应核对",
+      "old": "平凡：3+2=7色；该说法已PASS如实",
+      "new": "平凡统一上界是6色，来自2×3的颜色对。已知5色实例K5，故一般问题是排除6色例或证明5色；撤销旧核对中对7色算式和其来源的肯定。",
+      "reason": "原OPG和1995 Prop4直接给6色，且本轮构造证明已核。",
+      "evidence_ids": [
+        "a0854_opg",
+        "a0854_ks95"
+      ],
+      "small_case_check": "K5的路径+补图分解给5下界；不把5下界与6上界误写成已获5上界。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "题面纠错",
+      "field": "known_results / 同型并",
+      "old": "k-退化+k-退化=(k+1)-退化经典",
+      "new": "删除错误断言。可改为正退化度层的通用并图(2Σm_i−1)-退化及2Σm_i色上界；对本题为5-degenerate、6色。",
+      "reason": "K4可分解为两条路径，却不是2-degenerate。",
+      "evidence_ids": [
+        "a0854_ks95"
+      ],
+      "small_case_check": "K4边分两路径1234与3142；每层1-degenerate，边并退化度3。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "statement / formal_statement / 边界",
+      "old": "∀G=G1∪G2 未明确有限、简单、边并和正常顶点着色",
+      "new": "采用文献的有限简单图语境：同有限顶点集V，F为森林、D为2-degenerate，令E(G)=E(F)∪E(D)，问是否总存在proper5-vertex-colouring；允许空图/孤立点，重叠边可只分配一层。",
+      "reason": "排除vertex partition、degenerate coloring的移位定义、重着色问题及含loop导致的无proper染色歧义；补孤立点不改变断言。 若把这些约定写入核心定义、图域或验收，按包规须生成新card_rev，即使意在恢复标准语义；本轮不改源卡。",
+      "evidence_ids": [
+        "a0854_opg",
+        "a0854_ks95"
+      ],
+      "small_case_check": "V为空或只有孤立点时结论直接成立；K1无需按OPG“删到K1”的文字引入非空限定。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "known_results / structural partial results",
+      "old": "仅无链接的开放标签和笼统工具背景",
+      "new": "补1995 Theorem2：Hajós conjunction保持非(m_i)-composed，排除K6反复该连接形成的候选；注明不覆盖一般Ore merger和所有6-critical图。",
+      "reason": "已读原稿并独立核短证，属于可复核部分结果，不是完整5色结论。",
+      "evidence_ids": [
+        "a0854_hajos"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "informal_status / novelty / 开放状态证据",
+      "old": "open confirmed，WebSearch/HF/文献均无URL和实际证据；novelty旧rev",
+      "new": "改以本轮准确版文献、查询和覆盖界限支撑；一般5色断言该项核查有限范围未取得确证，已知上下界/特例分别列出。HF3194在缺dataset namespace/版本前不能作为独立状态证据。",
+      "reason": "OPG旧条目和索引标签不能证明截至2026全网仍开放；旧PASS算式已直接证伪。",
+      "evidence_ids": [
+        "a0854_opg",
+        "a0854_klein94",
+        "a0854_ks95"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "核心题面身份及本轮版本",
+      "old": "forest与2-degenerate图同顶点边并χ≤5；固定rev322b4a4ae60342dc",
+      "new": "保留这一核心问题；错误的背景上界和退化度等式另列修订，已核AI有限阶结果另作特例，均不得冒充一般5色证明。",
+      "reason": "本轮原OPG及正式文献身份已核。只补引文/进展/修正人话按包规可不换rev；若向核心正式加入或改变定义、参数域、量词、验收（包括明确有限简单图）则须新card_rev并重查受影响路线。无源卡编辑。",
+      "evidence_ids": [
+        "R0854-CARD",
+        "R0854-OPG",
+        "R0854-AI-AUDIT"
+      ],
+      "small_case_check": "空图、孤立点直接可染；K5的显式分解达5，K4的互补路径只推翻旧背景“同型并退化度”而不推翻本题5色。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "ai_claims、known_results、formal_status",
+      "old": "无解决记录；AI暴露未登记；无同题特例证据",
+      "new": "登记固定AI解析稿的n≤12特例和极小反例结构：|L|≥8、|R|≥4，h=4时G[L]不连通；本轮关键链已分工人工复核，以经典Gallai低度定理为输入。保留其partial/would_publish=false和新颖性未核边界；不是Lean认证或一般5色解决。",
+      "reason": "明确正文实际命题、审阅等级和有限适用范围；目录P仅“存在独立记录”，不可读作proved。",
+      "evidence_ids": [
+        "R0854-AI-AUDIT"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "novelty.scope; formal_status; 引用状态标签",
+      "new": "补实际FC/openai/math/GitHub和社区有限检索范围。FC返回的诱导森林、路径分解和极值数均已按范围排除；未取得本题可编译正式目标。公开仓库P是presence，旧review的open是旧检索判断，不是新的数学证明。",
+      "reason": "防止将目录映射/旧自动综述/相似Lean文件误计同题解答或形式化。",
+      "evidence_ids": [
+        "E854-CODE-MAPPING",
+        "E854-CODE-REVIEW"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "Klein1994正文直访403；官方摘要、DOI和后续原刊引用已核，但原始十页尚未读到。",
+      "next_step": "若需要更精确的最早提出上下文或1994各结构特例，可补合法可读原稿；现只记1994正式记录和作者归属，不虚构全文定理编号。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "题卡只给HF id3194，缺仓库/数据集名称、revision和URL；本轮精确行号+主题检索未定位。",
+      "next_step": "获得对应HF数据集固定版本后再核3194行是否映射OPG46533；当前以已亲读OPG和原刊为来源，不把孤立HF编号作回执证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮有界近期精确搜索未取得同题全称5色证明或6色反例；不等于穷尽全网。",
+      "next_step": "后续如出现完整声明，应取精确有限图、edge decomposition及proper coloring条件；证明须覆盖全体，反例须给完整图、森林/2退化证书和非5色证书。不要将vertex partition、planar weak degeneracy或Cereceda重配置结果迁移。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "1995稿Theorem2已短证复核；更广的Theorems3–8涉及受限merger、冗余边数条件，部分仅作者陈述，未逐个独立重证。",
+      "next_step": "若拟利用这些更强历史子结果，先按原页图精确转录α区间/附加假设并独立核；当前仅引用已核Theorem2，不泛化为所有Ore合并保持不可分解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "两份AI稿均不主张新颖性，且未作与1994/1995及后续所有局部归约/小阶界的逐条历史优先权比较。",
+      "next_step": "若要对外称新增定理，先将≤12与各禁形、h≥4条件逐条对照既有文献；当前只登记公开稿及本轮核验的有限范围，不标首创。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "已读同题稿均为解析文本，未取得同题Lean或其他可复跑形式证明；本轮也未做小图穷举。",
+      "next_step": "若需要机器证书，另为明确的有限阶/局部归约目标建立形式化或可审枚举证书；现有纸面核验不能改报为程序/Lean复跑。一般五色全称结论仍需独立新论证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "仅三组索引和两个候选全文比对，不代表全库穷尽；000370低号负责人不在本包。",
+      "next_step": "把000370__000854固定版本差异索引留给低号负责人；有新候选再核双方正文/版本，只有严格同题才可建议二审合并，不扩大当前包任务。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {}
+    },
+    {
+      "route": "其他：题卡维护",
+      "reason": "核心与原问一致，错误位于历史上界、退化度注记、来源归属和旧PASS；若正式补核心约定则涉及版本。",
+      "next_step": "维护方按逐项old/new纠正历史进展和来源；核心定义、参数或验收发生修改时生成新card_rev。本回执不替换原卡、不直接闭合问题，保持全题与特例分层。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "322b4a4ae60342dc",
+      "codes": {}
+    }
+  ]
+}
