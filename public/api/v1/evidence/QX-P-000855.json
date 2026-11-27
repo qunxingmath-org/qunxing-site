@@ -1,0 +1,2341 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000855",
+  "card_rev": "45380cac03766d10",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-10"
+      ],
+      "parts": [
+        {
+          "subquestion": "原始任意底群母题与当前素数版本",
+          "value": "partial",
+          "note": "任意固定阿贝尔M的母题已有复合阶反例（如Z15、Z4）；本轮独立核对构造，但当前卡M=Zp且p素数，不能以复合阶例关闭本题。原始较广问题至少可追溯2006预印本Q3，OPG2008评论明确prime意图。"
+        },
+        {
+          "subquestion": "p=2的小核心阶数分类",
+          "value": "partial",
+          "note": "2018 v1 Thm8.1/8.2分别是core≤16分类与core≤32必cubelike，host可以很大；本轮只读陈述/局部论证，未独立复跑Magma筛选。"
+        },
+        {
+          "subquestion": "各素数的极端度数特例",
+          "value": "partial",
+          "note": "2025 Thm1.3在δ<κ(p)或δ≥p^d−κ(p)下给由线性子空间诱导的完整core；p≥5分支实为无边/完全图，不能推广到任意δ。"
+        },
+        {
+          "subquestion": "完全核心与p-ary核心的区别",
+          "value": "partial",
+          "note": "Example1.5展示非完全core，但这些core仍为p-ary Cayley；不是当前主问题反例。"
+        },
+        {
+          "subquestion": "人话版cubelike定义纠错",
+          "value": "statement_error",
+          "note": "仅人话注释“cubelike即超立方体子图类”有误；K4反例已独立核。正式全素数命题不因这一注释错误被推翻。"
+        },
+        {
+          "subquestion": "公开AI的固定复合底群反例与本卡素数域边界",
+          "value": "claimed_counterexample",
+          "note": "所指反例仅针对旧来源中固定任意阿贝尔底群M的问法：AI仓库Z4→K2及Argus Z15→C5均不在本卡p为素数的域内。小例/退缩可手工核对，不支持把本卡改成原题已反驳；也不是新发现2008历史构造。"
+        },
+        {
+          "subquestion": "p=2的强normal阿贝尔表示条件性AI预印本",
+          "value": "partial",
+          "note": "8月v1全文已取得，仅核关键步骤；10月v2.0原站摘要取得、PDF403，较强声明仍须完整证明复核。两版都要求核已有强normal阿贝尔Cayley表示（v1另加两类rigidity条件之一），不能据阿贝尔性删除normal，更不能外推至任意素数p。 根和另一分工对八月v1的3.1→4.1→5.1/5.2另核关键推理，不能迁为十月v2证明核对。"
+        },
+        {
+          "subquestion": "真实形式化与本轮复跑层级",
+          "value": "no_evidence_in_scope",
+          "note": "formal-conjectures两个实际关键词入口无命中；广义GitHub/web入口命中的是Markdown反例、第三方有限回放报告及条件预印本。未取得本卡一般p或无条件p=2的Lean证明，未构建占位、未进行形式化复跑。该结论严格限22条实际记录的入口和访问层级。"
+        },
+        {
+          "subquestion": "人话释义与域内边界：K₄、C₄、C₅及空连接集",
+          "value": "partial",
+          "note": "直接数学核对，无程序枚举：K₄=Cay(F₂²,F₂²\\{0})是立方型且含三角形，不能为任何超立方体子图，故人话中的等同说法错误；K₄自身是core且仍立方型，所以不是正式主命题反例。C₄的core为K₂，说明目标维数可减；C₅=Cay(F₅,{±1})自身为core，说明当前域含奇p；空连接集的core为K₁，对应m=0。core须是内部最小同态等价子图/retract，而非任意外部着色目标。细节见q010_direct_math_checks.md。不从这些边界推一般猜想，也不标形式化验证。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "none_found",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://www.openproblemgarden.org/op/cores_of_cayley_graphs"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "有部分进展",
+      "scope_note": "当前正式命题及验收是对每个素数p、有限简单无向Cay((Zp)^k,S)，问core是否仍同构于某个Cay((Zp)^m,T)，不是仅p=2。2018的core≤32结论仅p2且限制核心阶数；2025对全prime只有δ<κ(p)或δ≥p^k−κ(p)的极端度数结果（κ2=5、κ3=12、其余2）；2026 Wang已读八月v1需强normal阿贝尔表示及两类条件之一，十月v2更强声明仅取得原站摘要、未读正文。未找到覆盖全部范围的完整证明或反例。公开AI的Z4→K2、Z15→C5只否定固定复合底群M宽题，不反驳本卡。原题可追溯2006母题及OPG2008素数澄清；人话“cubelike=超立方体子图”与2018引用号错误单独修正，不据此判主数学命题为假。保留原card_rev，若修改正式定义/量词/验收另换版本。",
+      "evidence_ids": [
+        "R10-Q010-E-OPG",
+        "R10-Q010-E-ORIGIN2006",
+        "Q010-A02",
+        "Q010-A03",
+        "QX-P-000855-code-e1",
+        "QX-P-000855-code-e4",
+        "R10-Q010-E-WANG-KEYCHECK"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "原始任意底群母题与当前素数版本",
+      "math_status": "仅特例",
+      "scope_note": "任意固定阿贝尔M的母题已有复合阶反例（如Z15、Z4）；本轮独立核对构造，但当前卡M=Zp且p素数，不能以复合阶例关闭本题。原始较广问题至少可追溯2006预印本Q3，OPG2008评论明确prime意图。",
+      "evidence_ids": [
+        "R10-Q010-E-OPG",
+        "R10-Q010-E-ORIGIN2006",
+        "R10-Q010-E-SCOPE-CHECK"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "p=2的小核心阶数分类",
+      "math_status": "仅特例",
+      "scope_note": "2018 v1 Thm8.1/8.2分别是core≤16分类与core≤32必cubelike，host可以很大；本轮只读陈述/局部论证，未独立复跑Magma筛选。",
+      "evidence_ids": [
+        "Q010-A02"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "各素数的极端度数特例",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "2025 Thm1.3在δ<κ(p)或δ≥p^d−κ(p)下给由线性子空间诱导的完整core；p≥5分支实为无边/完全图，不能推广到任意δ。",
+      "evidence_ids": [
+        "Q010-A03"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "完全核心与p-ary核心的区别",
+      "math_status": "仅特例",
+      "scope_note": "Example1.5展示非完全core，但这些core仍为p-ary Cayley；不是当前主问题反例。",
+      "evidence_ids": [
+        "Q010-A04"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "人话版cubelike定义纠错",
+      "math_status": "题面有误",
+      "scope_note": "仅人话注释“cubelike即超立方体子图类”有误；K4反例已独立核。正式全素数命题不因这一注释错误被推翻。",
+      "evidence_ids": [
+        "Q010-A06"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "公开AI的固定复合底群反例与本卡素数域边界",
+      "math_status": "完整反例声明",
+      "scope_note": "所指反例仅针对旧来源中固定任意阿贝尔底群M的问法：AI仓库Z4→K2及Argus Z15→C5均不在本卡p为素数的域内。小例/退缩可手工核对，不支持把本卡改成原题已反驳；也不是新发现2008历史构造。",
+      "evidence_ids": [
+        "QX-P-000855-code-e1",
+        "QX-P-000855-code-e2"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "math_status": "claimed_counterexample"
+      }
+    },
+    {
+      "subquestion": "p=2的强normal阿贝尔表示条件性AI预印本",
+      "math_status": "条件性结果",
+      "scope_note": "8月v1全文已取得，仅核关键步骤；10月v2.0原站摘要取得、PDF403，较强声明仍须完整证明复核。两版都要求核已有强normal阿贝尔Cayley表示（v1另加两类rigidity条件之一），不能据阿贝尔性删除normal，更不能外推至任意素数p。 根和另一分工对八月v1的3.1→4.1→5.1/5.2另核关键推理，不能迁为十月v2证明核对。",
+      "evidence_ids": [
+        "QX-P-000855-code-e3",
+        "QX-P-000855-code-e4",
+        "R10-Q010-E-WANG-KEYCHECK"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "真实形式化与本轮复跑层级",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "formal-conjectures两个实际关键词入口无命中；广义GitHub/web入口命中的是Markdown反例、第三方有限回放报告及条件预印本。未取得本卡一般p或无条件p=2的Lean证明，未构建占位、未进行形式化复跑。该结论严格限22条实际记录的入口和访问层级。",
+      "evidence_ids": [
+        "QX-P-000855-code-e1",
+        "QX-P-000855-code-e2",
+        "QX-P-000855-code-e3",
+        "QX-P-000855-code-e4"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "人话释义与域内边界：K₄、C₄、C₅及空连接集",
+      "math_status": "仅特例",
+      "scope_note": "直接数学核对，无程序枚举：K₄=Cay(F₂²,F₂²\\{0})是立方型且含三角形，不能为任何超立方体子图，故人话中的等同说法错误；K₄自身是core且仍立方型，所以不是正式主命题反例。C₄的core为K₂，说明目标维数可减；C₅=Cay(F₅,{±1})自身为core，说明当前域含奇p；空连接集的core为K₁，对应m=0。core须是内部最小同态等价子图/retract，而非任意外部着色目标。细节见q010_direct_math_checks.md。不从这些边界推一般猜想，也不标形式化验证。",
+      "evidence_ids": [
+        "R10-Q010-E-SCOPE-CHECK",
+        "Q010-A06"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "R10-Q010-root-01",
+      "route": "原题与出处",
+      "site": "OPG原站",
+      "query": "OPEN https://www.openproblemgarden.org/op/cores_of_cayley_graphs",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "读题文与3条可见评论；2007-03-06主体是任意阿贝尔M的幂，2008-02-22 Royle指出Z15反例，2008-03-01 Šámal澄清主要考虑M=Zp（p素数）。当前卡素数范围有支持，但引号句不是主体逐字原文。原页缓存上月，不当最新解决证据。",
+      "url": "https://www.openproblemgarden.org/op/cores_of_cayley_graphs",
+      "locator": "〔原始工具引用已私有留存〕；题文及Royle/Šámal评论",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-02",
+      "route": "原题与出处",
+      "site": "WebSearch system1",
+      "query": "\"cores of Cayley graphs\" \"prime\" \"Šámal\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际与近期cubelike检索同批；返回OPG目录、MPRR正式页/作者会议摘要等。只对实际另开的原文登记已阅。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-03",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"cubelike core\" conjecture solved 2026 ; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批命中2025 Rao–Tan和2026-08-30 Zenodo22172745条件性结构声明；原站核对另列，不据摘要称完整解决。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-04",
+      "route": "原题与出处",
+      "site": "OPG修订目录",
+      "query": "CLICK OPG link7 → https://www.openproblemgarden.org/node/125/revisions",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "取得修订目录；历史具体版本是否可读由后续请求分开登记。",
+      "url": "https://www.openproblemgarden.org/node/125/revisions",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-05",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "OPEN https://arxiv.org/abs/1808.02051",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "作者题名、27页、唯一v1=2018-08-06、≤32核心与≥128宿主/≥64核心的摘要声明。",
+      "url": "https://arxiv.org/abs/1808.02051",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-06",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "OPEN https://arxiv.org/pdf/1808.02051",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读v1 pp1–4定义、Conj1.1和核心/宿主量词；它的主问题是p=2。没有在本入口通审全部27页证明或复跑枚举。",
+      "url": "https://arxiv.org/pdf/1808.02051",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-07",
+      "route": "原题与出处",
+      "site": "OPG修订目录",
+      "query": "OPEN 〔原始工具引用已私有留存〕 〔私有记录编号：PR-003548〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "复读目录明示current revision为2018-11-06 18:48；不能把2007首次发布日期当当前正文修订日。目录列旧版，但下面两次具体旧版404。",
+      "url": "https://www.openproblemgarden.org/node/125/revisions",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-08",
+      "route": "学术",
+      "site": "arXiv错号排除",
+      "query": "OPEN https://arxiv.org/abs/1808.07802",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "原站题名为Bothmann–Del Debbio的parton shower神经网络重加权物理论文，v1=2018-08-23、v2=2018-10-08；不是MPRR图核论文。根仅读摘要元数据，学术分工另读PDF题名。",
+      "url": "https://arxiv.org/abs/1808.07802",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-09",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "OPEN https://arxiv.org/pdf/2501.18297v1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "显式v1 URL本次DisabledError；后续无后缀URL成功，不覆盖此次失败。",
+      "url": "https://arxiv.org/pdf/2501.18297v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-10",
+      "route": "原题与出处",
+      "site": "OPG旧版",
+      "query": "CLICK revision link9 → https://www.openproblemgarden.org/node/125/revisions/873/view",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "目录标2007-05-04的旧版具体请求404，未读历史正文。",
+      "url": "https://www.openproblemgarden.org/node/125/revisions/873/view",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-11",
+      "route": "原题与出处",
+      "site": "OPG旧版",
+      "query": "CLICK revision link41 → https://www.openproblemgarden.org/node/125/revisions/126/view",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "目录标2007-03-20的旧版具体请求404，未读历史正文。",
+      "url": "https://www.openproblemgarden.org/node/125/revisions/126/view",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-12",
+      "route": "学术",
+      "site": "arXiv主定理独立核对",
+      "query": "OPEN https://arxiv.org/pdf/2501.18297",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得16页，实际读pp1–5（v1 2025-01-30）：Q1.1、Thm1.3/Cor1.4、Example1.5范围及Prop2.1短证明。κ(2)=5,κ(3)=12,κ(p)=2(p≥5)，host度δ<κ或δ≥p^d−κ才保证子空间诱导完全core；不是所有度。≤16/32是核心点数而非任意host点数；原作给给定prime一般问。",
+      "url": "https://arxiv.org/pdf/2501.18297",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-13",
+      "route": "原题与出处",
+      "site": "arXiv参考文献",
+      "query": "FIND 1808.02051 \"On tension\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "核p27参考文献[9]的2008 Nešetřil–Šámal母题与DOI10.1016/j.ejc.2007.11.023；后续独立追溯2006预印本。",
+      "url": "https://arxiv.org/pdf/1808.02051",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-14",
+      "route": "原题与出处",
+      "site": "WebSearch system2",
+      "query": "\"On tension-continuous mappings\" arxiv Samal Nesetril",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际返回arXiv math/0602563与作者所在机构2006/283.pdf；二手镜像仅线索，依据随后原站文件。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-15",
+      "route": "学术",
+      "site": "WebSearch system2",
+      "query": "\"cores of Cayley graphs\" \"Rotheram\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回作者相关研究/目录，未凭此取得Rotheram原学位论文；2025原文的转述另列。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-16",
+      "route": "原题与出处",
+      "site": "2008正式论文DOI",
+      "query": "OPEN https://doi.org/10.1016/j.ejc.2007.11.023",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "note": "403，未取得正式2008排版版本，不把2006预印本说成已读正式版。",
+      "url": "https://doi.org/10.1016/j.ejc.2007.11.023",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-17",
+      "route": "原题与出处",
+      "site": "arXiv原始母题",
+      "query": "OPEN https://arxiv.org/abs/math/0602563",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "提交2006-02-24，唯一v1、31页，作者Nešetřil与Šámal；该元数据独立于机构38页排版。",
+      "url": "https://arxiv.org/abs/math/0602563",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-18",
+      "route": "原题与出处",
+      "site": "arXiv原始母题",
+      "query": "OPEN https://arxiv.org/pdf/math/0602563v1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "显式v1请求DisabledError，未在该请求取全文。",
+      "url": "https://arxiv.org/pdf/math/0602563v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-19",
+      "route": "原题与出处",
+      "site": "作者机构预印本",
+      "query": "OPEN https://iti.mff.cuni.cz/series/2006/283.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得38页机构PDF，读首页与后续定位段；无内嵌精确版本时间，不据路径2006单独确认最早文本日期，也不等同于31页arxiv版。",
+      "url": "https://iti.mff.cuni.cz/series/2006/283.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-20",
+      "route": "原题与出处",
+      "site": "arXiv原始母题",
+      "query": "OPEN https://arxiv.org/pdf/math/0602563",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "成功取得31页PDF，页首明确math/0602563v1、2006-02-24；随后精读§5定义和Question3。",
+      "url": "https://arxiv.org/pdf/math/0602563",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-21",
+      "route": "原题与出处",
+      "site": "作者机构预印本",
+      "query": "FIND institution 2006/283.pdf \"core\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际定位机构版pp28–30的M-graph定义与Question3，问M-graph的core是否M-graph，明确p2情形亦未知；内容主题一致但排版页数不同。",
+      "url": "https://iti.mff.cuni.cz/series/2006/283.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-22",
+      "route": "原题与出处",
+      "site": "作者机构预印本",
+      "query": "FIND institution 2006/283.pdf \"Question 6\"",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "此特定文字在工具提取中没有命中；不意味着全文没有图核问题，正确Question3已另定位。",
+      "url": "https://iti.mff.cuni.cz/series/2006/283.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-23",
+      "route": "原题与出处",
+      "site": "arXiv原始母题",
+      "query": "FIND math/0602563v1 \"Question 3\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "已读p25 Question3(2)：一般M母题及明确M=Z2特例，并核相邻说明。更广M题在复合阶有反例，不当当前prime版反例。",
+      "url": "https://arxiv.org/pdf/math/0602563",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-24",
+      "route": "原题与出处",
+      "site": "arXiv原始母题",
+      "query": "FIND math/0602563v1 \"M-graph\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "已核p23定义M-graph=Cayley on some power of M；p25问题。文章一般背景还允许有向图/环，当前有限简单无向图应明确，不把背景全部迁入卡。",
+      "url": "https://arxiv.org/pdf/math/0602563",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-25",
+      "route": "学术",
+      "site": "arXiv相关学位论文转述",
+      "query": "FIND 2501.18297v1 \"Rotheram\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "读p4作者对Ong/Rotheram工作的转述及p16书目：Rotheram2013硕士论文，p≠3且core自同构群作用primitive条件；根未读该学位论文，不能升级成原始证明已核。",
+      "url": "https://arxiv.org/pdf/2501.18297",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-26",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定源码",
+      "query": "github.fetch_file output.md @96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "根独立取得完整output.md，blob23bdf5f63cd0e2adfbf89e8a38335227fd3602e6。Z4的C4→K2与复合阶阿贝尔M的一般multipartite构造均明确仅反驳固定任意M宽题，文内主动排除cubelike。手算核Z4例正确，但非本卡反例；无形式化复跑。",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/cores_of_cayley_graphs/output.md",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-27",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定源码",
+      "query": "github.fetch_file verdict.json @96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "blob a39c2a7305a6513fb0518a019eb9fe398111d4a3；自报gpt-6-astra、2026-09-16 17:23:12Z、disproved/high标签，caveat限制宽题。模型身份/置信度为源自述，不是数学验证。",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/cores_of_cayley_graphs/verdict.json",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-28",
+      "route": "代码、公开 AI 和社区",
+      "site": "Argus公开结果",
+      "query": "OPEN https://open.argusbot.cn/results/3206",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "根请求530 Unknown Status Code；代码分工另请求成功所见内容另记录，不混称此入口已阅。",
+      "url": "https://open.argusbot.cn/results/3206",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-29",
+      "route": "代码、公开 AI 和社区",
+      "site": "Zenodo原记录",
+      "query": "OPEN https://zenodo.org/records/22172745",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "读2026-08-30 v1.0原landing及文件清单；作者明确只两种rigidity regimes、unrestricted问题不属范围。记录显示有newer version，根未读PDF，全文获取与10月线索由代码分工分开登记。",
+      "url": "https://zenodo.org/records/22172745",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-30",
+      "route": "原题与出处",
+      "site": "本轮独立数学核对",
+      "query": "手工核K4立方型却非超立方体子图；C4核K2；Z15宽题反例",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "note": "K4为Cay(F2²,全部非零)，有三角形而超立方体子图皆二分；这只修人话。C4与K2都为cubelike，维数可由2降到1。Z15取S={1,4,6,9,11,14}、H=3Z15，H诱导环0,6,12,3,9；r(x)=6x mod15在H恒等并保邻，故retract至C5。C5真子图二分，故C5为core。5不为15幂，击破固定复合底群M宽题；不能击破当前prime版。分工另独立手算同例。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-31",
+      "route": "代码、公开 AI 和社区",
+      "site": "本轮独立阅读已下载原稿",
+      "query": "读取q010_zenodo_aug_pdf.txt全部5页并重算对应PDF的MD5/SHA256",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "原稿由代码分工从Zenodo固定v1下载；根另读Def2.2、Thm3.1、Prop4.1、Thm5.1/5.2及AI披露，手工核关键推理。308078字节，MD5=5a699406d07655a80e88d85337b7db78与原站清单一致，SHA256=4dd48006f082f8a8dea4219ebbeaf4747e1d13a4fb6f4e31a878c9ff85557249。没有执行Lean、代码枚举或将8月证明迁为10月新稿证明。",
+      "url": "https://zenodo.org/records/22172745/files/paper.pdf?download=1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q010-root-32",
+      "route": "代码、公开 AI 和社区",
+      "site": "原站API已下载副本范围复核",
+      "query": "读取q010_zenodo_oct_api.json及下载记录",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "根另核原站API已取副本：23445385，v2.0，2026-10-18，共用concept22172744；摘要仅证明已有强normal阿贝尔Cayley表示的core为cubelike，normal明确定义为正则阿贝尔群在全Aut中正规。此处没有取得10月PDF；不靠二手AI模型列表推导其正文声明。",
+      "url": "https://zenodo.org/api/records/23445385",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W1-01",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/abs/1808.07802 〔私有记录编号：PR-003549〕",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "原站摘要/题名/版史：1808.07802是Bothmann–Del Debbio的粒子物理神经网络论文，非MPRR图核论文。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/abs/1808.07802\",\"lineno\":null})",
+      "url": "https://arxiv.org/abs/1808.07802",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W1-02",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/pdf/1808.07802 〔私有记录编号：PR-003550〕",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "PDF首页与目录确认无关题名及v2=2018-10-08；未通读无关论文。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/pdf/1808.07802\",\"lineno\":null})",
+      "url": "https://arxiv.org/pdf/1808.07802",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W1-03",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/abs/2501.18297 〔私有记录编号：PR-003551〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "2501.18297原站摘要与版史：v1=2025-01-30，16页；具体定理后续另读。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/abs/2501.18297\",\"lineno\":null})",
+      "url": "https://arxiv.org/abs/2501.18297",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W1-04",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/pdf/2501.18297 〔私有记录编号：PR-003552〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "2025v1首页至引言pp.1–2已读：无向无环p-ary定义、小core阶数旧结果归属；并非完整主问题证明。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/pdf/2501.18297\",\"lineno\":null})",
+      "url": "https://arxiv.org/pdf/2501.18297",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W1-05",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：cubelike graphs core conjecture 2026 solved counterexample 〔私有记录编号：PR-003553〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索串；同批返回索引合并、未给逐串命中分配，不把某串结果冒算其他串已阅或虚构单串零命中。2026 Zenodo两条线索已转代码分工核原文，本片段仅记索引发现。",
+      "locator": "QX-R3-10-010-ACA-W1；〔原始工具引用已私有留存〕, turn954556380academia6, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W1-06",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：elementary abelian p Cayley graph core 2026 conjecture 〔私有记录编号：PR-003554〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索串；同批返回索引合并、未给逐串命中分配，不把某串结果冒算其他串已阅或虚构单串零命中。2026 Zenodo两条线索已转代码分工核原文，本片段仅记索引发现。",
+      "locator": "QX-R3-10-010-ACA-W1；〔原始工具引用已私有留存〕, turn954556380academia6, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W2-01",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/abs/1808.02051 〔私有记录编号：PR-003555〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "正确MPRR原站元信息，1808.02051；初始返回窗口很短，版史后续find补核。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/abs/1808.02051\",\"lineno\":null})",
+      "url": "https://arxiv.org/abs/1808.02051",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W2-02",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/pdf/1808.02051 〔私有记录编号：PR-003556〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "正确MPRR v1 PDF首页题名作者与摘要开头，后续定位正文另列；未凭PDF可达声称通审。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/pdf/1808.02051\",\"lineno\":null})",
+      "url": "https://arxiv.org/pdf/1808.02051",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W2-03",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Theorem 1.3 〔私有记录编号：PR-003557〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "2025 Theorem1.3/Cor1.4极端度数条件及Example1.5；只读定理与上下文，未核完整分类证明。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 1.3\"})",
+      "url": "https://arxiv.org/pdf/2501.18297",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W2-04",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Theorem 1.2 〔私有记录编号：PR-003558〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "2025p.3 Theorem1.2短推导、κ(p)定义及Theorem1.3；δ是host度，κ=5/12/2。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 1.2\"})",
+      "url": "https://arxiv.org/pdf/2501.18297",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W2-05",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：References 〔私有记录编号：PR-003559〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "References定位首次只返回末页前段，并非完整文献条目；后续open补齐。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"References\"})",
+      "url": "https://arxiv.org/pdf/2501.18297",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W2-06",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"Cores of cubelike graphs\" \"correction\" OR \"erratum\" OR \"withdrawn\" 〔私有记录编号：PR-003560〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索串；同批返回索引合并、未给逐串命中分配，不把某串结果冒算其他串已阅或虚构单串零命中。2026 Zenodo两条线索已转代码分工核原文，本片段仅记索引发现。",
+      "locator": "QX-R3-10-010-ACA-W2；〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, turn558394901academia7, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W2-07",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"cubelike core\" solved OR counterexample 2026 〔私有记录编号：PR-003561〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索串；同批返回索引合并、未给逐串命中分配，不把某串结果冒算其他串已阅或虚构单串零命中。2026 Zenodo两条线索已转代码分工核原文，本片段仅记索引发现。",
+      "locator": "QX-R3-10-010-ACA-W2；〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, turn558394901academia7, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W3-01",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Theorem 8.1 〔私有记录编号：PR-003562〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "MPRR v1 p.20 Thm8.1与p.23 Thm8.2：参数为core顶点数≤16/≤32，host可任意大；不等于新2025分类。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 8.1\"})",
+      "url": "https://arxiv.org/pdf/1808.02051",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W3-02",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Theorem 8.2 〔私有记录编号：PR-003563〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "MPRR Thm8.2及§8.2计算证明说明；未复跑Magma32点筛选，不作为本轮独立计算验证。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 8.2\"})",
+      "url": "https://arxiv.org/pdf/1808.02051",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W3-03",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Conjecture 1.1 〔私有记录编号：PR-003564〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "MPRR p.2 Conj1.1及§3.2、§8.2邻近内容；只属于p=2。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Conjecture 1.1\"})",
+      "url": "https://arxiv.org/pdf/1808.02051",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W3-04",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：False lead 〔私有记录编号：PR-003565〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "MPRR §3.2两条更强思路的反例：core落在子群顶点上、retraction纤维为陪集；不是主猜想反例。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"False lead\"})",
+      "url": "https://arxiv.org/pdf/1808.02051",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W3-05",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003566〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "2025末页References窗口至MPRR作者行，后续551行请求补刊物与历史条目。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":545})",
+      "url": "https://arxiv.org/pdf/2501.18297",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W3-06",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"2501.18297\" correction erratum withdrawn 〔私有记录编号：PR-003567〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索串；同批返回索引合并、未给逐串命中分配，不把某串结果冒算其他串已阅或虚构单串零命中。2026 Zenodo两条线索已转代码分工核原文，本片段仅记索引发现。",
+      "locator": "QX-R3-10-010-ACA-W3；〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W3-07",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"elementary abelian\" \"core\" \"Cayley\" \"2026\" -site:emergentmind.com 〔私有记录编号：PR-003568〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索串；同批返回索引合并、未给逐串命中分配，不把某串结果冒算其他串已阅或虚构单串零命中。2026 Zenodo两条线索已转代码分工核原文，本片段仅记索引发现。",
+      "locator": "QX-R3-10-010-ACA-W3；〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W4-01",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Submission history 〔私有记录编号：PR-003569〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "正确MPRR版史仅v1=2018-08-06；摘要明确core≤32和潜在反例阶数门槛。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Submission history\"})",
+      "url": "https://arxiv.org/abs/1808.02051",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W4-02",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Throughout 〔私有记录编号：PR-003570〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "页内Throughout实际定位MPRR p.6 normal术语脚注、p.7 cubelike定义等上下文；两个normal定义必须分开。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Throughout\"})",
+      "url": "https://arxiv.org/pdf/1808.02051",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W4-03",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：no edges 〔私有记录编号：PR-003571〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "find('no edges')明确无命中；不能据此声称论文已排除无边图。K1边界在本轮笔记中另作简单处理。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"no edges\"})",
+      "url": "https://arxiv.org/pdf/1808.02051",
+      "result_count": 0,
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W4-04",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003572〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "2025 References[6]正式MPRR刊发、[7]Nešetřil–Šámal、[8]Ong、[9]Rotheram；只核引文链，不算阅读这些原文。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":551})",
+      "url": "https://arxiv.org/pdf/2501.18297",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W4-05",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://www.sciencedirect.com/science/article/pii/S0195669820300135 〔私有记录编号：PR-003573〕",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "note": "ScienceDirect原站实际403 Forbidden；正式刊发元信息仅来自此前原站搜索索引及2025参考文献，不能称已读正式全文。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://www.sciencedirect.com/science/article/pii/S0195669820300135\",\"lineno\":null})",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0195669820300135",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-010-ACA-W4-06",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003574〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "2025§3 p≥5证明指出极端度数仅空/完全图；§4 Table4.1及Example1.5解释非完全core边界，不否定p-ary core猜想。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":455})",
+      "url": "https://arxiv.org/pdf/2501.18297",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-001",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "{\"query\":\"cubelike\",\"repository_name\":\"google-deepmind/formal-conjectures\",\"topn\":15}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "实际 results=[]；仅此关键词入口，不断言所有等价形式化均不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-002",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "{\"query\":\"cubelike\",\"topn\":15}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/search",
+      "note": "返回前15项，多为同名游戏/渲染代码；相关教材仅定义 cubelike，没有取得本题证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-003",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "{\"query\":\"\\\"elementary abelian\\\" \\\"core\\\"\",\"repository_name\":\"google-deepmind/formal-conjectures\",\"topn\":15}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "实际 results=[]；未发现可进入静态检查或构建的相应 Lean 证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-004",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"cubelike core conjecture\" Lean",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "四条实际同批入口；命中学术索引、Argus3206、Wang新版二手索引等。这里只登记检索层，后续实际打开另行记录。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-005",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"cubelike core\" github code",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "四条实际同批入口；命中学术索引、Argus3206、Wang新版二手索引等。这里只登记检索层，后续实际打开另行记录。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-006",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"cubelike\" \"core\" \"AI\" proof",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "四条实际同批入口；命中学术索引、Argus3206、Wang新版二手索引等。这里只登记检索层，后续实际打开另行记录。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-007",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"elementary abelian\" \"core\" Cayley proof GitHub",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "四条实际同批入口；命中学术索引、Argus3206、Wang新版二手索引等。这里只登记检索层，后续实际打开另行记录。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-008",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://zenodo.org/records/22172745",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://zenodo.org/records/22172745",
+      "note": "原站landing全文可读，核题名、作者、2026-08-30、摘要和PDF校验值；此时未读正文。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-009",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "{\"query\":\"\\\"cubelike\\\" \\\"core\\\"\",\"topn\":15}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/search",
+      "note": "返回15项，定位 graph-theory-AI 固定版本 prompt、相关图猜想索引及 6/clank-lab 的 cospectrality README。后一项目只在结果摘要引用核心论文，不能当本题证明；仅对下列实际fetch的AI条目登记全文已阅。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-010",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://zenodo.org/records/23445385",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://zenodo.org/records/23445385",
+      "note": "web工具提示不可访问；后以普通urllib读取API成功，不能把两种入口混为同一访问结果。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-011",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://open.argusbot.cn/results/3206",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://open.argusbot.cn/results/3206",
+      "note": "读取完整结果网页及可见构造、范围、复核声明。仅固定复合底群 Z15 反例；页面明确排除prime/cubelike，未下载其PDF、JSON或Python回放。缓存标Crawled 2 months ago；不宣称实时站点状态或本轮复跑。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API fetch",
+      "query": "https://api.github.com/repos/graph-theory-AI/Graph-Theory-LLM-Proofs/contents/attacks_opg/cores_of_cayley_graphs?ref=96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/graph-theory-AI/Graph-Theory-LLM-Proofs/contents/attacks_opg/cores_of_cayley_graphs?ref=96f91048c5282ac2b8bed0b7e8dc454cf38ba636",
+      "note": "固定commit下该题目录列表可读，共meta.json/output.md/prompt.md/usage.json/verdict.json五个文件；仅这一区域无Lean文件，不代表整个仓库不存在形式化。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-013",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\":\"graph-theory-AI/Graph-Theory-LLM-Proofs\",\"path\":\"attacks_opg/cores_of_cayley_graphs/output.md\",\"ref\":\"96f91048c5282ac2b8bed0b7e8dc454cf38ba636\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/cores_of_cayley_graphs/output.md",
+      "note": "全文已阅，实际反例 C4=Cay(Z4,{±1}) 的核K2；目标是任意固定复合底群M的字面问题。正文明确不反驳prime/cubelike版本。本轮手工核对退缩和阶数障碍，未运行程序。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-014",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\":\"graph-theory-AI/Graph-Theory-LLM-Proofs\",\"path\":\"attacks_opg/cores_of_cayley_graphs/verdict.json\",\"ref\":\"96f91048c5282ac2b8bed0b7e8dc454cf38ba636\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/cores_of_cayley_graphs/verdict.json",
+      "note": "完整JSON已阅：标签disproved/high但would_publish=false，caveats明确排除cubelike；模型gpt-6-astra，2026-09-16T17:23:12Z。标签不能移植为本卡数学状态。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-015",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\":\"graph-theory-AI/Graph-Theory-LLM-Proofs\",\"path\":\"attacks_opg/cores_of_cayley_graphs/meta.json\",\"ref\":\"96f91048c5282ac2b8bed0b7e8dc454cf38ba636\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/cores_of_cayley_graphs/meta.json",
+      "note": "完整JSON已阅：prompt的旧OPG范围含任意阿贝尔M，lean字段为null。只是任务元数据，不是形式化证明或已完成Lean核验。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-016",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Integral Cayley graphs and abelian rigidity\" pdf; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中新版二手索引和其他Cayley论文；未据二手索引断言主定理已验证或形式化。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-017",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://zenodo.org/api/records/23445385",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://zenodo.org/api/records/23445385",
+      "note": "web工具提示不可访问，ref 〔原始工具引用已私有留存〕；下列普通urllib同址成功独立记录。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-018",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://doi.org/10.5281/zenodo.23445385",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://doi.org/10.5281/zenodo.23445385",
+      "note": "web工具提示不可访问，ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-019",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web click",
+      "query": "click 〔原始工具引用已私有留存〕 link 5 〔私有记录编号：PR-003575〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://zenodo.org/records/22172745/files/paper.pdf?download=1",
+      "note": "PDF链接实际返回400 Unicode decoding error，非PDF内容不正确；随后普通字节下载成功，另列。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-020",
+      "route": "代码、公开 AI 和社区",
+      "site": "Python urllib GET + pypdf",
+      "query": "GET https://zenodo.org/records/22172745/files/paper.pdf?download=1 ; timeout=20; pypdf extract_text",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://zenodo.org/records/22172745/files/paper.pdf?download=1",
+      "note": "HTTP200，308078字节，5页全文提取并阅读。MD5=5a699406d07655a80e88d85337b7db78与原站一致；SHA256=4dd48006f082f8a8dea4219ebbeaf4747e1d13a4fb6f4e31a878c9ff85557249。核Def2.2、Thm3.1、Prop4.1、Thm5.1/5.2及AI披露；只给p=2附加条件进展。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-021",
+      "route": "代码、公开 AI 和社区",
+      "site": "Python urllib GET",
+      "query": "GET https://zenodo.org/api/records/23445385 ; timeout=20",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://zenodo.org/api/records/23445385",
+      "note": "HTTP200完整API元数据5712字节，版本2.0，出版2026-10-18，原站摘要明确已有normal abelian Cayley representation。该normal是阿贝尔正则群在全自同构群中正规。取得文件清单及PDF MD5，尚未取得PDF。SHA256=9ae0d110bde1e54f3959f60451c6f4f76986aa2ae8ec8169f4801e1ce725a9d2。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000855-code-022",
+      "route": "代码、公开 AI 和社区",
+      "site": "Python urllib GET",
+      "query": "GET https://zenodo.org/api/records/23445385/files/paper.pdf/content ; timeout=25",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://zenodo.org/api/records/23445385/files/paper.pdf/content",
+      "note": "使用已观察API文件链接一次下载，HTTP403 Forbidden；未保存或阅读新版PDF、未核定理编号/全部证明/新版AI披露。遵照收束要求不继续换入口循环尝试。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003576〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 23,
+      "locator": "q010_index_scan_1.log",
+      "note": "实际全简索引筛选。仅共同hypercube、Cayley或群核关键词不构成同题；选择同为初等阿贝尔p群上Cayley结构问题的QX-P-001508进一步读全文。其余索引命中不扩成正式配对。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003577〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 8,
+      "locator": "q010_index_scan_2.log",
+      "note": "补核graph core、同态与收缩关键词；除自卡外未选出更强的同源候选。只读索引不等于其他题正文已排除，也不等于全库无重复。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内任务.jsonl",
+      "query": "Python读取任务.jsonl，检查QX-P-000855与QX-P-001508所在包及min(id)负责人。",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际确认000855在当前包，001508不在；较小编号000855是本对负责人，因此可由本题作关系判断。没有启动001508的新一题查新。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000855.meta.json\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000855.meta.json",
+      "locator": "problems/000/QX-P-000855.meta.json（完整文件，未设置行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；保存q010_dedup_sources/QX-P-000855.meta.json，Git blob SHA=61b531d1455054dfdf7fa5209e75d7b36765b528已以本地原始字节复算。meta/text与task_010.json完全一致。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000855.text.md\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000855.text.md",
+      "locator": "problems/000/QX-P-000855.text.md（完整文件，未设置行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；保存q010_dedup_sources/QX-P-000855.text.md，Git blob SHA=4a1b4f85604de3355b5dd9230f444f5916dd8f21已以本地原始字节复算。meta/text与task_010.json完全一致。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/001/QX-P-001508.meta.json\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001508.meta.json",
+      "locator": "problems/001/QX-P-001508.meta.json（完整文件，未设置行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；保存q010_dedup_sources/QX-P-001508.meta.json，Git blob SHA=401066e7ca1db9518526f0b71160d0836804f3df已以本地原始字节复算。候选card_rev与固定简索引一致，读取仅供配对比较，不作为其外部学术文献已阅。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/001/QX-P-001508.text.md\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001508.text.md",
+      "locator": "problems/001/QX-P-001508.text.md（完整文件，未设置行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；保存q010_dedup_sources/QX-P-001508.text.md，Git blob SHA=672cd3166506665ab7ebf3c9236ce52aa4e13cd9已以本地原始字节复算。候选card_rev与固定简索引一致，读取仅供配对比较，不作为其外部学术文献已阅。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R10-Q010-E-OPG",
+      "url": "https://www.openproblemgarden.org/op/cores_of_cayley_graphs",
+      "locator": "正文；2008-02-22 Royle评论与2008-03-01 Šámal回复；修订目录current 2018-11-06",
+      "version": "发帖2007-03-06；当前修订目录标2018-11-06；本轮2026-11-26读取",
+      "subquestions": [
+        "原始母题与素数版本的范围沿革"
+      ],
+      "role": "原始提出",
+      "publication": "社区帖子",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "claimant": "Robert Šámal；Gordon Royle评论",
+      "note": "当前卡所有prime版本符合作者2008澄清；2007主体实际为任意阿贝尔M。题卡原文摘录应改为带出处的限制后转述，不能伪装逐字引文。Z15反例只否定未限制母题；页中2007/2008“open”不能单独证明2026状态。旧版具体请求404，未核历史逐次diff。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "R10-Q010-E-ORIGIN2006",
+      "url": "https://arxiv.org/pdf/math/0602563",
+      "locator": "v1 §5 p23 M-graph定义、p25 Question3(2)；首屏时间戳；arxiv版史",
+      "version": "math/0602563v1，2006-02-24，31页",
+      "subquestions": [
+        "较早母题出处与p=2特例"
+      ],
+      "role": "原始提出",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Jaroslav Nešetřil；Robert Šámal",
+      "claim_date": "2006-02-24",
+      "note": "实际取得原站全文并定位定义/问题：M-graph是在某M幂上的Cayley图，Q3(2)询问其核是否仍M-graph，明确指出M=Z2也未解决。这是早于OPG2007的原始较广母题及p2特例记录；不把2018稿、正式2008出版或2025论文当绝对首次提出。一般M不等于本卡仅素数域；有向/环背景也需和现代简单无向版区别。2008正式DOI403，未核正式排版；机构38页稿只作同源交叉。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "original",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "R10-Q010-E-SCOPE-CHECK",
+      "url": "https://www.openproblemgarden.org/op/cores_of_cayley_graphs",
+      "locator": "本轮独立代数图论边界核对；q010_direct_math_checks.md另有独立分工记录",
+      "version": "2026-11-26，对应card_rev 45380cac03766d10",
+      "subquestions": [
+        "人话定义修订不构成主猜想反例",
+        "复合底群反例与素数版本的排除"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "K4=Cay(F2²,F2²\\{0})含三角形，任意超立方体子图二分，故人话等同错误；K4本身为core，仍cubelike，不反驳猜想。C4的core K2说明同类p群的维数可变。另取Z15上的S={1,4,6,9,11,14}，H={0,3,6,9,12}；S∩H={6,9}使H诱导C5，r(x)=6x mod15固定H并保邻，故retraction。C5每个真子图二分，而C5非二分，故C5是core；core(G)=C5且5≠15^m。此只反驳固定M=Z15宽题，当前p必须素数，不能以15充p。手工构造和证明由根与另一分工独立核对，未执行大规模核心枚举或Lean。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "R10-Q010-E-WANG-KEYCHECK",
+      "url": "https://zenodo.org/records/22172745/files/paper.pdf?download=1",
+      "locator": "2026-08-30 v1，5页：Def2.2、Thm3.1、Prop4.1、Thm5.1/5.2；根读取已下载原稿提取文本并核PDF哈希",
+      "version": "Zenodo22172745 v1.0；MD5 5a699406d07655a80e88d85337b7db78；SHA256 4dd48006f082f8a8dea4219ebbeaf4747e1d13a4fb6f4e31a878c9ff85557249",
+      "subquestions": [
+        "2026年8月强normal阿贝尔表示下的两种特例"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "Qihang Wang（原稿自述生成式AI协助）",
+      "claim_date": "2026-08-30",
+      "note": "根独立手算关键链：core的retraction r及section j给α=rT_cj，它是自同态所以自同构，c=j(x)+j(y)让α交换xy且移动每点到邻点。强normal指L(G)正规于Aut(X)，由此α=L_sφ，shift恰等价于φ(s)=−s且s+Im(φ−id)⊆S。若S不含非零子群陪集，则每个缺陷像为0，S中元素皆2阶，连通性给G初等阿贝尔2群。若存在一套见证有共同缺陷像D，则S+D=S且D∩S=∅；选各D陪集代表得向更小诱导图的retraction，core性迫D=0。两种假设都不能删除；弱normal即S对共轭不变不足。已核这些具体推理，未提供证明助手复跑、全面文献独创性判断或10月v2证明核对。原稿AI协助与作者待专家验证的披露单独保留。 另一个分工独立阅读同5页并核关键链，确认陪集代表retraction无需群同态截面；α不必是全局对合，且共同D须来自一套完整见证，不能用各D_s的交/并替代。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q010-A01",
+      "url": "https://arxiv.org/abs/1808.07802",
+      "locator": "原站Title/Authors/Submission history；对应PDF首页；refs 〔原始工具引用已私有留存〕/1",
+      "version": "arXiv:1808.07802v2，2018-10-08；v1=2018-08-23；2026-11-26核对",
+      "subquestions": [
+        "题卡2018引文编号纠错"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "已排除：该ID是Enrico Bothmann/Luigi Del Debbio《Reweighting a parton shower using a neural network: the final-state case》，hep-ph，与MPRR无关。只读题名、摘要/目录，不声称通读。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q010-A02",
+      "url": "https://arxiv.org/pdf/1808.02051v1",
+      "locator": "Conj1.1 p.2；Thm8.1 p.20；Thm8.2 p.23；§8.2计算说明。refs 〔原始工具引用已私有留存〕/2/3, 〔原始工具引用已私有留存〕",
+      "version": "arXiv:1808.02051v1，2018-08-06；27页；本轮2026-11-26读取；正式刊发EJC87(2020)103092，DOI10.1016/j.ejc.2020.103092的原站全文403",
+      "subquestions": [
+        "p=2的小核心阶数分类",
+        "正确2018进展出处"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Laura Mančinska; Irene Pivotto; David E. Roberson; Gordon F. Royle",
+      "claim_date": "2018-08-06",
+      "note": "Thm8.1印刷列表为K2,K4,K8,K16,Clebsch及其补图，条件是core≤16；无边K1由本轮边界另补。Thm8.2 core≤32则cubelike，host无大小上限；p=2专属。实际读陈述/局部论证与计算说明，未通审27页或复跑Magma。该分类不是2025新发现。 根代理另读同版前四页定义/Conj1.1及摘要量词，未重复计作枚举或完整证明复核。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q010-A03",
+      "url": "https://arxiv.org/pdf/2501.18297v1",
+      "locator": "p.2 Question1.1与定义；p.3 Thm1.2、κ定义(1.1)、Thm1.3/Cor1.4；p.13 p≥5分支。refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕/3, 〔原始工具引用已私有留存〕",
+      "version": "arXiv:2501.18297v1，2025-01-30；16页；2026-11-26访问原站版史仅见v1",
+      "subquestions": [
+        "各素数的极端度数特例"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Guang Rao; Colin Tan",
+      "claim_date": "2025-01-30",
+      "note": "κ(2)=5,κ(3)=12,κ(p)=2(p≥5)。对任意d≥0、无向无环X=Cay(F_p^d,S)，若δ(X)<κ(p)或δ(X)≥p^d−κ(p)，存在Fp线性子空间诱导完整core。是host度限制，不是所有度。由κ=2，本轮直接核奇p下S中s与−s成不同的配对，故δ为偶数；δ<2⇒δ=0，δ≥p^d−2⇒δ=p^d−1，只剩无边图/完全图（原文p.13亦指出）。p=3范围非平凡。Thm1.2度<5短推导基于2018分类；本轮未通审§3表格和组合证明。 根代理另读同版pp1–5主定理、κ、例1.5及Prop2.1短证明；也直接核奇素数偶度推论，未通审后续分类表格。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q010-A04",
+      "url": "https://arxiv.org/pdf/2501.18297v1",
+      "locator": "Example1.5 p.4；§4 Table4.1与说明pp.13–14。refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "version": "arXiv:2501.18297v1，2025-01-30",
+      "subquestions": [
+        "完全核心与p-ary核心的区别"
+      ],
+      "role": "反例",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Guang Rao; Colin Tan",
+      "claim_date": "2025-01-30",
+      "note": "边界例仅反驳更强的“核总完全”：p=2为5-regular Clebsch及补图，p≥5为C_p及补图，均自身是非完全core但仍为p-ary Cayley。不得据counterexample一词将本卡主命题标反驳。p=3的27点例也只作此边界，未独立重算其色数/核心。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q010-A05",
+      "url": "https://arxiv.org/pdf/1808.02051v1",
+      "locator": "§3.2 pp.8–10，两条False lead；p.6 normal术语脚注。refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "version": "arXiv:1808.02051v1，2018-08-06",
+      "subquestions": [
+        "更强嵌入与陪集纤维性质",
+        "normal Cayley术语"
+      ],
+      "role": "反例",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "MPRR给出core不能总落在原群的子群顶点上、retraction纤维不能总为固定子群陪集的反例；并非cubelike-core反例。其normal通常指连接集共轭不变，脚注明说另有“regular群在Aut图中正规”用法。核2026正常阿贝尔表示假设须查原稿定义，不能混用消去假设。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q010-A06",
+      "url": "urn:qunxing:private-material",
+      "locator": "本轮独立小例与边界核对",
+      "version": "2026-11-26，固定卡rev45380cac03766d10",
+      "subquestions": [
+        "人话版cubelike定义纠错",
+        "群的秩与无边边界"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "K4=Cay(F2²,F2²\\{0})含三角形，而所有超立方体子图二分，直接否定人话版“即超立方体子图类”。C4=Cay(F2²,{e1,e2})的core=K2=Cay(F2,{1})，说明保持的是同一素数的群族而非原群同构类型/相同秩。S=∅时core=K1，应允许目标m=0。仅这些简单数学核对独立完成，不称主命题已证。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000855-code-e1",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/cores_of_cayley_graphs/output.md",
+      "locator": "output.md反例及末段范围说明；同目录verdict.json、meta.json",
+      "version": "commit 96f91048c5282ac2b8bed0b7e8dc454cf38ba636；声明2026-09-16T17:23:12Z",
+      "subquestions": [
+        "公开AI的固定复合底群反例与本卡素数域边界"
+      ],
+      "role": "反例",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "claimant": "graph-theory-AI/Graph-Theory-LLM-Proofs；记录模型gpt-6-astra",
+      "claim_date": "2026-09-16",
+      "note": "M=Z4时C4退缩到K2，且2不等于4的非负整数次幂；手工核对奇偶映射及边嵌入即可。正文还给一般复合阶有限阿贝尔M的极大子群/完全多部图论证，明确排除prime/cubelike版本。verdict=disproved并非本卡已反驳；would_publish=false。meta的lean=null，固定目录仅Markdown/JSON；本轮没有Lean构建或Python回放。 根代理独立取固定commit的output/verdict全文并核复合阶范围；这是独立数学小例核对，不是独立代码复跑。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000855-code-e2",
+      "url": "https://open.argusbot.cn/results/3206",
+      "locator": "页面01 Claim scope、03 Retraction、04 Core property、06 Independent review",
+      "version": "结果3206；网页标©2026；本轮2026-11-26可读缓存，未见固定提交号",
+      "subquestions": [
+        "公开AI的固定复合底群反例与本卡素数域边界"
+      ],
+      "role": "反例",
+      "publication": "项目报告",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "Argus AI Team",
+      "note": "Cay(Z15,{1,4,6,9,11,14})退缩到C5；π(x)=x mod5、σ(i)=6i，5不等于15^m。手工核对映射范围和素数域不匹配；页面自称重建2008已知例并报告第三方有限回放，未把它当新原创。下载附件/验证脚本本轮未取得、未运行，网页的3125映射穷举不是本轮计算，更非Lean核验。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000855-code-e3",
+      "url": "https://zenodo.org/records/22172745/files/paper.pdf?download=1",
+      "locator": "p2 Definition2.2、Theorem3.1；p3 Proposition4.1、Theorem5.1；p4 Theorem5.2、Remark5.3、AI披露",
+      "version": "Zenodo22172745 v1，2026-08-30；PDF MD5 5a699406d07655a80e88d85337b7db78",
+      "subquestions": [
+        "p=2的强normal阿贝尔表示条件性AI预印本"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "Qihang Wang；正文披露OpenAI GPT-5.6 Sol与Anthropic Claude Fable5协助",
+      "claim_date": "2026-08-30",
+      "note": "全文5页已读。normal特指正则平移群正规于Aut(X)，并非S共轭不变。Thm3.1给每条边的反向shift必要条件；在已有连通normal abelian Cayley表示下，Thm5.1再要求S不含非零子群的陪集；Thm5.2再要求存在一整套φ_s的共同defect image。二者推出cubelike，但不覆盖unrestricted p=2，更不覆盖所有素数p。作者披露生成式AI参与并请求专家进一步验证；这不是形式化证明。该v1仅作本轮取得的历史版本，10月v2有更强摘要声明另列，不能把v1当最新边界。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000855-code-e4",
+      "url": "https://zenodo.org/api/records/23445385",
+      "locator": "metadata.description、publication_date、version；files中paper.pdf项",
+      "version": "Zenodo23445385 v2.0，2026-10-18；API revision4；PDF预期MD5 11a8e4f800ccbc54742b08ff18771410",
+      "subquestions": [
+        "p=2的强normal阿贝尔表示条件性AI预印本"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "未检到形式化",
+      "claimant": "Qihang Wang",
+      "claim_date": "2026-10-18",
+      "note": "已读原站API摘要与版本元数据，未读PDF（固定文件链接403）。摘要声称：若cubelike图的核已有一个在全Aut(X)中正规的阿贝尔正则自同构群，则该核cubelike。此强normal假设不能用阿贝尔性自动取消；也不能从被超立方体覆盖推出是cubelike图的核。题卡域是所有素数p，该声明只处理p=2的附加假设情形。新版完整证明、定理号和AI披露未核；未沿用二手索引的形式化或验收标签。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001508",
+      "other_card_rev": "82f63a761dcb795f",
+      "relation": "仅相似",
+      "reason": "本题问任意素数p、任意维数k的简单无向Cayley图在取图core后是否仍同构于某个初等阿贝尔p群上的Cayley图；候选问初等阿贝尔p群的DCI性质，尤其秩6/7及最大秩，即同一群上两个Cayley有向图同构能否由群自同构对应连接集。图同态最小core与Cayley有向图的同构判定是不同验收对象；候选不要求取core，本题不要求每个图同构提升为群自同构。仅有群类与Cayley图背景相同，不合并。",
+      "positions": {
+        "self": "commit 73290369a8dcc632e25e555aec525565ea6e08f8：problems/000/QX-P-000855.text.md全文，「题面」「形式化表述」「人话版」「原文摘录」；meta.json全文，acceptance.criteria与card_rev=45380cac03766d10。",
+        "other": "commit 73290369a8dcc632e25e555aec525565ea6e08f8：problems/001/QX-P-001508.text.md全文，「题面」「形式化表述」「人话版」「原文摘录」；meta.json全文，acceptance.criteria与card_rev=82f63a761dcb795f。"
+      },
+      "note": "pair_id=QX-P-000855__QX-P-001508；owner=QX-P-000855（当前包）。双方固定版本完整meta/text已取得，card_rev与任务/简索引相符，四文件Git blob SHA均以本地字节重新核准。未核验候选历史进展或修改候选。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "proposer / first_published / sources / 原题沿革",
+      "new": "补Nešetřil–Šámal math/0602563v1（2006-02-24）§5 Q3为较早母题及p=2明确特例；保留OPG2007直接来源，并记2008-03-01 Šámal对M=Zp的澄清。",
+      "reason": "原始预印本早于OPG和2018命名；一般M题与素数限制版本要分别注明，避免只归功2025新提或无根据宣称绝对首次。",
+      "evidence_ids": [
+        "R10-Q010-E-ORIGIN2006",
+        "R10-Q010-E-OPG"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "原文摘录 / 命题对应核对",
+      "old": "将For a prime p...标为OPG逐字原文，旧核对称无差异。",
+      "new": "改为注明“据OPG作者2008-03-01回复限制到M=Zp的转述”；另准确说明OPG主体为更宽M并有复合阶反例。当前所有素数p的正式题面可保留。",
+      "reason": "忠实区分原文引语和合理限制后的重述；不是以宽题反例关闭当前素数版。旧PASS不能替代本次来源核对。",
+      "evidence_ids": [
+        "R10-Q010-E-OPG"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "title / 人话版",
+      "new": "标题宜反映所有素数p的初等阿贝尔群核心问题，p=2另标立方型特例；人话改为核心仍是同一类(Zp)^m的Cayley图、允许m变化，并删除“即超立方体的子图类”。",
+      "reason": "K4立方型且有三角形；C4核K2展示维数改变。只修说明/标题不会把正式所有prime问题缩为p2；若维护者实际改正式参数域或验收，须新card_rev。",
+      "evidence_ids": [
+        "R10-Q010-E-SCOPE-CHECK"
+      ],
+      "small_case_check": "K4=Cay(F2²,{01,10,11})；C4=Cay(F2²,{01,10})，按二分部退缩到一条边K2。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "已知进展 / difficulty.note中的2018 arXiv编号",
+      "old": "MPRR2018 arXiv:1808.07802",
+      "new": "MPRR《Cores of Cubelike Graphs》，arXiv:1808.02051v1 (2018-08-06)；正式EJC87(2020)103092，DOI10.1016/j.ejc.2020.103092。",
+      "reason": "1808.07802原站属于无关粒子物理论文，必须纠正引用。",
+      "evidence_ids": [
+        "Q010-A01",
+        "Q010-A02"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "已知结果与进展 / difficulty.note",
+      "old": "2025证明度<5全部完全core、≤16点分类；2026续作",
+      "new": "2018：p=2、core≤16分类，core≤32必cubelike；2025：κ(2)=5、κ(3)=12、κ(p)=2(p≥5)，host度δ<κ或δ≥p^d−κ时core完全且可由Fp子空间诱导。2026续作须分别注明原文与附加条件。",
+      "reason": "纠正归属、core/host大小、素数及度数范围；避免摘要含糊语句或邻近反例导致主问题状态错误。",
+      "evidence_ids": [
+        "Q010-A02",
+        "Q010-A03",
+        "Q010-A04"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版：立方型与群结构",
+      "old": "立方型图，即超立方体的子图类；同一个群(Z_p)^m",
+      "new": "cubelike指初等阿贝尔2群上的Cayley图；超立方体是其中的特例。主问题问core是否仍有同一素数p的初等阿贝尔Cayley表示，目标秩m可不同。",
+      "reason": "cubelike可含三角形，不能定义成超立方体子图；压核可以降秩。",
+      "evidence_ids": [
+        "Q010-A06"
+      ],
+      "small_case_check": "K4=Cay(F2²,F2²\\{0})含三角形，非任何超立方体子图；C4的core为K2，秩从2降为1。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述 / 边界与约定",
+      "new": "使用有限无向简单Cayley图：S⊆F_p^k\\{0}且S=−S；目标m允许0。不强制S生成全群，非连通情形可约到连接集张成子群上的同构分量。",
+      "reason": "2025原文明确逆闭及不含0；无边图core=K1须允许平凡群。生成集与一般连接集应区分。 如把这些条件写入或改动正式定义、参数域、量词或验收，按包规须新card_rev并重核受影响路线；本回执不直接改卡，仍绑定45380cac03766d10。若仅澄清人话则与正式修改分别处理。",
+      "evidence_ids": [
+        "Q010-A03",
+        "Q010-A06"
+      ],
+      "small_case_check": "S=∅的任意非空Cayley图core=K1=Cay(F_p^0,∅)；C4例验证目标秩不必等于原秩。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "公开AI/社区进展的范围说明",
+      "new": "记录固定复合底群M的反例与本卡素数p问法的区分：Z4→K2、Z15→C5均非本卡反例。AI verdict的disproved只针对相应旧字面范围。",
+      "reason": "已读AI固定稿及项目页面均自行限定范围。补来源边界不改变本卡量词、接受对象或card_rev。",
+      "evidence_ids": [
+        "QX-P-000855-code-e1",
+        "QX-P-000855-code-e2"
+      ],
+      "small_case_check": "C4奇偶退缩K2且2≠4^m；Z15模5退缩C5且5≠15^m，两个底群均非Zp。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "p=2附加条件进展及验证层级",
+      "new": "可补Wang2026-08-30 v1已读全文和2026-10-18 v2.0原站摘要声明。明确normal指正则阿贝尔群正规于全自同构群；v2全文尚待核。AI协助、专家复核和形式化验证分别记录，不写无条件主问题已证。",
+      "reason": "v1已有具体附加条件定理，v2摘要更强但PDF403；这一栏只补带条件进展与访问层级，不修数学题面，原则上不换card_rev。",
+      "evidence_ids": [
+        "QX-P-000855-code-e3",
+        "QX-P-000855-code-e4"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版／立方型图释义",
+      "old": "p=2时就是所谓「立方型图」，即超立方体的子图类。",
+      "new": "p=2时称为立方型图（cubelike graph）：它是在初等阿贝尔2群(F₂)^k上的Cayley图，连接集可为任意不含0的子集。标准超立方体只是连接集取一组基时的特例；一般立方型图不要求是超立方体的子图。",
+      "reason": "K₄是立方型图并含三角形，任何超立方体及其子图都二分，故旧释义错误。错误局限于人话释义：正式题面仍以Cayley((Z_p)^k,S)定义，K₄自身也是core且仍立方型，不反驳正式猜想。依包规§2.3仅修正人话无需因本项新card_rev。",
+      "small_case_check": "在F₂²取S={(1,0),(0,1),(1,1)}，任意不同顶点的差均在S，图就是K₄。0,(1,0),(0,1)构成三角形。Q_d以向量坐标和模2二染色，任一边改变奇偶，故其任意子图无奇圈。K₄任何到自身的同态都须在相邻点上取不同值，因全图完全而为置换，故core(K₄)=K₄。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版／core与“同一个群”的解释",
+      "old": "核是最小同态像；是否仍然是同一个群(Z_p)^m上的Cayley图。",
+      "new": "core(G)指与G同态等价的最少顶点诱导子图，等价地有限图中的最小retract；它不是任意外部同态目标，也不要求图同态保持顶点的群运算。问题要求core同构于同一类初等阿贝尔p群上的Cayley图，维数m可以不同于k。",
+      "reason": "现有人话已有“G的一个最小子图”，其含义可保留并说清。不能把最小外部着色目标、群商、群同态像或原群不变与图core混同。此项只澄清既有core定义，不修改正式验收。",
+      "small_case_check": "Q₂=C₄=Cay(F₂²,{(1,0),(0,1)})通过奇偶映射到K₂，且K₂嵌入一条边，故core为K₂=Cay(F₂,{1})，k=2而m=1。C₅可3着色到外部K₃但core仍为C₅，说明外部最小同态目标不能代替core。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "题名旁范围说明／人话版首段",
+      "old": "中文题名突出p=2立方型图，正文与acceptance量化所有素数p。",
+      "new": "明确当前主问题覆盖每个素数p；p=2是经典立方型特例。对p=2的证明或计算只登记在对应子问，不据此关闭所有素数p的主问题。",
+      "reason": "当前正式正文、原文摘录和acceptance均保留prime参数，不能因题名或主要文献集中于p=2而自动缩题。本建议仅说明范围；若实际把正式主问题/验收改成仅p=2，则属于新版本，不能沿用当前card_rev。",
+      "small_case_check": "Cay(F₅,{±1})=C₅是当前p=5域内实例；它不属于p=2输入域。K₄与C₄边界只检查p=2。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定／简单无向图及连接集",
+      "old": "core定义、小阶计算建议；未在边界段明列S、T的简单无向条件；人话称S为生成集。",
+      "new": "在边界说明采用有限简单无向图：S⊆(F_p)^k\\{0}且S=−S，邻接为y−x∈S；目标连接集T亦同。p=2时逆封闭自动。使用“连接集”，不强制S生成整个群；若S不生成，分量是其张成子空间上的同构Cayley图。允许m=0，以容纳K₁；并区分空连接集与空图。",
+      "reason": "这些说明用于固定既有通常Cayley图/core口径，不把省略惯例直接记为已发现正式P0。若实际更换成有向图、允许自环、强制m>0或改动正式参数域，须另核原出处并按新版本处理。当前不直接改卡。 若将S=−S、0∉S、k/m≥0或是否要求S生成写入或改动正式定义、量词或验收，按包规§2.2须生成新card_rev并重核受影响路线；本回执仍绑定45380cac03766d10。仅人话说明与正式修订必须分别记录。",
+      "small_case_check": "S=∅给p^k个孤立顶点，core为K₁=Cay(F_p^0,∅)；k=0时群仍有一个元素，图并非零顶点空图。奇p下0∉S排除自环，S=−S保证边无向。若S不张成全空间，各陪集分量同构，可同态压到一个分量。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "正式prime量词与acceptance.criteria",
+      "old": "每个素数p，Cay((Z_p)^k,S)的core仍为某个Cay((Z_p)^m,T)。",
+      "new": "保留此素数限定的一般主问题及验收；不把域外M=Z₁₅的历史反例或K₄的人话反例写成现卡反例。",
+      "reason": "直接核准的Z₁₅构造只否定固定M=Z₁₅的更宽“任意M的幂”命题，15不是素数。当前prime限定及p=2特例必须与历史宽题分开。此项不改变正式命题或版本。",
+      "small_case_check": "X=Cay(Z₁₅,S)，S={1,4,6,9,11,14}；H={0,3,6,9,12}诱导C₅。r(x)=6x mod15在H上恒等，r(S)⊆{6,9}，故为retraction。C₅是core，5不是15^m（m≥0），但X不属于固定prime域的输入。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {
+        "card_action": "no_change"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "OPG旧版873与126均404，正式2008DOI403；2006原站v1正文已取得，但未核2008正式版逐字差异。",
+      "next_step": "保留成功版本与失败入口；若需完整沿革或正式刊页准确编号，获取对应版本再比较，不用当前OPG缓存替代历史正文。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2025正文转述Rotheram2013和Ong2024，不等于已读取这两篇学位论文；根检索未取得它们正文。",
+      "next_step": "在需要引用其精确结论/计算时取原文与版本；当前只按转述层级或其他分工实际取得层级记录。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "正式MPRR ScienceDirect入口403，本轮数学字句读的是2018 arXiv v1；2025稿只核陈述和局部短证明。",
+      "next_step": "保留正式全文不可访问与预印本已阅区别；未通审或复跑2018计算/2025表格前，不升级独立证明复核。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮针对两论文勘误/撤回与2026解决检索未取得完整主问题证明/反例公告；搜不到不等于数学上不存在。",
+      "next_step": "主问题状态结合根原出处和2026分工结果合并；不得把Example1.5或§3.2更强命题的反例用于当前全素数主命题。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "Zenodo23445385 v2.0原站API可读，但一次固定PDF下载403；目前只核摘要/元数据和v1全文。",
+      "next_step": "若需把v2条件性声明升为已核结果，取得420804字节、MD5 11a8e4f800ccbc54742b08ff18771410的固定PDF，核具体定理、normal假设、loop结合律论证及新版AI披露；未核前保留公开声称/未读全文。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "Argus公开页给第三方Python回放说法，附件未下载；实际GitHub关键词检索没有给出本题一般证明的Lean文件。",
+      "next_step": "仅在后续确需复核有限证书或出现真实一般形式化证明时固定附件/commit并核验；现阶段不得把第三方有限回放或AI标签写成本轮独立Lean复跑，亦不据有限关键词无命中断言不存在任何形式化。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "完成两轮全简索引筛选及QX-P-001508一个最相关群结构候选的固定版本全文比较；未遍读全库正文。",
+      "next_step": "保留pair_id与当前较小编号负责人，仅相似不合并。未来有具体新增候选时按固定双方版本再核，不能把本轮筛选写成全库无重复。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "现卡文字同时出现经典p=2题名和全prime正式验收，并有错误人话释义；这些不等于已证明主命题为假。 原分工分类：其他：范围与定义。",
+      "next_step": "合并回执时将人话修正、p=2特例、全prime主问题与域外Z₁₅历史反例分栏；保留当前正式prime量词。若以后更改正式对象/验收再走新card_rev，不以这次释义纠正强制缩题。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "45380cac03766d10",
+      "codes": {}
+    }
+  ]
+}

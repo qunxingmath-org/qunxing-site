@@ -1,0 +1,1903 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000594",
+  "card_rev": "d69b42e7dbc25680",
+  "summary": {
+    "math_status": {
+      "value": "no_evidence_in_scope",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-10"
+      ],
+      "parts": [
+        {
+          "subquestion": "Bunyakovsky/Bateman–Horn条件性推论",
+          "value": "partial",
+          "note": "已独立核对n²−k在每个非平方整数k下满足猜想条件，因此猜想成立时可推无穷素数值；条件代入正确不等于原题已证。"
+        },
+        {
+          "subquestion": "局部障碍与奇偶边界",
+          "value": "partial",
+          "note": "无固定素因子是必要条件检查；p=2可用n=2,q=2。p奇且q奇时n偶；q=2时须另留n²=p+2分支。无局部障碍不保证素数值存在。"
+        },
+        {
+          "subquestion": "相邻问题：正移位的平均素数计数",
+          "value": "partial",
+          "note": "2007平均结果和2026新稿覆盖变化的正移位，均允许例外；非固定p本题的完整结果，也没有在本轮将它们转成负素数移位几乎处处结果。"
+        },
+        {
+          "subquestion": "相邻新稿的量词排除",
+          "value": "claimed_resolution",
+          "note": "2611.16062只核原站摘要，全文请求失败；其公开声明为二变量虚二次域问题，不能作本题全称解答证据。"
+        },
+        {
+          "subquestion": "OEIS有限数据的可核范围",
+          "value": "partial",
+          "note": "A157480给最小素数见证，语义同题；本轮独立核对可读72项（p≤359）全部通过。链接标称10000项表未能访问，不支持把本次OEIS 72项比对的范围写到10^6，更不证明全素数结论。 本轮另外执行的p≤10^6精确筛与独立试除见独立证据R10-Q009-E-COMPUTATION。"
+        },
+        {
+          "subquestion": "代码、公开AI与社区的一般证明筛查",
+          "value": "no_evidence_in_scope",
+          "note": "formal-conjectures按A157480及5008052检索、GitHub全局精确短语检索均无命中，定向web未取得真实一般证明或AI完整解。MO交叉只提供更广问题的历史讨论及条件性推理；本结论限实际入口，非全网无解断言。"
+        },
+        {
+          "subquestion": "本轮有限精确复核：全部素数p≤10^6",
+          "value": "partial",
+          "note": "实际执行Python 3.12.14整数Eratosthenes筛至4,000,000，完整取得p≤1,000,000的78,498个素数；对每个p从n=isqrt(p+1)+1=ceil(sqrt(p+2))起逐整数搜索至n≤2000，q=n²−p≥2且q≤4,000,000。除跳过q<2及n↔−n的重复外，没有奇偶/同余剪枝，每个p找到首个见证即停止。全部78,498个p均有逐p见证，828,310个候选q被检查，无窗口内失败；见证最大n=1146、最大q=416531。单独校验器不导入筛或搜索函数，先朴素试除生成所需小素数，再用完整试除对区间内所有整数重新生成p列表，并对每个q作完整试除；同时检查q≥2、n²−p=q、n≤2000及见证p序列与独立p列表完全相同，PASS。搜索约0.224秒，校验约1.499秒，搜索上限120秒未触发。CSV SHA256=9b4751d10d2895fc1dced80114cf25105e0efcb17a47b1166c272f3a95e31f8b；搜索脚本SHA256=6b4e5182ad4b1c444ceb1b7dab0cd1ec164a8c8f8090baf6ae2383a86bcd9066；校验器SHA256=7293d4e60d35846bf08b10a6a2a21e296fbfc19efea687331786682eee9f503c。此为有限范围正证书，不是一般证明或形式化复跑；未查p>10^6或扩大到10^8。复核历史数值范围的数学内容，不核定原历史计算由谁何时执行。主问题仍需对所有素数p证明或给出某p的全n排除证明。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "none_found",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://math.stackexchange.com/questions/5008052/is-it-known-that-all-primes-can-be-expressed-as-a-square-number-minus-a-prime-nu"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "命题为每个正素数p都存在整数n与正素数q，使p=n²−q，允许p=q。原题MSE可见讨论与较早OEIS同题数据、学术定向查新、代码/AI入口均未给出可核的一般无条件证明或完整反例。Bunyakovsky或BH若成立会推出更强的每个固定非平方参数无穷多见证，条件假设不能省去。2026正移位平均结果及二变量结果量词不同；p≤10^6的78498个素数已由两份不同算法实际有限核验通过，仍不覆盖所有p。本卡反例验收正确要求证明某p对所有n无解，无需照搬上一题的验收修订。来源不可达、有限计算、未检得与形式化状态分别列，未关闭数学问题。",
+      "evidence_ids": [
+        "R10-Q009-E-MSE",
+        "Q009-A01",
+        "Q009-A02",
+        "QX-P-000594-code-e1",
+        "R10-Q009-E-COMPUTATION"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "Bunyakovsky/Bateman–Horn条件性推论",
+      "math_status": "条件性结果",
+      "scope_note": "已独立核对n²−k在每个非平方整数k下满足猜想条件，因此猜想成立时可推无穷素数值；条件代入正确不等于原题已证。",
+      "evidence_ids": [
+        "Q009-A01",
+        "Q009-A02"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "局部障碍与奇偶边界",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "无固定素因子是必要条件检查；p=2可用n=2,q=2。p奇且q奇时n偶；q=2时须另留n²=p+2分支。无局部障碍不保证素数值存在。",
+      "evidence_ids": [
+        "Q009-A02"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "相邻问题：正移位的平均素数计数",
+      "math_status": "实质进展",
+      "scope_note": "2007平均结果和2026新稿覆盖变化的正移位，均允许例外；非固定p本题的完整结果，也没有在本轮将它们转成负素数移位几乎处处结果。",
+      "evidence_ids": [
+        "Q009-A03",
+        "Q009-A04"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "相邻新稿的量词排除",
+      "math_status": "完整声明待核",
+      "scope_note": "2611.16062只核原站摘要，全文请求失败；其公开声明为二变量虚二次域问题，不能作本题全称解答证据。",
+      "evidence_ids": [
+        "Q009-A05"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "OEIS有限数据的可核范围",
+      "math_status": "仅特例",
+      "scope_note": "A157480给最小素数见证，语义同题；本轮独立核对可读72项（p≤359）全部通过。链接标称10000项表未能访问，不支持把本次OEIS 72项比对的范围写到10^6，更不证明全素数结论。 本轮另外执行的p≤10^6精确筛与独立试除见独立证据R10-Q009-E-COMPUTATION。",
+      "evidence_ids": [
+        "QX-P-000594-code-e1",
+        "QX-P-000594-code-e2"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "代码、公开AI与社区的一般证明筛查",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "formal-conjectures按A157480及5008052检索、GitHub全局精确短语检索均无命中，定向web未取得真实一般证明或AI完整解。MO交叉只提供更广问题的历史讨论及条件性推理；本结论限实际入口，非全网无解断言。",
+      "evidence_ids": [
+        "QX-P-000594-code-e1",
+        "QX-P-000594-code-e3"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "本轮有限精确复核：全部素数p≤10^6",
+      "math_status": "仅特例",
+      "scope_note": "实际执行Python 3.12.14整数Eratosthenes筛至4,000,000，完整取得p≤1,000,000的78,498个素数；对每个p从n=isqrt(p+1)+1=ceil(sqrt(p+2))起逐整数搜索至n≤2000，q=n²−p≥2且q≤4,000,000。除跳过q<2及n↔−n的重复外，没有奇偶/同余剪枝，每个p找到首个见证即停止。全部78,498个p均有逐p见证，828,310个候选q被检查，无窗口内失败；见证最大n=1146、最大q=416531。单独校验器不导入筛或搜索函数，先朴素试除生成所需小素数，再用完整试除对区间内所有整数重新生成p列表，并对每个q作完整试除；同时检查q≥2、n²−p=q、n≤2000及见证p序列与独立p列表完全相同，PASS。搜索约0.224秒，校验约1.499秒，搜索上限120秒未触发。CSV SHA256=9b4751d10d2895fc1dced80114cf25105e0efcb17a47b1166c272f3a95e31f8b；搜索脚本SHA256=6b4e5182ad4b1c444ceb1b7dab0cd1ec164a8c8f8090baf6ae2383a86bcd9066；校验器SHA256=7293d4e60d35846bf08b10a6a2a21e296fbfc19efea687331786682eee9f503c。此为有限范围正证书，不是一般证明或形式化复跑；未查p>10^6或扩大到10^8。复核历史数值范围的数学内容，不核定原历史计算由谁何时执行。主问题仍需对所有素数p证明或给出某p的全n排除证明。",
+      "evidence_ids": [
+        "R10-Q009-E-COMPUTATION"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "R10-Q009-root-01",
+      "route": "原题与出处",
+      "site": "MSE Web open",
+      "query": "OPEN https://math.stackexchange.com/questions/5008052/is-it-known-that-all-primes-can-be-expressed-as-a-square-number-minus-a-prime-nu",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取题文、2个可见回答和展示的评论。题文2024-12-06 14:06 rich，编辑12-07；原问题正是∀素数p∃整数n及正素数q，使p=n²−q。页面缓存抓取为两个月前，不视作今天全量API。",
+      "url": "https://math.stackexchange.com/questions/5008052/is-it-known-that-all-primes-can-be-expressed-as-a-square-number-minus-a-prime-nu",
+      "locator": "题文L39–44；Especially Lime回答及Ravi Fernando评论；第二回答与纠正评论",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q009-root-02",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"5008052\" \"square\" prime ; recency=365",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "该次与另一精确词并发检索回传SKU/初等整除等不相关结果，未得到可用于本题的新证明线索；不据此断言不存在进展。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R10-Q009-root-03",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"every prime\" \"square minus a prime\" proof ; recency=365",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "同批返回平方数减1整除24、教辅等误命中，均不是∀p∃n的题目；未作为数学证据。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R10-Q009-root-04",
+      "route": "原题与出处",
+      "site": "StackExchange API via Web",
+      "query": "OPEN https://api.stackexchange.com/2.3/questions/5008052?site=math&filter=withbody",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "工具明确URL不可访问，未取得JSON或分页状态。不能沿用旧卡“answers+comments全量”作本轮结果。",
+      "url": "https://api.stackexchange.com/2.3/questions/5008052?site=math&filter=withbody",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q009-root-05",
+      "route": "原题与出处",
+      "site": "StackExchange API via Web",
+      "query": "OPEN https://api.stackexchange.com/2.3/questions/5008052/answers?site=math&filter=withbody&pagesize=100",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "工具明确URL不可访问，未取得JSON或分页状态。不能沿用旧卡“answers+comments全量”作本轮结果。",
+      "url": "https://api.stackexchange.com/2.3/questions/5008052/answers?site=math&filter=withbody&pagesize=100",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q009-root-06",
+      "route": "原题与出处",
+      "site": "StackExchange API via Web",
+      "query": "OPEN https://api.stackexchange.com/2.3/questions/5008052/comments?site=math&filter=withbody&pagesize=100",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "工具明确URL不可访问，未取得JSON或分页状态。不能沿用旧卡“answers+comments全量”作本轮结果。",
+      "url": "https://api.stackexchange.com/2.3/questions/5008052/comments?site=math&filter=withbody&pagesize=100",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q009-root-07",
+      "route": "原题与出处",
+      "site": "MathOverflow 原帖交叉",
+      "query": "CLICK MSE5008052 link32 → https://mathoverflow.net/questions/167961/natural-numbers-that-cannot-be-expressed-as-a-difference-between-a-square-and-a",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读2014-05-23 A.K.较广自然数问题、Joni Teräväinen条件性回答和平方例外说明；其非平方整数全集比本卡素数域广，不能说给了无条件证明。",
+      "url": "https://mathoverflow.net/questions/167961/natural-numbers-that-cannot-be-expressed-as-a-difference-between-a-square-and-a",
+      "locator": "题文及2014-05-23 Joni Teräväinen回答",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q009-root-08",
+      "route": "原题与出处",
+      "site": "MSE 更强问题交叉",
+      "query": "CLICK MSE5008052 link29 → https://math.stackexchange.com/questions/144334/are-there-infinitely-many-primes-of-the-form-n2-d-for-any-d-not-a-square",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读2012-05-12题文及2012-10-02回答；问每个固定非平方d的无穷多个素数值，强于素数p的至少一次存在。回答列未证猜想及Shanks1960线索，不作为一般解；本轮未点击所列Shanks稿。",
+      "url": "https://math.stackexchange.com/questions/144334/are-there-infinitely-many-primes-of-the-form-n2-d-for-any-d-not-a-square",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q009-root-09",
+      "route": "学术",
+      "site": "arXiv 原论文独立范围复核",
+      "query": "OPEN https://arxiv.org/pdf/2610.41356v1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得59页PDF并实际读pp1–4：Thm1.1/1.2是变化正移位h∈[1,H]的n²+h且容许例外，不能替换成每个固定负移位−p。p2脚注的ChatGPT6Pro数值优化明写unverified；p4 AI statement只报告写作/常规检查协助，非本题AI证明、非形式化。",
+      "url": "https://arxiv.org/pdf/2610.41356v1",
+      "locator": "2026-10-30 v1；Theorems1.1–1.2、p2 footnote1、p4 AI statement",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q009-root-10",
+      "route": "代码、公开 AI 和社区",
+      "site": "OEIS Web click",
+      "query": "CLICK MSE5008052 link27 → https://oeis.org/A157480",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "根入口返回403；代码分工另取得该序列内页，不能把其成功访问迁移为此请求成功。",
+      "url": "https://oeis.org/A157480",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q009-root-11",
+      "route": "代码、公开 AI 和社区",
+      "site": "OEIS Web open",
+      "query": "OPEN https://oeis.org/A157480/internal",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "根入口返回URL不可访问；没有取得此请求的内页文字。分工已取到的不同请求另列。",
+      "url": "https://oeis.org/A157480/internal",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q009-root-12",
+      "route": "学术",
+      "site": "本轮独立数学核对",
+      "query": "手工核f_k(X)=X²−k的Bunyakovsky条件、有限反例的∀n要求、平方域外例与互素≠素数",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "note": "若k不是整数平方则二次多项式在Q上不可约；首项正，gcd(f_k(0),f_k(1))=gcd(−k,1−k)=1，故无固定素因子；对每个模数可在相同剩余类取足够大正n。只得到未证猜想的条件蕴含。k=16时因式分解给无解，但16不在素数域，不能当反例。原帖第二答的互素分拆不是素数证明，例如2·7²−1=97与2·7²+1=99互素而99合数；97本身仍有100−3表示。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W1-01",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"n^2-p\" \"prime\" conjecture 〔私有记录编号：PR-003512〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行本搜索串；同批搜索合并返回索引，工具未提供逐串命中分配，不把其他串命中转为此串全文已阅或虚报单串零命中。具体返回ref目录见q009_academic_requests_audit.json。",
+      "locator": "QX-R3-10-009-ACA-W1；〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W1-02",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"n²-p\" prime 〔私有记录编号：PR-003513〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行本搜索串；同批搜索合并返回索引，工具未提供逐串命中分配，不把其他串命中转为此串全文已阅或虚报单串零命中。具体返回ref目录见q009_academic_requests_audit.json。",
+      "locator": "QX-R3-10-009-ACA-W1；〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W1-03",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"n^2-k\" Bunyakovsky primes 〔私有记录编号：PR-003514〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行本搜索串；同批搜索合并返回索引，工具未提供逐串命中分配，不把其他串命中转为此串全文已阅或虚报单串零命中。具体返回ref目录见q009_academic_requests_audit.json。",
+      "locator": "QX-R3-10-009-ACA-W1；〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W1-04",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"quadratic\" \"prime values\" \"2026\" Bunyakovsky 〔私有记录编号：PR-003515〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行本搜索串；同批搜索合并返回索引，工具未提供逐串命中分配，不把其他串命中转为此串全文已阅或虚报单串零命中。具体返回ref目录见q009_academic_requests_audit.json。",
+      "locator": "QX-R3-10-009-ACA-W1；〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W2-01",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"The Bateman–Horn conjecture: Heuristic, history, and applications\" arxiv 〔私有记录编号：PR-003516〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行本搜索串；同批搜索合并返回索引，工具未提供逐串命中分配，不把其他串命中转为此串全文已阅或虚报单串零命中。具体返回ref目录见q009_academic_requests_audit.json。",
+      "locator": "QX-R3-10-009-ACA-W2；turn943407639academia3, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W2-02",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"almost all\" \"n^2\" \"k\" \"prime\" Baier Zhao 〔私有记录编号：PR-003517〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行本搜索串；同批搜索合并返回索引，工具未提供逐串命中分配，不把其他串命中转为此串全文已阅或虚报单串零命中。具体返回ref目录见q009_academic_requests_audit.json。",
+      "locator": "QX-R3-10-009-ACA-W2；turn943407639academia3, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W2-03",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"prime\" \"square minus a prime\" theorem solved 〔私有记录编号：PR-003518〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行本搜索串；同批搜索合并返回索引，工具未提供逐串命中分配，不把其他串命中转为此串全文已阅或虚报单串零命中。具体返回ref目录见q009_academic_requests_audit.json。",
+      "locator": "QX-R3-10-009-ACA-W2；turn943407639academia3, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W2-04",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://www.maths.cam.ac.uk/research/talk/273343 〔私有记录编号：PR-003519〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "此次open只返回Cambridge导航起始窗口；后续find实际定位讲座内容另记。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://www.maths.cam.ac.uk/research/talk/273343\",\"lineno\":null})",
+      "url": "https://www.maths.cam.ac.uk/research/talk/273343",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W2-05",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/abs/2611.16062 〔私有记录编号：PR-003520〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "已读2611.16062v1原站摘要与版史：二变量、虚二次域范数及线性式同时取素数；未取得正文。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/abs/2611.16062\",\"lineno\":null})",
+      "url": "https://arxiv.org/abs/2611.16062",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W2-06",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://kconrad.math.uconn.edu/math3240s20/handouts/prime-patterns-1.pdf 〔私有记录编号：PR-003521〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "作者讲义pp.1–2列Bunyakovsky必要条件与局部障碍例；不是本题证明。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://kconrad.math.uconn.edu/math3240s20/handouts/prime-patterns-1.pdf\",\"lineno\":null})",
+      "url": "https://kconrad.math.uconn.edu/math3240s20/handouts/prime-patterns-1.pdf",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W3-01",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/abs/1807.08899 〔私有记录编号：PR-003522〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "1807.08899原站摘要、版史、正式刊发信息；v4=2019-04-05。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/abs/1807.08899\",\"lineno\":null})",
+      "url": "https://arxiv.org/abs/1807.08899",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W3-02",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/pdf/1807.08899 〔私有记录编号：PR-003523〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "首次PDF窗口为题名、摘要与目录；具体BH与Bunyakovsky陈述在后续find单列。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/pdf/1807.08899\",\"lineno\":null})",
+      "url": "https://arxiv.org/pdf/1807.08899",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W3-03",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/pdf/math/0605563 〔私有记录编号：PR-003524〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "Baier–Zhao v5首页Theorem：变化的正平方自由k上的n²+k平均结论；不是固定p的n²−p。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/pdf/math/0605563\",\"lineno\":null})",
+      "url": "https://arxiv.org/pdf/math/0605563",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W3-04",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/pdf/2611.16062v1 〔私有记录编号：PR-003525〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "原站PDF请求实际返回DisabledError；不得记作全文已取得，原站摘要另有独立记录。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/pdf/2611.16062v1\",\"lineno\":null})",
+      "url": "https://arxiv.org/pdf/2611.16062v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W3-05",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "检索词／定位词：Baier 〔私有记录编号：PR-003526〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "讲座页主内容与日期可读：2026-11-25，Jori Merikoski；摘要只有一短段，未取得讲稿或完整定理。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Baier\"})",
+      "url": "https://www.maths.cam.ac.uk/research/talk/273343",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W3-06",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"n^2-p\" \"proof\" \"prime\" -site:math.stackexchange.com -site:oeis.org 〔私有记录编号：PR-003527〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行本搜索串；同批搜索合并返回索引，工具未提供逐串命中分配，不把其他串命中转为此串全文已阅或虚报单串零命中。具体返回ref目录见q009_academic_requests_audit.json。",
+      "locator": "QX-R3-10-009-ACA-W3；turn674824982academia7, turn674824982reddit8, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W3-07",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"square minus a prime\" proof conjecture counterexample erratum 〔私有记录编号：PR-003528〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行本搜索串；同批搜索合并返回索引，工具未提供逐串命中分配，不把其他串命中转为此串全文已阅或虚报单串零命中。具体返回ref目录见q009_academic_requests_audit.json。",
+      "locator": "QX-R3-10-009-ACA-W3；turn674824982academia7, turn674824982reddit8, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W4-01",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "检索词／定位词：3.6. 〔私有记录编号：PR-003529〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "BH综述v4 §3.6 p.10公式(3.6.1)–(3.6.3)，核假设、计数变量、乘积常数；不是证明猜想。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"3.6.\"})",
+      "url": "https://arxiv.org/pdf/1807.08899",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W4-02",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "检索词／定位词：Bunyakovsky 〔私有记录编号：PR-003530〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "BH综述v4 §4.1 p.11的Bunyakovsky陈述及无固定素因子条件。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Bunyakovsky\"})",
+      "url": "https://arxiv.org/pdf/1807.08899",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W4-03",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "检索词／定位词：Conjecture 2.3 〔私有记录编号：PR-003531〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "Conrad讲义p.2 Conjecture2.3以及对(i)–(iv)条件说明；原题条件性归约由本轮另作代数核对。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Conjecture 2.3\"})",
+      "url": "https://kconrad.math.uconn.edu/math3240s20/handouts/prime-patterns-1.pdf",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W4-04",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003532〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "定位Baier–Zhao首页无编号Corollary；此次窗口在误差项处截断，例外数后续find补核。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":85})",
+      "url": "https://arxiv.org/pdf/math/0605563",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W4-05",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"Merikoski\" \"Primes represented by quadratic polynomials\" 〔私有记录编号：PR-003533〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行本搜索串；同批搜索合并返回索引，工具未提供逐串命中分配，不把其他串命中转为此串全文已阅或虚报单串零命中。具体返回ref目录见q009_academic_requests_audit.json。",
+      "locator": "QX-R3-10-009-ACA-W4；〔原始工具引用已私有留存〕, turn204539218academia7, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W4-06",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"n^2-p\" primes counterexample OR correction OR erratum OR solved 〔私有记录编号：PR-003534〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行本搜索串；同批搜索合并返回索引，工具未提供逐串命中分配，不把其他串命中转为此串全文已阅或虚报单串零命中。具体返回ref目录见q009_academic_requests_audit.json。",
+      "locator": "QX-R3-10-009-ACA-W4；〔原始工具引用已私有留存〕, turn204539218academia7, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W5-01",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/abs/2610.41356 〔私有记录编号：PR-003535〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "2610.41356v1原站摘要与版史：提交2026-10-30，本轮见仅v1；不以摘要当正文审读。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/abs/2610.41356\",\"lineno\":null})",
+      "url": "https://arxiv.org/abs/2610.41356",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W5-02",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/pdf/2610.41356v1 〔私有记录编号：PR-003536〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "59页v1 PDF可达，实际读pp.1–4：Thm1.1/1.2为正移位h∈[1,H]的几乎所有结论、例外集界、AI脚注及AI statement；未通审分析数论证明。",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/pdf/2610.41356v1\",\"lineno\":null})",
+      "url": "https://arxiv.org/pdf/2610.41356v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W6-01",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"2610.41356\" correction OR erratum OR withdrawn OR retracted 〔私有记录编号：PR-003537〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行本搜索串；同批搜索合并返回索引，工具未提供逐串命中分配，不把其他串命中转为此串全文已阅或虚报单串零命中。具体返回ref目录见q009_academic_requests_audit.json。",
+      "locator": "QX-R3-10-009-ACA-W6；〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W6-02",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"square minus a prime\" \"solved\" OR \"proof\" OR \"counterexample\" 〔私有记录编号：PR-003538〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际执行本搜索串；同批搜索合并返回索引，工具未提供逐串命中分配，不把其他串命中转为此串全文已阅或虚报单串零命中。具体返回ref目录见q009_academic_requests_audit.json。",
+      "locator": "QX-R3-10-009-ACA-W6；〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-009-ACA-W6-03",
+      "route": "学术",
+      "site": "原站/作者PDF",
+      "query": "检索词／定位词：exceptions 〔私有记录编号：PR-003539〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "Baier–Zhao首页Corollary明确例外数O(y(logx)^−C)，随后正文说明为正k的L函数界；未通审13页证明。",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"exceptions\"})",
+      "url": "https://arxiv.org/pdf/math/0605563",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-001",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://oeis.org/A157480",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://oeis.org/A157480",
+      "note": "正文全文可读：定义、72个展示值、n=1..10000表链接、Mathematica/PARI代码、作者和扩充日期。索引变量是素数序号。缓存标Crawled 2 months ago，不宣称当前服务器所有历史内容均取到。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-002",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"A157480\" prime square",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际四词同批检索；返回A157480、MO167961及无关同编号/其他素数平方问题。只对随后独立打开的OEIS和MO登记原文已读，未把相似Lean命题当本题证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-003",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"n^2-p\" \"prime\" \"Lean\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际四词同批检索；返回A157480、MO167961及无关同编号/其他素数平方问题。只对随后独立打开的OEIS和MO登记原文已读，未把相似Lean命题当本题证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-004",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"n²-p\" prime conjecture GitHub",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际四词同批检索；返回A157480、MO167961及无关同编号/其他素数平方问题。只对随后独立打开的OEIS和MO登记原文已读，未把相似Lean命题当本题证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-005",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "site:mathoverflow.net \"prime\" \"n^2-p\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际四词同批检索；返回A157480、MO167961及无关同编号/其他素数平方问题。只对随后独立打开的OEIS和MO登记原文已读，未把相似Lean命题当本题证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-006",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "{\"query\":\"A157480\",\"repository_name\":\"google-deepmind/formal-conjectures\",\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "实际results=[]。分别查formal-conjectures的OEIS编号、MSE题号及全局精确短语；仅代表这些入口无命中，不宣称代码库不存在任何等价形式化。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-007",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "{\"query\":\"5008052\",\"repository_name\":\"google-deepmind/formal-conjectures\",\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "实际results=[]。分别查formal-conjectures的OEIS编号、MSE题号及全局精确短语；仅代表这些入口无命中，不宣称代码库不存在任何等价形式化。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-008",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "{\"query\":\"\\\"square minus a prime\\\"\",\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://github.com/search",
+      "note": "实际results=[]。分别查formal-conjectures的OEIS编号、MSE题号及全局精确短语；仅代表这些入口无命中，不宣称代码库不存在任何等价形式化。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-009",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web click",
+      "query": "click 〔原始工具引用已私有留存〕 link 12 (A157480 b-file) 〔私有记录编号：PR-003540〕",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://oeis.org/A157480/b157480.txt",
+      "note": "实际返回403 Forbidden，未读任何b-file数据；链接文字宣称的1..10000不能记成本轮完整取得/验证。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-010",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web click",
+      "query": "click 〔原始工具引用已私有留存〕 link 9 (history) 〔私有记录编号：PR-003541〕",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://oeis.org/history?seq=A157480",
+      "note": "实际返回403 Forbidden；未取得首版或修改历史，不能据当前作者字段断言绝对最早提出者。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-011",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web click",
+      "query": "click 〔原始工具引用已私有留存〕 link 11 (internal format) 〔私有记录编号：PR-003542〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://oeis.org/A157480/internal",
+      "note": "全文可读，内部版本%I #15 Jan 16 2026 19:06:15；%A为Cino Hilliard, Mar01 2009；%E为Zak Seidov, Mar14 2013。页脚Last modified是站点级信息，不当序列版本。",
+      "locator": "%I、%S/%T/%U、%N、%H、%t、%o、%A、%E",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://mathoverflow.net/questions/167961/natural-numbers-that-cannot-be-expressed-as-a-difference-between-a-square-and-a",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://mathoverflow.net/questions/167961/natural-numbers-that-cannot-be-expressed-as-a-difference-between-a-square-and-a",
+      "note": "读取2014-05-23题文、2个回答及可见评论；题目问所有非平方自然数等更广分类。Joni Teräväinen给Bunyakovsky条件蕴含；Robert Israel链接A075555。没有把2014回答的历史未解措辞当2026状态，也没把平方m=16等反例移作素数p反例。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-013",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地Python执行",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003543〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://oeis.org/A157480/internal",
+      "note": "本轮独立实现整数试除和递增平方根搜索，72个可读展示值全部一致（p=2..359），验证每项q为正素数、p+q为平方且最小；退出0。另独立求第10000个素数=104729仅为索引换算，未验证b-file的10000行。无Lean构建/公理检查。日志〔私有材料定位已省略〕，逐项报告q009_oeis_check.json。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000594-code-014",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"A157480\" proof Lean solved; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "补查该序列相关证明/Lean/解决声明；返回OEIS本条、邻近序列及无关同编号法律条目，未取得本题一般证明或AI完整解。邻近A259232另要求q>p，未拿来替代本题；法律同号命中已排除。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003544〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 13,
+      "locator": "q009_index_scan_1.log",
+      "note": "实际全简索引筛选；宽词也命中无关平方间素数、编号等。选择Bunyakovsky一般猜想000366与立方减平方000599读取固定全文；索引层不作正式配对结论。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003545〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 8,
+      "locator": "q009_index_scan_2.log",
+      "note": "补充square minus、Bateman–Horn及源编号关键词，新增000497为明确一般框架候选并读固定全文。其余同词命中不扩为完成正文比较。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内任务.jsonl",
+      "query": "Python读取任务.jsonl，核查QX-P-000366、QX-P-000497、QX-P-000599及较小编号owner是否属于当前包。",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际核准：000366与000497均不在当前包，两个配对由较小编号的外包负责人最终判断，本回执待核；594__599由当前000594负责。没有开始处理其他题的查新或修改。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000594.meta.json\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000594.meta.json",
+      "locator": "problems/000/QX-P-000594.meta.json（全文；未设置行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；原始文件保存为q009_dedup_sources/QX-P-000594.meta.json，Git blob SHA=03702ddc206f41e43d3a1c333acbb1ff48b430b8经本地字节重算相符。自卡meta/text与task_009.json完全一致。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000594.text.md\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000594.text.md",
+      "locator": "problems/000/QX-P-000594.text.md（全文；未设置行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；原始文件保存为q009_dedup_sources/QX-P-000594.text.md，Git blob SHA=3d295cffd58284edc774c1b6daff6e0f5c3b7d0e经本地字节重算相符。自卡meta/text与task_009.json完全一致。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000366.meta.json\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000366.meta.json",
+      "locator": "problems/000/QX-P-000366.meta.json（全文；未设置行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；原始文件保存为q009_dedup_sources/QX-P-000366.meta.json，Git blob SHA=df9fb23657df5138d1f03b1b7cdca515c71c4810经本地字节重算相符。候选版本与固定简索引相符；此读取不算候选原始学术文献已阅或对候选开展新一题查新。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000366.text.md\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000366.text.md",
+      "locator": "problems/000/QX-P-000366.text.md（全文；未设置行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；原始文件保存为q009_dedup_sources/QX-P-000366.text.md，Git blob SHA=8644190bb2fa4d2b609581b621bc7b4ffe39ddb7经本地字节重算相符。候选版本与固定简索引相符；此读取不算候选原始学术文献已阅或对候选开展新一题查新。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000599.meta.json\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000599.meta.json",
+      "locator": "problems/000/QX-P-000599.meta.json（全文；未设置行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；原始文件保存为q009_dedup_sources/QX-P-000599.meta.json，Git blob SHA=aeb9d80f1d28de1cc847ec6d67b6447f3263252d经本地字节重算相符。候选版本与固定简索引相符；此读取不算候选原始学术文献已阅或对候选开展新一题查新。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000599.text.md\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000599.text.md",
+      "locator": "problems/000/QX-P-000599.text.md（全文；未设置行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；原始文件保存为q009_dedup_sources/QX-P-000599.text.md，Git blob SHA=49c8590e727e127c2970e38f24fcbf0313931c02经本地字节重算相符。候选版本与固定简索引相符；此读取不算候选原始学术文献已阅或对候选开展新一题查新。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000497.meta.json\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000497.meta.json",
+      "locator": "problems/000/QX-P-000497.meta.json（全文；未设置行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；原始文件保存为q009_dedup_sources/QX-P-000497.meta.json，Git blob SHA=5236d8a8a4a36030e248ad8c1a0c8c7e72dc50ae经本地字节重算相符。候选版本与固定简索引相符；此读取不算候选原始学术文献已阅或对候选开展新一题查新。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000497.text.md\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000497.text.md",
+      "locator": "problems/000/QX-P-000497.text.md（全文；未设置行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；原始文件保存为q009_dedup_sources/QX-P-000497.text.md，Git blob SHA=fc7fdfca4f912a9993e28921a06bf3a01677f875经本地字节重算相符。候选版本与固定简索引相符；此读取不算候选原始学术文献已阅或对候选开展新一题查新。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地Python 3.12.14",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003546〕",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "result_count": 78498,
+      "locator": "q009_bounded_search.py；q009_search_log.json；q009_prime_witnesses.csv",
+      "note": "此为实际执行的精确算术计算，不是文献检索，检索outcome词表不适用。实际执行Python 3.12.14整数Eratosthenes筛至4,000,000，完整取得p≤1,000,000的78,498个素数；对每个p从n=isqrt(p+1)+1=ceil(sqrt(p+2))起逐整数搜索至n≤2000，q=n²−p≥2且q≤4,000,000。除跳过q<2及n↔−n的重复外，没有奇偶/同余剪枝，每个p找到首个见证即停止。全部78,498个p均有逐p见证，828,310个候选q被检查，无窗口内失败；见证最大n=1146、最大q=416531。单独校验器不导入筛或搜索函数，先朴素试除生成所需小素数，再用完整试除对区间内所有整数重新生成p列表，并对每个q作完整试除；同时检查q≥2、n²−p=q、n≤2000及见证p序列与独立p列表完全相同，PASS。搜索约0.224秒，校验约1.499秒，搜索上限120秒未触发。CSV SHA256=9b4751d10d2895fc1dced80114cf25105e0efcb17a47b1166c272f3a95e31f8b；搜索脚本SHA256=6b4e5182ad4b1c444ceb1b7dab0cd1ec164a8c8f8090baf6ae2383a86bcd9066；校验器SHA256=7293d4e60d35846bf08b10a6a2a21e296fbfc19efea687331786682eee9f503c。此为有限范围正证书，不是一般证明或形式化复跑；未查p>10^6或扩大到10^8。 原分工分类：其他：本轮有限计算。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地Python 3.12.14",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003547〕",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "result_count": 78498,
+      "locator": "q009_verify_witnesses.py；q009_witness_verification.log",
+      "note": "实际退出码0、PASS；校验器未导入原筛法，从2到10^6用确定性试除独立重建所有素数p，再对每条q≥2完整试除，验证n²−p=q和n≤2000；CSV中p序列严格等于独立列表，排除遗漏/重复。全部78,498条通过，最大p=999983、最大n=1146、最大q=416531。CSV SHA256=9b4751d10d2895fc1dced80114cf25105e0efcb17a47b1166c272f3a95e31f8b；验证器SHA256=7293d4e60d35846bf08b10a6a2a21e296fbfc19efea687331786682eee9f503c。普通Python独立验证，不是证明助理复跑。 原分工分类：其他：本轮有限计算。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "not_applicable"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R10-Q009-E-MSE",
+      "url": "https://math.stackexchange.com/questions/5008052/is-it-known-that-all-primes-can-be-expressed-as-a-square-number-minus-a-prime-nu",
+      "locator": "题文、Especially Lime回答、Ravi Fernando评论；可见第二答及纠正评论",
+      "version": "2024-12-06发问/主要回答，题文2024-12-07编辑；2026-11-26读到两个月前抓取缓存",
+      "subquestions": [
+        "主问题",
+        "原始题意与概率启发式"
+      ],
+      "role": "原始提出",
+      "publication": "社区帖子",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "此为题卡所用直接题文，不宣称数学史上最早。q为正素数，允许p=q，例如p=2。作者报告p≤10^6测试，未附完整运行范围和全部证书；本轮有限独立计算另列。最高票回答的发散级数论证是在独立随机集合模型中，真实素数不能据此当独立事件；作者/评论给Bunyakovsky/Bateman–Horn条件蕴含，没有一般无条件证明。第二答讨论互素分拆及二次素数族，不构成本题完整证明。没有取得今天API全量评论、accepted状态或总量核验。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "R10-Q009-E-MO2014",
+      "url": "https://mathoverflow.net/questions/167961/natural-numbers-that-cannot-be-expressed-as-a-difference-between-a-square-and-a",
+      "locator": "2014-05-23题文及Joni Teräväinen回答",
+      "version": "帖子2014-05-23；本轮2026-11-26访问，缓存抓取标昨日",
+      "subquestions": [
+        "非平方整数推广与平方例外"
+      ],
+      "role": "重述",
+      "publication": "社区帖子",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索",
+      "note": "较广问题问哪些自然数不是平方减素数。对k=r²，正素值必须(|n|−r)=1，从而q=2r+1；如r=4得到9非素数，k16无表示。但素数p从不为平方，不能搬用这类域外反例。非平方情形的全称存在由回答条件性地系于Bunyakovsky，没有无条件全解。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "R10-Q009-E-MSE2012",
+      "url": "https://math.stackexchange.com/questions/144334/are-there-infinitely-many-primes-of-the-form-n2-d-for-any-d-not-a-square",
+      "locator": "2012-05-12题文；2012-10-02 Douglas S.Stones回答",
+      "version": "2012原帖；2026-11-26实际阅读，未读取其外链Shanks1960稿",
+      "subquestions": [
+        "固定非平方参数的无限素值强化"
+      ],
+      "role": "重述",
+      "publication": "社区帖子",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索",
+      "note": "题目要求每个固定非平方d无限多n，范围与结论均强于本卡。所列Hardy–Littlewood F、Bunyakovsky、Schinzel H及Bateman–Horn均属条件性解释，不是已证一般结果。本轮未据帖内历史状态断言2026依然开放。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "Q009-A01",
+      "url": "https://arxiv.org/pdf/1807.08899v4",
+      "locator": "§3.6 p.10, (3.6.1)–(3.6.3)；§4.1 p.11；web refs 〔原始工具引用已私有留存〕/2",
+      "version": "arXiv:1807.08899v4，2019-04-05；正式刊发信息Expo.Math.38(2020)430–479；本轮2026-11-26读取",
+      "subquestions": [
+        "Bunyakovsky/Bateman–Horn条件性推论"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Soren Laing Aletheia-Zomlefer; Lenny Fukshansky; Stephan Ramon Garcia",
+      "note": "只采用作者综述中猜想的精确陈述：不可约、正首项、无固定素因子；BH还给局部根数乘积和渐近公式。该文不是猜想的完整证明。其2019状态说明不能单独当作2026本题开放状态证据。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q009-A02",
+      "url": "urn:qunxing:private-material",
+      "locator": "本轮独立代数核对§1–2；无需概率独立性假设的条件检查",
+      "version": "QX-R3-10 第9题本轮笔记，2026-11-26，卡rev d69b42e7dbc25680",
+      "subquestions": [
+        "Bunyakovsky/Bateman–Horn条件性推论",
+        "局部障碍与奇偶边界"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "本轮独立核：k∈Z非平方时f=n²−k在Q[x]不可约、首项为1。对每个素数ℓ，0与1两剩余类的f值相差1，所以不会全为0；若只允许正n可取n=ℓ与1。故Bunyakovsky或BH若成立，即每固定k有无穷正n使f素数，包含k=p。本条独立核对仅限条件代入和量词，绝非无条件证明原题或猜想。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q009-A03",
+      "url": "https://arxiv.org/pdf/math/0605563v5",
+      "locator": "印刷p.1无编号Theorem与Corollary (1.2)/(1.3)，p.2奇异级数上下界；web refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "version": "arXiv:math/0605563v5，页首戳2007-01-17；提取文本还含生成页脚Date:2018-11-02，不当新投稿日；本轮2026-11-26读取",
+      "subquestions": [
+        "相邻问题：正移位的平均素数计数"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Stephan Baier; Liangyi Zhao",
+      "claim_date": "2007-01-17",
+      "note": "在x²(logx)^−A≤y≤x²，对几乎所有正平方自由k≤y给Σ_{n≤x}Λ(n²+k)=S(k)x+O(x/(logx)^B)，允许O(y/(logx)^C)例外。变化的正移位、平均/几乎所有量词不能替换为每个固定负移位−p。已核陈述及例外量级，未独立审证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q009-A04",
+      "url": "https://arxiv.org/pdf/2610.41356v1",
+      "locator": "pp.1–2 Theorems1.1/1.2；p.2 footnote1；p.4 AI statement。web refs 〔原始工具引用已私有留存〕/1",
+      "version": "arXiv:2610.41356v1，2026-10-30；59页；2026-11-26原站读取，版史只显示v1",
+      "subquestions": [
+        "相邻问题：正移位的平均素数计数",
+        "公开AI辅助的范围"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Lasse Grimmelt; Jori Merikoski; Mayank Pandey; Alexandru Pascadi",
+      "claim_date": "2026-10-30",
+      "note": "Thm1.1降低正移位平均区间至H=X^(1/2−ν)，允许≪_C H/(logX)^C例外；Thm1.2在X^(2/5)≤H≤X/2给Σ_{n²+h≤X}Λ(n²+h)≥0.098 S_h√(X−h)，同样允许例外，文中明确h∈[1,H]。不涵盖固定h=−p。脚注的ChatGPT试算0.391明确未验证；AI statement是写作/常规检查辅助，不是本题AI解答。仅读前四页陈述/证明概述，未核59页技术链。 根代理亦独立读取同版前四页，确认正移位与例外集限制及AI脚注的未验证措辞。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q009-A05",
+      "url": "https://arxiv.org/abs/2611.16062",
+      "locator": "Abstract与Submission history；PDF open返回DisabledError。web refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "version": "arXiv:2611.16062v1，2026-11-11；2026-11-26读原站摘要",
+      "subquestions": [
+        "相邻新稿的量词排除"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "claimant": "Niven Achenjang; Katharine Woo",
+      "claim_date": "2026-11-11",
+      "note": "摘要声称二变量线性式和虚二次域范数同时取素数的渐近公式。二变量与虚二次范数条件不同于固定p单变量n²−p，不可固定第二变量来继承结论。原站PDF不可达，未读全文，不称已独立证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000594-code-e1",
+      "url": "https://oeis.org/A157480/internal",
+      "locator": "%N定义；%I版本；%S/%T/%U展示值；%H表范围；%t/%o程序；%A/%E署名",
+      "version": "OEIS内部修订#15，2026-01-16 19:06:15；本轮访问2026-11-26",
+      "subquestions": [
+        "OEIS A157480与题卡的同题语义、数据范围及较早记录"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "claimant": "当前页署名Cino Hilliard（2009-03-01）；定义/Mathematica扩充署名Zak Seidov（2013-03-14）",
+      "note": "a(k)是使q+prime(k)成为平方的最小正素数q；不是最小平方根、不是反例表。对每个索引存在此最小值等价于本卡存在性，但列出有限值不证明全序列处处有定义。当前页可读72项；另链接称表k=1..10000，指素数序号而非p≤10000，更非p≤10^6。Mathematica代码只求前72项，While没有证明对每个输入终止；PARI代码对输入上界B只查p≤B、q≤B²并返回找到的数量，没有一般存在性保证。2009署名早于本卡MSE2024提问，宜作为当前可读的较早同题记录；history403，未核首版，不能宣称绝对首创。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000594-code-e2",
+      "url": "https://oeis.org/A157480",
+      "locator": "页面72个展示值；本轮q009_oeis_check.py/.json/.log",
+      "version": "输入来自OEIS#15；独立有限检查2026-11-26",
+      "subquestions": [
+        "OEIS可读72项的独立数值核对"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "群星本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "rerun": {
+        "command": "python 〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material",
+        "cache": "未用OEIS数据缓存替代计算；整数试除判素，递增n搜索",
+        "axioms": "不适用：Python精确有限检查，非Lean或其他证明助手"
+      },
+      "note": "本轮实际执行独立实现，对72项全部核对通过，输入素数范围p=2..359。递增非负n给出递增q=n²-p，因此首个素数即最小q；负n无新平方。报告逐项保存p,n,q、OEIS值与检查结果。另计算prime(10000)=104729只是解释表索引范围；b-file403，不能称读过或复跑10000项。本条OEIS数据比对仅覆盖72项。另一本轮有限计算独立覆盖p≤10^6，见R10-Q009-E-COMPUTATION；两者不能互换成OEIS原表验证。未运行到10^8，更没有验证对所有素数的量词。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000594-code-e3",
+      "url": "https://mathoverflow.net/questions/167961/natural-numbers-that-cannot-be-expressed-as-a-difference-between-a-square-and-a",
+      "locator": "2014-05-23题文；Joni Teräväinen回答；Robert Israel回答；可见评论",
+      "version": "提问及主要回答2014-05-23；本轮访问2026-11-26",
+      "subquestions": [
+        "MO更广问题与条件性推理的交叉定位"
+      ],
+      "role": "重述",
+      "publication": "社区帖子",
+      "scope_match": "有附加假设",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "MO题问自然数m何时可表示为平方减素数；平方m=t²可通过因式分解归结到2t+1是否素数，非平方m的普遍存在性被置于Bunyakovsky条件下讨论。素数p均非平方，故条件性结论蕴含本卡，但这不是无条件证明。m=16等平方反例不在本卡素数域内。2014回答中的当时未解措辞不能直接当作2026最新调查结论；本轮只读取此交叉来源，MSE5008052原题由主审读取。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "R10-Q009-E-COMPUTATION",
+      "url": "urn:qunxing:private-material",
+      "locator": "q009_bounded_search.py；q009_prime_witnesses.csv；q009_search_log.json；q009_verify_witnesses.py；q009_witness_verification.log",
+      "version": "2026-11-26本轮实际执行，Python 3.12.14，对应card_rev d69b42e7dbc25680",
+      "subquestions": [
+        "本轮有限精确复核：全部素数p≤10^6"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "rerun": {
+        "command": "从QX-R3-10目录运行：python 〔私有材料定位已省略〕 --p-max 1000000 --n-max 2000 --time-limit 120 --witnesses 〔私有材料定位已省略〕 --log 〔私有材料定位已省略〕；随后 python 〔私有材料定位已省略〕 --p-max 1000000 --n-max 2000 --witnesses 〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material",
+        "cache": "没有以源站数据或前轮输出替代计算。搜索为精确筛，独立校验为确定性试除，不导入原搜索函数。",
+        "axioms": "不适用：普通Python有限精确证书，未运行证明助手。"
+      },
+      "note": "实际搜索筛至4000000，对全部78498个p≤1000000，从isqrt(p+1)+1逐n到2000，检查828310个候选值；无奇偶剪枝，全部p找到见证。逐p CSV由独立试除校验器重新生成完整素数输入列表，核每个q的素性、q≥2、n²−p=q、搜索边界与覆盖无遗漏/重复，退出0、PASS。最大n=1146（p946969,q366347）；最大q=416531（p623869,n1020）。搜索约0.224秒，独立校验约1.499秒；120秒上限未触发。CSV SHA256=9b4751d10d2895fc1dced80114cf25105e0efcb17a47b1166c272f3a95e31f8b；搜索脚本SHA256=6b4e5182ad4b1c444ceb1b7dab0cd1ec164a8c8f8090baf6ae2383a86bcd9066；独立校验器SHA256=7293d4e60d35846bf08b10a6a2a21e296fbfc19efea687331786682eee9f503c。根代理已另读独立校验器源码和实际PASS日志，未重复计作第三次运行。此证书仅限p≤10^6，未扩大到10^8，不提供通用n上界，也不核定原帖历史计算的执行身份/日期。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000366",
+      "other_card_rev": "56d54144b505fa48",
+      "relation": "待核",
+      "reason": "已读双方固定全文。一般Bunyakovsky卡对满足正首项、不可约及无固定素因子的整多项式要求无穷多个素数值；本题只对素数参数p要求x²−p至少一个素数值。对f_p(x)=x²−p的条件可直接核准，因此一般Bunyakovsky若成立会推出更强的每个固定p无穷多见证结论，验收并非严格同题。但本对较小编号000366的负责人在另一包，本轮依规则保留待核，不代替其做最终关系裁决。",
+      "positions": {
+        "self": "commit 73290369a8dcc632e25e555aec525565ea6e08f8：problems/000/QX-P-000594.text.md全文，重点「题面」「形式化表述」「边界与约定」；meta.json全文，重点acceptance.criteria及card_rev=d69b42e7dbc25680。",
+        "other": "commit 73290369a8dcc632e25e555aec525565ea6e08f8：problems/000/QX-P-000366.text.md全文，「形式化表述」「边界与约定」；同名meta.json全文，acceptance.criteria与card_rev=56d54144b505fa48。"
+      },
+      "note": "pair_id=QX-P-000366__QX-P-000594；owner=QX-P-000366（包外）。双方版本已对齐且全文blob SHA核对通过。条件蕴含数学说明不等同于该一般猜想已证明，也不构成合并建议。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-000497",
+      "other_card_rev": "d7b0cf83516c5a55",
+      "relation": "待核",
+      "reason": "已读双方固定全文。候选是不可约多项式组同时取素数值的Bateman–Horn渐近计数框架，本题是单一多项式x²−p族的至少一个素数值问题。候选正文的形式化段仅“如上”，虽边界注明无固定素因子和积分常数，精确一般公式仍需其负责人核定；本对小编号000497在包外，保留待核，不据共同BH关键词判同题或合并。",
+      "positions": {
+        "self": "commit 73290369a8dcc632e25e555aec525565ea6e08f8：problems/000/QX-P-000594.text.md全文，重点「题面」「形式化表述」「边界与约定」；meta.json全文，重点acceptance.criteria及card_rev=d69b42e7dbc25680。",
+        "other": "commit 73290369a8dcc632e25e555aec525565ea6e08f8：problems/000/QX-P-000497.text.md全文，「形式化表述」「人话版」「边界与约定」；同名meta.json全文，acceptance.criteria与card_rev=d7b0cf83516c5a55。"
+      },
+      "note": "pair_id=QX-P-000497__QX-P-000594；owner=QX-P-000497（包外）。双方版本已对齐并完整读取；未对候选外部文献或历史状态另行查新。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-000599",
+      "other_card_rev": "bf6ca8d805a797bf",
+      "relation": "仅相似",
+      "reason": "本题∀素数p寻找无预设上界的n使n²−p为正素数；候选∀正的非平方a寻找b使a³−b²为正素数，且正值强制|b|<a^(3/2)，对固定a有有限搜索域。固定参数域、平方项符号、输入和验收对象均不同；原来源MSE题号也分别为5008052与4984647，仅同属平方差取素数主题，不是严格同题。",
+      "positions": {
+        "self": "commit 73290369a8dcc632e25e555aec525565ea6e08f8：problems/000/QX-P-000594.text.md全文，重点「题面」「形式化表述」「边界与约定」；meta.json全文，重点acceptance.criteria及card_rev=d69b42e7dbc25680。",
+        "other": "commit 73290369a8dcc632e25e555aec525565ea6e08f8：problems/000/QX-P-000599.text.md全文，「题面」「形式化表述」「人话版」「原文摘录」；同名meta.json全文，acceptance.criteria与card_rev=bf6ca8d805a797bf。"
+      },
+      "note": "pair_id=QX-P-000594__QX-P-000599；owner=QX-P-000594（当前包）。双方版本已对齐、完整meta/text已读并核blob SHA。只比较命题，不另查候选是否已解或修改其卡。无合并建议。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "修正人话版",
+      "field": "概率启发式说明；有限验证说明",
+      "old": "发散概率启发式与p≤10^6测试夹在形式化/人话说明中，容易被读成证明覆盖",
+      "new": "保留主命题。把随机集合中的独立事件启发式、未证Bunyakovsky/Bateman–Horn条件蕴含、原帖报告的有限计算、本轮明确范围的独立计算分别标注；任何有限n上限找不到见证只记未找到，不能作∀n无素值反例。",
+      "reason": "仅校清证据层次，不改变题目量词、参数域或验收条件，不需因解释而换card_rev。",
+      "evidence_ids": [
+        "R10-Q009-E-MSE",
+        "R10-Q009-E-MO2014"
+      ],
+      "small_case_check": "p=2,n=2,q=2满足；p=7,n=3,q=2说明不能无条件只允许偶n；16=4²不在素数p的域内。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "条件性推论的解释附注（不改正式主命题）",
+      "old": "Bateman-Horn猜想蕴含每个非平方整数k有无穷n使n²−k为素数。",
+      "new": "对每个固定非平方整数k，若Bunyakovsky（或更强BH）成立，n²−k有无穷正整数素数值；不可约、正首项、无固定素因子条件均满足。该推论是条件性的。",
+      "reason": "补出适用条件和固定参数量词，防止把猜想当已证。 当前条件性原句没有错误，本项只补解释；若维护者另改正式命题的参数域或量词，须另生成card_rev。",
+      "evidence_ids": [
+        "Q009-A01",
+        "Q009-A02"
+      ],
+      "small_case_check": "k=2可n=2得2；k=−1是n²+1（条件性推广的另一实例，非本题等价）；k=0为平方，n²无素数值，须排除。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "补充中的概率启发式 / 人话版",
+      "new": "发散的素数密度启发式不能充当证明；完整BH预测还含依赖k的局部因子。避免用“只有猜想级别工具”否认平均型/几乎处处的部分结果，但这些不能填补每个固定p的全称结论。",
+      "reason": "概率模型不提供实际素数事件的独立性；平均量词允许固定参数持续落在例外集中。",
+      "evidence_ids": [
+        "Q009-A01",
+        "Q009-A03",
+        "Q009-A04"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "边界与约定",
+      "new": "p=2保留n=2,q=2；p为奇素数且q为奇素数时n必须为偶数；q=2分支另检n²=p+2。",
+      "reason": "只枚举偶n不能覆盖所有已知见证，但足以做某些存在见证搜索；需说明筛选范围。",
+      "evidence_ids": [
+        "Q009-A02"
+      ],
+      "small_case_check": "p=7,n=3,q=2是奇n分支；p=3,n=4,q=13是偶n奇素数分支。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "相关进展与声称解决",
+      "new": "附记2610.41356v1为正移位平均问题进展；2611.16062v1为二变量不同问且仅摘要可读。不得据其题名/AI脚注将本题标已解。",
+      "reason": "固定负移位、平均正移位、二变量与半素数结论须分别记载。",
+      "evidence_ids": [
+        "Q009-A03",
+        "Q009-A04",
+        "Q009-A05"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "sources / proposer / first_published / 原题沿革",
+      "new": "补较早同题记录OEIS A157480：当前条目署名Cino Hilliard（2009-03-01），Zak Seidov（2013-03-14）改进定义及程序。MSE rich（2024-12-06）保留为本卡直接问题来源，不把其自动认定为最早提出者。",
+      "reason": "当前可读署名和定义表明同题数据记录早于2024；history403，首版与绝对原创归属尚未核实。只补书目信息，不改变数学题面或card_rev。",
+      "evidence_ids": [
+        "QX-P-000594-code-e1"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "OEIS来源说明 / 数值验证范围",
+      "new": "明确OEIS记录最小q；展示72项，本轮独立核通过。b-file仅索引标称前10000个素数、实际访问403；不得据此称OEIS验证p≤10^6。题卡10^6验证若保留，须另据实际计算或原作者记录注明来源。 本轮另有完整p≤10^6独立计算及校验，引用R10-Q009-E-COMPUTATION，明确不属于OEIS表复核。",
+      "reason": "区分源数据范围、索引与本轮计算；并说明有界搜索未找到见证不等于不存在任意n。仅修附带数据/进展说明，不改主问题量词，原则上不换card_rev。",
+      "evidence_ids": [
+        "QX-P-000594-code-e1",
+        "QX-P-000594-code-e2",
+        "R10-Q009-E-COMPUTATION"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "题面、形式化量词、acceptance.criteria与checkability",
+      "old": "∀素数p，∃整数n使q=n²−p为正素数；反例需给p并证明不存在这样的n；checkability=neither。",
+      "new": "保留现有主命题、正素数约定及“反例必须证明所有n均无解”的验收要求。",
+      "reason": "与上一题不同，本卡已有正确反面量词，没有把有限n窗口失败当作完整反例。本轮未发现需改正式参数域或验收的P0问题。",
+      "small_case_check": "p=2,n=±2给q=2；p=3,n=±4给13；p=7,n=±3给2。n和−n相同，n²−p≤1均不合格。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "数值验证附注／已知结果与进展",
+      "old": "数值验证到10^6无反例（999983=1000²−17）；原历史记录未附本轮可重跑算法和逐p见证。",
+      "new": "补记2026-11-26本轮独立有限复核：p≤10^6全部78,498个素数均在n≤2000内找到正素数q=n²−p；保存全部逐p见证及独立试除校验，实际见证最大n=1146。原历史来源仍单列，不用本轮运行替代其来源身份或日期。",
+      "reason": "实际执行Python 3.12.14整数Eratosthenes筛至4,000,000，完整取得p≤1,000,000的78,498个素数；对每个p从n=isqrt(p+1)+1=ceil(sqrt(p+2))起逐整数搜索至n≤2000，q=n²−p≥2且q≤4,000,000。除跳过q<2及n↔−n的重复外，没有奇偶/同余剪枝，每个p找到首个见证即停止。全部78,498个p均有逐p见证，828,310个候选q被检查，无窗口内失败；见证最大n=1146、最大q=416531。单独校验器不导入筛或搜索函数，先朴素试除生成所需小素数，再用完整试除对区间内所有整数重新生成p列表，并对每个q作完整试除；同时检查q≥2、n²−p=q、n≤2000及见证p序列与独立p列表完全相同，PASS。搜索约0.224秒，校验约1.499秒，搜索上限120秒未触发。CSV SHA256=9b4751d10d2895fc1dced80114cf25105e0efcb17a47b1166c272f3a95e31f8b；搜索脚本SHA256=6b4e5182ad4b1c444ceb1b7dab0cd1ec164a8c8f8090baf6ae2383a86bcd9066；校验器SHA256=7293d4e60d35846bf08b10a6a2a21e296fbfc19efea687331786682eee9f503c。此为有限范围正证书，不是一般证明或形式化复跑；未查p>10^6或扩大到10^8。本项是补进展/验证记录，不修改主命题或acceptance.criteria，依包规§2.3不因本项另换版本。",
+      "small_case_check": "复核给p=999983,n=1000,q=17；p=946969,n=1146,q=366347为见证中最大n；p=623869,n=1020,q=416531为见证中最大q。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定／建议独立验证",
+      "old": "建议p<10^8，n=ceil(sqrt(p))..sqrt(p)+C(log p)²搜索。",
+      "new": "验证建议明确记录p范围、n上限、素性算法和逐p见证；未证明的sqrt(p)+C(log p)²窗口只是搜索策略。窗口内没有找到见证时只登记该窗口未找到，完整反例仍须证明∀n∈Z，n²−p不是正素数。本轮仅执行p≤10^6、n≤2000。",
+      "reason": "原主验收已正确，此处只防止实现阶段把有限搜索窗口当作已证的全n上界。不改变acceptance.criteria，也不追加10^8工作。",
+      "small_case_check": "p=3的起点n=3给q=6非素数，但n=4给13；有限窄窗失败可被更大n的见证推翻。起点精确应使q≥2，即isqrt(p+1)+1。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定／奇偶分支和条件推论说明",
+      "old": "记录q=2特例与奇素数分支；以Bateman–Horn作为条件性背景。",
+      "new": "可补精确分支：奇素数p配奇数n只能q=2；q=2要求p+2为平方，故奇p此时必p≡7(mod8)。其余奇p见证n为偶数。p=2时偶数n只可能n=±2，奇数n则另行检验。对f_p(x)=x²−p，f_p(0)=−p与f_p(1)=1−p互素，且p非平方，所以不可约、无固定素因子；Bunyakovsky/Bateman–Horn若成立才给更强的无穷多见证结论。",
+      "reason": "消除实现时漏掉q=2的风险，并把局部条件核准与全球素数存在性明确分开；没有以“无局部障碍”宣称一般证明。",
+      "small_case_check": "p=7,n=3,q=2是不可遗漏的奇n分支；p=2,n=2,q=2是偶素数边界。独立见证校验中q=2有157条，其中奇p奇n有156条，全部满足此分支。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "本轮原题网页为缓存，3个StackExchange API入口均不可达；只读可见回答/评论而非今天全量API。",
+      "next_step": "访问恢复时仅补2024原帖之后的新回答/编辑/评论与分页状态。已经核准的题意、条件蕴含及本轮有限证书不需重做；不可把旧卡全量API描述冒充本轮。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2611.16062原站PDF DisabledError；目前只读原站摘要，范围已见不同。",
+      "next_step": "保留未读全文与失败入口；如后续声称与本题有关，再取固定版本全文核变量数、域及局部假设，不强行追取当本题通解。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮原站版史和定向检索未见可核的本题完整无条件解或相关撤回公告；有限检索不能证明不存在。",
+      "next_step": "主问题状态由原题页、代码/社区分工合并；不得把“未检到”升级为数学上证明开放。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2026平均结果只读定理和概述，允许例外且符号为正移位；局部条件核对不构成分析数论证明。",
+      "next_step": "若后续要推负素数移位的几乎处处命题，需另有真实定理或完整推导，并明确异常集相对素数计数的量级；当前不声称此推广。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "OEIS b157480.txt及history在本轮返回403；当前条目署名日期可读，但首版文本与完整10000项数据未取到。",
+      "next_step": "若需把10000项表或首版归属作为已核证据，取得OEIS可访问的原始表/历史版本并保存版本与校验值；在此之前保留仅索引标称和当前署名元数据层级，不把它们升为本轮复跑或绝对最早提出。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "QX-P-000366与QX-P-000497均为较小编号且在包外，虽已取得固定版本全文，正式配对裁决按包规由其负责人完成。",
+      "next_step": "分别沿pair_id=QX-P-000366__QX-P-000594与QX-P-000497__QX-P-000594交较小编号负责人复核；本回执保留待核、不提合并。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "仅完成两轮全简索引检索及三个明确候选的固定版本全文核对，其他宽词命中只在索引层。",
+      "next_step": "不得把本轮筛选写成全库无重复；如出现具体新增候选，再按固定双方版本与owner规则核查。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "实际复核止于p≤10^6且搜索n≤2000；全部输入有正证书，但没有得到关于所有素数p的定理，也没有证明适用于任意p的有限搜索上界。 原分工分类：其他：本轮有限计算。",
+      "next_step": "保留完整CSV、两份独立程序和日志/哈希；将此项标为有限特例验证。任何未来窗口失败只能待核，完整反例必须另证对所有n无解，不自动扩大到10^8。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "d69b42e7dbc25680",
+      "codes": {}
+    }
+  ]
+}

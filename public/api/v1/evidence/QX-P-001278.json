@@ -1,0 +1,2713 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001278",
+  "card_rev": "819f8b18c9b7f8d2",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "逐时刻e-value与e-process：两时刻完整反例",
+          "value": "statement_error",
+          "note": "来源定义要求非负、适应于指定filtration，并对每个null分布P及每个该filtration的停时tau有E_P[E_tau]≤1；v2还明确E_infinity=limsup_t E_t。仅对固定t有E_P[E_t]≤1不够。自含严格正例：Omega={H,T}，P(H)=P(T)=1/2，F0平凡，F1=F2=全sigma域；E0=1，E1(H)=3/2,E1(T)=1/2，E2(H)=1/2,E2(T)=3/2，t≥2保持E_t=E2。每个固定时刻均值恰1；tau=1在H上、tau=2在T上是有界停时，却有E_tau恒为3/2，故E_P E_tau=3/2>1。甚至阈值3/2在两时刻内必被触及，不能按alpha=2/3声称错误率≤alpha。非负null-supermartingale且初值≤1是充分方式；不能把所有e-process定义成自身必须是supermartingale。此反例仅纠正题卡定义，不是Corenflos Gaussian主结论的反例。"
+        },
+        {
+          "subquestion": "真实benchmark、期望和minimax量词",
+          "value": "statement_error",
+          "note": "v2中e-power是E_Q[log E]，固定时域numeraire E*_{t,Q}在该时刻全部e-variables中最优；这些单时刻最优量不必共同组成e-process。Regret为R_t^Q(E_t)=E_Q[log(E*_{t,Q}/E_t)]，不是一条随机路径的裸log差，也不是Σ_{u≤t}R_u。假设最优e-power有限可避免infinity−infinity。Gamma_T(Q)=inf_{同一个e-process E} max_{0≤t≤T} R_t^Q(E_t)。高斯复合备择版本是M_T=inf_E max_{0≤t≤T} sup_{mu∈R} R_t^{Q_mu}(E_t)，E可依T、已知s和模型，但不能在sup_mu外部为每个未知mu另选E。若M_T→infinity，则不存在一个E及有限确定常数C使所有t、mu的regret≤C；同样，Gamma_T(Q)→infinity排除固定Q的全时域有界损失。不能交换inf_E与max_t，亦不能从各单时刻能选零损失过程就推出同一过程全时域零损失。事实上固定t可用E_u=E*_t·1{u≥t}，因为E_P[E_tau]≤E_P[E*_t]≤1；它在t最优，但更早时刻为0，不能提供其他时刻的有限对数损失。只有“inf_E sup_t[log E_opt−log E_real]是否有界”并未指定这些对象/期望/量词，当前形式化不是原论文完整问题。"
+        },
+        {
+          "subquestion": "简单已知P/Q和已知Gaussian位置的零损失边界",
+          "value": "partial",
+          "note": "对简单null{P}与已知备择Q，假设每个有限时域Q_t≪P_t并有有限KL，L_t=dQ_t/dP_t是P下初值1的非负martingale，因而是e-process。任一固定时域e-variable Z满足E_Q[Z/L_t]=E_P[Z·1{L_t>0}]≤1；Jensen给E_Q log(Z/L_t)≤0。因此L_t在每个horizon都最优，同一个过程的所有R_t均0。例如P为独立Bernoulli(1/2)，Q为独立Bernoulli(3/4)，L_t=(3/2)^{S_t}(1/2)^{t−S_t}，结论不需计算实验。更贴近原模型：null为全部P_theta=N(theta,1)^infinity，但若mu已知且0<s≤1，L_t^mu=∏_{i≤t}[phi_{s²}(X_i−mu)/phi_1(X_i−mu)]在每个P_theta下是supermartingale，因为单因子期望为exp{−(1−s²)(theta−mu)²/2}≤1；同时P_mu属于null且L_t^mu=dQ_mu,t/dP_mu,t，Jensen仍给各时域最优。故“存在某个模型/某个过程有界损失”的纯存在读法平凡地可肯定；这不反驳未知mu须共用一个过程的minimax定理。"
+        },
+        {
+          "subquestion": "Gaussian模型中的固定时域最优量与filtration",
+          "value": "partial",
+          "note": "固定s∈(0,1)、rho²≥1−s²，null P_theta=N(theta,1)^infinity；令Q为先抽M~N(0,rho²)，再条件独立抽X_i~N(M,s²)的一个固定已知混合备择。设Y_i=sqrt((i−1)/i)(X_i−bar X_{i−1})。这些零和单位行向量彼此正交，连同sqrt(t)bar X_t形成正交变换；直接得Σ(X_i−m)²=t(bar X_t−m)²+Σ_{i=2}^tY_i²。因高斯正交性，Y_i在null下独立N(0,1)，在每个Q_mu及Q下独立N(0,s²)。P*_t=∫P_theta,t N(0,rho²−(1−s²)/t)(dtheta)使bar X_t在P*_t与Q_t下同分布，故E*_t=dQ_t/dP*_t=∏_{i=2}^t ell(Y_i)，ell=phi_{s²}/phi1。它在每个固定t是e-variable；对任意Z属于该时刻e-variables，E_Q[Z/E*_t]=E_{P*_t}Z≤1，Jensen证明最优，e-power=(t−1)kappa，kappa=(s²−1−log s²)/2。Y的较小filtration下它是martingale，但数据filtration下不必e-process。实际两步证书：E*_1=1，且a_theta(x)=E_theta[E*_2|X1=x]=sqrt(2/(1+s²)) exp{−(1−s²)(x−theta)²/[2(1+s²)]}。s<1时a_theta(theta)>1，在一段正概率区间上>1。取tau=2若a_theta(X1)>1，否则tau=1，则E_theta[E*_tau]=E_theta max(1,a_theta(X1))>1。每个固定theta允许选这样的停时，因为定义本来要求∀theta∀tau；不要求这个下界见证是未知theta时实际采用的检验规则。"
+        },
+        {
+          "subquestion": "有界损失否定的对偶短桥：只用Jensen与停时有效性",
+          "value": "partial",
+          "note": "取有限时间权重xi，Q^xi为Q独立地按xi选时间后停止的路径分布；bar P为null分布在允许数据依赖的随机停时处停止后再混合的分布。e-process有效性及非负Fubini给∫H dbar P≤1，其中H(t,x^t)=E_t(x^t)。若f=dQ^xi/dbar P且KL有限，则E_{Q^xi}log H−KL(Q^xi||bar P)=E log(H/f)≤log E(H/f)≤log∫H dbar P≤0。若KL无穷，该下界无信息而不作infinity−infinity运算；此稿的Gaussian构造有正密度，随后给出有限log控制。于是任一E的时间平均regret至少Σxi_t E_Q log E*_t−KL(Q^xi||bar P)，最大regret至少该平均。该证明只需不等式方向，不必借用一般空间的完整minimax强对偶等式。随机停时可由额外独立uniform变量逐u取普通停时再积分，保持有效性。下条构造的数据依赖停时使这一界增长；仅在独立预定时间处混合不能给所需正下界。"
+        },
+        {
+          "subquestion": "一般统一有界损失可达性：具体Gaussian反例的完整负向下界核验",
+          "value": "claimed_counterexample",
+          "note": "提议\"原题已推翻\"，待二审；这里“已反驳”严格限于恢复后的普遍有界expected-log-regret主张，不指缺模型的裸形式，也不指所有模型都不可能。本轮给出Gaussian反例下界链的自含专门化；适用假设与复合null、固定混合Q沿用相邻已列子问。该专门化推出liminf Gamma_T/loglogT≥5/9>0，足以否定统一有界性，不依赖sharp上界或数值模拟；未将MonteCarlo曲线作为证明。所依据原稿的更精确3/4系数另列，不作为本次否定必需步骤。完整下界推导及中间参数已私有留存。"
+        },
+        {
+          "subquestion": "从固定混合备择到未知位置minimax：量词和否定范围",
+          "value": "partial",
+          "note": "对上面的s<1，每个固定Q_mu的最优e-power为t kappa；混合Q的为(t−1)kappa。任一共用e-process E因而有sup_mu R_t^{Q_mu}(E_t)≥∫R_t^{Q_mu}(E_t)N(0,rho²)(dmu)=kappa+R_t^Q(E_t)，t≥1。log正部由numeraire比值的期望≤1及有限Gaussian KL控制；若负部无穷则regret已无穷，因此没有非法infinity−infinity。先取max_t再inf_E得M_T≥kappa+Gamma_T，故上条具体反例同时排除未知mu的统一有界损失。它甚至已经给一个固定已知混合Q的反例，所以不能误说只因对未知参数取sup才有所有困难。原稿Theorem1给M_T/loglogT→1−s²，并构造一个无需预定T而达同一rate的过程；这是达到增长率，不是有界的加性损失。s=1时备择即null族，E恒1零损失；原稿s≥1的有界分支不应与s<1结论混用。该项核查完整核负向链和此桥，匹配上界的全部构造由学术路线另核，不重复声称在数学路线全部审毕。"
+        },
+        {
+          "subquestion": "复合Gaussian备择的精确量词与最优速率",
+          "value": "partial",
+          "note": "κ=(s²−1−log s²)/2。对所有未知μ共用一个过程时，Theorem1证明κ+Γ_T≤inf_E max_{t≤T}sup_μR_t^μ(E_t)≤κ+logη_T，除以loglogT趋1−s²；存在与最终T无关的单一过程达到相同limsup常数。不是对每个μ分别选过程的结论，后者在s≤1时可零损失。Gaussian模型的上下界关键链已有本轮分工独立核验，不据此宣称完成全部(P,Q)的分类。"
+        },
+        {
+          "subquestion": "单一全过程构造的学术路线关键复核",
+          "value": "partial",
+          "note": "v2取T_j=ceil(exp(exp j))、q_j=1+s²/((1−s²)(j+1))，u_j=(j+1)/(s²j)·(2+2logT_j/logq_j)^[1−s²j/(j+1)]，E_t=E_t*∑_{j:T_j≥t}1/[j(j+1)u_j]。LemmaS3的Doob几何block尾界积分给η_Tj≤u_j；权重与η之积和≤1，单调收敛和Fatou处理任意停时，Gaussian下E_t*→0。tail单项给R_t≤logu_j+log(j(j+1))=(1−s²)loglogt+O(logloglogt)。该短链及数据置换不变性已独立核；没有采用镜像摘要错抽的loglogT_j或错误指数。"
+        },
+        {
+          "subquestion": "必须保留的正例与方差边界",
+          "value": "partial",
+          "note": "simple null下适当绝对连续条件的LR numéraire本就是test martingale，固定horizon与anytime可同时零损失。新稿更细的PropS4说复合Gaussian null但已知μ的单iid备择，在s≤1仍有零regret；s>1有≤logs界。Prop4对相应混合模型给Γ_T≤logη_T≤logs(s≥1)。因此标题若只问存在某个好模型，答案可肯定；否定的是一般可行性而不是所有情形。"
+        },
+        {
+          "subquestion": "先行开放问题与仍未解决的不同问题",
+          "value": "partial",
+          "note": "至少SafeTesting2023v5 Eq31已有相关固定ε问题；Hao–Grünwald2025v2的almost说法未定量。Corenflosv2 §5仍列s>1时Γ_T是否趋logs，以及哪些(P,Q)使Γ_T发散的分类；这些与其已给出的bounded-regret一般反例不同。不得继续把摘要开头那句当本文结尾仍开放。"
+        },
+        {
+          "subquestion": "公开Lean声明的实际目标、源码与版本边界",
+          "value": "partial",
+          "note": "作者公开blueprint/API确含实际Gaussian分布、全部数据过滤族和Γ_T/最坏μ目标；正式prop_mixture_proof只要求明确s,ρ条件，不能因helper prop_mixture_of_fixedK有hS9就声称整个主下界被当作假设。然而实际源码href指f33be9d20205c58e261628333102fdbde3fa7553，九个源码/依赖GET与一次raw均404，部分长predicate在API省略，未取得证明体或完整锁定依赖，无法独立核sorry、axioms或编译。作者三公理声明仍是他人报告；S5五类文献接口亦须保留，而不假定每条主定理都用全部接口。文档stopped构造仍有效但不能自动认证v2新置换不变性质；原稿RemarkS1已说明两构造的关系。解析反驳与形式化复跑是分别审阅的事实。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "claimed_verified",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://arxiv.org/pdf/2611.11874v2"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://www.qunxingmath.org/p/QX-P-001278/",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "固定题卡缺null/alternative/filtration及期望量词，将固定时刻e-value误解为anytime有效，又将numéraire基准错称最优e-process，故裸公式不能唯一确定命题。按所引论文恢复的标准普遍命题（每个P,Q是否都有同一e-process使各时刻expected-log regret一致有界），答案已被原论文反驳，且否定在2026-11-09 v1就有；不是仍待查的摘要开放题。本轮独立核完整负向链，固定s=1/2、ρ²=3/4的Gaussian-mixture Q，取r=16得liminf Γ_T/loglogT≥5/9>0，足以排除任何统一常数。学术路线另核sharp上界与未知μ的minimax桥，真实损失阶为loglogT，不是√(TloglogT)。已知简单P/Q和已知位置例外不被否定。公开Lean文档/API已读，但链接源码与依赖404未取得、未编译，不能升级机器认证；此缺口不取消已核解析反例。当前题卡补核心须新rev，闭合导入依包规二审，不直接改卡或替换成论文末尾另一开放问题。",
+      "evidence_ids": [
+        "R1278-CARD",
+        "R1278-PAPER",
+        "a1278_identity",
+        "a1278_corenflos_v2",
+        "a1278_kg2022",
+        "Q1278-M-E3",
+        "Q1278-M-E4",
+        "E1278-C-SOURCE-BOUNDARY"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "逐时刻e-value与e-process：两时刻完整反例",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "来源定义要求非负、适应于指定filtration，并对每个null分布P及每个该filtration的停时tau有E_P[E_tau]≤1；v2还明确E_infinity=limsup_t E_t。仅对固定t有E_P[E_t]≤1不够。自含严格正例：Omega={H,T}，P(H)=P(T)=1/2，F0平凡，F1=F2=全sigma域；E0=1，E1(H)=3/2,E1(T)=1/2，E2(H)=1/2,E2(T)=3/2，t≥2保持E_t=E2。每个固定时刻均值恰1；tau=1在H上、tau=2在T上是有界停时，却有E_tau恒为3/2，故E_P E_tau=3/2>1。甚至阈值3/2在两时刻内必被触及，不能按alpha=2/3声称错误率≤alpha。非负null-supermartingale且初值≤1是充分方式；不能把所有e-process定义成自身必须是supermartingale。此反例仅纠正题卡定义，不是Corenflos Gaussian主结论的反例。",
+      "evidence_ids": [
+        "Q1278-M-E1",
+        "Q1278-M-E2",
+        "Q1278-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "真实benchmark、期望和minimax量词",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "v2中e-power是E_Q[log E]，固定时域numeraire E*_{t,Q}在该时刻全部e-variables中最优；这些单时刻最优量不必共同组成e-process。Regret为R_t^Q(E_t)=E_Q[log(E*_{t,Q}/E_t)]，不是一条随机路径的裸log差，也不是Σ_{u≤t}R_u。假设最优e-power有限可避免infinity−infinity。Gamma_T(Q)=inf_{同一个e-process E} max_{0≤t≤T} R_t^Q(E_t)。高斯复合备择版本是M_T=inf_E max_{0≤t≤T} sup_{mu∈R} R_t^{Q_mu}(E_t)，E可依T、已知s和模型，但不能在sup_mu外部为每个未知mu另选E。若M_T→infinity，则不存在一个E及有限确定常数C使所有t、mu的regret≤C；同样，Gamma_T(Q)→infinity排除固定Q的全时域有界损失。不能交换inf_E与max_t，亦不能从各单时刻能选零损失过程就推出同一过程全时域零损失。事实上固定t可用E_u=E*_t·1{u≥t}，因为E_P[E_tau]≤E_P[E*_t]≤1；它在t最优，但更早时刻为0，不能提供其他时刻的有限对数损失。只有“inf_E sup_t[log E_opt−log E_real]是否有界”并未指定这些对象/期望/量词，当前形式化不是原论文完整问题。",
+      "evidence_ids": [
+        "Q1278-M-E1",
+        "Q1278-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "简单已知P/Q和已知Gaussian位置的零损失边界",
+      "math_status": "仅特例",
+      "scope_note": "对简单null{P}与已知备择Q，假设每个有限时域Q_t≪P_t并有有限KL，L_t=dQ_t/dP_t是P下初值1的非负martingale，因而是e-process。任一固定时域e-variable Z满足E_Q[Z/L_t]=E_P[Z·1{L_t>0}]≤1；Jensen给E_Q log(Z/L_t)≤0。因此L_t在每个horizon都最优，同一个过程的所有R_t均0。例如P为独立Bernoulli(1/2)，Q为独立Bernoulli(3/4)，L_t=(3/2)^{S_t}(1/2)^{t−S_t}，结论不需计算实验。更贴近原模型：null为全部P_theta=N(theta,1)^infinity，但若mu已知且0<s≤1，L_t^mu=∏_{i≤t}[phi_{s²}(X_i−mu)/phi_1(X_i−mu)]在每个P_theta下是supermartingale，因为单因子期望为exp{−(1−s²)(theta−mu)²/2}≤1；同时P_mu属于null且L_t^mu=dQ_mu,t/dP_mu,t，Jensen仍给各时域最优。故“存在某个模型/某个过程有界损失”的纯存在读法平凡地可肯定；这不反驳未知mu须共用一个过程的minimax定理。",
+      "evidence_ids": [
+        "Q1278-M-E2",
+        "Q1278-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Gaussian模型中的固定时域最优量与filtration",
+      "math_status": "部分进展",
+      "scope_note": "固定s∈(0,1)、rho²≥1−s²，null P_theta=N(theta,1)^infinity；令Q为先抽M~N(0,rho²)，再条件独立抽X_i~N(M,s²)的一个固定已知混合备择。设Y_i=sqrt((i−1)/i)(X_i−bar X_{i−1})。这些零和单位行向量彼此正交，连同sqrt(t)bar X_t形成正交变换；直接得Σ(X_i−m)²=t(bar X_t−m)²+Σ_{i=2}^tY_i²。因高斯正交性，Y_i在null下独立N(0,1)，在每个Q_mu及Q下独立N(0,s²)。P*_t=∫P_theta,t N(0,rho²−(1−s²)/t)(dtheta)使bar X_t在P*_t与Q_t下同分布，故E*_t=dQ_t/dP*_t=∏_{i=2}^t ell(Y_i)，ell=phi_{s²}/phi1。它在每个固定t是e-variable；对任意Z属于该时刻e-variables，E_Q[Z/E*_t]=E_{P*_t}Z≤1，Jensen证明最优，e-power=(t−1)kappa，kappa=(s²−1−log s²)/2。Y的较小filtration下它是martingale，但数据filtration下不必e-process。实际两步证书：E*_1=1，且a_theta(x)=E_theta[E*_2|X1=x]=sqrt(2/(1+s²)) exp{−(1−s²)(x−theta)²/[2(1+s²)]}。s<1时a_theta(theta)>1，在一段正概率区间上>1。取tau=2若a_theta(X1)>1，否则tau=1，则E_theta[E*_tau]=E_theta max(1,a_theta(X1))>1。每个固定theta允许选这样的停时，因为定义本来要求∀theta∀tau；不要求这个下界见证是未知theta时实际采用的检验规则。",
+      "evidence_ids": [
+        "Q1278-M-E2",
+        "Q1278-M-E3",
+        "Q1278-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有界损失否定的对偶短桥：只用Jensen与停时有效性",
+      "math_status": "部分进展",
+      "scope_note": "取有限时间权重xi，Q^xi为Q独立地按xi选时间后停止的路径分布；bar P为null分布在允许数据依赖的随机停时处停止后再混合的分布。e-process有效性及非负Fubini给∫H dbar P≤1，其中H(t,x^t)=E_t(x^t)。若f=dQ^xi/dbar P且KL有限，则E_{Q^xi}log H−KL(Q^xi||bar P)=E log(H/f)≤log E(H/f)≤log∫H dbar P≤0。若KL无穷，该下界无信息而不作infinity−infinity运算；此稿的Gaussian构造有正密度，随后给出有限log控制。于是任一E的时间平均regret至少Σxi_t E_Q log E*_t−KL(Q^xi||bar P)，最大regret至少该平均。该证明只需不等式方向，不必借用一般空间的完整minimax强对偶等式。随机停时可由额外独立uniform变量逐u取普通停时再积分，保持有效性。下条构造的数据依赖停时使这一界增长；仅在独立预定时间处混合不能给所需正下界。",
+      "evidence_ids": [
+        "Q1278-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "一般统一有界损失可达性：具体Gaussian反例的完整负向下界核验",
+      "math_status": "原题已反驳",
+      "scope_note": "这里“已反驳”严格限于恢复后的普遍有界expected-log-regret主张，不指缺模型的裸形式，也不指所有模型都不可能。本轮给出Gaussian反例下界链的自含专门化；适用假设与复合null、固定混合Q沿用相邻已列子问。该专门化推出liminf Gamma_T/loglogT≥5/9>0，足以否定统一有界性，不依赖sharp上界或数值模拟；未将MonteCarlo曲线作为证明。所依据原稿的更精确3/4系数另列，不作为本次否定必需步骤。完整下界推导及中间参数已私有留存。",
+      "evidence_ids": [
+        "Q1278-M-E2",
+        "Q1278-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "disproved"
+      }
+    },
+    {
+      "subquestion": "从固定混合备择到未知位置minimax：量词和否定范围",
+      "math_status": "部分进展",
+      "scope_note": "对上面的s<1，每个固定Q_mu的最优e-power为t kappa；混合Q的为(t−1)kappa。任一共用e-process E因而有sup_mu R_t^{Q_mu}(E_t)≥∫R_t^{Q_mu}(E_t)N(0,rho²)(dmu)=kappa+R_t^Q(E_t)，t≥1。log正部由numeraire比值的期望≤1及有限Gaussian KL控制；若负部无穷则regret已无穷，因此没有非法infinity−infinity。先取max_t再inf_E得M_T≥kappa+Gamma_T，故上条具体反例同时排除未知mu的统一有界损失。它甚至已经给一个固定已知混合Q的反例，所以不能误说只因对未知参数取sup才有所有困难。原稿Theorem1给M_T/loglogT→1−s²，并构造一个无需预定T而达同一rate的过程；这是达到增长率，不是有界的加性损失。s=1时备择即null族，E恒1零损失；原稿s≥1的有界分支不应与s<1结论混用。该项核查完整核负向链和此桥，匹配上界的全部构造由学术路线另核，不重复声称在数学路线全部审毕。",
+      "evidence_ids": [
+        "Q1278-M-E2",
+        "Q1278-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "原题来源的率与开放状态摘录问题",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "实际来源是Corenflos同题v2而非错号；完整摘要在提出相关问题之后明确说本稿的增长给否定答案。原卡只摘前句并据此写有界损失无结论，漏掉直接相关主结果。原稿对象是expected-log regret，Gaussian模型的量级为(1−s²+o(1))loglogT（另加固定kappa），不是sqrt(TloglogT)；后者是与运行均值LIL相关的尺度被混入损失表述。原formal中任意随机路径的log差、未定义的optimal e-process、以及人话的“每时刻恰好最优”都不能与该精确定理直接互换。应分别记录源文所解的一般可达性否定、明确模型/filtration下的子结论和当前卡面缺失，不把简单P/Q零损失当反驳源文，也不把Gaussian反例推广成所有模型皆不可能。",
+      "evidence_ids": [
+        "Q1278-M-E1",
+        "Q1278-M-E2",
+        "Q1278-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "复合Gaussian备择的精确量词与最优速率",
+      "math_status": "部分进展",
+      "scope_note": "κ=(s²−1−log s²)/2。对所有未知μ共用一个过程时，Theorem1证明κ+Γ_T≤inf_E max_{t≤T}sup_μR_t^μ(E_t)≤κ+logη_T，除以loglogT趋1−s²；存在与最终T无关的单一过程达到相同limsup常数。不是对每个μ分别选过程的结论，后者在s≤1时可零损失。Gaussian模型的上下界关键链已有本轮分工独立核验，不据此宣称完成全部(P,Q)的分类。",
+      "evidence_ids": [
+        "a1278_corenflos_v2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "单一全过程构造的学术路线关键复核",
+      "math_status": "部分进展",
+      "scope_note": "v2取T_j=ceil(exp(exp j))、q_j=1+s²/((1−s²)(j+1))，u_j=(j+1)/(s²j)·(2+2logT_j/logq_j)^[1−s²j/(j+1)]，E_t=E_t*∑_{j:T_j≥t}1/[j(j+1)u_j]。LemmaS3的Doob几何block尾界积分给η_Tj≤u_j；权重与η之积和≤1，单调收敛和Fatou处理任意停时，Gaussian下E_t*→0。tail单项给R_t≤logu_j+log(j(j+1))=(1−s²)loglogt+O(logloglogt)。该短链及数据置换不变性已独立核；没有采用镜像摘要错抽的loglogT_j或错误指数。",
+      "evidence_ids": [
+        "a1278_corenflos_v2",
+        "a1278_formal_disclosure"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "必须保留的正例与方差边界",
+      "math_status": "部分进展",
+      "scope_note": "simple null下适当绝对连续条件的LR numéraire本就是test martingale，固定horizon与anytime可同时零损失。新稿更细的PropS4说复合Gaussian null但已知μ的单iid备择，在s≤1仍有零regret；s>1有≤logs界。Prop4对相应混合模型给Γ_T≤logη_T≤logs(s≥1)。因此标题若只问存在某个好模型，答案可肯定；否定的是一般可行性而不是所有情形。",
+      "evidence_ids": [
+        "a1278_kg2022",
+        "a1278_corenflos_v2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "先行开放问题与仍未解决的不同问题",
+      "math_status": "部分进展",
+      "scope_note": "至少SafeTesting2023v5 Eq31已有相关固定ε问题；Hao–Grünwald2025v2的almost说法未定量。Corenflosv2 §5仍列s>1时Γ_T是否趋logs，以及哪些(P,Q)使Γ_T发散的分类；这些与其已给出的bounded-regret一般反例不同。不得继续把摘要开头那句当本文结尾仍开放。",
+      "evidence_ids": [
+        "a1278_safe2023",
+        "a1278_hao2025",
+        "a1278_corenflos_v2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "公开Lean声明的实际目标、源码与版本边界",
+      "math_status": "部分进展",
+      "scope_note": "作者公开blueprint/API确含实际Gaussian分布、全部数据过滤族和Γ_T/最坏μ目标；正式prop_mixture_proof只要求明确s,ρ条件，不能因helper prop_mixture_of_fixedK有hS9就声称整个主下界被当作假设。然而实际源码href指f33be9d20205c58e261628333102fdbde3fa7553，九个源码/依赖GET与一次raw均404，部分长predicate在API省略，未取得证明体或完整锁定依赖，无法独立核sorry、axioms或编译。作者三公理声明仍是他人报告；S5五类文献接口亦须保留，而不假定每条主定理都用全部接口。文档stopped构造仍有效但不能自动认证v2新置换不变性质；原稿RemarkS1已说明两构造的关系。解析反驳与形式化复跑是分别审阅的事实。",
+      "evidence_ids": [
+        "E1278-C-DEFINITIONS",
+        "E1278-C-RATE-TARGET",
+        "E1278-C-SOURCE-BOUNDARY",
+        "E1278-C-AI-DISCLOSURE"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "原包与固定GitHub双卡",
+      "query": "完整读task.json；fetch_file problems/001/QX-P-001278.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "card_rev819f8b18c9b7f8d2；正文blob21040e38cd54b40a65cd02fe21eee10fa9422b53，meta1f7bdce89c032fba3cd51804e060a1f24f42d3a9。实际题面缺P/Q、filtration、期望及t量词；旧novelty对应086d1dcc136f3f5f，当前prior为legacy，不能当本次有效回执或开放证明。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001278.text.md",
+      "request_id": "QX-R3-11-001278-root-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv官方Web入口",
+      "query": "open https://arxiv.org/abs/2611.11874",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "本次直接web请求DisabledError；不是论文不存在。后续官方HTML/PDF由学术路线urllib成功取得，主审另实际阅读。",
+      "url": "https://arxiv.org/abs/2611.11874",
+      "request_id": "QX-R3-11-001278-root-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "ScienceDirect官方入口",
+      "query": "open https://www.sciencedirect.com/science/article/pii/S0888613X21001523",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "本次web403；后续CWI官方机构库提供原刊，不能把403当来源不存在。",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0888613X21001523",
+      "request_id": "QX-R3-11-001278-root-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"2611.11874\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际返回Corenflos论文镜像完整摘要，明确小方差Gaussian location minimax regret为loglogT并否定统一有界保证；PII对应Koolen–Grünwald2022，DOI10.1016/j.ijar.2021.09.010。SciRate摘要条目v1/v2日期不一致，随后以官方abs版本历史为准；镜像aiXiv编号不是arXiv编号。",
+      "request_id": "QX-R3-11-001278-root-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"S0888613X21001523\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际返回Corenflos论文镜像完整摘要，明确小方差Gaussian location minimax regret为loglogT并否定统一有界保证；PII对应Koolen–Grünwald2022，DOI10.1016/j.ijar.2021.09.010。SciRate摘要条目v1/v2日期不一致，随后以官方abs版本历史为准；镜像aiXiv编号不是arXiv编号。",
+      "request_id": "QX-R3-11-001278-root-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "Corenflos \"e-process\" \"log log\"（recency=365）",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际返回Corenflos论文镜像完整摘要，明确小方差Gaussian location minimax regret为loglogT并否定统一有界保证；PII对应Koolen–Grünwald2022，DOI10.1016/j.ijar.2021.09.010。SciRate摘要条目v1/v2日期不一致，随后以官方abs版本历史为准；镜像aiXiv编号不是arXiv编号。",
+      "request_id": "QX-R3-11-001278-root-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"An iterated-logarithm price\" site:arxiv.org",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "实际官方arXiv索引返回完整摘要，题卡所引问题句后明确接否定答案；原稿不只是宣告新开放题。后续已取得全文，不以摘要代替证明审核。",
+      "url": "https://arxiv.org/abs/2611.11874",
+      "request_id": "QX-R3-11-001278-root-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Log-optimal anytime-valid E-values\" authors 2022",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "出版社/CWI机构库元数据明确Wouter M. Koolen、Peter Grünwald，IJAR141(2022)69–82，DOI10.1016/j.ijar.2021.09.010；页首在线2021不等于卷期2021。主审本次只用此批核书目，正文由学术路线另读。",
+      "url": "https://ir.cwi.nl/pub/33120",
+      "request_id": "QX-R3-11-001278-root-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "作者正式形式化入口Web",
+      "query": "open https://adriencorenflos.github.io/formalization/log-optimal-e-processes",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "主审web报告URL不可访问；代码路线另用urllib成功，不能据此推断无公开形式化。未由主审编译Lean。",
+      "url": "https://adriencorenflos.github.io/formalization/log-optimal-e-processes",
+      "request_id": "QX-R3-11-001278-root-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "已下载官方v2 PDF文本",
+      "query": "完整读corenflos_v2.txt主文pp1–9；后读pp11–12、14–17、21、26–27",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读定义(1)–(4)、numéraire、Lemma1、Prop1–4/Thm1；独立核Jensen弱对偶、Gaussian密度比、S4–S6下界取极限和两时刻停止反例；S5披露文献定理作为Lean假设与未形式化范围。未重跑图表/MonteCarlo或Lean。v2主下界与两次审查一致；上界长链另由学术路线核。",
+      "url": "https://arxiv.org/pdf/2611.11874v2",
+      "locator": "主文pp1–9；S1.2–S1.6、S2.3、S5",
+      "request_id": "QX-R3-11-001278-root-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "已下载官方abs HTML",
+      "query": "读取corenflos_abs.html Comments与Submission history",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "先尝试bs4导入失败（ModuleNotFoundError，尚未读取HTML），改用标准库提取后实际读到v1 2026-11-09 04:52:19 UTC、v2 2026-11-16 16:02:37 UTC。Comments明确主要改进是过程对数据置换不变；不存在仅凭SciRate日期把v2定成Nov10的问题。",
+      "url": "https://arxiv.org/abs/2611.11874",
+      "locator": "Comments、Submission history",
+      "request_id": "QX-R3-11-001278-root-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003979〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中：QX-P-000038,QX-P-000072,QX-P-000115,QX-P-000173,QX-P-000286,QX-P-000288,QX-P-000366,QX-P-000369,QX-P-000377,QX-P-000389,QX-P-000474,QX-P-000491,QX-P-000497,QX-P-000726,QX-P-000728,QX-P-001242,QX-P-001278,QX-P-001294,QX-P-001388,QX-P-001424,QX-P-001438,QX-P-001734,QX-P-002057,QX-P-002077,QX-P-002091,QX-P-002104,QX-P-002131,QX-P-002272,QX-P-002273,QX-P-002291,QX-P-002301,QX-P-002322,QX-P-002329,QX-P-002451,QX-P-002459。初始无词边界e.?power/value产生词尾噪声，已以精确边界重查；只按minimax/optional stopping近邻取1263、2131完整双卡对照。扫描未命中不证明全库无重复，不据标题合并。",
+      "result_count": 35,
+      "request_id": "QX-R3-11-001278-root-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003980〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中：QX-P-001278。初始无词边界e.?power/value产生词尾噪声，已以精确边界重查；只按minimax/optional stopping近邻取1263、2131完整双卡对照。扫描未命中不证明全库无重复，不据标题合并。",
+      "result_count": 1,
+      "request_id": "QX-R3-11-001278-root-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003981〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中：QX-P-001767。初始无词边界e.?power/value产生词尾噪声，已以精确边界重查；只按minimax/optional stopping近邻取1263、2131完整双卡对照。扫描未命中不证明全库无重复，不据标题合并。",
+      "result_count": 1,
+      "request_id": "QX-R3-11-001278-root-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003982〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中：QX-P-001278。初始无词边界e.?power/value产生词尾噪声，已以精确边界重查；只按minimax/optional stopping近邻取1263、2131完整双卡对照。扫描未命中不证明全库无重复，不据标题合并。",
+      "result_count": 1,
+      "request_id": "QX-R3-11-001278-root-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003983〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中：QX-P-001263。初始无词边界e.?power/value产生词尾噪声，已以精确边界重查；只按minimax/optional stopping近邻取1263、2131完整双卡对照。扫描未命中不证明全库无重复，不据标题合并。",
+      "result_count": 1,
+      "request_id": "QX-R3-11-001278-root-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/001/QX-P-001263.text.md与.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；完整读取",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "对方card_rev67ab0c9ff44932f0，textblob39ca934d48bfe909238c06bb4143ff7770901094，metablob966ee427e9516b21c450198369c1c61cb09610d1；只比本题的模型/量词/目标/验收，没有替对方重做学术查新或改状态。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001263.text.md",
+      "request_id": "QX-R3-11-001278-root-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/002/QX-P-002131.text.md与.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；完整读取",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "对方card_rev22af64da72709549，textblob579fbd90c4d380dbbb92bb73faa0c95d27836978，metablob1a3b462bb8bf911b9ca8ac731b83333ebb66f32c；只比本题的模型/量词/目标/验收，没有替对方重做学术查新或改状态。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002131.text.md",
+      "request_id": "QX-R3-11-001278-root-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地题包",
+      "query": "完整读取work_001278_sources/task.json及本包v2 Schema相关数组",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "当前QX-P-001278，rev819f8b18c9b7f8d2；旧novelty.rev086d1dcc136f3f5f不是本轮证据。卡未给null/alternative/filtration/期望与路径量词。",
+      "request_id": "QX-R3-11-001278-academic-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv官方入口",
+      "query": "open https://arxiv.org/abs/2611.11874",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "直访DisabledError；稍后searchref open及本地urllib成功，最终不是原稿未取得。",
+      "url": "https://arxiv.org/abs/2611.11874",
+      "request_id": "QX-R3-11-001278-academic-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "ScienceDirect原刊",
+      "query": "open PII S0888613X21001523",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "403；后续CWI机构仓库取得同一正式刊稿。",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0888613X21001523",
+      "request_id": "QX-R3-11-001278-academic-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"2611.11874\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中官方记录和镜像；完整摘要后半明确给否定结果，不能只截前半开放问句。",
+      "request_id": "QX-R3-11-001278-academic-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Corenflos\" \"e-process\" \"e-power\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同题标题/作者可匹配；搜索索引中的镜像版本需以官方实际记录校正。",
+      "request_id": "QX-R3-11-001278-academic-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"an e-process\" \"bounded loss\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中同题完整摘要及不同model-confidence-set背景；后者不据同词并入。",
+      "request_id": "QX-R3-11-001278-academic-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv检索命中回开",
+      "query": "open官方search ref turn235100076academia31",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际返回717行全文抽取；部分公式丢失且版本展示不足，随后以固定PDF核准。",
+      "url": "https://arxiv.org/abs/2611.11874",
+      "request_id": "QX-R3-11-001278-academic-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "全文镜像",
+      "query": "open https://borowiecki.dev/pdf/2611.11874",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "27页PDF抽取已读；后来下载发现与官方v2逐字节相同。初始镜像abs索引只列v1，不能据镜像版本历史判断最新稿。",
+      "url": "https://borowiecki.dev/pdf/2611.11874",
+      "request_id": "QX-R3-11-001278-academic-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"2611.11874\" \"v2\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "domains arxiv.org；检索未给足版本历史，后由官方HTML实际取回确认v2=Nov16，不能用SciRate索引的Nov10替代。",
+      "request_id": "QX-R3-11-001278-academic-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"S0888613X21001523\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位Log-optimal anytime-valid E-values与DOI10.1016/j.ijar.2021.09.010。",
+      "request_id": "QX-R3-11-001278-academic-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"An iterated-logarithm price\" correction erratum withdrawn",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency90；命中原稿及镜像，没有取得另行正式撤回/勘误文本；官方v2修订单独实际读取，未把未命中当无勘误证明。",
+      "request_id": "QX-R3-11-001278-academic-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv官方直接下载",
+      "query": "urllib下载abs2611.11874 HTML、固定v2 PDF及固定v1 PDF；pdftotext -layout",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全部HTTP200。abs40594bytes，SHA256f5fb0b721b20ebf9c65ebd8dc70dbf612b7261e5e00b1601f9b52d1a95bf2c71；v2 395722bytes，SHA256bcfb8ce1809a70abedfe4f3077fc9d31acf57ede81379d6f0ec953b5b0ccb2ec；v1 391616bytes，SHA256d977a3e1f8c3e0126eca5480405071c6d17c3bf2b4e916a90a41f90b7f8270d7。",
+      "url": "https://arxiv.org/pdf/2611.11874v2",
+      "locator": "work_001278_sources/corenflos_abs.html、corenflos_v1.pdf/.txt、corenflos_v2.pdf/.txt；academic_download_log.json",
+      "request_id": "QX-R3-11-001278-academic-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "全文镜像下载核对",
+      "query": "urllib下载borowiecki.dev/pdf/2611.11874并与官方v2校验SHA256",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "395722bytes，SHA256与官方v2相同；不把搜索摘要的旧公式抽取当固定v2原式。",
+      "url": "https://borowiecki.dev/pdf/2611.11874",
+      "locator": "work_001278_sources/corenflos_mirror.pdf/.txt",
+      "request_id": "QX-R3-11-001278-academic-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Log-optimal anytime-valid E-values\" Koolen Grünwald pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位CWI原刊全文和正式卷页。",
+      "request_id": "QX-R3-11-001278-academic-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"2611.11874v2\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "SciRate多条索引把v2连到Nov10；只作索引线索，最终官方版本历史为Nov16。",
+      "request_id": "QX-R3-11-001278-academic-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Safe testing\" \"bounded\" \"regret\" Section 5",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位SafeTesting2024刊页和1906.07801早期原稿；随后读取固定v5原始问句。",
+      "request_id": "QX-R3-11-001278-academic-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "CWI机构仓库正式刊稿",
+      "query": "open并urllib下载33120.pdf；读取§2定义/Problem3、§3 Thm5范围、§4.1 Thm8与证明",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "正式稿14页464969bytes，SHA256a22eee1556e426f5813c29ea1ad62b8df0e0da6340dfa733fc2083499cd02782。Received2021-02-20，online2021-09-24，卷期February2022；未把CWI索引抓取时间当发表时间。",
+      "url": "https://ir.cwi.nl/pub/33120/33120.pdf",
+      "locator": "work_001278_sources/koolen_grunwald2022.pdf/.txt，pp69–74",
+      "request_id": "QX-R3-11-001278-academic-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "OUP正式刊页",
+      "query": "open Safe testing, JRSSB86(5)1091原刊页",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "500重定向到不可访问cdn；后续以官方arXiv固定v5读早期问句，未冒充2024正式刊版逐字全文校对。",
+      "url": "https://academic.oup.com/jrsssb/article/86/5/1091/7623686",
+      "request_id": "QX-R3-11-001278-academic-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地固定v2及版本差分",
+      "query": "读Corenflos主文pp1–9，附录S1.2–S1.8关键证明与S2.5、S5；生成v1/v2文本差分；pdfinfo核27页",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "重点独立核Gaussian正交/密度、change of measure、LemmaS3上界、Prop3(ii)全horizon构造及Thm1平均到supμ桥。下界S4–S6由本轮数学路线独立核。未将模拟表格复跑或所有形式化外部引理当该项核查完成。",
+      "url": "https://arxiv.org/pdf/2611.11874v2",
+      "locator": "corenflos_v1_v2.diff；§4.3 p6、S1.5–S1.8 pp12–18、S2.5 pp22–23、S5 pp26–27",
+      "request_id": "QX-R3-11-001278-academic-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地原稿页图",
+      "query": "pdftoppm渲染固定v2 p6并view_image实际查看像素",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "亲见Prop3(ii) u_j底数含2logT_j/logq_j，指数为1−s²j/(j+1)，不是搜索抽取的loglogT_j或(1−s²)j/(j+1)。Thm1的max_t sup_μ次序也由实际页图核准。",
+      "url": "https://arxiv.org/pdf/2611.11874v2",
+      "locator": "work_001278_sources/corenflos_v2_p6.png",
+      "request_id": "QX-R3-11-001278-academic-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Safe testing\" \"bounded regret\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检索线索不足，改读已知原稿§5；不记录成问题不存在。",
+      "request_id": "QX-R3-11-001278-academic-021",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"E-values for exponential families: The general case\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位Hao–Grünwald官方arXiv与CWI正式刊元信息。",
+      "request_id": "QX-R3-11-001278-academic-022",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Safe testing\" \"Section 5\" \"supermartingale\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中相关定义及引用，随后固定原稿§5实际核问句范围。",
+      "request_id": "QX-R3-11-001278-academic-023",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv官方记录",
+      "query": "open abs1906.07801并读取完整历史",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "v1=2019-06-18，最新v5=2023-03-10；accepted JRSSB discussion paper。只将2019作稿件元数据，未读v1问句，因此不把它当本轮已核提问首年。",
+      "url": "https://arxiv.org/abs/1906.07801",
+      "request_id": "QX-R3-11-001278-academic-024",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv官方记录",
+      "query": "open abs2409.11134并读取完整历史",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "Yunda Hao、Peter Grünwald；v1=2024-09-17，最新arXiv v2=2025-08-26；50页。CWI正式卷期元信息另记2026，不把预印本版与正式版默认为逐字相同。",
+      "url": "https://arxiv.org/abs/2409.11134",
+      "request_id": "QX-R3-11-001278-academic-025",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv固定原稿",
+      "query": "并行urllib下载SafeTesting1906.07801v5和Hao–Grünwald2409.11134v2，pdftotext；只定向读相关问句/定义",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "前者1143493bytes，SHA2564f0de769eeda72d4dd920c8d7bc23773224a7bd326ce6cf80b34f61e7c941919；后者1621262bytes，SHA25652c3a0d09187b158b094ce838a1b42b08e8bcc0c5edde7bd14c4e81563c4a837。Safe§5 pp25–26 Eq31，Hao§7p29/AppEpp48–50已读；没有重审两篇全部长证明。",
+      "url": "https://arxiv.org/pdf/1906.07801v5",
+      "locator": "work_001278_sources/safetesting_v5.pdf/.txt；hao_grunwald_v2.pdf/.txt",
+      "request_id": "QX-R3-11-001278-academic-026",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原任务包",
+      "query": "完整读取work_001278_sources/task.json，id QX-P-001278，card_rev819f8b18c9b7f8d2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.qunxingmath.org/p/QX-P-001278/",
+      "locator": "题面、形式化、人话、acceptance及引文",
+      "note": "既有卡把量词/模型省略并将源文代价写成sqrt(T loglogT)；本轮不据旧OPEN-WEAK标签判断。",
+      "request_id": "QX-R3-11-001278-math-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv与原PDF镜像",
+      "query": "open 〔原始工具引用已私有留存〕（arxivabs2611.11874全文抽取）及turn465522497view1（borowiecki.dev/pdf/2611.11874）；find Theorem1 / S1.5 / Lower bound 〔私有记录编号：PR-003984〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/2611.11874",
+      "locator": "该项核查成功refs /1、/2/3",
+      "note": "完整摘要后半明确给否定答案；镜像PDF页眉标v2。最终公式审阅使用随后收到的官方固定v2本地PDF，而不依赖漏公式的HTML。",
+      "request_id": "QX-R3-11-001278-math-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "官方固定v2本地全文",
+      "query": "读取corenflos_v2.txt §§1–4.3、S1.3–S1.6（尤其LemmasS4–S6）、S1.7；独立渲染并实际view_image印刷pp15–17",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2611.11874v2",
+      "locator": "Lemma1；Proposition2；Theorem1；S1.6下界及S9",
+      "note": "官方PDF SHA256bcfb8ce1809a70abedfe4f3077fc9d31acf57ede81379d6f0ec953b5b0ccb2ec。下界链逐步手核，重点为密度比、全域基线、高斯尾界、参数极限；非仅摘要。",
+      "request_id": "QX-R3-11-001278-math-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核验",
+      "site": "手工概率与高斯积分",
+      "query": "两点空间两时刻停时；简单P/Q似然比Jensen最优性；Gaussian残差numeraire；s=1/2,r=16的显式不有界下界",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.qunxingmath.org/p/QX-P-001278/",
+      "locator": "以下自含数学证书",
+      "note": "这些是实际手工推导。没有运行数值模拟、优化器、MonteCarlo、Lean或其他数学测试程序；文件生成/Schema校验不当数学复跑。",
+      "request_id": "QX-R3-11-001278-math-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-openai_eprocess",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "\"e-process\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/openai/math",
+      "note": "实际topn=20，返回16项。16项均为free/base/one-processor等词中子串及其他数学目标；实际返回commit3344da59991ed94f9ba711217b29c1d760badfa6，不能把这些噪声当同题形式化，也不是穷尽全仓。",
+      "result_count": 16,
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-fc_epower",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "\"e-power\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "实际topn=20，返回4项。4项均为prime-power字串，非统计e-power；未取得同题Lean。",
+      "result_count": 4,
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-fc_eprocess",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "\"e-process\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "实际topn=20，返回0项。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q1278C-github_exact",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "2611.11874",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com",
+      "note": "实际topn=20，返回19项。命中原稿RSS、AI阅读摘要、LML路线图等，随后只沿原作者formalization与相关入口核实；未把RSS/题库/二手解说算新证明。",
+      "result_count": 19,
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-github_corenflos",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "\"Corenflos\" \"e-process\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com",
+      "note": "实际topn=20，返回20项。命中原稿RSS、AI阅读摘要、LML路线图等，随后只沿原作者formalization与相关入口核实；未把RSS/题库/二手解说算新证明。",
+      "result_count": 20,
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-web_exact-5",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"e-process\" \"bounded loss\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际recency=365；命中原arXiv摘要/镜像或相邻统计问题；未发现需优先于原作者项目处理的独立同题全解声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-web_exact-6",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Corenflos\" \"e-process\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际recency=365；命中原arXiv摘要/镜像或相邻统计问题；未发现需优先于原作者项目处理的独立同题全解声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-web_exact-7",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"e-process\" \"Lean\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际recency=365；命中原arXiv摘要/镜像或相邻统计问题；未发现需优先于原作者项目处理的独立同题全解声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-web_exact-8",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"optimal e-power\" \"horizon\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际recency=365；命中原arXiv摘要/镜像或相邻统计问题；未发现需优先于原作者项目处理的独立同题全解声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-web_exact-open",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者正式网页/Web open",
+      "query": "OPEN https://adriencorenflos.github.io/formalization/log-optimal-e-processes",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://adriencorenflos.github.io/formalization/log-optimal-e-processes",
+      "note": "Web open报not accessible；随后本轮urllib相同URL实际HTTP200，访问缺口已部分补足，见直取记录。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-lml_readme",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET LeanMachineLearning/LMLRoadmaps/LMLRoadmaps/EValues/README.md @ 367909e0b5aea0546fc8e84f8b3b9b39cf7a43e6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/LeanMachineLearning/LMLRoadmaps/blob/367909e0b5aea0546fc8e84f8b3b9b39cf7a43e6/LMLRoadmaps/EValues/README.md",
+      "note": "固定LML Roadmap README取得全文，仅实际读Scope/Existing formalizations等相关段；它是路线图与他人形式化入口说明，不是当前问题完成证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1278C-author_repo",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET https://github.com/adriencorenflos/adriencorenflos.github.io",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/adriencorenflos/adriencorenflos.github.io",
+      "note": "实际元信息/分支/树读取。个人站main b11fdf4b31cd0b1a04c53d36fa18c7ce0691fd8e递归树truncated=false，共11文件无formalization目录；只限该版本main，部署API另有项目链接。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-web_author_community-12",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"adriencorenflos\" \"log-optimal-e-processes\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "此整批返回Empty search results；仅本批结果边界，不是全社区无讨论。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q1278C-web_author_community-13",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "site:mathoverflow.net \"e-process\" \"optimal\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "此整批返回Empty search results；仅本批结果边界，不是全社区无讨论。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q1278C-web_author_community-14",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "site:mathoverflow.net \"numeraire\" \"e\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "此整批返回Empty search results；仅本批结果边界，不是全社区无讨论。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q1278C-openai_epower",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "\"e-power\" \"Gaussian\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/openai/math",
+      "note": "实际topn=20，返回20项。本轮进一步限定e-power与Gaussian仍返回20条prime/inverse/finite-power等邻词噪声；只排除所见摘录，未广审这些无关论文。",
+      "result_count": 20,
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-author_formaldir",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET https://api.github.com/repos/AdrienCorenflos/AdrienCorenflos.github.io/contents/formalization/log-optimal-e-processes",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://api.github.com/repos/AdrienCorenflos/AdrienCorenflos.github.io/contents/formalization/log-optimal-e-processes",
+      "note": "实际请求返回404；后续依作者公开API继续定位，不能用本次路径失败推出源码全无。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-author_branch",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET https://api.github.com/repos/AdrienCorenflos/AdrienCorenflos.github.io/branches/main",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/AdrienCorenflos/AdrienCorenflos.github.io/branches/main",
+      "note": "实际元信息/分支/树读取。个人站main b11fdf4b31cd0b1a04c53d36fa18c7ce0691fd8e递归树truncated=false，共11文件无formalization目录；只限该版本main，部署API另有项目链接。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-author_tree",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET https://api.github.com/repos/AdrienCorenflos/AdrienCorenflos.github.io/git/trees/b11fdf4b31cd0b1a04c53d36fa18c7ce0691fd8e?recursive=1",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/AdrienCorenflos/AdrienCorenflos.github.io/git/trees/b11fdf4b31cd0b1a04c53d36fa18c7ce0691fd8e?recursive=1",
+      "note": "实际元信息/分支/树读取。个人站main b11fdf4b31cd0b1a04c53d36fa18c7ce0691fd8e递归树truncated=false，共11文件无formalization目录；只限该版本main，部署API另有项目链接。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-author_site_fetch",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "formalization",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/AdrienCorenflos/AdrienCorenflos.github.io",
+      "note": "实际topn=20，返回1项。",
+      "result_count": 1,
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-global_logoptimal",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "\"log-optimal-e-processes\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com",
+      "note": "实际topn=20，返回1项。",
+      "result_count": 1,
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-formal_repo",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET https://github.com/AdrienCorenflos/formalization",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/AdrienCorenflos/formalization",
+      "note": "实际请求返回404；后续依作者公开API继续定位，不能用本次路径失败推出源码全无。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-author_branches",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GitHub search_branches(owner=\"AdrienCorenflos\",repo_name=\"AdrienCorenflos.github.io\",query=\"\",page_size=100)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com",
+      "note": "实际元信息/分支/树读取。个人站main b11fdf4b31cd0b1a04c53d36fa18c7ce0691fd8e递归树truncated=false，共11文件无formalization目录；只限该版本main，部署API另有项目链接。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1278C-formal_LogOptimalEProcesses_Literature_lean",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET AdrienCorenflos/LogOptimalEProcesses/LogOptimalEProcesses/Literature.lean @ f33be9d20205c58e261628333102fdbde3fa7553",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/AdrienCorenflos/LogOptimalEProcesses/blob/f33be9d20205c58e261628333102fdbde3fa7553/LogOptimalEProcesses/Literature.lean",
+      "note": "原作者API source href所指候选完整commit下实际GET返回404。不能判断仓库不存在或私有，不能报取得证明体/依赖；direct raw另有一次404验证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-formal_LogOptimalEProcesses_EProcess_Defs_lean",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET AdrienCorenflos/LogOptimalEProcesses/LogOptimalEProcesses/EProcess/Defs.lean @ f33be9d20205c58e261628333102fdbde3fa7553",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/AdrienCorenflos/LogOptimalEProcesses/blob/f33be9d20205c58e261628333102fdbde3fa7553/LogOptimalEProcesses/EProcess/Defs.lean",
+      "note": "原作者API source href所指候选完整commit下实际GET返回404。不能判断仓库不存在或私有，不能报取得证明体/依赖；direct raw另有一次404验证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-formal_lake_manifest_json",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET AdrienCorenflos/LogOptimalEProcesses/lake-manifest.json @ f33be9d20205c58e261628333102fdbde3fa7553",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/AdrienCorenflos/LogOptimalEProcesses/blob/f33be9d20205c58e261628333102fdbde3fa7553/lake-manifest.json",
+      "note": "原作者API source href所指候选完整commit下实际GET返回404。不能判断仓库不存在或私有，不能报取得证明体/依赖；direct raw另有一次404验证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-formal_lean_toolchain",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET AdrienCorenflos/LogOptimalEProcesses/lean-toolchain @ f33be9d20205c58e261628333102fdbde3fa7553",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/AdrienCorenflos/LogOptimalEProcesses/blob/f33be9d20205c58e261628333102fdbde3fa7553/lean-toolchain",
+      "note": "原作者API source href所指候选完整commit下实际GET返回404。不能判断仓库不存在或私有，不能报取得证明体/依赖；direct raw另有一次404验证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-formal_LogOptimalEProcesses_Gaussian_Composite_lean",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET AdrienCorenflos/LogOptimalEProcesses/LogOptimalEProcesses/Gaussian/Composite.lean @ f33be9d20205c58e261628333102fdbde3fa7553",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/AdrienCorenflos/LogOptimalEProcesses/blob/f33be9d20205c58e261628333102fdbde3fa7553/LogOptimalEProcesses/Gaussian/Composite.lean",
+      "note": "原作者API source href所指候选完整commit下实际GET返回404。不能判断仓库不存在或私有，不能报取得证明体/依赖；direct raw另有一次404验证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-formal_LogOptimalEProcesses_Paper_Defs_lean",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET AdrienCorenflos/LogOptimalEProcesses/LogOptimalEProcesses/Paper/Defs.lean @ f33be9d20205c58e261628333102fdbde3fa7553",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/AdrienCorenflos/LogOptimalEProcesses/blob/f33be9d20205c58e261628333102fdbde3fa7553/LogOptimalEProcesses/Paper/Defs.lean",
+      "note": "原作者API source href所指候选完整commit下实际GET返回404。不能判断仓库不存在或私有，不能报取得证明体/依赖；direct raw另有一次404验证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-formal_LogOptimalEProcesses_Paper_lean",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET AdrienCorenflos/LogOptimalEProcesses/LogOptimalEProcesses/Paper.lean @ f33be9d20205c58e261628333102fdbde3fa7553",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/AdrienCorenflos/LogOptimalEProcesses/blob/f33be9d20205c58e261628333102fdbde3fa7553/LogOptimalEProcesses/Paper.lean",
+      "note": "原作者API source href所指候选完整commit下实际GET返回404。不能判断仓库不存在或私有，不能报取得证明体/依赖；direct raw另有一次404验证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-formal_lakefile_toml",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET AdrienCorenflos/LogOptimalEProcesses/lakefile.toml @ f33be9d20205c58e261628333102fdbde3fa7553",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/AdrienCorenflos/LogOptimalEProcesses/blob/f33be9d20205c58e261628333102fdbde3fa7553/lakefile.toml",
+      "note": "原作者API source href所指候选完整commit下实际GET返回404。不能判断仓库不存在或私有，不能报取得证明体/依赖；direct raw另有一次404验证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-formal_README_md",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "GET AdrienCorenflos/LogOptimalEProcesses/README.md @ f33be9d20205c58e261628333102fdbde3fa7553",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/AdrienCorenflos/LogOptimalEProcesses/blob/f33be9d20205c58e261628333102fdbde3fa7553/README.md",
+      "note": "原作者API source href所指候选完整commit下实际GET返回404。不能判断仓库不存在或私有，不能报取得证明体/依赖；direct raw另有一次404验证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_direct_fetch-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/log-optimal-e-processes",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/log-optimal-e-processes",
+      "note": "实际urllib GET；HTTP200，1321bytes，SHA256bdd1ca6d2ef0f0f06ab033827669834b8d82d033124128a2f23b76b74a136857。原作者形式化入口已完整读，补足Web open访问失败。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_direct_pages-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/log-optimal-e-processes/blueprint/index.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/log-optimal-e-processes/blueprint/index.html",
+      "note": "实际urllib GET；HTTP200，5778bytes，SHA2562dc22e157ab8b5c394213263ff8201b89b6d5fe01fe14f6177321a3de4d8e3f1。实际复阅相关定义、结果及形式化说明；blueprint的检查标记不是本轮编译证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_direct_pages-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/docs/index.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/docs/index.html",
+      "note": "实际urllib GET；HTTP200，1763bytes，SHA256fa01fff5213b618478c5bcb925dab6dccce9497eec4e6b08001748928589142e。API显示声明/部分定义方程，较长方程有省略；不是原Lean证明体。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_blueprint_fetch-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/log-optimal-e-processes/blueprint/sect0001.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/log-optimal-e-processes/blueprint/sect0001.html",
+      "note": "实际urllib GET；HTTP200，15532bytes，SHA2567f2e7ea26a4f690f319d145dcd602e654b8e2e8adf7821e73422c9d9550f04dd。实际复阅相关定义、结果及形式化说明；blueprint的检查标记不是本轮编译证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_blueprint_fetch-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/log-optimal-e-processes/blueprint/sect0002.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/log-optimal-e-processes/blueprint/sect0002.html",
+      "note": "实际urllib GET；HTTP200，68258bytes，SHA256490a340972327a0f0e3efe329711b35f29277fe13d42ebbc422bc5bc02aa06a1。实际复阅相关定义、结果及形式化说明；blueprint的检查标记不是本轮编译证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_blueprint_fetch-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/log-optimal-e-processes/blueprint/sect0006.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/log-optimal-e-processes/blueprint/sect0006.html",
+      "note": "实际urllib GET；HTTP200，29708bytes，SHA256f8607d35ee1658264b0570e36423b7d0c27037b01ec9360a4998d1a4aa246796。实际复阅相关定义、结果及形式化说明；blueprint的检查标记不是本轮编译证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_blueprint_fetch-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/log-optimal-e-processes/blueprint/sect0007.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/log-optimal-e-processes/blueprint/sect0007.html",
+      "note": "实际urllib GET；HTTP200，49514bytes，SHA2560761e44fae4d0b535112e337271887e921ef6d1ff539c51c0a2b480bd6cc988e。实际复阅相关定义、结果及形式化说明；blueprint的检查标记不是本轮编译证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_blueprint_fetch-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/log-optimal-e-processes/blueprint/sect0009.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/log-optimal-e-processes/blueprint/sect0009.html",
+      "note": "实际urllib GET；HTTP200，10462bytes，SHA2563ca1dea5e6a8bbe5331be46b1b4e119dddfe3ce2ffdf78e85f923f9dcea8faad。实际复阅相关定义、结果及形式化说明；blueprint的检查标记不是本轮编译证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_docs_paper_fetch-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/docs/LogOptimal/Paper.html",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://adriencorenflos.github.io/formalization/docs/LogOptimal/Paper.html",
+      "note": "实际urllib GET；HTTP Error 404: Not Found。仅记录此真实路径失败，不能推全站/源码不存在。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_navbar_fetch-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/docs/navbar.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/docs/navbar.html",
+      "note": "实际urllib GET；HTTP200，620656bytes，SHA256cb94415301e0186ff20317483a91c2b0741771b6eff96c67aff21d8548275d06。实际仅解析LogOptimalEProcesses模块路径；未逐条读整个Mathlib导航。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_api_fetch-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Paper.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Paper.html",
+      "note": "实际urllib GET；HTTP200，187870bytes，SHA256613d307c8f56cd905b6331f9b9b52c99199096ae6f9e4d389a1f658413d819cf。API显示声明/部分定义方程，较长方程有省略；不是原Lean证明体。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_api_fetch-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Paper/Defs.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Paper/Defs.html",
+      "note": "实际urllib GET；HTTP200，75185bytes，SHA25613e0f5d962f6c524fa468b6c8d11f0493afdadd6f4822a34ba8371a98c55018c。API显示声明/部分定义方程，较长方程有省略；不是原Lean证明体。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_api_fetch-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/EProcess/Defs.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/EProcess/Defs.html",
+      "note": "实际urllib GET；HTTP200，88001bytes，SHA256909e6a87815878d33c5ae58b80b075c7ab27a0a0bc9cb4f3adb29001f02fdb56。API显示声明/部分定义方程，较长方程有省略；不是原Lean证明体。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_api_fetch-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Literature.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Literature.html",
+      "note": "实际urllib GET；HTTP200，16517bytes，SHA256b97517c5d153e14cde7a9e6c4f9f356349fb24881fb3f4f0ec2e9f1c5f12f964。API显示声明/部分定义方程，较长方程有省略；不是原Lean证明体。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_api_fetch-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Gaussian/Composite.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Gaussian/Composite.html",
+      "note": "实际urllib GET；HTTP200，53584bytes，SHA25638d236bdbcbc970b12efd28f64f2c9fd168c64d5776449b22408c53e5badae4e。API显示声明/部分定义方程，较长方程有省略；不是原Lean证明体。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_last_fetch-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Gaussian/RateTheorems.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Gaussian/RateTheorems.html",
+      "note": "实际urllib GET；HTTP200，53499bytes，SHA2568517dfc1d9558af604cd2d602f7725049004a83d5a01e42c73c07b15ff868faa。API显示声明/部分定义方程，较长方程有省略；不是原Lean证明体。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_last_fetch-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Gaussian/LowerProofs.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Gaussian/LowerProofs.html",
+      "note": "实际urllib GET；HTTP200，17130bytes，SHA256ab0d84c020bca51aedfbe72994665f088c2c01790af25ab21761b272775c4ad1。API显示声明/部分定义方程，较长方程有省略；不是原Lean证明体。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_last_fetch-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Gaussian/Defs.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Gaussian/Defs.html",
+      "note": "实际urllib GET；HTTP200，66390bytes，SHA2564745ee2407f213ea399b219d1fce6db53b2998dd3528bf06eac841dd345a0836。API显示声明/部分定义方程，较长方程有省略；不是原Lean证明体。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-direct-author_last_fetch-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者GitHub Pages / direct raw",
+      "query": "GET https://raw.githubusercontent.com/AdrienCorenflos/LogOptimalEProcesses/f33be9d20205c58e261628333102fdbde3fa7553/LogOptimalEProcesses/Paper.lean",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://raw.githubusercontent.com/AdrienCorenflos/LogOptimalEProcesses/f33be9d20205c58e261628333102fdbde3fa7553/LogOptimalEProcesses/Paper.lean",
+      "note": "实际urllib GET；HTTP Error 404: Not Found。仅记录此真实路径失败，不能推全站/源码不存在。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q1278C-local-S5",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地固定原稿v2",
+      "query": "LOCAL READ corenflos_v2.txt: find('formalization'), find('AI'), find('Lean'); s[s.index('S5     Formalization'):]",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/2611.11874v2",
+      "locator": "p8 generative AI与S5全文pp26–27",
+      "note": "代码路线实际复阅学术下载的完整原稿相应部分；未冒认该项核查下载PDF。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-local-API",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地作者API/blueprint快照",
+      "query": "LOCAL EXTRACT API declaration ids: LogOptimal.dataFiltration, IsEProcess, minimaxRegret, nullDist, gaussNull, altDist, mixAlt, gaussNumeraire; Paper.prop_basic/prop_mixture/thm_composite; prop_mixture_of_fixedK/prop_mixture_proof; lem_fixedk_proof",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "本轮实际逐项读取这些API类型、可渲染方程和docstring，核主type与helper区别；原Lean证明体均不可取得。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1278C-local-runtime",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地工具链",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003985〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "两者均None；未安装Lean或Mathlib、未编译。此项是环境检查，不是数学检索结论。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R1278-CARD",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001278.text.md",
+      "locator": "全部正文与meta；题面/形式化/人话/摘录/acceptance",
+      "version": "commit73290369a8dcc632e25e555aec525565ea6e08f8；card_rev819f8b18c9b7f8d2",
+      "subquestions": [
+        "主问题",
+        "题面/原文对照"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "原文缺模型与期望，错误地从固定时刻均值推出anytime，且只摘已提供否定答案论文的提问句；旧OPEN-WEAK及audited标签不作证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R1278-PAPER",
+      "url": "https://arxiv.org/pdf/2611.11874v2",
+      "locator": "§1–4，Prop2–3/Theorem1，S1.3–S1.6/S2.3/S5",
+      "version": "arXiv2611.11874v2，2026-11-16UTC；PDF SHA256bcfb8ce1809a70abedfe4f3077fc9d31acf57ede81379d6f0ec953b5b0ccb2ec",
+      "subquestions": [
+        "标准bounded regret普遍保证",
+        "卡内量词/损失阶修正",
+        "公开形式化范围"
+      ],
+      "scope_match": "原题等价",
+      "role": "反例",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "适用恢复的标准期望对数后悔定义；不是题卡未定义随机差表达式的字面定理。主审实际阅读全部主文及关键下界证明，数学路线独立二审具体s=1/2反例，学术路线核上界。没有将S5作者报告当本轮Lean复跑，代码路线会细列公开API及源文件可达性。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "counterexample",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "R1278-DUP",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/tree/73290369a8dcc632e25e555aec525565ea6e08f8/problems",
+      "locator": "001263与002131的text.md和meta.json全文；positions另列",
+      "version": "1263:67ab0c9ff44932f0；2131:22af64da72709549；commit73290369a8dcc632e25e555aec525565ea6e08f8",
+      "subquestions": [
+        "库内查重"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "仅统计minimax和停止术语近邻；完整数学对象不同，未发现这两对适合合并。不把有限索引扫描称全库不存在同题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "a1278_identity",
+      "url": "https://arxiv.org/abs/2611.11874",
+      "locator": "官方实际HTML dateline、Comments、Submission history与完整Abstract",
+      "version": "Adrien Corenflos，An iterated-logarithm price of anytime validity for log-optimal e-processes；v1 2026-11-09 04:52:19 UTC；最新v2 2026-11-16 16:02:37 UTC",
+      "subquestions": [
+        "题卡引文同一性与版本",
+        "完整摘要宣布否定而不是只留下开放问句"
+      ],
+      "scope_match": "原题等价",
+      "role": "反例",
+      "publication": "预印本",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "note": "编号、作者和初稿日期真实。题卡只保留摘要前部的相关开放问题，后文实际给Gaussian小方差未知位置的否定结果。v2 Comments说明主要改动是构造对数据置换不变；不是全称结论撤回。web直接open失败已由官方urllib HTML/PDF补足，不能仍列未取全文。 本轮也实际读取固定v1摘要及p6 Theorem1，否定结论在2026-11-09初稿就已存在；不是题卡审核之后才出现的新变化。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "counterexample",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a1278_corenflos_v2",
+      "url": "https://arxiv.org/pdf/2611.11874v2",
+      "locator": "§1–2 pp1–3 Eq1–4；§4.1–4.3 pp4–7 Proposition2–4与Theorem1；§5 p7；附录S1.2–S1.8 pp11–18；S2.5 pp22–23",
+      "version": "arXiv2611.11874v2(2026-11-16)，27页，SHA256bcfb8ce1809a70abedfe4f3077fc9d31acf57ede81379d6f0ec953b5b0ccb2ec；v1另存并已对比",
+      "subquestions": [
+        "标准e-power/numéraire/regret的精确定义",
+        "固定Gaussian混合备择的无界minimax损失",
+        "未知均值复合备择的sharp loglog界",
+        "单一全时域过程与简单备择边界"
+      ],
+      "scope_match": "有附加假设",
+      "role": "反例",
+      "publication": "预印本",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "null为{N(θ,1)^⊗∞:θ∈R}，固定混合Q=∫N(μ,s²)^⊗∞N(0,ρ²)(dμ)，0<s<1、ρ²≥1−s²。Γ_T=inf_eprocess max_{0≤t≤T}E_Qlog(E_t*/E_t)，Prop3给Γ_T/loglogT→1−s²，已否定标准普遍bounded-regret可行性。Thm1进一步给未知μ worst-case κ+Γ_T≤inf_E max_t sup_μR_t^μ≤κ+logη_T。学术路线独立核Gaussian numéraire、换测度、S3上界、Prop3(ii)单一过程构造和Thm1 κ偏移；数学路线独立核S4–S6下界密度及极限，主审另二读。没有把模拟图复跑、Lean完整编译或所有外部测度论定理重证计为完成。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "counterexample",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a1278_formal_disclosure",
+      "url": "https://arxiv.org/pdf/2611.11874v2",
+      "locator": "Use of generative AI p8；§S5.1–S5.4 pp26–27；RemarkS1 pp17–18",
+      "version": "同固定v2；作者给https://adriencorenflos.github.io/formalization/log-optimal-e-processes",
+      "subquestions": [
+        "AI及形式化声明范围",
+        "v1/v2构造变化不是撤回",
+        "已明示的外部hypotheses与未形式化项"
+      ],
+      "scope_match": "仅子问",
+      "role": "形式化",
+      "publication": "预印本",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "作者明确Claude协助文字、证明检查、数值与Lean。S5列optimal stopping、primal-dual、LIL、numéraire existence、e-lifting为仅陈述未证明的外部假设；ExampleS1模型和与文献对象识别未形式化。该项核查只亲读披露，代码路线另审公开API及所链接固定源码的可达性，后者实际404未取得。v1 stopped-numéraire混合与v2 truncated-numéraire混合均被RemarkS1保留有效；v2新增每项置换不变，不能标v1反例已撤回。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a1278_kg2022",
+      "url": "https://ir.cwi.nl/pub/33120/33120.pdf",
+      "locator": "pp69–71 §2 Definition1/Problem3；pp72–73 Theorem5；p74 §4.1 Theorem8与证明",
+      "version": "Wouter M.Koolen、Peter Grünwald，Log-optimal anytime-valid E-values，International J.Approximate Reasoning141(Feb2022)69–82，DOI10.1016/j.ijar.2021.09.010；online2021-09-24；机构仓库正式稿SHA256a22eee1556e426f5813c29ea1ad62b8df0e0da6340dfa733fc2083499cd02782",
+      "subquestions": [
+        "题卡PII的真实背景内容",
+        "任意停时有效定义",
+        "给定备择停时的优化与全horizon regret不同",
+        "simple-null零损失"
+      ],
+      "scope_match": "仅子问",
+      "role": "重述",
+      "publication": "正式刊发",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "note": "Definition1要求每个null和每个停时的期望≤1；Problem3给定(Q,σ)优化E_QlogE_σ，不等同同一过程同时达到所有fixed-horizon numéraire。Thm8 point-null下LR过程对任何σ最优，短证明可核。Thm5强双对偶明确finiteX，不能直接不加条件搬到Gaussian；Corenflos自己的Lemma1只用一般弱方向并在S1.3证明，因而不能以finiteX限制推翻新稿。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a1278_safe2023",
+      "url": "https://arxiv.org/pdf/1906.07801v5",
+      "locator": "§5 pp25–26，An Open Question concerning GRO、Eq31及Example9末问",
+      "version": "Peter Grünwald、Rianne de Heide、Wouter M.Koolen，Safe Testing，arXiv1906.07801v5(2023-03-10)；稿件v1元数据2019-06-18；后正式刊JRSSB86(5)(2024)1091–1128",
+      "subquestions": [
+        "早于Corenflos2026的相关有界损失问题",
+        "seqdec/test-martingale与一般e-process的范围"
+      ],
+      "scope_match": "同源不同问",
+      "role": "目前最早可核实出处",
+      "publication": "预印本",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "实际读到Eq31要求对所有n≥n0，顺序条件e-variable乘积相对固定n REGROW基准差固定ε，继而问哪些模型/批次条件可达到。它关注更强的seqdec/test martingale及REGROW背景，不应逐字等同未定义的题卡公式。至少2023v5已实际含问句，不能把2026当全新首提；未读取2019v1相应段，故不将2019当本轮已核首提。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "earliest_source",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a1278_hao2025",
+      "url": "https://arxiv.org/pdf/2409.11134v2",
+      "locator": "§1 pp1–4；§7 p29；AppendixE pp48–50，Proposition7及其后讨论",
+      "version": "Yunda Hao、Peter Grünwald，E-Values for Exponential Families: the General Case，arXiv2409.11134v2(2025-08-26)，50页；v1=2024-09-17；CWI元数据正式Bernoulli32(4)(2026)3113–3142，DOI10.3150/26-bej1981",
+      "subquestions": [
+        "almost e-process原猜想的实际非形式化含义",
+        "coarser filtration与完整数据filtration区别"
+      ],
+      "scope_match": "同源不同问",
+      "role": "原始提出",
+      "publication": "预印本",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "note": "作者自己指出COND/RIPr通常不在数据filtration下构成e-process，AppE Prop7给变化的混合null边缘导致失败的条件；末段仅提出almost/approximate optional stopping的研究方向，未定义为统一bounded regret。Corenflos只否定该强解释，不能宣称所有可能的approximate概念均被推翻。本轮仅读这些范围，未重审50页一般指数族估计。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "original",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q1278-M-E1",
+      "url": "https://www.qunxingmath.org/p/QX-P-001278/",
+      "locator": "附包task.json完整题卡",
+      "version": "QX-P-001278 rev819f8b18c9b7f8d2",
+      "subquestions": [
+        "模型与量词缺省",
+        "e-process定义与验收"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "原始档案",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "读取原包内容，不声称直接打开群星网页。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q1278-M-E2",
+      "url": "https://arxiv.org/pdf/2611.11874v2",
+      "locator": "§1 definitions(1)–(3)；§2 Proposition1；§4 Gaussian模型、Proposition2、Theorem1",
+      "version": "Adrien Corenflos, arXiv2611.11874v2，2026-11-16；本地官方PDF SHA256bcfb8ce1809a70abedfe4f3077fc9d31acf57ede81379d6f0ec953b5b0ccb2ec",
+      "subquestions": [
+        "真实e-power与regret",
+        "Gaussian复合模型及全称量词",
+        "源文的否定结论范围"
+      ],
+      "scope_match": "仅子问",
+      "role": "完整证明",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "原卡摘录的相关问题句确在摘要，但后面紧接本稿给否定答案；不是另一篇论文。这个证据不使缺模型的卡面自动成为一个完整命题。该项核查手核定义、Gaussian固定时域最优性、mixture→sup_mu桥；没有把已知简单P/Q零损失写成对此定理的反例。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q1278-M-E3",
+      "url": "https://arxiv.org/pdf/2611.11874v2",
+      "locator": "S1.3 Lemma1证明；S1.6 LemmasS4–S6及S9；印刷pp15–17实际像素",
+      "version": "同固定v2；本轮2026-11-27独立手审",
+      "subquestions": [
+        "存在明确模型使任何e-process的统一expected-log regret不有界"
+      ],
+      "scope_match": "仅子问",
+      "role": "完整证明",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "已独立核查完整负向下界链并在下文专门化s=1/2, rho²=3/4, r=16，得到足够的正系数5/9，无需先验证sharp上界。没有重跑论文模拟，未声称proof assistant通过。原稿sharp匹配上界/单一过程的全部构造由别路线审阅，该项核查不重复承诺。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q1278-M-E4",
+      "url": "https://www.qunxingmath.org/p/QX-P-001278/",
+      "locator": "本回执自含两时刻反例与似然比手证；URL仅标识所核题目，不声称本轮证明已发表于该页",
+      "version": "2026-11-27本轮独立手算，无程序执行",
+      "subquestions": [
+        "固定时刻e-values不能推出停时有效",
+        "已知简单P/Q的零损失边界",
+        "Gaussian残差的filtration边界"
+      ],
+      "scope_match": "仅子问",
+      "role": "证书",
+      "publication": "项目报告",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "完整样本空间、随机变量、停时与期望计算如下；不依赖外部临时附件。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1278-C-AUTHOR-FORMAL",
+      "url": "https://adriencorenflos.github.io/formalization/log-optimal-e-processes/",
+      "locator": "实际HTTP200 landing全文、blueprint index；API docs index",
+      "version": "2026-11-27实际下载：landing1321bytes SHA256 bdd1ca6d2ef0f0f06ab033827669834b8d82d033124128a2f23b76b74a136857；API docs标Lean4.35.0",
+      "subquestions": [
+        "原作者AI形式化声明的身份与实际访问"
+      ],
+      "role": "形式化",
+      "publication": "作者主页",
+      "scope_match": "尚未确认",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Adrien Corenflos（正文称Claude参与形式化）",
+      "note": "原作者落地页指向本篇An iterated-logarithm price…，声称论文/补充结果均有Lean4+Mathlib证明，仅propext/Classical.choice/Quot.sound，并明确未入Mathlib的文献结果作为命题假设。Web open曾失败，但该项核查urllib同URL200完整读取，不能保留成不可访问。API index实标Lean4.35.0并链接Lean commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc；这只是构建文档显示的版本，不等于取得项目lean-toolchain/锁定Mathlib。蓝图和API可读，真正证明源码的取回失败另列，不据作者文字确认本轮kernel通过。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "formalization",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E1278-C-DEFINITIONS",
+      "url": "https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/EProcess/Defs.html",
+      "locator": "dataFiltration、valueAt、IsEProcess、ePower、regret、minimaxRegret；Gaussian/Defs：nullDist/altDist/mixAlt；Paper/Defs：worstCaseMinimaxRegret",
+      "version": "API2026-11-27快照；EProcess/Defs SHA256909e6a87815878d33c5ae58b80b075c7ab27a0a0bc9cb4f3adb29001f02fdb56；所引source commit f33be9d20205c58e261628333102fdbde3fa7553",
+      "subquestions": [
+        "e-process与固定时点e-value的定义及实际目标量词"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "实际API可见dataFiltration由前t坐标i<t的comap σ代数上确界定义，ℱ0平凡；nullDistθ是真实Measure.infinitePi的N(θ,1)，gaussNull为其range；altDist s μ是真实N(μ,s²)无限积；mixAlt以N(0,ρ²)bind altDist，不是任意未解释参数。minimaxRegret公开方程为对所有E再条件IsEProcess的iInf、随后sup t≤T的regret，值域EReal。IsEProcess类型为实际路径过程ℕ→(ℕ→X)→ENNReal，docstring及blueprint要求适应全部数据过滤族并对所有包括∞的停时期望≤1，E∞取limsup；但其较长方程在API被省略，本轮没有原Lean定义体，不能宣称已逐项静态核其完整predicate。e-power是Q下expected log，regret是expected log ratio；卡写随机log差和‘每项期望≤1因此任意停时有效’均不满足这个精确目标。粗过滤族helmertFiltration单列，不能与全部数据过滤族混用。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E1278-C-RATE-TARGET",
+      "url": "https://adriencorenflos.github.io/formalization/docs/LogOptimalEProcesses/Gaussian/RateTheorems.html",
+      "locator": "prop_mixture_of_fixedK、prop_mixture_proof；Gaussian/LowerProofs.html的lem_fixedk_proof；Gaussian/Composite.html两界；Paper.html的thm_composite_holds",
+      "version": "API快照RateTheorems SHA2568517dfc1d9558af604cd2d602f7725049004a83d5a01e42c73c07b15ff868faa；LowerProofs SHA256ab0d84c020bca51aedfbe72994665f088c2c01790af25ab21761b272775c4ad1；source href=f33be9d20205c58e261628333102fdbde3fa7553",
+      "subquestions": [
+        "主要对数迭代率是否只是把下界当假设的形式化骨架"
+      ],
+      "role": "形式化",
+      "publication": "作者主页",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "实际公开类型中helper prop_mixture_of_fixedK接收hS9下界输入；但是同页正式prop_mixture_proof(s,ρ)的类型只要求0<s、s<1、0≤ρ、1−s²≤ρ²，结论包含ΓT/loglogT及logηT/loglogT趋1−s²、mixtureEProcess的IsEProcess和regret/loglog的limsup。它不再把hS9作为参数。LowerProofs.lem_fixedk_proof对同一实际Gaussian模型、任意各时点numéraire给明确S9不等式声明；不能只看helper就称主要下界被假设。Composite可见κ+ΓT≤worstCaseMinimaxRegret≤κ+logηT，要求0<s<1、ρ²≥1−s²、每μ每t的numéraire（下界T≥1）；未知μ的worst-case与固定μ模型必须分开。Paper.thm_composite_holds类型显示为聚合Prop，但Prop过大方程被API省略；本轮未取得其完整定义和证明体，不将API声明看成已验证无sorry闭包。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "formalization",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E1278-C-SOURCE-BOUNDARY",
+      "url": "https://github.com/AdrienCorenflos/LogOptimalEProcesses/blob/f33be9d20205c58e261628333102fdbde3fa7553/LogOptimalEProcesses/Paper.lean",
+      "locator": "作者API source href；实际9个GitHub fetch_file、一次raw请求；blueprint sect0002及Paper API的prop_basic/prop_mixture",
+      "version": "作者文档所链接完整commit f33be9d20205c58e261628333102fdbde3fa7553；其GitHub文件实际均404，故这是链接版本而非本轮取回的源码版本",
+      "subquestions": [
+        "源码可得性、依赖/公理/洞检查、与v2原稿的版本一致性"
+      ],
+      "role": "形式化",
+      "publication": "作者主页",
+      "scope_match": "尚未确认",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "他人声称已形式化验证",
+      "note": "Paper.lean、Paper/Defs.lean、EProcess/Defs.lean、Literature.lean、Gaussian/Composite.lean以及README.md/lean-toolchain/lakefile.toml/lake-manifest.json在该source href提交下真实GET全部404；direct raw Paper.lean亦404。不能据此断言源码不存在或私有，也不能宣称已核源码无sorry/无自定义axiom。Mathlib版本/完整导入闭包未获得，实际本机lean和lake均None，没有安装或编译。个人站main b11fdf4b31cd0b1a04c53d36fa18c7ce0691fd8e递归树只有11文件无formalization目录，只排除该main位置，不能据此排除部署文档。版本差异已具体核实：当前blueprint Proposition1(iii)、API Paper.prop_basic与RateTheorems仍用E*_{t∧T}/ηT，mixture也叠加stopped版本；这与原稿v1风格一致，而主审与学术已取v2将构造改为E*_t乘确定tail/indicator以保持数据置换不变。此差异不直接推翻旧构造的e-process有效性，但不得把这份部署文档自动当v2新构造已验证。主审进一步据v2 RemarkS1核旧stopped构造仍有效；变更主要保证新过程的数据置换不变性，不能据部署旧式构造声称下界失效或旧证明撤回。",
+      "rerun": {
+        "commit": "仅API source href所指f33be9d20205c58e261628333102fdbde3fa7553，原文件未取回",
+        "theorem": "Paper.thm_composite_holds / prop_mixture_proof（API声明已见，证明体未见）",
+        "toolchain": "文档自报Lean4.35.0；本机lean/lake均无；Mathlib与lake锁文件404未取得",
+        "command": "未运行lake build或#print axioms；未安装工具链",
+        "log_url": "https://adriencorenflos.github.io/formalization/log-optimal-e-processes/",
+        "cache": "没有把doc-gen已生成页面或作者声称当本机编译缓存通过",
+        "axioms": "作者声明propext/Classical.choice/Quot.sound；本轮无法独立核证明体与闭包"
+      },
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "formalization",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E1278-C-AI-DISCLOSURE",
+      "url": "https://arxiv.org/abs/2611.11874v2",
+      "locator": "v2 p8 Use of generative AI；S5.1–S5.4 pp26–27；作者blueprint sect0001、sect0009",
+      "version": "v2=2026-11-16（学术取PDF，代码路线本地实际复阅）；PDF SHA256bcfb8ce1809a70abedfe4f3077fc9d31acf57ede81379d6f0ec953b5b0ccb2ec",
+      "subquestions": [
+        "AI协作声明、外部文献假设与未形式化范围"
+      ],
+      "role": "形式化",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Adrien Corenflos",
+      "note": "该项核查实际复阅v2 p8与S5全文，未冒认学术路线PDF下载。作者称Claude用于文稿、proof checks、数值代码与形式化，正式输入是作者证明；不是无作者负责的纯自动结论。S5.1和blueprint明确五类文献命题只作假设而未证明：Peskir–Shiryaev optimal stopping，Koolen–Grünwald有限X primal-dual，LIL，Larsson等numéraire existence，Choe–Ramdas e-lifting。这些是整项目的可用文献接口，不能自动说本题每条主定理都用了全部五项；实际RateTheorems最终主类型没有主要hS9参数。S5.4及blueprint排除ExampleS1具体模型/对称性、与文献对象的识别；数值表/模拟、解释和仍开放的分类问题也未形式化。原稿记录通过形式化补强S1(ii)一般样本空间、S5的logη极限等，但本轮未逐证明体核其实现。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1278-C-LML-ROADMAP",
+      "url": "https://github.com/LeanMachineLearning/LMLRoadmaps/blob/367909e0b5aea0546fc8e84f8b3b9b39cf7a43e6/LMLRoadmaps/EValues/README.md",
+      "locator": "Scope and dependencies；Existing formalizations段",
+      "version": "固定367909e0b5aea0546fc8e84f8b3b9b39cf7a43e6；完整README已取，仅实际核相关段",
+      "subquestions": [
+        "公开Lean统计路线图的同题入口范围"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "README直接列Corenflos2611.11874的AI Lean入口，区分Statlib固定样本e-variable基础、EValuesResearch与roadmap待建层。它不是当前bounded-loss题的独立完成证明；也未据此去逐库深审整个统计形式化。FC精确e-process检索0项、e-power为prime-power噪声；openai/math两批实际结果为子串噪声；GitHub原arXiv号19项主要RSS/索引。只报所执行批次，没有据有限检索声称全网无其他证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001263",
+      "other_card_rev": "67ab0c9ff44932f0",
+      "relation": "待核",
+      "reason": "完整双卡显示1263问Sobolev重尾类score-based diffusion的采样TV误差minimax速率；1278问固定null/alternative与数据filtration下e-process期望log regret对所有horizon的有界性。模型、损失、竞争对象和量词不同，只有minimax词相近，没有双向归约。当前仅留差异索引，正式关系归较小编号负责人。",
+      "positions": {
+        "self": "001278题面/形式化、人话及meta.acceptance",
+        "other": "001263题面/形式化、TV边界及meta.acceptance"
+      },
+      "note": "pair_id=QX-P-001263__QX-P-001278；pair_owner=QX-P-001263，非本包；不提议合并，不代审1263。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-002131",
+      "other_card_rev": "22af64da72709549",
+      "relation": "仅相似",
+      "reason": "2131为有限红黑牌无放回游戏的最优停止期望收益f(n,n)/f(n+Δ,n)渐近；1278为检验复合null的停时e-value校准与相对numéraire的期望对数后悔。可选停时这一背景不等于相同目标，没有彼此等价或特例归约。",
+      "positions": {
+        "self": "001278任意停时有效性的说明、形式化及meta.acceptance",
+        "other": "002131红黑牌规则、f递推、固定Δ渐近及meta.acceptance"
+      },
+      "note": "pair_id=QX-P-001278__QX-P-002131；pair_owner=QX-P-001278；只本题关系，无合并建议。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "题面纠错",
+      "field": "题面/形式化表述/参数域/acceptance",
+      "old": "未给P,Q或filtration；inf_E sup_t[log(E_t optimal)−log(E_t realized)]；相对“最优e-process”的“累积损失”；标作仍开放。",
+      "new": "按原稿明确：P为null分布族，Q为alternative路径分布，F_t为全部已观测数据生成的filtration；E对每P及每F_t停时τ（含∞的约定）满足E_P E_τ≤1。E_t*是固定horizon的numéraire e-variable，R_t(E)=E_Q log(E_t*/E)，Γ_T=inf_{e-process E}max_{0≤t≤T}R_t(E_t)。若问对每(P,Q)能否用一个E使sup_t R_t有限，原稿已给Gaussian反例；若问指定其它模型，必须另明确该模型而非继续标本句开放。",
+      "reason": "基准不是另一个已anytime有效的最优过程；max各时刻期望差不等于随机路径差或跨时刻求和。核心、定义、量词、域和验收改动须新card_rev，重查受影响原题/学术/形式化路线，本次仍锚旧rev、不改卡。",
+      "evidence_ids": [
+        "R1278-CARD",
+        "R1278-PAPER"
+      ],
+      "small_case_check": "各固定时刻均值1但停时均值3/2的两点例可否定人话推理；已知简单P/Q的LR过程各horizon零损失，说明不能写成所有模型均不可能。s=1/2、ρ²=3/4固定Gaussian-mixture Q则由S9取r=16给Γ_T≥(5/9+o(1))loglogT→∞；详见独立数学子结果。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "e-process定义",
+      "old": "一列非负随机变量，每个时刻期望≤1，因此可以任意停止",
+      "new": "相对于指定filtration适应、非负，并对每个null P和每个允许停时τ均有E_P E_τ≤1；逐个固定时刻满足e-value条件不够。",
+      "reason": "anytime有效性不是固定时刻期望不等式的自动推论。",
+      "evidence_ids": [
+        "a1278_corenflos_v2",
+        "a1278_kg2022"
+      ],
+      "small_case_check": "数学路线提供两时刻固定期望≤1而自适应停时期望>1的自含反例，不拿固定时刻检查替代停时约束。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "修复公式",
+      "field": "题面/已知进展中的代价",
+      "old": "O(√(t loglogt))迭代对数代价下界/实现",
+      "new": "在Corenflos指定Gaussian模型下，Γ_T=(1−s²+o(1))loglogT；未知均值worst-case regret加κ偏移。最优e-power按时间线性增长，损失的loglog率与LIL路径波动尺度分开。",
+      "reason": "原稿没有声称题卡中的√t级e-power损失。",
+      "evidence_ids": [
+        "a1278_corenflos_v2"
+      ],
+      "small_case_check": "s=1/2时极限系数1−s²=3/4，Γ_T/loglogT趋3/4，而非√(TloglogT)量级。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "card_action": "fix_formula"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "原文摘录/OPEN-WEAK/有界损失无结论文献",
+      "old": "截取摘要开头相关开放问题，沿用bounded-loss版未有结论",
+      "new": "同时记完整摘要后半和Prop3/Theorem1的否定结果；标准普遍bounded命题已有Gaussian反例及本轮关键步骤复核，卡自身未定义部分另列题面问题。 该否定结论原v1即已具备，不写成后来v2才解决。",
+      "reason": "这是同一引用文献的主结果，不能以初稿日期新或摘要第一句把已否定命题继续登记开放。",
+      "evidence_ids": [
+        "a1278_identity",
+        "a1278_corenflos_v2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "提出人/首次发表/来源",
+      "old": "Adrien Corenflos，2026-11-09首次提出有界损失问题",
+      "new": "Corenflos2026为当前否定结果作者；至少SafeTesting2023v5 §5 Eq31可核相关固定损失研究问句，2024正式刊；Hao–Grünwald2025v2为相关almost猜想。2019/2024各初稿元数据不当作问句实际首见年份。",
+      "reason": "区分提出相关问题、提出非形式化猜想与给出反例；不要把不同criterion强行声明严格同题。",
+      "evidence_ids": [
+        "a1278_safe2023",
+        "a1278_hao2025",
+        "a1278_identity"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "开放方向边界",
+      "old": "泛称原有bounded-loss问题仍开放",
+      "new": "如需保留新研究题，应另明确询问s>1时Γ_T的极限或发散模型配对分类；不能在本次查新中擅自把它替换为这些不同问题。",
+      "reason": "原稿§5实际留下的两问和已否定的一般有界可行性不同。",
+      "evidence_ids": [
+        "a1278_corenflos_v2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "formal_status/AI声明",
+      "new": "保留原作者AI辅助Lean形式化公开声明、实际API精确类型与文献假设边界；标注源码/锁依赖404未取回，未核sorry/axioms闭包、未本机编译。不得把‘三公理’网页声明当本轮端到端验证，也不得因helper有hS9就称最终结果假设结论。",
+      "reason": "最终prop_mixture_proof公开类型不含hS9，源码证明体却实际不可得；两个层次均需记录。",
+      "evidence_ids": [
+        "E1278-C-AUTHOR-FORMAL",
+        "E1278-C-RATE-TARGET",
+        "E1278-C-SOURCE-BOUNDARY",
+        "E1278-C-AI-DISCLOSURE"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "形式化版本与旧进展摘要",
+      "new": "将卡旧O(√(tloglogt))和开放摘录交由原稿v2的Θ(loglogT)及精确适用模型替换；部署Lean文档仍展示stopped构造，不能自动覆盖v2数据置换不变构造。",
+      "reason": "实际API声明为loglog归一化率，当前blueprint/API的Proposition1(iii)与v2构造有可定位差异。最终数学状态由主审合并学术/数学审阅。",
+      "evidence_ids": [
+        "E1278-C-RATE-TARGET",
+        "E1278-C-SOURCE-BOUNDARY"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "版本/闭合与查重导入",
+      "new": "本回执提交题面问题、标准解释下的完整否定证据与审阅范围；原卡不直接改。闭合状态走二审；1263关系由其负责人确认，2131仅相似。",
+      "reason": "题卡字面欠定义与标准数学问题已否定需分列，不能静默补模型后保留原rev或自动关掉另一指定模型的问题。",
+      "evidence_ids": [
+        "R1278-CARD",
+        "R1278-PAPER",
+        "R1278-DUP"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {
+        "card_action": "no_change"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "已取得SafeTesting2023v5问句与Hao2025v2相关猜想，但未读取其最早初稿同段，也未逐字核2024/2026正式刊版差异。",
+      "next_step": "只有需要进一步压缩最早提出日期时再比原始初稿/正式版；当前写至少2023v5已有相关问句，不把2019元数据当首提。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "主结果的Gaussian上下界关键链已在本轮分工核验；一般测度论外部定理、所有附录扩展与模拟数值未全部重证或复跑。",
+      "next_step": "升级更广扩展定理/数值或机器认证层级时再按对应依赖复核。当前反例可固定s=1/2、ρ²=3/4，不依赖全部额外扩展或模拟图。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "现卡正式数学模型/备择量词/期望尚未定义，源文负向结果已有明确范围；不能把未定义形式化自动当作一个已反驳的完整命题。",
+      "next_step": "修卡时先明确要保留一般“总可有界”问题还是具体Gaussian minimax模型；正式更改核心/定义/验收须新card_rev。本轮保存原版查新与已核反例范围，不擅自改卡。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "实际取得作者blueprint/API快照，但原证明源码、Mathlib锁文件与完整依赖闭包未得；十次目标源/依赖读取返回404，不能区分资源缺失或不可公开访问。",
+      "next_step": "若需独立形式化验收，要求公开所链接f33be9…完整源归档/依赖与可编译入口，再核IsEProcess长定义、主聚合Prop、sorry/axiom/assumption闭包并真编译。当前只登记作者声明与所核API层，不阻断原稿数学复核结论。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "作者部署blueprint/API仍使用stopped版本；来源最新v2改变构造以保持数据置换不变。",
+      "next_step": "若后续取得新源码，固定对应版本并对照v2 Proposition1(iii)、3(ii)的新构造；本轮不把旧构造有效性与新置换不变性质合并成同一已验证主张。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮FC/openai/math/GitHub与MO有界定向检索，多个搜索返回子串噪声或空批；不是全统计形式化/全社区穷尽；未取得作者模拟程序。",
+      "next_step": "保持已记录批次与访问边界；新同题完整claim出现时优先核正文模型及真实代码。有限模拟不承担一般horizon minimax下界证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "2469条简索引只覆盖标题/英文名/aliases；已读两个方法近邻完整双卡，但批量阴性不能证明全库无重复。1263为较小编号包外负责人。",
+      "next_step": "若另有同源卡或来源级索引，按双方固定rev读正文再比；当前仅交已确认差异，不据此扩大其他题完成数或建议合并。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "819f8b18c9b7f8d2",
+      "codes": {}
+    }
+  ]
+}

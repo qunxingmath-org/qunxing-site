@@ -1,0 +1,2289 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000705",
+  "card_rev": "3965f89e5e05a76f",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-05"
+      ],
+      "parts": [
+        {
+          "subquestion": "全体有限可解群的系数3上界",
+          "value": "claimed_proof",
+          "note": "ADP2021 TheoremB/Cor4.6明确对全部有限可解群给|ρ(G)|≤3σ(G)，可等价保证某不可约次数含至少ceil(|ρ|/3)个不同素因子。实际读证明尾部、独立核4.5首式到B的基数推导，未全审前置引理。4.5附带等号式存在已核边界问题，B所用首个不等式与该等号分开；未声称已人工二审或系数2已证。"
+        },
+        {
+          "subquestion": "小σ与平方自由次数的系数2子类",
+          "value": "partial",
+          "note": "2021正式稿引言明确转引Gluck1991：有限可解且σ(G)≤2，或全部不可约特征标次数平方自由时，目标2σ已知成立。本轮只读到该作者论文的明确归属，Gluck1991原证明未取得，故不填写未知定理号或声称本轮通审。"
+        },
+        {
+          "subquestion": "有限幂零群的更强特例",
+          "value": "partial",
+          "note": "本轮附完整标准证明：有限幂零G为Sylow直积，对每个非交换Sylow选非线性普通不可约特征标再作外张量积，得到单一次数覆盖全部ρ，故σ=|ρ|，包括交换/平凡群ρ=0。四项基础群论与表示论依赖明确列出，不冒称新发现或机器形式化；一般可解群不具该直积结构。"
+        },
+        {
+          "subquestion": "整数阈值及S4、S3、C6边界",
+          "value": "partial",
+          "note": "正确阈值ceil(|ρ|/2)；实际Python精确构造S4/S3表并核正交、平方和及S4可解链。S4次数1,1,2,3,3给ρ2σ1，达到原问而反驳人话严格过半；S3的线性χ通过floor0但不是原阈值1见证。C6全部线性ρ0是数学推导，区分群阶/元素阶/codegree。没有GAP、数据库全扫或证明助手运行。"
+        },
+        {
+          "subquestion": "2023普通次数的多角色覆盖结果",
+          "value": "partial",
+          "note": "已实际取得Xu–Yang2023原刊全文并核定义及Thm3.3/3.4：对可解G，ρ去{2,3}由至多3个普通不可约特征标次数联合覆盖，因而可解cn≤5；所有有限群cn≤6。覆盖定义用ρ而非π(|G|)。多个角色的并集不是一个不可约角色的次数，不能未经证明用张量积合并；这些结构结果不推出原2σ，也不是优于全体可解3σ的数值界。"
+        },
+        {
+          "subquestion": "历史提出与同名问题范围",
+          "value": "no_evidence_in_scope",
+          "note": "P0实际定向搜索没有取得15.71全解。2021非可解PSL2乘积14/6反驳的是2σ+1另一问；Moretó2021可解反例是余次数与群阶素数；2026 Jabara–Keller及2023若干主界是元素阶/codegree。旧5n证明问题不能迁移为普通次数猜想的勘误。2002是Notebook收录年，Huppert精确最早发表仍待早期原文。公开目录、代码阴性和当前题集标记仅记有限覆盖。"
+        },
+        {
+          "subquestion": "文献辅助等式的字面问题",
+          "value": "statement_error",
+          "note": "仅指外部论文的辅助式，不指15.71主卡。ADP4.5第二式ρ=∪π(β_i)∪{p},p∈{2,3}对阿贝尔G字面失败；v1 p15已视觉核，正式版只核文字。B/Cor4.6只用第一条基数不等式。Xu2023印1278的π定义有r/O_p下标不一；按自然p=r读，D8使ρ0=∅、π0(G/F)=∅、π={2}，故显示ρ0=π0(G/F)∪π也不成立，至少需去{2,3}；此页已视觉核。不据这些局部等式问题反驳3σ、Thm3.3或cn定理，不声称作者已勘误；root/fluid均为AI。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "not_searched",
+      "as_of": "2026-11-21",
+      "basis": [
+        "card:formal_status.value"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "当前主问与Notebook15.71一致：所有有限可解G的普通复不可约次数是否满足|ρ|≤2σ。已取得全类3σ正式证明、2023多角色覆盖与若干子类；本轮未取得全类2σ证明或可解反例。人话过半/floor错误局部修订，不把正确主问登记题面有误。S4精确表/幂零标准证明不扩成全类结案，非可解加强版、codegree及元素阶版均排除。同版legacy和旧rev阴性不计本轮覆盖。",
+      "evidence_ids": [
+        "0705-R-NOTEBOOK",
+        "0705-S-ADP2021",
+        "0705-S-XUYANG2023",
+        "0705-D-nilpotent",
+        "0705-N-CB"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "全体有限可解群的系数3上界",
+      "math_status": "完整证明声明",
+      "scope_note": "ADP2021 TheoremB/Cor4.6明确对全部有限可解群给|ρ(G)|≤3σ(G)，可等价保证某不可约次数含至少ceil(|ρ|/3)个不同素因子。实际读证明尾部、独立核4.5首式到B的基数推导，未全审前置引理。4.5附带等号式存在已核边界问题，B所用首个不等式与该等号分开；未声称已人工二审或系数2已证。",
+      "evidence_ids": [
+        "0705-S-ADP2021"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "小σ与平方自由次数的系数2子类",
+      "math_status": "仅特例",
+      "scope_note": "2021正式稿引言明确转引Gluck1991：有限可解且σ(G)≤2，或全部不可约特征标次数平方自由时，目标2σ已知成立。本轮只读到该作者论文的明确归属，Gluck1991原证明未取得，故不填写未知定理号或声称本轮通审。",
+      "evidence_ids": [
+        "0705-S-ADP2021"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限幂零群的更强特例",
+      "math_status": "仅特例",
+      "scope_note": "本轮附完整标准证明：有限幂零G为Sylow直积，对每个非交换Sylow选非线性普通不可约特征标再作外张量积，得到单一次数覆盖全部ρ，故σ=|ρ|，包括交换/平凡群ρ=0。四项基础群论与表示论依赖明确列出，不冒称新发现或机器形式化；一般可解群不具该直积结构。",
+      "evidence_ids": [
+        "0705-D-nilpotent",
+        "0705-D-exact-tables"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "整数阈值及S4、S3、C6边界",
+      "math_status": "仅特例",
+      "scope_note": "正确阈值ceil(|ρ|/2)；实际Python精确构造S4/S3表并核正交、平方和及S4可解链。S4次数1,1,2,3,3给ρ2σ1，达到原问而反驳人话严格过半；S3的线性χ通过floor0但不是原阈值1见证。C6全部线性ρ0是数学推导，区分群阶/元素阶/codegree。没有GAP、数据库全扫或证明助手运行。",
+      "evidence_ids": [
+        "0705-D-quantifiers",
+        "0705-D-exact-tables",
+        "0705-D-nilpotent",
+        "0705-N-GAP"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "2023普通次数的多角色覆盖结果",
+      "math_status": "部分进展",
+      "scope_note": "已实际取得Xu–Yang2023原刊全文并核定义及Thm3.3/3.4：对可解G，ρ去{2,3}由至多3个普通不可约特征标次数联合覆盖，因而可解cn≤5；所有有限群cn≤6。覆盖定义用ρ而非π(|G|)。多个角色的并集不是一个不可约角色的次数，不能未经证明用张量积合并；这些结构结果不推出原2σ，也不是优于全体可解3σ的数值界。",
+      "evidence_ids": [
+        "0705-S-XUYANG2023",
+        "0705-D-quantifiers"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "历史提出与同名问题范围",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "P0实际定向搜索没有取得15.71全解。2021非可解PSL2乘积14/6反驳的是2σ+1另一问；Moretó2021可解反例是余次数与群阶素数；2026 Jabara–Keller及2023若干主界是元素阶/codegree。旧5n证明问题不能迁移为普通次数猜想的勘误。2002是Notebook收录年，Huppert精确最早发表仍待早期原文。公开目录、代码阴性和当前题集标记仅记有限覆盖。",
+      "evidence_ids": [
+        "0705-R-HISTORY",
+        "0705-R-CODEGREES",
+        "0705-R-UPDATE",
+        "0705-S-ADP2021",
+        "0705-S-JK2026",
+        "0705-S-XUYANG2023",
+        "0705-D-excluded-element-orders",
+        "0705-N-MONITOR"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "文献辅助等式的字面问题",
+      "math_status": "题面有误",
+      "scope_note": "仅指外部论文的辅助式，不指15.71主卡。ADP4.5第二式ρ=∪π(β_i)∪{p},p∈{2,3}对阿贝尔G字面失败；v1 p15已视觉核，正式版只核文字。B/Cor4.6只用第一条基数不等式。Xu2023印1278的π定义有r/O_p下标不一；按自然p=r读，D8使ρ0=∅、π0(G/F)=∅、π={2}，故显示ρ0=π0(G/F)∪π也不成立，至少需去{2,3}；此页已视觉核。不据这些局部等式问题反驳3σ、Thm3.3或cn定理，不声称作者已勘误；root/fluid均为AI。",
+      "evidence_ids": [
+        "0705-S-ADP2021",
+        "0705-S-XUYANG2023",
+        "0705-D-quantifiers",
+        "0705-D-nilpotent"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-05-0705-R00",
+      "route": "原题与出处",
+      "site": "本包当前任务",
+      "query": "读取任务.jsonl包序17 QX-P-000705 rev3965f89e5e05a76f的meta/text及legacy证据",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "locator": "list_row417；original_queue_rank748",
+      "note": "前一题001405单题文件保存并在目标目录确认后才启动。旧novelty.rev9698dd40e7c20625与当前不同；同版prior_evidence空legacy不计本轮覆盖。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R01",
+      "route": "原题与出处",
+      "site": "arXiv固定版本元数据",
+      "query": "open https://arxiv.org/abs/1401.0300v50",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/1401.0300v50",
+      "locator": "版本史、v50时间与AI标记说明",
+      "note": "v50实际日期2026-11-02；历史2018v11 withdrawn是题集某上传版本，不是本题解答撤回。只核版本与编目，数学进展另查。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R02",
+      "route": "原题与出处",
+      "site": "本会话已取得固定Notebook PDF",
+      "query": "复用0931_sources/kourovka_1401.0300v50.pdf；Python定向查15.71；新读PDF/印p95、p4；pdftoppm/view_image p95",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "PDF/印p95 第15.71问；p4标记定义",
+      "note": "原下载在本会话第15题HTTP200；本题未重复下载而实际新读指定题号。1487532bytes SHA256=b7027dd8e29cc5b187304f4bb0f3bddb30839089c44967f5fadaa4c0e5e60dc7。当前15.71无♯/∗或评论；邻15.70的∗及集合论解答不属于15.71。原文恰为至少|ρ|/2，Pálfy提交、括注B.Huppert，主问题忠实。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R03",
+      "route": "原题与出处",
+      "site": "Kourovka官方首页",
+      "query": "open https://kourovkanotebookorg.wordpress.com/",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://kourovkanotebookorg.wordpress.com/",
+      "locator": "2026-11-02最新公告及♯/∗说明",
+      "note": "♯指尚未数学家确认的AI提议，仍视未解；∗为proper solution通用标记，不限AI。首页信息不替代逐题文献查新。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R04",
+      "route": "原题与出处",
+      "site": "官方2026-11更新文件",
+      "query": "click官方首页updates；find 15.71",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21upd.pdf",
+      "locator": "39页文件字面15.71文本搜索",
+      "note": "实际打开更新PDF并读首段标记说明，指定题号No matching text；未通读所有39页，不据阴性断言世界范围无新结果。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R05",
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"Huppert\" \"rho-sigma\" \"1985\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2021原作者论文、作者主页综述和题集。综述提1985只作为追原文线索；不据二手摘要认定精确首次发表。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R06",
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"Huppert\" \"15.71\" conjecture origin",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2021原作者论文、作者主页综述和题集。综述提1985只作为追原文线索；不据二手摘要认定精确首次发表。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R07",
+      "route": "学术",
+      "site": "2021论文大学机构公开刊本",
+      "query": "open https://flore.unifi.it/retrieve/671082e1-2c9f-45ef-944c-e4f623963bfe/2021HuppertConjecture_revised.pdf；find [10]；find [16]",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://flore.unifi.it/retrieve/671082e1-2c9f-45ef-944c-e4f623963bfe/2021HuppertConjecture_revised.pdf",
+      "locator": "PDF1–4／印537–540定义、TheoremA/B/C、Example1.1；PDF24参考文献",
+      "note": "web完整24页可读，根代理实际核上述页。TheoremB是全部有限可解G的3σ界；A须F(G)=1，2σ+1反例非可解；不能拿同文反例推翻15.71。全文可得不等于每个CFSG/轨道辅助引理已独立证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R08",
+      "route": "原题与出处",
+      "site": "作者主页综述候选",
+      "query": "open https://www.dpmms.cam.ac.uk/~rdc26/surveysubmitted.pdf",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://www.dpmms.cam.ac.uk/~rdc26/surveysubmitted.pdf",
+      "note": "web TimeoutError；搜索结果1985表述只用于发现Huppert1991章，不作为已读原文。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R09",
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "Huppert 1991 \"rho\" \"sigma\" conjecture characters",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位Huppert1991章、Isaacs1986及若干同名变体。2023后续由学术分工读取；不同不变量的命中不能转移结果。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R10",
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "Huppert \"Research in representation theory\" 1991 1985",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位Huppert1991章、Isaacs1986及若干同名变体。2023后续由学术分工读取；不同不变量的命中不能转移结果。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R11",
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"Solvable group character degrees and sets of primes\" Isaacs 1986 pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "得到Isaacs1986 DOI10.1016/0021-8693(86)90211-5及Huppert1991章17–36页。没有凭题名认定已经读过具体猜想段。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R12",
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"Research in Representation Theory at Mainz\" Huppert pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "得到Isaacs1986 DOI10.1016/0021-8693(86)90211-5及Huppert1991章17–36页。没有凭题名认定已经读过具体猜想段。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R13",
+      "route": "原题与出处",
+      "site": "Isaacs1986 DOI入口",
+      "query": "open https://doi.org/10.1016/0021-8693(86)90211-5",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://doi.org/10.1016/0021-8693(86)90211-5",
+      "note": "web工具报not accessible；本文在2021已读参考文献中列为早期结果，但本轮未取得1986原文及猜想原句。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R14",
+      "route": "原题与出处",
+      "site": "Springer官方Huppert1991章",
+      "query": "open https://link.springer.com/chapter/10.1007/978-3-0348-8658-1_2；click公开Download preview PDF",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://link.springer.com/chapter/10.1007/978-3-0348-8658-1_2",
+      "locator": "章节元数据、参考文献；实际2页预览印pp17–18",
+      "note": "官方页明确subscription content；公开预览可读，不突破限制。预览首段说§2含ρ–σ猜想（theorem13），但完整20页及该段未得；不能声称从预览核到了2σ原句或精确首提年。DOI10.1007/978-3-0348-8658-1_2，ProgressMath95(1991)17–36。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R15",
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"10.1016/0021-8693(86)90211-5\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "仅有书目/转引或无关条目，没有得到1986原稿；不购买第三方文献服务。原作者2021 codegrees开放全文命中后另实读并排异。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R16",
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"Solvable groups character degrees and sets of primes\" Huppert",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "仅有书目/转引或无关条目，没有得到1986原稿；不购买第三方文献服务。原作者2021 codegrees开放全文命中后另实读并排异。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R17",
+      "route": "学术",
+      "site": "Wiley作者2021 codegrees开放全文",
+      "query": "open https://onlinelibrary.wiley.com/doi/full/10.1002/mana.202000568",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/mana.202000568",
+      "locator": "§1 codegree定义、Theorem1.1；§2 Theorem2.2及证明",
+      "note": "实读公开全文目标段。codegree=|G:kerχ|/χ(1)，左端为群阶素因子π(G)，与15.71的degree及ρ不同。可解群反例(5,2),(8,3),(12,4)针对(π,σ^c)，不是本题反例；原文称部分构造的所有核/次数检查留读者，本轮未复做这些大型构造。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R18",
+      "route": "学术",
+      "site": "ScienceDirect共轭类大小同名文章入口",
+      "query": "open https://www.sciencedirect.com/science/article/abs/pii/S0021869325006994",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0021869325006994",
+      "note": "403 Forbidden；仅搜索标题确认针对conjugacy class sizes，未核全文定理/出版卷年，故不登记为本题进展或反例。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R19",
+      "route": "学术",
+      "site": "固定arXiv v1原稿本地独立复读",
+      "query": "Python定向读取0705_sources/ADP_2103.14316v1.txt中Theorem4.5及Corollary4.6，PDF15–16",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2103.14316v1",
+      "locator": "Theorem4.5两条式子、其证明及Corollary4.6",
+      "note": "根代理与学术代理分别注意到第二条等号覆盖式对阿贝尔群ρ=∅不成立，右侧仍含p∈{2,3}；正文使用包含式，而Cor4.6明确只用第一条基数不等式。因此仅登记辅助式字面错误，不声称3σ主界被反驳、不冒称作者已经勘误；全部标准轨道理论依赖未重证。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R20",
+      "route": "代码、公开 AI 和社区",
+      "site": "本轮小例脚本与实际日志的另一AI工作流复核",
+      "query": "读取0705_small_check.py及0705_small_check.log，不再执行",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "S4的置换/匹配表示、正交Gram矩阵与可解链；S3表示与取整差异",
+      "note": "根代理核所构造角色为真实置换表示去平凡子表示或符号扭曲，精确内积为单位阵且度平方和等于群阶，可据标准特征标理论判不可约及完备。日志Python3.12.14，S4度1,1,2,3,3、ρ={2,3},σ=1；S3度1,1,2、ρ={2}。根只读脚本/日志，不追加一轮运行、不称GAP或内核验证；执行请求由定义分工另记。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R21",
+      "route": "学术",
+      "site": "DML-CZ官方直接馆藏入口",
+      "query": "open https://dml.cz/handle/10338.dmlcz/151959；click页面PDF link17",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://dml.cz/bitstream/handle/10338.dmlcz/151959/CzechMathJ_73-2023-4_16.pdf",
+      "locator": "9页PDF含DML封面；实际读印1273–1274定义/Thm1.1–1.3、1278–1279 Thm3.3/3.4与证明",
+      "note": "根代理从实际显示PDF链接取得全文，解决先前官方host及hdl.handle.net失败造成的缺口；旧失败请求不删除。定义cn按ρ覆盖而非任意π；一般群cn≤6，证明中可解cn≤5、ρ去{2,3}由3个角色覆盖。多角色覆盖不保证同一个不可约角色含半，不用未经证明的张量不可约/素因子保留推论。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-R22",
+      "route": "学术",
+      "site": "DML-CZ公开原刊PDF HTTP",
+      "query": "urllib GET https://dml.cz/bitstream/handle/10338.dmlcz/151959/CzechMathJ_73-2023-4_16.pdf；pdftotext -layout",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://dml.cz/bitstream/handle/10338.dmlcz/151959/CzechMathJ_73-2023-4_16.pdf",
+      "locator": "完整9页文件及root_XY_download_log.json",
+      "note": "HTTP200，213277bytes，SHA256=183fbcfde8708d6b0810de0a33231c3a44aea4307eca8202ae2e84e3d22a71b5，抽取exit0。全文件取得不等于全部辅助引理独立审计；新增本题相关覆盖数弱化，与元素阶/codegree主界分开。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "Huppert rho sigma conjecture solvable groups character degrees",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "实际同批查询；turn383868123search*/academia*",
+      "note": "命中2021字符次数论文及2026元素阶、余次数、共轭类大小等异题候选；后续只按实际取得原文升级。题号查询含噪声，不记为零命中。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Huppert\" \"rho-sigma\" 2025 2026",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "实际同批查询；turn383868123search*/academia*",
+      "note": "命中2021字符次数论文及2026元素阶、余次数、共轭类大小等异题候选；后续只按实际取得原文升级。题号查询含噪声，不记为零命中。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"15.71\" \"character\" solved",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "实际同批查询；turn383868123search*/academia*",
+      "note": "命中2021字符次数论文及2026元素阶、余次数、共轭类大小等异题候选；后续只按实际取得原文升级。题号查询含噪声，不记为零命中。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Huppert\" \"rho-sigma\" \"solvable\" (2025 OR 2026 OR solved OR counterexample)",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–5",
+      "note": "首条设置recency=365；命中2021正式稿、2023 Xu–Yang及同名异题。不是完整论文阅读或无解证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Huppert\" \"sigma\" \"solvable\" \"Yang\" bound",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–5",
+      "note": "首条设置recency=365；命中2021正式稿、2023 Xu–Yang及同名异题。不是完整论文阅读或无解证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Huppert\" \"character degrees\" \"sigma\" \"conjecture\" \"three\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–5",
+      "note": "首条设置recency=365；命中2021正式稿、2023 Xu–Yang及同名异题。不是完整论文阅读或无解证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2103.14316",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2103.14316",
+      "locator": "〔原始工具引用已私有留存〕；提交记录v1 2021-03-26",
+      "note": "实际读取摘要与版本信息；论文正文在另项读取。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2610.25571",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2610.25571",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "DisabledError；不能将此请求算作摘要页已阅。后续原PDF下载成功单列。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Università di Firenze FLORE",
+      "query": "open https://flore.unifi.it/handle/2158/1240473",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://flore.unifi.it/handle/2158/1240473",
+      "locator": "〔原始工具引用已私有留存〕；链接10",
+      "note": "作者机构元数据列Journal of Algebra 586 (2021),537–560及Version of Record开放文件。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Czech Academy of Sciences期刊官网",
+      "query": "open https://articles.math.cas.cz/10.21136/CMJ.2023.0513-22",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://articles.math.cas.cz/10.21136/CMJ.2023.0513-22",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "实际读题名、作者、摘要、刊年/卷页、参考文献及全文链接；没有全文定理。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Università di Firenze FLORE正式PDF",
+      "query": "click 〔原始工具引用已私有留存〕 link 10 〔私有记录编号：PR-002314〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://flore.unifi.it/retrieve/671082e1-2c9f-45ef-944c-e4f623963bfe/2021HuppertConjecture_revised.pdf",
+      "locator": "〔原始工具引用已私有留存〕；PDF 2–4/印538–540；PDF20–21/印556–557；PDF24/印560",
+      "note": "24页正式稿可访问。本轮定向读定义、Theorems A/B/C、Example1.1、Theorem4.5证明尾部、Corollary4.6及相关引用；不是通审全部辅助引理。B只给系数3。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Czech Academy of Sciences期刊PDF",
+      "query": "click 〔原始工具引用已私有留存〕 link 5 〔私有记录编号：PR-002315〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://cmj.math.cas.cz/full/73/4/cmj73_4_16.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "TimeoutError；没有读到全文。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "2021正式PDF内部定位",
+      "query": "find [10]; find [19]",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://flore.unifi.it/retrieve/671082e1-2c9f-45ef-944c-e4f623963bfe/2021HuppertConjecture_revised.pdf",
+      "locator": "〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕；引言与印560参考文献",
+      "note": "确认小σ/平方自由子类转引Gluck1991；正式版新增另一证明Liu–Yang DOI10.1007/s00605-021-01577-x。后者未取全文，不另认独立核验。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Huppert\" \"character degrees\" (\"2σ\" OR \"2 sigma\" OR \"2\\sigma\") (proof OR counterexample OR corrected OR solution)",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "turn917138344search*；recency=365",
+      "note": "定向P0；没有在返回结果中取得本题系数2的全称证明/反例或对应正式勘误。不能由检索无该证据推断全球不存在。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"A conjecture about character degrees of solvable groups\" Gluck pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕；其他返回含2023正文索引与2017讲义索引",
+      "note": "Gluck1991 DOI元数据线索；未把第三方题录当原始证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "HTTP urllib：2021正式稿",
+      "query": "GET https://flore.unifi.it/retrieve/671082e1-2c9f-45ef-944c-e4f623963bfe/2021HuppertConjecture_revised.pdf",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://flore.unifi.it/retrieve/671082e1-2c9f-45ef-944c-e4f623963bfe/2021HuppertConjecture_revised.pdf",
+      "locator": "〔私有材料定位已省略〕",
+      "note": "HTTP403；没有本地正式PDF。此下载失败与web完整文本成功并存，访问层级分别记录。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "HTTP urllib：2023官方旧host",
+      "query": "GET https://cmj.math.cas.cz/full/73/4/cmj73_4_16.pdf",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://cmj.math.cas.cz/full/73/4/cmj73_4_16.pdf",
+      "locator": "〔私有材料定位已省略〕",
+      "note": "HTTP503。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "HTTP urllib：arXiv原PDF",
+      "query": "GET https://arxiv.org/pdf/2610.25571",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2610.25571",
+      "locator": "本地Jabara_Keller_2610.25571.pdf前2页；scholar_fetch_log.json",
+      "note": "HTTP200，实读标题、v1日期、ρ/σ定义、Theorems A/B及codegree引出段。是元素阶版；未核全篇证明/计算。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Czech Academy of Sciences期刊PDF新host",
+      "query": "open https://cmjpapers.math.cas.cz/full/73/4/cmj73_4_16.pdf",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://cmjpapers.math.cas.cz/full/73/4/cmj73_4_16.pdf",
+      "locator": "〔原始工具引用已私有留存〕；候选来自turn917138344search5",
+      "note": "TimeoutError；搜索返回含首段摘要，但不能当全文。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "DOI：Gluck1991",
+      "query": "open https://doi.org/10.1016/0021-8693(91)90142-U",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://doi.org/10.1016/0021-8693(91)90142-U",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "直接请求未取得原稿。子类结论只能记2021作者论文的明确转引。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "2021正式PDF内部定位",
+      "query": "find Proof of Theorem B; find Corollary 4.6",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://flore.unifi.it/retrieve/671082e1-2c9f-45ef-944c-e4f623963bfe/2021HuppertConjecture_revised.pdf",
+      "locator": "〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕",
+      "note": "定位Theorem4.5第一式到Corollary4.6；定向读证明末段。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "HTTP urllib：2023官方新host",
+      "query": "GET https://cmjpapers.math.cas.cz/full/73/4/cmj73_4_16.pdf",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://cmjpapers.math.cas.cz/full/73/4/cmj73_4_16.pdf",
+      "locator": "〔私有材料定位已省略〕",
+      "note": "HTTP503。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "HTTP urllib：arXiv固定版本",
+      "query": "GET https://arxiv.org/pdf/2103.14316v1; pdftotext -layout",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2103.14316v1",
+      "locator": "本地ADP_2103.14316v1.pdf、txt；p15–16；scholar_followup_fetch_log.json",
+      "note": "HTTP200，290815字节，SHA256 83b07f56a0f7d58019a1f3611af23906eab9c1a027049cba9d7a2d408719335f；实际读取Theorem4.5及证明、Cor4.6，未通读18页全篇。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Huppert\" \"rho-sigma\" \"character\" (erratum OR withdrawal OR corrected OR solved)",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–7；recency=365",
+      "note": "返回2021文献索引及共轭类/余次数异题，没有取得本题新全解或针对ADP2021的撤回/勘误公告；不写执行零命中。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "2021正式PDF",
+      "query": "open 〔原始工具引用已私有留存〕 at line 800 〔私有记录编号：PR-002316〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://flore.unifi.it/retrieve/671082e1-2c9f-45ef-944c-e4f623963bfe/2021HuppertConjecture_revised.pdf",
+      "locator": "〔原始工具引用已私有留存〕；印556–557 Theorem4.5及Corollary4.6",
+      "note": "实际文本含第二式等号（附带覆盖式）和首式基数不等式。本轮核首式⇒3σ，并发现第二式字面在阿贝尔群上不成立；不据此宣布B反驳或作者已修订。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "DML-CZ官方存档入口",
+      "query": "click 〔原始工具引用已私有留存〕 link 6 〔私有记录编号：PR-002317〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://hdl.handle.net/10338.dmlcz/151959",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "TimeoutError，未取得2023全文。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地PDF图像核对",
+      "query": "pdftoppm -f 15 -singlefile -scale-to 1800 -png ADP_2103.14316v1.pdf ADP_v1_p15; view_image",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2103.14316v1",
+      "locator": "〔私有材料定位已省略〕",
+      "note": "实际视觉确认v1 Theorem4.5第二式是等号，不是OCR把包含号错成等号。仅这一页图像核对。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "2021正式PDF截图工具",
+      "query": "screenshot 〔原始工具引用已私有留存〕 pageno 20; screenshot pageno 19 〔私有记录编号：PR-002318〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://flore.unifi.it/retrieve/671082e1-2c9f-45ef-944c-e4f623963bfe/2021HuppertConjecture_revised.pdf",
+      "locator": "〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕",
+      "note": "返回仅含<<ImageDisplayed>>文本占位，没有可查看图像负载；不声称完成正式稿视觉复核。正式稿文本可读层级保持。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "HTTP urllib：DML-CZ官方存档入口",
+      "query": "GET https://hdl.handle.net/10338.dmlcz/151959",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://hdl.handle.net/10338.dmlcz/151959",
+      "locator": "〔私有材料定位已省略〕",
+      "note": "TimeoutError: The read operation timed out；停止重复镜像访问，保留原稿未读缺口。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "DML-CZ已由根代理定位的原PDF",
+      "query": "open https://dml.cz/bitstream/handle/10338.dmlcz/151959/CzechMathJ_73-2023-4_16.pdf; find Theorem 1.1; find Theorem 3.3; find Remark 3.1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://dml.cz/bitstream/handle/10338.dmlcz/151959/CzechMathJ_73-2023-4_16.pdf",
+      "locator": "〔原始工具引用已私有留存〕–3；PDF2–3、7–8（印1273–1274、1278–1279）",
+      "note": "此次实际取得正文；3.3/3.4为多个角色覆盖，1.1为codegrees，1.2为元素阶。撤销早先未读全文待办，历史失败请求保留。没有新增搜索。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地原PDF文本复读",
+      "query": "读取根代理已下载Xu_Yang_2023_DML.txt的PDF第2、3、7、8页",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://dml.cz/bitstream/handle/10338.dmlcz/151959/CzechMathJ_73-2023-4_16.pdf",
+      "locator": "〔私有材料定位已省略〕",
+      "note": "实际读定义、三个主定理、3.3/3.4及证明末段；核3.3⇒可解cn≤5，未全审Lemmas2.3–2.7。HTTP下载/hash是根代理执行，未重复冒记本贡献。213277字节，SHA256 183fbcfde8708d6b0810de0a33231c3a44aea4307eca8202ae2e84e3d22a71b5。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地2023 PDF定向视觉复核",
+      "query": "pdftoppm -f 7 -singlefile -scale-to 2100 -png Xu_Yang_2023_DML.pdf Xu_Yang_2023_p1278; view_image",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://dml.cz/bitstream/handle/10338.dmlcz/151959/CzechMathJ_73-2023-4_16.pdf",
+      "locator": "〔私有材料定位已省略〕；印1278 Theorem3.3证明",
+      "note": "视觉确认π定义的O_r/O_p下标混用、ρ₀=π₀(G/F(G))∪π；按自然p=r理解，八阶非交换二面体D8使左侧空、右侧{2}。这是基本群论与定义推算，未声称GAP复跑；局部符号/过滤问题不作为覆盖数定理的反例。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N01",
+      "route": "库内查重",
+      "site": "本地完整任务",
+      "query": "读取 〔私有材料定位已省略〕 全文；与固定仓库当前卡复核 〔私有记录编号：PR-002319〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.qunxingmath.org/p/QX-P-000705/",
+      "locator": "id/card_rev/card_metadata/card_text",
+      "note": "当前 QX-P-000705/3965f89e5e05a76f；旧 novelty.card_rev=9698dd40e7c20625，旧覆盖不继承。任务正文后在只读恢复时复读一次；规则/Schema读取属流程核验，不当数学检索。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N02",
+      "route": "库内查重",
+      "site": "本包全库查重简索引",
+      "query": "单次扫描2469行 title/title_en/aliases；不区分大小写的字面子串列表=[\"huppert\",\"15.71\",\"rho-sigma\",\"rho sigma\",\"ρ-σ\",\"character degree\",\"character-degree\",\"特征标次数\",\"特征标的次数\",\"特征标度\"]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "QX-R3-05_source/全库查重简索引.jsonl；code_duplicate_scan.json",
+      "result_count": 9,
+      "note": "含自身，共9条；选000158（Huppert同名/普通复特征标次数）取固定全文。其他7条为几乎单识别、Brauer/块、次数和或多重集等题名候选，未读其全文、未对其定关系；单次词面扫描不等于全库无重复。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N03",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "检索词／定位词：\"Huppert\" \"rho-sigma\" GAP；\"Kourovka\" \"15.71\" Lean AI proof；\"rho-sigma\" \"character\" github 〔私有记录编号：PR-002320〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕/1/33 等；完整响应 code_retrieval_metadata.json/web-initial",
+      "note": "2021论文摘要/索引及2026非可解SNPD特殊类、conjugacy-class旁支等；当前代码路线不把其摘要当完整证明，学术核验交根/学术路线。GitHub多为变量同名误命中，没有由此确认本题代码或AI全解。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N04",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"rho-sigma\" Huppert; topn=10",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 1,
+      "locator": "0thernes/unsolved-problems-mega-atlas/src/v2_data/m01_math_nt_alg.py",
+      "note": "命中ALG-021复合目录；后取固定完整文件，未发现该条目给本题全解或证书。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N05",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"15.71\" Kourovka; topn=10",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 10,
+      "note": "命中CB新/旧目录、AI语料与agent_monitor索引及无关数值字符串；只追当前CB、monitor和必要同名条目。未把仓库名称/AI标签当证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N06",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "Huppert; repository_name=google-deepmind/formal-conjectures; topn=10",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "实际API结果数组为空，仅此仓库与词项范围；不表示世界范围无形式化。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N07",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "完整取得 https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-15-071.json",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-15-071.json",
+      "locator": "Git blob 7feffd0a889da3caa98aac0e4a7d50ada3b1bd1a",
+      "note": "完整JSON；同一15.71，finite solvable、ordinary character、至少半。目录的listed-unsolved截至2026-07-03；statement.sha256本轮核对，source_sha256指向PDF未独立核对。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N08",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "完整取得 https://github.com/0thernes/unsolved-problems-mega-atlas/blob/9e16554260f624df7a023f4cf2f0a76e82f5435f/src/v2_data/m01_math_nt_alg.py",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/0thernes/unsolved-problems-mega-atlas/blob/9e16554260f624df7a023f4cf2f0a76e82f5435f/src/v2_data/m01_math_nt_alg.py",
+      "locator": "Git blob 3ba3cdf2094dba721e35bddb25e69b6c8a2c557f",
+      "note": "完整193817字符文件取得，定向读ALG-021（1875–1890）。把可解rho-sigma、一般群3σ和Huppert简单群识别合列；仍写旧3σ+2界，不能据此定最新学术状态或全解。不是可运行本题求解器。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N09",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "完整取得 https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000705.meta.json",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000705.meta.json",
+      "locator": "Git blob 3eaa3b832653a43003017d54c2fdb6aebce17583",
+      "note": "固定提交完整meta，当前rev与任务一致。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N10",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "完整取得 https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000705.text.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000705.text.md",
+      "locator": "Git blob 5c742dd0d71189b0a31db0cdadeb881123c3e784",
+      "note": "固定提交完整正文，保留“过半/向下取整”人话错误并通知根；不默改题面。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N11",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "完整取得 https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000158.meta.json",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000158.meta.json",
+      "locator": "Git blob 3520b141425cd67975c4588b40aadc5a7866f115",
+      "note": "完整meta，other_rev=9a48705cfb777f90；小编号owner000158，不在本包。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N12",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "完整取得 https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000158.text.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000158.text.md",
+      "locator": "Git blob 30a2259adbd5ff07ee3ce277feb08418e8a7ccd8",
+      "note": "完整正文：任意有限G与非交换单H的cd(G)=cd(H)识别为H×A；不是有限可解G的ρ/σ不等式。保留对侧原文与其旧状态，不开展该题查新。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N13",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"rho_sigma\"; topn=10",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "result_count": 10,
+      "note": "结果为Matern、统计/物理变量及Erdős993等无关对象；本次前10条未命中本题，未读这些无关全文。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N14",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "检索词／定位词：\"Huppert\" \"rho-sigma\" proof Lean AI GAP；\"Kourovka\" \"15.71\" proof code 〔私有记录编号：PR-002321〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–5",
+      "note": "补核近期检索，命中2021原论文及alunik/kourovka-lean、pitmonticone/Kourovka的其他Kourovka成果，随后固定README逐条核范围。检索器亦返回旧来源；不以recency参数保证结果新。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N15",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"CharacterDegrees\"; repository_name=gap-system/gap; topn=5",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 5,
+      "locator": "lib/ctbl.gd、lib/ctbl.gi、lib/ctblsolv.gi等",
+      "note": "命中官方接口、实现、测试；后固定HEAD只取必要三文件。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N16",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"rho\" \"sigma\" \"CharacterDegrees\"; topn=10",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "result_count": 10,
+      "note": "OSCAR包装、语法高亮与Atlas Lean Kourovka16.67等。结果未给出本题专用rho-sigma验证器；16.67对称群等次数问题按片段范围排除，未取其全文或证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N17",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"15.71\" \"proof\"; topn=10",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "result_count": 10,
+      "note": "返回版本号/IP/耗时等数字同名结果，没有Kourovka15.71的匹配。仅前10条范围，未读无关程序，更未执行。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N18",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST fetch",
+      "query": "GET https://api.github.com/repos/alunik/kourovka-lean/commits/HEAD",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/alunik/kourovka-lean/commits/HEAD",
+      "locator": "sha=125611682abc5bdaaf63f084e6b88eb2bd645405; committer.date=2026-09-22T08:36:08Z",
+      "note": "本轮实际HEAD响应已存；随后按该不可变commit取源码。此查询本身不验证数学声明或运行CI。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N19",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST fetch",
+      "query": "GET https://api.github.com/repos/pitmonticone/Kourovka/commits/HEAD",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/pitmonticone/Kourovka/commits/HEAD",
+      "locator": "sha=dcfdbdad8c434e30f6151fb3b4343364d70eeed4; committer.date=2026-08-17T22:27:37Z",
+      "note": "本轮实际HEAD响应已存；随后按该不可变commit取源码。此查询本身不验证数学声明或运行CI。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N20",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST fetch",
+      "query": "GET https://api.github.com/repos/gap-system/gap/commits/HEAD",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/gap-system/gap/commits/HEAD",
+      "locator": "sha=adc94f7e7faa31dd9c222bf7254fed7fd9bc0536; committer.date=2026-11-26T10:41:10Z",
+      "note": "本轮实际HEAD响应已存；随后按该不可变commit取源码。此查询本身不验证数学声明或运行CI。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N21",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "检索词／定位词：\"rho-sigma\" \"GAP\" code；\"Huppert\" \"rho-sigma\" \"Lean\"；\"Huppert\" \"rho-sigma\" \"MathOverflow\" 〔私有记录编号：PR-002322〕",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "locator": "〔原始工具引用已私有留存〕–12/24–28；完整响应已存",
+      "note": "聚合结果为置换群表示、上同调、变量同名、遗传学GAP等；未检到可归本题的社区全解/证书。仅该查询返回索引范围；未读无关文献，不能泛化为整个社区不存在。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N22",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "完整取得 https://github.com/alunik/kourovka-lean/blob/125611682abc5bdaaf63f084e6b88eb2bd645405/README.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/alunik/kourovka-lean/blob/125611682abc5bdaaf63f084e6b88eb2bd645405/README.md",
+      "locator": "Git blob af4b6d0fda6c59546cf67c13d9eafff27de44388",
+      "note": "固定README完整取得并读Problems清单/构建声明。11个列项为16.68、21.3、21.29、21.35、21.38、21.40、21.44、21.53、21.68、21.99、21.106，未列15.71；尤其21.68非单项式表示不是本题。作者kernel-checked声明不转嫁本题；未取这些证明、未build/查CI。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N23",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "完整取得 https://github.com/pitmonticone/Kourovka/blob/dcfdbdad8c434e30f6151fb3b4343364d70eeed4/README.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/pitmonticone/Kourovka/blob/dcfdbdad8c434e30f6151fb3b4343364d70eeed4/README.md",
+      "locator": "Git blob 3b3c59a0054c452ab41c343402a8e8a4090837f7",
+      "note": "固定README完整取得：8个论文结果加21.149旧版旁项，不含15.71。作者Aristotle/Lean成果的对象不同；未取其证明、未build。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N24",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "完整取得 https://github.com/gap-system/gap/blob/adc94f7e7faa31dd9c222bf7254fed7fd9bc0536/lib/ctbl.gd",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/gap-system/gap/blob/adc94f7e7faa31dd9c222bf7254fed7fd9bc0536/lib/ctbl.gd",
+      "locator": "Git blob 59e06adff8c28480e039fe2dc6bca83d01c6878d",
+      "note": "完整文件取得，定向读CharacterDegrees 837–879及Irr普通/Brauer分界887–914。返回[degree,multiplicity]，默认特征0；正p为模p。S4例次数1,2,3；这是官方文档例，未本轮GAP执行。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N25",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "完整取得 https://github.com/gap-system/gap/blob/adc94f7e7faa31dd9c222bf7254fed7fd9bc0536/lib/ctbl.gi",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/gap-system/gap/blob/adc94f7e7faa31dd9c222bf7254fed7fd9bc0536/lib/ctbl.gi",
+      "locator": "Git blob 89af7d7b714c23dbe4db15080324898ecb479fac",
+      "note": "完整文件取得，定向读658–811；现实现0参数转单参数，已知Irr时Collected(List(Irr(G),DegreeOfCharacter))，可解分支CharacterDegreesConlon(G,0)。不是ρ/σ不等式的证明或全群枚举。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N26",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "完整取得 https://github.com/gap-system/gap/blob/adc94f7e7faa31dd9c222bf7254fed7fd9bc0536/lib/ctblsolv.gi",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/gap-system/gap/blob/adc94f7e7faa31dd9c222bf7254fed7fd9bc0536/lib/ctblsolv.gi",
+      "locator": "Git blob a27df0d3369ba50e390a79ace9118785140822ad",
+      "note": "完整文件取得，定向读337–476及函数边界；Conlon算法/Clifford递归入口418，q=0或素数。未审全部递归数学正确性、未执行GAP、未安装依赖。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N27",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "rho sigma character; repository_name=google-deepmind/formal-conjectures; topn=10",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "实际返回0；与Huppert词项互补的有限检索，不是全仓/全世界不存在断言。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N28",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "Huppert; repository_name=facebookresearch/atlas-lean; topn=10",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "result_count": 10,
+      "note": "大部分为大小写不敏感的hupperT变量，另为Kourovka19.55中的Huppert rank；不是15.71。仅返回片段未读全文。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N29",
+      "route": "库内查重",
+      "site": "本地任务清单",
+      "query": "解析本包100行任务.jsonl，检查QX-P-000158是否在包",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "QX-R3-05_source/任务.jsonl",
+      "result_count": 0,
+      "note": "000158不在本包，且000158<000705；pair负责人在包外，按规则保留待核，不越权定案或提出合并。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N30",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "Kourovka15Problem71; repository_name=facebookresearch/atlas-lean; topn=10",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "实际返回0，只此精确题号命名词项，不排除其他路径/命名的形式化。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N31",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "完整取得 https://github.com/ericjiang18/agent_monitor_math/blob/b9d61554169114a31b937828c955726ec8509bb1/agent_monitor/data/problem_sources/kourovka.json",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/ericjiang18/agent_monitor_math/blob/b9d61554169114a31b937828c955726ec8509bb1/agent_monitor/data/problem_sources/kourovka.json",
+      "locator": "Git blob 699d23db3b8c0d0d9d9902f6656e288d2e74ad60",
+      "note": "完整JSON取得，读根元数据/15.71条目：取自Notebook v48，published2026-10-06，fetched2026-10-11；page95、header_marker=null、ai=null。这是旧版标记索引，不是AI证明库内容的完备否定或本日状态。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-N32",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地只读静态审计",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002323〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "0705_code_static_audit.py/.log；0705_sources/code_manifest.json",
+      "note": "实际exit0，12/12 Git blob与SHA256吻合；CB陈述哈希吻合、双方固定rev和全文一致、小编号包外、GAP选定定义/调度和目录项核对通过。只运行自编Python读取/断言，未import/运行下载代码，未GAP/Lean构建或群枚举。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-D00",
+      "route": "原题与出处",
+      "site": "本包固定题卡",
+      "query": "Python读取〔私有材料定位已省略〕 〔私有记录编号：PR-002324〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "主问写至少|ρ|/2，数学对象和量词正确；人话同时写过半与向下取整，两者分别强化/弱化，应修正旁注而非判主问题面有误。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-D01",
+      "route": "代码、公开 AI 和社区",
+      "site": "Python3.12.14标准库",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002325〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "urn:qunxing:private-material",
+      "locator": "S4/S3表、精确Gram矩阵、平方和、S4可解正规列、ρ/σ及阈值",
+      "note": "其他：独立精确特征标表小例；实际exit0；只枚举24及6个置换，字符值来自明确的群作用和符号扭曲；未抄群表数据库、未调用GAP、未做广泛群扫描。C6和幂零类是手工数学推导而非脚本覆盖。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0705-D02",
+      "route": "学术",
+      "site": "学术分工已取得的原文副本",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002326〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/abs/2103.14316v1",
+      "locator": "ADP v1 p1定义、p2 TheoremB；Jabara–Keller v1 p1–3定义及元素阶/余次数范围",
+      "note": "本分工实际本地读取，不代记其他代理的联网下载。ADP的可解群3σ界是弱化进展；2026 Jabara–Keller的ρ数群阶素因子、σ数元素阶素因子，及codegree推论不属本题原量词。未把预印本前部阅读升级为正式版或全文证明复核。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "0705-R-NOTEBOOK",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "PDF/印p95 15.71；p4标记说明",
+      "version": "arXiv v50 2026-11-02；15th Issue2002；SHA256=b7027dd8e29cc5b187304f4bb0f3bddb30839089c44967f5fadaa4c0e5e60dc7",
+      "subquestions": [
+        "主问题",
+        "整数阈值及S4、S3、C6边界"
+      ],
+      "role": "原始提出",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "claimant": "B.Huppert问题；P.P.Pálfy提交Notebook",
+      "note": "与主卡一致：有限可解G，ρ为所有普通不可约复特征标次数出现的不同素数，存在一个次数含至少|ρ|/2个不同素数。因计数为整数，阈值应ceil而非floor；至少不是严格过半。当前题号无♯/∗或评论，只有本版编目意义。2002是Notebook第15辑收录年，不能由页眉断言Huppert首次提出也是2002。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "0705-R-UPDATE",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21upd.pdf",
+      "locator": "首段标记释义；39页字面find15.71无匹配",
+      "version": "官方November2026 update，2026-11-26本轮新读",
+      "subquestions": [
+        "主问题",
+        "历史提出与同名问题范围"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "仅确认实际检查范围内没有该题号更新。♯表示AI提议尚未确认；∗并不专指AI。无题号匹配不是无任何公开解答的证明，旧basic/pass及empty legacy也不补算本轮检索。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "0705-R-HISTORY",
+      "url": "https://link.springer.com/chapter/10.1007/978-3-0348-8658-1_2",
+      "locator": "1991章元数据；公开预览印pp17–18首段指§2 theorem13；2021论文引言与参考文献",
+      "version": "Huppert1991, Progress in Mathematics95, pp17–36；实际只取得两页官方预览，非全章",
+      "subquestions": [
+        "历史提出与同名问题范围"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "原作者1991预览明确回顾ρ–σ猜想，但本轮未取得theorem13具体陈述；故这是早期书目指针，不冒称最早完整同题原句。2021ADP完整稿引言把问题追到1980年代、参考文献列Isaacs1986早期结果。Isaacs1986 DOI入口不可访问；精确首次公开年份仍待原文核，不能只据综述摘要写1985定论。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "0705-R-CODEGREES",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/mana.202000568",
+      "locator": "§1 codegree定义及Theorem1.1；§2 Theorem2.2/证明",
+      "version": "Alexander Moretó, Mathematische Nachrichten294(11)(2021)2232–2236；在线2021-10-09；DOI10.1002/mana.202000568",
+      "subquestions": [
+        "历史提出与同名问题范围"
+      ],
+      "role": "反例",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Alexander Moretó",
+      "note": "论文给可解群的codegree版否定例，参数(|π(G)|,σ^c)=(5,2),(8,3),(12,4)；两端都不是15.71的不变量。已实读定义、陈述与Theorem2.2证明段，未重建张量/半直积构造中全部特征标核次数。因此这条仅作同名变体排除，绝不登记原题已反驳。本文关于当时3σ+2最佳界的背景已被ADP2021的3σ改进，不拿旧引言当当前最佳。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "0705-S-ADP2021",
+      "url": "https://flore.unifi.it/retrieve/671082e1-2c9f-45ef-944c-e4f623963bfe/2021HuppertConjecture_revised.pdf",
+      "locator": "Journal of Algebra 586 (2021),537–560；印538定义与Gluck转引；印539 Theorems A/B；印540–541 Example1.1及其条件；印556–557 Theorem4.5与Corollary4.6；印560参考文献[10]/[19]。对照arXiv2103.14316v1 p15–16。",
+      "version": "正式刊发2021，DOI10.1016/j.jalgebra.2021.06.038，online2021-07-21；固定预印本arXiv2103.14316v1（2021-03-26）另已下载；未将二者当两个独立证明。",
+      "subquestions": [
+        "主问题",
+        "全体有限可解群的系数3上界",
+        "小σ与平方自由次数的系数2子类",
+        "历史提出与同名问题范围",
+        "文献辅助等式的字面问题"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Zeinab Akhlaghi, Silvio Dolfi, Emanuele Pacifici",
+      "claim_date": "2021-03-26",
+      "note": "B对每个有限可解群给|ρ|≤3σ；本轮核定义和4.5首个基数不等式⇒Cor4.6，未独立重证此前全部群论辅助结果。引言将σ≤2、全部次数平方自由的2σ归Gluck1991；原1991稿未读。Example1.1给PSL2因子乘积的|ρ|=14、σ=6，反驳非可解范围2σ+1，不反本题；任意长此类配置/比值趋3的相关讨论有广义Hardy–Littlewood条件，不作无条件无限族。局部附带问题：4.5第二式印ρ=∪π(β_i)∪{p}、p∈{2,3}，对阿贝尔群ρ=∅字面不成立；v1 p15已视觉确认、正式稿只核文本。正文用包含式，B明确只用第一式；未检到作者勘误，不标整篇撤回或B被推翻。web全文ref 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕；正式PDF本地下载403。v1本地文件SHA256 83b07f56a0f7d58019a1f3611af23906eab9c1a027049cba9d7a2d408719335f。所有本轮复核者为AI。 根代理实际另读正式刊本首4页、参考文献及固定v1 pp15–16，独立核3σ范围、Theorem4.5首式推出Cor4.6，以及阿贝尔群对第二式的字面反例。没有审完整轨道理论/CFSG依赖，不把局部问题夸大成主界错误。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "0705-S-JK2026",
+      "url": "https://arxiv.org/pdf/2610.25571v1",
+      "locator": "原PDF p1摘要/定义、p2 Theorems A/B及余次数引出段；本地Jabara_Keller_2610.25571.pdf。",
+      "version": "arXiv2610.25571v1，PDF页边印2026-10-18；2026-11-26下载观察。",
+      "subquestions": [
+        "历史提出与同名问题范围"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Enrico Jabara, Thomas Michael Keller",
+      "claim_date": "2026-10-18",
+      "note": "题名On Huppert’s ρ–σ conjecture for primes in the orders of elements。本轮实际读前2页：ρ是|G|的不同素因子数，σ取元素阶不同素因子数的最大值；随后另推character codegrees的界。其5n旧证明缺口/改进只属元素阶函数，不能移植为普通不可约次数15.71的证明、反例或勘误。原PDF取得HTTP200，404678字节，SHA256 bc07f880f9a9bd274c471bdc52813a1f1463d9a5cd846d386ad3655fc8629482；未核全文主证明、未跑计算。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "0705-S-XUYANG2023",
+      "url": "https://dml.cz/bitstream/handle/10338.dmlcz/151959/CzechMathJ_73-2023-4_16.pdf",
+      "locator": "DML正式全文PDF2–3/印1273–1274定义与Theorems1.1–1.3；PDF7–8/印1278–1279 Theorems3.3/3.4及证明；Remark3.1。",
+      "version": "Xia Xu, Yong Yang, Results related to Huppert’s ρ-σ conjecture, Czechoslovak Math.J.73(148)(2023),1273–1280；DOI10.21136/CMJ.2023.0513-22；online2023-11-02。",
+      "subquestions": [
+        "主问题",
+        "2023普通次数的多角色覆盖结果",
+        "历史提出与同名问题范围",
+        "文献辅助等式的字面问题"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Xia Xu, Yong Yang",
+      "claim_date": "2023-11-02",
+      "note": "根随后定位DML直接馆藏PDF，本分工实际web打开并读本地正文，早先503/超时保留但不再有全文未读待办。Thm1.1/3.1对余次数给43/6；1.2/3.2对元素阶α给168α^4；1.3/3.4对所有有限G给覆盖数cn≤6，覆盖对象为普通次数素集ρ而非全部群阶素数。3.3对有限可解G给ρ∖{2,3}由3个Irr的次数素数集覆盖；3.4首段加最多2个Irr得cn≤5。本轮独立核这一推导，未重证全部辅助引理。多个Irr共同覆盖不能强推单个Irr覆盖一半；张量后分解也不能偷保全部素因子。Remark3.1另把元素阶系数5代入得13/2及141，依赖属于2026元素阶纠错旁支，不作为本题勘误或全解。webref 〔原始工具引用已私有留存〕–3；本地根下载PDF SHA256 183fbcfde8708d6b0810de0a33231c3a44aea4307eca8202ae2e84e3d22a71b5。 追加定向视觉复核：印1278 Thm3.3证明确有O_r/O_p下标混用；按自然p=r解读，附带等式ρ₀=π₀(G/F(G))∪π对八阶二面体D8不成立：F(G)=O₂(G)=G、ρ₀=∅，但π={2}。集合项应相应去除{2,3}；本轮只确认局部下标/过滤问题，不据此反驳3.3或cn结论，不称作者已勘误。图像Xu_Yang_2023_p1278.png已实际查看。 根代理随后成功HTTP下载DML完整9页，213277bytes，SHA256=183fbcfde8708d6b0810de0a33231c3a44aea4307eca8202ae2e84e3d22a71b5。root/fluid分别实际读目标定义及Thm3.3/3.4，均为AI；没有复核所有被引辅助结果。旧失败请求与这次成功分列，原“只得摘要”的缺口已消除。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "0705-N-CB",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-15-071.json",
+      "locator": "kourovka-main-15-071.json：statement、status_observation、provenance；Git blob 7feffd0a889da3caa98aac0e4a7d50ada3b1bd1a",
+      "version": "commit 8d494791ace5894b860585d67ba8e69dbfed6376；目录观察日期2026-07-03；本轮2026-11-26",
+      "subquestions": [
+        "主问题",
+        "历史提出与同名问题范围"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "这里‘无声明’指该项未给完整解/形式化声明。保留finite solvable、普通不可约特征标与≥半；listed-unsolved只是目录历史观察。完整JSON及statement.sha256本轮已核；provenance.source_sha256是作者给的PDF指纹，未由本代码路线独立验证原PDF；该目录不是Lean题面或证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "0705-N-GAP",
+      "url": "https://github.com/gap-system/gap/blob/adc94f7e7faa31dd9c222bf7254fed7fd9bc0536/lib/ctbl.gd",
+      "locator": "lib/ctbl.gd L837–879(CharacterDegrees)、L887–914(Irr)；lib/ctbl.gi L658–811；lib/ctblsolv.gi L337–476，CharacterDegreesConlon入口L418",
+      "version": "gap-system/gap commit adc94f7e7faa31dd9c222bf7254fed7fd9bc0536（HEAD实际响应2026-11-26T10:41:10Z）；本轮2026-11-26",
+      "subquestions": [
+        "整数阈值及S4、S3、C6边界"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "仅某子问",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "note": "这里只核与输入/输出对象有关的API和调度，不把算法源码叫数学证明。默认特征0，返回次数与重数的collected pairs；计算ρ、σ应取第一列次数、每次不同素因子集合，不能将重数或类大小/元素阶混入。正素数参数是Brauer分支。S4文档例[[1,2],[2,1],[3,2]]是静态来源例，未本轮独立执行。三份完整文件已固定hash，但未审所有函数/算法正确性，未GAP/Lean构建、运行或群枚举；未获任何覆盖全体可解群的本题证书。未设置formal_status，因为GAP是计算系统而不是本题证明助手形式化。 完整固定文件身份清单：\n[\n  {\n    \"name\": \"conjecture_bench_15_071.json\",\n    \"repository\": \"bespokelabsai/conjecture-bench\",\n    \"path\": \"problems/extended-catalog/kourovka-notebook/kourovka-main-15-071.json\",\n    \"commit\": \"8d494791ace5894b860585d67ba8e69dbfed6376\",\n    \"git_blob_sha\": \"7feffd0a889da3caa98aac0e4a7d50ada3b1bd1a\",\n    \"display_url\": \"https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-15-071.json\",\n    \"encoding\": \"utf-8\",\n    \"local_path\": \"〔私有材料定位已省略〕\",\n    \"bytes\": 1292,\n    \"sha256\": \"d031e5f1367ab328ae5b7a8a6b78797143253bc0e795dc04a7b6e3a48ebd084b\",\n    \"git_blob_verified\": true\n  },\n  {\n    \"name\": \"mega_atlas_m01_math_nt_alg.py\",\n    \"repository\": \"0thernes/unsolved-problems-mega-atlas\",\n    \"path\": \"src/v2_data/m01_math_nt_alg.py\",\n    \"commit\": \"9e16554260f624df7a023f4cf2f0a76e82f5435f\",\n    \"git_blob_sha\": \"3ba3cdf2094dba721e35bddb25e69b6c8a2c557f\",\n    \"display_url\": \"https://github.com/0thernes/unsolved-problems-mega-atlas/blob/9e16554260f624df7a023f4cf2f0a76e82f5435f/src/v2_data/m01_math_nt_alg.py\",\n    \"encoding\": \"utf-8\",\n    \"local_path\": \"〔私有材料定位已省略〕\",\n    \"bytes\": 195753,\n    \"sha256\": \"f5c74f5f73b69eb0e06699e7ccd62271fe5dd4e75305f22b0c9cfa4209455c16\",\n    \"git_blob_verified\": true\n  },\n  {\n    \"name\": \"QX-P-000705.meta.json\",\n    \"repository\": \"qunxingmath-org/qunxing-data\",\n    \"path\": \"problems/000/QX-P-000705.meta.json\",\n    \"commit\": \"73290369a8dcc632e25e555aec525565ea6e08f8\",\n    \"git_blob_sha\": \"3eaa3b832653a43003017d54c2fdb6aebce17583\",\n    \"display_url\": \"https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000705.meta.json\",\n    \"encoding\": \"utf-8\",\n    \"local_path\": \"〔私有材料定位已省略〕\",\n    \"bytes\": 4115,\n    \"sha256\": \"3682bcb19f90ba8dae237a18a5928abe62d81334298207d91f78012d23a81d4f\",\n    \"git_blob_verified\": true\n  },\n  {\n    \"name\": \"QX-P-000705.text.md\",\n    \"repository\": \"qunxingmath-org/qunxing-data\",\n    \"path\": \"problems/000/QX-P-000705.text.md\",\n    \"commit\": \"73290369a8dcc632e25e555aec525565ea6e08f8\",\n    \"git_blob_sha\": \"5c742dd0d71189b0a31db0cdadeb881123c3e784\",\n    \"display_url\": \"https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000705.text.md\",\n    \"encoding\": \"utf-8\",\n    \"local_path\": \"〔私有材料定位已省略〕\",\n    \"bytes\": 2101,\n    \"sha256\": \"75f89f29445ec8e329beb706f3edea363dc75dd2bc4a1c320fbc3df558739d9a\",\n    \"git_blob_verified\": true\n  },\n  {\n    \"name\": \"QX-P-000158.meta.json\",\n    \"repository\": \"qunxingmath-org/qunxing-data\",\n    \"path\": \"problems/000/QX-P-000158.meta.json\",\n    \"commit\": \"73290369a8dcc632e25e555aec525565ea6e08f8\",\n    \"git_blob_sha\": \"3520b141425cd67975c4588b40aadc5a7866f115\",\n    \"display_url\": \"https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000158.meta.json\",\n    \"encoding\": \"utf-8\",\n    \"local_path\": \"〔私有材料定位已省略〕\",\n    \"bytes\": 4389,\n    \"sha256\": \"d3405a959d5b502778d84e022fbe1a0650bf673aa53d0afb231389e3467c1c11\",\n    \"git_blob_verified\": true\n  },\n  {\n    \"name\": \"QX-P-000158.text.md\",\n    \"repository\": \"qunxingmath-org/qunxing-data\",\n    \"path\": \"problems/000/QX-P-000158.text.md\",\n    \"commit\": \"73290369a8dcc632e25e555aec525565ea6e08f8\",\n    \"git_blob_sha\": \"30a2259adbd5ff07ee3ce277feb08418e8a7ccd8\",\n    \"display_url\": \"https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000158.text.md\",\n    \"encoding\": \"utf-8\",\n    \"local_path\": \"〔私有材料定位已省略〕\",\n    \"bytes\": 2837,\n    \"sha256\": \"03d4ba987c5fe8e0353e865f1f40208262b78091adac391ce54c7e416dd9bfb0\",\n    \"git_blob_verified\": true\n  },\n  {\n    \"name\": \"nilradical_README.md\",\n    \"repository\": \"alunik/kourovka-lean\",\n    \"path\": \"README.md\",\n    \"commit\": \"125611682abc5bdaaf63f084e6b88eb2bd645405\",\n    \"git_blob_sha\": \"af4b6d0fda6c59546cf67c13d9eafff27de44388\",\n    \"display_url\": \"https://github.com/alunik/kourovka-lean/blob/125611682abc5bdaaf63f084e6b88eb2bd645405/README.md\",\n    \"encoding\": \"utf-8\",\n    \"local_path\": \"〔私有材料定位已省略〕\",\n    \"bytes\": 9565,\n    \"sha256\": \"919b51de2acf43d98d149da340b1f82df92f801fc5807099fecc4f84fc042d08\",\n    \"git_blob_verified\": true\n  },\n  {\n    \"name\": \"aristotle_README.md\",\n    \"repository\": \"pitmonticone/Kourovka\",\n    \"path\": \"README.md\",\n    \"commit\": \"dcfdbdad8c434e30f6151fb3b4343364d70eeed4\",\n    \"git_blob_sha\": \"3b3c59a0054c452ab41c343402a8e8a4090837f7\",\n    \"display_url\": \"https://github.com/pitmonticone/Kourovka/blob/dcfdbdad8c434e30f6151fb3b4343364d70eeed4/README.md\",\n    \"encoding\": \"utf-8\",\n    \"local_path\": \"〔私有材料定位已省略〕\",\n    \"bytes\": 2566,\n    \"sha256\": \"d2e9f7753ba9e2edb4901d1a2074f7a1546fad6b6abbc81f561deda8bcc7737f\",\n    \"git_blob_verified\": true\n  },\n  {\n    \"name\": \"gap_ctbl.gd\",\n    \"repository\": \"gap-system/gap\",\n    \"path\": \"lib/ctbl.gd\",\n    \"commit\": \"adc94f7e7faa31dd9c222bf7254fed7fd9bc0536\",\n    \"git_blob_sha\": \"59e06adff8c28480e039fe2dc6bca83d01c6878d\",\n    \"display_url\": \"https://github.com/gap-system/gap/blob/adc94f7e7faa31dd9c222bf7254fed7fd9bc0536/lib/ctbl.gd\",\n    \"encoding\": \"utf-8\",\n    \"local_path\": \"〔私有材料定位已省略〕\",\n    \"bytes\": 181819,\n    \"sha256\": \"ae6fba356d662b843c9bdc2d085fa6c90a2ffca27f9fff3cfeeddd2884a59e5f\",\n    \"git_blob_verified\": true\n  },\n  {\n    \"name\": \"gap_ctbl.gi\",\n    \"repository\": \"gap-system/gap\",\n    \"path\": \"lib/ctbl.gi\",\n    \"commit\": \"adc94f7e7faa31dd9c222bf7254fed7fd9bc0536\",\n    \"git_blob_sha\": \"89af7d7b714c23dbe4db15080324898ecb479fac\",\n    \"display_url\": \"https://github.com/gap-system/gap/blob/adc94f7e7faa31dd9c222bf7254fed7fd9bc0536/lib/ctbl.gi\",\n    \"encoding\": \"utf-8\",\n    \"local_path\": \"〔私有材料定位已省略〕\",\n    \"bytes\": 243521,\n    \"sha256\": \"5a84d9b43f9221577c934084dc124618f1a60a0e7bd81fddff7297c08650b4f6\",\n    \"git_blob_verified\": true\n  },\n  {\n    \"name\": \"gap_ctblsolv.gi\",\n    \"repository\": \"gap-system/gap\",\n    \"path\": \"lib/ctblsolv.gi\",\n    \"commit\": \"adc94f7e7faa31dd9c222bf7254fed7fd9bc0536\",\n    \"git_blob_sha\": \"a27df0d3369ba50e390a79ace9118785140822ad\",\n    \"display_url\": \"https://github.com/gap-system/gap/blob/adc94f7e7faa31dd9c222bf7254fed7fd9bc0536/lib/ctblsolv.gi\",\n    \"encoding\": \"utf-8\",\n    \"local_path\": \"〔私有材料定位已省略〕\",\n    \"bytes\": 80519,\n    \"sha256\": \"47e2b59f9f5e161729bc3876c89b54c05f16eca27ba05ea20631c5a8801de63a\",\n    \"git_blob_verified\": true\n  },\n  {\n    \"name\": \"agent_monitor_kourovka.json\",\n    \"repository\": \"ericjiang18/agent_monitor_math\",\n    \"path\": \"agent_monitor/data/problem_sources/kourovka.json\",\n    \"commit\": \"b9d61554169114a31b937828c955726ec8509bb1\",\n    \"git_blob_sha\": \"699d23db3b8c0d0d9d9902f6656e288d2e74ad60\",\n    \"display_url\": \"https://github.com/ericjiang18/agent_monitor_math/blob/b9d61554169114a31b937828c955726ec8509bb1/agent_monitor/data/problem_sources/kourovka.json\",\n    \"encoding\": \"utf-8\",\n    \"local_path\": \"〔私有材料定位已省略〕\",\n    \"bytes\": 270384,\n    \"sha256\": \"c6209e199a4b07a5e14806f58725e97e0754f33ab3f14f69a5dd65a2fd80edd0\",\n    \"git_blob_verified\": true\n  }\n]\n\n实际只读静态审计日志： 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "0705-N-MONITOR",
+      "url": "https://github.com/ericjiang18/agent_monitor_math/blob/b9d61554169114a31b937828c955726ec8509bb1/agent_monitor/data/problem_sources/kourovka.json",
+      "locator": "根arxiv_version/published/fetched_at/markers及problems[\"15.71\"]；Git blob 699d23db3b8c0d0d9d9902f6656e288d2e74ad60",
+      "version": "commit b9d61554169114a31b937828c955726ec8509bb1；Notebook v48(2026-10-06)，索引抓取2026-10-11T01:55:00Z；本轮2026-11-26",
+      "subquestions": [
+        "历史提出与同名问题范围"
+      ],
+      "role": "重述",
+      "publication": "二手索引",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "此项只按题号映射，内容为页码/标记/主题，没有数学题面或证明全文；problems[15.71] page95、header_marker=null、part_markers=[]、ai=null。不能据此推定本日开放、无未被该索引记录的AI声明。完整索引取得不等于复核全部1307题；仅定向读根元数据与15.71。 题号对应15.71，但该索引无原始数学题面，故scope_match保守记尚未确认，不单凭目录号认定公式等价。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "secondary_index"
+      }
+    },
+    {
+      "evidence_id": "0705-D-definitions-source",
+      "url": "https://arxiv.org/abs/2103.14316v1",
+      "locator": "摘要与§1印刷p1定义，p2 TheoremB",
+      "version": "Zeinab Akhlaghi、Silvio Dolfi、Emanuele Pacifici，On Huppert’s rho-sigma conjecture；arXiv:2103.14316v1，2021-03-26",
+      "subquestions": [
+        "主问题",
+        "全体有限可解群的系数3上界",
+        "整数阈值及S4、S3、C6边界"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "实际读本地原文首部。ρ为所有普通不可约复次数的素因子并集，σ为单一次数的不同素因子最大数；可解原问系数2。TheoremB仅给可解群系数3，不能写成主问证明。原文也举S4达到系数2，与本分工独立表吻合；全文证明及正式期刊版由学术分工另核。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "0705-D-quantifiers",
+      "url": "urn:qunxing:private-material",
+      "locator": "§1定义与量词，§2整数阈值与ρ=0/1/2边界",
+      "version": "2026-11-26本轮独立数学核对；card_rev3965f89e5e05a76f",
+      "subquestions": [
+        "主问题",
+        "整数阈值及S4、S3、C6边界"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "定义ω(1)=0，σ=maxχ ω(χ(1))。原问等价σ≥ceil(|ρ|/2)及|ρ|≤2σ；偶数|ρ|时过半太强，奇数时floor太弱。ρ0时σ0任意χ满足，ρ1由并集定义即有含唯一素数的χ。对象不是群阶、元素阶、Brauer、实/有理不可约表示或余次数。主问本身不因人话错误而判题面有误。 完整量词、真实表示构造、小例与幂零类证明，随本回执嵌入：\n# QX-P-000705：定义、量词、精确特征标表及幂零特例\n\n- 固定题卡：`QX-P-000705`，`card_rev=3965f89e5e05a76f`。\n- 日期：2026-11-26。\n- 分工：本题的定义、量词、边界、两个具体小群的完整特征标表核验，以及有限幂零类的标准推导。未处理后续题。\n- 结论：题卡主问准确；人话版的“过半”和“向下取整”分别构成强化和弱化，均应改正。这些错误不使正确主问题成为“题面有误”。本分工没有证明或反驳全体有限可解群的主问。\n\n## 1. 定义与准确量词\n\nIrr(G)指有限群G的**普通不可约复特征标**；χ(1)是该不可约复表示的维数，是正整数。定义\n\n\\[\n\\pi(n)=\\{p:p\\text{为素数且}p\\mid n\\},\\quad\n\\omega(n)=|\\pi(n)|,\\quad \\pi(1)=\\varnothing,\\quad\\omega(1)=0,\n\\]\n\\[\n\\rho(G)=\\bigcup_{\\chi\\in\\operatorname{Irr}(G)}\\pi(\\chi(1)),\\qquad\n\\sigma(G)=\\max_{\\chi\\in\\operatorname{Irr}(G)}\\omega(\\chi(1)).\n\\]\n\nIrr(G)是非空有限集合（总有平凡特征标），所以最大值总有意义。素因子的重数不计入：例如p的任意正幂都只贡献素数p一次。是否有多个不可约特征标具有同一次数，不影响ρ或σ。\n\n令r=|ρ(G)|。原问题的严格量词是\n\n\\[\n\\forall G\\ (G\\text{有限可解})\\quad\n\\exists\\chi\\in\\operatorname{Irr}(G):\\quad\n\\omega(\\chi(1))\\ge r/2.\n\\]\n\n因为左边为整数，这恰等价于\n\n\\[\n\\sigma(G)\\ge\\lceil r/2\\rceil\n\\quad\\Longleftrightarrow\\quad\n|\\rho(G)|\\le2\\sigma(G).\n\\]\n\n不要求χ忠实，也不要求非线性；是否必须非线性由r的数值决定，而不是附加条件。\n\n### 不能替换的相似对象\n\n| 量或表示类别 | 本题是否使用 | 区别 |\n|---|---|---|\n| 普通不可约复特征标次数χ(1) | 是 | ρ对这些次数的素因子取并集 |\n| 群阶\\(|G|\\)的素因子 | 否 | 非平凡阿贝尔群的群阶有素因子，但所有复不可约次数仍为1 |\n| 元素阶o(g)的素因子 | 否 | 改变了最大值取遍的对象，也改变了ρ的定义 |\n| 特征标余次数\\(|〔私有材料定位已省略〕)\\) | 否 | 例如循环群的忠实线性特征标次数为1，余次数却等于群阶 |\n| 模ℓ不可约Brauer特征标 | 否 | 是模表示问题，不是Irr(G)在C上的这套次数 |\n| 实数域或有理数域上的不可约表示 | 否 | 不应将其不可约性和维数定义替代普通复特征标 |\n\n本轮独立定向读取了学术代理取得的Akhlaghi–Dolfi–Pacifici，arXiv:2103.14316v1（2021-03-26）原文副本。其摘要及§1印刷p1明确使用不可约复特征标并给出上述ρ、σ。该文p2 Theorem B是全体有限可解群的3σ上界，而非本题所问的2σ上界；本分工只核了定义与定理范围，未重审该文全部证明。\n\n## 2. 取整错误是两个不同方向\n\n| r | 原题“至少一半” | 人话“过半” | 人话“向下取整” |\n|---|---:|---:|---:|\n| 2m | 至少m | 至少m+1，过强 | 至少m，数值相同 |\n| 2m+1 | 至少m+1 | 至少m+1，数值相同 | 至少m，过弱 |\n\n因此正确统一写法是“至少ceil(r/2)个不同素数”，不应把两种错误措辞当成可相互抵消的口语近似。\n\n- r=0：所有次数都是1，σ=0；任意不可约特征标都满足原题0≥0。若按严格“过半”，却要求正的素因子数，连非平凡阿贝尔群也不满足。\n- r=1：从ρ的定义就存在某个次数被唯一素数p整除，故σ=1，原题成立。向下取整只要求0，平凡特征标即可通过这个弱化条件，却不是原题在r=1时所需的见证。\n- r=2：σ≥1立即给出原题；下面S4达到r=2σ，说明严格“过半”确实会排除合法的等号情形。\n\n上述r≤2边界推理本身不需要G可解；它不能推广为任意r的结论。\n\n## 3. S4：从实际表示构造完整表\n\n这里不引用一张未知来源的数字表，也不从任意正交整数向量直接宣称它们是特征标。先构造真实的复表示：\n\n1. 平凡一维表示，特征标1。\n2. 符号一维表示，特征标ε。\n3. S4在三个完美匹配\n   \\(\\{01|23,02|13,03|12\\}\\)\n   上置换，得到三维置换表示；其坐标和为零的二维不变子空间给特征标θ=固定匹配数−1。这个作用的核是V4，像是S3。\n4. S4在四点上置换，坐标和为零的三维不变子空间给η=固定点数−1。\n5. 对上述三维表示作符号扭曲，得到εη。\n\n因而以下五行都是实际复表示的特征标。\n\n| 循环类型 | 1⁴ | 2·1² | 2² | 3·1 | 4 |\n|---|---:|---:|---:|---:|---:|\n| 共轭类大小 | 1 | 6 | 3 | 8 | 6 |\n| 1 | 1 | 1 | 1 | 1 | 1 |\n| ε | 1 | −1 | 1 | 1 | −1 |\n| θ | 2 | 0 | 2 | −1 | 0 |\n| η | 3 | 1 | −1 | 0 | −1 |\n| εη | 3 | −1 | −1 | 0 | 1 |\n\n用普通特征标内积\n\n\\[\n\\langle\\alpha,\\beta\\rangle\n=\\frac1{24}\\sum_{\\text{共轭类 }C}|C|\\alpha(C)\\overline{\\beta(C)}\n\\]\n\n精确计算得五行的Gram矩阵为单位阵。例如\n\n\\[\n\\langle\\theta,\\theta\\rangle=(4+3\\cdot4+8)/24=1,\n\\quad\n\\langle\\eta,\\eta\\rangle=(9+6+3+6)/24=1,\n\\quad\n\\langle\\theta,\\eta\\rangle=(6-6)/24=0.\n\\]\n\n一个真实复表示的特征标内积范数为1，当且仅当它不可约；两行内积0说明互不等价。并且\n\n\\[\n1^2+1^2+2^2+3^2+3^2=24=|S_4|.\n\\]\n\n由不可约次数平方和定理，已经没有其他不可约特征标。故这确为完整普通不可约复特征标表。\n\nS4可解，可用正规列S4▹A4▹V4▹1说明，其因子分别为C2、C3和V4，均阿贝尔。程序也直接检查了这四个子群及连续两层之间的正规性、商的交换性。\n\n于是cd(S4)={1,2,3}，ρ(S4)={2,3}，σ(S4)=1。没有任何不可约次数同时被2、3整除，所以“存在次数含过半素数”的严格说法失败；原题则以2=2·1恰等号成立。\n\n这个例子也说明，若希望对全体有限可解群使用|ρ|≤cσ形式的统一乘法系数，那么c不能小于2。它不是对当前系数2猜想的反例。\n\n## 4. S3与C6：ρ=1、ρ=0及对象差别\n\n### S3\n\n同样由平凡表示、符号表示与三点置换表示的坐标和零子空间构造三行：\n\n| 循环类型 | 1³ | 2·1 | 3 |\n|---|---:|---:|---:|\n| 类大小 | 1 | 3 | 2 |\n| 平凡 | 1 | 1 | 1 |\n| 符号 | 1 | −1 | 1 |\n| 二维 | 2 | 0 | −1 |\n\n三行正交归一，次数平方和1+1+4=6，故表完整。ρ={2}、σ=1。原题需要至少1个素数，由二维特征标满足；线性特征标次数1只满足向下取整后错误的0阈值。S3本身可解，其正规列S3▹C3▹1的因子都交换。\n\n### C6\n\n设g生成C6，取六次单位根ζ。六个同态χj(g)=ζ^j（0≤j<6）给六个一维复特征标。有限几何级数说明它们两两正交归一；次数平方和为6，故已经构成全部Irr(C6)。因此ρ(C6)=∅、σ(C6)=0，但群阶的素因子集为{2,3}，且生成元阶为6。\n\n该例同时说明：ρ不是群阶素因子集，也不是全部元素阶的素因子并集；“ρ=0”不意味着群必须平凡。对忠实的χ1，χ1(1)=1而余次数为6，也直接区分了degree与codegree。\n\nC6部分是精确数学推导，未在脚本里假称运行复浮点单位根计算。\n\n## 5. 有限幂零类的完整标准推导\n\n**命题。** 若G有限幂零，则σ(G)=|ρ(G)|，因此原题在该类上成立且有更强结论。\n\n明确使用下列基础事实：\n\n1. 有限幂零群是其Sylow子群的直积：G=∏p Pp。\n2. 直积群的普通不可约复特征标恰为各因子不可约特征标的外张量积，次数相乘。\n3. 有限p群的普通不可约复特征标次数为p幂。可由普通不可约次数整除群阶这一标准定理立即得到。\n4. 有限群所有普通不可约复特征标都线性，当且仅当群交换。此处只需：非交换Pp存在非线性不可约特征标；交换Pp的不可约特征标皆线性。\n\n令S为那些非交换Sylow子群Pp对应的素数集合。若Pp交换，该因子的所有不可约次数为1，不贡献素数；若Pp非交换，存在不可约χp且χp(1)=p^ap、ap≥1，所以p出现在某个G的不可约次数中。由张量分解可知ρ(G)=S。\n\n对每个p∈S选这样的非线性χp，对其余Sylow子群选平凡特征标。外张量积χ为G的不可约复特征标，且\n\n\\[\n\\chi(1)=\\prod_{p\\in S}p^{a_p}.\n\\]\n\n因此它的不同素因子恰为S=ρ(G)，给出σ(G)≥|ρ(G)|；反向不等式由ρ的并集定义立即成立，故σ(G)=|ρ(G)|。若S为空，取全部平凡特征标即可，仍得0=0，证明完毕。\n\n这只是本轮写出的标准特例推导，不声称新发表发现。关键是Sylow**直积**及各因子特征标可独立张量选择；一般有限可解群没有这个结构，不能把证明扩大到全部可解群。S4的σ=1<|ρ|=2也明确显示这个更强等式不能在所有可解群上成立。\n\n## 6. 与学术分工的范围交叉核对\n\n本分工实际读取了以下已下载的本地原文副本，未重复其联网下载请求：\n\n- `0705_sources/ADP_2103.14316v1.txt`：首两页定义及Theorem B。它研究普通复特征标次数，3σ结果属于主问题的弱化界；涉及F(G)=1的另一条2σ+1猜想及非可解PSL2直积反例，不能据此反驳本题可解群2σ问题。本分工没有审查这些反例的全部构造或全文证明。\n- `0705_sources/Jabara_Keller_2610.25571.txt`：标题、摘要及§1，版本页标2026-10-18 v1。这里ρ数的是群阶素因子，σ取元素阶的不同素因子最大值，后文还有余次数推论。其标题中的ρ–σ与本题同名，不使量词对象相同；这些结果已据定义排除为本题直接解答。\n\n学术代理另外核到正式2021年期刊版及更完整定理位置；本分工不把对预印本首两页的阅读升级为已读该正式版或已通审所有证明。\n\n## 7. 实际有限执行与范围\n\n- 脚本：`〔私有材料定位已省略〕。\n- 日志：`〔私有材料定位已省略〕。\n- 实际命令：`python 〔私有材料定位已省略〕 > 〔私有材料定位已省略〕，退出码0；随后完整读取日志。\n- Python3.12.14，纯标准库，整数及Fraction有理数运算；没有浮点近似。\n- 枚举恰S4的24个置换与S3的6个置换，按具体作用计算上述字符值、类大小、精确Gram矩阵与平方和，并核S4的可解正规列。\n- 这个过程不是GAP运行、不是群数据库扫描，也不是证明助手形式化。C6和有限幂零类由正文数学证明处理，未在脚本中伪造机器覆盖。\n- 本分工未新增广泛文献搜索、未查库、未处理下一题。\n\n贡献JSON的相应数组按包内Schema验收；正式回执与原版导入仍由根代理合并执行。\n",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "0705-D-exact-tables",
+      "url": "urn:qunxing:private-material",
+      "locator": "check_table、check_solvable_chain、main；数学构造见0705_definitions_notes.md §3–4；完整输出0705_small_check.log",
+      "version": "2026-11-26本轮自编精确有限检查；Python3.12.14，实际exit0",
+      "subquestions": [
+        "整数阈值及S4、S3、C6边界",
+        "有限幂零群的更强特例"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "toolchain": "Python3.12.14标准库；精确整数和Fraction；枚举S4的24及S3的6个置换",
+        "command": "python 〔私有材料定位已省略〕 > 〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material",
+        "cache": "无外源特征标表、无GAP、无群数据库缓存",
+        "axioms": "有限程序检查，不是证明助手。表示构造、特征标正交性及次数平方和的基本理论在notes明列。"
+      },
+      "note": "字符值由4点置换、3个完美匹配作用、符号及扭曲真实构造；精确Gram为I5且平方和24，得到完整S4次数1,1,2,3,3；正规列24→12→4→1有交换因子，故可解。ρ={2,3},σ1，原问等号成立而严格过半失败。S3同法得完整次数1,1,2，ρ1σ1；线性χ仅满足错误floor0。有限例不证明全体可解主问。 脚本SHA256=d24b1940d1cefed00d0b17bc8f1608d3e21ccb23deabfa4031be62ee7f76468d，日志SHA256=8ea04eee9d7ff9ece35aeaba42b526dd54d67e64b059585498c9b148e37cacd0。完整 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "0705-D-nilpotent",
+      "url": "urn:qunxing:private-material",
+      "locator": "§4 C6边界推导；§5有限幂零类命题与四项基础依赖",
+      "version": "2026-11-26本轮标准表示论推导；非新发表发现",
+      "subquestions": [
+        "有限幂零群的更强特例",
+        "整数阈值及S4、S3、C6边界",
+        "文献辅助等式的字面问题"
+      ],
+      "role": "完整证明",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "有限幂零G为Sylow直积；Irr直积为外张量积，p群不可约次数为p幂，非交换Sylow存在非线性χp。ρ恰为非交换Sylow的素数集合；分别选非线性χp再张量，单一次数含全部ρ，故σ=|ρ|，包括ρ0。基础理论依赖已列明，未冒称该类新发表结果。一般可解群不能使用Sylow直积步骤；S4显示更强等式不普遍成立。 根代理独立核Sylow直积、次数为p幂和外张量积的全部量词及空ρ边界；引用基础表示论的短证明成立。所有本轮复核者为AI，非人类审稿；未运行证明助手。完整证明已嵌入0705-D-quantifiers，不依赖临时文件。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "full_proof",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "0705-D-excluded-element-orders",
+      "url": "https://arxiv.org/abs/2610.25571v1",
+      "locator": "标题、摘要、§1印刷p1–3的ρ/σ定义及codegree推论",
+      "version": "Enrico Jabara、Thomas Michael Keller，On Huppert’s rho–sigma conjecture for primes in the orders of elements；arXiv:2610.25571v1，2026-10-18",
+      "subquestions": [
+        "历史提出与同名问题范围"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "本分工实际读已下载原文首部：ρ数群阶素因子、σ取元素阶素因子最大数，另有余次数推论；均非本题普通不可约次数。仅按精确定义排除直接迁移，不审其新界全部证明，也不把同名2026结果列为本题解决。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000158",
+      "other_card_rev": "9a48705cfb777f90",
+      "relation": "待核",
+      "reason": "pair QX-P-000158__QX-P-000705，负责人为较小编号000158，但不在本包。双方固定73290369a8dcc632e25e555aec525565ea6e08f8全文及rev已核：本题对象为一个有限可解G，ρ为所有普通不可约复特征标次数中素因子并集，验收|ρ|≤2σ；对侧为非交换单H与任意有限G满足次数集cd(G)=cd(H)，验收G≅H×A(A交换)。目前比较显示同名Huppert/同类次数数据但目标与量词不同，不能由此互相闭合；本包不替包外owner作最终关系定案。",
+      "positions": {
+        "self": "QX-P-000705.text.md：§题面、§人话版、§原文摘录；meta.acceptance.criteria",
+        "other": "QX-P-000158.text.md：§题面、§人话版、§原文摘录；meta.acceptance.criteria"
+      },
+      "note": "本题rev3965f89e5e05a76f；对侧rev9a48705cfb777f90；四份完整固定文件及Git blob/SHA256见0705_sources/code_manifest.json。不以名称、相同Notebook或目录合列为严格同题依据；不核对侧最新进展，不提出合并。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "暂不改卡",
+      "field": "题面 / acceptance",
+      "old": "有限可解G是否存在不可约特征标次数被至少|ρ(G)|/2个不同素数整除。",
+      "new": "保留主问题和有限可解/普通复不可约/不同素因子量词；局部修正人话中的取整与严格性，补3σ进展及限定特例，不因说明错误把正确主问判为题面有误。",
+      "reason": "当前Notebook15.71原文逐句数学内容相同；非可解加强版和codegree反例不适用。",
+      "evidence_ids": [
+        "0705-R-NOTEBOOK",
+        "0705-R-CODEGREES",
+        "0705-D-exact-tables",
+        "0705-D-quantifiers"
+      ],
+      "small_case_check": "S4具有度数1,1,2,3,3，ρ大小2，最多只含1个素数，满足至少一半却不满足严格过半；本轮独立构造/核对另附。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "proposer / first_published / 原文摘录的2002措辞",
+      "old": "P.P.Pálfy（Kourovka问题15.71，2002辑首刊/在列）；first_published=2002年辑。",
+      "new": "记为B.Huppert的ρ–σ问题，由P.P.Pálfy收入Notebook第15辑(2002)。2021原作者论文引言追述源于1980年代；1991Huppert章已有明确猜想指针，但具体首次公开年份和原始陈述页尚待核，不再把2002等同首提。",
+      "reason": "分开历史提出与题集收录；官方1991预览只有指针，不足强填1985或theorem13原句。",
+      "evidence_ids": [
+        "0705-R-NOTEBOOK",
+        "0705-R-HISTORY"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "旧查新覆盖 / 开放状态证据",
+      "old": "Kourovka全文解析与WebSearch：无解；旧rev9698dd40e7c20625，搜索词注明未单独检索。",
+      "new": "保留旧记录仅为历史；当前rev3965f89e5e05a76f按四路逐题记录。主问已有3σ等实质进展；当前编目无结案标记与本轮未取得2σ全解分开，不写无条件“无解”。",
+      "reason": "未单查的旧阴性不能替代当前证据；明确来源访问和数学范围。",
+      "evidence_ids": [
+        "0705-R-NOTEBOOK",
+        "0705-R-UPDATE"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "card_text.已知结果与进展",
+      "old": "Pálfy–Huppert 纲领；无解。",
+      "new": "普通复不可约特征标次数的Huppert ρ–σ问题。Akhlaghi–Dolfi–Pacifici（J.Algebra586,2021）TheoremB/Cor4.6证明全体有限可解群的|ρ|≤3σ；其引言转引Gluck1991给σ≤2及全部次数平方自由子类的|ρ|≤2σ。Xu–Yang2023证明多个角色覆盖的cn≤6（所有有限群），可解情形证明给cn≤5；不同于单角色半覆盖。本轮有限定向检索未取得一般2σ证明或可解反例。",
+      "reason": "有明确可核的全类弱界、历史子类和多角色覆盖进展，不应只保留无解概括；近期同名异题不用于结案。",
+      "evidence_ids": [
+        "0705-S-ADP2021",
+        "0705-S-JK2026",
+        "0705-S-XUYANG2023"
+      ],
+      "small_case_check": "本动作仅补文献进展，不改主命题；σ=ρ=0的阿贝尔群满足两个上界。严格过半及floor/ceil由定义分工另作已执行小例核验。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text.相关进展与声称解决",
+      "old": "（未见专门声称解决记录）",
+      "new": "本轮同名候选须分别注明ρ来自ordinary complex character degrees、codegrees、元素阶或共轭类大小，并注明G是否有限可解。已读ADP的非可解反例仅排除另一加强猜想；Jabara–Keller2026的纠错是元素阶版。未将这些结果作为15.71的完整解决声明。",
+      "reason": "同名符号的不同定义与可解性条件改变命题，现有强声称不足以关闭15.71。",
+      "evidence_ids": [
+        "0705-S-ADP2021",
+        "0705-S-JK2026"
+      ],
+      "small_case_check": "任意阿贝尔群的不可约次数均为1，故字符次数ρ=∅；非平凡循环群的群阶仍有素因子，展示两种ρ不应互换。此为基本定义检查，不伪称新增GAP复跑。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "一句话 / 过半",
+      "old": "可解群里总有一个特征标，其次数被过半的素数整除吗？",
+      "new": "有限可解群中，是否总有一个普通不可约复特征标，其次数被ρ(G)中至少ceil(|ρ(G)|/2)个不同素数整除？",
+      "reason": "过半是严格大于一半，在偶数边界排除原问允许的等号；不可约与普通复对象也应保留。主问本身正确，修改仅限人话。",
+      "evidence_ids": [
+        "0705-D-definitions-source",
+        "0705-D-quantifiers",
+        "0705-D-exact-tables"
+      ],
+      "small_case_check": "S4可解，完整次数1,1,2,3,3给ρ2σ1，满足原问一半却没有任何次数包含严格过半要求的2个素数。C6的ρ0也不可能满足严格过半的正阈值。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话正文 / 向下取整",
+      "old": "至少一半（向下取整）个不同素数整除。",
+      "new": "至少一半；因不同素数的个数为整数，准确阈值是向上取整ceil(|ρ(G)|/2)。",
+      "reason": "奇数|ρ|时向下取整弱化了问题，不能用于验收原猜想的见证。",
+      "evidence_ids": [
+        "0705-D-quantifiers",
+        "0705-D-exact-tables"
+      ],
+      "small_case_check": "S3的ρ={2}，原阈值1由二维χ满足；线性χ次数1含0个素数，虽满足错误floor(1/2)=0，却不是原问的见证。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化与边界 / ordinary complex、ρ、σ及0/1边界",
+      "old": "形式化见题面；仅列ρ计数0或1平凡分界和1/2取整检查点。",
+      "new": "明确Irr(G)为普通不可约复特征标；ω(1)=0，ρ=并集π(χ(1))，σ=maxω(χ(1))；主问∀有限可解G，|ρ|≤2σ。ρ0时σ0，ρ1时σ1；不替换为群阶、元素阶、Brauer或余次数。",
+      "reason": "这些对象常使用同名符号，必须保持量词与数值函数一致；最大值因Irr有限非空而有定义。",
+      "evidence_ids": [
+        "0705-D-definitions-source",
+        "0705-D-quantifiers",
+        "0705-D-excluded-element-orders"
+      ],
+      "small_case_check": "C6的六个普通不可约复特征标均线性，ρ为空；但|C6|和生成元阶的素因子均有2、3，忠实线性特征标余次数也为6，故几个版本不能互换。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "边界与已知特例 / 有限幂零类",
+      "old": "未列出有限幂零类的精确关系，仅有ρ0/1检查点。",
+      "new": "补标准特例：有限幂零G满足σ(G)=|ρ(G)|。按Sylow直积，对每个非交换Sylow选非线性不可约复特征标并作外张量积，即得单一次数覆盖全部ρ；明确列出基础表示论依赖。",
+      "reason": "这是可审的本轮短证明，只处理幂零子类；一般可解群没有相同直积结构，不能据此给主问结案。",
+      "evidence_ids": [
+        "0705-D-nilpotent",
+        "0705-D-exact-tables"
+      ],
+      "small_case_check": "C6为幂零交换例，ρ=σ=0；S4虽可解但非幂零，ρ2σ1，表明更强等式不可直接扩展。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定 / GAP检查点与实际有限执行",
+      "old": "性质：仅列检查点；独立验证：小可解群特征标表GAP计算。",
+      "new": "保留旧句为历史计划；本轮另记录Python3.12.14标准库从具体表示构造并核S4/S3完整表、附脚本日志。C6和幂零类是数学推导，未运行GAP或全体小群数据库扫描。",
+      "reason": "防止将历史建议或手工证明写成实际GAP/形式化复跑，也明确有限例能支持什么。",
+      "evidence_ids": [
+        "0705-D-exact-tables",
+        "0705-D-nilpotent"
+      ],
+      "small_case_check": "实际枚举只有24与6个置换；Gram矩阵、次数平方和、ρ/σ和S4可解链均精确通过，未使用浮点数。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "精确首次公开提出尚未定位：Huppert1991仅官方两页预览，theorem13原句未得；Isaacs1986全文入口失败，1985只见检索到的综述说法。",
+      "next_step": "若将first_published精确到年份/首刊，先核1980年代原稿或Huppert1991全章具体猜想段；目前只能把2002改为Notebook收录年，不编造早期首发表时间。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "σ≤2与所有次数平方自由的结论由ADP2021明确转引Gluck1991；原DOI访问未取得全文。",
+      "next_step": "若需将子类提升为本轮原始证明已核，取得Gluck1991 J.Algebra140,26–35（DOI10.1016/0021-8693(91)90142-U），核定理及证明；现记录保持明确间接归属。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮已核ADP2021 Theorem4.5附带等号式对阿贝尔群不成立；另视觉核Xu–Yang2023 Theorem3.3证明的O_r/O_p下标混用及未过滤π的附带等式在D8上失败。未检到作者勘误。前者B只用首个基数不等式；后者不把局部式子错误当作cn定理反例。",
+      "next_step": "如需正式文献勘误记录，核作者对上述局部符号/等式的更正，或在进一步审阅时明确所需包含/过滤修复；保持局部问题与各论文主界/覆盖数的完整证明声明分列。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "较小编号QX-P-000158为pair负责人且在本包外。",
+      "next_step": "交000158的负责人基于双方固定全文复核pair QX-P-000158__QX-P-000705；本回执保留待核。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本次有范围的公开代码/AI/社区检索未获得本题完整解、专用证书或可构建形式化。CB和monitor只是历史目录；Nilradical/Aristotle已读README列其他题，Atlas合列不同猜想，GAP只提供次数计算。检索无命中不等于不存在。",
+      "next_step": "若今后出现具体15.71或可解rho-sigma完整声明，先固定原文和普通特征标/可解量词，再核定理、依赖与证书；只有取得对应代码并实际构建/查公理后才能提高形式化执行等级。本轮不为泛化阴性继续无界检索或安装工具链。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "3965f89e5e05a76f",
+      "codes": {}
+    }
+  ]
+}

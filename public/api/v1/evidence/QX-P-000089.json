@@ -1,0 +1,3193 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000089",
+  "card_rev": "d6a2fe8a73156c29",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-07"
+      ],
+      "parts": [
+        {
+          "subquestion": "全部为星或路径，以及至多两棵非星的树族",
+          "value": "partial",
+          "note": "Gyárfás–Lehel原作Theorems1–2给出这两类树族的打包。是历史特例，本轮核原稿，不冒充新解决；没有覆盖任意形状的全族。"
+        },
+        {
+          "subquestion": "固定最大度的充分大树族",
+          "value": "partial",
+          "note": "对每个固定Δ，存在N、ε>0，使n≥N且仅对i>εn有Δ(T_i)≤Δ的完整大小序列可分解K_n。前εn棵无需度界。不是对所有n和任意最大度的主问题。"
+        },
+        {
+          "subquestion": "最大度至c n/log n的充分大完整树族",
+          "value": "partial",
+          "note": "Allen等v3 Theorem6：存在c>0,n0，对n>n0和全部i∈[n]满足|T_i|=i、Δ(T_i)≤c n/log n的族可分解K_n。2026修订属于2021已有路线；仍有最大度及充分大n条件。 已补核所引1711.04869v4勘误范围及明确引用纠正版的事实；没有把此范围核对升级为全部证明的独立验证。"
+        },
+        {
+          "subquestion": "无度界但只打包最大的线性数量树",
+          "value": "partial",
+          "note": "Janzer–Montgomery v2 Theorem1.2：有绝对ε>0，最大r=εn棵可同时打包K_n；不保证r=n−1，不提供ε=3/4。其2026JEMS正式发表没有把范围升级为整个TPC。"
+        },
+        {
+          "subquestion": "two-spider且二边腿数受限的完整树族",
+          "value": "partial",
+          "note": "Gubanyi2026 Theorem1.1对所有n成立，但每个T_k必须为two-spider且二边腿数<(3−√5)(k−1)/4。参数i在原论文表示边数，本卡k表示顶点数，须作k=i+1转换。"
+        },
+        {
+          "subquestion": "n≤11的有限树族",
+          "value": "partial",
+          "note": "Guichard–Massman1990原稿报告计算验证n=10、11，结合既有n≤9得到through n=11；本轮实读全文但未重跑其程序。有限n的全称验证不解决任意n。"
+        },
+        {
+          "subquestion": "CB固定n=10反例目标的适用性",
+          "value": "statement_error",
+          "note": "题卡所引CB目标把反例固定为T2,…,T10装不进K10；1990已发表有限验证给出n=10肯定结论。这是外部验证目标与主问题全称n范围的冲突，只列子项及修订建议，不改变本卡全题主命题或card_rev；本轮没有发现一般TPC反例。"
+        },
+        {
+          "subquestion": "n=10公开AI计算记录",
+          "value": "partial",
+          "note": "SciNet项目公开声称全45,376,056个n=10树族均可打包。本轮已静态读取固定提交代码、汇总和历史验证日志，未独立重跑或逐一检查全部见证。此为既有有限情形的另一公开计算实现；1990已刊n≤11结果排除了其“首次推进Fishburn纪录”的新颖性说法。"
+        },
+        {
+          "subquestion": "n=12公开计算声明",
+          "value": "claimed_resolution",
+          "note": "本条“完整”仅指固定n=12的全部树族，不是一般主问题。固定仓库551项顶层日志均报告成功；存档日志检查不能代替运行。作者修正过随机见证同构检查的自比错误；第二实现只到n=9，n=12显式随机见证复核仅60族。本轮没有独立全量复跑，保留计算声明及其验证范围。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/pawelkwaczynski/erdos743/blob/4280b1fda0f0c40e2232517e29501921a9004b32/README.md"
+      ],
+      "note": "只覆盖：特例"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://users.renyi.hu/~gyarfas/Cikkek/10_GyarfasLehel_PackingTreesOfDifferentOrderIntoKn.pdf",
+      "review": "key_steps_checked"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "对每个n、任意大小依次为2,…,n的树族在K_n中边不交打包。已取得原题及限定最大度、最大线性数量树、特定树形和有限n的进展；这些均不覆盖任意n和任意树形的全族。Chalise–Clark–Gnang旧完整证明稿已正式撤回，不能作为已证证据，撤回也不是原题反例。当前实际检索范围内未取得可据以闭合一般命题的确证；不由检索未命中推断全网没有解。",
+      "evidence_ids": [
+        "89-root-original",
+        "E000089-P0-WITHDRAWAL-V3",
+        "R07-0089-PROG-E01",
+        "R07-0089-PROG-E02",
+        "R07-0089-PROG-E03",
+        "R07-0089-PROG-E05",
+        "R07-0089-PROG-E06",
+        "QX-000089-C-E02"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "全部为星或路径，以及至多两棵非星的树族",
+      "math_status": "仅特例",
+      "scope_note": "Gyárfás–Lehel原作Theorems1–2给出这两类树族的打包。是历史特例，本轮核原稿，不冒充新解决；没有覆盖任意形状的全族。",
+      "evidence_ids": [
+        "89-root-original"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "固定最大度的充分大树族",
+      "math_status": "仅特例",
+      "scope_note": "对每个固定Δ，存在N、ε>0，使n≥N且仅对i>εn有Δ(T_i)≤Δ的完整大小序列可分解K_n。前εn棵无需度界。不是对所有n和任意最大度的主问题。",
+      "evidence_ids": [
+        "R07-0089-PROG-E01"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "最大度至c n/log n的充分大完整树族",
+      "math_status": "部分进展",
+      "scope_note": "Allen等v3 Theorem6：存在c>0,n0，对n>n0和全部i∈[n]满足|T_i|=i、Δ(T_i)≤c n/log n的族可分解K_n。2026修订属于2021已有路线；仍有最大度及充分大n条件。 已补核所引1711.04869v4勘误范围及明确引用纠正版的事实；没有把此范围核对升级为全部证明的独立验证。",
+      "evidence_ids": [
+        "R07-0089-PROG-E02",
+        "R07-0089-PROG-E07"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "无度界但只打包最大的线性数量树",
+      "math_status": "部分进展",
+      "scope_note": "Janzer–Montgomery v2 Theorem1.2：有绝对ε>0，最大r=εn棵可同时打包K_n；不保证r=n−1，不提供ε=3/4。其2026JEMS正式发表没有把范围升级为整个TPC。",
+      "evidence_ids": [
+        "R07-0089-PROG-E03",
+        "R07-0089-PROG-E04"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "two-spider且二边腿数受限的完整树族",
+      "math_status": "仅特例",
+      "scope_note": "Gubanyi2026 Theorem1.1对所有n成立，但每个T_k必须为two-spider且二边腿数<(3−√5)(k−1)/4。参数i在原论文表示边数，本卡k表示顶点数，须作k=i+1转换。",
+      "evidence_ids": [
+        "R07-0089-PROG-E05"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "n≤11的有限树族",
+      "math_status": "仅特例",
+      "scope_note": "Guichard–Massman1990原稿报告计算验证n=10、11，结合既有n≤9得到through n=11；本轮实读全文但未重跑其程序。有限n的全称验证不解决任意n。",
+      "evidence_ids": [
+        "R07-0089-PROG-E06"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "CB固定n=10反例目标的适用性",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "题卡所引CB目标把反例固定为T2,…,T10装不进K10；1990已发表有限验证给出n=10肯定结论。这是外部验证目标与主问题全称n范围的冲突，只列子项及修订建议，不改变本卡全题主命题或card_rev；本轮没有发现一般TPC反例。",
+      "evidence_ids": [
+        "R07-0089-PROG-E06",
+        "QX-000089-C-E01"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "n=10公开AI计算记录",
+      "math_status": "仅特例",
+      "scope_note": "SciNet项目公开声称全45,376,056个n=10树族均可打包。本轮已静态读取固定提交代码、汇总和历史验证日志，未独立重跑或逐一检查全部见证。此为既有有限情形的另一公开计算实现；1990已刊n≤11结果排除了其“首次推进Fishburn纪录”的新颖性说法。",
+      "evidence_ids": [
+        "QX-000089-C-E07",
+        "QX-000089-C-E08",
+        "QX-000089-C-E09",
+        "R07-0089-PROG-E06"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "n=12公开计算声明",
+      "math_status": "完整声明待核",
+      "scope_note": "本条“完整”仅指固定n=12的全部树族，不是一般主问题。固定仓库551项顶层日志均报告成功；存档日志检查不能代替运行。作者修正过随机见证同构检查的自比错误；第二实现只到n=9，n=12显式随机见证复核仅60族。本轮没有独立全量复跑，保留计算声明及其验证范围。",
+      "evidence_ids": [
+        "QX-000089-C-E03",
+        "QX-000089-C-E04",
+        "QX-000089-C-E05",
+        "QX-000089-C-E06"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-07-000089-ROOT-01",
+      "route": "原题与出处",
+      "site": "Erdős Problems",
+      "query": "open https://www.erdosproblems.com/743",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.erdosproblems.com/743",
+      "note": "工具返回Failed to fetch restricted URL；未把旧卡摘录冒充本轮读到的页面。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-02",
+      "route": "原题与出处",
+      "site": "WebSearch system1_search_query",
+      "query": "\"Gyárfás\" \"Lehel\" \"tree packing\" 1976 1978 original conjecture",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中作者托管原论文、Erdős history索引与书目；实际原稿读取另列。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-03",
+      "route": "学术",
+      "site": "WebSearch system1_search_query",
+      "query": "\"tree packing conjecture\" solved 2026 November；recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Janzer–Montgomery正式页、2024完整证明旧摘要和代码/目录线索；检索摘要不能作为当前开放或已解认证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-04",
+      "route": "库内查重",
+      "site": "本包全库查重简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002702〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际扫描命中本卡及容量化出树、Kriesell、Graham重构等候选。裸数字743亦命中无关题号/版本哈希，已排除这类噪声；仅按标题不作合并判断。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-D1",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file ref=73290369a8dcc632e25e555aec525565ea6e08f8, path=problems/000/QX-P-000089.meta.json；fetch_file同提交对应.text.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000089.text.md",
+      "locator": "双方题面、形式化表述、人话版与验收条件",
+      "note": "meta及全文均已读取；本卡与附件meta和正文完全一致，候选rev与简索引一致。关系与负责人见duplicates。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-D2",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file ref=73290369a8dcc632e25e555aec525565ea6e08f8, path=problems/000/QX-P-000087.meta.json；fetch_file同提交对应.text.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000087.text.md",
+      "locator": "双方题面、形式化表述、人话版与验收条件",
+      "note": "meta及全文均已读取；本卡与附件meta和正文完全一致，候选rev与简索引一致。关系与负责人见duplicates。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-D3",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file ref=73290369a8dcc632e25e555aec525565ea6e08f8, path=problems/000/QX-P-000306.meta.json；fetch_file同提交对应.text.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000306.text.md",
+      "locator": "双方题面、形式化表述、人话版与验收条件",
+      "note": "meta及全文均已读取；本卡与附件meta和正文完全一致，候选rev与简索引一致。关系与负责人见duplicates。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-D4",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file ref=73290369a8dcc632e25e555aec525565ea6e08f8, path=problems/000/QX-P-000321.meta.json；fetch_file同提交对应.text.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000321.text.md",
+      "locator": "双方题面、形式化表述、人话版与验收条件",
+      "note": "meta及全文均已读取；本卡与附件meta和正文完全一致，候选rev与简索引一致。关系与负责人见duplicates。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-05",
+      "route": "原题与出处",
+      "site": "作者Rényi研究所论文档案",
+      "query": "open https://users.renyi.hu/~gyarfas/Cikkek/10_GyarfasLehel_PackingTreesOfDifferentOrderIntoKn.pdf；随后screenshot pageno=0",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://users.renyi.hu/~gyarfas/Cikkek/10_GyarfasLehel_PackingTreesOfDifferentOrderIntoKn.pdf",
+      "locator": "p.463题面、Theorem1；p.464 Theorem2",
+      "note": "取得7页完整原稿，查看第一页图像核对公式。T1为无边单顶点树，与本卡T2…Tn版本等价。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-06",
+      "route": "原题与出处",
+      "site": "Erdős Problems history",
+      "query": "open https://www.erdosproblems.com/history/743",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.erdosproblems.com/history/743",
+      "note": "直接读取失败；仅此前搜索索引含当前摘要，不能把它记为history全文已读。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-07",
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "open https://arxiv.org/abs/2410.13840",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/2410.13840",
+      "locator": "v3撤回通知、Comments与版本历史",
+      "note": "root独立复核另一检索路线发现的撤回记录：2026-09-01 v3因Lemma3.10证明错误撤回。旧摘要仍保留“We prove”但页面明确withdrawn；不以旧摘要作有效证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-08",
+      "route": "原题与出处",
+      "site": "WebSearch system2_search_query",
+      "query": "site:users.renyi.hu/~gyarfas \"Packing trees of different order\" 1978",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中同一作者原稿；出版年另由出版方参考文献与后续primary论文核定。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-09",
+      "route": "原题与出处",
+      "site": "WebSearch system2_search_query",
+      "query": "\"tree packing conjecture\" \"Graham\" original attribution",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中区分Gyárfás树打包与Graham–Häggkvist/Ringel型重复分解的论文；没有取得Graham独立提出本全族命题的直接出处。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-10",
+      "route": "原题与出处",
+      "site": "作者原稿机构档案",
+      "query": "open https://real.mtak.hu/162708/1/ejc40.pdf；find \"3 The tree packing\"；find \"1978\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://real.mtak.hu/162708/1/ejc40.pdf",
+      "locator": "Problems close to my heart，§3 p.6；首页日期2020-08-11",
+      "note": "作者亲述1976 Keszthely报告提出背景。该档案稿参考文献按会议年1976记；find 1978无命中。使用出版方及后续论文书目区分1978出版，不混淆会议年。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-ROOT-11",
+      "route": "原题与出处",
+      "site": "SIAM出版方",
+      "query": "open https://epubs.siam.org/doi/10.1137/120902719",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://epubs.siam.org/doi/10.1137/120902719",
+      "locator": "References[11]；Information & Authors",
+      "note": "正文付费；本轮只读摘要与书目。Ref[11]明确1978出版、Keszthely1976会议、pp463–469，未声称读过此2013论文正文。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-001",
+      "route": "学术",
+      "site": "arxiv.org / web.open",
+      "query": "open https://arxiv.org/abs/2611.21120v1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "官方固定版本入口返回 DisabledError；无摘要或全文读取。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2611.21120v1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-002",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch system1",
+      "query": "\"A Proof of the Tree Packing Conjecture\" \"Wood\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本轮精确题名与 Wood 联合检索，随后直接打开 MathOverflow 原帖核实；检索结果本身不当正文。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-003",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"A Proof of the Tree Packing Conjecture\" 2024",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本轮检索命中 arXiv 2410.13840，后续单列实际正文及撤回通知读取。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-004",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"Tree Packing\" \"2611.21120\"; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "出现 Path-constrained Packing on Trees 的索引线索，不能据关键词认定为树打包猜想进展。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-005",
+      "route": "学术",
+      "site": "arxiv.org / web.open",
+      "query": "open https://arxiv.org/abs/2410.13840",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "实读官方版本元数据与完整撤回通知，非阅读全文的证明核验。当前 v3 明确撤回，错误在 Lemma 3.10 证明；source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2410.13840",
+      "locator": "撤回旗标、Comments、Submission history",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-006",
+      "route": "学术",
+      "site": "arxiv.org / web.open",
+      "query": "open https://arxiv.org/html/2410.13840v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "全文 HTML 可达；实读主张、定义、Theorem 1.9 与其依赖的 Lemma 3.10，未逐式独立复核整个证明。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2410.13840v2",
+      "locator": "Conjecture 1.1；Definitions 1.5–1.6；Theorem 1.9；§3 Lemma 3.10",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-007",
+      "route": "代码、公开 AI 和社区",
+      "site": "mathoverflow.net / web.open",
+      "query": "open https://mathoverflow.net/questions/482509/claimed-proofs-of-graph-labelling-conjectures",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "实读 Wood 的 2024-11-14 问题正文及显示评论；征询是否有验证或错误，无正文数学反驳；页面因核验预印本正确性的请求不合版规关闭。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://mathoverflow.net/questions/482509/claimed-proofs-of-graph-labelling-conjectures",
+      "locator": "问题正文第一条 2410.13840；作者/时间；关闭说明；评论",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-008",
+      "route": "学术",
+      "site": "arxiv.org / web.open",
+      "query": "open https://arxiv.org/abs/2611.21120",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "DisabledError；未读取官方页面正文。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2611.21120",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-009",
+      "route": "学术",
+      "site": "arxiv.org / web.open",
+      "query": "open https://arxiv.org/html/2611.21120v1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "DisabledError；未取得官方 HTML。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2611.21120v1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-010",
+      "route": "学术",
+      "site": "arxiv.org / web.open",
+      "query": "open https://arxiv.org/pdf/2611.21120v1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "DisabledError；未取得官方 PDF。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/pdf/2611.21120v1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-011",
+      "route": "学术",
+      "site": "arxiv.org / web.open",
+      "query": "open https://arxiv.org/abs/2410.13840v3",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "固定 v3 页面：2026-09-01 21:48:44 UTC 撤回；已读完整撤回通知，非 v3 证明稿（该版本无 PDF）。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2410.13840v3",
+      "locator": "L8 撤回旗标；L19 Comments；L26–31 版本历史",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-012",
+      "route": "学术",
+      "site": "arxiv.org / web.open",
+      "query": "open https://arxiv.org/abs/2202.03178",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "仅核上游被引用论文的题名、摘要和版本元数据，未读 v2 证明，不能把树打包稿撤回外推为此文也撤回。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2202.03178",
+      "locator": "A proof of the Kotzig-Ringel-Rosa Conjecture；版本历史",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-013",
+      "route": "学术",
+      "site": "arxiv.org / web.find",
+      "query": "find \"Lemma 3.10\" in https://arxiv.org/html/2410.13840v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "定位并阅读关键引理的主张及其连接到 Theorem 1.9 的段落；source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2410.13840v2",
+      "locator": "§3 Lemma 3.10",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-014",
+      "route": "学术",
+      "site": "arxiv.org / web.find",
+      "query": "find \"Composition Lemma\" in https://arxiv.org/html/2410.13840v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "核查声明中关键引理的准确称呼及结论依赖，不视为独立证明核验；source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2410.13840v2",
+      "locator": "§3、Lemma 3.10",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-015",
+      "route": "学术",
+      "site": "WebSearch system2",
+      "query": "\"Path-constrained Packing on Trees\"",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "命中官方 arXiv 摘要索引，题名与原题不同。题名作者和主要结果只作为后续镜像同一性线索；source_ref=turn988014619academia22。",
+      "url": "https://arxiv.org/abs/2611.21120",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-016",
+      "route": "学术",
+      "site": "WebSearch system2",
+      "query": "\"2611.21120\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "依编号搜索镜像与作者线索；未把索引记录算全文访问。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-017",
+      "route": "学术",
+      "site": "borowiecki.dev / web.open",
+      "query": "open https://borowiecki.dev/pdf/2611.21120",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得第三方镜像承载的 36 页原稿，页首标注 arXiv:2611.21120v1、2026-11-16，题名作者与官方搜索索引一致；实读 BPPT 定义及 §1.2/Theorem 1，明确为单棵树上的选边优化，非树族对 K_n 的分解。未与官方 PDF 作字节校验。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://borowiecki.dev/pdf/2611.21120",
+      "locator": "p.1 标题作者/版本；p.3 BPPT 定义；§1.2 p.6；Theorem 1 p.7",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-018",
+      "route": "学术",
+      "site": "export.arxiv.org / web.open",
+      "query": "open https://export.arxiv.org/abs/2611.21120",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "工具未取得页面正文；无官方替代入口全文访问。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://export.arxiv.org/abs/2611.21120",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-019",
+      "route": "学术",
+      "site": "arxiv.org / web.open",
+      "query": "open https://arxiv.org/html/2611.21120",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "DisabledError；未取得官方 HTML。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2611.21120",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-020",
+      "route": "学术",
+      "site": "arxiv.org / web.open",
+      "query": "open https://arxiv.org/pdf/2611.21120",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "DisabledError；未取得官方 PDF。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/pdf/2611.21120",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-021",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"Path-constrained Packing on Trees\" Fiorini Peis pdf; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "复核题名、作者及摘要范围并追踪全文；官方 arXiv 摘要索引 source_ref=turn788898341academia6。",
+      "url": "https://arxiv.org/abs/2611.21120",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-022",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"Path-constrained\" \"Pabst\"; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "补查作者关联入口；不据检索无结果或未见树打包字样断言范围，范围排除依照已读取的原稿定义。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-023",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"2410.13840\" withdrawn \"2026\"; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "追查撤回记录；采用已直接读取的官方固定版本 v3 为结论依据，不采用二手索引作结案依据。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-024",
+      "route": "学术",
+      "site": "borowiecki.dev / web.find",
+      "query": "find \"Theorem 1\" in https://borowiecki.dev/pdf/2611.21120",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "原稿定理为 BPPT 近似算法，值至少 OPT_LP/(2+UC/2)；非任意大小树族的完全图分解。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://borowiecki.dev/pdf/2611.21120",
+      "locator": "Theorem 1，p.7",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-025",
+      "route": "学术",
+      "site": "borowiecki.dev / web.find",
+      "query": "find \"Gyárfás\" in https://borowiecki.dev/pdf/2611.21120",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "这是对已取得 PDF 提取文本的字串查找，不是整个学术检索无命中，也不是排除该文的独立理由。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://borowiecki.dev/pdf/2611.21120",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-026",
+      "route": "学术",
+      "site": "borowiecki.dev / web.find",
+      "query": "find \"tree packing conjecture\" in https://borowiecki.dev/pdf/2611.21120",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "仅 PDF 字串无匹配；真正排除依据为 p.3 问题定义和 p.7 定理。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://borowiecki.dev/pdf/2611.21120",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-027",
+      "route": "学术",
+      "site": "borowiecki.dev / web.find",
+      "query": "find \"Our Results\" in https://borowiecki.dev/pdf/2611.21120",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实读 §1.2：标准 LP 松弛下的近似算法与参数化积分间隙，未主张 Gyárfás–Lehel 猜想。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://borowiecki.dev/pdf/2611.21120",
+      "locator": "§1.2，p.6–7",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-028",
+      "route": "学术",
+      "site": "arxiv.org / web.find",
+      "query": "find \"Comments\" in https://arxiv.org/abs/2410.13840v3",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "核实撤回原因确指 Lemma 3.10 的证明错误，且该论证依赖 2202.03178v2；仅记录作者通知，不宣称本轮推导出漏洞。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2410.13840v3",
+      "locator": "Comments",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-029",
+      "route": "代码、公开 AI 和社区",
+      "site": "mathoverflow.net → cstheory.stackexchange.com / web.click",
+      "query": "click link 23 in https://mathoverflow.net/questions/482509/claimed-proofs-of-graph-labelling-conjectures",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "首次点击取得 CStheory 关联页入口，后续再次打开才完成正文阅读；不能把其关于优美树猜想的核验问题算成本题数学反驳。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://cstheory.stackexchange.com/questions/54427/is-gnangs-proof-of-graceful-tree-conjecture-correct",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-030",
+      "route": "代码、公开 AI 和社区",
+      "site": "cstheory.stackexchange.com / web.open",
+      "query": "open https://cstheory.stackexchange.com/questions/54427/is-gnangs-proof-of-graceful-tree-conjecture-correct",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实读问题正文及显示评论：2024-06-22 Cyriac Antony 询问 graceful tree conjecture 声称证明的社群评价与是否有错误；可见页面无数学答案。对象不是本题2410.13840，不能替代本题反驳证据。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://cstheory.stackexchange.com/questions/54427/is-gnangs-proof-of-graceful-tree-conjecture-correct",
+      "locator": "问题正文 L40–43；日期 L54；评论 L60–89；答案区 L92–105",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-031",
+      "route": "学术",
+      "site": "arxiv.org / web.open",
+      "query": "open https://arxiv.org/abs/2410.13840v3",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "写回前再次核对固定版本、日期与撤回通知；新增事实为零，不算新增独立来源。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2410.13840v3",
+      "locator": "L8、L19、L29–31",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-032",
+      "route": "学术",
+      "site": "arxiv.org / web.open",
+      "query": "open https://arxiv.org/html/2410.13840v2 at lineno 30",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "复核 Conjecture 1.1 为任意 T_1,…,T_n、|V(T_k)|=k 打包进 K_n；加上无边 T_1 与题卡 T_2,…,T_n 等价。未独立核关键证明。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2410.13840v2",
+      "locator": "Conjecture 1.1；Introduction L37–43",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-033",
+      "route": "代码、公开 AI 和社区",
+      "site": "mathoverflow.net / web.open",
+      "query": "open https://mathoverflow.net/questions/482509/claimed-proofs-of-graph-labelling-conjectures at lineno 25",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "复核 Wood 的原话是征询验证/错误，以及版规关闭理由；无新增独立来源。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://mathoverflow.net/questions/482509/claimed-proofs-of-graph-labelling-conjectures",
+      "locator": "问题 L41–52；关闭说明 L33；发布日期 L59",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-034",
+      "route": "学术",
+      "site": "borowiecki.dev / web.open",
+      "query": "open https://borowiecki.dev/pdf/2611.21120 at lineno 300",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "复核 §1.2 与 Theorem 1，定位纸面 p.6–7；source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://borowiecki.dev/pdf/2611.21120",
+      "locator": "§1.2 p.6；Theorem 1 p.7",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-035",
+      "route": "学术",
+      "site": "arxiv.org / web.open",
+      "query": "open https://arxiv.org/html/2410.13840v2 at lineno 284",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "实读 Lemma 3.10 的非零性蕴含及随后将树迭代到星图、应用 Proposition 3.4 导出 Theorem 1.9 的依赖。只做声明/依赖核实，未自行验算引理证明。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2410.13840v2",
+      "locator": "Lemma 3.10 及证明开头 L294–310",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-P0-036",
+      "route": "学术",
+      "site": "borowiecki.dev / web.open",
+      "query": "open https://borowiecki.dev/pdf/2611.21120 at lineno 90",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "复核页脚固定 v1 与 p.3 BPPT 精确定义：给单棵树 T、路径 P_i、预算 b_i、边权，选 F⊆E(T)，每路径选边数不超 b_i，最大化总权。该范围与本题不同。source_ref=〔原始工具引用已私有留存〕。",
+      "url": "https://borowiecki.dev/pdf/2611.21120",
+      "locator": "p.1 页脚版本；p.3 BPPT 框（L125–131）",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ001-A",
+      "route": "学术",
+      "site": "Web search (system2)",
+      "query": "Janzer Montgomery tree packing conjecture largest trees 3n/4 2026 JEMS",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中JEMS 1794、arXiv:2403.10515及作者稿入口；搜索结果只作入口。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ001-B",
+      "route": "学术",
+      "site": "Web search (system2)",
+      "query": "Joos Kim Kühn Osthus packing bounded degree trees Theorem 1.1 maximum degree",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中JEMS909、arXiv1606.03953及作者2016稿；随后读取固定v2。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ002-A",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/1606.03953",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/1606.03953",
+      "note": "核版本：v1 2016-06-13；v2 2019-03-13。摘要不能替代Theorem1.2的充分大n及小树例外量词；web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ002-B",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2403.10515",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2403.10515",
+      "note": "核版本：v1 2024-03-15；v2 2026-04-09，34页，accepted version；web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ002-C",
+      "route": "学术",
+      "site": "作者主页",
+      "query": "open https://rhmontgomery.warwick.ac.uk/papers/34packinglargetrees.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://rhmontgomery.warwick.ac.uk/papers/34packinglargetrees.pdf",
+      "locator": "pp.1–2",
+      "note": "33页、题页2024-03-25；读引言，确认是旧稿，再转固定arXiv v2；不把旧作者稿当2026定稿。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ002-D",
+      "route": "学术",
+      "site": "作者主页",
+      "query": "open https://web.mat.bham.ac.uk/D.Osthus/quasi_random_tree_packing.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://web.mat.bham.ac.uk/D.Osthus/quasi_random_tree_packing.pdf",
+      "locator": "pp.1–2",
+      "note": "55页、题页2016-06-13；读引言后转2019 v2以免混版本；web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ003-A",
+      "route": "学术",
+      "site": "Web search (system1)",
+      "query": "\"tree packing\" \"3n/4\" Janzer; recency=1095",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "未命中可支持“打包3n/4棵”的定理；随后于v2全文定位3n/4为证明内部最大度/顶点集界。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ003-B",
+      "route": "学术",
+      "site": "Web search (system1)",
+      "query": "\"tree packing conjecture\" 2025 2026 -Wood -\"A Proof\" -2611.21120; recency=730",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中JEMS2026在线记录、2026 two-spider特例、2025二分图变体；未把不同宿主图变体作为本题解决。2024完整证明争议由其他代理核查。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ003-C",
+      "route": "学术",
+      "site": "Web search (system1)",
+      "query": "site:arxiv.org \"tree packing conjecture\" 2024 2025 2026; recency=1095",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2106.11720的2026-09-08 v3修订线索，随后核arXiv原记录与PDF；完整证明争议命中不在本分工评断。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ004-A",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "open https://arxiv.org/html/2403.10515v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2403.10515v2",
+      "locator": "§1 Theorem1.2；§2 Theorem2.1；§5",
+      "note": "实际读引言Theorem1.2，后续读Theorem2.1及§5相关范围；只保证最大εn棵。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ004-B",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2106.11720",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2106.11720",
+      "note": "v1 2021-06-22；v2 2022-06-20；v3 2026-09-08，179页。v3注记a number of improvements；同一最大度cn/log n路线并非2026首创。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ004-C",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "open https://arxiv.org/html/1606.03953v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/1606.03953v2",
+      "locator": "§1.1 Theorem1.2；Theorem1.3",
+      "note": "实读Theorem1.2与1.3；有固定最大度及充分大n。HTML页面显示的Date与arXiv修订日期不同，不将HTML转换日期当新版本；用arXiv版本史和固定PDF定版本。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ004-D",
+      "route": "学术",
+      "site": "EMS DOI",
+      "query": "open https://doi.org/10.4171/JEMS/909",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://doi.org/10.4171/JEMS/909",
+      "note": "工具报500/非重试重定向不可访问；正式出版书目另从已读primary论文参考文献核，正文采用arXiv v2。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ004-E",
+      "route": "学术",
+      "site": "EMS DOI",
+      "query": "open https://doi.org/10.4171/JEMS/1794",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://doi.org/10.4171/JEMS/1794",
+      "note": "工具报500/非重试重定向不可访问；未把付费正式版标为全文已读，出版日期另核作者机构WRAP。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ005-A",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "find 3n in https://arxiv.org/html/2403.10515v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2403.10515v2",
+      "locator": "§4.3；§5；§6",
+      "note": "3n/4出现在子树端点大小、§5最大度分情形、§6剩余顶点集下界。均非最大树数量保证；固定PDF§5 p.22复核。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ005-B",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "find Theorem 2.1 in https://arxiv.org/html/2403.10515v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2403.10515v2",
+      "note": "中间定理仍r=εn，树为星或少叶树，另控制非星中心嵌入度≤n/10；不是全TPC定理。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ005-C",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "find rounding in https://arxiv.org/html/2403.10515v2",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://arxiv.org/html/2403.10515v2",
+      "note": "未找到该词；回传保留定理原用r=εn的记法，并说明充分大n、整数树数的保守表述，不凭空给出优化常数。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ005-D",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "find Proof of Theorem 1.2 in https://arxiv.org/html/1606.03953v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/1606.03953v2",
+      "locator": "§10.2 末尾Proof of Theorem1.2",
+      "note": "读§10.2末尾从Theorem1.7导出Theorem1.2的段落：先贪心打包小于εn的小树，再处理有界度其余树。未独立逐步审长证明。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ005-E",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "open https://arxiv.org/html/2106.11720v3",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2106.11720v3",
+      "note": "全文入口可达；正文定理编号为Theorem6、8、10，后续实际读取以固定PDF为准。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ005-F",
+      "route": "学术",
+      "site": "EJGTA",
+      "query": "open https://www.ejgta.org/index.php/ejgta/article/view/1032",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://www.ejgta.org/index.php/ejgta/article/view/1032",
+      "note": "发现2026 two-spider特例；首次页面只读摘要，后来点击取得6页全文。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ005-G",
+      "route": "学术",
+      "site": "Warwick WRAP",
+      "query": "open https://wrap.warwick.ac.uk/id/eprint/199830/",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://wrap.warwick.ac.uk/id/eprint/199830/",
+      "note": "作者机构记录：2026JEMS，accepted version及出版元数据；未读取正式排版版全文。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ006-A",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "open https://arxiv.org/html/2403.10515v2 at line 68",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2403.10515v2",
+      "note": "读§2开头，最大树重新编号|T_i|=n−i+1；web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ006-B",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "open https://arxiv.org/html/2403.10515v2 at line 940",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2403.10515v2",
+      "note": "读参考文献邻近位置，原作出版年最终直接以取得的PDF p.33 ref.[9]核定。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ006-C",
+      "route": "学术",
+      "site": "EJGTA",
+      "query": "open https://www.ejgta.org/index.php/ejgta/article/view/1032 at line 55; find PDF",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://www.ejgta.org/index.php/ejgta/article/view/1032",
+      "note": "定位PDF链接及DOI10.5614/ejgta.2026.14.1.11；此步尚未读正文。web refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ006-D",
+      "route": "学术",
+      "site": "Warwick WRAP",
+      "query": "open https://wrap.warwick.ac.uk/id/eprint/199830/ at line 20",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://wrap.warwick.ac.uk/id/eprint/199830/",
+      "note": "核accepted manuscript与发表元数据：接受2026-04-09，在线2026-05-15，peer reviewed。web ref 〔原始工具引用已私有留存〕；这些元数据亦见PREQ003搜索返回的机构全文记录。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ006-E",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "find Theorem 1.1 in https://arxiv.org/html/2106.11720v3",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "url": "https://arxiv.org/html/2106.11720v3",
+      "note": "未定位到本稿主TPC定理；搜索出现别处字串。后用PDF确认主TPC结论是Theorem6，不把检索跳转算定理已阅。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R07-0089-PGET001",
+      "route": "学术",
+      "site": "arXiv PDF（HTTPS GET）",
+      "query": "GET https://arxiv.org/pdf/1606.03953v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/1606.03953v2",
+      "locator": "p.2 Theorem1.2、1.3；§10.2；p.55 ref.[19]",
+      "note": "HTTP200，56页，SHA256 8708609a03211f39425837bb8657f8d232070911d3349e00e2afd71c588705db；实读pp.1–2的定义/主定理，§10.2适用性段落和p.55书目；未逐步核全部证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PGET002",
+      "route": "学术",
+      "site": "arXiv PDF（HTTPS GET）",
+      "query": "GET https://arxiv.org/pdf/2403.10515v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2403.10515v2",
+      "locator": "p.2 Theorem1.2；p.3 Theorem2.1；p.22 Case1/2；p.33 ref.[9]",
+      "note": "HTTP200，34页，SHA256 ea86f9db7a78abdac9557a0c4b8f17c306c5888ad2b1f73c7f0f269195fdae62；题页打印2026-04-13而arXiv提交史为2026-04-09；版本日期分别记录。实读pp.1–3、§5 p.22和p.33书目。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PGET003",
+      "route": "学术",
+      "site": "arXiv PDF（HTTPS GET）",
+      "query": "GET https://arxiv.org/pdf/2106.11720v3",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2106.11720v3",
+      "locator": "p.5 Theorem6；p.6 Theorem8/Definition9；pp.6–7 Theorem10；p.9 deduction；p.4 footnote1",
+      "note": "HTTP200，179页，SHA256 71d450273be5734381d78ed1e075e98dbb1ea0c368563fbf68f414e1c3739b1a；题页打印2026-09-10，arXiv版本史2026-09-08。实读pp.3–9、§15有关范围及p.178书目；不是179页证明逐步复核。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ007-A",
+      "route": "学术",
+      "site": "Web search (system1)",
+      "query": "Guichard Massman 1990 \"A note on packing complete graphs with trees\"; recency=36500",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中出版社原记录，确认n≤11原稿线索；随后取得并实读4页扫描稿。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ007-B",
+      "route": "学术",
+      "site": "Web search (system1)",
+      "query": "\"Janzer\" \"3n/4\" \"tree packing\"; recency=1095",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "返回条目未支持3n/4棵的定理；按v2 Theorem1.2与p.22实际范围纠正，不将无命中说成不存在任何其他文献。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ007-C",
+      "route": "学术",
+      "site": "EJGTA",
+      "query": "click PDF link on https://www.ejgta.org/index.php/ejgta/article/view/1032",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.ejgta.org/index.php/ejgta/article/view/1032/pdf_354",
+      "note": "只到嵌入PDF的HTML包装页，继续点击Download；web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ008-A",
+      "route": "学术",
+      "site": "Combinatorial Press",
+      "query": "open https://combinatorialpress.com/jcmcc-articles/volume-008/a-note-on-packing-complete-graphs-with-trees/",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://combinatorialpress.com/jcmcc-articles/volume-008/a-note-on-packing-complete-graphs-with-trees/",
+      "note": "出版记录：JCMCC8(1990)123–126；摘要明确作者计算验证through n=11。此步仅摘要，后续读扫描正文。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ008-B",
+      "route": "学术",
+      "site": "EJGTA PDF",
+      "query": "click Download this PDF file",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.ejgta.org/index.php/ejgta/article/download/1032/pdf_354",
+      "locator": "pp.179–184；p.180 Theorem1.1；pp.182–183 proof",
+      "note": "工具返回完整6页正文，实读定义、Theorem1.1、§2–3证明结构及§4边界；取得全文但未作独立全面数学复核。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ009",
+      "route": "学术",
+      "site": "Combinatorial Press PDF",
+      "query": "click Download PDF from the Guichard–Massman article page",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://combinatorialpress.com/article/jcmcc/Volume%2008/vol-008-paper%2018.pdf",
+      "note": "工具识别4页PDF但提取为0行；指扫描文本不可读，不能以此声称已读，后经本地下载渲染四页图像实读。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ010",
+      "route": "学术",
+      "site": "Web PDF screenshot",
+      "query": "screenshot https://combinatorialpress.com/article/jcmcc/Volume%2008/vol-008-paper%2018.pdf pages 0 and 1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://combinatorialpress.com/article/jcmcc/Volume%2008/vol-008-paper%2018.pdf",
+      "note": "工具只回ImageDisplayed占位未向代理暴露图像，未以此完成阅读；改用PGET004取得PDF后本地逐页查看。web refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R07-0089-PGET004",
+      "route": "学术",
+      "site": "Combinatorial Press PDF（HTTPS GET及本地渲染）",
+      "query": "GET https://combinatorialpress.com/article/jcmcc/Volume%2008/vol-008-paper%2018.pdf; render all four pages and view PNGs",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://combinatorialpress.com/article/jcmcc/Volume%2008/vol-008-paper%2018.pdf",
+      "locator": "pp.123–126，重点p.124 §3",
+      "note": "HTTP200，4页扫描稿，SHA256 d3b410c7e046c2826cb7dc990e75e42b6b24f3edd0784f1e0c48dc8f97d24a3b。实际看图读全4页，p.124分别说明n=10、11的直接计算验证；未取得/复跑1990程序。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PGET005",
+      "route": "学术",
+      "site": "EJGTA PDF（HTTPS GET）",
+      "query": "GET https://www.ejgta.org/index.php/ejgta/article/download/1032/pdf_354",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://www.ejgta.org/index.php/ejgta/article/download/1032/pdf_354",
+      "note": "本地下载HTTP403；与PREQ008-B不同入口的web工具全文可读事实分开记录。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ011-A",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/1711.04869v4",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/1711.04869v4",
+      "note": "web工具报DisabledError；随后直接HTTPS及不带版本入口取得版本史。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ011-B",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "open https://arxiv.org/html/1711.04869v4",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/html/1711.04869v4",
+      "note": "web工具报DisabledError；未以此视为勘误不存在，转固定v4 PDF。web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ012-A",
+      "route": "学术",
+      "site": "Web search (system1)",
+      "query": "site:arxiv.org/abs/1711.04869 \"Packing degenerate graphs\"; recency=3650",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/1711.04869",
+      "note": "摘要明确此版纠正Adv Math354(2019)106739中的错误；尚未以摘要判修正细节。web ref turn303388705academia0。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ012-B",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/1711.04869",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/1711.04869",
+      "note": "版本史：v1=2017-11-13；v2=2019-06-03；v3=2021-07-26；v4=2022-04-16 06:58:22UTC。48页；评论指定§1.1勘误说明；web ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PGET006",
+      "route": "学术",
+      "site": "arXiv（HTTPS GET）",
+      "query": "GET https://arxiv.org/abs/1711.04869v4",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/1711.04869v4",
+      "note": "HTTP200；40516bytes；版本记录本地保存1711.04869v4_abs.html，SHA256 31894eb5b75d39d8206763517f748d269b1e076d75f1c88b9a85c7ed09aea2fe。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R07-0089-PGET007",
+      "route": "学术",
+      "site": "arXiv PDF（HTTPS GET及本地节段阅读）",
+      "query": "GET https://arxiv.org/pdf/1711.04869v4; read pp.3,5,10,17",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/1711.04869v4",
+      "note": "HTTP200，48页，656575bytes；SHA256 2bfd38eea1feebfa9348b7f9104a494dcb9ce10c89ca5304cffc302149e0376e。实读§1.1、Theorem2、Theorems9/11及Definition22；未逐步复审修正后的概率估计和整套证明。",
+      "locator": "p.5 §1.1；p.3 Theorem2；p.10 Theorems9/11；p.17 Definition22",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PREQ013",
+      "route": "学术",
+      "site": "arXiv PDF",
+      "query": "open https://arxiv.org/pdf/1711.04869",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/1711.04869",
+      "note": "不带版本入口实际返回v4，工具提取48页；再次直接定位p.5 §1.1。此入口可供引用，但归档仍固定v4。web ref 〔原始工具引用已私有留存〕。",
+      "locator": "p.3 Theorem2；p.5 §1.1",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R07-0089-PLOCAL001",
+      "route": "学术",
+      "site": "已归档Allen v3 PDF",
+      "query": "re-read 2106.11720v3.pdf p.4 footnote1, Theorem3 and p.178 references [1],[2]",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2106.11720v3",
+      "note": "本次P0定向依赖核对：footnote1明确v2为期刊版、v4纠错，定理/引理编号相同；ref.[1]固定1711.04869v4，ref.[2]另列2019期刊版。Theorem3明确引用[1,Theorem2]。",
+      "locator": "p.4 Theorem3及footnote1；p.178 refs.[1],[2]",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C001",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "search_commits(repository_full_name=bespokelabsai/conjecture-bench, query='', sort=committer-date, topn=1)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/commit/8d494791ace5894b860585d67ba8e69dbfed6376",
+      "note": "仅取固定提交元数据。返回 8d494791ace5894b860585d67ba8e69dbfed6376，2026-10-25T09:20:54Z；不据此声称是默认分支 HEAD。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C002",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "search_commits(repository_full_name=google-deepmind/formal-conjectures, query='', sort=committer-date, topn=1)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/commit/9097e2f90e66d2f6244209cb1c07f7120d17ec53",
+      "note": "仅取固定提交元数据。返回 9097e2f90e66d2f6244209cb1c07f7120d17ec53，2026-11-24T14:16:43Z；该提交说明涉及 123 题，不作为 743 题证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C003",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search / system1",
+      "query": "批量查询: \"tree packing conjecture\" Lean GitHub AI [recency=730]; \"Erdos\" \"743\" \"Lean\" [recency=730]; \"cb-0129\" \"conjecture-bench\"; \"tree packing conjecture\" \"Wood\" proof",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本次仅搜索片段；实际正文另以 C004、C005、C007 等请求取得。命中 FormalConjectures、Shoal、Cairn、pawelkwaczynski/erdos743 和 MathOverflow。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C004",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file(bespokelabsai/conjecture-bench, problems/conjectures/cb-0129.json, ref=8d494791ace5894b860585d67ba8e69dbfed6376)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0129.json",
+      "note": "完整 JSON 已读：statement 为全 n 猜想；counterexample.description 仅要求 n=10 反例，finite=true；文件未提供反例。status_observation 是 2026-07-23 的维护者状态，非本轮数学确认。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C005",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file(google-deepmind/formal-conjectures, FormalConjectures/ErdosProblems/743.lean, ref=9097e2f90e66d2f6244209cb1c07f7120d17ec53)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/ErdosProblems/743.lean",
+      "note": "完整 Lean 文件已读。主定理及 7 个 research solved 变体均有 sorry；另有 2 个辅助定理的实质证明代码。静态检查，无 Lean 复跑。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C006",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "search_commits(repository_full_name=pawelkwaczynski/erdos743, query='', sort=committer-date, topn=1)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/pawelkwaczynski/erdos743/commit/4280b1fda0f0c40e2232517e29501921a9004b32",
+      "note": "取得固定提交 4280b1fda0f0c40e2232517e29501921a9004b32，2026-09-08T12:38:35Z，提交题名为 n=12 三个子任务的显式打包验证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C007",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "open(https://shoal.club/shoal/tree-packing-conjecture/tree/main); open(https://cairn-commons.com/problems/erdos-743); open(https://mathoverflow.net/questions/482509/claimed-proofs-of-graph-labelling-conjectures)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "三个网页正文均已读。Shoal/Cairn 为同题社区记录；MO 为 Wood 的正确性询问且无回答，不提供具体反例/撤回。web refs: 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C008",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file(pawelkwaczynski/erdos743, README.md, ref=4280b1fda0f0c40e2232517e29501921a9004b32)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/pawelkwaczynski/erdos743/blob/4280b1fda0f0c40e2232517e29501921a9004b32/README.md",
+      "note": "完整 README 已读；仅有限 n≤12 计算声称，载明修订、单实现 n12、独立实现仅至 n9 及随机验证限制。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C009",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file(pawelkwaczynski/erdos743, erd743.py, ref=4280b1fda0f0c40e2232517e29501921a9004b32)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/pawelkwaczynski/erdos743/blob/4280b1fda0f0c40e2232517e29501921a9004b32/erd743.py",
+      "note": "完整 Python 求解器已读，静态核对 V 的交替量词、嵌入/残余递归和验证函数。未执行。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C010",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file(pawelkwaczynski/erdos743, results/n12.jsonl, ref=4280b1fda0f0c40e2232517e29501921a9004b32)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/pawelkwaczynski/erdos743/blob/4280b1fda0f0c40e2232517e29501921a9004b32/results/n12.jsonl",
+      "note": "完整 551 行日志已取得并程序化解析：top=0:1 至 550:551 各一次、全 n12、全 V_Kn=true、全 stopped_at=null。只是已存日志一致性检查，未复跑任何求解任务。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C011",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file(pawelkwaczynski/erdos743, results/n12_verify.jsonl, ref=4280b1fda0f0c40e2232517e29501921a9004b32)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/pawelkwaczynski/erdos743/blob/4280b1fda0f0c40e2232517e29501921a9004b32/results/n12_verify.jsonl",
+      "note": "全文三行日志分别覆盖 top=62:63、20:21、4:5，各 verified_families=20。不能扩写成全部 n12 树族均独立重检。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C012",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search / system1",
+      "query": "批量查询: \"Erdos 743\" \"AI\" proof [recency=365]; \"tree packing conjecture\" \"Aristotle\" [recency=365]; site:github.com \"erdos_743\" \"by\" \"sorry\"; \"tree packing conjecture\" \"Lean\" proof \"2026\" [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 SciNet 的 n10 计算和 ProjectForty2 转述，以及 FormalConjectures/社区索引。未在此请求取得完整证明；SciNet 正文与代码另查。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C013",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "open(https://api.scinet.pub/findings)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.scinet.pub/findings",
+      "note": "读取发现列表，定位 2026-07-27 第 743 题 n10 计算条目；列表徽章本身不作验证证据。web ref: 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C014",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web click/open",
+      "query": "click(〔原始工具引用已私有留存〕, id=53); open(https://projectforty2.ai/) 〔私有记录编号：PR-002703〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.scinet.pub/f/2220991b-c78e-4b31-8c38-143cda37b1e5",
+      "note": "读取 SciNet finding 全文、6 claims、2026-08-02 review/reproduction 说明及方法固定提交；ProjectForty2 首页仅作发现路径，其抓取正文无该条详细证书。web refs: 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C015",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file(pawelkwaczynski/erdos743, pack_b.py, ref=4280b1fda0f0c40e2232517e29501921a9004b32)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/pawelkwaczynski/erdos743/blob/4280b1fda0f0c40e2232517e29501921a9004b32/pack_b.py",
+      "note": "完整第二实现已读。Prüfer 树生成、自有 AHU/图规范化、边集递归均有实码，但本轮未执行。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C016",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file(pawelkwaczynski/erdos743, results/adversary_n4_to_n9.jsonl, ref=4280b1fda0f0c40e2232517e29501921a9004b32)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/pawelkwaczynski/erdos743/blob/4280b1fda0f0c40e2232517e29501921a9004b32/results/adversary_n4_to_n9.jsonl",
+      "note": "完整七行日志已读：n4..8 各一次，n9 两台机器各一次，均 true；没有 n10、n11、n12 的第二实现日志。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C017",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file(scinet-ai/math-number-theory, erdos-743/README.md, ref=c9acc94611359123e90c9cafe58ad5e2dfd9b500)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/scinet-ai/math-number-theory/blob/c9acc94611359123e90c9cafe58ad5e2dfd9b500/erdos-743/README.md",
+      "note": "完整 README 已读，声称 n10 全部 45,376,056 树族可打包，且明言全题仍开放。其“首次推进 n9”新颖性断言不能由代码证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C018",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file(scinet-ai/math-number-theory, erdos-743/packer.c, ref=c9acc94611359123e90c9cafe58ad5e2dfd9b500)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/scinet-ai/math-number-theory/blob/c9acc94611359123e90c9cafe58ad5e2dfd9b500/erdos-743/packer.c",
+      "note": "完整 C 代码已读；固定最大树、枚举其余树族、贪心+有节点上限回溯，分别记录 packed/unsat/undecided。未编译运行。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C019",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file(scinet-ai/math-number-theory, erdos-743/check_witnesses.py, ref=c9acc94611359123e90c9cafe58ad5e2dfd9b500)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/scinet-ai/math-number-theory/blob/c9acc94611359123e90c9cafe58ad5e2dfd9b500/erdos-743/check_witnesses.py",
+      "note": "完整 checker 已读：逐大小类检查边数、顶点数、连通性及与指定树同构；仅检查交给它的样本文件/行，不能以脚本存在推断全量证书已重检。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C020",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file(scinet-ai/math-number-theory, erdos-743/results/SUMMARY.txt, ref=c9acc94611359123e90c9cafe58ad5e2dfd9b500)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/scinet-ai/math-number-theory/blob/c9acc94611359123e90c9cafe58ad5e2dfd9b500/erdos-743/results/SUMMARY.txt",
+      "note": "完整结果汇总已读：n10 106 chunks，43,792,160 greedy、1,583,869 backtracking、27 undecided 后由 CP-SAT 声称全部补齐；本轮未复验见证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C021",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file(scinet-ai/math-number-theory, erdos-743/results/verify_run_2026-07-27.log, ref=c9acc94611359123e90c9cafe58ad5e2dfd9b500)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/scinet-ai/math-number-theory/blob/c9acc94611359123e90c9cafe58ad5e2dfd9b500/erdos-743/results/verify_run_2026-07-27.log",
+      "note": "完整历史日志已读，声明重生部分 chunks、样本和 27 个 CP-SAT 见证检验。此为作者历史运行，不是本轮复跑。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C022",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_commit(repo_full_name=scinet-ai/math-number-theory, commit_sha=c9acc94611359123e90c9cafe58ad5e2dfd9b500)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/scinet-ai/math-number-theory/commit/c9acc94611359123e90c9cafe58ad5e2dfd9b500",
+      "note": "核对提交元数据：2026-07-27T07:58:54Z，含 AI 协作署名。未对随提交返回的其他题目 diff 作研究或采用结论。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-07-000089-C023",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search / system2 + click",
+      "query": "查询: \"erdos743\" \"correction\" OR \"bug\"; \"tree packing\" \"scinet\" \"correction\" OR \"retracted\"; \"tree packing\" \"SciNet\" \"Guichard\"; click(〔原始工具引用已私有留存〕, id=19) 〔私有记录编号：PR-002704〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://shoal.club/shoal/tree-packing-conjecture/results",
+      "note": "Shoal Results 正文已读，主分支无 check、0 jobs；搜索返回的 RL tree packing/AI 新闻不属此题，均排除。该无关命中不支持“没有其他勘误”。web ref: 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R07-000089-root-1990-p124",
+      "route": "学术",
+      "site": "Combinatorial Press 原论文扫描稿；本地渲染复核",
+      "query": "open https://combinatorialpress.com/article/jcmcc/Volume%2008/vol-008-paper%2018.pdf；screenshot pageno=1；pdftoppm -f 2 -singlefile -scale-to 1800 -png；view_image guichard_p124.png",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://combinatorialpress.com/article/jcmcc/Volume%2008/vol-008-paper%2018.pdf",
+      "locator": "p.124 最后两段；root web ref 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕；本地实际看图",
+      "note": "主负责人独立再读原稿p.124，核对n=10/11直接验证与递归方法例外的区别；未复跑论文程序。本轮学术代理另已读全部四页，阅读范围不混写。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "89-root-original",
+      "url": "https://users.renyi.hu/~gyarfas/Cikkek/10_GyarfasLehel_PackingTreesOfDifferentOrderIntoKn.pdf",
+      "locator": "p.463问题原文及Theorem1；p.464 Theorem2",
+      "version": "Gyárfás–Lehel，Colloq. Math. Soc. János Bolyai 18，1978，pp.463–469（Keszthely1976会议）；2026-11-26实读作者档案",
+      "subquestions": [
+        "主问题",
+        "全部为星或路径，以及至多两棵非星的树族"
+      ],
+      "role": "原始提出",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "原稿明确问题由A.Gyárfás提出。T1不含边，加入或删除不影响本卡T2…Tn打包；实核题面同一性和两个特例定理，未独立重审所有证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "89-root-history",
+      "url": "https://real.mtak.hu/162708/1/ejc40.pdf",
+      "locator": "§3 The tree packing conjecture，p.6；首页日期与references[19]/[36]",
+      "version": "作者稿首页2020-08-11；2026-11-26读取",
+      "subquestions": [
+        "提出者与时间"
+      ],
+      "role": "重述",
+      "publication": "作者主页/个人索引",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读，未核关键步骤",
+      "note": "作者回顾1976 Keszthely会议Richard Guy向听众推荐其报告中的问题。这里的1976是提出/会议年，不是2026 CB策展日期。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "89-root-bib",
+      "url": "https://epubs.siam.org/doi/10.1137/120902719",
+      "locator": "References[11]；仅摘要及完整书目页面",
+      "version": "Balogh–Palmer，SIAM J. Discrete Math.27(4),1995–2006(2013)；在线2013-11-21",
+      "subquestions": [
+        "原作书目"
+      ],
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "用于核原作1978出版及pp463–469；未用本页摘要的旧范围替代当前主问题结论。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E000089-P0-CLAIM-V2",
+      "url": "https://arxiv.org/html/2410.13840v2",
+      "locator": "Conjecture 1.1；Definitions 1.5–1.6；Theorem 1.9；§3 Lemma 3.10 及其后推导 Theorem 1.9 的段落",
+      "version": "arXiv:2410.13840v2，2024-10-23（v1：2024-10-17；v3：2026-09-01 撤回）",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完全撤回",
+      "review_status": "已读，未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Parikshit Chalise；Antwan Clark；Edinah K. Gnang",
+      "claim_date": "2024-10-17",
+      "note": "这是原完整证明声明的历史稿，不是可用的已证结论。Theorem 1.9 通过完整标号声称证明任意 T_1,…,T_n 打包；T_1 无边，故与题卡 T_2,…,T_n 等价。v2 全文 HTML 可达，本轮实读定义、主张和关键依赖位置，未逐式独立核验全稿。现状态由 E000089-P0-WITHDRAWAL-V3 的官方撤回通知确定。refs: 〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "fully_retracted",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E000089-P0-WITHDRAWAL-V3",
+      "url": "https://arxiv.org/abs/2410.13840v3",
+      "locator": "页首撤回旗标；Comments；Submission history [v3]",
+      "version": "arXiv:2410.13840v3，2026-09-01 21:48:44 UTC（withdrawn）；本轮读取 2026-11-26",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "撤回",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "完全撤回",
+      "review_status": "已读，未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Parikshit Chalise（官方条目所列撤回提交者）",
+      "claim_date": "2026-09-01",
+      "note": "完整读取官方撤回通知及历史记录：撤回原因是 Lemma 3.10（Composition Lemma）的证明有误，该论证基于 arXiv:2202.03178v2。原摘要仍保留证明措辞，须以明确撤回旗标和 Comments 为准。本轮核实的是作者撤回事实及所指位置，不宣称独立构造漏洞；撤回稿不能支持原题已证，也不构成原题反例。refs: 〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "fully_retracted",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "retraction",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E000089-P0-WOOD-MO",
+      "url": "https://mathoverflow.net/questions/482509/claimed-proofs-of-graph-labelling-conjectures",
+      "locator": "David Wood 问题正文及第一条 2410.13840 链接；asked Nov 14, 2024 at 22:33；关闭说明和显示评论",
+      "version": "MathOverflow question 482509，发表于 2024-11-14 22:33；页面读取 2026-11-26",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "社区帖子",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读，未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "David Wood（核验征询的发帖者）",
+      "claim_date": "2024-11-14",
+      "note": "实际阅读原帖：Wood 汇总共用 composition lemma 路线的六项声称证明，并询问是否有人验证正确性或发现错误。本题对应列表首项2410.13840。帖子没有给出数学漏洞，显示页无答案；关闭说明是请求检查预印本正确性不合版规。应将卡内“Wood质疑”具体化为“Wood公开征询独立核验”，不能归因成 Wood 已给反驳。refs: 〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "R07-0089-PROG-E01",
+      "url": "https://arxiv.org/pdf/1606.03953v2",
+      "locator": "p.2 Theorem1.2、1.3；§10.2末尾Theorem1.2的推导；p.55 ref.[19]",
+      "version": "arXiv:1606.03953v2，2019-03-13；arXiv注为December2017 final version；正式书目JEMS21(12)(2019),3573–3647, DOI10.4171/JEMS/909",
+      "subquestions": [
+        "固定最大度的充分大树族"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "note": "精确量词：每个固定Δ∈N，存在N及ε>0，使所有n≥N、|T_i|=i且仅对i>εn要求Δ(T_i)≤Δ的树族，均分解K_n。前εn棵无需度界；Δ、N、ε不能随当前树族任意重选来覆盖一般情形。取得56页PDF，实读定理、相关推导及书目，未逐行复核全稿。正式刊发信息亦由已读Janzer–Montgomery v2 p.33 ref.[12]印证；DOI正式正文入口本轮失败。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "R07-0089-PROG-E02",
+      "url": "https://arxiv.org/pdf/2106.11720v3",
+      "locator": "p.5 Theorem6；p.6 Theorem8；pp.6–7 Definition9/Theorem10；p.9 Proof of Theorem6；p.4 footnote1；p.178 refs.[1],[13]",
+      "version": "arXiv:2106.11720v3，2026-09-08；PDF题页2026-09-10；v1=2021-06-22、v2=2022-06-20",
+      "subquestions": [
+        "最大度至c n/log n的充分大完整树族"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "note": "Theorem6：存在绝对c>0和n0，对每个n>n0、全族s∈[n]满足v(T_s)=s及Δ(T_s)≤c n/log n，可同时打包K_n；边数相等故为分解。它提高最大度上限，仍未覆盖一般星树等任意度族。2026是已有2021路线的v3修订，非2026首次发现此主结论。179页全文取得，仅实读引言、Theorems6/8/10及适用性推导、结尾范围与书目，未逐步审StageA–G。p.4 footnote1说明相关前置论文Packing degenerate graphs的期刊版有错误，采用arXiv1711.04869v4纠正版；本轮已补取1711.04869v4，核§1.1勘误说明、现Theorem2及v3明确使用纠正版的引用链，详见R07-0089-PROG-E07；未独立复审修补后的全部证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "R07-0089-PROG-E03",
+      "url": "https://arxiv.org/pdf/2403.10515v2",
+      "locator": "p.2 Theorem1.2及其后说明；p.3 Theorem2.1；p.22 Case1/2；p.33 ref.[9]",
+      "version": "arXiv:2403.10515v2，2026-04-09 accepted version；PDF题页2026-04-13；v1=2024-03-15",
+      "subquestions": [
+        "无度界但只打包最大的线性数量树",
+        "3n/4量词核对"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "note": "Theorem1.2原记法：存在ε>0，令r=εn，对所有n，任意|T_i|=i的T_{n-r+1},…,T_n均可打包K_n。实际是最大εn棵、无附加树形/最大度限制；不是全族。文中明确未优化ε，n≤1/ε时结论平凡；保守整数版可写存在c,N使n≥N时最大的⌊cn⌋棵可打包。未检到可取c=3/4的依据。p.22的3n/4是按Δ(S_ℓ)≥3n/4或<3n/4分情形，其他3n/4是子树/剩余顶点集合界，不能写成“最大3n/4棵”或“所有大小>3n/4的树”。完整34页稿已取得，实际核主定理、辅助定理及相关范围，不声称独立完整证明复核。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "R07-0089-PROG-E04",
+      "url": "https://wrap.warwick.ac.uk/id/eprint/199830/",
+      "locator": "作者机构仓储的Dates、Peer Reviewed及Accepted Version栏；JEMS DOI10.4171/JEMS/1794",
+      "version": "接受2026-04-09；在线发表2026-05-15；本轮读取2026-11-26",
+      "subquestions": [
+        "无度界但只打包最大的线性数量树"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检索",
+      "note": "仅用于确认2024预印本对应2026JEMS在线发表；本轮未读JEMS正式排版版（DOI入口失败/订阅限制）。数学范围取已读arXiv v2，不由仓储摘要扩大。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "R07-0089-PROG-E05",
+      "url": "https://www.ejgta.org/index.php/ejgta/article/download/1032/pdf_354",
+      "locator": "p.180 two-spider定义及Theorem1.1；pp.182–183归纳证明；p.184 Closing Remarks",
+      "version": "Marcus E. Gubanyi, EJGTA14(1)(2026),179–184；修订2026-01-18、接受2026-02-11；DOI10.5614/ejgta.2026.14.1.11",
+      "subquestions": [
+        "two-spider且二边腿数受限的完整树族"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "note": "6页web PDF全文已阅；本地另一次下载403，不混同为全文失败。设α=(3−√5)/4；每个i边树为two-spider：存在根r，其他点到r距离≤2且度≤2，且二边腿数ℓ_i<α i，则所有n均可将i=1,…,n−1的整族分解K_n。映射卡片为ℓ(T_k)<α(k−1)，k=2,…,n。摘要用at most，正文用less than；αi对正整数i是无理数，整数腿数下两者等价。属于新近正式刊发的形状特例，不能关闭任意树形主问题；未作全证明独立复核。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "R07-0089-PROG-E06",
+      "url": "https://combinatorialpress.com/article/jcmcc/Volume%2008/vol-008-paper%2018.pdf",
+      "locator": "p.123 Abstract/§1；p.124 §3倒数两段（n=10及n=11）；pp.125–126算法与局限；p.126 Bibliography",
+      "version": "David R. Guichard、John D. Massman, JCMCC8(1990),123–126；出版社页面日期1990-10-30",
+      "subquestions": [
+        "n≤11的有限树族",
+        "CB固定n=10反例目标的适用性"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "note": "实际下载4页扫描稿并本地逐页看图阅读全文。p.124：106棵10顶点树的递归删除方案只有T*例外；作者直接验证所有T2,T4,T6,T8,T*可打包H10，从而得到n=10。235棵11顶点树类似仅T′例外，直接验证T3,T5,T7,T9,T′可打包H11，得到n=11。正文明确为作者计算结果，本轮未获取或复跑原程序。H10∉U10/H11∉U11只是递归方法不足，不是TPC反例；因此CB要求给T2,…,T10反例与已发表有限验证相冲突。 主负责人另实际看图复核p.124两段，未把读原文写成独立复跑。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "R07-0089-PROG-E07",
+      "url": "https://arxiv.org/pdf/1711.04869v4",
+      "locator": "p.5 §1.1 About the current version；p.3 Theorem2；p.10 Theorems9/11；p.17 Definition22；引用链对照2106.11720v3 p.4及p.178",
+      "version": "arXiv:1711.04869v4，2022-04-16；v2=2019-06-03对应Advances in Mathematics354(2019)106739；v3=2021-07-26",
+      "subquestions": [
+        "最大度至c n/log n的充分大完整树族",
+        "该进展所引Packing degenerate graphs勘误及版本适用性"
+      ],
+      "role": "勘误",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "note": "作者§1.1说明：修正Definition22的小错误，以及常数取得不够小的问题，并相应调整全文计算；除此之外未更新，尤其引言和文献综述仍是原出版时状态。故不能拿v4引言的旧开放状态当2026状态。现Definition22(p.17)的cover条件只要求宿主顶点v未被前i+εn−1个顶点的部分嵌入占用；本轮未逐行比较旧版，也未独立验证修补全部估计。修订后Theorem2仍为：对固定D、γ>0，存在c>0、n0，n>n0时，至多n顶点、度≤cn/log n、总边数≤(1−γ)binom(n,2)的D-degenerate图族可打包K_n；p.10的Theorem11为支持它的准随机宿主技术结果。该稿是有边数余量的近似打包，不单独证明TPC的精确全边分解。Allen等2106.11720v3 p.4 Theorem3明确引[1,Theorem2]，footnote1明确使用v4纠正版，p.178 [1]为固定v4而[2]单列旧期刊版。Theorem3的总边数≤binom(n,2)−ηn²可取γ=2η落入v4 Theorem2范围。补核确认勘误内容与引用版本匹配；不是撤回或得到新反例的证据，也不升级为独立数学验证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "QX-000089-C-E01",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0129.json",
+      "locator": "完整 JSON：statement、counterexample.description、counterexample.finite、status_observation",
+      "version": "commit 8d494791ace5894b860585d67ba8e69dbfed6376（2026-10-25T09:20:54Z）；blob 2c11b89c0d2b67aac8906ab30830dd91180fe00a；本轮 2026-11-26 读取",
+      "subquestions": [
+        "主问题",
+        "CB固定n=10反例目标的适用性"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "statement 重述全 n 树打包猜想；counterexample 仅寻求 T₂,…,T₁₀ 不可在 K₁₀ 同时边不交打包的实例。有限目标若有真实有效反例，会否定 P；未找到或证明 n10 可打包均不能推出 P。此 JSON 无反例、无证书，也不是原始提出。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-000089-C-E02",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/ErdosProblems/743.lean",
+      "locator": "Erdos743.IsPacking（57–60 行）；erdos_743（100–104 行）；7 个 variants（114–201 行）；辅助定理 IsPacking.mono、sum_Icc_two_sub_one",
+      "version": "commit 9097e2f90e66d2f6244209cb1c07f7120d17ec53（2026-11-24T14:16:43Z）；blob f0790e2824b98d11e6142dbff99d32569517595e；2026-11-26 全文静态读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "仅有形式化题面或骨架",
+      "rerun": {
+        "commit": "9097e2f90e66d2f6244209cb1c07f7120d17ec53",
+        "theorem": "Erdos743.erdos_743",
+        "toolchain": "未取工具链、未运行 Lean",
+        "axioms": "主定理使用 sorry；未执行 #print axioms"
+      },
+      "note": "主定理为每个 n、每族 Fin k 上的树都存在顶点单射且像边集两两不交。与全题等价；边数求和保证覆盖 K_n。1 个 research open 主定理和 7 个 research solved 变体均以 sorry 结束；solved 标签记录文献数学状态，非形式化已证。两个辅助定理有实质证明代码，不能替代主定理。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-000089-C-E03",
+      "url": "https://github.com/pawelkwaczynski/erdos743/blob/4280b1fda0f0c40e2232517e29501921a9004b32/README.md",
+      "locator": "Results；Method 的 V(R,k)；What was checked, and what was not；配套 erd743.py 全文",
+      "version": "commit 4280b1fda0f0c40e2232517e29501921a9004b32（2026-09-08T12:38:35Z）；README blob dbe6dcb28f88eadb96abcece276cddc41e5790f9；solver blob 6bd054c8a9971ab734efe8d5e4400b645a197b3f",
+      "subquestions": [
+        "n=12公开计算声明"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "有修订",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "Paweł Kwaczyński / pawelkwaczynski",
+      "claim_date": "2026-09-08",
+      "note": "有限计算声称至 n12。静态核对：V 对每个当前树先选一个能兼容全部后续树的嵌入，是足以推出普通打包的更强递归性质；V=false 不构成原猜想反例。作者披露 9 月 8 日前随机见证同构检查曾把图与自身比较；当前代码改为与指定 tree.graph 比较。未据此称核心 DP 被撤回。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "revised",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-000089-C-E04",
+      "url": "https://github.com/pawelkwaczynski/erdos743/blob/4280b1fda0f0c40e2232517e29501921a9004b32/results/n12.jsonl",
+      "locator": "完整 551 行 JSONL；top=0:1,…,550:551；V_Kn、stopped_at 字段",
+      "version": "commit 4280b1fda0f0c40e2232517e29501921a9004b32；blob 0e56a661cc955b04979fb0cec3d97e99af3a6b6e；2026-11-26 解析完整日志",
+      "subquestions": [
+        "n=12公开计算声明"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "本轮仅核存档日志结构：551 个顶层任务索引齐全且各一次，全部 n=12、V_Kn=true、stopped_at=null；总 states_total 为 1,730,764,348。日志是计算运行摘要，不是可独立检查全部递归状态/打包见证的完备证书，更非本轮求解器复跑。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-000089-C-E05",
+      "url": "https://github.com/pawelkwaczynski/erdos743/blob/4280b1fda0f0c40e2232517e29501921a9004b32/results/n12_verify.jsonl",
+      "locator": "三条记录 top=62:63、20:21、4:5，各 verified_families=20",
+      "version": "commit 4280b1fda0f0c40e2232517e29501921a9004b32；blob 8fb3d682805574cf827e2efd1ae2c64687c1f056",
+      "subquestions": [
+        "n=12公开计算声明"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "修订后 n12 显式见证验证限于三任务各 20 个随机树族，共 60 个。不能写成 n12 全量独立重检；README 还明确 n12 依赖单实现。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-000089-C-E06",
+      "url": "https://github.com/pawelkwaczynski/erdos743/blob/4280b1fda0f0c40e2232517e29501921a9004b32/pack_b.py",
+      "locator": "pruefer_trees、ahu_code、Canon、solve；results/adversary_n4_to_n9.jsonl 全七行",
+      "version": "commit 4280b1fda0f0c40e2232517e29501921a9004b32；pack_b blob f2ba8efab2ddd241a3929fddc47d94a90148bf86；日志 blob c240095ed55b4cfc3fd640592a3b58421981f18a",
+      "subquestions": [
+        "n=12公开计算声明"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "第二实现采用不同树生成/规范化代码，已存日志只 n4 至 n9；n9 两次不同机器记录。README 明言未在 n10、11、12 跑第二实现；不能把较小 n 的复核升级为 n12 独立验证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-000089-C-E07",
+      "url": "https://api.scinet.pub/f/2220991b-c78e-4b31-8c38-143cda37b1e5",
+      "locator": "Finding 2220991b；6 Claims；2026-08-02 〔私有材料定位已省略〕；Method artifact",
+      "version": "finding 发布 2026-07-27 07:59；review 2026-08-02 05:15；本轮读取 2026-11-26；web ref 〔原始工具引用已私有留存〕",
+      "subquestions": [
+        "n=10公开AI计算记录"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "Roman Labs / roman-cc（公开 AI 协作计算）",
+      "claim_date": "2026-07-27",
+      "note": "声称 n10 所有 45,376,056 树族有构造见证；网站徽章声称独立复现，正文将其限定为两完整 chunks、全部非贪心见证和 27 个 CP-SAT 见证的另写 checker 检查，并保留其余贪心见证未全量独立重检的限制。该项目仍将全猜想登记为开放，不能据其标签独立确认数学状态。不能把徽章改成本轮独立复跑或 Lean 证明。对照原始论文证据 R07-0089-PROG-E06（1990年n10、n11），项目“首次推进Fishburn纪录”不成立。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "QX-000089-C-E08",
+      "url": "https://github.com/scinet-ai/math-number-theory/blob/c9acc94611359123e90c9cafe58ad5e2dfd9b500/erdos-743/README.md",
+      "locator": "README Method/Soundness/Results；完整 packer.c、check_witnesses.py 静态读取",
+      "version": "commit c9acc94611359123e90c9cafe58ad5e2dfd9b500（2026-07-27T07:58:54Z）；README blob 9787b83b91e5c7bb41ae6150a6eb9525157e4a68；packer blob 109414c462a34ba839488731eff503d48e255a81；checker blob 8fb94848342aaec066672c3b626b4d86c271d235",
+      "subquestions": [
+        "n=10公开AI计算记录"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "固定 T10 的嵌入利用 K10 全对称性；C 代码逐树族构造打包并区分回溯失败/达到节点上限。Python checker 检查每大小类边数、点数、连通及指定树同构。静态读取未发现把 node cap 当反例的混淆；未运行/独立逐条复验，不能据代码存在确认所有 45M 见证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-000089-C-E09",
+      "url": "https://github.com/scinet-ai/math-number-theory/blob/c9acc94611359123e90c9cafe58ad5e2dfd9b500/erdos-743/results/SUMMARY.txt",
+      "locator": "n10 106 chunks 汇总；results/verify_run_2026-07-27.log 全文",
+      "version": "commit c9acc94611359123e90c9cafe58ad5e2dfd9b500；SUMMARY blob f9cbbf59d4bb38da5ab1af16d84bccc743fbc40b；verify log blob a5baa1e121eb966b7f3ed98e9966f753a2e72cdb",
+      "subquestions": [
+        "n=10公开AI计算记录"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "汇总数 43,792,160 greedy + 1,583,869 backtracking + 27 CP-SAT = 45,376,056。历史 verify 日志记 n10 4,239、n9 1,877 及 CP-SAT 27 个样本见证通过；属作者已存运行记录，不是本轮全量复跑，不能只凭汇总将其认定为完备证书。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-000089-C-E10",
+      "url": "https://mathoverflow.net/questions/482509/claimed-proofs-of-graph-labelling-conjectures",
+      "locator": "David Wood 2024-11-14 22:33 提问及随后评论；页面无答案",
+      "version": "2024-11-14/15 帖子；本轮 2026-11-26 已读全文；web ref 〔原始工具引用已私有留存〕",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "社区帖子",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "帖子询问包括 arXiv:2410.13840 在内一组证明的正确性；因站点不接受预印本正确性审查请求而关闭。本帖没有具体反例、已核漏洞或作者撤回，不能单凭“closed”认定证明错误。另见本回执 E000089-P0-WITHDRAWAL-V3 的官方2026撤回记录。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "QX-000089-C-E11",
+      "url": "https://shoal.club/shoal/tree-packing-conjecture/results",
+      "locator": "Results 表主分支；0 agents/0 routes；未声明 check、0 jobs",
+      "version": "本轮 2026-11-26 网页读取；web ref 〔原始工具引用已私有留存〕；代码概览 〔原始工具引用已私有留存〕 显示 main 短提交 350642b",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "同题公开 AI 协作项目的已读 Results 页没有验证作业或结果，README 转述其他有限进展。仅说明所读页面状态，不作整个 AI 社区无结果之证明。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "QX-000089-C-E12",
+      "url": "https://cairn-commons.com/problems/erdos-743",
+      "locator": "主问题、Claims/Verified 计数、Formal statement、Source and licence",
+      "version": "本轮 2026-11-26 已读网页正文；页面 last reviewed 2026-11-11，所取正文 collectors checked 2026-11-15；引入的 FC commit 短号 2f91d251c07f；web ref 〔原始工具引用已私有留存〕",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "只有形式化题面",
+      "note": "页面记录 Claims=0、Verified=0，重述 FC 题面。Machine-checkable 标签表示平台可验未来提交，非目前已有证明；显示的 1 open/7 solved 来自 FC 文献分类。不同抓取日期的搜索摘要不覆盖本轮正文记录。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000087",
+      "other_card_rev": "17342763c7dcc1f7",
+      "relation": "待核",
+      "reason": "已对照全文：000087是有向根图容量条件下把kl棵生成出树重组为l个k-arborescence；000089是无向完全图内不同阶任意树族的边不交嵌入。仅同有树打包关键词，不据此合并。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000089.text.md；题面、形式化表述、acceptance.criteria",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000087.text.md；题面、形式化表述、人话版及对应meta验收条件"
+      },
+      "note": "对编号=QX-P-000087::QX-P-000089；负责人=QX-P-000087。较小编号000087不在本包，依规则留待其负责人裁决；不启动该题查新。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-000306",
+      "other_card_rev": "79382cde42a0ef5c",
+      "relation": "仅相似",
+      "reason": "000306由终端集S的边连通度假设推出若干S-Steiner树；本卡规定完全图宿主、任意给定不同阶树的形状并需同时嵌入。输入、量词及输出对象不同，未建立双向归约。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000089.text.md；题面、形式化表述、acceptance.criteria",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000306.text.md；题面、形式化表述、人话版及对应meta验收条件"
+      },
+      "note": "对编号=QX-P-000089::QX-P-000306；负责人=QX-P-000089。000089为较小编号，本轮仅记录固定版本对的差异，不建议合并，不校订000306。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000321",
+      "other_card_rev": "1ce3466fbdb05225",
+      "relation": "仅相似",
+      "reason": "按000321现卡正文，其对象为树的笛卡尔积及删点deck的唯一重构；本卡对象为完全图的边分解。Graham姓名与树关键词不构成同题。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000089.text.md；题面、形式化表述、acceptance.criteria",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000321.text.md；题面、形式化表述、人话版及对应meta验收条件"
+      },
+      "note": "对编号=QX-P-000089::QX-P-000321；负责人=QX-P-000089。000089为较小编号；000321正式栏残缺，其原题准确性未在本任务重查，仅按当前正文排除标题合并，不建议合并。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "sources；proposer；first_published；title中的Graham归属",
+      "old": "最早时间写CB策展快照2026-07-23，提出者指回CB；题名并列Gyárfás–Lehel/Graham。",
+      "new": "补原作Gyárfás–Lehel, Packing trees of different order into K_n, 1978, pp.463–469；提出背景为Gyárfás在1976 Keszthely会议的问题。Graham独立提出本命题的出处本轮未核实，暂不把其姓名作为确证归属；不与Graham–Häggkvist或树重构问题混同。",
+      "reason": "原稿p463明确署提出者，作者回顾给出会议背景；策展快照日期不是首次提出时间。仅补书目和归属建议，不改变任意树族的数学命题。",
+      "evidence_ids": [
+        "89-root-original",
+        "89-root-history",
+        "89-root-bib"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "题面；形式化表述；acceptance.criteria",
+      "reason": "已核原题T1…Tn与本卡T2…Tn相同，因为T1无边。形式化中的不交并按边不交嵌入解释；本轮不改变主问题的全称量词、宿主K_n或验收对象。",
+      "evidence_ids": [
+        "89-root-original"
+      ],
+      "small_case_check": "人工边数核算：sum_{k=2}^n(k−1)=n(n−1)/2=|E(K_n)|，因此任意边不交打包即覆盖全部边；n=1为空族，n=2是单边，n=3的P3与余下一边可共同打包。未执行n=10或更大树族穷举。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "informal_status.strength；novelty旧版记录；开放状态证据",
+      "old": "WebSearch确认开放；informal_status.strength=confirmed；metadata.novelty.card_rev=1d3400a451561fbc。",
+      "new": "本回执仅对当前d6a2fe8a73156c29记录实际查得的部分结果、撤回和待核代码声明；不以未命中或策展open标签确认全网开放。旧novelty中的其他card_rev仅作历史参考，不回填成当前深查。",
+      "reason": "当前版本须独立报告覆盖程度；旧深查与查询摘录不能自动迁移或补签。",
+      "evidence_ids": [
+        "89-root-original"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "开放状态证据／2026-11-20 WebSearch；相关进展与声称解决",
+      "old": "2024-10 'A Proof of the Tree Packing Conjecture' 未获公认（Wood 2024-11 质疑系列主张）",
+      "new": "Chalise–Clark–Gnang 的 A Proof of the Tree Packing Conjecture（arXiv:2410.13840，v1 2024-10-17、v2 2024-10-23）曾声称完整证明；作者已在 v3（2026-09-01）撤回，官方理由为 Lemma 3.10（Composition Lemma）证明错误。该稿不计为原题已证，撤回也不是原题反例。",
+      "reason": "现卡仅保留2024年争议而遗漏2026年官方撤回；补固定版本和错误位置，避免把保留在摘要中的旧证明措辞当作当前有效主张。",
+      "evidence_ids": [
+        "E000089-P0-CLAIM-V2",
+        "E000089-P0-WITHDRAWAL-V3"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "开放状态证据／对 Wood 2024-11 的归因",
+      "old": "Wood 2024-11 质疑系列主张",
+      "new": "David Wood 于 2024-11-14 在 MathOverflow 帖 482509 汇总该系列并征询是否有独立验证或错误；该帖没有给出数学反驳，关闭原因是相关核验请求不合该站版规。",
+      "reason": "主张不被视为已获证实与已有数学反驳是不同证据层级；原帖实际内容只能支持公开核验征询。",
+      "evidence_ids": [
+        "E000089-P0-WOOD-MO"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "开放状态证据／arXiv API 索引 2611.21120v1",
+      "old": "2026-11-16 2611.21120v1",
+      "new": "排除候选：Fiorini–Luqué–Pabst–Peis，Path-constrained Packing on Trees，arXiv:2611.21120v1（2026-11-16）。镜像原稿 p.3 定义的 BPPT 是给定单棵树和路径预算后选边求最大权；p.7 Theorem 1 给近似算法，未处理 T_2,…,T_n 到 K_n 的边不交分解。将本条保留在检索审计中，不列为本题数学进展或开放状态支持。",
+      "reason": "实际阅读入口 https://borowiecki.dev/pdf/2611.21120（页首版本与官方摘要索引一致）；官方 abs/html/pdf 的版本化与无版本入口均未成功。范围排除由定义和定理支撑，不依赖题名关键词或全文字串无命中。refs: 〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定／CB固定n=10反例目标；独立验证建议",
+      "old": "主命题为所有n、任意T₂,…,Tₙ；另将CB寻求T₂,…,T₁₀在K₁₀中不可打包的固定n=10目标与n≤10穷举建议并列。",
+      "new": "主命题的树定义、全部n量词、宿主K_n、边不交嵌入及全题证明/任一n反例验收均保留。单列CB旧固定n=10目标：1990已刊有限验证覆盖n=10/11，不能再列作未解决的反例挑战；n≤10重跑只可作算法核验，不等于新颖性或全题解决。若后续改动题卡的验证目标，须按语义修订生成新card_rev并重查受影响路线。",
+      "reason": "对象逐项对照：主问题是任意n的全族；CB有限目标固定10；原论文对同样的T₂,…,T₁₀和K₁₀给肯定计算验证。冲突位于有限验证目标，不是一般树打包命题被否定。",
+      "evidence_ids": [
+        "89-root-original",
+        "QX-000089-C-E01",
+        "R07-0089-PROG-E06"
+      ],
+      "small_case_check": "人工检查n=1空族、n=2单边和n=3路径加余边均可打包；sum(k−1)=n(n−1)/2核对验收的覆盖关系。n=10/11只核原论文的计算叙述，本轮未执行全量穷举，不能把小例或读文写成独立计算验证。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "formal_status / formal_refs",
+      "old": "formal_status: none；formal_refs: []",
+      "new": "补 FormalConjectures/ErdosProblems/743.lean@9097e2f90e66d2f6244209cb1c07f7120d17ec53：全题形式化题面已存在，主定理与 7 个文献变体均 sorry，仅两个辅助定理有证明代码；状态为仅有形式化题面或骨架，未复跑。",
+      "reason": "不能把 research solved 标签或自动文档“goals completed”当作 Lean 已证。",
+      "evidence_ids": [
+        "QX-000089-C-E02"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "related_progress / 有限计算",
+      "new": "增加 SciNet n10（固定 commit c9acc...）和 pawelkwaczynski n12（固定 commit 4280...）两项有限计算记录；分别注明公开声称、代码/日志已静态读取、未由本轮独立复跑。n12 记载验证 bug 已修订、第二实现仅到 n9、60 个 n12 随机见证的范围。",
+      "reason": "公开 AI/代码已覆盖相关精确有限范围，但不能升级为主问题解决或本轮已独立验证。",
+      "evidence_ids": [
+        "QX-000089-C-E03",
+        "QX-000089-C-E04",
+        "QX-000089-C-E05",
+        "QX-000089-C-E06",
+        "QX-000089-C-E07",
+        "QX-000089-C-E08",
+        "QX-000089-C-E09"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "主问题数学结案",
+      "reason": "本路线所取材料分别是形式化题面、有限计算或社区状态，不足以给主问题标已解决/已反驳/已独立复跑。",
+      "evidence_ids": [
+        "QX-000089-C-E01",
+        "QX-000089-C-E02",
+        "QX-000089-C-E07"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "新增 AI 计算记录的新颖性描述",
+      "new": "SciNet 的 n10 有限计算作为另一套公开实现/复验记录，不标刷新纪录：Guichard–Massman（1990）p.124 已覆盖 n10、n11。",
+      "reason": "已关联原文R07-0089-PROG-E06，1990年n10/n11有限验证排除该AI项目对首次推进纪录的说法；不否定其作为另一公开计算实现的用途。",
+      "evidence_ids": [
+        "QX-000089-C-E07",
+        "QX-000089-C-E08",
+        "R07-0089-PROG-E06"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "related_progress／最大度与数量范围",
+      "old": "仅列固定最大度特例；2026 Janzer论文摘要“>3n/4”易被解释为树数量范围。",
+      "new": "分别补JKKO固定Δ且充分大n、Allen等v3全族最大度≤c n/log n且充分大n、Janzer–Montgomery最大⌊cn⌋棵且无度界。Janzer文中3n/4为证明中的最大度/子集界，不是主定理可取的树数量比例；2026发表不扩大原定理范围。",
+      "reason": "已核原稿定理和参数，不能把不同进展的附加假设拼接成一般证明。",
+      "evidence_ids": [
+        "R07-0089-PROG-E01",
+        "R07-0089-PROG-E02",
+        "R07-0089-PROG-E03",
+        "R07-0089-PROG-E04"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "related_progress／有限情形和限定树形",
+      "new": "补Guichard–Massman1990 n≤11作者计算验证；补Gubanyi2026 two-spider形状及二边腿数限制。将原论文边数i转换为本卡顶点数k=i+1；只补历史遗漏/新近特例，不关闭主问题。",
+      "reason": "有限n和限定树形的结果须分别登记，程序未复跑。",
+      "evidence_ids": [
+        "R07-0089-PROG-E05",
+        "R07-0089-PROG-E06"
+      ],
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "Erdős Problems主页面和history直接读取受限；已有原始论文可核题面，但未检查当前网页全部评论。",
+      "next_step": "在可访问时补当前问题页与评论的定向核对；不能把搜索索引的旧摘要当成当前完整页面。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "000087为较小编号且不在本包。",
+      "next_step": "保留000087::000089对编号，交000087负责人核定关系；本行不重复裁决。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本片段没有独立逐式检验被撤回稿的引理证明，也未取得作者具体错误推导；已有官方撤回足以否定此稿作为已证证据的用途。",
+      "next_step": "二审核对官方固定 v3 通知与本片段的状态修订；仅在出现修复后的新稿时，另查该新版本如何修复 Lemma 3.10，并重新做全范围和关键步骤核验。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2611.21120 官方直达入口返回工具错误，完整原稿由第三方镜像提供；标题、作者、版本标识与官方摘要索引对应，但未做原站文件字节校验。",
+      "next_step": "保留镜像来源和访问限制，不把此次读取写成官方 PDF 直达成功；范围已按 p.3 定义和 p.7 Theorem 1 排除，如后续需要原站归档件再补原站文件校验。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "进展稿已取得，但本分工只核结论、参数与适用性，不等于逐步复审长证明。",
+      "next_step": "如需把相关特例的review_status升级为独立数学复核，应另审JKKO吸收论证、Allen等StageA–G及Janzer–Montgomery关键引理；当前保留已读未核关键步骤。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Guichard–Massman1990原稿的有限验证依赖计算，4页正文没有可直接重跑的现代代码包。",
+      "next_step": "若要记独立复跑通过，另取得原程序/证书并重现n=10、11；本次只记已发表作者计算验证，不能写成本轮穷举。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮只静态读取 Python/C 代码与作者存档日志，未运行 n10 或 n12 全量任务、未用独立实现逐族验证。",
+      "next_step": "如要把有限计算升级为群星独立验证，应固定工具链和提交，独立重生枚举并校验全部见证/递归证书；n12 尤须独立实现全量复现。当前只记录公开计算声称。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {}
+    },
+    {
+      "route": "其他：回传验收",
+      "reason": "本地按随包JSON Schema、当前任务三键、单一主问题、四路线和证据引用检查；未执行Claude接收端evidence.py import --check。",
+      "next_step": "接收端按规则运行import --check；撤回状态、CB验证目标修订、计算声明和查重待核项进入二审。当前只交建议，不改线上题卡。",
+      "batch_id": "QX-R3-07",
+      "card_rev": "d6a2fe8a73156c29",
+      "codes": {}
+    }
+  ]
+}

@@ -1,0 +1,2896 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000015",
+  "card_rev": "8dfe2596d460f7ca",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-12"
+      ],
+      "parts": [
+        {
+          "subquestion": "模型、最小阈值及退化参数",
+          "value": "partial",
+          "note": "固定n,m≥1，k取最小强迫顶点数：k(1,m)=k(n,1)=1，k(n,2)=n。N=n−1的空图给k(n,2)下界，N=n时有弧即含普通TT2、无弧则I_n；n=1/m=1单点即强迫。C3有I2数0且无TT3，所以k(2,3)>3；四点竞赛图总有出度至少2的顶点，其两出邻点相连即成TT3，故k(2,3)=4。路径按m个顶点计时，n−1个不相连TT_(m−1)在(n−1)(m−1)点上同时规避I_n和P_m，故该乘积不是最小强迫阈值。特别n=2,m=3的两点单弧已反驳网页误式2；真正路径阈值3，而TT阈值4。若宿主允许双向弧却要求诱导TT，则任意大完全双向图的独立数为1，且不含任何阶≥2的诱导TT；这不是原题。原题普通子图读法允许从反平行对删去一弧，保持邻接对和独立数，故与oriented模型等价。 本轮独立小枚举只到N=4，不声称按卡中建议执行全部(n,m)≤(6,6)的SAT。 补充独立路线：应明确有限无自环有向图中的普通TT_m子图（允许有向圈）。任选反平行对的一弧可化为oriented graph，保留邻接/独立性，普通TT存在也保留回原图。对oriented graph，TT普通子图自动诱导；对一般digraph不成立。若现卡人话“两两恰好一弧”被理解为原图诱导条件，完全双向图在任意N均α=1且没有诱导TT_m（n,m≥2），不会有有限阈值。这是人话/模型边界纠错，不是对规范原问题的反例。 补充独立路线：独立Python枚举范围严格限N≤4，模型转换与退化恒等式另由手证支撑。"
+        },
+        {
+          "subquestion": "经典一般上界及m=3的旧二次上界",
+          "value": "partial",
+          "note": "1967 Theorem2对应k(n,m)≤[2^(m−1)(n−1)^m+n−2]/(2n−3)，非平凡n≥2，n=1另按1处理。固定m≥2且n→∞，该上界表达式主项为2^(m−2)n^(m−1)，现卡~2^(m−1)n^m既漏分母又混淆上界与k本身渐近式。m=2精确分式为n，n=2为2^(m−1)，后者是一般上界并非所有m都取等。1997 Lemmas4.1–4.2给k(n+1,3)≤2n+k(n,3)+1与k(n,3)≤n²；本轮读核递推关键步骤。1956 Theorem25末条已包含三色Ramsey上界，现代页面的Hunter观察不应被误记为该不等式最早来源。这里均是旧结果再核，未冒充本轮新定理。"
+        },
+        {
+          "subquestion": "有向路径变体附注的阈值公式",
+          "value": "statement_error",
+          "note": "本行只评卡片进展附注中的路径阈值公式，不改变TT主问题状态。将TT_m换为普通有向路径P_m（m个顶点）后，最小强迫阈值为(n−1)(m−1)+1。下界用n−1个TT_(m−1)的不交并；上界引用Gallai–Milgram的≤α条顶点不交有向路径覆盖：若无I_n且无P_m，N≤(n−1)(m−1)。这是另一问题，不能把其解或路径方法自动移植为TT主问解。网页与卡附注的乘积可表示最大规避阶数，不能在minN定义下原样保留。 补充独立路线：m指路径顶点数、路径为普通有向子图时，最小强迫数为(n−1)(m−1)+1；不带+1的是最大避例顶点数。Gallai–Milgram1960 Satz(3.1)使任一避例可由至多n−1条路分割，每条至多m−1点，故N≤乘积。下界由n−1个互不相连的(m−1)点竞赛图给出。n=1或m=1时forcing=1；(n,m)=(2,2)时一顶点为避例、两点必有独立对或弧，阈值2而非1。这是本轮独立推导；只引用GM覆盖定理，不声称重证GM。Hunter–Steiner网页归属未取得其单独稿件。 补充独立路线：独立枚举I2/P3显示阈值3，原附注乘积给2，是一项可复验的off-by-one错误。"
+        },
+        {
+          "subquestion": "m=3的已知小参数精确值",
+          "value": "partial",
+          "note": "IRW v3 Theorem1.1给k(4,3)=15、k(5,3)=23；正文重述Bermond k(3,3)=9，Lemma3.1给8点避例唯一性。本轮读了精确值声明、构造及上界证明接口，未另行穷举这些旧构造。它们不能推出一般k(n,m)精确公式。 补充独立路线：本轮额外实际枚举N=8、9、I3/TT3避免图，得到5040和0，支持k(3,3)=9端点；这没有另外穷举旧k(4,3)=15及k(5,3)=23。"
+        },
+        {
+          "subquestion": "固定m=3的匹配渐近量级",
+          "value": "partial",
+          "note": "IRW Theorem1.2：k(n,3)=Θ(n²/log n)，n→∞。这是现卡验收“常数倍匹配上下界”在固定m=3分支已有的结果；不应继续把该分支的匹配量级笼统列开放。常数倍量级不是每个有限n的精确值。"
+        },
+        {
+          "subquestion": "固定m≥3的一般上界",
+          "value": "partial",
+          "note": "IRW Theorem1.3/5.6给固定m≥3时k(n,m)=O_m(n^(m−1)/(log n)^(m−2))，其显式Theorem5.6适用n,m≥2。Proposition3.4给k(n,3)≤n²−n+3（命题写n≥2，n=2不尖锐）。只给一般上界，不是全参数匹配界；其常数依赖固定m。"
+        },
+        {
+          "subquestion": "2026年k(6,3)界30≤k(6,3)≤32",
+          "value": "partial",
+          "note": "Orden aiXiv2611.02312 v3（稿同v2）Theorem1声称30≤k(6,3)≤32。已取得完整稿并独立核Lemma5和Lemma9/Theorem10手算接口；关键Lemma8的14点42弧是有限计算，本学术路线未执行代码。原稿Remark11明确精确值仍可能30、31、32；Remark13 O1–O4未证明且不用于主界，Remark14不把k(7,3)≤44当已证。版本修订纠正先前优先权及形式化引用，不是主界撤回。该路线自身未执行程序；本轮实际执行状态已在本行及对应代码证据合并。 补充独立路线：本轮原版C/Python实际复跑通过四项有限枚举及29点见证；详见独立日志。结果支持论文指定计算引理/下界，不改变30–32区间为精确值。 合并后的本轮结论：独立Python检查五个图例已通过，支持对应下界；Lean实际状态分列为E015-C02=本轮独立复跑通过。固定commit、逐项目标、实际命令、公理和中断/恢复日志以这些证据为准，不把部分模块通过当全部目标完成。普通程序与Lean层级分列。"
+        },
+        {
+          "subquestion": "2026年四个其他小参数下界",
+          "value": "partial",
+          "note": "作者2026-11-20数据声明、11-21更新页列k(7,3)≥39、k(8,3)≥47、k(6,4)≥78、k(3,6)≥71，分别由38、46、77、70点例给出。只有下界，无精确值主张；11-21作者页当时明说未同行评审，且当时尚未登记这四界的Lean；本轮后续recent feed已出现11-22四界注册元数据，详核日志仍不可达。学术路线读完整相关页面但Zenodo入口受阻，未检查图文件/运行检查器；代码路线结果不得在此冒认。 合并后的本轮结论：独立Python检查五个图例已通过，支持对应下界；Lean实际状态分列为E015-C02=本轮独立复跑通过。固定commit、逐项目标、实际命令、公理和中断/恢复日志以这些证据为准，不把部分模块通过当全部目标完成。普通程序与Lean层级分列。"
+        },
+        {
+          "subquestion": "小参数k(3,4)=21的声明与证书复核",
+          "value": "claimed_proof",
+          "note": "Kirtchakov current note Theorem1.1声称k(3,4)=21，只有这一特例。已读§1–7：20点下例+21点六种顶点型、72个块代表、346个UNSAT实例；还核了当前勘误和外部复核原报告。11月18日第三方报告全部445实例通过cake_lpr（346必要、99冗余），但图论分类完备性/编码/总组装没有整体形式化，本路线未执行这些证书。当前更正不改值21；撤回/修正的是优先权和检查独立性等过强说法。IRW v1已出现上界24和20点Cayley记录，不能把旧起点只写9–25且宣称穷尽历版。交由505独立接口审核合并，不据此关闭一般主问。 补充独立路线：作者固定完整稿声明k(3,4)=21，计算机辅助上下界结构与现卡普通TT、min forcing定义吻合。独立第二读者核覆盖接口未见逻辑缺口；参数/块计数依赖作者完整分类输入。第三方当前报告与445行公开日志支持全部CNF的证书检查已完成，N21所需346个全在列。本轮仅读关键数学及检查第三方日志一致性，没有实际SAT/LRAT/HOL4复跑；分类、编码和覆盖仍未全链形式化。该结论只解决(n,m)=(3,4)，不决定一般k(n,m)或其渐近增长。 补充独立路线：本轮追加独立Python核验一个20点Cayley避例，已实际通过，支持下界21。上界的281GB证书仍仅审第三方日志，不能把下例核验外推到全部上界或全链形式化。"
+        },
+        {
+          "subquestion": "k(3,4)优先权与20点极值图结构勘误",
+          "value": "partial",
+          "note": "记录现作者勘误所承认的早期20点Cayley先例及结构范围：13个构造分别刚性不蕴含所有极值图刚性；一个点传递20点circulant可与这13类并存，故现稿给至少14类而非完整分类。旧‘没有点传递/Cayley极值图’须删除。这里既未独立证明优先权，也未复跑13图刚性计算。 补充独立路线：本轮已独立验真此20点Cayley图，并由平移论证其点传递；该存在性不再只有作者声明。13个其他图的刚性/互不同构及全部极值图分类仍未本轮复跑。"
+        },
+        {
+          "subquestion": "公开形式化题面与占位骨架",
+          "value": "no_evidence_in_scope",
+          "note": "正式问题库的PR6648只有题面及含sorry的目标声明。标签或目录中的solved字样不能替代证明；它与另一个确有有限参数证明代码的项目分开登记。具体固定版本及占位位置见E015-C01。"
+        },
+        {
+          "subquestion": "公开AI稿的k(2,m)通式及构造",
+          "value": "no_evidence_in_scope",
+          "note": "本轮没有在该公开AI稿中得到一般主问的可验证证明。稿末保留UNRESOLVED，其局部声称k(2,m)=2^(m−1)却与原刊已知k(2,5)=14不符；声称的递推下例也可直接找到TT4。记录候选证明漏洞，不将该错误候选当成现卡一般问题已解决或原题被反驳。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "rerun_partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/Tyorden/erdos-112-small-bounds-lean/tree/1fcdbe50607e4cb858cffd5559f07afcb98e0611"
+      ],
+      "note": "只覆盖：仅某子问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "维持任务版8dfe2596d460f7ca的最小N，使每个N点有限无自环有向图含I_n或普通子图TT_m，n,m≥1。可等价限制宿主为无反平行弧的oriented graph。一般参数的精确值或匹配常数级界，本轮未取得完整同范围解。m=3的渐近数量级和若干小参数界分别登记；n=6,m=3的区间也不等于精确值。原卡路径变体误式和进展描述错误不改变核心minN问题，故主问不因这些附注错误自动标题面有误。",
+      "evidence_ids": [
+        "E015-O1956",
+        "E015-O1967",
+        "E015-O1997",
+        "E015-A01",
+        "E015-A02",
+        "E015-A04",
+        "E015-A06"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "模型、最小阈值及退化参数",
+      "math_status": "仅特例",
+      "scope_note": "固定n,m≥1，k取最小强迫顶点数：k(1,m)=k(n,1)=1，k(n,2)=n。N=n−1的空图给k(n,2)下界，N=n时有弧即含普通TT2、无弧则I_n；n=1/m=1单点即强迫。C3有I2数0且无TT3，所以k(2,3)>3；四点竞赛图总有出度至少2的顶点，其两出邻点相连即成TT3，故k(2,3)=4。路径按m个顶点计时，n−1个不相连TT_(m−1)在(n−1)(m−1)点上同时规避I_n和P_m，故该乘积不是最小强迫阈值。特别n=2,m=3的两点单弧已反驳网页误式2；真正路径阈值3，而TT阈值4。若宿主允许双向弧却要求诱导TT，则任意大完全双向图的独立数为1，且不含任何阶≥2的诱导TT；这不是原题。原题普通子图读法允许从反平行对删去一弧，保持邻接对和独立数，故与oriented模型等价。 本轮独立小枚举只到N=4，不声称按卡中建议执行全部(n,m)≤(6,6)的SAT。 补充独立路线：应明确有限无自环有向图中的普通TT_m子图（允许有向圈）。任选反平行对的一弧可化为oriented graph，保留邻接/独立性，普通TT存在也保留回原图。对oriented graph，TT普通子图自动诱导；对一般digraph不成立。若现卡人话“两两恰好一弧”被理解为原图诱导条件，完全双向图在任意N均α=1且没有诱导TT_m（n,m≥2），不会有有限阈值。这是人话/模型边界纠错，不是对规范原问题的反例。 补充独立路线：独立Python枚举范围严格限N≤4，模型转换与退化恒等式另由手证支撑。",
+      "evidence_ids": [
+        "E015-O1956",
+        "E015-O1997",
+        "E015-ODEFINITIONS",
+        "E015-A01",
+        "E015-A02",
+        "E015-A06",
+        "E015-LOCAL-SMALL"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "经典一般上界及m=3的旧二次上界",
+      "math_status": "部分进展",
+      "scope_note": "1967 Theorem2对应k(n,m)≤[2^(m−1)(n−1)^m+n−2]/(2n−3)，非平凡n≥2，n=1另按1处理。固定m≥2且n→∞，该上界表达式主项为2^(m−2)n^(m−1)，现卡~2^(m−1)n^m既漏分母又混淆上界与k本身渐近式。m=2精确分式为n，n=2为2^(m−1)，后者是一般上界并非所有m都取等。1997 Lemmas4.1–4.2给k(n+1,3)≤2n+k(n,3)+1与k(n,3)≤n²；本轮读核递推关键步骤。1956 Theorem25末条已包含三色Ramsey上界，现代页面的Hunter观察不应被误记为该不等式最早来源。这里均是旧结果再核，未冒充本轮新定理。",
+      "evidence_ids": [
+        "E015-O1956",
+        "E015-O1967",
+        "E015-O1997"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有向路径变体附注的阈值公式",
+      "math_status": "题面有误",
+      "scope_note": "本行只评卡片进展附注中的路径阈值公式，不改变TT主问题状态。将TT_m换为普通有向路径P_m（m个顶点）后，最小强迫阈值为(n−1)(m−1)+1。下界用n−1个TT_(m−1)的不交并；上界引用Gallai–Milgram的≤α条顶点不交有向路径覆盖：若无I_n且无P_m，N≤(n−1)(m−1)。这是另一问题，不能把其解或路径方法自动移植为TT主问解。网页与卡附注的乘积可表示最大规避阶数，不能在minN定义下原样保留。 补充独立路线：m指路径顶点数、路径为普通有向子图时，最小强迫数为(n−1)(m−1)+1；不带+1的是最大避例顶点数。Gallai–Milgram1960 Satz(3.1)使任一避例可由至多n−1条路分割，每条至多m−1点，故N≤乘积。下界由n−1个互不相连的(m−1)点竞赛图给出。n=1或m=1时forcing=1；(n,m)=(2,2)时一顶点为避例、两点必有独立对或弧，阈值2而非1。这是本轮独立推导；只引用GM覆盖定理，不声称重证GM。Hunter–Steiner网页归属未取得其单独稿件。 补充独立路线：独立枚举I2/P3显示阈值3，原附注乘积给2，是一项可复验的off-by-one错误。",
+      "evidence_ids": [
+        "E015-OUCSD",
+        "E015-A05",
+        "E015-LOCAL-SMALL"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "m=3的已知小参数精确值",
+      "math_status": "仅特例",
+      "scope_note": "IRW v3 Theorem1.1给k(4,3)=15、k(5,3)=23；正文重述Bermond k(3,3)=9，Lemma3.1给8点避例唯一性。本轮读了精确值声明、构造及上界证明接口，未另行穷举这些旧构造。它们不能推出一般k(n,m)精确公式。 补充独立路线：本轮额外实际枚举N=8、9、I3/TT3避免图，得到5040和0，支持k(3,3)=9端点；这没有另外穷举旧k(4,3)=15及k(5,3)=23。",
+      "evidence_ids": [
+        "E015-A01",
+        "E015-LOCAL-C"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "固定m=3的匹配渐近量级",
+      "math_status": "仅特例",
+      "scope_note": "IRW Theorem1.2：k(n,3)=Θ(n²/log n)，n→∞。这是现卡验收“常数倍匹配上下界”在固定m=3分支已有的结果；不应继续把该分支的匹配量级笼统列开放。常数倍量级不是每个有限n的精确值。",
+      "evidence_ids": [
+        "E015-A01"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "固定m≥3的一般上界",
+      "math_status": "部分进展",
+      "scope_note": "IRW Theorem1.3/5.6给固定m≥3时k(n,m)=O_m(n^(m−1)/(log n)^(m−2))，其显式Theorem5.6适用n,m≥2。Proposition3.4给k(n,3)≤n²−n+3（命题写n≥2，n=2不尖锐）。只给一般上界，不是全参数匹配界；其常数依赖固定m。",
+      "evidence_ids": [
+        "E015-A01"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "2026年k(6,3)界30≤k(6,3)≤32",
+      "math_status": "部分进展",
+      "scope_note": "Orden aiXiv2611.02312 v3（稿同v2）Theorem1声称30≤k(6,3)≤32。已取得完整稿并独立核Lemma5和Lemma9/Theorem10手算接口；关键Lemma8的14点42弧是有限计算，本学术路线未执行代码。原稿Remark11明确精确值仍可能30、31、32；Remark13 O1–O4未证明且不用于主界，Remark14不把k(7,3)≤44当已证。版本修订纠正先前优先权及形式化引用，不是主界撤回。该路线自身未执行程序；本轮实际执行状态已在本行及对应代码证据合并。 补充独立路线：本轮原版C/Python实际复跑通过四项有限枚举及29点见证；详见独立日志。结果支持论文指定计算引理/下界，不改变30–32区间为精确值。 合并后的本轮结论：独立Python检查五个图例已通过，支持对应下界；Lean实际状态分列为E015-C02=本轮独立复跑通过。固定commit、逐项目标、实际命令、公理和中断/恢复日志以这些证据为准，不把部分模块通过当全部目标完成。普通程序与Lean层级分列。",
+      "evidence_ids": [
+        "E015-A02",
+        "E015-A03",
+        "E015-LOCAL-C",
+        "E015-C02",
+        "E015-C03",
+        "E015-C04"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "2026年四个其他小参数下界",
+      "math_status": "部分进展",
+      "scope_note": "作者2026-11-20数据声明、11-21更新页列k(7,3)≥39、k(8,3)≥47、k(6,4)≥78、k(3,6)≥71，分别由38、46、77、70点例给出。只有下界，无精确值主张；11-21作者页当时明说未同行评审，且当时尚未登记这四界的Lean；本轮后续recent feed已出现11-22四界注册元数据，详核日志仍不可达。学术路线读完整相关页面但Zenodo入口受阻，未检查图文件/运行检查器；代码路线结果不得在此冒认。 合并后的本轮结论：独立Python检查五个图例已通过，支持对应下界；Lean实际状态分列为E015-C02=本轮独立复跑通过。固定commit、逐项目标、实际命令、公理和中断/恢复日志以这些证据为准，不把部分模块通过当全部目标完成。普通程序与Lean层级分列。",
+      "evidence_ids": [
+        "E015-A04",
+        "E015-C02",
+        "E015-C03"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "小参数k(3,4)=21的声明与证书复核",
+      "math_status": "完整证明声明",
+      "scope_note": "Kirtchakov current note Theorem1.1声称k(3,4)=21，只有这一特例。已读§1–7：20点下例+21点六种顶点型、72个块代表、346个UNSAT实例；还核了当前勘误和外部复核原报告。11月18日第三方报告全部445实例通过cake_lpr（346必要、99冗余），但图论分类完备性/编码/总组装没有整体形式化，本路线未执行这些证书。当前更正不改值21；撤回/修正的是优先权和检查独立性等过强说法。IRW v1已出现上界24和20点Cayley记录，不能把旧起点只写9–25且宣称穷尽历版。交由505独立接口审核合并，不据此关闭一般主问。 补充独立路线：作者固定完整稿声明k(3,4)=21，计算机辅助上下界结构与现卡普通TT、min forcing定义吻合。独立第二读者核覆盖接口未见逻辑缺口；参数/块计数依赖作者完整分类输入。第三方当前报告与445行公开日志支持全部CNF的证书检查已完成，N21所需346个全在列。本轮仅读关键数学及检查第三方日志一致性，没有实际SAT/LRAT/HOL4复跑；分类、编码和覆盖仍未全链形式化。该结论只解决(n,m)=(3,4)，不决定一般k(n,m)或其渐近增长。 补充独立路线：本轮追加独立Python核验一个20点Cayley避例，已实际通过，支持下界21。上界的281GB证书仍仅审第三方日志，不能把下例核验外推到全部上界或全链形式化。",
+      "evidence_ids": [
+        "E015-A06",
+        "E015-A07",
+        "E015-A08",
+        "E015-A09",
+        "E015-K34-NOTE-SECOND",
+        "E015-K34-COVERAGE",
+        "E015-K34-OUTSIDE-PAGE",
+        "E015-K34-OUTSIDE-LOG",
+        "E015-K34-CHECKER-DOC",
+        "E015-K34-CORRECTIONS",
+        "E015-LOCAL-K34LOWER"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "k(3,4)优先权与20点极值图结构勘误",
+      "math_status": "仅特例",
+      "scope_note": "记录现作者勘误所承认的早期20点Cayley先例及结构范围：13个构造分别刚性不蕴含所有极值图刚性；一个点传递20点circulant可与这13类并存，故现稿给至少14类而非完整分类。旧‘没有点传递/Cayley极值图’须删除。这里既未独立证明优先权，也未复跑13图刚性计算。 补充独立路线：本轮已独立验真此20点Cayley图，并由平移论证其点传递；该存在性不再只有作者声明。13个其他图的刚性/互不同构及全部极值图分类仍未本轮复跑。",
+      "evidence_ids": [
+        "E015-K34-CORRECTIONS",
+        "E015-K34-PARTJ",
+        "E015-LOCAL-K34LOWER"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "公开形式化题面与占位骨架",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "正式问题库的PR6648只有题面及含sorry的目标声明。标签或目录中的solved字样不能替代证明；它与另一个确有有限参数证明代码的项目分开登记。具体固定版本及占位位置见E015-C01。",
+      "evidence_ids": [
+        "E015-C01"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "公开AI稿的k(2,m)通式及构造",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "本轮没有在该公开AI稿中得到一般主问的可验证证明。稿末保留UNRESOLVED，其局部声称k(2,m)=2^(m−1)却与原刊已知k(2,5)=14不符；声称的递推下例也可直接找到TT4。记录候选证明漏洞，不将该错误候选当成现卡一般问题已解决或原题被反驳。",
+      "evidence_ids": [
+        "E015-C05",
+        "E015-O1997"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-12-015-O01",
+      "route": "原题与出处",
+      "site": "system2",
+      "query": "Erdos 112 directed Ramsey k(n,m) Erdos Rado 1967 Larson Mitchell 1997",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.erdosproblems.com/latex/112",
+      "note": "命中latex/history/论坛的检索索引、UCSD变体、1997来源及2026 aiXiv/代码线索；搜索结果不当作主站实时成功访问。新稿交对应路线核原文。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O02",
+      "route": "原题与出处",
+      "site": "Erdős Problems / web open",
+      "query": "open https://www.erdosproblems.com/112",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.erdosproblems.com/112",
+      "note": "返回restricted URL；未声称当轮成功读取主站正文或实时状态。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O03",
+      "route": "原题与出处",
+      "site": "Erdős Problems / web open",
+      "query": "open /latex/112 and /history/112",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.erdosproblems.com/latex/112",
+      "note": "两个入口均restricted URL；只用先前搜索返回段落作定位。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O04",
+      "route": "原题与出处",
+      "site": "Erdős Problems / urllib",
+      "query": "GET https://www.erdosproblems.com/112",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://www.erdosproblems.com/112",
+      "note": "正常HTTP请求403，停止此入口；没有把旧卡2026-11-20状态当作本轮实时核查。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O05",
+      "route": "原题与出处",
+      "site": "system1",
+      "query": "\"Partition relations and transitivity domains of binary relations\" pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.renyi.hu/~p_erdos/1967-19.pdf",
+      "note": "定位Rényi原文扫描与Wiley正式DOI10.1112/jlms/s1-42.1.624；搜索时间标签不是1967发表日期。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O06",
+      "route": "原题与出处",
+      "site": "system1",
+      "query": "\"Larson\" \"Mitchell\" \"On a problem of\" \"Rado\" 1997 pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.academia.edu/26899677/On_a_problem_of_Erd%C5%91s_and_Rado",
+      "note": "定位作者公开原文OCR及Springer正式条目，不把NDLI或AI wiki当数学证明。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O07",
+      "route": "原题与出处",
+      "site": "UCSD原问题集 / web open",
+      "query": "open DirectedPaths.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://mathweb.ucsd.edu/~erdosproblems/erdos/newproblems/DirectedPaths.html",
+      "note": "实际全文说path且not necessarily induced；它与传递竞赛图变体有差异，不能因共用两篇参考文献认作同一问题。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O08",
+      "route": "原题与出处",
+      "site": "Rényi原文 / web+urllib+Poppler",
+      "query": "open and GET1967-19.pdf; pdftotext -layout; render pages1–2; view_image",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.renyi.hu/~p_erdos/1967-19.pdf",
+      "note": "成功取得10页/1539843字节；SHA25621b0ab1ce9c7a8ca395be10f2f9685008d06e26abeeb671282b618b9f784d56f。实际视觉核印刷pp624–625的ρ模型、参数、二次上界公式，并读p633参考文献追溯1956。没有审完全部序数证明。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O09",
+      "route": "原题与出处",
+      "site": "Springer / web open",
+      "query": "open article/10.1007/BF02558478",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://link.springer.com/article/10.1007/BF02558478",
+      "note": "出版商确认1997年12月、pp245–252、两位作者、摘要中的minp与TT；页面明确subscription preview。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O10",
+      "route": "原题与出处",
+      "site": "Springer / urllib",
+      "query": "GET content/pdf/10.1007/BF02558478.pdf",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://link.springer.com/content/pdf/10.1007/BF02558478.pdf",
+      "note": "返回200但Content-Type为text/html，重定向cookie/订阅落地页，264027字节，已按HTML保存；没有当成PDF全文。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O11",
+      "route": "原题与出处",
+      "site": "作者公开原文OCR / Academia",
+      "query": "open On_a_problem_of_Erdos_and_Rado; open at lines13,15,21",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.academia.edu/26899677/On_a_problem_of_Erd%C5%91s_and_Rado",
+      "note": "实际读印刷pp245–251的Questions1.2/1.3、Lemma2.1、Theorem2.7、Lemmas4.1/4.2/4.13及参考文献。OCR公式有损，精确旧总界用1967清晰页互校；未声称已取得原刊PDF或全稿逐公式审定。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O12",
+      "route": "原题与出处",
+      "site": "AMS / web open",
+      "query": "open S0002-9904-1956-10036-0.pdf",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://www.ams.org/journals/bull/1956-62-05/S0002-9904-1956-10036-0/S0002-9904-1956-10036-0.pdf",
+      "note": "403；随后使用已经公开列出的Rényi作者文献档案，未登录或越权。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O13",
+      "route": "原题与出处",
+      "site": "system2",
+      "query": "Erdos Rado \"A partition calculus in set theory\" 1956 pdf Theorem25",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.renyi.hu/~p_erdos/1956-02.pdf",
+      "note": "定位原文与Rényi机构目录。目录确认Bull.Amer.Math.Soc.62(1956),427–489，不能将1955收稿/1953部分内容演讲日等同本问题首次发表。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O14",
+      "route": "原题与出处",
+      "site": "Rényi / web open+find",
+      "query": "open1956-02.pdf; find THEOREM25",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.renyi.hu/~p_erdos/1956-02.pdf",
+      "note": "web取得63页文本；实际核印刷pp440–441 Theorem25有限关系定义、k与l0的参数交换和三色上界证明首段；没有宣称读核全部63页。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O15",
+      "route": "原题与出处",
+      "site": "Rényi / urllib",
+      "query": "GET1956-02.pdf",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://www.renyi.hu/~p_erdos/1956-02.pdf",
+      "note": "本地HTTP403，未取得本地PDF；与上项web全文文本成功分别记录。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O16",
+      "route": "原题与出处",
+      "site": "web screenshot",
+      "query": "screenshot1956PDF pages13 and14",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.renyi.hu/~p_erdos/1956-02.pdf",
+      "note": "工具只回ImageDisplayed文字标记，没有实际图像块，因此未当成1956页的视觉核验；1967的本地清晰页已实际查看。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O17",
+      "route": "学术",
+      "site": "aiXiv原稿 / web open+find",
+      "query": "open2611.02312; read Definitions/Remark2/Lemmas3,5,8,9/Theorem10/Remarks11–14/References",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://aixiv.online/pdf/2611.02312",
+      "note": "根实际核固定底层模型，14点计算引理接口，21点74弧推导与32点两种度数矛盾212>210、207>198；这些都只覆盖m=3,n=6。数值无命中/未证明SAT观察不当作上界。稿本/版本/修订由学术路线另列。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O18",
+      "route": "代码、公开 AI 和社区",
+      "site": "Zenodo / web open",
+      "query": "open records/24064870",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://zenodo.org/records/24064870",
+      "note": "此web入口not accessible；下一正常API调用成功，不能写整个数据不可获取。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O19",
+      "route": "代码、公开 AI 和社区",
+      "site": "Zenodo / HTTP API",
+      "query": "GET api/records/24064870",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://zenodo.org/records/24272287",
+      "note": "概念记录实际解析到version2，记录24272287、2026-11-16；读取完整文件列表与各MD5，保留元数据。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O20",
+      "route": "代码、公开 AI 和社区",
+      "site": "Zenodo固定记录文件 / HTTP",
+      "query": "GET24272287 files check_witness.py,verify_small.c,bounds_record_README_v2.md,bounds_record_PROOF_v2.md,witness_n29_m6_anneal.txt",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://zenodo.org/records/24272287",
+      "note": "五个文件均200且逐一字节数/MD5相符，另记SHA256；已读C全部与README/PROOF及Python。运行另存日志，不把执行计为额外学术查询。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O21",
+      "route": "代码、公开 AI 和社区",
+      "site": "Erdős Problem a Day / web open",
+      "query": "open112-kirtchakov-k34-certificates-checked-by-a-verified-checker",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.erdosproblemaday.com/day/112-kirtchakov-k34-certificates-checked-by-a-verified-checker",
+      "note": "根实际读取43行全文：11月19日更新已完成445例，346例N21必要、99例冗余，281GB流式LRAT。作者页面说明case split/encoding仍普通代码与纸面论证，不能升级为整个主定理机器形式化。属于第三方报告，本轮未复跑281GB。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O22",
+      "route": "学术",
+      "site": "Gallai–Milgram官方机构原文 / web open",
+      "query": "open math_021_fasc_003_004_181-186.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://acta.bibl.u-szeged.hu/29471/1/math_021_fasc_003_004_181-186.pdf",
+      "note": "根读printedpp181–184定义、Satz2.2及3.1；定理适用于可含有向圈的oriented graph，单点也算path，不能误译为仅DAG。由≤α条路径覆盖直接推出路径版阈值+1，未声称重证原文整条Gallai–Milgram定理。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O23",
+      "route": "学术",
+      "site": "arXiv / web open",
+      "query": "open https://arxiv.org/pdf/1707.09556v3",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/1707.09556v3",
+      "note": "根web返回DisabledError；学术路线已通过正常HTTP取得原版PDF，根继而复用本轮所得015_irw_v3.txt核Theorems1.1–1.3、Prop3.4，不另伪记HTTP下载。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-O24",
+      "route": "学术",
+      "site": "Cyborg Mathematics / web open",
+      "query": "open https://cyborgmathematics.com/results/erdos-112-k63-bounds",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://cyborgmathematics.com/results/erdos-112-k63-bounds",
+      "note": "根追加打开返回not accessible；学术路线此前已实际读取该作者页，四组下界另有固定代码和本轮图见证核验。两次入口结果分记，不称根已成功读取这个网页。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "turn967303017search0",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"Zach Hunter\" \"directed\" \"Ramsey\" path",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.erdosproblems.com/forum/thread/112",
+      "locator": "搜索结果中的题面和归属",
+      "note": "取得 Hunter 比较界和 Hunter–Steiner 路径变体归属线索；尚未取得他们独立论文。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "turn967303017search0; turn967303017search1",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"Hunter\" \"Steiner\" \"directed paths\" Ramsey",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.erdosproblems.com/forum/thread/112",
+      "locator": "搜索结果",
+      "note": "SciNet重述不是新增独立证明；无关 induced/size Ramsey 论文未作同题证据。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "turn793633627search0",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"New bounds on the Erdős-Rado number\" k(6,3) (recency=30)",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://aixiv.online/abs/2611.02312",
+      "locator": "摘要/元数据",
+      "note": "命中2026年新稿后继续核全文，不以摘要关闭主问。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "turn793633627search5; turn793633627search6; turn793633627academia8",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "Larson Mitchell 1997 digraph Ramsey transitive tournament",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/1707.09556",
+      "locator": "1997文献条目、IRW论文摘要",
+      "note": "1997全文由root独立负责；本路线转核IRW新界。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "turn793633627search0; turn793633627search2",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"Hunter\" \"Steiner\" \"112\" directed Ramsey (recency=365)",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "本次015_web02搜索请求",
+      "note": "未得到独立 Hunter–Steiner 文章；保持网页归属与独立数学推导分开。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "turn793633627view0; turn266681604view1; turn266681604view2; turn778621090view1; turn976374528view0; turn976374528view1",
+      "route": "学术",
+      "site": "aiXiv",
+      "query": "open https://aixiv.online/pdf/2611.02312；随后分别 open lines 210,400,253,347,467",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://aixiv.online/pdf/2611.02312",
+      "locator": "17页；Theorem1、Remark2、Lemmas3/5/8/9、Theorems6/10、Remarks11–14、AppendixA、Data availability",
+      "note": "实际核定义、有限证书接口与手算计数；未在学术路线执行程序。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "turn266681604view0",
+      "route": "学术",
+      "site": "aiXiv",
+      "query": "open https://aixiv.online/abs/2611.02312",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://aixiv.online/abs/2611.02312",
+      "locator": "Submission history v1/v2/v3；Comments",
+      "note": "v2纠正优先权/命名版本，v3元数据改动，论文同v2；未同行评审。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "turn266681604view3",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/1707.09556",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/1707.09556",
+      "locator": "v3=2020-04-08；版本列表、摘要",
+      "note": "后续正常HTTP取得v3全文。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "turn266681604view4; turn778621090view3; turn778621090view4",
+      "route": "学术",
+      "site": "作者主页",
+      "query": "open https://cyborgmathematics.com/highlights；find Nov 20；find four new",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://cyborgmathematics.com/highlights",
+      "locator": "Erdős112第1及第3项；第二个find无命中",
+      "note": "只读取本题相关段落；相邻Heilbronn证书数量不属于本题。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "turn778621090view0",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/pdf/1707.09556v3",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/1707.09556v3",
+      "note": "web返回DisabledError；不是最终不可访问，后续HTTP200取得。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "turn778621090view2",
+      "route": "学术",
+      "site": "Erdős Problems forum",
+      "query": "open https://www.erdosproblems.com/forum/thread/112",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.erdosproblems.com/forum/thread/112",
+      "note": "web restricted URL；搜索结果摘录不能冒称论坛全文已读。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "turn976374528search0; turn976374528search9",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"Erdős-Rado\" \"k(6,3)\" correction withdrawn (recency=365)",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://cyborgmathematics.com/timeline",
+      "locator": "修订/撤回定向搜索",
+      "note": "发现撤回旧优先权表述的线索，继续打开作者版本记录；未命中一般k(n,m)完整解。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "turn976374528search2; turn976374528search4",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"Hunter\" \"Steiner\" \"directed path\" \"112\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.erdosproblems.com/latex/112",
+      "locator": "页面索引中的最小强迫定义和缺+1式",
+      "note": "不把索引文字认定为正确阈值；随后以Gallai–Milgram原文及独立上下界校验。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "turn976374528view2; turn361667639view2; turn361667639view3; turn397423476view0",
+      "route": "学术",
+      "site": "作者主页",
+      "query": "click highlights id33；find four；find 24390891；open result page line237",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://cyborgmathematics.com/results/erdos-112-k63-bounds",
+      "locator": "Four more cases, November 2026；Notes on numbers；Revision history",
+      "note": "四个下界、证据层级和日期实际核读；find DOI数字未命中，仅因链接文本未露数字。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "turn976374528view3; turn361667639view0",
+      "route": "学术",
+      "site": "Zenodo",
+      "query": "click highlights id34 -> DOI10.5281/zenodo.24390891；open https://zenodo.org/records/24390891",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://zenodo.org/records/24390891",
+      "note": "DOI跳转不可访问，records入口亦不可达；作者网页全文可达。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "turn361667639view1",
+      "route": "学术",
+      "site": "作者主页",
+      "query": "open https://cyborgmathematics.com/timeline",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://cyborgmathematics.com/timeline",
+      "locator": "时间线的来源定义及相关搜索命中；详细本题修订另由结果页读取",
+      "note": "未将其他题目的时间线条目纳入本题证据。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "turn361667639search1; turn361667639search6",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "Gallai Milgram 1960 directed graph path partition independence number proof original paper",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.sciencedirect.com/science/article/pii/0012365X94001731",
+      "locator": "Bondy1995摘要及原定理书目线索",
+      "note": "最终证据改用Gallai–Milgram1960官方原文。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "exec:f53f67/66b863; exec:59ee0c; exec:5cfdd4; exec:c95f69; exec:16aebb",
+      "route": "学术",
+      "site": "arXiv / normal HTTPS / local pdftotext",
+      "query": "urllib GET https://arxiv.org/pdf/1707.09556v3；pdftotext -layout；读取pp1–11、13–17相关段",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1707.09556v3",
+      "locator": "Definitions p2；Theorems1.1–1.3 pp3–4；Proposition3.4 pp9–10；§5 pp11–17",
+      "note": "HTTP200，232162 bytes，SHA256 c845d4a45de7e5c97e7fb041832c2ff62da89bcd2556264228cbbdf1fd6d4702；未重新验证作者每一有限构造/所有引用定理。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "exec:f53f67/66b863; exec:403cde; exec:3f4276",
+      "route": "学术",
+      "site": "aiXiv / normal HTTPS / local pdftotext",
+      "query": "urllib GET https://aixiv.online/pdf/2611.02312；pdftotext -layout；补读纸面pp4–6、12–13、15–16",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://aixiv.online/pdf/2611.02312",
+      "locator": "Remark2、Lemma5全证明、Theorem6、Theorem10尾、Remarks11–14、形式化声明、参考[6]",
+      "note": "HTTP200，144166 bytes，SHA256 86a166e415eef33080db6ec3beaa4c4b382eba371c43d4854ce354c4a03411b8。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "exec:e8aa87",
+      "route": "学术",
+      "site": "Zenodo API / normal HTTPS",
+      "query": "urllib GET https://zenodo.org/api/records/24390891",
+      "date": "2026-11-26",
+      "outcome": "限流或权限",
+      "url": "https://zenodo.org/api/records/24390891",
+      "note": "HTTP403；未取得该API条目，不能标记其数据证书本路线已阅。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "turn397423476view1",
+      "route": "学术",
+      "site": "DOI / Elsevier",
+      "query": "click author result-page id42 -> DOI10.1016/j.disc.2020.112268",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://doi.org/10.1016/j.disc.2020.112268",
+      "note": "跳转linkinghub不可访问；IRW完整预印本可达，刊号由引用资料定位，未冒称出版社全文已核。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "turn397423476view2",
+      "route": "学术",
+      "site": "Web navigation",
+      "query": "click 〔原始工具引用已私有留存〕 id0 〔私有记录编号：PR-004060〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "invalid arguments，未取得正文；随后的直接open也如实记录。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "turn902893128search0; turn902893128search10",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"Gallai\" \"Milgram\" \"Verallgemeinerung\" pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://acta.bibl.u-szeged.hu/29471/",
+      "locator": "官方机构库条目与PDF",
+      "note": "定位1960原文，后续实际打开全文。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "turn902893128search5; turn902893128search6; turn902893128search8",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"Erdős problem 112\" solved correction theorem (recency=30)",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://aixiv.online/abs/2611.02312",
+      "locator": "定向完整解/勘误搜索",
+      "note": "返回小参数界、作者修订记录和陈旧题集索引；没有由此断言整个领域绝无完整解。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "turn902893128view0",
+      "route": "学术",
+      "site": "ScienceDirect",
+      "query": "open https://www.sciencedirect.com/science/article/pii/0012365X94001731",
+      "date": "2026-11-26",
+      "outcome": "限流或权限",
+      "url": "https://www.sciencedirect.com/science/article/pii/0012365X94001731",
+      "note": "HTTP403；只取得该文摘要搜索命中，最终路径论证采用1960原文。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "turn262486819view0; turn262486819view1; turn917638521view0",
+      "route": "学术",
+      "site": "SZTE官方机构库",
+      "query": "open PDF与条目 https://acta.bibl.u-szeged.hu/29471/；screenshot pageno3",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://acta.bibl.u-szeged.hu/29471/1/math_021_fasc_003_004_181-186.pdf",
+      "locator": "printed pp181–182定义；Satz(2.2)p182；Satz(3.1)/(3.3) pp184–186；p184图像核读",
+      "note": "路径覆盖定理是TT主问的不同变体工具；截图明确至多α条顶点互不相交有向路。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "exec:65ed09",
+      "route": "学术",
+      "site": "SZTE / normal HTTPS",
+      "query": "urllib GET https://acta.bibl.u-szeged.hu/29471/1/math_021_fasc_003_004_181-186.pdf",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://acta.bibl.u-szeged.hu/29471/1/math_021_fasc_003_004_181-186.pdf",
+      "note": "本地HTTP503，但web全文及p184截图已成功；不是原文访问缺口。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "turn911110627search0; turn911110627search2; turn911110627search3",
+      "route": "学术",
+      "site": "Web search / system1",
+      "query": "\"21890619\" \"k(3,4)\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/05oz/certify",
+      "locator": "新稿参考[6]触发的P0特例完整声明追踪",
+      "note": "发现k(3,4)=21及第三方检查；搜索索引仍写in progress，必须以随后实际打开的更新页为准。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "turn911110627view0",
+      "route": "学术",
+      "site": "Zenodo",
+      "query": "open https://zenodo.org/records/21890619",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://zenodo.org/records/21890619",
+      "note": "不可访问；后续从固定commit取得完整note。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "turn520187894view0",
+      "route": "学术",
+      "site": "GitHub raw",
+      "query": "open https://raw.githubusercontent.com/05oz/certify/main/k34-paper/note.pdf",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://raw.githubusercontent.com/05oz/certify/main/k34-paper/note.pdf",
+      "note": "web DisabledError；后续正常HTTP成功取得固定commit PDF。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "turn520187894view1",
+      "route": "学术",
+      "site": "GitHub",
+      "query": "open https://github.com/05oz/certify/blob/main/CORRECTIONS.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/05oz/certify/blob/main/CORRECTIONS.md",
+      "locator": "工具缓存内容较旧，未含最新v0.18开头",
+      "note": "后续固定commit原文件才作为本轮当前勘误证据；只处理本题Part G/J。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "turn520187894view2",
+      "route": "学术",
+      "site": "第三方研究项目原报告",
+      "query": "open https://www.erdosproblemaday.com/day/112-kirtchakov-k34-certificates-checked-by-a-verified-checker",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.erdosproblemaday.com/day/112-kirtchakov-k34-certificates-checked-by-a-verified-checker",
+      "locator": "全文43行；Updated19November及25November平台说明",
+      "note": "实际页面为CONFIRMED；报告完成445例，其中346必要；case split/编码不在形式化边界内。本路线未复跑。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "exec:9dc657/a2d846; exec:c44a4b; exec:666e06",
+      "route": "学术",
+      "site": "GitHub API + raw / normal HTTPS",
+      "query": "GET api.github.com/repos/05oz/certify/commits/main；GET pinned k34-paper/note.pdf、k34-paper/FIXLOG.md、CORRECTIONS.md；pdftotext并读§1–7、Part G/J",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/05oz/certify/tree/3b61218c773c717839bc773bacbe7e66c55cef68",
+      "locator": "commit2026-11-26T05:58:52Z；note13页，datedAug11并含Nov17/Nov25修订",
+      "note": "note SHA256 9098fabcb0b4f9bfe737db166ef0074121edcd4587c429107fd208eb925f7c28；读过分类接口、声称证书范围和trusted base，不在此路线执行证书。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "exec:1ac585; exec:b9aa2d",
+      "route": "学术",
+      "site": "arXiv / normal HTTPS",
+      "query": "GET https://arxiv.org/pdf/1707.09556v1；pdftotext；读§2 Proposition2.7与Cayley段",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1707.09556v1",
+      "locator": "2017-07-29 v1；printed pp9–11",
+      "note": "实际确认v1的上界24声明及20点最大Cayley避例记述；这些不在已读v3中。不因新版删去就宣称旧命题撤回/已反驳。SHA256 2787193d2cc82d84b1999ceaaf5247a04ae9170d0fea7ff24634deec95ba93e8。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-S01",
+      "route": "代码、公开 AI 和社区",
+      "site": "搜索引擎 system2",
+      "query": "\"Erdos\" \"112\" \"directed\" \"transitive\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://mathworld.wolfram.com/Erdos-RadoNumber.html",
+      "locator": "〔原始工具引用已私有留存〕–23，同批 S01–S03",
+      "note": "命中原题、MathWorld及新有限参数结果入口；二手索引只用于定位，后续实际读原仓与作者页面。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-S02",
+      "route": "代码、公开 AI 和社区",
+      "site": "搜索引擎 system2",
+      "query": "site:github.com \"Erdos112\" \"erdos_112\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/mehmetmars7/Erdosproblems-llm-hunter/blob/7446be76994f72aec5e115d221e73f424f5b1e29/attacks/open_problems/erdos/gpt_pro_5.2/112.tex",
+      "locator": "〔原始工具引用已私有留存〕、12、16；同批 S01–S03",
+      "note": "命中旧 LLM 路径与形式化名称；后续固定实际当前提交，旧路径404没有当成当前证明文件。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-S03",
+      "route": "代码、公开 AI 和社区",
+      "site": "搜索引擎 system2",
+      "query": "\"Erdős\" \"112\" (solved OR proof OR counterexample OR Lean)",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://cyborgmathematics.com/writing/erdos-112-from-zero",
+      "locator": "〔原始工具引用已私有留存〕、10、11、19、23；同批 S01–S03",
+      "note": "命中 Orden k(6,3)论文、四个新下界、Kirtchakov复核报道及AI索引。没有将有限参数完成声明当全主问解决。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-S04",
+      "route": "代码、公开 AI 和社区",
+      "site": "搜索引擎 system1",
+      "query": "\"Erdős\" \"112\" (\"Lean\" OR \"solved\" OR \"proof\")；recency=30",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://cyborgmathematics.com/writing/erdos-112-from-zero",
+      "locator": "〔原始工具引用已私有留存〕–3，同批 S04–S06",
+      "note": "当前声明补查，核到新有限界与验证页面；未取得适用于全体n,m的完整答案。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-S05",
+      "route": "代码、公开 AI 和社区",
+      "site": "搜索引擎 system1",
+      "query": "\"Erdos112\" \"erdos_112\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://erdos.constellate.science/finding.html?n=112",
+      "locator": "〔原始工具引用已私有留存〕；同批 S04–S06",
+      "note": "命中旧题面对齐审计，不能据旧索引的no hosted Lean推断当前没有有限参数证明。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-S06",
+      "route": "代码、公开 AI 和社区",
+      "site": "搜索引擎 system1",
+      "query": "\"Kirtchakov\" \"k(3,4)\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.erdosproblemaday.com/day/112-kirtchakov-k34-certificates-checked-by-a-verified-checker",
+      "locator": "〔原始工具引用已私有留存〕；同批 S04–S06",
+      "note": "实际打开最新页后纠正早期索引in progress：现页称11月18日确认。该路线本轮不重放281GB证书，后续固定库核验由另一代理单列。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-G01",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET google-deepmind/formal-conjectures commits/main",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "locator": "sha、committer.date",
+      "note": "实际main=5bd8bfb9def462c19a87d2d275af3db3341dc727，2026-11-26T13:20:16Z；不是沿用前题快照。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-G02",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "GET FormalConjectures/ErdosProblems/112.lean at 5bd8bfb9def462c19a87d2d275af3db3341dc727",
+      "date": "2026-11-26",
+      "outcome": "档案或版本缺失",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/FormalConjectures/ErdosProblems/112.lean",
+      "locator": "实际固定文件请求返回404",
+      "note": "只说明该固定主线此路径没有文件；不说明全网无形式化。随后搜索PR而非停止于404。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-G03",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET Tyorden/erdos-112-lean commits/main；随后固定README与完整recursive tree",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/Tyorden/erdos-112-lean/tree/f306b3d6abf5ba4c6ed7a09466f7dace4c18df2f",
+      "locator": "README；45个tree条目、truncated=false",
+      "note": "main=f306b3d6abf5ba4c6ed7a09466f7dace4c18df2f，2026-11-16T06:50:47Z。主声明30≤k(6,3)≤32，v1.1称消除native_decide；原生搜索程序与形式证明应分开。该独立仓本轮未另行构建，实际构建的是含同一主结果的small-bounds固定仓。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-G04",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API / fixed source",
+      "query": "GET Tyorden/erdos-112-small-bounds-lean commits/main；固定README与完整recursive tree",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/Tyorden/erdos-112-small-bounds-lean/tree/1fcdbe50607e4cb858cffd5559f07afcb98e0611",
+      "locator": "README；58个tree条目、truncated=false",
+      "note": "main=1fcdbe50607e4cb858cffd5559f07afcb98e0611，2026-11-22T01:03:53Z。取得四项有限下界及Lean4.35.0锁。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-G05",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "GET fixed small-bounds Defs.lean、X03KNM.lean、Solution.lean、Challenge.lean、Axioms.lean、lakefile.toml、lean-toolchain、lake-manifest.json",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/Tyorden/erdos-112-small-bounds-lean/tree/1fcdbe50607e4cb858cffd5559f07afcb98e0611",
+      "locator": "Defs L18–49；X03KNM L31–34/L131–200；Solution全文；Challenge L103–119",
+      "note": "逐项核定最小强迫定义、方向边模型、TT注入性、sInf非空和Challenge/证明入口分离；原锁Lean4.35.0，Mathlib56a005855ea17e0b0958f73ec801ae140b0a1679。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-G06",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "Erdos112；repository_name=google-deepmind/formal-conjectures",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "locator": "7个名称前缀搜索结果",
+      "note": "返回1121/1122/1125等前缀匹配，并非本题112；不据搜索结果数声称找到本题已合并模块。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-G07",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub PR search / API",
+      "query": "搜索google-deepmind/formal-conjectures题号112；添加is:pull-request后重试；GET pulls/6648",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/6648",
+      "locator": "首请求422；修正后2个PR结果；PR6648 body/state/head",
+      "note": "PR6648状态open，created2026-09-27，updated2026-10-10；head AItoBit/formal-conjectures patch-11，9ae7f15b14bcba80143bb3412cacbbcbf064597e。作者说Claude生成且未本地构建、依靠CI；这些不是本轮通过日志。另一PR为Qex112，排除。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-G08",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "GET AItoBit/formal-conjectures FormalConjectures/ErdosProblems/112.lean at 9ae7f15b14bcba80143bb3412cacbbcbf064597e",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/AItoBit/formal-conjectures/blob/9ae7f15b14bcba80143bb3412cacbbcbf064597e/FormalConjectures/ErdosProblems/112.lean",
+      "locator": "源码全文，主问与五个variants证明体",
+      "note": "固定完整源码取得。主问answer(sorry)且by sorry；五个标solved的已知界也by sorry。只作静态语义核对，未构建此骨架。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-G09",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API / fixed source",
+      "query": "GET mehmetmars7/Erdosproblems-llm-hunter commits/main；GET old attacks/erdos/gpt_pro_5.2/112.tex at fixed commit",
+      "date": "2026-11-26",
+      "outcome": "档案或版本缺失",
+      "url": "https://github.com/mehmetmars7/Erdosproblems-llm-hunter/tree/7446be76994f72aec5e115d221e73f424f5b1e29",
+      "locator": "main commit元数据；旧路径404",
+      "note": "当前main7446be76994f72aec5e115d221e73f424f5b1e29，2026-10-26T23:46:45Z。历史搜索命中的旧文件路径已移动，需继续追路径。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-G10",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub history / fixed source",
+      "query": "GET old-path commit history；读取当前 attacks/open_problems/erdos/gpt_pro_5.2/112.tex at 7446be76994f72aec5e115d221e73f424f5b1e29",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/mehmetmars7/Erdosproblems-llm-hunter/blob/7446be76994f72aec5e115d221e73f424f5b1e29/attacks/open_problems/erdos/gpt_pro_5.2/112.tex",
+      "locator": "9月25日路径移动7029609de1329f7899db572f97fd601fee39bcf8；当前全文",
+      "note": "实际追到open_problems目录并读全文。末尾UNRESOLVED；文中所谓fully proved k(2,m)=2^(m−1)的构造在m=4即含TT4。无随文可复跑程序日志。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-O01",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者主页",
+      "query": "open https://cyborgmathematics.com/writing/erdos-112-from-zero",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://cyborgmathematics.com/writing/erdos-112-from-zero",
+      "locator": "〔原始工具引用已私有留存〕，全文377行",
+      "note": "2026-11-16发表、11-21更新；作者披露AI生成/复核、无人工审稿，给30–32与代码、Zenodo、注册入口。三个内核验证是作者历史报告，不是本轮三个内核全部复跑。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-O02",
+      "route": "代码、公开 AI 和社区",
+      "site": "第三方复核项目报告",
+      "query": "open erdosproblemaday Kirtchakov k(3,4) certificate audit",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.erdosproblemaday.com/day/112-kirtchakov-k34-certificates-checked-by-a-verified-checker",
+      "locator": "〔原始工具引用已私有留存〕，全文42行",
+      "note": "现页CONFIRMED NOV18，11-19更新；称445证书、72代表、重新生成并cake_lpr检查281GB。明确cake_lpr退出0本身不够，需s VERIFIED UNSAT。这是他人历史复跑，本轮未运行此大证书流程；本题k34深入组件由另代理提供。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-O03",
+      "route": "代码、公开 AI 和社区",
+      "site": "Palomar registry",
+      "query": "open 两个entry?id=PALOMAR-2026-11-22-000008 / PALOMAR-2026-11-15-000004，version=1",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://palomar-registry.org/entry?id=PALOMAR-2026-11-22-000008&version=1",
+      "locator": "〔原始工具引用已私有留存〕–1",
+      "note": "小界entry入口不可达；主界entry只返回JS shell。未据入口标题声称已读核验详情。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-O04",
+      "route": "代码、公开 AI 和社区",
+      "site": "Palomar public data",
+      "query": "open https://data.palomar-registry.org/recent.json；find小界entry；尝试两条entries/*-v1.json",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://data.palomar-registry.org/recent.json",
+      "locator": "〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕 L8566–8585；〔原始工具引用已私有留存〕–2",
+      "note": "实际recent feed含小界四个定理、commit1fcdbe5…、published2026-11-22T06:42:26Z。两条明细JSON经web不可达；本地urllib recent读取403。未取得注册详细检查日志，不把注册元数据当本轮或第三方独立证明检查。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-O05",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开题面对齐审计",
+      "query": "open https://erdos.constellate.science/finding.html?n=112；click verdicts.json",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://erdos.constellate.science/finding.html?n=112",
+      "locator": "〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕",
+      "note": "页面JS shell；verdicts.json HTTP502。搜索索引旧July22口径没有当前证明信息，不能替代本轮新仓核查。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-O06",
+      "route": "代码、公开 AI 和社区",
+      "site": "raw source访问补救",
+      "query": "open raw PR112 source via web；再用GitHub connector和urllib读取同一固定文件",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/AItoBit/formal-conjectures/blob/9ae7f15b14bcba80143bb3412cacbbcbf064597e/FormalConjectures/ErdosProblems/112.lean",
+      "locator": "web失败turn245996575view0 DisabledError；GitHub/urllib实际成功",
+      "note": "保留访问失败与成功层级：不是所有渠道都成功，也不是仅索引。最终静态核对用实际取得的完整固定文件。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-R01",
+      "route": "代码、公开 AI 和社区",
+      "site": "固定源码获取 / GitHub git checkout",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-004061〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/Tyorden/erdos-112-small-bounds-lean/tree/1fcdbe50607e4cb858cffd5559f07afcb98e0611",
+      "locator": "〔私有材料定位已省略〕；〔私有材料定位已省略〕",
+      "note": "这条检索只计真实源码获取；随后python 〔私有材料定位已省略〕，不另计新增查询。41个Lean源码，Solution本地导入闭包不含Challenge；剥除注释/字符串后的闭包无sorry、sorryAx、额外axiom或native_decide词项。仅词法审计，不替代内核检查。manifest SHA256=4fa786a4f76af555a3d6363ae9caf8dd92c652d108589f56ded6f987186cdc13。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-CODE-R04",
+      "route": "代码、公开 AI 和社区",
+      "site": "固定Lean运行时配置核验",
+      "query": "GitHub search LEAN_NUM_THREADS in leanprover/lean4；GET src/runtime/object.cpp at eb6cafb7290e8bd5f2937522d8d804f58f02bafc",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/leanprover/lean4/blob/eb6cafb7290e8bd5f2937522d8d804f58f02bafc/src/runtime/object.cpp",
+      "locator": "get_lean_num_threads / lean_init_task_manager",
+      "note": "实际源码确认环境变量控制任务线程数。后续仅设置LEAN_NUM_THREADS=1降低资源并发，不改变证明、工具链或依赖锁。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-D01",
+      "route": "库内查重",
+      "site": "固定2469条简索引 / rg",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-004062〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 17,
+      "note": "真实首轮宽检，共17条标题/别名命中。其他条目涉及最长路横截、最小出度、Hamilton分解及oriented trees，未形成同一独立集vs传递竞赛图阈值候选，不据标题作关系定案。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-D02",
+      "route": "库内查重",
+      "site": "固定2469条简索引 / Python字段筛查",
+      "query": "逐项读取title/title_en/aliases，匹配正则：independent.{0,30}tournament|独立.*传递|有向.*Ramsey|Ramsey.*有向|directed.*Ramsey|oriented.*Ramsey|independent.*transitive|transitive.*independent|TT[_ -]|Larson|Mitchell|Hunter|Steiner|Erd.?s.{0,12}112|传递.*竞赛",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 9,
+      "note": "九条命中中包括TT片段误匹配Scott/Witt等，以及Steiner树/系统；追加边界约束排除检索噪声，未读取这些无关卡正文。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-D03",
+      "route": "库内查重",
+      "site": "固定2469条简索引 / Python字段筛查",
+      "query": "逐项读取title/title_en/aliases，匹配修正词界后的正则：independent.{0,30}tournament|独立.*传递|有向.*Ramsey|Ramsey.*有向|directed.*Ramsey|oriented.*Ramsey|independent.*transitive|transitive.*independent|(?:^|[^A-Za-z])TT[_ -]|Larson.{0,12}Mitchell|Hunter.{0,12}Steiner|Erd.?s.{0,12}112|传递.*竞赛",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 1,
+      "locator": "QX-P-000015为第15物理行，card_rev=8dfe2596d460f7ca",
+      "note": "精确术语筛查只命中当前卡。索引2469行，SHA256=f8cb9c4e9e263756a5078cdbb6094c065ecd704586a97e171cebb5e695476701。没有形成须判同题的候选，因此未发起其他卡正文请求；不代表已完成2469卡全文语义查重。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "web:turn817807471",
+      "route": "代码、公开 AI 和社区",
+      "site": "web open",
+      "query": "open https://www.erdosproblemaday.com/day/112-kirtchakov-k34-certificates-checked-by-a-verified-checker",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.erdosproblemaday.com/day/112-kirtchakov-k34-certificates-checked-by-a-verified-checker",
+      "locator": "正文更新段、What the check covers、What still rests on ordinary code",
+      "note": "本轮实际打开活页，工具ref 〔原始工具引用已私有留存〕；CONFIRMED header 2026-11-18、11-19完成更新；只覆盖(3,4)特例，未解决主一般问题。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "web:turn817807471",
+      "route": "代码、公开 AI 和社区",
+      "site": "web open",
+      "query": "open https://github.com/05oz/certify",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/05oz/certify",
+      "note": "与前条同次web批请求，工具ref 〔原始工具引用已私有留存〕；README读取当前Part G/Part J相关入口。未调查仓库其他问题。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-KGH01",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API / fetch",
+      "query": "GET https://api.github.com/repos/05oz/certify/commits/main",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/05oz/certify/commits/main",
+      "note": "本轮真实请求，返回sha=3b61218c773c717839bc773bacbe7e66c55cef68，committer时间2026-11-26T05:58:52Z；只用元数据固定版本。连接器未返回opaque request_id，此值为本轮请求追踪编号。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "web:turn137407722",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1 / recency30",
+      "query": "site:erdosproblemaday.com \"k(3,4)\" \"verified checker\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "真实system1查询；〔原始工具引用已私有留存〕/search1为过时in progress缓存，不以其覆盖已实际读取的当前CONFIRMED页。与本批第二查询和两个click共用同一web请求。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "web:turn137407722",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1 / recency30",
+      "query": "site:github.com/05oz/certify \"Part J\" \"vertex-transitive\"",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "本批第二真实查询未返回可用独立命中；Part J正文另用固定commit直接取得。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "web:turn137407722",
+      "route": "代码、公开 AI 和社区",
+      "site": "web click",
+      "query": "click 〔原始工具引用已私有留存〕 link17 〔私有记录编号：PR-004063〕",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://github.com/pw/erdosproblemaday-verification/tree/main/112/kirtchakov-certificates-cake-lpr",
+      "note": "工具ref 〔原始工具引用已私有留存〕：restricted URL。随后GitHub连接器取得固定README和结果，访问缺口已绕开。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "web:turn137407722",
+      "route": "代码、公开 AI 和社区",
+      "site": "web click",
+      "query": "click 〔原始工具引用已私有留存〕 link16 〔私有记录编号：PR-004064〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/tanyongkiam/cake_lpr",
+      "note": "工具ref 〔原始工具引用已私有留存〕；官方checker仓库定位，之后另取实际第三方所用a36874a版README。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-KGH02",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "05oz/certify k34add-paper/note.md ref=3b61218c773c717839bc773bacbe7e66c55cef68",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/05oz/certify/blob/3b61218c773c717839bc773bacbe7e66c55cef68/k34add-paper/note.md",
+      "locator": "Theorem1.1、§4 Proposition4.1、§6 correction2026-11-17",
+      "note": "固定Part J正文已读，git blob=36409a40371966367e26c190cdd783e9a8b6272a；保存015_k34add_note_fixed.md。该项为新的真实在线获取；Part G PDF、FIXLOG、CORRECTIONS则复用同轮150所得，不重记新获取。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-KGH03",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API / fetch",
+      "query": "GET https://api.github.com/repos/pw/erdosproblemaday-verification/commits/main",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/pw/erdosproblemaday-verification/commits/main",
+      "note": "固定第三方sha=423a263a8d5c903d94c461ed8b6fa33ea7f3463b，committer时间2026-11-26T10:33:49Z。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-KGH04",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API / fetch",
+      "query": "GET https://api.github.com/repos/pw/erdosproblemaday-verification/contents/112/kirtchakov-certificates-cake-lpr",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/pw/erdosproblemaday-verification/contents/112/kirtchakov-certificates-cake-lpr",
+      "note": "真实目录读取，定位README、results、recount等小文件；未下载证明大文件。随后所有实质文件固定到KGH03 commit。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-KGH05",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "pw/erdosproblemaday-verification 112/kirtchakov-certificates-cake-lpr/README.md ref=423a263a8d5c903d94c461ed8b6fa33ea7f3463b",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/pw/erdosproblemaday-verification/blob/423a263a8d5c903d94c461ed8b6fa33ea7f3463b/112/kirtchakov-certificates-cake-lpr/README.md",
+      "locator": "What was checked and how1–6；Tools；Not checked；Independent recount",
+      "note": "完整读取第三方方法、工具、Not checked和recount纠正；保存015_k34_thirdparty_README.md。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-KGH06",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API / fetch",
+      "query": "GET https://api.github.com/repos/pw/erdosproblemaday-verification/contents/112/kirtchakov-certificates-cake-lpr/results?ref=423a263a8d5c903d94c461ed8b6fa33ea7f3463b",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/pw/erdosproblemaday-verification/contents/112/kirtchakov-certificates-cake-lpr/results?ref=423a263a8d5c903d94c461ed8b6fa33ea7f3463b",
+      "note": "目录读取定位summary.json、results.jsonl、indep.txt和sha_check.txt；仅summary及results正文另读。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "web:turn765891891",
+      "route": "代码、公开 AI 和社区",
+      "site": "web open",
+      "query": "open 〔原始工具引用已私有留存〕 lineno165 〔私有记录编号：PR-004065〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/tanyongkiam/cake_lpr",
+      "locator": "README source/proof pointer及Examples",
+      "note": "工具ref 〔原始工具引用已私有留存〕；官方当前README明确Source and proof files及正确接受输出；当前master依赖已变，不能替换第三方实际a36874a工具链。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-KGH07",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "pw/erdosproblemaday-verification 112/kirtchakov-certificates-cake-lpr/results/summary.json ref=423a263a8d5c903d94c461ed8b6fa33ea7f3463b",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/pw/erdosproblemaday-verification/blob/423a263a8d5c903d94c461ed8b6fa33ea7f3463b/112/kirtchakov-certificates-cake-lpr/results/summary.json",
+      "note": "git blob454a018f702e6ba8ff2115e2e25ddc177c6f02a4；完整取得并保存。声明done445/ok445、N21=346、281285055499 proof bytes、307同hash。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-KGH08",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "pw/erdosproblemaday-verification 112/kirtchakov-certificates-cake-lpr/results/results.jsonl ref=423a263a8d5c903d94c461ed8b6fa33ea7f3463b",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/pw/erdosproblemaday-verification/blob/423a263a8d5c903d94c461ed8b6fa33ea7f3463b/112/kirtchakov-certificates-cake-lpr/results/results.jsonl",
+      "note": "git blobb3f4868d4f925fe16d87f9c171ab93989ef87b1b；完整取得445行并保存。随后本地只读字段汇总是日志一致性检查，不是新的联网查询或证书复跑。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-015-KGH09",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "tanyongkiam/cake_lpr README.md ref=a36874a",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/tanyongkiam/cake_lpr/blob/a36874a/README.md",
+      "note": "git blob355be96caf2fdaca0b45eb96b69f5148c4dace66；实际第三方所用版本的README，HOL4=0ae7030322cdf2b0d46dc9d5503e2d5eae2fa726、CakeML=fb377b4bb704497c921cde68ccc8da3b4f0e9132。未审阅或构建HOL4证明源码。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E015-O1956",
+      "url": "https://www.renyi.hu/~p_erdos/1956-02.pdf",
+      "locator": "printed pp440–441 Theorem25：有限P_mn定义、l0(m,n)与三色Ramsey上界；p428区间记号",
+      "version": "Erdős–Rado, A partition calculus in set theory, Bull.Amer.Math.Soc.62(1956),427–489；DOI10.1090/S0002-9904-1956-10036-0；2026-11-26 web原PDF文本",
+      "subquestions": [
+        "主问题",
+        "模型、最小阈值及退化参数",
+        "经典一般上界及m=3的旧二次上界"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "review_status": "仅核关键步骤",
+      "note": "把ρ(x,y)=0解释为存在弧，ρ(x,y)=ρ(y,x)=1解释为无弧，则l0(m,n)=本卡k(n,m)。原文[0,l]采用左闭右开，恰有l点，不是l+1。普通TT仅要求排序中的正向弧，不禁止宿主反弧。三色Ramsey上界在此原文已出现；仅核有限模型及该上界接口，不把原书全文序数论证或1953演讲逐字内容说成已核。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E015-O1967",
+      "url": "https://www.renyi.hu/~p_erdos/1967-19.pdf",
+      "locator": "printed p624 Theorem1、p625 Theorem2 inequality(3)；p633参考文献[1]",
+      "version": "Erdős–Rado, J.London Math.Soc.42(1967),624–633；DOI10.1112/jlms/s1-42.1.624；PDF SHA25621b0ab1ce9c7a8ca395be10f2f9685008d06e26abeeb671282b618b9f784d56f",
+      "subquestions": [
+        "主问题",
+        "经典一般上界及m=3的旧二次上界"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "review_status": "仅核关键步骤",
+      "note": "视觉核公式及有限ρ模型，作者在Theorem1明示来自1956 Theorem25。补最早出处为1956、1967为进一步研究和显式总界来源；未因现代标题相同混同canonical Ramsey、普通Ramsey或有向路径问题。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E015-O1997",
+      "url": "https://www.academia.edu/26899677/On_a_problem_of_Erd%C5%91s_and_Rado",
+      "locator": "pp245–246 Questions1.2/1.3；p247 Lemma2.1/Theorem2.7；pp248–249 Lemmas4.1/4.2；p251 Lemma4.13/渐近说明",
+      "version": "Larson–Mitchell, Ann.Comb.1(1997),245–252；DOI10.1007/BF02558478；2026-11-26读取作者公开原文OCR，出版商PDF入口未获PDF",
+      "subquestions": [
+        "主问题",
+        "模型、最小阈值及退化参数",
+        "经典一般上界及m=3的旧二次上界",
+        "公开AI稿的k(2,m)通式及构造"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "review_status": "仅核关键步骤",
+      "note": "Question1.2以独立集无双向任何弧、普通transitive tournament、最小阶数定义，和本卡核心一致；1997二次界是进展而非完整解。实际核递推后取k(2,3)=4得n²；原Lemma2.1还列k(2,5)=14、k(2,6)=28，故2^(m−1)不能当通用精确式。OCR其余高阶闭式有损，未逐字复制未经核定公式。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E015-ODEFINITIONS",
+      "url": "https://aixiv.online/pdf/2611.02312",
+      "locator": "Remark2；§2 Definitions；Lemma3/5；Lemma8/9与Theorem10",
+      "version": "aiXiv2611.02312，17页，稿页脚2026-11-21；本轮2026-11-26根核相关证明段",
+      "subquestions": [
+        "模型、最小阈值及退化参数"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "note": "根核删每对反平行弧一方向的双向归约和oriented图TT自动诱导的理由。全文只在m=3求局部界；不能把Remark13无证书观察O1–O4或搜索未中升级为k(6,3)精确值。上界实际C执行与Lean结果另列。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E015-OUCSD",
+      "url": "https://mathweb.ucsd.edu/~erdosproblems/erdos/newproblems/DirectedPaths.html",
+      "locator": "题面least number与directed path of size m (not necessarily induced)；Bibliography1–2",
+      "version": "2026-11-26实际读取原问题集页面；页面未给精确式证明",
+      "subquestions": [
+        "有向路径变体附注的阈值公式"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "同源不同问",
+      "review_status": "已读未核关键步骤",
+      "note": "只支持路径版本与TT版本的区别；精确阈值+1依本轮小例和所引Gallai–Milgram推论，不能把UCSD列出的旧上界当新解或证明原网页的乘积误式。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E015-A01",
+      "url": "https://arxiv.org/pdf/1707.09556v3",
+      "locator": "p2定义及脚注3；Theorems1.1–1.3 pp3–4；Proposition3.4 pp9–10；§4；§5 Theorem5.6",
+      "version": "arXiv1707.09556v3，2020-04-08；关联刊文Discrete Mathematics344(3)(2021)112268，DOI10.1016/j.disc.2020.112268。实际核读版本为v3PDF。",
+      "subquestions": [
+        "m=3的已知小参数精确值",
+        "固定m=3的匹配渐近量级",
+        "固定m≥3的一般上界",
+        "模型、最小阈值及退化参数",
+        "主问题"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "已取得完整稿",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "原稿参数r(I_m,L_n)与现卡k(n,m)字母相反，均按结构大小转换。精确例和m=3匹配量级分项，不把Theorem1.3的一般单侧界当成全题解决。PDF SHA256 c845d4a45de7e5c97e7fb041832c2ff62da89bcd2556264228cbbdf1fd6d4702。出版社跳转失败，不冒称读过刊版。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E015-A02",
+      "url": "https://aixiv.online/pdf/2611.02312",
+      "locator": "Theorem1 p2；Remark2 p4；Lemma5 pp5–6；Theorem6 p6；Lemma8/§4.2 pp7–10；Lemma9 pp10–11；Theorem10 pp11–12；Remarks11–14 pp12–14；Data availability p15",
+      "version": "aiXiv2611.02312v3，2026-11-21 11:00:54UTC；PDF同v2。17页，SHA256 86a166e415eef33080db6ec3beaa4c4b382eba371c43d4854ce354c4a03411b8。",
+      "subquestions": [
+        "2026年k(6,3)界30≤k(6,3)≤32",
+        "模型、最小阈值及退化参数",
+        "主问题"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "已取得完整稿",
+      "review_status": "仅核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "作者Tyler Satchel Orden；投稿不等于同行评审。学术路线复核：21点e≥74以及32点两度数情形212>210、207>198正确依赖14点42弧lemma；该计算与Lean须以根/918实际记录认定。本稿给出Erdos112.k63_bounds、Lean/Mathlib4.35.0、v1.1，学术路线仅读取其形式化声明。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E015-A03",
+      "url": "https://aixiv.online/abs/2611.02312",
+      "locator": "Submission history；Comments；v2/v3注记",
+      "version": "v1 2026-11-21 10:04:25UTC；v2 10:49:39；v3 11:00:54；2026-11-26读取",
+      "subquestions": [
+        "2026年k(6,3)界30≤k(6,3)≤32"
+      ],
+      "role": "撤回/勘误",
+      "publication": "原始档案",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "v2改正Remark7中Kirtchakov记录及另一29点例归属，补Lean定理/版本；v3仅metadata文本化，稿同v2。未读到30–32数值撤回。页面metadata hash不是PDF hash，二者不能混用。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E015-A04",
+      "url": "https://cyborgmathematics.com/results/erdos-112-k63-bounds",
+      "locator": "Four more cases, November 2026；Notes on numbers；How this was checked；Revision history",
+      "version": "作者页updated2026-11-21；数据DOI10.5281/zenodo.24390891（2026-11-20），Lean声明11-21；本轮11-26读取",
+      "subquestions": [
+        "2026年四个其他小参数下界",
+        "主问题"
+      ],
+      "role": "进展",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "四界仅下界；作者2026-11-21更新页称两程序核验并Lean证明，这条证据本身仅记录作者报告。该历史页面当时说Palomar只登记k(6,3)、未登记四界；本轮CODE-O04后续已实际读到recent feed中的2026-11-22四界注册元数据，但具体明细JSON/检查日志不可达，不能由注册标签补造独立核验。先前public lower bounds来自未审repo，不能称全部为已审文献最优值。本轮实际Lean与Python结果另见E015-C02/C03。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E015-A05",
+      "url": "https://acta.bibl.u-szeged.hu/29471/1/math_021_fasc_003_004_181-186.pdf",
+      "locator": "printed pp181–182定义；Satz(2.2)p182；Satz(3.1)/(3.3)及证明pp184–186；p184截图核读",
+      "version": "Gallai–Milgram, Acta scientiarum mathematicarum21(3–4)(1960),181–186；官方SZTE机构库，条目29471",
+      "subquestions": [
+        "有向路径变体附注的阈值公式"
+      ],
+      "role": "完整证明",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "claim_state": "已取得完整稿",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "原定理为有限oriented graph，无自环、无反平行弧但允许有向圈；至多α条顶点互不相交普通有向路覆盖所有点，允许单点路径。用于本轮独立推导路径变体forcing+1；通过每反平行对删一弧扩至一般digraph。主TT问题不由该定理解决。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "full_proof",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E015-A06",
+      "url": "https://raw.githubusercontent.com/05oz/certify/3b61218c773c717839bc773bacbe7e66c55cef68/k34-paper/note.pdf",
+      "locator": "§1.1–1.3、Theorem1.1/Remark1.3 pp2–4；§2–4 pp4–8；§6–7 pp8–10",
+      "version": "作者稿dated2026-08-11，含2026-11-17更正和2026-11-25补记；当前固定commit3b61218c773c717839bc773bacbe7e66c55cef68，2026-11-26T05:58:52Z；13页",
+      "subquestions": [
+        "小参数k(3,4)=21的声明与证书复核",
+        "模型、最小阈值及退化参数",
+        "主问题"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "仅核关键步骤",
+      "note": "Kirtchakov k(3,4)=21特例完整计算证明声明，明确不解决全参数主问。已读分类/编码/证书和trusted-base接口，未本轮跑证书。旧v0.7.0 deposit不含现已公布的72块代表/queue；17Nov commit4794560补齐。SHA256 9098fabcb0b4f9bfe737db166ef0074121edcd4587c429107fd208eb925f7c28。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E015-A07",
+      "url": "https://www.erdosproblemaday.com/day/112-kirtchakov-k34-certificates-checked-by-a-verified-checker",
+      "locator": "全文；Updated19November；What we trusted and did not check；25November平台差异段",
+      "version": "报告完成2026-11-18 22:10UTC，11-19更新，含11-25平台信息；2026-11-26实际打开页面CONFIRMED",
+      "subquestions": [
+        "小参数k(3,4)=21的声明与证书复核"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "第三方报告全部445公式经重建/独立编码比对、再求解、cake_lpr接受，必要的21点例346个；不是本学术路线复跑。HOL4/CakeML soundness覆盖证书检查器（另有I/O/系统信任界），不包括图论分类/编码/组装全部定理。搜索摘要in progress已过时，已用当前原页面纠正。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E015-A08",
+      "url": "https://raw.githubusercontent.com/05oz/certify/3b61218c773c717839bc773bacbe7e66c55cef68/CORRECTIONS.md",
+      "locator": "v0.18.0 correction round，items1–2（Part G/J）；同commit k34-paper/FIXLOG.md G-5–G-18",
+      "version": "写于2026-11-17，部分补记2026-11-25；固定commit3b61218c773c717839bc773bacbe7e66c55cef68",
+      "subquestions": [
+        "小参数k(3,4)=21的声明与证书复核"
+      ],
+      "role": "撤回/勘误",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "note": "更正优先权、checker独立性、第二checker样本数、再生次数和公开输入缺失；报告明确不改认证数学值。Part J撤回无20点点传递/Cayley极值图及全族非代数等过强说法；所列13个构造各自刚性的主张保留，不能升级为全部极值图的结构分类。这里不是撤回k(3,4)=21。本轮只核本题Part G/J，未开展其他主题研究。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E015-A09",
+      "url": "https://arxiv.org/pdf/1707.09556v1",
+      "locator": "§2 Lemma2.6、Proposition2.7及Cayley20点说明，printed pp9–11",
+      "version": "arXiv1707.09556v1，2017-07-29；19页；SHA2562787193d2cc82d84b1999ceaaf5247a04ae9170d0fea7ff24634deec95ba93e8",
+      "subquestions": [
+        "小参数k(3,4)=21的声明与证书复核"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "v1明确给r(I3,L4)≤24，并提最大避例Cayley图20点；未给该20点图具体群/弧表。本轮仅核历史声明和参数，不重跑其整数规划，也不把v3删除段落推断为结果被反驳。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E015-C01",
+      "url": "https://github.com/AItoBit/formal-conjectures/blob/9ae7f15b14bcba80143bb3412cacbbcbf064597e/FormalConjectures/ErdosProblems/112.lean",
+      "locator": "112.lean 定义IsIndep/IsTransTournament/ErdosRadoProperty/k；主定理erdos_112及五个variants",
+      "version": "未合并PR6648，head9ae7f15b14bcba80143bb3412cacbbcbf064597e；本轮2026-11-26读取；主线5bd8bfb9def462c19a87d2d275af3db3341dc727此路径404",
+      "subquestions": [
+        "公开形式化题面与占位骨架"
+      ],
+      "role": "形式化",
+      "publication": "PR",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "k取最小强迫N；Lean函数包括0参数时由空独立集/空TT得到阈值0，这是正整数题目的平凡延拓。Digraph允许自环/反平行弧，独立集忽略自环，TT是无重复顶点List.Pairwise的普通子图、非诱导子图。删除自环并从每个双向对保留一向，保留独立集且不会新造TT，故普通子图口径可与oriented模型对应。主题answer(sorry)且by sorry；五个research solved界也是by sorry，solved标签属于文献状态，不是本题Lean通过。没有为骨架运行无益构建。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E015-C02",
+      "url": "https://github.com/Tyorden/erdos-112-small-bounds-lean/tree/1fcdbe50607e4cb858cffd5559f07afcb98e0611",
+      "locator": "Defs.lean L18–49；Main.lean L30–73；X03KNM.lean L31–34/L176–200；X01K73b L83、X01K83 L240、X03K64 L549、X03Circ36N70 L339；Solution/Axioms/本轮audit",
+      "version": "commit1fcdbe50607e4cb858cffd5559f07afcb98e0611，2026-11-22T01:03:53Z；Lean4.35.0 eb6cafb7290e8bd5f2937522d8d804f58f02bafc；Mathlib56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "subquestions": [
+        "2026年k(6,3)界30≤k(6,3)≤32",
+        "2026年四个其他小参数下界"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "仅某子问",
+      "claim_state": "已取得完整稿",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "本轮独立复跑通过",
+      "claimant": "T. S. Orden / Tyorden；仓库明确披露AI参与生成",
+      "claim_date": "2026-11-22",
+      "rerun": {
+        "commit": "1fcdbe50607e4cb858cffd5559f07afcb98e0611",
+        "log_url": "urn:qunxing:private-material",
+        "theorem": "Erdos112.k63_bounds; Erdos112.upper_bound; Erdos112.lower_bound; Erdos112.k73_ge_39; Erdos112.k83_ge_47; Erdos112.km64_ge_78; Erdos112.km36_ge_71",
+        "toolchain": "Lean4.35.0 eb6cafb7290e8bd5f2937522d8d804f58f02bafc；Mathlib56a005855ea17e0b0958f73ec801ae140b0a1679；Linux x86_64；LEAN_NUM_THREADS=1",
+        "command": "lake env lean --version [exit=0]; lake build [exit=0]; lake env lean Axioms.lean [exit=0]; lake env lean 〔私有材料定位已省略〕 [exit=0]",
+        "cache": "原锁公开Mathlib缓存9031文件，完整强制解压成功；项目证明只使用本轮本地构建产物，未导入作者项目证明缓存。空间迁移只移动相同内容并保留原路径，工具链17938文件哈希/权限核同。",
+        "axioms": "{\"Erdos112.k63_bounds\": [\"propext\", \"Classical.choice\", \"Quot.sound\"], \"Erdos112.upper_bound\": [\"propext\", \"Classical.choice\", \"Quot.sound\"], \"Erdos112.lower_bound\": [\"propext\", \"Classical.choice\", \"Quot.sound\"], \"Erdos112.k73_ge_39\": [\"propext\", \"Classical.choice\", \"Quot.sound\"], \"Erdos112.k83_ge_47\": [\"propext\", \"Classical.choice\", \"Quot.sound\"], \"Erdos112.km64_ge_78\": [\"propext\", \"Classical.choice\", \"Quot.sound\"], \"Erdos112.km36_ge_71\": [\"propext\", \"Classical.choice\", \"Quot.sound\"]}"
+      },
+      "note": "独立语义核对：OGraph.asymm同时排除自环和反平行弧；HasTTm的f虽未单列injective，重复像会给自环，故自动单射。不存在n个独立点与不存在≥n点等价。k3/km为最小强迫sInf，Main.bound_6_36与X03KNM.boundM_kmBound证明定义集合非空，km_three联系两种定义；不是空sInf伪下界。29/38/46/77/70点避免图给30/39/47/78/71下界，注意+1。Challenge四个sorry是独立参考声明，不在Solution导入闭包；本轮不声称全仓无sorry。本轮原锁build和七终点#print axioms全部通过，七终点公理均限于propext、Classical.choice、Quot.sound，未含sorryAx/native_decide新增公理；输入源与锁哈希未改。没有本轮执行Comparator、NanoDa或con-ron。上述均为有限参数实质进展，不给全体n,m确值，也不涉及路径变体。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "third_party_rerun_pass",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E015-C03",
+      "url": "https://github.com/Tyorden/erdos-112-small-bounds-lean/tree/1fcdbe50607e4cb858cffd5559f07afcb98e0611",
+      "locator": "固定五图数据：Lower.rows29、X01K73b.G38bits、X01K83.G46bits、X03K64.arcC77、X03Circ36N70.arcC；本轮015_verify_witnesses.py及JSON输出",
+      "version": "同commit1fcdbe50607e4cb858cffd5559f07afcb98e0611；本轮2026-11-26 Python3.12.14独立运行exit0",
+      "subquestions": [
+        "2026年k(6,3)界30≤k(6,3)≤32",
+        "2026年四个其他小参数下界"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "仅某子问",
+      "claim_state": "已取得完整稿",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "commit": "1fcdbe50607e4cb858cffd5559f07afcb98e0611",
+        "log_url": "urn:qunxing:private-material",
+        "theorem": "G29无I6/TT3；G38无I7/TT3；G46无I8/TT3；C77无I6/TT4；C70无I3/TT6",
+        "toolchain": "Python3.12.14，标准库，整数位集",
+        "command": "python 〔私有材料定位已省略〕 > 〔私有材料定位已省略〕 2>&1 [exit0]",
+        "cache": "从固定Lean源解析图，不调用作者布尔checker或SAT结论。",
+        "axioms": "不适用：此项是独立有限枚举程序，不是Lean/HOL公理审计。"
+      },
+      "note": "全部图实际无自环且无反平行对；29/38/46/77/70顶点与140/228/322/1232/1610弧。独立集在双向非邻接关系上按递增标号完整搜索；TT按所有可能源点递归，保留原候选集与出邻集交集，避免误把标号序当拓扑序。仅用基数剪枝，分别访问1329/4878/14161/38032/807个独立集搜索节点和31/40/48/464/6933个TT状态，无禁形。空图、传递三角、C3及错误AI七点构造作为语义控制；同时输出并检查小一阶正见证。G29逐弧与原存档相同，G38/G46位串与公布双循环集逐弧相同；C77/C70从Lean实际连接集重建。该检查不证明k(6,3)上界，也不决定全主问。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E015-C04",
+      "url": "https://cyborgmathematics.com/writing/erdos-112-from-zero",
+      "locator": "作者正文Proof/Verification/AI disclosure；main repo README v1.1",
+      "version": "页面2026-11-16发表、2026-11-21更新；原主仓固定f306b3d6abf5ba4c6ed7a09466f7dace4c18df2f；本轮2026-11-26实际阅读",
+      "subquestions": [
+        "2026年k(6,3)界30≤k(6,3)≤32"
+      ],
+      "role": "进展",
+      "publication": "作者主页",
+      "scope_match": "仅某子问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "T. S. Orden",
+      "claim_date": "2026-11-16",
+      "note": "作者公开报告Lean/NanoDa/con-ron三个内核核过有限参数界，并披露AI研究/证明代码生成、核查和无人类referee。此证据只登记作者历史报告；本轮实际Lean结果另见E015-C02，不能替换成三个内核都已本轮通过。注册recent feed只核到小界提交和四定理元数据；具体注册明细JSON不可达，未据注册标签补造独立日志。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E015-C05",
+      "url": "https://github.com/mehmetmars7/Erdosproblems-llm-hunter/blob/7446be76994f72aec5e115d221e73f424f5b1e29/attacks/open_problems/erdos/gpt_pro_5.2/112.tex",
+      "locator": "Lemma112.2及其循环三块构造（L47–73）；FAST REALITY CHECK（L85–96）；FINAL/UNRESOLVED（L105–123）",
+      "version": "commit7446be76994f72aec5e115d221e73f424f5b1e29，2026-10-26T23:46:45Z；实际当前路径open_problems；本轮2026-11-26读全文",
+      "subquestions": [
+        "公开AI稿的k(2,m)通式及构造"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "仅某子问",
+      "claim_state": "关键步骤受质疑",
+      "review_status": "核对发现漏洞",
+      "formal_status": "未检到形式化",
+      "claimant": "Erdosproblems-llm-hunter / gpt_pro_5.2输出",
+      "note": "文末自标UNRESOLVED，不是全题完整解决。所谓证明k(2,m)=2^(m−1)下界的构造取两个TT(m−1)-free锦标赛A、B及新点v，定向A→B→v→A；m=4取A、B各为C3，则各取一条内部弧a0→a1、b0→b1，四点按a0,a1,b0,b1排列已经是TT4。本轮Python实际检出[0,1,3,4]，故该构造不能支撑所宣称下界。构造漏洞本身不单独证明公式所有参数均错；根代理另以Larson–Mitchell1997实际数值复核公式。其Hunter下界段自己承认推理不完整；文中声称小n枚举而未随此文件给可复跑代码/日志，本轮不把文字claim当执行结果。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "step_disputed",
+        "claim_review": "gap_found",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E015-K34-NOTE-SECOND",
+      "url": "https://github.com/05oz/certify/blob/3b61218c773c717839bc773bacbe7e66c55cef68/k34-paper/note.pdf",
+      "locator": "Theorem1.1；Remark1.3；Lemma3.1/3.2、Proposition3.3及p6 Table2/Proposition3.4；§7(1)–(5)",
+      "version": "commit 3b61218c773c717839bc773bacbe7e66c55cef68 (2026-11-26T05:58:52Z)；13页PDF SHA256=9098fabcb0b4f9bfe737db166ef0074121edcd4587c429107fd208eb925f7c28；原声明2026-08-11，现含11-17勘误和11-25外部核验补记",
+      "subquestions": [
+        "小参数k(3,4)=21的声明与证书复核"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "claim_state": "有修订",
+      "review_status": "仅核关键步骤",
+      "claimant": "Daniel Kirtchakov",
+      "claim_date": "2026-08-11",
+      "note": "复用本轮150已下载的完整稿，非重新联网下载。独立读定义、分类覆盖、信任边界并视觉核p6（015_k34_scope_p6.png）。普通TT子图与卡的(3,4)阈值吻合；删每个digon一弧保持无向邻接，故oriented与允许反平行弧的无自环digraph阈值相同。本轮只核关键推理，未独立重建完整分类或检查大型证书。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E015-K34-COVERAGE",
+      "url": "https://github.com/05oz/certify/blob/3b61218c773c717839bc773bacbe7e66c55cef68/k34-paper/note.pdf",
+      "locator": "p5 Lemma3.1/3.2、Proposition3.3；p6 Table2及Proposition3.4；本轮独立接口审查与〔私有材料定位已省略〕",
+      "version": "同固定commit 3b61218c773c717839bc773bacbe7e66c55cef68；本轮2026-11-26静态数学核对",
+      "subquestions": [
+        "小参数k(3,4)=21的声明与证书复核"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "review_status": "本轮独立数学核对",
+      "note": "独立推导：任意反例21点图选v，出/入邻集分别I3、TT3-free，非邻集为TT4-free tournament；据两个端点引理得5≤p,q≤8、4≤s≤7、p+q+s=20。反向后p≤q仅六型，给定作者分类数时25+217+31+49+21+3=346。逐块同构重标号可保全部跨块弧为自由变量；p=q保留有序块对，故不会因交换块漏图。条件式覆盖推理未见缺口；此检查没有证明分类数据的完备性，也不是HOL4形式化。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E015-K34-OUTSIDE-PAGE",
+      "url": "https://www.erdosproblemaday.com/day/112-kirtchakov-k34-certificates-checked-by-a-verified-checker",
+      "locator": "CONFIRMED标题；11-19更新；What the check covers；ordinary-code trust boundary；原网页ref 〔原始工具引用已私有留存〕",
+      "version": "2026-11-26实际读取活页；header2026-11-18、更新2026-11-19、正文含11-25作者补记",
+      "subquestions": [
+        "小参数k(3,4)=21的声明与证书复核"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Erdős Problem a Day 项目（第三方核验报告）",
+      "claim_date": "2026-11-19",
+      "note": "报告完成445个重生成CNF证书的cake_lpr检查，含全部346个N=21实例。原图覆盖短证明未机器检查，分类/编码审计用普通代码；不应登记为全命题端到端形式化。缓存搜索结果仍说in progress，已以当前全文及固定完整日志消歧。报告不检查作者自制checkers或13个极值图。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E015-K34-OUTSIDE-LOG",
+      "url": "https://github.com/pw/erdosproblemaday-verification/blob/423a263a8d5c903d94c461ed8b6fa33ea7f3463b/112/kirtchakov-certificates-cake-lpr/results/results.jsonl",
+      "locator": "445行记录；README的步骤1–6、Not checked、Independent recount；results/summary.json",
+      "version": "pw/erdosproblemaday-verification commit 423a263a8d5c903d94c461ed8b6fa33ea7f3463b (2026-11-26T10:33:49Z)；results.jsonl git blob b3f4868d4f925fe16d87f9c171ab93989ef87b1b",
+      "subquestions": [
+        "小参数k(3,4)=21的声明与证书复核"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "rerun": {
+        "commit": "423a263a8d5c903d94c461ed8b6fa33ea7f3463b",
+        "theorem": "第三方运行：346个N21 CNF及99个冗余N22–24 CNF的UNSAT证书；不是本轮运行",
+        "toolchain": "报告所用CaDiCaL3.0.1(c607304), gcc13.3.0 x86_64 Linux；cake_lpr a36874a，HOL4 0ae7030，CakeML fb377b4",
+        "command": "第三方README所载 cadical --lrat --no-binary <cube>.cnf <fifo>；cake_lpr <cube>.cnf /dev/stdin；本轮未执行",
+        "log_url": "https://github.com/pw/erdosproblemaday-verification/blob/423a263a8d5c903d94c461ed8b6fa33ea7f3463b/112/kirtchakov-certificates-cake-lpr/results/results.jsonl",
+        "cache": "本轮只下载小型结果日志；未下载或重生成281GB证明体",
+        "axioms": "图→CNF语义、分类完备性与346类覆盖没有全链形式化；第三方说明C I/O封装、汇编/链接、OS和硬件在其证明边界之外"
+      },
+      "note": "本轮实际解析445行：445个唯一名，346/90/8/1分层，445个cnf_matches_ledger=true、solver_rc20、cake_stdout精确s VERIFIED UNSAT、cake_verified=true；307个proof hash同作者ledger，合计281285055499字节，与summary一致。上述只是第三方日志内容一致性，不能替代实际LRAT重跑。原始小文件和本轮汇总已保存〔私有材料定位已省略〕。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E015-K34-CHECKER-DOC",
+      "url": "https://github.com/tanyongkiam/cake_lpr/blob/a36874a/README.md",
+      "locator": "Source and proof files、构建版本、Examples的接受/拒绝输出",
+      "version": "第三方实际使用a36874a；README blob355be96caf2fdaca0b45eb96b69f5148c4dace66",
+      "subquestions": [
+        "小参数k(3,4)=21的声明与证书复核"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "仅某子问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "官方README把源码/证明指向CakeML examples/lpr_checker，并给出HOL4与CakeML版本、UNSAT接受输出。仅静态读文档；没有检查HOL4证明源码、构建checker或输入本题证书。其形式化对象是SAT证书checker健全性，不是本题图分类/覆盖证明。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E015-K34-CORRECTIONS",
+      "url": "https://github.com/05oz/certify/blob/3b61218c773c717839bc773bacbe7e66c55cef68/CORRECTIONS.md",
+      "locator": "Part G item1、Part J item2；k34-paper/FIXLOG.md G-7至G-15及G-18；现Part G §1.1、§7、§8.1",
+      "version": "commit 3b61218c773c717839bc773bacbe7e66c55cef68；2026-11-17更正，2026-11-25补记",
+      "subquestions": [
+        "小参数k(3,4)=21的声明与证书复核",
+        "k(3,4)优先权与20点极值图结构勘误"
+      ],
+      "role": "勘误",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "有修订",
+      "review_status": "仅核关键步骤",
+      "note": "复用同轮下载文件独立核读：作者承认漏引IRW2017 v1的20点Cayley说明；原‘两独立checker全证书’与外部独立referee措辞夸大，实为自制checker同一campaign，第二checker只覆盖10个ledger加2个端点。11-17补公开72块、队列、模块；11-25记11-18外部445证书完成。2017原稿本审查未重新读，优先权此处只记录作者的明确纠正，不能据此认定2026给出首次下界。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "retraction",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E015-K34-PARTJ",
+      "url": "https://github.com/05oz/certify/blob/3b61218c773c717839bc773bacbe7e66c55cef68/k34add-paper/note.md",
+      "locator": "Theorem1.1；§2 verification scope；Proposition4.1；§6 correction2026-11-17",
+      "version": "commit 3b61218c773c717839bc773bacbe7e66c55cef68；git blob36409a40371966367e26c190cdd783e9a8b6272a；本轮完整读取",
+      "subquestions": [
+        "k(3,4)优先权与20点极值图结构勘误"
+      ],
+      "role": "撤回/勘误",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "claim_state": "部分撤回",
+      "review_status": "仅核关键步骤",
+      "note": "现定理仅称至少13个互不同构20点极值图，所列每个刚性；未分类全部。旧Zenodo措辞‘无20点极值图点传递/Cayley’已撤回：现给Cay(Z20,{2,4,5,7,11,14})，加上13个刚性实例至少14类。§4只排除特定uniform tournament blow-up达到20，不能推广所有代数构造。本轮没有重新核13图自同构，也未以第三方445个SAT日志覆盖这项结构声明。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_state": "partially_retracted",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "retraction",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E015-LOCAL-SMALL",
+      "url": "urn:qunxing:private-material",
+      "locator": "015_small_case_review.py/.json；015_math_review.md；N=0,1,2,3,4的两种模型完整标号图枚举及具体见证",
+      "version": "群星本轮2026-11-26独立推导与程序执行；脚本SHA256=5a3ef8726eace7f7b688b9317ce760ec1f6d2dc8f5b0447b01bea80eaa43d39f",
+      "subquestions": [
+        "模型、最小阈值及退化参数",
+        "有向路径变体附注的阈值公式"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "note": "无反平行模型逐阶枚举1/1/3/27/729个图；允许反平行模型1/1/4/64/4096个图。实际得到退化值1、k(n,2)=n在检查范围成立、k(2,3)=4，而I2或P3的强迫数为3。另检完全双向图的诱导TT障碍及不交并小例。一般退化恒等式及路径+1由独立数学论证/GM定理推出，并非有限计算证明所有n,m。没有执行卡建议的全部n,m≤6 SAT。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E015-LOCAL-C",
+      "url": "urn:qunxing:private-material",
+      "locator": "015_c_rerun/verify_small.c、check_witness.py、witness_n29_m6_anneal.txt、run_results.json、INDEPENDENT_REVIEW.md；015_c_downloads.json；015_c_semantic_review.json独立二读",
+      "version": "Zenodo固定记录24272287 v2（2026-11-16）；verify_small.c SHA256=db4b23c31982089dbf193b0f13041f09fdf6153f37c2e83d45fd5da86719fe0a；本轮执行2026-11-26T14:04:13UTC起",
+      "subquestions": [
+        "2026年k(6,3)界30≤k(6,3)≤32",
+        "m=3的已知小参数精确值"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "toolchain": "GCC14.2.0，Linux6.18.57 x86_64 glibc2.41；原C与Python源码未经改写",
+        "command": "cc -O2 -o verify_small verify_small.c；./verify_small glue8；./verify_small glue8r；./verify_small count 8 3；./verify_small count 9 3；python3 check_witness.py witness_n29_m6_anneal.txt",
+        "log_url": "urn:qunxing:private-material",
+        "cache": "未使用作者输出缓存，实际编译并执行；五源文件字节数/MD5与固定Zenodo元数据吻合，另存SHA256。",
+        "axioms": "普通C/Python计算，不是Lean或HOL4核验；仍信任编译器、解释器、程序模型及执行环境。"
+      },
+      "note": "所有命令exit0：glue8和glue8r均0 completions；count8,3为5040个标号oriented避例；count9,3为0；29点例140弧、0 TT3、无I6。根读全C并核回溯剪枝、固定/自由边与纸面Lemma8/9的接口；独立第二读者另核B8确为避例、|Aut(B8)|=8，故8!/8=5040配合总枚举才支持8点避例唯一性，不能只凭count8输出认定唯一性。两glue排除度5后支持14点42弧引理。21点≥74弧、32点矛盾仍需旧上界k(4,3)≤15、k(5,3)≤23及纸面计数；不需要这两参数的下界构造。此有限计算不单独承担整个上界证明。没有运行Remark13 O1–O4、没有获得k(6,3)精确值；Lean执行单列。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E015-LOCAL-K34LOWER",
+      "url": "urn:qunxing:private-material",
+      "locator": "015_k34_lower_check.py/.json；原输入为固定commit3b61218c773c717839bc773bacbe7e66c55cef68的k34add-paper/note.md §6",
+      "version": "本轮2026-11-26独立编写并实际执行；脚本SHA256=c07cd4a593b1f122988377a66b40ce635143cce9def5bd41b7b2477433c9d07d；结果SHA256=121a7e8a4c2520b85dfe27014d5d8984e2c588c5e90a443274e824ed015f2c18",
+      "subquestions": [
+        "小参数k(3,4)=21的声明与证书复核",
+        "k(3,4)优先权与20点极值图结构勘误"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "toolchain": "Python3.12.14；Linux6.18.57 x86_64 glibc2.41",
+        "command": "python3 〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material",
+        "cache": "从连接集独立生成全部弧；没有调用作者核验代码或输出缓存。",
+        "axioms": "普通Python整数组合枚举，不是Lean/HOL4形式化；信任解释器、所审算法与执行环境。"
+      },
+      "note": "对Z20及S={2,4,5,7,11,14}，按(y−x)mod20∈S生弧：20点120弧，无自环/反平行。实际查全部1140个三点集及4845个四点集的116280个线性序，均无I3/TT4，故k(3,4)≥21。另有独立对{0,1}及TT3(0,2,4)。平移保持端点差值，直接说明该图点传递；未声称完整自同构群阶为20。此见证也支持更正旧的无点传递/Cayley20点避例断言。没有执行21点上界SAT、13图刚性、全极值分类或端到端形式化。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "card_metadata.proposer/first_published/sources",
+      "old": "泛化的Paul Erdős及合作者说明；first_published=见上述各文献年份(1955–1998)；只以Erdős–Rado1967为原始来源。",
+      "new": "明确Paul Erdős、Richard Rado；最早已核有限模型为1956 Theorem25 pp440–441，1967 Theorems1–2为续作及显式上界，1997为现代digraph重述和改进。补1956/1967 DOI与直接原文，Bloom保留为现代问题目录整理者。",
+      "reason": "来源与年份纠正，核心数学断言和验收对象保持不变，不仅因补引文换card_rev。",
+      "small_case_check": "固定n,m≥1，k取最小强迫顶点数：k(1,m)=k(n,1)=1，k(n,2)=n。N=n−1的空图给k(n,2)下界，N=n时有弧即含普通TT2、无弧则I_n；n=1/m=1单点即强迫。C3有I2数0且无TT3，所以k(2,3)>3；四点竞赛图总有出度至少2的顶点，其两出邻点相连即成TT3，故k(2,3)=4。路径按m个顶点计时，n−1个不相连TT_(m−1)在(n−1)(m−1)点上同时规避I_n和P_m，故该乘积不是最小强迫阈值。特别n=2,m=3的两点单弧已反驳网页误式2；真正路径阈值3，而TT阈值4。若宿主允许双向弧却要求诱导TT，则任意大完全双向图的独立数为1，且不含任何阶≥2的诱导TT；这不是原题。原题普通子图读法允许从反平行对删去一弧，保持邻接对和独立数，故与oriented模型等价。",
+      "evidence_ids": [
+        "E015-O1956",
+        "E015-O1967",
+        "E015-O1997"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "card_text.人话版/边界与约定",
+      "old": "m个点两两之间恰好一条弧；反平行弧对与TT判定相互作用未说明。",
+      "new": "明确TT_m作为普通子图，宿主的多余反向弧不禁止；等价可只考虑无反平行弧的oriented graph。独立集始终指两方向均无弧，n,m≥1。",
+      "reason": "五维对照：公式仍为最小强迫N；定义为普通TT子图；量词仍对每个N点图；参数域n,m≥1，oriented模型与一般digraph普通子图模型严格等价；验收仍一般k(n,m)精确值或匹配界。本轮按现卡形式中的标准子图读法保留主问，仅补人话解释。如果维护方改正式定义、图类或验收文字，按包规生成新card_rev并重查受影响路线，不把本回执哈希硬补过去。",
+      "small_case_check": "固定n,m≥1，k取最小强迫顶点数：k(1,m)=k(n,1)=1，k(n,2)=n。N=n−1的空图给k(n,2)下界，N=n时有弧即含普通TT2、无弧则I_n；n=1/m=1单点即强迫。C3有I2数0且无TT3，所以k(2,3)>3；四点竞赛图总有出度至少2的顶点，其两出邻点相连即成TT3，故k(2,3)=4。路径按m个顶点计时，n−1个不相连TT_(m−1)在(n−1)(m−1)点上同时规避I_n和P_m，故该乘积不是最小强迫阈值。特别n=2,m=3的两点单弧已反驳网页误式2；真正路径阈值3，而TT阈值4。若宿主允许双向弧却要求诱导TT，则任意大完全双向图的独立数为1，且不含任何阶≥2的诱导TT；这不是原题。原题普通子图读法允许从反平行对删去一弧，保持邻接对和独立数，故与oriented模型等价。",
+      "evidence_ids": [
+        "E015-O1956",
+        "E015-O1997",
+        "E015-ODEFINITIONS"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "card_text.已知结果/结构性锚点；card_metadata.difficulty.note",
+      "old": "路径变体k=(n−1)(m−1)；E-R上界~2^(m−1)n^m；若干上界构成窄窗、路径方法可平移。",
+      "new": "路径若按m顶点、最小强迫N记号，应为(n−1)(m−1)+1；乘积本身是最大规避阶数。E-R精确上界保留完整分式，固定m≥2的上界表达式主项为2^(m−2)n^(m−1)，不能写成k的渐近等价。删除没有匹配下界或迁移证明支撑的窄窗和方法可平移结论。",
+      "reason": "只修正进展附注及人话难度解释；不把路径的精确解代替TT主问，不改变本回执对应的原题版本。若实际修改正式数学定义或验收，再走新版本流程。",
+      "small_case_check": "固定n,m≥1，k取最小强迫顶点数：k(1,m)=k(n,1)=1，k(n,2)=n。N=n−1的空图给k(n,2)下界，N=n时有弧即含普通TT2、无弧则I_n；n=1/m=1单点即强迫。C3有I2数0且无TT3，所以k(2,3)>3；四点竞赛图总有出度至少2的顶点，其两出邻点相连即成TT3，故k(2,3)=4。路径按m个顶点计时，n−1个不相连TT_(m−1)在(n−1)(m−1)点上同时规避I_n和P_m，故该乘积不是最小强迫阈值。特别n=2,m=3的两点单弧已反驳网页误式2；真正路径阈值3，而TT阈值4。若宿主允许双向弧却要求诱导TT，则任意大完全双向图的独立数为1，且不含任何阶≥2的诱导TT；这不是原题。原题普通子图读法允许从反平行对删去一弧，保持邻接对和独立数，故与oriented模型等价。",
+      "evidence_ids": [
+        "E015-O1967",
+        "E015-O1997",
+        "E015-OUCSD"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "card_text.已知结果与进展/相关进展与声称解决",
+      "old": "现卡列Larson–Mitchell1997二次界、Hunter指数界和有向路径变体，未列IRW匹配量级与2026局部结果。",
+      "new": "补IRW v3/2021刊文：k(4,3)=15、k(5,3)=23，固定m=3时Θ(n²/log n)，固定m≥3的一般单侧改进上界。补Orden2026的30≤k(6,3)≤32和四个小参数下界，逐项写本轮实际复跑状态。k(3,4)=21只登记特例完整声明、当前勘误与第三方证书核验；不写一般k(n,m)已解决。",
+      "reason": "补进展与证据层级，不改变最小强迫数的定义、全称量词、正参数域或一般参数验收条件；现回执仍绑定原card_rev。作者声明、普通程序独立执行、Lean实际结果与第三方日志分别保留。",
+      "evidence_ids": [
+        "E015-A01",
+        "E015-A02",
+        "E015-A04",
+        "E015-A06",
+        "E015-C02",
+        "E015-C03",
+        "E015-K34-OUTSIDE-LOG"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "Erdős Problems112主/latex/history本轮直接访问失败，只取得搜索索引与独立原论文；不能声明本轮实时站点状态已成功核查。",
+      "next_step": "恢复该站访问后只补实时状态/评论差异；原题模型、1956/1967出处及近期局部论文已另有原文，不必重跑已完成路线。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮没有取得一般n,m的完整同范围解；固定m=3和有限参数结果不覆盖全部主问题。",
+      "next_step": "将后续完整声明逐项对齐minN、普通子图、n,m范围和常数是否依m；涉及结案或新精确值仍走二审，不依据站点open或搜索未中证明全球无解。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本路线取得并核验的是有限参数进展；未取得对全体n,m确定k(n,m)或达到主卡全局验收标准的完整程序/证明。",
+      "next_step": "保留主问与有限参数条目的分层；如出现一般完整声明，固定源与量词、最小强迫约定后另核。不得从四个下界、k(6,3)区间或路径变体推断全题已解。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "Palomar具体注册JSON本轮不可达，recent feed只能确认11-22四界登记元数据；NanoDa/con-ron/Comparator本轮未运行。Kirtchakov上界证书本轮只核固定稿、第三方报告及结果日志，未实际复跑，也未声称全编码已审。",
+      "next_step": "只把本轮实际完成的Lean与小型整数枚举记为本轮复跑；外部检查器与第三方历史日志保留来源和范围，不擅自升级。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "完成固定简索引定向筛查，未形成同意图候选，未作2469卡全部正文语义比对；空duplicates不等于全库无重复。",
+      "next_step": "如后续出现候选，按固定commit73290369a8dcc632e25e555aec525565ea6e08f8取得双方meta/text、重算card_rev再判；较小编号负责人在本包外时留待核，不凭共同竞赛图/路径术语合并。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮未执行281GB LRAT重跑或HOL4 checker构建，445通过仅为可定位的第三方运行报告和日志；不能记录为群星独立复跑通过。",
+      "next_step": "在正式回执中保留第三方与本轮层级；一般主问题保留部分进展，未结案。若以后专门要求全链形式化，应分别补分类完备性、编码等价和覆盖论证。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Part J所列13个实例的刚性及互不同构仍未本轮复跑。IRW2017 v1原始段落已由本轮学术路线读取，但这不等于证明其绝对最早性。作者当前勘误限制旧的全族结构强断言；本轮20点Cayley下例已独立检查。",
+      "next_step": "如以后单独验收极值图结构，再补13图刚性/互不同构计算；保留20点下例、第三方21点上界日志与全部极值图分类的范围区别，不重复检索已经核读的IRW v1。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "8dfe2596d460f7ca",
+      "codes": {}
+    }
+  ]
+}

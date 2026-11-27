@@ -1,0 +1,2474 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000334",
+  "card_rev": "c16ce51e4cb646e8",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-09"
+      ],
+      "parts": [
+        {
+          "subquestion": "Táfula2026：超对数可实现性及log级量级结果",
+          "value": "partial",
+          "note": "Thm1.1对满足自然上界的regularly varying F且F/log→∞给有序r∼F；因此可逼近log边界的上方，但不覆盖任何固定c log n。Thm1.3可在log级给r≍F，不能把两侧常数界改成r/F→1。"
+        },
+        {
+          "subquestion": "Táfula2026：随机稀疏模型零点与一般c<1",
+          "value": "partial",
+          "note": "Thm1.5证明特定独立抽样集且期望表示数∼(1−ε)log n时几乎必然无穷多n表示数为零。对任意确定性A的结论仍为Conj1.6；不能从随机模型概率1推出不存在特殊构造A，亦不能据该猜想写任意c<1已解决。"
+        },
+        {
+          "subquestion": "Erdős–Sárközy 1985 的精确历史结论",
+          "value": "partial",
+          "note": "原稿 p.348 无编号 THEOREM：若 F(n)→∞，F(n+1)≥F(n) 对所有 n≥n0 成立，且 F(n)=o(n/(log n)^2)，则 Δ(N)=Σ_{n=1}^N(R(n)−F(n))²=o(NF(N)) 不可能。COROLLARY 排除 max_{n≤N}|R(n)−F(n)|=o(√F(N))。因此也排除逐点误差 o(√F(n))。取任意固定 c>0 的 F(n)=c log n，得到 |R(n)−c log n| 不可为 o(√log n)；不是只限 c=1。这个结果不给每个充分大 n 的逐点下界。"
+        },
+        {
+          "subquestion": "Horváth 2007 的常数与量词（仅摘要核定）",
+          "value": "partial",
+          "note": "一手摘要保留相同的 g→∞、单调非减、g=o(n/(log n)^2) 假设，并声明对每个 0<ε<1，不可能存在 N0 使所有 n≥N0 都满足 |R2(n)−g(n)|≤(1−ε)√g(n)。等价地，每个这样的 ε 对应无穷多个反向严格不等式 n；或 limsup |R2(n)−g(n)|/√g(n)≥1。对任意固定 c>0 的 g=c log n，归一化 √log n 后下界常数是 √c，不是与 c 无关的 1。原文定理编号与证明未取得，不标已读全文。"
+        },
+        {
+          "subquestion": "历史误差障碍的适用边界与有序计数",
+          "value": "partial",
+          "note": "上述结果均未排除 R(n)=c log n+o(log n)，因为 √log n=o(log n)；例如纯粹量级模型误差 (log n)^(3/4) 同时大于平方根阶、又是 o(log n)，此例不是集合构造。主问题采用有序 r=1_A*1_A；若 u 计 a≤b，则 r=2u−d，d=1_{n偶且n/2∈A}，不能原样沿用有序计数的数值常数。若 N 包含 0，删去 0 每个 n 只改变至多 2 次表示，不影响这里的极限及平方根小 o 排除；正极限本身保证最终 r>0。"
+        },
+        {
+          "subquestion": "形式化题面、条件定理及第三方日志",
+          "value": "no_evidence_in_scope",
+          "note": "Formal Conjectures有与原题等价的有序卷积题面，证明体sorry；lean-genius的主问仅Prop定义，其条件定理未证前提且字面更强假设在空集为假。指定benchmark日志最终sorryAx拒绝。只做固定代码/日志静态读取，没有本轮独立复跑。"
+        },
+        {
+          "subquestion": "公开随机见证提示与有缺口的AI推导",
+          "value": "undeterminable",
+          "note": "ob3ect声称的随机见证只给提示文本，无本目标Lean证明；所列方差界不足以给可求和尾概率，r非单调也无子列升全列控制。we-solve A3的区间内logk均匀估计错误。仅认定这些显示论证不能完成所声称步骤，不把错误拟解当原问题反例。"
+        },
+        {
+          "subquestion": "AI稿在假定极限存在后的必要条件",
+          "value": "partial",
+          "note": "we-solve A1/A4/A5从r(n)~Llog n出发讨论A(x)~2√(L/π)√(xlog x)与带频率范围的等分布；稿件自己最终UNRESOLVED。仅核关键步骤、未独立核其新颖性；不能把条件结论或平台记录升级成主问构造/矛盾。"
+        },
+        {
+          "subquestion": "二审：lean_hints Step4不能推出Step5的可求和概率界",
+          "value": "undeterminable",
+          "note": "指定推导无效。设μ_n=E r(n)，暂接受Step3的μ_n/log n→π。对充分大n，Chebyshev至多给P(|r(n)/log n−π|>ε)≤4 Var(r(n))/(ε²(log n)²)。代Step4的Var≤μ_n+μ_n²后只得O_ε(1)，在n=2^k上仍如此，不能得到O(1/k²)，故Step6所需的可求和尾界没有建立。矩条件本身不足的抽象反例：取X_k=2μ_k B，B为Bernoulli(1/2)，则E X_k=μ_k、Var X_k=μ_k²，归一化波动不消失；这只是反驳该矩推理，不声称X_k来自任何表示函数。"
+        },
+        {
+          "subquestion": "二审：lean_hints Step7没有全序列夹逼依据",
+          "value": "undeterminable",
+          "note": "即使另外补出沿2^k的收敛，也不能直接推出所有n的收敛。r_A(n)不是一般单调函数，提示没有给区间[2^k,2^(k+1)]的上下界或统一振荡控制。仅对子序列收敛的抽象数列可在其余位置取另一常数；这说明逻辑缺口，不是Erdős66反例。Step7必须补新的数学论证，不能由Classical.choice或证明格式解决。"
+        },
+        {
+          "subquestion": "二审：we-solve r1均值估计的统一O(1)断言错误",
+          "value": "undeterminable",
+          "note": "原文Lemma66.2 Step2在M=floor(n^(2/3))≤k≤n−M内断言log k=log n+O(1)且一致成立。取k=ceil(n^(2/3))，有log k−log n=−(1/3)log n+o(1)，无界；相应sqrt(log k log(n−k))−log n也为常数倍log n而非O(1)。因此该步不能按所写支持其统一求和误差。紧接着仅有T(n)=π+o(1)也只推出log n·T(n)=πlog n+o(log n)，不能单凭此写成O(1)误差。均值渐近结论可能用正确加权积分/端点控制修补；本二审仅判原推导不成立，未声称该结论为假。作者自称UNRESOLVED，故不记作完整解或已解决声明。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/Additive/Convolution.lean"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://www.renyi.hu/~p_erdos/1986-12.pdf",
+      "review": "read_unchecked",
+      "by": "Paul Erdős; András Sárközy",
+      "date": "1986"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "固定当前rev：是否∃A⊆ℕ及有限c>0，使有序r_A(n)=c log n+o(log n)，对所有充分大的整数成立。四路已实际执行；未取得覆盖完整量词的有效构造或普遍排除证明。1956零密度例外结果、1985/2007平方根误差障碍、2026超对数或指定随机模型结果均未解决它。公开题面sorry、条件定理、被sorryAx拒绝的日志及有缺口的随机见证提示不计已解决；本次未确证不等于证明永远开放。",
+      "evidence_ids": [
+        "R0334-ORIGIN",
+        "000334-A-E1",
+        "Q334-H-E1",
+        "Q334-H-E2",
+        "Q0334-C01",
+        "Q0334-C05",
+        "Q0334-C06"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "原题计数及量词校准",
+      "math_status": "有部分进展",
+      "scope_note": "1956原稿精确提出有序r_A/log的非零极限问题。本题要正有限常数和全序列；零密度例外、两常数夹界、固定密度随机集都不等价。题卡解释和正式展开需修订，核心问句可保持。",
+      "evidence_ids": [
+        "R0334-ORIGIN",
+        "R0334-INDEX"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Táfula2026：超对数可实现性及log级量级结果",
+      "math_status": "有部分进展",
+      "scope_note": "Thm1.1对满足自然上界的regularly varying F且F/log→∞给有序r∼F；因此可逼近log边界的上方，但不覆盖任何固定c log n。Thm1.3可在log级给r≍F，不能把两侧常数界改成r/F→1。",
+      "evidence_ids": [
+        "000334-A-E1"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Táfula2026：随机稀疏模型零点与一般c<1",
+      "math_status": "条件性结果",
+      "scope_note": "Thm1.5证明特定独立抽样集且期望表示数∼(1−ε)log n时几乎必然无穷多n表示数为零。对任意确定性A的结论仍为Conj1.6；不能从随机模型概率1推出不存在特殊构造A，亦不能据该猜想写任意c<1已解决。",
+      "evidence_ids": [
+        "000334-A-E1"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Erdős–Sárközy 1985 的精确历史结论",
+      "math_status": "实质进展",
+      "scope_note": "原稿 p.348 无编号 THEOREM：若 F(n)→∞，F(n+1)≥F(n) 对所有 n≥n0 成立，且 F(n)=o(n/(log n)^2)，则 Δ(N)=Σ_{n=1}^N(R(n)−F(n))²=o(NF(N)) 不可能。COROLLARY 排除 max_{n≤N}|R(n)−F(n)|=o(√F(N))。因此也排除逐点误差 o(√F(n))。取任意固定 c>0 的 F(n)=c log n，得到 |R(n)−c log n| 不可为 o(√log n)；不是只限 c=1。这个结果不给每个充分大 n 的逐点下界。",
+      "evidence_ids": [
+        "Q334-H-E1"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Horváth 2007 的常数与量词（仅摘要核定）",
+      "math_status": "实质进展",
+      "scope_note": "一手摘要保留相同的 g→∞、单调非减、g=o(n/(log n)^2) 假设，并声明对每个 0<ε<1，不可能存在 N0 使所有 n≥N0 都满足 |R2(n)−g(n)|≤(1−ε)√g(n)。等价地，每个这样的 ε 对应无穷多个反向严格不等式 n；或 limsup |R2(n)−g(n)|/√g(n)≥1。对任意固定 c>0 的 g=c log n，归一化 √log n 后下界常数是 √c，不是与 c 无关的 1。原文定理编号与证明未取得，不标已读全文。",
+      "evidence_ids": [
+        "Q334-H-E2"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "历史误差障碍的适用边界与有序计数",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "上述结果均未排除 R(n)=c log n+o(log n)，因为 √log n=o(log n)；例如纯粹量级模型误差 (log n)^(3/4) 同时大于平方根阶、又是 o(log n)，此例不是集合构造。主问题采用有序 r=1_A*1_A；若 u 计 a≤b，则 r=2u−d，d=1_{n偶且n/2∈A}，不能原样沿用有序计数的数值常数。若 N 包含 0，删去 0 每个 n 只改变至多 2 次表示，不影响这里的极限及平方根小 o 排除；正极限本身保证最终 r>0。",
+      "evidence_ids": [
+        "Q334-H-E1",
+        "Q334-H-E2",
+        "Q334-H-E3"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "形式化题面、条件定理及第三方日志",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "Formal Conjectures有与原题等价的有序卷积题面，证明体sorry；lean-genius的主问仅Prop定义，其条件定理未证前提且字面更强假设在空集为假。指定benchmark日志最终sorryAx拒绝。只做固定代码/日志静态读取，没有本轮独立复跑。",
+      "evidence_ids": [
+        "Q0334-C01",
+        "Q0334-C02",
+        "Q0334-C04",
+        "Q0334-C05"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "公开随机见证提示与有缺口的AI推导",
+      "math_status": "现有材料无法判定",
+      "scope_note": "ob3ect声称的随机见证只给提示文本，无本目标Lean证明；所列方差界不足以给可求和尾概率，r非单调也无子列升全列控制。we-solve A3的区间内logk均匀估计错误。仅认定这些显示论证不能完成所声称步骤，不把错误拟解当原问题反例。",
+      "evidence_ids": [
+        "Q0334-C06",
+        "Q0334-C09"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "math_status": "undeterminable"
+      }
+    },
+    {
+      "subquestion": "AI稿在假定极限存在后的必要条件",
+      "math_status": "条件性结果",
+      "scope_note": "we-solve A1/A4/A5从r(n)~Llog n出发讨论A(x)~2√(L/π)√(xlog x)与带频率范围的等分布；稿件自己最终UNRESOLVED。仅核关键步骤、未独立核其新颖性；不能把条件结论或平台记录升级成主问构造/矛盾。",
+      "evidence_ids": [
+        "Q0334-C07",
+        "Q0334-C10",
+        "Q0334-C11"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "二审：lean_hints Step4不能推出Step5的可求和概率界",
+      "math_status": "现有材料无法判定",
+      "scope_note": "指定推导无效。设μ_n=E r(n)，暂接受Step3的μ_n/log n→π。对充分大n，Chebyshev至多给P(|r(n)/log n−π|>ε)≤4 Var(r(n))/(ε²(log n)²)。代Step4的Var≤μ_n+μ_n²后只得O_ε(1)，在n=2^k上仍如此，不能得到O(1/k²)，故Step6所需的可求和尾界没有建立。矩条件本身不足的抽象反例：取X_k=2μ_k B，B为Bernoulli(1/2)，则E X_k=μ_k、Var X_k=μ_k²，归一化波动不消失；这只是反驳该矩推理，不声称X_k来自任何表示函数。",
+      "evidence_ids": [
+        "000334-2R-E1"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "math_status": "undeterminable"
+      }
+    },
+    {
+      "subquestion": "二审：lean_hints Step7没有全序列夹逼依据",
+      "math_status": "现有材料无法判定",
+      "scope_note": "即使另外补出沿2^k的收敛，也不能直接推出所有n的收敛。r_A(n)不是一般单调函数，提示没有给区间[2^k,2^(k+1)]的上下界或统一振荡控制。仅对子序列收敛的抽象数列可在其余位置取另一常数；这说明逻辑缺口，不是Erdős66反例。Step7必须补新的数学论证，不能由Classical.choice或证明格式解决。",
+      "evidence_ids": [
+        "000334-2R-E1"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "math_status": "undeterminable"
+      }
+    },
+    {
+      "subquestion": "二审：we-solve r1均值估计的统一O(1)断言错误",
+      "math_status": "现有材料无法判定",
+      "scope_note": "原文Lemma66.2 Step2在M=floor(n^(2/3))≤k≤n−M内断言log k=log n+O(1)且一致成立。取k=ceil(n^(2/3))，有log k−log n=−(1/3)log n+o(1)，无界；相应sqrt(log k log(n−k))−log n也为常数倍log n而非O(1)。因此该步不能按所写支持其统一求和误差。紧接着仅有T(n)=π+o(1)也只推出log n·T(n)=πlog n+o(log n)，不能单凭此写成O(1)误差。均值渐近结论可能用正确加权积分/端点控制修补；本二审仅判原推导不成立，未声称该结论为假。作者自称UNRESOLVED，故不记作完整解或已解决声明。",
+      "evidence_ids": [
+        "000334-2R-E2"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "math_status": "undeterminable"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "Erdős Problems",
+      "query": "open https://www.erdosproblems.com/66",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://www.erdosproblems.com/66",
+      "note": "直接读取返回restricted URL / Failed to fetch，不能视为本日live全文核查。后续仅取得搜索索引。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web Search system2",
+      "query": "\"Erdos\" \"66\" \"log\" representation function",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "合批返回题号页、GitHub、AI索引与论坛线索；代码分支另取固定正文，不凭候选文件名判已解。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web Search system2",
+      "query": "\"Erdős\" \"nonzero limit\" \"log\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "合批返回题号页、GitHub、AI索引与论坛线索；代码分支另取固定正文，不凭候选文件名判已解。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web Search system1",
+      "query": "\"66\" \"Is there\" \"Horváth\"; domains=erdosproblems.com; recency=30",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.erdosproblems.com/66",
+      "note": "所得索引显示页面最后编辑2026-04-06、crawl约五个月前。可核一般非零极限问句及1956/1980线索；不能把索引当2026-11-27实时状态。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web Search system1",
+      "query": "Erdos 1956 \"Problems and results in additive number theory\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Erdős原文PDF与Rényi官方书目，转读一手原稿。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Combinatorica archive",
+      "query": "open https://combinatorica.hu/~p_erdos/1956-17.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://combinatorica.hu/~p_erdos/1956-17.pdf",
+      "note": "TimeoutError；同稿改读Rényi官方镜像成功。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Rényi官方Erdős书目",
+      "query": "open https://www.renyi.hu/en/belso-oldalak/matematikus-eletmuvek/erdos-pal; find pattern=1956-17",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.renyi.hu/en/belso-oldalak/matematikus-eletmuvek/erdos-pal",
+      "locator": "1956年Problems and results in additive number theory条目",
+      "note": "书目给Colloque sur la Théorie des Nombres, Bruxelles1955, pp127–137, George Thone Liège; Masson Paris,1956。会议1955与论文出版1956分开。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Rényi原始档案",
+      "query": "open https://users.renyi.hu/~p_erdos/1956-17.pdf; open lineno=178; screenshot pageno=0,4",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://users.renyi.hu/~p_erdos/1956-17.pdf",
+      "locator": "印刷pp127、130–131，§2式(6)(7)及紧随问句；11页PDF",
+      "note": "读取完整可用OCR并截图核关键计数定义和问句。p127明确不同加数计两次、相同计一次；p131零密度例外结果与全n正有限极限问题分开。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Rényi原始档案",
+      "query": "open https://users.renyi.hu/~p_erdos/1956-17.pdf; open lineno=178（根agent复核）",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://users.renyi.hu/~p_erdos/1956-17.pdf",
+      "locator": "印刷pp127、130–131",
+      "note": "根agent再次核对有序计数、稀疏抽样、两常数夹界与删零密度例外的不同量词；原稿概率1结论不等于排除所有确定性集合。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Wiley正式全文",
+      "query": "open https://onlinelibrary.wiley.com/doi/full/10.1002/rsa.70088; open lineno=116（根agent交叉核）",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/rsa.70088",
+      "locator": "2026-08-25版本，式1.1与Thm1.1、1.3",
+      "note": "根agent独立核有序定义、F/log→∞前提及asymp≠sim；固定F=c log不能代入Thm1.1。未冒称全篇证明二审。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方版本页",
+      "query": "open https://arxiv.org/abs/2405.01530v2（根agent交叉核）",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2405.01530v2",
+      "locator": "Comments及Submission history",
+      "note": "确认2025-08-09 v2明载Lemma3.3更正、旧Cor1.2/Thm1.3证明有错，最新v3为2026-05-04；不把版本备注当修复已独立核过。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内固定全库简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003350〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "locator": "snapshot73290369a8dcc632e25e555aec525565ea6e08f8",
+      "note": "优先核000329与002317全文；其他泛卷积/表示词共现不能作同题。由002317交叉引用再核000331/002255。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内固定全库简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003351〕",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "两者均指EP40，仍读取固定rev和全文以排除与EP66混同。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file problems/000/QX-P-000329.meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000329.meta.json",
+      "locator": "id/card_rev/acceptance；题面、形式化及相关进展",
+      "note": "全文读到并核card_rev=0dfe8cb524e651da。只用于本题查重，不执行其他题查新，也不把其旧进展记录直接迁移为本题数学证据。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file problems/000/QX-P-000329.text.md @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000329.text.md",
+      "locator": "id/card_rev/acceptance；题面、形式化及相关进展",
+      "note": "全文读到并核card_rev=0dfe8cb524e651da。只用于本题查重，不执行其他题查新，也不把其旧进展记录直接迁移为本题数学证据。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file problems/002/QX-P-002317.meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002317.meta.json",
+      "locator": "id/card_rev/acceptance；题面、形式化及相关进展",
+      "note": "全文读到并核card_rev=c65b96c9f659e32d。只用于本题查重，不执行其他题查新，也不把其旧进展记录直接迁移为本题数学证据。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file problems/002/QX-P-002317.text.md @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002317.text.md",
+      "locator": "id/card_rev/acceptance；题面、形式化及相关进展",
+      "note": "全文读到并核card_rev=c65b96c9f659e32d。只用于本题查重，不执行其他题查新，也不把其旧进展记录直接迁移为本题数学证据。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file problems/000/QX-P-000331.meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000331.meta.json",
+      "locator": "id/card_rev/acceptance；题面、形式化及相关进展",
+      "note": "全文读到并核card_rev=db90820ea7a09861。只用于本题查重，不执行其他题查新，也不把其旧进展记录直接迁移为本题数学证据。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file problems/000/QX-P-000331.text.md @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000331.text.md",
+      "locator": "id/card_rev/acceptance；题面、形式化及相关进展",
+      "note": "全文读到并核card_rev=db90820ea7a09861。只用于本题查重，不执行其他题查新，也不把其旧进展记录直接迁移为本题数学证据。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file problems/002/QX-P-002255.meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002255.meta.json",
+      "locator": "id/card_rev/acceptance；题面、形式化及相关进展",
+      "note": "全文读到并核card_rev=bbfd6a5636e5bffb。只用于本题查重，不执行其他题查新，也不把其旧进展记录直接迁移为本题数学证据。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file problems/002/QX-P-002255.text.md @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002255.text.md",
+      "locator": "id/card_rev/acceptance；题面、形式化及相关进展",
+      "note": "全文读到并核card_rev=bbfd6a5636e5bffb。只用于本题查重，不执行其他题查新，也不把其旧进展记录直接迁移为本题数学证据。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed commit root review",
+      "query": "fetch_file neelsomani/gpt-erdos:data/solutions/66/candidate_solution.md @21b48ae6b97279e9fe6781e3744e1cdd835e2cc1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/neelsomani/gpt-erdos/blob/21b48ae6b97279e9fe6781e3744e1cdd835e2cc1/data/solutions/66/candidate_solution.md",
+      "note": "全文是自称January2026仍未解决的状态综述；首段称有序/无序仅差O(1)错误，实为倍数2加对角O(1)。无完整证明声明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed commit root review",
+      "query": "fetch_file epoch-research/LeanOpenProblems-results:runs/bloom68-ultima-e1dhs43ykrmakree/Erdos66.erdos_66/scores.txt @cbb7cb657f24157d9ebb7640ec50bd35bad78ad8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/epoch-research/LeanOpenProblems-results/blob/cbb7cb657f24157d9ebb7640ec50bd35bad78ad8/runs/bloom68-ultima-e1dhs43ykrmakree/Erdos66.erdos_66/scores.txt",
+      "note": "实际日志先Build completed、再Illegal axiom detected: sorryAx；不能截取前句说形式化通过。本轮仅读固定日志，没有复跑。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed commit root review",
+      "query": "fetch_file rjwalters/lean-genius:〔私有材料定位已省略〕 @d8540c5a48f69a9f57b87c549c6e09dad63a0670 〔私有记录编号：PR-003352〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/rjwalters/lean-genius/blob/d8540c5a48f69a9f57b87c549c6e09dad63a0670/proofs/Proofs/Erdos66Problem.lean",
+      "note": "主问及否定仅def Prop；唯一stronger_implies_original依赖未证ErdosStrongerConjecture，后者全称所有A在空集即假。其他启发式注释/弱密度定义存在错误，但不据此反驳原问题；本轮静态读码未编译。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ01",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "\"Erdős\" \"66\" \"representation\" (solution OR solved OR proof OR counterexample)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1, recency=1095。合批命中题库状态页、Shoal和原站论坛索引，未得全题解；状态页仅是线索，未当数学确证。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ02",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "\"representation function\" \"logarithmic\" asymptotic basis limit",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1, recency=1095。命中Táfula2026正式文与superlog/随机边界讨论，转查一手全文。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ03",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "\"Horváth\" \"2007\" \"log\" \"representation\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1。命中2007文DOI10.1556/Pollack.2.2007.S.14及摘要，交历史分支核原文层级和页码，不重复追全文。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ04",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "OPEN https://onlinelibrary.wiley.com/doi/full/10.1002/rsa.70088",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "正式开放全文可达945行；First published2026-08-25，题目仍将log边界称heuristic。后续定位Thm1.1/1.3/1.5与Conj1.6。",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/rsa.70088",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ05",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "OPEN https://arxiv.org/abs/2405.01530",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "官方当前v3=2026-05-04，v1=2024-05-02、v2=2025-08-09；Journal reference RSA69(2026),e70088，v3注记合并Thm1.3范围。",
+      "url": "https://arxiv.org/abs/2405.01530",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ06",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "\"Erdos problem 66\" solution proof 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system2。返回TheoremDB、Cairn、GitHub候选、formal-conjectures及AI索引；这些由代码路线另核，不据文件名candidate或theorem视作解。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ07",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "\"representation functions\" \"log n\" \"limit\" Táfula",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system2。返回2026论文与二手超对数描述、论坛heuristic、相关薄基文章；未有可以直接覆盖固定c log n的完整解。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ08",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "FIND https://onlinelibrary.wiley.com/doi/full/10.1002/rsa.70088 :: Theorem 1.1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "核到§1完整主定理：Thm1.1需regularly varying且F/log→∞及自然体积上界；Thm1.3仅asymp；Thm1.5为指定随机模型；Conj1.6才是一般渐近基limsup≥1猜想。",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/rsa.70088",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ09",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "FIND https://onlinelibrary.wiley.com/doi/full/10.1002/rsa.70088 :: heuristic",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "摘要和§1.3把一般A的limsup<1阻碍表述为heuristic/猜想，不是所有A的已证排除。",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/rsa.70088",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ10",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "FIND https://onlinelibrary.wiley.com/doi/full/10.1002/rsa.70088 :: 6 Concluding",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "该字符串在全文无匹配；必要边界已在§1.3取得，不由未命中作数学判断。",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/rsa.70088",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ11",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "\"representation function\" (\"logarithmic\" OR \"log n\") \"Erdős\" \"limit\" (proof OR solved OR asymptotic)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1, recency=730。返回同题索引、Shoal与Táfula全文、Horváth出版摘要，未取得全题已解决的一手稿。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ12",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "(\"Representation Functions With Prescribed Rates of Growth\" OR \"An improvement of a theorem of Erdős and Sárközy\") (erratum OR corrigendum OR retracted OR withdrawn)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system1, recency=1095。命中Táfula v2明确修订记录及作者索引erratum字样；后续核v2官方页。无据把修订称正式撤回。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ13",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "OPEN https://arxiv.org/abs/2405.01530v2",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "官方v2 Comments明确Lemma3.3证明更正，旧Cor1.2与Thm1.3的证明有错且已修订陈述/证明；此次只读版本元数据，不冒称审完修复。",
+      "url": "https://arxiv.org/abs/2405.01530v2",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-AQ14",
+      "route": "学术",
+      "site": "web search / primary-source access",
+      "query": "OPEN https://www.ime.usp.br/~tafula/papers.html",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "返回500，重定向至users.ime.usp.br/~tafula/papers.html且工具称不可访问。未读取索引中具体erratum，不据搜索片段认定它针对本篇；正文以正式2026版及arXiv官方版本史为准。",
+      "url": "https://www.ime.usp.br/~tafula/papers.html",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-HQ01",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "Erdos Sarkozy Horvath 2007 representation function log n square root",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 Horváth 出版社、作者单位仓储及相关原稿索引；本分支未追最新工作。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-HQ02",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "Erdos problem 66 Horvath Sarkozy 2007",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 #66 历史说明及相同一手摘要；一般网站和论坛仅作定位线索，不作为完整证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-HQ03",
+      "route": "学术",
+      "site": "DOI",
+      "query": "OPEN https://doi.org/10.2140/pjm.1985.118.347",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具报告 URL 不可访问；未由此获得全文。",
+      "url": "https://doi.org/10.2140/pjm.1985.118.347",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-HQ04",
+      "route": "学术",
+      "site": "DOI / Akadémiai Kiadó",
+      "query": "OPEN https://doi.org/10.1556/pollack.2.2007.s.14",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "重定向出版社入口 500 / inaccessible。",
+      "url": "https://doi.org/10.1556/pollack.2.2007.s.14",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-HQ05",
+      "route": "学术",
+      "site": "University of Dunaújváros repository",
+      "query": "OPEN https://publication.repo.uniduna.hu/782/",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "一手作者单位仓储摘要与书目信息可读；正文文件明确 Restricted to Repository staff only。未取得正文，不绕过限制。",
+      "url": "https://publication.repo.uniduna.hu/782/",
+      "locator": "Abstract; Published Version access restriction",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-HQ06",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "\"Problems and results on additive properties of general sequences\" \"1985\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位 Rényi 作者原稿库；命中 Part II 对 Part I 的作者自述。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-HQ07",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "\"An improvement of a theorem of Erdős and Sárközy\" filetype:pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中出版摘要及两单位仓储记录，未命中可直接读取的 Horváth 正文。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-HQ08",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "\"Problems and results on additive properties of general sequences\" \"I\" site:renyi.hu 1985",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "成功定位 E–S Part I 的 Rényi 原稿 PDF。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-HQ09",
+      "route": "学术",
+      "site": "Akadémiai Kiadó",
+      "query": "OPEN https://www.akjournals.com/downloadpdf/journals/606/2/Supplement-1/article-p155.xml",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "普通出版社 PDF 下载入口不可访问；未取得 Horváth 全文。",
+      "url": "https://www.akjournals.com/downloadpdf/journals/606/2/Supplement-1/article-p155.xml",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-HQ10",
+      "route": "学术",
+      "site": "Rényi Institute author archive",
+      "query": "OPEN https://www.renyi.hu/~p_erdos/1986-12.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "Part II 全 11 页原稿取得；仅核 pp.201、203 的原猜、前作定理与计数约定。",
+      "url": "https://www.renyi.hu/~p_erdos/1986-12.pdf",
+      "locator": "p.201 (2), Theorem 1/Corollary 1; p.203 (10)–(11)",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-HQ11",
+      "route": "学术",
+      "site": "Rényi Institute author archive",
+      "query": "OPEN https://www.renyi.hu/~p_erdos/1985-24.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "Part I 全 11 页原稿取得；核 pp.347–348 定义、原猜与 THEOREM/COROLLARY，并核 p.352 的生成函数平方识别有序计数；未独立逐行重证整篇估计。",
+      "url": "https://www.renyi.hu/~p_erdos/1985-24.pdf",
+      "locator": "pp.347–348; p.352 f(z)^2=ΣR(n)z^n",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-HQ12",
+      "route": "学术",
+      "site": "Akadémiai Kiadó",
+      "query": "OPEN https://www.akjournals.com/view/journals/606/2/Supplement-1/article-p155.xml",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "出版社正文页面返回 403；因此本分支 Horváth 仍仅摘要等级。",
+      "url": "https://www.akjournals.com/view/journals/606/2/Supplement-1/article-p155.xml",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-HQ13",
+      "route": "学术",
+      "site": "Rényi Institute PDF rendering",
+      "query": "SCREENSHOT https://www.renyi.hu/~p_erdos/1985-24.pdf page_index=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "必要图像核对：OCR 损坏的 p.348 不等号、F(n+1)≥F(n)、max_{n≤N}、Δ(N)=o(NF(N)) 均由原页核清。",
+      "url": "https://www.renyi.hu/~p_erdos/1985-24.pdf",
+      "locator": "Printed p.348; PDF page 2",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/google-deepmind/formal-conjectures/branches/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/branches/main",
+      "locator": "main.commit.sha",
+      "note": "固定本轮源码版本 ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8；分支元数据只用于固定版本，不当作题目证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web search S2",
+      "query": "site:erdosproblems.com \"66\" \"log\" \"forum\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-P-000334-code-s2-01",
+      "note": "同次三查询；结果为 GitHub 题面 issue、公开 AI/社区条目等；erdosproblems.com 报 robots 限制。候选另取全文，索引不作为已解证据。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web search S2",
+      "query": "\"Erdos\" \"66\" \"convolution\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-P-000334-code-s2-01",
+      "note": "同次三查询；结果为 GitHub 题面 issue、公开 AI/社区条目等；erdosproblems.com 报 robots 限制。候选另取全文，索引不作为已解证据。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web search S2",
+      "query": "\"Erdős problem 66\" \"AI\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-P-000334-code-s2-01",
+      "note": "同次三查询；结果为 GitHub 题面 issue、公开 AI/社区条目等；erdosproblems.com 报 robots 限制。候选另取全文，索引不作为已解证据。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"Erdos66\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 20,
+      "note": "跨公开仓库代码检索，topn=20；发现 formal-conjectures、lean-genius、epoch benchmark、witness hints 等具体候选，后续按固定 commit 读取。不是穷尽全站。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "GET https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/66.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/66.lean",
+      "locator": "Erdos66.erdos_66",
+      "note": "完整读取 66.lean；研究开放题面，证明体为 sorry。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"def sumRep\" repository=google-deepmind/formal-conjectures topn=10",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 2,
+      "note": "命中通用 Convolution.lean 与另题 864 的局部无序定义；读取前者以核实本题导入的有序 sumRep。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "GET https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/Additive/Convolution.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/Additive/Convolution.lean",
+      "locator": "sumConv; sumRep; sumRep_def",
+      "note": "完整读取定义及基础引理；antidiagonal 是有序加性卷积，不是 Dirichlet 卷积。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "GET https://github.com/neelsomani/gpt-erdos/blob/main/data/solutions/66/candidate_solution.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/neelsomani/gpt-erdos/blob/main/data/solutions/66/candidate_solution.md",
+      "locator": "candidate_solution.md 全文",
+      "note": "文件名含 candidate_solution，但正文是 January 2026 未解状态综述；随后固定 commit 再读。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/neelsomani/gpt-erdos/branches/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/neelsomani/gpt-erdos/branches/main",
+      "locator": "main.commit.sha",
+      "note": "固定 21b48ae6b97279e9fe6781e3744e1cdd835e2cc1，提交日期 2026-01-25。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "GET https://github.com/neelsomani/gpt-erdos/blob/21b48ae6b97279e9fe6781e3744e1cdd835e2cc1/data/solutions/66/candidate_solution.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/neelsomani/gpt-erdos/blob/21b48ae6b97279e9fe6781e3744e1cdd835e2cc1/data/solutions/66/candidate_solution.md",
+      "locator": "首段计数约定；最后未解说明",
+      "note": "固定版本全文已读；无完整证明，ordered/unordered 相差 O(1) 的说明有误。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "GET https://github.com/rjwalters/lean-genius/blob/d8540c5a48f69a9f57b87c549c6e09dad63a0670/proofs/Proofs/Erdos66Problem.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/rjwalters/lean-genius/blob/d8540c5a48f69a9f57b87c549c6e09dad63a0670/proofs/Proofs/Erdos66Problem.lean",
+      "locator": "Erdos66Question; ErdosConjecture66; ErdosStrongerConjecture; stronger_implies_original",
+      "note": "全文静态检查；主要目标仅 Prop 定义，唯一 theorem 是条件蕴含；未 Lean 复跑。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "GET https://github.com/epoch-research/LeanOpenProblems-results/blob/cbb7cb657f24157d9ebb7640ec50bd35bad78ad8/runs/bloom68-ultima-e1dhs43ykrmakree/Erdos66.erdos_66/scores.txt",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/epoch-research/LeanOpenProblems-results/blob/cbb7cb657f24157d9ebb7640ec50bd35bad78ad8/runs/bloom68-ultima-e1dhs43ykrmakree/Erdos66.erdos_66/scores.txt",
+      "locator": "proof_scorer comparator; 最后一行",
+      "note": "完整第三方成绩日志有 sorry 警告且以 Illegal axiom detected: sorryAx 拒绝；Build completed 不等于证明通过。本轮未执行 benchmark。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "GET https://github.com/umpolungfish/ob3ect/blob/ef88f2564e8654905494442828b26be0c538e181/digital/erdos66_witness_extractor/lean_hints.txt",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/umpolungfish/ob3ect/blob/ef88f2564e8654905494442828b26be0c538e181/digital/erdos66_witness_extractor/lean_hints.txt",
+      "locator": "步骤 3–8",
+      "note": "实际读取拟随机存在性证明提示，核 Chebyshev、Borel–Cantelli 与全序列步骤。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET https://api.github.com/repos/umpolungfish/ob3ect/contents/digital/erdos66_witness_extractor?ref=ef88f2564e8654905494442828b26be0c538e181",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/umpolungfish/ob3ect/contents/digital/erdos66_witness_extractor?ref=ef88f2564e8654905494442828b26be0c538e181",
+      "locator": "该目标目录全部 5 个文件",
+      "result_count": 5,
+      "note": "列表仅 design.json/fuse_result.txt/lean_hints.txt/split_input.txt/verdict.txt；该目标目录未见 .lean，不对仓库其他目录作全面声明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "GET https://github.com/umpolungfish/ob3ect/blob/ef88f2564e8654905494442828b26be0c538e181/digital/erdos66_witness_extractor/design.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/umpolungfish/ob3ect/blob/ef88f2564e8654905494442828b26be0c538e181/digital/erdos66_witness_extractor/design.json",
+      "locator": "boundary; frobenius; registers",
+      "note": "全文读取，所谓 verdict T 来自设计记录；不是 Lean 内核证书。目标 witness (A,π)，p_n=min(1,sqrt(log(n+1)/(n+1)))。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "erdosproblems.com",
+      "query": "open https://www.erdosproblems.com/forum/thread/66",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://www.erdosproblems.com/forum/thread/66",
+      "note": "工具报 Failed to fetch restricted URL；未宣称已读 live 论坛。之后 S1 只获得搜索缓存。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "we-solve",
+      "query": "open https://we-solve.github.io/problems/erdos-problem-66-518d09a2/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://we-solve.github.io/problems/erdos-problem-66-518d09a2/",
+      "locator": "Math-8055 题面与 5 份 contribution 列表",
+      "result_count": 5,
+      "note": "五条均 No claim recorded；逐个实际读取稿件，不以状态标签代替证明检查。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "we-solve",
+      "query": "click 已读we-solve #66题页的链接 id=14；目标=https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-5/r1/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-5/r1/",
+      "locator": "Math-8055-A5 r1",
+      "request_id": "QX-P-000334-code-we-clicks-01",
+      "note": "该次返回完整稿件，全文已读；最终 UNRESOLVED。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "we-solve",
+      "query": "click 已读we-solve #66题页的链接 id=15；目标=https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-1/r1/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-1/r1/",
+      "locator": "Math-8055-A1 r1",
+      "request_id": "QX-P-000334-code-we-clicks-01",
+      "note": "该次返回篇幅受限，之后 open 补足正文；最终阅读层级依后续记录。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "we-solve",
+      "query": "click 已读we-solve #66题页的链接 id=16；目标=https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-4/r1/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-4/r1/",
+      "locator": "Math-8055-A4 r1",
+      "request_id": "QX-P-000334-code-we-clicks-01",
+      "note": "该次返回篇幅受限，之后 open 补足正文；最终阅读层级依后续记录。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "we-solve",
+      "query": "click 已读we-solve #66题页的链接 id=11；目标=https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-3/r1/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-3/r1/",
+      "locator": "Math-8055-A3 r1",
+      "request_id": "QX-P-000334-code-we-clicks-01",
+      "note": "该次返回篇幅受限，之后 open 补足正文；最终阅读层级依后续记录。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "we-solve",
+      "query": "click 已读we-solve #66题页的链接 id=17；目标=https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-2/r1/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-2/r1/",
+      "locator": "Math-8055-A2 r1",
+      "request_id": "QX-P-000334-code-we-clicks-01",
+      "note": "该次返回篇幅受限，之后 open 补足正文；最终阅读层级依后续记录。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "we-solve",
+      "query": "open https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-1/r1/ lineno=20（使用已读页面引用）",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-1/r1/",
+      "locator": "Math-8055-A1 r1 Manuscript 全文",
+      "note": "补足并读完该稿正文与 final 段；最终 UNRESOLVED，无构造或不存在性证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "we-solve",
+      "query": "open https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-4/r1/ lineno=20（使用已读页面引用）",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-4/r1/",
+      "locator": "Math-8055-A4 r1 Manuscript 全文",
+      "note": "补足并读完该稿正文与 final 段；最终 UNRESOLVED，无构造或不存在性证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "we-solve",
+      "query": "open https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-3/r1/ lineno=20（使用已读页面引用）",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-3/r1/",
+      "locator": "Math-8055-A3 r1 Manuscript 全文",
+      "note": "补足并读完该稿正文与 final 段；最终 UNRESOLVED，无构造或不存在性证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "we-solve",
+      "query": "open https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-2/r1/ lineno=20（使用已读页面引用）",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-2/r1/",
+      "locator": "Math-8055-A2 r1 Manuscript 全文",
+      "note": "补足并读完该稿正文与 final 段；最终 UNRESOLVED，无构造或不存在性证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web search S1",
+      "query": "site:erdosproblems.com/forum/thread/66 \"c\" \"random\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-P-000334-code-s1-01",
+      "url": "https://www.erdosproblems.com/forum/thread/66",
+      "note": "recency=365；返回约 5 个月前论坛缓存，列 2026-05-28 的 c<1 随机启发评论及 GPT-5 找到 Horváth 文献评论；不是 live 全文。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web search S1",
+      "query": "\"Erdos66\" proof solution",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-P-000334-code-s1-01",
+      "note": "recency=365；返回研究题面索引及挑战题模板，不新增已验证完整证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web search S1",
+      "query": "site:teorth.github.io \"66\" \"GPT-5\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "request_id": "QX-P-000334-code-s1-01",
+      "note": "recency=365；合并结果未取得 teorth.github.io 本题原文。只记录此查询范围，不能据此断言 AI 讨论不存在。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-2R01",
+      "route": "代码、公开 AI 和社区",
+      "site": "web open / GitHub",
+      "query": "OPEN https://github.com/umpolungfish/ob3ect/blob/ef88f2564e8654905494442828b26be0c538e181/digital/erdos66_witness_extractor/lean_hints.txt",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/umpolungfish/ob3ect/blob/ef88f2564e8654905494442828b26be0c538e181/digital/erdos66_witness_extractor/lean_hints.txt",
+      "note": "DisabledError。后续GitHub连接器成功取得同一固定提交原文。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-2R02",
+      "route": "代码、公开 AI 和社区",
+      "site": "web open / we-solve",
+      "query": "OPEN https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-3/r1/",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-3/r1/",
+      "note": "直接URL初次不可访问；后续从实际问题索引点击id11取得完整r1。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-2R03",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector fetch_file",
+      "query": "fetch_file repository_full_name=umpolungfish/ob3ect path=digital/erdos66_witness_extractor/lean_hints.txt ref=ef88f2564e8654905494442828b26be0c538e181",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/umpolungfish/ob3ect/blob/ef88f2564e8654905494442828b26be0c538e181/digital/erdos66_witness_extractor/lean_hints.txt",
+      "note": "成功读取全部8步提示文本；返回blob SHA d559563ed9f4556b2e1a265032b60a91dcb44cb3。不是完整Lean源码，未运行构建。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-2R04",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "site:we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-3/r1 \"log\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回本题问题索引及多个无关页；仅用准确索引继续，未将无关稿混入。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-2R05",
+      "route": "代码、公开 AI 和社区",
+      "site": "web open / we-solve",
+      "query": "OPEN https://we-solve.github.io/problems/erdos-problem-66-518d09a2/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://we-solve.github.io/problems/erdos-problem-66-518d09a2/",
+      "note": "实际读问题页，显示Math-8055-A3 r1为2026-01-17、No claim recorded，找到指向r1的id11。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-09-000334-2R06",
+      "route": "代码、公开 AI 和社区",
+      "site": "web click / we-solve",
+      "query": "CLICK https://we-solve.github.io/problems/erdos-problem-66-518d09a2/ id=11",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-3/r1/",
+      "note": "实际取得完整r1正文141行；读Lemma66.2 Steps1–2及FINAL:UNRESOLVED。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R0334-ORIGIN",
+      "url": "https://users.renyi.hu/~p_erdos/1956-17.pdf",
+      "locator": "Erdős, Problems and results in additive number theory, pp127–137；p127定义f，p130–131§2式(6)(7)和正非零极限问句",
+      "version": "1956出版，Bruxelles1955会议文集；Rényi原稿11页，2026-11-27读取并核图",
+      "subquestions": [
+        "主问题",
+        "有序计数和全部充分大n",
+        "随机稀疏构造与零密度例外"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索",
+      "claimant": "Paul Erdős",
+      "claim_date": "1956",
+      "note": "f按有序数加法解。原文的c2 log<f<c3 log只定量级，式(7)相对渐近可忽略密度0的n，随后明确问能否没有此无限例外集。本次定位到1956原始公开问句，未声称考证绝对最早。p130的抽样概率约常数×sqrt(log n/n)，不是固定正密度。截图核计数规范，未独立重证原文所有概率论断。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "R0334-INDEX",
+      "url": "https://www.erdosproblems.com/66",
+      "locator": "搜索收录的问题正文、文献索引及Last edited April6,2026",
+      "version": "2026-11-27搜索取得的旧索引；页面last edit2026-04-06，直接访问受限",
+      "subquestions": [
+        "主问题",
+        "网页状态的时间范围"
+      ],
+      "role": "重述",
+      "publication": "个人索引",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检索",
+      "claimant": "Erdős Problems站点",
+      "note": "只作为同一性和原稿线索。索引写Open/$500及1956一般非零极限、1980 c=1特例；没有读到本日live正文或最新评论，不能凭旧状态排除随后新结果。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "000334-A-E1",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/rsa.70088",
+      "locator": "式(1.1)；§1.1 Thm1.1；§1.2 Thm1.3；§1.3 Thm1.5及Conj1.6",
+      "version": "正式刊发：Random Structures & Algorithms69(2026),e70088，DOI10.1002/rsa.70088；2026-08-25首次在线；关联arXiv2405.01530v3(2026-05-04)",
+      "subquestions": [
+        "固定c>0的log边界",
+        "超对数增长可实现性",
+        "随机模型障碍与确定性猜想的区别"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Christian Táfula",
+      "claim_date": "2026-08-25",
+      "note": "正式全文可读并定向核定理与量词，未独立复核全部证明。式(1.1)计有序元组，h=2,b1=b2=1即本题。Thm1.1仅当F/log→∞且F满足regular variation和自然上界时给r∼F，固定F=c log不满足。Thm1.3在log级只给r≍F。Thm1.5对特定独立抽样模型证明a.s.无穷多零；推广到所有确定性渐近基limsup r/log≥1仍标Conj1.6，不能称c<1已被排除。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "000334-A-E2",
+      "url": "https://arxiv.org/abs/2405.01530v2",
+      "locator": "Comments及Submission history；并对照官方最新页arxiv.org/abs/2405.01530",
+      "version": "arXiv:2405.01530v2，2025-08-09；v3修订2026-05-04",
+      "subquestions": [
+        "近期结果版本与更正史"
+      ],
+      "role": "勘误",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "有修订",
+      "review_status": "未读全文",
+      "claimant": "Christian Táfula",
+      "claim_date": "2025-08-09",
+      "note": "官方版本备注承认v1的Lemma3.3、Cor1.2和Thm1.3相关证明错误并修订；v3再把Thm1.3范围合为完整区间。本轮不沿用v1旧陈述，不把作者修订等同独立复核或全文撤回。当前结论依据2026正式版；作者页erratum具体链接未能读取。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "retraction",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q334-H-E1",
+      "url": "https://www.renyi.hu/~p_erdos/1985-24.pdf",
+      "locator": "p.347 definition and (3); p.348 THEOREM, (8)–(13) and COROLLARY; p.352 generating-function identity",
+      "version": "Pacific J. Math. 118(2) (1985), 347–357; DOI 10.2140/pjm.1985.118.347; received 1984-09-12; Rényi archive 1985-24.pdf",
+      "subquestions": [
+        "历史 E–S 平方根误差障碍",
+        "有序表示计数与任意正 c"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Paul Erdős; András Sárközy",
+      "claim_date": "1985",
+      "note": "完整原稿取得，p.348 另以截图核定公式。对严格递增正整数序列，R(n) 计全部 i,j；未附 i≤j，且 f(z)^2=ΣR(n)z^n 确认是有序自卷积。全文数学证明未逐行独立复核。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q334-H-E2",
+      "url": "https://publication.repo.uniduna.hu/782/",
+      "locator": "Author-institution repository Abstract; publisher abstract indexed at DOI 10.1556/pollack.2.2007.s.14; theorem number not obtained",
+      "version": "Gábor Horváth, An improvement of a theorem of Erdős and Sárközy; Pollack Periodica 2 Supplement-1 (2007), 155–161; publication 2007-12-01, online 2008-01-29",
+      "subquestions": [
+        "Horváth 2007 定量常数改进"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "claimant": "Gábor Horváth",
+      "claim_date": "2007-12-01",
+      "note": "仅一手出版社索引摘要及作者单位仓储摘要，非全文。摘要用 R2(n) 为 n=a_i+a_j 的解数，未给 i≤j；按摘要是二重有序计数，但正文定义、定理编号与证明仍待取得核验。页码为 155–161，不能沿用二手 155–164。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q334-H-E3",
+      "url": "https://www.renyi.hu/~p_erdos/1986-12.pdf",
+      "locator": "p.201 (2), Theorem 1 and Corollary 1; p.203 (10)–(11)",
+      "version": "Erdős–Sárközy, Problems and results on additive properties of general sequences. II; Acta Math. Hungar. 48(1–2) (1986), 201–211; Rényi archive 1986-12.pdf",
+      "subquestions": [
+        "原猜任意正 c 的作者重述",
+        "有序与无序约定核对"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Paul Erdős; András Sárközy",
+      "claim_date": "1986",
+      "note": "完整原稿取得，仅核历史与定义。作者再次明写 0<c<∞；p.203 将加限制 a_x<a_y 的计数与 R(n) 分开，并写 |R(n)−2r_n|≤1，解释 R 不施加该限制。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q0334-C01",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/66.lean",
+      "locator": "theorem Erdos66.erdos_66 与 by sorry",
+      "version": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "完整源文件静态核实：存在 A:Set ℕ 与任意非零实数 c 的极限题面；category research open；证明体 sorry。非零因非负性而须为正，实数 c 已排除无穷。允许 0 与正整数版本相差至多 2 个有序表示，极限不变；正极限自动给最终二阶基。当前源码没有证明正命题或其否定；未编译，题卡 formal_status none 应改为已有题面。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q0334-C02",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/Additive/Convolution.lean",
+      "locator": "sumConv; sumRep; sumRep_def",
+      "version": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "sumRep A n 由 antidiagonal n 中两坐标均属 A 的有序对基数定义，系加性 Cauchy 卷积。此文件只提供计数/生成函数等通用引理，不是第 66 题证明。ordered r 与允许相同元素的 unordered u 满足 r=2u−δ，δ=1_{2|n,n/2∈A}；不是 r−u=O(1)。因此任意正有限常数的存在性等价，固定 c=1 不可直接等同。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q0334-C03",
+      "url": "https://github.com/neelsomani/gpt-erdos/blob/21b48ae6b97279e9fe6781e3744e1cdd835e2cc1/data/solutions/66/candidate_solution.md",
+      "locator": "candidate_solution.md 首段、January 2026 状态与最后段",
+      "version": "21b48ae6b97279e9fe6781e3744e1cdd835e2cc1",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "核对发现漏洞",
+      "formal_status": "未检到形式化",
+      "note": "全文是旧状态/已知文献概述，自述未解，未提供候选构造或不存在性证明。首段称 ordered 与 unordered 只差 O(1) 错误；需保留倍数 2 与对角修正。此错误不改变任意正极限是否存在的问句，但改变极限常数。文件名 candidate_solution 及旧 open 文字均不能作为最新证明状态。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "gap_found",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q0334-C04",
+      "url": "https://github.com/rjwalters/lean-genius/blob/d8540c5a48f69a9f57b87c549c6e09dad63a0670/proofs/Proofs/Erdos66Problem.lean",
+      "locator": "Erdos66Question; randomSetHasLimitAlmostEverywhere; ErdosStrongerConjecture; stronger_implies_original",
+      "version": "d8540c5a48f69a9f57b87c549c6e09dad63a0670",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "已静态检查未复跑",
+      "note": "主问及否定仅 Prop 定义，唯一 theorem 是 stronger_implies_original，不含较强前提的证明。较强前提按字面量化所有 A，在 A=∅ 时振荡差为 0 而不成立；这不是主问题反例。静态类型/数学检查另见：density 条件第一 ε 被 Nat 比较与乘法推为 Nat，E=ℕ\\{1} 也满足却密度为 1；p_n≈c/√n 注释应产生常数量级 πc² 的均值而非 c²log n，缺少 √log 因子。未 Lean 编译，不能把条件 theorem 或无 sorry 外观升为主问证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q0334-C05",
+      "url": "https://github.com/epoch-research/LeanOpenProblems-results/blob/cbb7cb657f24157d9ebb7640ec50bd35bad78ad8/runs/bloom68-ultima-e1dhs43ykrmakree/Erdos66.erdos_66/scores.txt",
+      "locator": "proof_scorer comparator 日志，最后 Illegal axiom detected: sorryAx",
+      "version": "cbb7cb657f24157d9ebb7640ec50bd35bad78ad8",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "该第三方保存的测试日志在 Challenge 与 Solution 构建时都显示 declaration uses sorry，最终因 sorryAx 被比较器拒绝。日志中的 Build completed successfully 不能当作无占位证明验证。此次只是读取已有日志，既不是本轮复跑通过，也不写成本轮复跑失败；不能从这一日志推断仓库全部运行结果。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q0334-C06",
+      "url": "https://github.com/umpolungfish/ob3ect/blob/ef88f2564e8654905494442828b26be0c538e181/digital/erdos66_witness_extractor/lean_hints.txt",
+      "locator": "lean_hints.txt 步骤 3–8；同目录 design.json boundary/frobenius/registers",
+      "version": "ef88f2564e8654905494442828b26be0c538e181",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "严格蕴含",
+      "role": "进展",
+      "publication": "代码仓库",
+      "claim_state": "关键步骤受质疑",
+      "review_status": "核对发现漏洞",
+      "formal_status": "未检到形式化",
+      "note": "公开设计声称随机 witness (A,π)，但当前目标目录仅 5 个文本/JSON 文件而无 .lean。Var≤E+E²、E≈πlog n 只能给常数量级 Chebyshev 上界，推不出 n_k=2^k 时 O(k^−2)。即用独立无序对得到 Var=O(log n)，该 Chebyshev 也仅 O(k^−1)，不能套可求和 Borel–Cantelli；r_A(n) 不单调，末步 subsequence→full sequence 未给控制。design 的精确均值拆分另漏对角项 p−p²。仅排除这份显示的证明链条，不否定原存在性问题；verdict T 不是形式化证书。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "step_disputed",
+        "claim_review": "gap_found",
+        "scope_match": "implies",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q0334-C07",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-1/r1/",
+      "locator": "Math-8055-A1 r1 Manuscript；FINAL；Screening/Formal check",
+      "version": "r1；记录日期 2026-09-23；2026-11-27 读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "GPT 6 Astra Ultra",
+      "claim_date": "2026-09-23",
+      "note": "在假设 r(n)~Llog n 下，利用 Laplace 权重的矩收敛和 |ν_x|≤μ_x，将 Abel 型 Fourier 结论去权，得到 A(x)~2√(L/π)√(xlog x) 及固定非平凡频率的普通计数等分布。检查了极限测度的矩及单跳点无原子近似，关键步骤未发现主张范围内明显缺口；依赖假设与前轮必要条件，最终明言 UNRESOLVED。未查清这些条件结果的新颖性，不能记为主问已解或独立新定理。 来源标明未筛查、该版 0 条社区复核、形式检查未做；网页标签不能代替上述稿件内容判断。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q0334-C08",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-2/r1/",
+      "locator": "Math-8055-A2 r1 Manuscript；FINAL；Screening/Formal check",
+      "version": "r1；记录日期 2026-01-17；2026-11-27 读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "核对发现漏洞",
+      "formal_status": "未检到形式化",
+      "claimant": "GPT 5.2",
+      "claim_date": "2026-01-17",
+      "note": "全文最终 UNRESOLVED；给出简单对数/平方根规模限制与概率启发。其先固定 ε 得下界，再令 ε↓0 宣称一个精确常数对所有充分大 x 成立的写法缺少统一阈值，宜只保留严格更小常数的增长阶结论；√log n 的典型波动本身除以 log n 会趋零，不能单独证明比值不收敛。没有候选 A、全序列概率控制或不存在性证明。 来源标明未筛查、该版 0 条社区复核、形式检查未做；网页标签不能代替上述稿件内容判断。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "gap_found",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q0334-C09",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-3/r1/",
+      "locator": "Math-8055-A3 r1 Manuscript；FINAL；Screening/Formal check",
+      "version": "r1；记录日期 2026-01-17；2026-11-27 读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "关键步骤受质疑",
+      "review_status": "核对发现漏洞",
+      "formal_status": "未检到形式化",
+      "claimant": "GPT pro 5.2",
+      "claim_date": "2026-01-17",
+      "note": "全文最终 UNRESOLVED；部分显示推导有错误：把 Σ_{2≤n≤2N}r(n) 写成 O(1)+Σ_{N≤n≤2N}r(n) 遗漏增长前段；声称 n^(2/3)≤k≤n−n^(2/3) 上 log k=log n+O(1) 不成立，k≈n^(2/3) 已给差约−(1/3)log n。其均值渐近最终用 o(1) 乘 log n 又断言 O(1) 误差亦未给速率。目标均值结论未因这些书写错误被否定，但此稿未证明该精度，更未解决主问。 来源标明未筛查、该版 0 条社区复核、形式检查未做；网页标签不能代替上述稿件内容判断。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "step_disputed",
+        "claim_review": "gap_found",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q0334-C10",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-4/r1/",
+      "locator": "Math-8055-A4 r1 Manuscript；FINAL；Screening/Formal check",
+      "version": "r1；记录日期 2026-01-27；2026-11-27 读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "GPT pro 5.2 version 2",
+      "claim_date": "2026-01-27",
+      "note": "仅在 r(n)~Llog n 的假设下，用 Abel 估计、G(t)^2=Σr(n)e^−tn 及 Karamata 的 Laplace–Stieltjes 形式得到 A(x)~2√(L/π)√(xlog x)。读完 Lemma66.3–66.5 和 Proposition66.6，并核常数、非减性、平方根与慢变化假设；Karamata 本身作为标准外部定理引用，未另做全形式化。结尾明确未构造 A、未导出矛盾，UNRESOLVED；新颖性未经独立文献审定。 来源标明未筛查、该版 0 条社区复核、形式检查未做；网页标签不能代替上述稿件内容判断。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q0334-C11",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-5/r1/",
+      "locator": "Math-8055-A5 r1 Manuscript；FINAL；Screening/Formal check",
+      "version": "r1；记录日期 2026-09-23；2026-11-27 读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "GPT pro 5.4",
+      "claim_date": "2026-09-23",
+      "note": "假设 r(n)~Llog n，显示 Laplace/Fourier 必要条件：远离 0 的频率区间需 η(t)/t→∞，由对数模型的分部求和及均匀 o 主项误差，得相应 G_θ/G→0；固定无理/有理旋转的 Abel 型等分布。核查时保留 η/t→∞ 的强条件，不能仅按固定倍数 δ≥Ct 解读。最终 UNRESOLVED，只是条件必要结果，没有构造或不存在性证明；未独立审定结果新颖性。 来源标明未筛查、该版 0 条社区复核、形式检查未做；网页标签不能代替上述稿件内容判断。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q0334-C12",
+      "url": "https://www.erdosproblems.com/forum/thread/66",
+      "locator": "S1 搜索缓存：FlaredRain 2026-05-28 评论；GPT-5 找到 Horváth 参考的评论",
+      "version": "2026-11-27 查询；搜索缓存显示约 5 个月前抓取；非 live 访问",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "进展",
+      "publication": "社区帖子",
+      "scope_match": "尚未确认",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "live open 被 restricted URL 阻止。缓存中第一评论把 Táfula 边界概率启发用于 c<1，文字本身称 heuristic；未据评论认定对任意集合的 c<1 不存在性定理。第二评论是 GPT-5 找到 Horváth 2007 文献，属于检索线索，不是 AI 新证明。缓存还标无解答声明，但非当前实时状态凭证；原论文限定由原始文献路线核实。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "000334-2R-E1",
+      "url": "https://github.com/umpolungfish/ob3ect/blob/ef88f2564e8654905494442828b26be0c538e181/digital/erdos66_witness_extractor/lean_hints.txt",
+      "locator": "lean_hints.txt，全8步；重点Step4→5、Step6→7",
+      "version": "commit ef88f2564e8654905494442828b26be0c538e181；blob d559563ed9f4556b2e1a265032b60a91dcb44cb3；2026-11-27独立读取",
+      "subquestions": [
+        "AI提示中的Chebyshev推导",
+        "从子序列到全序列的缺失控制"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "严格蕴含",
+      "claim_state": "关键步骤受质疑",
+      "review_status": "核对发现漏洞",
+      "note": "本次二审独立实际读原文件，不仅复用首审结论。它是以π为目标的8步提示/纲要，不是完整Lean证明；Step3均值lemma的CLOSED标记未在本二审验证。即使先接受均值结论，Step4给定矩界也推不出Step5；Step7也无单调性或区间振荡控制。未复跑Lean，不把该文本升级为已经证明或形式化通过。 其目标为特定c=π；若被证明足以肯定原存在性问题，但与任意c的存在性表述不逻辑等价。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "claim_state": "step_disputed",
+        "claim_review": "gap_found",
+        "scope_match": "implies",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "000334-2R-E2",
+      "url": "https://we-solve.github.io/contributions/erdos-problem-66-518d09a2/attempt-3/r1/",
+      "locator": "Lemma66.2 Step2；紧随的Riemann-sum结论；FINAL:UNRESOLVED",
+      "version": "Math-8055-A3 revision r1；2026-01-17；2026-11-27实际读取",
+      "subquestions": [
+        "AI旁证中均值估计的统一量词"
+      ],
+      "role": "进展",
+      "publication": "社区帖子",
+      "scope_match": "仅子问",
+      "claim_state": "关键步骤受质疑",
+      "review_status": "核对发现漏洞",
+      "claimant": "we-solve记录：LLM-generated, gpt pro5.2",
+      "claim_date": "2026-01-17",
+      "note": "原稿明确表示未得完整证明/反例，结尾UNRESOLVED，页面No claim recorded；本二审保留此定位。只诊断Lemma66.2内的统一估计和相邻误差传递，不能由此说均值主项本身为假，更不能当成原问题反例。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "claim_state": "step_disputed",
+        "claim_review": "gap_found",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000329",
+      "other_card_rev": "0dfe8cb524e651da",
+      "relation": "待核",
+      "reason": "对方EP28问所有二阶渐近基的表示数是否无界，本题EP66问是否存在正有限对数极限；存在该极限已自动无界，不能把两问视为同题或互相否定。固定全文已核，关系最终由较小编号负责人裁定。",
+      "positions": {
+        "self": "card_text题面、边界与约定；card_metadata.acceptance.criteria：∃A∃有限c>0使有序r_A(n)/log n全序列收敛",
+        "other": "problems/000/QX-P-000329.text.md题面、形式化表述与.meta.json acceptance.criteria"
+      },
+      "note": "pair_id=QX-P-000329__QX-P-000334；本题较大编号仅交候选和差异；不合并、不替其他包定案。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-000331",
+      "other_card_rev": "db90820ea7a09861",
+      "relation": "待核",
+      "reason": "对方EP40针对集合计数下界√N/g(N)推出表示数无界并问g范围，不是本题固定c log精确渐近的存在性。虽同属Erdős–Turán问题族，结论和量词不同。最终关系由较小编号负责人裁定。",
+      "positions": {
+        "self": "card_text题面、边界与约定；card_metadata.acceptance.criteria：∃A∃有限c>0使有序r_A(n)/log n全序列收敛",
+        "other": "problems/000/QX-P-000331.text.md题面、形式化表述与.meta.json external_refs/acceptance.criteria"
+      },
+      "note": "pair_id=QX-P-000331__QX-P-000334；本题较大编号仅交候选，不判000331与002255之间关系。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-002255",
+      "other_card_rev": "bbfd6a5636e5bffb",
+      "relation": "同源不同问",
+      "reason": "对方仅有EP40强定量形式标题，正文承认按通常理解补写；external_refs确为40。不是本题明确的EP66正有限log极限问句。残缺卡不能仅因“表示函数增长”而并入本题。",
+      "positions": {
+        "self": "card_text题面、边界与约定；card_metadata.acceptance.criteria：∃A∃有限c>0使有序r_A(n)/log n全序列收敛",
+        "other": "problems/002/QX-P-002255.text.md题面、人话版和其他记录；.meta.json external_refs/acceptance.criteria"
+      },
+      "note": "pair_id=QX-P-000334__QX-P-002255；本题较小编号负责人。双方固定全文已读，当前不建议合并。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "duplicate_relation": "related"
+      }
+    },
+    {
+      "other_id": "QX-P-002317",
+      "other_card_rev": "c65b96c9f659e32d",
+      "relation": "同源不同问",
+      "reason": "对方EP1145问两集A,B的枚举比→1且A+B余有限时跨集表示数是否必无界，本题固定A=A，且问正有限对数极限存在性。即使对方卡记录的有界跨集反例声称成立也不解决本题；该声称未在此路线独立查证。",
+      "positions": {
+        "self": "card_text题面、边界与约定；card_metadata.acceptance.criteria：∃A∃有限c>0使有序r_A(n)/log n全序列收敛",
+        "other": "problems/002/QX-P-002317.text.md题面及末段与000334关系说明；.meta.json acceptance.criteria"
+      },
+      "note": "pair_id=QX-P-000334__QX-P-002317；本题较小编号负责人；不建议合并。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "duplicate_relation": "related"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补条件量词",
+      "field": "card_text.形式化表述",
+      "old": "仅写Erdős–Sárközy误差障碍，没有给主问的完整形式。",
+      "new": "是否存在集合A⊆ℕ₀和实数0<c<∞，令r_A(n)=#{(a,b)∈A×A:a+b=n}=Σ_{k=0}^n1_A(k)1_A(n−k)，使对每个ε>0存在N，对所有整数n≥max(N,2)都有|r_A(n)/log n−c|<ε？计有序对、允许a=b，不准删除无穷例外集。",
+      "reason": "保持原题卷积含义；正极限自动使r_A(n)>0最终成立，无需另加未说明的基假设。采用此补全若构成实质题面变化应生新card_rev并重核受影响路线，本回执仍绑定c16ce51e4cb646e8。",
+      "evidence_ids": [
+        "R0334-ORIGIN"
+      ],
+      "small_case_check": "A空或有限时比值→0，被c>0排除；A=ℕ_{≥1}时r=n−1，商→∞，被有限c排除。加入/删除0改变正n的r至多2，故ℕ₀/ℕ_{≥1}不改变正有限极限存在性。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "card_text.人话版.计数规范及随机集合",
+      "old": "两元素之和的方法数；随机取密集集合时r_A(n)大致随log n增长。",
+      "new": "r_A(n)计有序对：a≠b时(a,b)、(b,a)各计一次，a=b计一次。经典随机思路按约sqrt(log n/n)的概率稀疏选取整数；它可给log量级或删掉零密度例外后的相对渐近，不提供原题全n极限。",
+      "reason": "纠正有序/无序倍数及稀疏程度，避免将固定密度随机集或概率论几乎处处误当全n解答。核心卷积问句无需据此宣告错误。",
+      "evidence_ids": [
+        "R0334-ORIGIN"
+      ],
+      "small_case_check": "A={1,2}: n=3有序2/无序1，n=4有序1/无序1；一般r_ord=2r_unord−1_{2|n,n/2∈A}。固定p∈(0,1)独立选正整数，E r(n)=p²(n−1)+1_{2|n}(p−p²)，线性于n而非log。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "first_published / sources",
+      "old": "见上述文献年份；站点页面活跃维护。",
+      "new": "目前最早可核实：P.Erdős, Problems and results in additive number theory, Colloque sur la Théorie des Nombres (Bruxelles1955),127–137,1956，具体问句p131。",
+      "reason": "用原始可定位问句替代笼统年份；1955为会议年份、1956为文集出版年份，不把后来的c=1提法当一般问题首次提出。",
+      "evidence_ids": [
+        "R0334-ORIGIN"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "informal_status / novelty",
+      "old": "旧open/confirmed及novelty.card_rev=7dd81bcbd7e48eac。",
+      "new": "当前固定rev按分项证据记本次范围未发现完整解确证，并保留访问和二审缺口。",
+      "reason": "旧novelty哈希与当前c16ce51e4cb646e8不同，不作本轮已完成依据；旧网页索引状态不证明目前永久开放。",
+      "evidence_ids": [
+        "R0334-INDEX",
+        "R0334-ORIGIN"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "known_results / recent_progress",
+      "old": "只列Erdős–Sárközy的√log误差限制与Horváth2007常数改进。",
+      "new": "补入Táfula2026 DOI10.1002/rsa.70088：F/log→∞的regularly varying目标可实现r∼F；log级仍只给量级或随机模型结果，一般limsup≥1列为猜想。引用正式版并记v2更正史。",
+      "reason": "把最新相邻进展与原题固定c log n边界清楚分开，避免将heuristic或asymp误写为完整解。",
+      "evidence_ids": [
+        "000334-A-E1",
+        "000334-A-E2"
+      ],
+      "small_case_check": "代F(n)=c log n，则F/log=c而非∞，不满足Thm1.1；r≍log n允许不收敛。随机模型a.s.无穷零不逻辑排除模型外的确定性特殊集合。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "formal_status / formal",
+      "old": "formal_status.value=none；formal为空。",
+      "new": "补固定提交的Formal Conjectures题面链接和theorem Erdos66.erdos_66，标仅有形式化题面或骨架；列出by sorry。",
+      "reason": "存在代码题面不等于问题已形式化解决；第三方日志和有条件theorem不能填成独立复跑通过。",
+      "evidence_ids": [
+        "Q0334-C01",
+        "Q0334-C02",
+        "Q0334-C05"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "官方66页直接读取受限，只读到2026-04编辑的索引与1956原稿。",
+      "next_step": "将来可达时补读实时题页和评论/完整声明入口；目前不把旧索引视为本日live确认。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "与000329、000331的关系归较小编号负责人；002255题面残缺且指向EP40。",
+      "next_step": "将已读双边rev、正文位置和差异交较小编号查重负责人；无等价证明前不合并。不要据002317旧卡中的跨集声称改判本题。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "当前最新正式稿只解决超对数或特定随机模型；log边界的普遍性仍未由本轮取得的完整证明覆盖。",
+      "next_step": "若后续出现全解声明，必须核有序表示函数、任意固定c>0、所有充分大n且无例外集，并取得固定全文后二审。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Táfula旧版存在明示更正，作者主页的额外erratum链接本轮访问受阻；没有独立复核其修复证明。",
+      "next_step": "当前引用固定2026正式版和官方v2/v3版本史。未来若需要以其定理作新的严格推导，再核作者额外更正及相关证明；不冒称v1全稿有效或已独立复核。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Horváth 2007 只取得出版社与作者单位摘要；PDF 下载和正文页受阻，单位仓储明确 staff-only。",
+      "next_step": "若取得合规可读原稿，再补正文计数定义、定理编号及证明审核；在此之前保留公开声称/未读全文，不能声称本轮验证了完整证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "官方论坛 live 正文访问被限制，最后仅获取有历史抓取日期的搜索缓存。",
+      "next_step": "如后续取得 live 正文或导出，核对 2026-05-28 后新增评论；现将 c<1 评论和 GPT-5 文献定位严格保留为缓存线索，不作为证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "公开随机 witness 提示有 Chebyshev 可求和性与子列升全列的缺口；只有文本设计，无本目标 Lean 证明。",
+      "next_step": "只有作者补足概率估计、全序列控制及实际证明对象后才可升级；现不计为解决，亦不由此宣布原命题为假。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "we-solve A1/A4/A5 为假设极限存在的必要条件；本轮仅查关键步骤，未验证其新颖性或给第二审。",
+      "next_step": "保留范围限定与未解结尾；如要正式录作新进展，需独立核对外部定理及既有文献。主问闭合仍无可用证据。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "we-solve r1局部均值证明有统一性/误差阶缺口，原作者本就声明未解决。",
+      "next_step": "后续若引用其局部引理，需修正对数估计及Riemann和误差阶；当前不扩大为全稿二审或原题否定结论。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "c16ce51e4cb646e8",
+      "codes": {}
+    }
+  ]
+}

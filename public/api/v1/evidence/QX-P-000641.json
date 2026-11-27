@@ -1,0 +1,2540 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000641",
+  "card_rev": "183780ab5d2d3482",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "准确秩定义与题面范围",
+          "value": "statement_error",
+          "note": "本题 r0 是有限长（次正规）列中无限循环因子的个数，其余因子允许为周期群；不是最大无挠阿贝尔子群秩，也不是最小生成元数、Prüfer rank 或自由群的自由秩。对有限导出长度的可解 G，可按导出列计算 r0(G)=Σ_i dim_Q((G^(i)/G^(i+1))⊗_Z Q)，总和有限时与上述定义一致。有限秩阿贝尔因子取有限个有理独立元素所生成的自由子群，余商周期，再细分即可解释此公式。原文 (soluble) 提示一般有限列定义下的问题及可解子问题；2015 作者讲稿也确在一般域陈述不等式。需明写本卡验收究竟只限可解 G，还是上述更广域；不把任意非可解群擅自配以生成元秩来代入。这个释义错误不构成正确 r0 等式的反例。"
+        },
+        {
+          "subquestion": "Heisenberg 定义纠错证书",
+          "value": "statement_error",
+          "note": "令 G=UT3(Z)，用三元组 (a,b,c) 代表矩阵 [[1,a,c],[0,1,b],[0,0,1]]，群运算为 (a,b,c)(a′,b′,c′)=(a+a′,b+b′,c+c′+ab′)。设 x=(1,0,0)、y=(0,1,0)、z=(0,0,1)，Z={(0,0,c)}=Z(G)，A={(a,0,c)}=〈x,z〉，B={(0,b,c)}=〈y,z〉。A≅B≅Z²，A∩B=Z≅Z；每个 (a,b,c)=(a,0,c−ab)(0,b,0)，故确有集合等式 G=AB，且两因子都是正规子群。列 1<Z<A<G 的三个因子都是 Z，故 r0(G)=3，r0(A)=r0(B)=2，r0(A∩B)=1，原等式为 3=2+2−1。G 为二步幂零群；(a,b,c)^m=(ma,mb,mc+binom(m,2)ab) 也直接证明其无挠。另一方面，两元素对易当且仅当 ab′−a′b=0。任意阿贝尔子群 K 投影到 Z² 的有理张成空间维数至多 1，而 K∩Z 的秩至多 1，所以其阿贝尔秩≤2，A 达到 2。因此若依题卡错误释义，便得到伪数值 2<2+2−1；这只反驳人话定义，不反驳 18.5。"
+        },
+        {
+          "subquestion": "实际乘积与生成群的区别",
+          "value": "statement_error",
+          "note": "G=AB 必须指每个元素可写成一个 a∈A 乘一个 b∈B，不能只要求 G=〈A,B〉。在上一证书中改取 A0=〈x〉、B0=〈y〉，由 xyx⁻¹y⁻¹=z 可知它们生成 G；但 A0B0={(a,b,ab):a,b∈Z}，不含 z=(0,0,1)，故不是集合乘积分解。其 3>1+1−0 不违反已知不等式，因为缺 G=A0B0。即便 G=AB 成立，也不自动使因子正规或逐元素对易；一般乘法映射 A×B→G 并非群同态，不能无条件套用短正合列的秩加性。"
+        },
+        {
+          "subquestion": "正规因子等式",
+          "value": "partial",
+          "note": "若 G=AB 且 A⊲G，则 G/A≅B/(A∩B)。有限 torsion-free rank 对正规扩张可加：把正规子群的列与商群列的原像拼接，按秩不变性得 r0(G)=r0(A)+r0(G/A)。再对 B 内正规子群 A∩B 使用加性，得到 r0(G)=r0(A)+r0(B)−r0(A∩B)。B 正规时同理。所有涉及的秩因子群/商群继承有限列而有限。此为本轮自含手核特例，不把一般因子误当正规。"
+        },
+        {
+          "subquestion": "阿贝尔等式",
+          "value": "partial",
+          "note": "当 G 为阿贝尔群并且 G=A+B 时，有短正合列 0→A∩B→A⊕B→G→0，其中映射为 x↦(x,−x) 与 (a,b)↦a+b。与 Q 张量保持正合，取有限维数即得 r0(G)=r0(A)+r0(B)−r0(A∩B)。这里要求整个 G 阿贝尔，不是只说 A、B 各自阿贝尔；上一 Heisenberg 例的两个阿贝尔因子不逐元素对易。"
+        },
+        {
+          "subquestion": "noetherian、minimax 的已知等式特例",
+          "value": "partial",
+          "note": "1989 原刊引言在 G soluble-by-finite、A/B noetherian 时给出带交项的等式，因而覆盖 polycyclic 情形。对可解 G 且 A、B minimax，原刊所引 Wilson 结果保证 G 也 minimax；原刊另给 m(G)=m(A)+m(B)−m(A∩B) 以及每个素数 p 的 m_p 同式。由 m=r0+Σ_p m_p 相减，得到 r0 的同一公式。该和只有有限项，因为 minimax 列有限，故没有无穷减无穷问题。本轮核的是应用条件与相减步骤；原刊引用的 Amberg/Wilson/相关 m、m_p 定理长证明未重证。这些额外有限性不能删去后充作一般解。"
+        },
+        {
+          "subquestion": "有限 abelian section rank 的已知特例",
+          "value": "partial",
+          "note": "Amberg 2015 作者讲稿最后一页明确等式对 soluble G of finite abelian section rank 成立，并指向 [AFG]4.1.10；这是比只登记 polycyclic 更宽的已知特例。按已读 1988 原刊定义，该条件排除任意素数的无限 elementary abelian section。本轮已亲读这一作者声明和定义，尚未取得并重审专著中的证明；按文献已知特例登记，不声称本轮从零证明该广泛结论。"
+        },
+        {
+          "subquestion": "有限秩不蕴含较强有限性",
+          "value": "partial",
+          "note": "取任意固定素数 p，T=⊕_{j≥1}C_p，G=T×Z。列 1<T<G 给 r0(G)=1，但 T 是无限 elementary abelian p-section，故 G 不具 finite abelian section rank。它也不是 minimax：子群会继承 minimax 列，而指数 p 的 T 的所有截面仍指数 p，不能出现 Z 或 Cp∞ 因子；若 T 有 minimax 列就只能有有限因子，迫使 T 有限，矛盾。Cp^m≤T 对任意 m 成立，故 Prüfer rank 也无统一有限界。这排除以有限 r0 自动套用上述特例。另所有有限群、周期群及其子群均 r0=0，有限群的任何合法乘积分解都只检查 0=0+0−0；小阶有限 p-群扫描不能检测本题的正秩困难。未执行这类扫描。"
+        },
+        {
+          "subquestion": "漏交项转述的范围排除",
+          "value": "statement_error",
+          "note": "Pavešić 作者 PDF §3 的前置条件仅 G=AB，Theorem 3.6 在有限 r0 下写 r0(G)≤r0(A)+r0(B)，并称 G 可解则该无交项式取等。其字面等式已有初等反例：G=(Z,+)，A=2Z、B=3Z，两个因子都是真子群，Bézout 给 A+B=Z，交集为 6Z；四个非零无限循环群的 r0 均为 1。因而无交项式成 1=2，不成立，而 18.5 的正确式为 1=1+1−1，恰成立。这个证书只排除漏交项的转述，不能报告为 18.5 已反驳或已证明；也未审查/推翻其针对特定自同伦等价群的其他结论。"
+        },
+        {
+          "subquestion": "周期阿贝尔因子与无挠局部循环因子的乘积",
+          "value": "partial",
+          "note": "2021 Lemma4.1给r0G=1；r0A=0、r0B=1且交为1，故此类等式成立。其结构证明用旧外部定理，未扩充为主问证明。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "claimed_verified",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/pitmonticone/Kourovka/blob/dcfdbdad8c434e30f6151fb3b4343364d70eeed4/README.md"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://arxiv.org/html/1401.0300v50",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "按原文标准r0、可解G、集合乘积分解G=AB、r0(G)<∞理解，本轮有限定向检索核到一般≤及若干严格附加条件下的等式，未取得一般等式证明或严格<反例。题卡人话定义错误单列修正，不据此抹去可辨认的核心原问。较一般非可解域也不在本轮获解。",
+      "evidence_ids": [
+        "a0641_kourovka_v50",
+        "a0641_afg1991",
+        "a0641_amberg2015",
+        "a0641_afg1989",
+        "R641-CARD",
+        "R641-1988",
+        "R641-1989"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "准确秩定义与题面范围",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "本题 r0 是有限长（次正规）列中无限循环因子的个数，其余因子允许为周期群；不是最大无挠阿贝尔子群秩，也不是最小生成元数、Prüfer rank 或自由群的自由秩。对有限导出长度的可解 G，可按导出列计算 r0(G)=Σ_i dim_Q((G^(i)/G^(i+1))⊗_Z Q)，总和有限时与上述定义一致。有限秩阿贝尔因子取有限个有理独立元素所生成的自由子群，余商周期，再细分即可解释此公式。原文 (soluble) 提示一般有限列定义下的问题及可解子问题；2015 作者讲稿也确在一般域陈述不等式。需明写本卡验收究竟只限可解 G，还是上述更广域；不把任意非可解群擅自配以生成元秩来代入。这个释义错误不构成正确 r0 等式的反例。",
+      "evidence_ids": [
+        "Q641-M-E1",
+        "Q641-M-E2",
+        "Q641-M-E4",
+        "Q641-M-E6"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "Heisenberg 定义纠错证书",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "令 G=UT3(Z)，用三元组 (a,b,c) 代表矩阵 [[1,a,c],[0,1,b],[0,0,1]]，群运算为 (a,b,c)(a′,b′,c′)=(a+a′,b+b′,c+c′+ab′)。设 x=(1,0,0)、y=(0,1,0)、z=(0,0,1)，Z={(0,0,c)}=Z(G)，A={(a,0,c)}=〈x,z〉，B={(0,b,c)}=〈y,z〉。A≅B≅Z²，A∩B=Z≅Z；每个 (a,b,c)=(a,0,c−ab)(0,b,0)，故确有集合等式 G=AB，且两因子都是正规子群。列 1<Z<A<G 的三个因子都是 Z，故 r0(G)=3，r0(A)=r0(B)=2，r0(A∩B)=1，原等式为 3=2+2−1。G 为二步幂零群；(a,b,c)^m=(ma,mb,mc+binom(m,2)ab) 也直接证明其无挠。另一方面，两元素对易当且仅当 ab′−a′b=0。任意阿贝尔子群 K 投影到 Z² 的有理张成空间维数至多 1，而 K∩Z 的秩至多 1，所以其阿贝尔秩≤2，A 达到 2。因此若依题卡错误释义，便得到伪数值 2<2+2−1；这只反驳人话定义，不反驳 18.5。",
+      "evidence_ids": [
+        "Q641-M-E2",
+        "Q641-M-E6"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "实际乘积与生成群的区别",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "G=AB 必须指每个元素可写成一个 a∈A 乘一个 b∈B，不能只要求 G=〈A,B〉。在上一证书中改取 A0=〈x〉、B0=〈y〉，由 xyx⁻¹y⁻¹=z 可知它们生成 G；但 A0B0={(a,b,ab):a,b∈Z}，不含 z=(0,0,1)，故不是集合乘积分解。其 3>1+1−0 不违反已知不等式，因为缺 G=A0B0。即便 G=AB 成立，也不自动使因子正规或逐元素对易；一般乘法映射 A×B→G 并非群同态，不能无条件套用短正合列的秩加性。",
+      "evidence_ids": [
+        "Q641-M-E1",
+        "Q641-M-E6"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "正规因子等式",
+      "math_status": "仅特例",
+      "scope_note": "若 G=AB 且 A⊲G，则 G/A≅B/(A∩B)。有限 torsion-free rank 对正规扩张可加：把正规子群的列与商群列的原像拼接，按秩不变性得 r0(G)=r0(A)+r0(G/A)。再对 B 内正规子群 A∩B 使用加性，得到 r0(G)=r0(A)+r0(B)−r0(A∩B)。B 正规时同理。所有涉及的秩因子群/商群继承有限列而有限。此为本轮自含手核特例，不把一般因子误当正规。",
+      "evidence_ids": [
+        "Q641-M-E2",
+        "Q641-M-E6"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "阿贝尔等式",
+      "math_status": "仅特例",
+      "scope_note": "当 G 为阿贝尔群并且 G=A+B 时，有短正合列 0→A∩B→A⊕B→G→0，其中映射为 x↦(x,−x) 与 (a,b)↦a+b。与 Q 张量保持正合，取有限维数即得 r0(G)=r0(A)+r0(B)−r0(A∩B)。这里要求整个 G 阿贝尔，不是只说 A、B 各自阿贝尔；上一 Heisenberg 例的两个阿贝尔因子不逐元素对易。",
+      "evidence_ids": [
+        "Q641-M-E6"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "noetherian、minimax 的已知等式特例",
+      "math_status": "仅特例",
+      "scope_note": "1989 原刊引言在 G soluble-by-finite、A/B noetherian 时给出带交项的等式，因而覆盖 polycyclic 情形。对可解 G 且 A、B minimax，原刊所引 Wilson 结果保证 G 也 minimax；原刊另给 m(G)=m(A)+m(B)−m(A∩B) 以及每个素数 p 的 m_p 同式。由 m=r0+Σ_p m_p 相减，得到 r0 的同一公式。该和只有有限项，因为 minimax 列有限，故没有无穷减无穷问题。本轮核的是应用条件与相减步骤；原刊引用的 Amberg/Wilson/相关 m、m_p 定理长证明未重证。这些额外有限性不能删去后充作一般解。",
+      "evidence_ids": [
+        "Q641-M-E3",
+        "Q641-M-E6"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限 abelian section rank 的已知特例",
+      "math_status": "仅特例",
+      "scope_note": "Amberg 2015 作者讲稿最后一页明确等式对 soluble G of finite abelian section rank 成立，并指向 [AFG]4.1.10；这是比只登记 polycyclic 更宽的已知特例。按已读 1988 原刊定义，该条件排除任意素数的无限 elementary abelian section。本轮已亲读这一作者声明和定义，尚未取得并重审专著中的证明；按文献已知特例登记，不声称本轮从零证明该广泛结论。",
+      "evidence_ids": [
+        "Q641-M-E2",
+        "Q641-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限秩不蕴含较强有限性",
+      "math_status": "仅特例",
+      "scope_note": "取任意固定素数 p，T=⊕_{j≥1}C_p，G=T×Z。列 1<T<G 给 r0(G)=1，但 T 是无限 elementary abelian p-section，故 G 不具 finite abelian section rank。它也不是 minimax：子群会继承 minimax 列，而指数 p 的 T 的所有截面仍指数 p，不能出现 Z 或 Cp∞ 因子；若 T 有 minimax 列就只能有有限因子，迫使 T 有限，矛盾。Cp^m≤T 对任意 m 成立，故 Prüfer rank 也无统一有限界。这排除以有限 r0 自动套用上述特例。另所有有限群、周期群及其子群均 r0=0，有限群的任何合法乘积分解都只检查 0=0+0−0；小阶有限 p-群扫描不能检测本题的正秩困难。未执行这类扫描。",
+      "evidence_ids": [
+        "Q641-M-E2",
+        "Q641-M-E3",
+        "Q641-M-E6"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "漏交项转述的范围排除",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "Pavešić 作者 PDF §3 的前置条件仅 G=AB，Theorem 3.6 在有限 r0 下写 r0(G)≤r0(A)+r0(B)，并称 G 可解则该无交项式取等。其字面等式已有初等反例：G=(Z,+)，A=2Z、B=3Z，两个因子都是真子群，Bézout 给 A+B=Z，交集为 6Z；四个非零无限循环群的 r0 均为 1。因而无交项式成 1=2，不成立，而 18.5 的正确式为 1=1+1−1，恰成立。这个证书只排除漏交项的转述，不能报告为 18.5 已反驳或已证明；也未审查/推翻其针对特定自同伦等价群的其他结论。",
+      "evidence_ids": [
+        "Q641-M-E5",
+        "Q641-M-E6"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "周期阿贝尔因子与无挠局部循环因子的乘积",
+      "math_status": "仅特例",
+      "scope_note": "2021 Lemma4.1给r0G=1；r0A=0、r0B=1且交为1，故此类等式成立。其结构证明用旧外部定理，未扩充为主问证明。",
+      "evidence_ids": [
+        "a0641_amberg_sysak2021"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "原题包及GitHub固定提交",
+      "query": "任务.jsonl定位000641；fetch_file完整text.md和meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "本包第33题，rank1813，list_row1033，rev183780ab5d2d3482；text blob48d878a03b421d0c1a89db6679595cee363ead6d；meta blob78b019b36583af3e90b47dc7a900ec88dceadfa8。旧novelty rev0cf87a3bfe2d731b且明列未单独检索，不迁移其无解判断。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000641.text.md",
+      "request_id": "QX-R3-11-000641-root-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv固定PDF",
+      "query": "find18.5.；open原题及第18辑页眉",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "主审实际读到完整三行，(soluble)确为原文括号，G=AB为集合积，finite torsion-free rank，等式含减交集项且已知≤；提出者Amberg。印刷p125/PDF P124页眉第18辑2014，未把当页其他AI进展混入18.5。",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "18.5印刷p125/PDF P124",
+      "request_id": "QX-R3-11-000641-root-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Kourovka\" \"18.5\" \"rank\"; recency=730",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中1989原刊、1991Rank formulae索引及2022mutually permutable论文，搜索的近期窗口不等于成果发表于近期。仅原稿已读的声明用于范围判断。",
+      "request_id": "QX-R3-11-000641-root-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"torsion-free rank\" \"factorized\" \"groups\" equality; recency=730",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中1989原刊、1991Rank formulae索引及2022mutually permutable论文，搜索的近期窗口不等于成果发表于近期。仅原稿已读的声明用于范围判断。",
+      "request_id": "QX-R3-11-000641-root-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"rank formula\" \"torsion-free\" \"Amberg\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "得到1991原刊DOI10.1007/BF01058710及作者机构书目，另MSE3642241是join非集合积的异题、Amberg地名噪音。未把社区或二手摘要当一般等式证明。",
+      "request_id": "QX-R3-11-000641-root-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Hirsch length\" \"G=AB\" equality",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "得到1991原刊DOI10.1007/BF01058710及作者机构书目，另MSE3642241是join非集合积的异题、Amberg地名噪音。未把社区或二手摘要当一般等式证明。",
+      "request_id": "QX-R3-11-000641-root-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"18.5\" \"Amberg\" equality counterexample",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "得到1991原刊DOI10.1007/BF01058710及作者机构书目，另MSE3642241是join非集合积的异题、Amberg地名噪音。未把社区或二手摘要当一般等式证明。",
+      "request_id": "QX-R3-11-000641-root-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Rank formulae for factorized groups\" theorem",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "得到1991原刊DOI10.1007/BF01058710及作者机构书目，另MSE3642241是join非集合积的异题、Amberg地名噪音。未把社区或二手摘要当一般等式证明。",
+      "request_id": "QX-R3-11-000641-root-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Rank formulae for factorized groups\" \"counterexample\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核到作者主页1985论文和1991书目，及2016不同min-by-max题的引用，没有从这些索引取得本题全称解或反例。未跟读无关正文，也不把题号地名噪音算命中。",
+      "request_id": "QX-R3-11-000641-root-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"torsion-free rank\" \"rank equation\" groups",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核到作者主页1985论文和1991书目，及2016不同min-by-max题的引用，没有从这些索引取得本题全称解或反例。未跟读无关正文，也不把题号地名噪音算命中。",
+      "request_id": "QX-R3-11-000641-root-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Produkte von Gruppen mit endlichem torsionsfreiem Rang\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核到作者主页1985论文和1991书目，及2016不同min-by-max题的引用，没有从这些索引取得本题全称解或反例。未跟读无关正文，也不把题号地名噪音算命中。",
+      "request_id": "QX-R3-11-000641-root-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge原刊PDF",
+      "query": "open Nilpotent-by-Noetherian Factorized Groups，读引言及Notation并打开尾参考",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "1989 pp391–393：soluble-by-finite G=AB且A/B noetherian时等式已知，引用Amberg1985 Satz5.2；soluble且A/B minimax时给m及每个m_p的等式，并定义m=r0+Σm_p，可相减得r0等式。主审核参数与推导，不把文中nilpotent-by-noetherian的一般Theorem A误认为直接证明全体finite-r0群的等式。参考p403给Amberg1985、Wilson1985/1988。未在此题重证这些闭包大定理。",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D7841636D19A81D9A93D2B57D76FD9D5/S0008439500001260a.pdf/nilpotent-by-noetherian-factorized-groups.pdf",
+      "locator": "引言pp391–392，Notation p393，References p403",
+      "request_id": "QX-R3-11-000641-root-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge原刊PDF",
+      "query": "open On Normal Subgroups of Products of Nilpotent Groups，读首页及Notation",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "1988原刊p277明确r0是有限群列中无限循环因子的个数，其他因子可为torsion groups；不是最大无挠阿贝尔子群秩。原刊此文其他结构定理与本题秩等式不同，不借标题覆盖宣称解题。",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/B0A8783D7023E22EF219493253B14645/S1446788700029876a.pdf/on-normal-subgroups-of-products-of-nilpotent-groups.pdf",
+      "locator": "pp275–277，Notation段",
+      "request_id": "QX-R3-11-000641-root-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "仅join(title,title_en,aliases)后regex:18\\.5\\b|r.?0.*A.*B|torsion.free rank|无挠秩|Hirsch",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际6项；第一式含多面体Hirsch与Hirsch–Plotkin等名称噪音，第二式按共有group-product结构得相关候选；选择1006/1110全文复核，不声称全部候选逐题完成。",
+      "request_id": "QX-R3-11-000641-root-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "仅join(title,title_en,aliases)后regex:Amberg|子群.*积|factoriz.*group|product.*subgroup",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际17项；第一式含多面体Hirsch与Hirsch–Plotkin等名称噪音，第二式按共有group-product结构得相关候选；选择1006/1110全文复核，不声称全部候选逐题完成。",
+      "request_id": "QX-R3-11-000641-root-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定提交",
+      "query": "fetch_file problems/001/QX-P-001006.text.md及.meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读全题、定义、原文及acceptance；rev353f912cb31b2830。1006是specialrank有限性，1110是有限p群sectionalrank线性界，两者均非torsion-free rank等式；仅为本题关系比较。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001006.text.md",
+      "request_id": "QX-R3-11-000641-root-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定提交",
+      "query": "fetch_file problems/001/QX-P-001110.text.md及.meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读全题、定义、原文及acceptance；rev30ece55ac8d8d9bc。1006是specialrank有限性，1110是有限p群sectionalrank线性界，两者均非torsion-free rank等式；仅为本题关系比较。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001110.text.md",
+      "request_id": "QX-R3-11-000641-root-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"torsion-free rank\" \"equality\" \"factorized\" -site:scispace.com -site:researchgate.net",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中1995会议章节preview和2021locallycyclic旧稿，其余多地名/其他题；仅随后实际读取的相关原作者段落入证。未命中erratum不等于不存在任何勘误。",
+      "request_id": "QX-R3-11-000641-root-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"18.5\" \"Kourovka\" \"2026\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中1995会议章节preview和2021locallycyclic旧稿，其余多地名/其他题；仅随后实际读取的相关原作者段落入证。未命中erratum不等于不存在任何勘误。",
+      "request_id": "QX-R3-11-000641-root-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Amberg\" \"rank formulae\" \"erratum\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中1995会议章节preview和2021locallycyclic旧稿，其余多地名/其他题；仅随后实际读取的相关原作者段落入证。未命中erratum不等于不存在任何勘误。",
+      "request_id": "QX-R3-11-000641-root-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Amberg作者讲稿",
+      "query": "open Products of groups revisited，2015Napoli讲稿首部与末页",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "主审亲读第34页定义、1991不等式及[AFG]Question8，且其4.1.10的已知情形为soluble有限abeliansectionrank；第7页[AFG]书目给1992。没有取得被引书全部证明，不把讲稿中的原始文献指引写成书页已阅。",
+      "url": "https://www.advgrouptheory.com/AGTAConferences/cgt2015/centro/talk/Amberg.pdf",
+      "locator": "PDF P6书目、P33本题",
+      "request_id": "QX-R3-11-000641-root-021",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "出版社会议文集preview",
+      "query": "open Infinite Groups1994官方preview；find1995/ISBN/Some Results and Problems",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取Amberg章节§2.1定义及§2.2印刷p3：该秩不等式后问等式，并回指[7]§4.1Question8。章节版权页写BerlinNewYork1995，整书编目行另见1996；不强定精确发行日。preview解析把≤印成<，不据这一OCR符号另造矛盾；公式正确方向由v50、1991摘要及2015讲稿交叉确认。",
+      "url": "https://api.pageplace.de/preview/DT0400.9783110810387_A34803000/preview-9783110810387_A34803000.pdf",
+      "locator": "Amberg Some Results and Problems about Factorized Groups，§2.2p3；章节首页copyright1995",
+      "request_id": "QX-R3-11-000641-root-022",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Pavešić作者稿",
+      "query": "open作者Self-Homotopy Equivalences of Product Spaces PDF；find Theorem3.6；读§3前置及3.6–3.10",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "该稿§3先列一般G=AB的群论结果，3.6无交项的等式附言在任意solvableG范围为假；不存在明示A∩B=1救援条件。仅记录此句不能作本题全解，不据此推断所有拓扑主定理为假。",
+      "url": "https://users.fmf.uni-lj.si/pavesic/RESEARCH/Self-Homotopy%20Equivalences%20of%20Product%20Spaces.pdf",
+      "locator": "作者稿pp9–11，Thm3.6",
+      "request_id": "QX-R3-11-000641-root-023",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：原页核验",
+      "site": "Web截图及本地PDF渲染",
+      "query": "web screenshot pageno10；urllib.request下载原PDF；pdftoppm -f11 -l11 -scale-to1600 -singlefile -png；view_image实际查看页11",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "Web截图本轮只有占位，未当已视读；随后本地实下载242542bytes，SHA256b18da6116d281427871c4726ba25bbebed27c5444b837c5294e7bb9c3b18924b，pdftoppm返回0，主审实际查看原页图像，确认3.6确无交项且称solvable时取等，非文本抽取遗漏。数学反证Z=2Z+3Z在最终回执内自含，不依赖临时图片才能核验。",
+      "url": "https://users.fmf.uni-lj.si/pavesic/RESEARCH/Self-Homotopy%20Equivalences%20of%20Product%20Spaces.pdf",
+      "locator": "PDF P10/印刷p11",
+      "request_id": "QX-R3-11-000641-root-024",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv 固定 PDF / find",
+      "query": "18.5.",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "印刷 p125 / PDF P124；〔原始工具引用已私有留存〕",
+      "note": "实际核 v50 原文、括号 soluble、交项和署名；无解题符号不能推出全网无解。",
+      "request_id": "QX-R3-11-000641-academic-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Amberg\" \"torsion-free rank\" product inequality",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中作者文献与秩公式来源，后续分别打开关键原文。",
+      "request_id": "QX-R3-11-000641-academic-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"18.5\" \"Kourovka\" rank",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中题簿与 Manchester 2014 版本；其他数值词碰撞不作证据。",
+      "request_id": "QX-R3-11-000641-academic-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Franciosi\" \"Giovanni\" \"torsion-free rank\" products",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位 Rank formulae for factorized groups 及相邻子类文献。",
+      "request_id": "QX-R3-11-000641-academic-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Rank formulae for factorized groups\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位 Springer 原出版社 DOI10.1007/BF01058710 与作者机构书目。",
+      "request_id": "QX-R3-11-000641-academic-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"18.5\" \"Amberg\" \"rank\" solved",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "recency=1095；本次返回未取得同题完整解/反例；旧题簿及异题命中不作新解。",
+      "request_id": "QX-R3-11-000641-academic-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Hirsch length\" \"product\" \"subgroups\" \"Amberg\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位与 Hirsch/torsion-free rank、polycyclic 附加条件有关的来源。",
+      "request_id": "QX-R3-11-000641-academic-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Oxford Academic / open",
+      "query": "https://academic.oup.com/book/53397/chapter-abstract/422087622",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://academic.oup.com/book/53397/chapter-abstract/422087622",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "跳转至 silverchair-cdn 的 chapter-minimal 路径不可访问，未取得书内定理/Question 8 全文。",
+      "request_id": "QX-R3-11-000641-academic-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Manchester ePrint / open",
+      "query": "https://eprints.maths.manchester.ac.uk/2087/1/18tkt.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://eprints.maths.manchester.ac.uk/2087/1/18tkt.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "实际读取 2014 年第18辑档案。",
+      "request_id": "QX-R3-11-000641-academic-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Amberg 作者主页 / open",
+      "query": "https://www.staff.uni-mainz.de/leinen/AG%20Gruppentheorie/Amberg/",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.staff.uni-mainz.de/leinen/AG%20Gruppentheorie/Amberg/",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "个人文献目录记录 1991 原文页码及 1985、1995、1996 相关作品；未据目录声称读完这些论文。",
+      "request_id": "QX-R3-11-000641-academic-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Springer / open",
+      "query": "https://link.springer.com/article/10.1007/BF01058710",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://link.springer.com/article/10.1007/BF01058710",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "原刊摘要、出版和收稿资料可读；不是全文证明审阅。",
+      "request_id": "QX-R3-11-000641-academic-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Springer / open",
+      "query": "https://link.springer.com/content/pdf/10.1007/BF01058710.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://link.springer.com/content/pdf/10.1007/BF01058710.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "正式 PDF 未取得，出版社页面显示订阅限制；没有绕过访问限制。",
+      "request_id": "QX-R3-11-000641-academic-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊 PDF / open",
+      "query": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D7841636D19A81D9A93D2B57D76FD9D5/S0008439500001260a.pdf/nilpotent-by-noetherian-factorized-groups.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D7841636D19A81D9A93D2B57D76FD9D5/S0008439500001260a.pdf/nilpotent-by-noetherian-factorized-groups.pdf",
+      "locator": "〔原始工具引用已私有留存〕；p391 引言，p393 记号",
+      "note": "核 p391 的 soluble-by-finite、两个 Noetherian 因子等式及其旧源引文；附加条件不可移除。",
+      "request_id": "QX-R3-11-000641-academic-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Manchester PDF / find",
+      "query": "2014",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://eprints.maths.manchester.ac.uk/2087/1/18tkt.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "封面 MIMS EPrint2014.1 与 January2014 前言吻合。",
+      "request_id": "QX-R3-11-000641-academic-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Manchester PDF / find",
+      "query": "18.5.",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://eprints.maths.manchester.ac.uk/2087/1/18tkt.pdf",
+      "locator": "〔原始工具引用已私有留存〕；印刷 p126",
+      "note": "2014 原档内精确问题与现 v50 一致。",
+      "request_id": "QX-R3-11-000641-academic-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Rank formulae for factorized groups\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "作者机构 IRIS 等只给书目，无可读论文附件。",
+      "request_id": "QX-R3-11-000641-academic-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Продукты групп\" \"1078\" \"1084\" Амберг",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "尝试俄文原版页码，未由该请求取得原稿全文。",
+      "request_id": "QX-R3-11-000641-academic-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"torsion-free rank\" \"periodic or infinite cyclic\" \"product\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位作者 2015 讲稿和 2021 正式 OA 论文；后续亲读定义。",
+      "request_id": "QX-R3-11-000641-academic-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Springer / open",
+      "query": "Rank formulae for factorized groups，lineno=34",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://link.springer.com/article/10.1007/BF01058710",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "核英语版 pp1012–1018；Additional information 指原俄语版 pp1078–1084，两套页码相容。",
+      "request_id": "QX-R3-11-000641-academic-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "会议官网作者 PDF / open",
+      "query": "〔原始工具引用已私有留存〕 〔私有记录编号：PR-003912〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.advgrouptheory.com/AGTAConferences/cgt2015/centro/talk/Amberg.pdf",
+      "locator": "〔原始工具引用已私有留存〕；末页",
+      "note": "取得作者讲稿全文，末页给不等式、书内 Question8 与有限阿贝尔截面秩特例。",
+      "request_id": "QX-R3-11-000641-academic-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Springer OA / open",
+      "query": "https://link.springer.com/article/10.1007/s00013-021-01593-1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00013-021-01593-1",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "可读正式全文；只核定义与 §4 Lemma4.1，非全体有限 r0 的解。",
+      "request_id": "QX-R3-11-000641-academic-021",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"Rank formulae for factorized groups\" \"umj\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位原刊元信息，未取得另一个全文版本。",
+      "request_id": "QX-R3-11-000641-academic-022",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"Ранговые формулы\" \"1991\" групп",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "俄文书目信息定向补查，未取得新证明。",
+      "request_id": "QX-R3-11-000641-academic-023",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Amberg\" \"18.5\" equality rank conjecture",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "recency=1095；未检到可核同题完整解，命中的旧问题/子类不升级。",
+      "request_id": "QX-R3-11-000641-academic-024",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "会议官网作者 PDF / open",
+      "query": "〔原始工具引用已私有留存〕，lineno=0 〔私有记录编号：PR-003913〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.advgrouptheory.com/AGTAConferences/cgt2015/centro/talk/Amberg.pdf",
+      "locator": "〔原始工具引用已私有留存〕；L0–10",
+      "note": "首页明确 Napoli, October2015；[AFG] 作者、书名、Clarendon Press, Oxford1992。",
+      "request_id": "QX-R3-11-000641-academic-025",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Springer OA / open",
+      "query": "〔原始工具引用已私有留存〕，lineno=185 〔私有记录编号：PR-003914〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00013-021-01593-1",
+      "locator": "〔原始工具引用已私有留存〕；§4",
+      "note": "§4 定义与 Lemma4.1 证明可读：A periodic abelian、B 非平凡 torsion-free locally cyclic 时 r0G=1。",
+      "request_id": "QX-R3-11-000641-academic-026",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Pavešić 作者网页 PDF / open",
+      "query": "https://users.fmf.uni-lj.si/pavesic/RESEARCH/Self-Homotopy%20Equivalences%20of%20Product%20Spaces.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://users.fmf.uni-lj.si/pavesic/RESEARCH/Self-Homotopy%20Equivalences%20of%20Product%20Spaces.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "全文入口可读；按代码路线线索检查 §3 的秩定理转述，不将拓扑论文摘句直接当全解。",
+      "request_id": "QX-R3-11-000641-academic-027",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者 PDF / find",
+      "query": "Theorem 3.6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://users.fmf.uni-lj.si/pavesic/RESEARCH/Self-Homotopy%20Equivalences%20of%20Product%20Spaces.pdf",
+      "locator": "〔原始工具引用已私有留存〕；PDF P10 / 作者稿 p11",
+      "note": "字面无交项等式与最小例冲突；后续检查 §3 前置条件。",
+      "request_id": "QX-R3-11-000641-academic-028",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者 PDF / find",
+      "query": "finite rank",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://users.fmf.uni-lj.si/pavesic/RESEARCH/Self-Homotopy%20Equivalences%20of%20Product%20Spaces.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "此次精确字符串 find 无匹配，不等于论文未涉及 rank。",
+      "request_id": "QX-R3-11-000641-academic-029",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Amberg 作者讲稿 / find",
+      "query": "Question 8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.advgrouptheory.com/AGTAConferences/cgt2015/centro/talk/Amberg.pdf",
+      "locator": "〔原始工具引用已私有留存〕；L278–289",
+      "note": "确认等式问题与 [AFG] Question8 的作者自述关系。",
+      "request_id": "QX-R3-11-000641-academic-030",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Amberg\" \"18.5\" proof counterexample corrigendum",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "recency=1095；定向 P0 查询未取得本题解答或正式勘误，不能推出不存在。",
+      "request_id": "QX-R3-11-000641-academic-031",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Rank formulae for factorized groups\" correction erratum equality",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回原文索引/作者讲稿等；未取得该不等式的更正或一般等式证明。",
+      "request_id": "QX-R3-11-000641-academic-032",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Products of groups\" \"4.1.10\" \"rank\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中作者讲稿准确特例；同编号其他教材及 Prüfer rank 文献排除。",
+      "request_id": "QX-R3-11-000641-academic-033",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Pavešić 作者 PDF / open",
+      "query": "〔原始工具引用已私有留存〕，lineno=328 〔私有记录编号：PR-003915〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://users.fmf.uni-lj.si/pavesic/RESEARCH/Self-Homotopy%20Equivalences%20of%20Product%20Spaces.pdf",
+      "locator": "〔原始工具引用已私有留存〕；§3 开头及 Thm3.6",
+      "note": "§3 明说先列一般代数定理，前置仅 G=AB；Thm3.6 无 A∩B=1 或有限阿贝尔截面秩限制。按字面不能成立。",
+      "request_id": "QX-R3-11-000641-academic-034",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Oxford Academic / open",
+      "query": "https://academic.oup.com/book/53397",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://academic.oup.com/book/53397",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "官方书目、目录和访问说明可读，书内 Question8/4.1.10 仍未取得。",
+      "request_id": "QX-R3-11-000641-academic-035",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"Products of groups\" \"Question 8\" Amberg",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回作者 2015 讲稿与同编号异题，未取得1992书内问题页。",
+      "request_id": "QX-R3-11-000641-academic-036",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Self-Homotopy Equivalences of Product Spaces\" \"erratum\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回相邻拓扑文献/无关勘误，未取得该文 Thm3.6 正式更正。",
+      "request_id": "QX-R3-11-000641-academic-037",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Oxford Academic / find",
+      "query": "1992",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://academic.oup.com/book/53397",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "官方现页未命中1992；后续可读书目写1993-01-28，须与作者引书1992分层。",
+      "request_id": "QX-R3-11-000641-academic-038",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Oxford Academic / find",
+      "query": "Products of groups of finite rank",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://academic.oup.com/book/53397",
+      "locator": "〔原始工具引用已私有留存〕；L2510–2513、L2661–2676",
+      "note": "目录章4可核；Published=28 January1993、©1993、DOI10.1093/oso/9780198535751.001.0001；不将元信息当章节全文。",
+      "request_id": "QX-R3-11-000641-academic-039",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Oxford Academic / find",
+      "query": "Open problems",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://academic.oup.com/book/53397",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "官网目录此次 find 未匹配，不否认作者回指的书内 Question8。",
+      "request_id": "QX-R3-11-000641-academic-040",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地原题包",
+      "query": "读取 work_000641_sources/task.json 全文，核对 card_rev、人话定义、原摘录、acceptance 与形式化占位",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "urn:qunxing:private-material",
+      "locator": "QX-P-000641 / 183780ab5d2d3482",
+      "note": "只读，未改卡。",
+      "request_id": "QX-R3-11-000641-math-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / Kourovka Notebook",
+      "query": "open 固定 v50；find 18.5，读取完整题面及邻接评论",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/1401.0300v50",
+      "locator": "18.5；〔原始工具引用已私有留存〕",
+      "note": "原题保留 (soluble) 括号；实际集合乘积及交项都在原文。",
+      "request_id": "QX-R3-11-000641-math-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open Amberg–Franciosi–de Giovanni 1988，定位 torsion-free rank / abelian section rank",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/B0A8783D7023E22EF219493253B14645/S1446788700029876a.pdf/on-normal-subgroups-of-products-of-nilpotent-groups.pdf",
+      "locator": "印刷 pp275–277，尤其 p277；〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕",
+      "note": "实际读原刊定义段，未重证该文其他 nilpotence 定理；没有声称看过页图。",
+      "request_id": "QX-R3-11-000641-math-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open Nilpotent-by-noetherian factorized groups；读取 introduction、m/mp 等式及 Notation",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D7841636D19A81D9A93D2B57D76FD9D5/S0008439500001260a.pdf/nilpotent-by-noetherian-factorized-groups.pdf",
+      "locator": "印刷 pp391–393；〔原始工具引用已私有留存〕/1、〔原始工具引用已私有留存〕/2",
+      "note": "已阅 noetherian/minimax 附加条件；本轮仅独立核由 m 和 m_p 等式相减推出 r0 等式的短归约。",
+      "request_id": "QX-R3-11-000641-math-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Amberg 作者会议讲稿",
+      "query": "open Products of groups revisited，定位 factorized、finite torsion-free rank、Question 8 与 Theorem 4.1.10",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.advgrouptheory.com/AGTAConferences/cgt2015/centro/talk/Amberg.pdf",
+      "locator": "2015 Napoli，最后一页 PDF P33；〔原始工具引用已私有留存〕",
+      "note": "作者末页明确一般不等式和 soluble finite abelian section rank 下的等式；1992 专著内完整长证明尚未取得。",
+      "request_id": "QX-R3-11-000641-math-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Pavešić 作者主页",
+      "query": "open Self-Homotopy Equivalences of Product Spaces；find Theorem 3.6 并读取 §3 前置条件及定理",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "url": "https://users.fmf.uni-lj.si/pavesic/RESEARCH/Self-Homotopy%20Equivalences%20of%20Product%20Spaces.pdf",
+      "locator": "§3，PDF P9–P10/印刷 pp10–11；〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕",
+      "note": "亲读文字版；其无交项等式被 G=Z,A=2Z,B=3Z 排除。根另已下载并实际看页图，排除了提取遗漏；该项核查不把自己的文字读取冒称看图。",
+      "request_id": "QX-R3-11-000641-math-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "其他：独立数学核验",
+      "site": "手工推导",
+      "query": "逐项手核 UT3(Z) 乘法、中心、集合分解、r0、最大阿贝尔秩；正规因子和阿贝尔短正合列；2Z+3Z；有限/周期边界",
+      "date": "2026-11-27",
+      "outcome": "不适用",
+      "url": "urn:qunxing:private-material",
+      "locator": "下列数学证书全文",
+      "note": "全部手核，未执行 GAP、Lean、SymPy 或有限群枚举；Python 只写 JSON 和校验 Schema，不是数学计算复跑。",
+      "request_id": "QX-R3-11-000641-math-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C01",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地题包",
+      "query": "读取work_000641_sources/task.json完整任务及原card_rev",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "urn:qunxing:private-material",
+      "note": "核得QX-P-000641/rev183780ab5d2d3482；实际范围为可解群的集合积分解G=AB与有限无挠秩，不是一般生成子群，也不是有限群。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C02",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API / maxvonhippel/budden-bench",
+      "query": "GET contents/problems/kourovka/problem_18.5?ref=66a10282fec151c6ca447e28cebf050e5a815fb8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/maxvonhippel/budden-bench/tree/66a10282fec151c6ca447e28cebf050e5a815fb8/problems/kourovka/problem_18.5",
+      "note": "固定精确目录返回一个325-byte problem.json，无同目录形式化或证明文件。",
+      "result_count": 1,
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C03",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / maxvonhippel/budden-bench",
+      "query": "fetch_file problems/kourovka/problem_18.5/problem.json @ 66a10282fec151c6ca447e28cebf050e5a815fb8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/maxvonhippel/budden-bench/blob/66a10282fec151c6ca447e28cebf050e5a815fb8/problems/kourovka/problem_18.5/problem.json",
+      "note": "全文仅page_number116、problem_number18.5与题文；括号soluble、有限r0、交项、已知≤均对应。独立核Git blob与原UTF-8字节SHA256；自然语言数据不属于Lean题面。",
+      "result_count": 1,
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C04",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search / google-deepmind/formal-conjectures",
+      "query": "18_5; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "实际空结果；只限该查询和检索索引。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C05",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search / openai/math",
+      "query": "Amberg rank; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://github.com/openai/math",
+      "note": "实际空结果；不据此否定未索引或其他路径内容。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C06",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search / google-deepmind/formal-conjectures",
+      "query": "Amberg torsion; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "实际空结果；未取得同题形式化文件或proof。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C07",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search / openai/math",
+      "query": "torsion-free rank factorized; topn=10",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Semialgebraic-universal-covers-of-normal-projective-varieties-September-24-2026/build/sections/groups.tex",
+      "note": "唯一结果摘录讨论全纯映射rank、factorized orbifold Kobayashi–Ochiai；依摘录排除为不同数学对象，未抓全文，不记同题AI声明。",
+      "result_count": 1,
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C08",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Kourovka\" \"18.5\" solution; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/pitmonticone/Kourovka",
+      "note": "命中旧Notebook镜像及Aristotle相关仓库；后者题号18.50不是18.5，另21.150有限p群rank也不同；随后取固定README核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C09",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Amberg\" \"torsion-free rank\" equality; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://users.fmf.uni-lj.si/pavesic/RESEARCH/Self-Homotopy%20Equivalences%20of%20Product%20Spaces.pdf",
+      "note": "命中1991 Rank formulae for factorized groups索引、OUP有限无挠秩章摘要及Pavešić作者PDF Thm3.6无交项等式摘录。此PDF线索已转学术路线核前置条件，该项核查未读全文、未作为全题解。OUP摘要的finite-length series定义也不支持极大无挠交换子群秩说法。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C10",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka 官方 Repository",
+      "query": "open官方Repository全页并逐项区分精确18.5与18.50、18.59、18.60",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "note": "实际完整目录入口272行；页面提醒AI文本不均已核，应参主文件状态。本轮未定位精确18.5条目；不把18.50的AI形式化成果移植为18.5。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C11",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API / pitmonticone/Kourovka",
+      "query": "GET commits/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/pitmonticone/Kourovka/commits/main",
+      "note": "本次取得HEAD dcfdbdad8c434e30f6151fb3b4343364d70eeed4，提交日期2026-08-17T22:27:37Z；随后按固定完整commit取README。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C12",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "site:mathoverflow.net \"Amberg\" \"rank\" product",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://mathoverflow.net/",
+      "note": "本次返回多为其他Kourovka题目Scirate聚合摘录，未取得本题MO完整解/反例；未将无关10.34等当本题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C13",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Kourovka\" \"18.5\" \"Lean\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/pitmonticone/Kourovka",
+      "note": "没有新增同题代码候选；本批返回的其他Kourovka索引只作标题/摘要范围排除。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C14",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka 官方 Repository",
+      "query": "find pattern=\"18.5\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "note": "工具find返回无匹配；不能据此说18.5前缀完全不存在，因为全页明确有不同题18.50/18.59/18.60。最终判断依据精确题号及题意，不靠模糊前缀。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C15",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka 官方 Repository → AI合辑",
+      "query": "click link53 Solutions of several problems；读Version4范围索引",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "note": "取得Results on problems from the Kourovka Notebook，Version4—19 September2026，92页；本轮只读版本和主结果/部分进展范围目录，不冒称逐页核完所有数学证明。目录未列18.5。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C16",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / pitmonticone/Kourovka",
+      "query": "fetch_file README.md @ dcfdbdad8c434e30f6151fb3b4343364d70eeed4",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/pitmonticone/Kourovka/blob/dcfdbdad8c434e30f6151fb3b4343364d70eeed4/README.md",
+      "note": "完整读取Results与Structure。18.50为n个相异元素的排列乘积不同值计数；21.150为有限p群中rank(Z(H)∩H')>rank(B)例；都不是有限无挠秩的交项等式。未读或运行这些不同题的Lean证明。",
+      "result_count": 1,
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C17",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka 官方AI合辑",
+      "query": "find pattern=\"18.5\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "note": "Version4（2026-09-19）5557提取行中工具未命中精确查询；不能推出后续或其他AI稿无本题。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C18",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka 官方AI合辑",
+      "query": "find pattern=\"Amberg\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "note": "该固定v4文本工具无作者名命中。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C19",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka 官方AI合辑",
+      "query": "find pattern=\"torsion-free rank\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "note": "工具给宽松词项匹配，涉及其他题的torsion-free群/finite rank等；实际显示段落不出现本题r0(G)=r0(A)+r0(B)-r0(A∩B)。没有将这些命中按同题处理。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q33-C20",
+      "route": "代码、公开 AI 和社区",
+      "site": "Math StackExchange",
+      "query": "open questions/3642241（主审提供的候选URL）",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://math.stackexchange.com/questions/3642241",
+      "note": "实际open返回Internal Error / not accessible。主审提示摘要把AB解释成生成子群而非集合积，该项核查未取得全文，故不宣称已读全文或据此给出本题反例；未冒认主审先前搜索为该项核查实际查询。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R641-CARD",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000641.text.md",
+      "locator": "题面、人话r0释义、原文18.5及meta.acceptance/novelty",
+      "version": "commit73290369a8dcc632e25e555aec525565ea6e08f8；card_rev183780ab5d2d3482",
+      "subquestions": [
+        "主问题",
+        "秩定义",
+        "群积与生成的区别"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "原题是给定有限r0且G=AB求含交集减项的精确等式；人话最大无挠交换子群秩为错误定义。标题与原文保留正确r0意图，定义错误须修正，不得用错定义做出的严格小于例关闭原问题。小阶有限G的四个r0全为0，不是有判别力的验证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R641-1988",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/B0A8783D7023E22EF219493253B14645/S1446788700029876a.pdf/on-normal-subgroups-of-products-of-nilpotent-groups.pdf",
+      "locator": "Notation，原刊p277（PDF第3页）",
+      "version": "Amberg–Franciosi–de Giovanni；J.Austral.Math.Soc.(A)44(1988),275–286；DOI10.1017/S1446788700029876",
+      "subquestions": [
+        "秩定义"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "核过关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "本文明确采用有限群列的torsion/infinitecyclic定义，r0数无限循环因子；这支持纠正人话。只读取定义、引言与范围，未把其normal subgroup定理当本题秩等式。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "R641-1989",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D7841636D19A81D9A93D2B57D76FD9D5/S0008439500001260a.pdf/nilpotent-by-noetherian-factorized-groups.pdf",
+      "locator": "引言pp391–392；Notation p393；文献表p403",
+      "version": "Amberg–Franciosi–de Giovanni；Canad.Math.Bull.32(4)(1989),391–403；DOI10.4153/CMB-1989-057-8；收到1987-12-22",
+      "subquestions": [
+        "noetherian/polycyclic情形",
+        "minimax情形"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "引言在A,B均noetherian的soluble-by-finite范围记等式，引用Amberg1985 Satz5.2。另在soluble G=AB、A/B minimax范围记Wilson闭包以及m、m_p等式，由m=r0+Σm_p（有限项）相减得到r0等式。主审只核此推导及文献适用范围；1985具体证明本轮若未取得仍需明确标缺，不把其他秩或minimax有限群列假设省掉。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "R641-1995",
+      "url": "https://api.pageplace.de/preview/DT0400.9783110810387_A34803000/preview-9783110810387_A34803000.pdf",
+      "locator": "Amberg章节Some Results and Problems about Factorized Groups，§2.2印刷p3",
+      "version": "Infinite Groups1994会议文集；章节印刷版权1995；本轮只取得出版社preview",
+      "subquestions": [
+        "早于2014的出处"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "核过关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "本轮实际亲读作者在1995版权章节里重述等式未知并回指1992/1993书Question8；2014只能作Kourovka第18辑收录年，不能直接断言最早首刊。完整书内Q8仍未取，作者讲稿与出版社书目年份存在1992/1993层级差异。此证据只主张早于2014，未认定绝对最早。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0641_kourovka_v50",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "18.5；印刷 p125 / PDF P124",
+      "version": "arXiv:1401.0300v50，2026-11-02；2026-11-27实际核读固定版本",
+      "subquestions": [
+        "主问题",
+        "题面量词与署名"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "原文保留 (soluble)，G=AB 为两个子群之积，有限 torsion-free rank；问含交项等式并注已知≤。署名 B.Amberg。本卡标准可解域明确可研究；括号不能自动理解成已证明一般群等式。册内无新增解题标记仅是本版本记录。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "a0641_kourovka_2014",
+      "url": "https://eprints.maths.manchester.ac.uk/2087/1/18tkt.pdf",
+      "locator": "封面及 January2014 前言；18.5，印刷 p126",
+      "version": "Kourovka Notebook No.18，2014；MIMS EPrint2014.1",
+      "subquestions": [
+        "原题出处"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "实际2014档案内已有同式同署名；仅确认2014收录，不据此断言2014最早提出。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "a0641_afg1991",
+      "url": "https://link.springer.com/article/10.1007/BF01058710",
+      "locator": "Abstract；Cite this article；Additional information；DOI10.1007/BF01058710",
+      "version": "Amberg–Franciosi–DeGiovanni，Ukrainian Mathematical Journal43(1991)，英文版1012–1018；俄文原刊43(7–8)，1078–1084；received1991-01-31",
+      "subquestions": [
+        "已知不等式",
+        "历史书目"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅某子问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "出版社摘要明确列 r0G≤r0A+r0B−r0(A∩B)。摘要另有 soluble-by-finite 的 p∞-rank 公式，勿混为本题相等式。已核正式摘要/元信息，PDF未取得，未声称复核该论文证明。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0641_amberg2015",
+      "url": "https://www.advgrouptheory.com/AGTAConferences/cgt2015/centro/talk/Amberg.pdf",
+      "locator": "首页书目；末页 Finite torsionfree rank / Question8 / [AFG]4.1.8、4.1.10",
+      "version": "Bernhard Amberg，Products of groups revisited；Napoli，October2015",
+      "subquestions": [
+        "主问题",
+        "r0定义",
+        "已知等式特例",
+        "早期出处线索"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "作者讲稿用周期或无限循环因子的有限长列定义r0；列出1991交项不等式；把等式问题回指[AFG]Question8，并明确 soluble finite abelian section rank 情形等式已知，指4.1.10。首页[AFG]为三作者 Products of Groups，Clarendon Press1992。本轮读的是讲稿，书内定理证明未读。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "a0641_book_metadata",
+      "url": "https://academic.oup.com/book/53397",
+      "locator": "书目 Published 与章4目录；DOI10.1093/oso/9780198535751.001.0001",
+      "version": "OUP现官方书页，2026-11-27读取；标记出版1993-01-28 / ©1993",
+      "subquestions": [
+        "首发年份与文献版本"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "官方日期与作者讲稿引书1992不同；可能涉及版权/发行版本，未取得原版版权页，保留日期层级。仅目录和元信息可读，Question8/4.1.10全文未取得。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0641_afg1989",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D7841636D19A81D9A93D2B57D76FD9D5/S0008439500001260a.pdf/nilpotent-by-noetherian-factorized-groups.pdf",
+      "locator": "p391 引言公式及引[1]Satz5.2；p393记号",
+      "version": "Amberg–Franciosi–DeGiovanni，Nilpotent-by-Noetherian Factorized Groups，Canad.Math.Bull32(4)(1989)，391–403；DOI10.4153/CMB-1989-057-8",
+      "subquestions": [
+        "已知等式特例"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "引言明确 soluble-by-finite 的 G=AB 若两个因子均 Noetherian，则 G 为 polycyclic-by-finite 且含交项等式成立；引早期 Satz5.2。只核此陈述与条件，未重证全文其他结构定理。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0641_amberg_sysak2021",
+      "url": "https://link.springer.com/article/10.1007/s00013-021-01593-1",
+      "locator": "§4 定义及 Lemma4.1（含短证明）",
+      "version": "Amberg–Sysak，Products of locally cyclic groups，Archiv der Mathematik117(2021)，19–28；online2021-04-16；DOI10.1007/s00013-021-01593-1",
+      "subquestions": [
+        "r0定义",
+        "局部循环因子特例"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "正式OA全文再次用周期/无限循环因子的有限列定义r0。Lemma4.1：A周期阿贝尔，B非平凡无挠局部循环，G=AB则r0G=1；此时A∩B=1，故本问等式成立。短证明借Zaitsev的非平凡正规子群定理，该外引未重证。不能当一般可解有限r0的解。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0641_pavesic_scope",
+      "url": "https://users.fmf.uni-lj.si/pavesic/RESEARCH/Self-Homotopy%20Equivalences%20of%20Product%20Spaces.pdf",
+      "locator": "§3 开头；Thm3.6，作者稿 p11 / PDF P10；相关拓扑应用Thm3.10",
+      "version": "作者主页当前20页稿；稿内未确认版本日期；2026-11-27读取",
+      "subquestions": [
+        "潜在完整解声明排除"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "同源不同问",
+      "claim_state": "关键步骤受质疑",
+      "review_status": "核对发现漏洞",
+      "note": "Thm3.6转引[AFG]4.1.8，但字面声称一般G=AB的r0G≤r0A+r0B在solvable时取等；§3前置未写交集限制。G=A=B=Z即否定该无交项字面等式。它不是本题含交项公式的反例，也不能作为完整解；未核所有拓扑应用及正式发表/勘误版本。 主审实际下载原稿242542bytes，SHA256b18da6116d281427871c4726ba25bbebed27c5444b837c5294e7bb9c3b18924b，渲染并实际视读p11，确认无交项而非OCR丢失；更强反证用两proper子群Z=2Z+3Z、交6Z，四秩均1，仍否定无交项1=2。该反证由主审与数学路线独立核准。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "step_disputed",
+        "claim_review": "gap_found",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q641-M-E1",
+      "url": "https://arxiv.org/html/1401.0300v50",
+      "locator": "18.5",
+      "version": "arXiv 1401.0300v50，2026-11-02",
+      "subquestions": [
+        "准确秩定义与题面范围",
+        "实际乘积与生成群的区别"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "原文是 finite torsion-free rank、集合乘积 G=AB，等式有减去 r0(A∩B)；不应将原文括号 (soluble) 静默删去。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q641-M-E2",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/B0A8783D7023E22EF219493253B14645/S1446788700029876a.pdf/on-normal-subgroups-of-products-of-nilpotent-groups.pdf",
+      "locator": "印刷 p277",
+      "version": "J. Austral. Math. Soc. 44 (1988),275–286；DOI 10.1017/S1446788700029876",
+      "subquestions": [
+        "准确秩定义与题面范围",
+        "有限秩不蕴含较强有限性"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "作者定义：有限长列各因子为 torsion group 或无限循环群，r0 为其中无限循环因子数。finite abelian section rank 的定义排除任意素数 p 的无限 elementary abelian p-section。这里只核定义与适用域，不宣称该篇其他长证明已审。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q641-M-E3",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D7841636D19A81D9A93D2B57D76FD9D5/S0008439500001260a.pdf/nilpotent-by-noetherian-factorized-groups.pdf",
+      "locator": "印刷 pp391–393",
+      "version": "Canad. Math. Bull. 32(4) (1989),391–403；DOI 10.4153/CMB-1989-057-8",
+      "subquestions": [
+        "noetherian、minimax 的已知等式特例"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "引言在 soluble-by-finite G、noetherian A/B 的条件下给 r0 等式（引 Amberg 1985 Satz 5.2）。又在 soluble minimax 乘积分解给 m 与各 m_p 的交项等式；Notation 定义 m=r0+Σ_p m_p。相减推导由本轮核验，所引用的原长定理未重证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q641-M-E4",
+      "url": "https://www.advgrouptheory.com/AGTAConferences/cgt2015/centro/talk/Amberg.pdf",
+      "locator": "PDF 第34页/最后一页",
+      "version": "Bernhard Amberg, Products of groups revisited，Napoli October 2015",
+      "subquestions": [
+        "有限 abelian section rank 的已知特例",
+        "准确秩定义与题面范围"
+      ],
+      "role": "进展",
+      "publication": "作者主页",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "作者讲稿把一般不等式列为 1991 定理/[AFG]4.1.8，把等式列为 [AFG] Question 8；明确 soluble finite abelian section rank 情形取等，引用 [AFG]4.1.10。[AFG] 是 Amberg–Franciosi–de Giovanni, Products of groups, 1992。声明已亲读，专著证明未独立核验；不能只据讲稿年代认定当前一般状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q641-M-E5",
+      "url": "https://users.fmf.uni-lj.si/pavesic/RESEARCH/Self-Homotopy%20Equivalences%20of%20Product%20Spaces.pdf",
+      "locator": "§3 Theorem 3.6，PDF P10/印刷 p11",
+      "version": "作者主页 PDF，2026-11-27 取得；版本日期未明",
+      "subquestions": [
+        "漏交项转述的范围排除"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "核对发现漏洞",
+      "formal_status": "未检索形式化",
+      "note": "字面假设 G=AB、有有限 r0，称可解时 r0G=r0A+r0B，无交集项或交集平凡条件。以 G=Z、A=2Z、B=3Z 直接否定该字面等式；这里只排除错误转述，不由此否定原书定理、18.5 或该论文所有后续专门应用。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "gap_found",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q641-M-E6",
+      "url": "urn:qunxing:private-material",
+      "locator": "本文件 math_results 内自含手核证书",
+      "version": "本轮独立推导，2026-11-27",
+      "subquestions": [
+        "Heisenberg 定义纠错证书",
+        "实际乘积与生成群的区别",
+        "正规因子等式",
+        "阿贝尔等式",
+        "有限秩不蕴含较强有限性",
+        "漏交项转述的范围排除"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "手工独立演算，完整群运算与子群输入内嵌。没有 GAP/Lean 运行，没有将有限实例当成一般证明；文件 Schema 校验不代表形式化数学验证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q33-C1",
+      "url": "https://github.com/maxvonhippel/budden-bench/blob/66a10282fec151c6ca447e28cebf050e5a815fb8/problems/kourovka/problem_18.5/problem.json",
+      "locator": "problem_number18.5；完整problem_text；精确同题目录仅problem.json",
+      "version": "maxvonhippel/budden-bench@66a10282fec151c6ca447e28cebf050e5a815fb8；2026-11-27实际复阅",
+      "subquestions": [
+        "18.5题面同一性",
+        "同题代码/形式化覆盖"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "原数据保留(soluble)、集合乘积G=AB、finite torsion-free rank及减去r0(A∩B)的等式，注明已知≤。固定目录仅自然语言JSON，不是可审Lean theorem、sorry骨架或形式化证明；没有可独立运行同题证书。325原UTF-8字节，Git blob71ac1e3fcf17f258a434a1810c3f5e254382f623，SHA256 5e253156f97239f79f852a96806c08dbb744e200cdaed62b0d5543a39a07443e均本轮独立核。未进行Lean/GAP执行；有限p群r0全为0的例子不能决定主问题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q33-C2",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "locator": "完整Repository题号目录与AI稿说明；18.50、18.59及18.60入口",
+      "version": "官方动态页，2026-11-27实际访问；当日可见列表",
+      "subquestions": [
+        "公开AI声明入口覆盖"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "本轮按精确18.5题号与题意未找到目录条目；相邻数字前缀不等于同一题。目录本身不保证全部上传文本已验证，因此既不能把AI目录出现当数学证明，也不能由本题未列推出全网不存在声明。此项记录覆盖边界，不作主问题开放性的独立定理证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q33-C3",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "locator": "封面版本；主结果/部分进展目录；本轮18.5、Amberg与torsion-free rank定向find",
+      "version": "Results on problems from the Kourovka Notebook，Version4，19 September2026；本轮2026-11-27访问",
+      "subquestions": [
+        "指定公开AI合辑覆盖"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检到形式化",
+      "note": "已读版本和结果范围目录，未逐条审92页其他题证明。精确18.5与Amberg find均无命中，宽松torsion-free rank命中属于其他题。只说明该合辑已检查入口未提供本题完整解；不把其2026-09-19版本时点当作今日全部研究状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q33-C4",
+      "url": "https://github.com/pitmonticone/Kourovka/blob/dcfdbdad8c434e30f6151fb3b4343364d70eeed4/README.md",
+      "locator": "README Results条目18.50、21.150及Structure",
+      "version": "pitmonticone/Kourovka@dcfdbdad8c434e30f6151fb3b4343364d70eeed4（2026-08-17T22:27:37Z）；2026-11-27实际读取",
+      "subquestions": [
+        "Aristotle公开形式化声明的题号/秩概念排除"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "note": "README自述On Some Problems from the Kourovka Notebook的Lean formalisation，保留原Aristotle submissions。18.50是元素排列乘积计数，21.150是有限p群rank条件反例；二者都不是本题18.5无挠秩等式。只读固定README作同题性排除，没有审这些不同题proof/axioms，也没有编译。README2566字节，Git blob3b3c59a0054c452ab41c343402a8e8a4090837f7，SHA256 d2e9f7753ba9e2edb4901d1a2074f7a1546fad6b6abbc81f561deda8bcc7737f已核。此formal_status记录该项目自身声明，不能传到QX-P-000641。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001006",
+      "other_card_rev": "353f912cb31b2830",
+      "relation": "相关但不等价",
+      "reason": "1006/13.60问locally graded G=AB从A/B有限specialrank推出G有限specialrank；641/18.5已假定G有限torsion-free rank，问含交集项的加法等式。specialrank控制所有有限生成子群的生成元数，torsion-free rank数无限循环因子；有限p群和无限周期群即会区别两者，不能互换问题或合并。",
+      "positions": {
+        "self": "000641.text.md18.5题面、人话r0及meta.acceptance",
+        "other": "001006.text.md13.60原文、人话specialrank及meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000641__QX-P-001006；owner=QX-P-000641；双卡正文/meta已核，仅作本题关系比较。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001110",
+      "other_card_rev": "30ece55ac8d8d9bc",
+      "relation": "相关但不等价",
+      "reason": "1110/11.44是有限p群P=AB的sectionalrank线性界；641是可无限群的torsion-free rank等式。在1110全部有限实例上r0恒0，不能用有限GAP截断秩计算检验641的非平凡内容。提出者、题号、量词及不变量不同，不合并。",
+      "positions": {
+        "self": "000641.text.md题面、原文18.5及有限r0假设",
+        "other": "001110.text.md11.44、sectionalrank定义及meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000641__QX-P-001110；owner=QX-P-000641；不对1110最新状态另作研究。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "修正人话版",
+      "field": "card_text/人话版",
+      "old": "可以用极大无挠交换子群的秩来算",
+      "new": "对本题可解群，r0为Hirsch秩：在有限长次正规列中把周期因子的贡献记0、无限循环因子的贡献记1；总和与列的选取无关。它不是群内最大无挠阿贝尔子群的秩。",
+      "reason": "正式定义与人话释义不符，Heisenberg小例分出3与2；核心标准术语可保持，若扩大/改变核心定义或量词须另修版本。",
+      "evidence_ids": [
+        "a0641_amberg_sysak2021",
+        "a0641_amberg2015"
+      ],
+      "small_case_check": "H_3(Z)的Hirsch秩3，最大阿贝尔子群秩2；非主问反例。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text/题面与形式化表述",
+      "old": "（可解）G=AB；形式化见题面",
+      "new": "区分原册的一般有限r0群问题与可解子问；两者都要求集合积G=AB={ab:a∈A,b∈B}及r0(G)<∞，含交集减项。只证明可解域不能宣称一般非可解域已解；只构造非可解反例不能否定可解子问。核心量词增删或限定验收域须另起card_rev并复核。",
+      "reason": "G=AB是集合乘积，不能换成生成子群；作者原问题也含一般G的提问，现卡应固定验收域。",
+      "evidence_ids": [
+        "a0641_kourovka_v50",
+        "a0641_amberg2015"
+      ],
+      "small_case_check": "A=B=Z时交项必不可少，等式1=1；只写G=<A,B>不能使用乘积分解定理。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "card_text/已知结果与进展",
+      "old": "不等式方向已证；等式无解。",
+      "new": "补1991交项不等式原刊；补可解且有限阿贝尔截面秩的等式（作者回指专著4.1.10）、soluble-by-finite且Noetherian因子特例和2021局部循环特例。本次范围未取得一般等式证明或严格不等式反例。",
+      "reason": "无解歧义且过强；现有特例不能遗漏或升级为全解。",
+      "evidence_ids": [
+        "a0641_afg1991",
+        "a0641_amberg2015",
+        "a0641_afg1989",
+        "a0641_amberg_sysak2021"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "card_metadata/first_published; proposer; sources",
+      "old": "2014年辑首刊",
+      "new": "2014可确认为Kourovka第18辑收录；本轮实际读到Amberg会议章节（印刷copyright1995）§2.2p3已述该等式问题并回指Products of Groups Question8。2015作者讲稿引书1992，而OUP现页标1993-01-28；原版版权页和问题页尚缺，不强定最早年份或精确首发日。",
+      "reason": "不得把2014题簿收录当历史首提，也不把未阅的1992专著原页冒充亲读。",
+      "evidence_ids": [
+        "a0641_kourovka_2014",
+        "a0641_amberg2015",
+        "a0641_book_metadata",
+        "R641-1995"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "sources/1991不等式原刊",
+      "new": "记录DOI10.1007/BF01058710，英文译刊43(1991)1012–1018，原俄文43(7–8)1078–1084；访问为正式摘要与元信息，未取得全文。",
+      "reason": "两套页码源于原刊与译刊，不应标为互相冲突。",
+      "evidence_ids": [
+        "a0641_afg1991"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "informal_status; novelty; 开放状态证据",
+      "old": "WebSearch无解；册内无符号；旧novelty绑定0cf87a3bfe2d731b且未单独检索",
+      "new": "按本轮实际检索登记部分进展和明确缺口，绑定当前183780ab5d2d3482。无符号、搜索未命中仅为有限范围观察。",
+      "reason": "旧版摘要不能替代本轮查新，也不能从有限查询证明全网无解。",
+      "evidence_ids": [
+        "a0641_kourovka_v50"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定/小例验算",
+      "old": "GAP小阶p群可行处复算",
+      "new": "有限群的r0全部为0，有限群穷举只能检验退化恒等式，不能实质验证主问；优先有明确次正规列的无限可解例。",
+      "reason": "避免把有限阶计数或有限群计算当无限群秩公式证书。",
+      "small_case_check": "任意有限G及A,B都有r0=0，等式仅0=0。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "相关声称排除",
+      "new": "记录Pavešić作者稿Thm3.6的无交项转述按字面有误；不标为本题已解或已反驳，正式勘误状态未核。",
+      "reason": "小例足以排除这句话作为无条件全解证据，但不判断整篇拓扑论文。",
+      "evidence_ids": [
+        "a0641_pavesic_scope"
+      ],
+      "small_case_check": "G=(Z,+),A=2Z,B=3Z均proper，A+B=Z、A∩B=6Z，四个r0均1；漏交项会给1=2，而正确题式为1=1+1−1。主审和数学路线独立核验。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "1995版权章节已实际读到同问回指，但专著Question8、4.1.10原页尚未取得；作者1992书目与出版社1993日期不同。",
+      "next_step": "取得合法可读原书时核版权页、Question8精确页码及4.1.10全部条件与证明。现已能排除2014为已确认最早提出，不把1995重述或1992/1993书目强定为绝对最早。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "1991原刊仅正式摘要可读，1989/2015所引旧定理长证明没有独立全审；有限阿贝尔截面秩特例尚无本轮全文证明复核。",
+      "next_step": "需要升级该特例审阅级别时，取得AFG4.1.10或原始证明；不得删去finite abelian section rank/Noetherian等附加条件。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "有限定向查询未取得一般等式完整解或严格<反例，不能保证检索覆盖所有未索引作品。",
+      "next_step": "后续仅在出现明确同题新声明时按G=AB、有限r0、是否可解、交项及实际rank定义逐项核验，保留本轮截止2026-11-27的部分进展状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Pavešić稿内无交项转述已通过小例排除，作者稿具体版本日期及正式更正未取得。",
+      "next_step": "若该论文被用作一般等式证据，先核正式版本和Thm3.6修正；本轮不扩大到整篇拓扑应用的有效性审查。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "指定仓库与AI入口未取得同题完整代码/公开证明；MSE3642241全文不可访问，未把主审摘要线索冒充该项核查全文证据。检索覆盖有限。",
+      "next_step": "合并原题、学术与数学路线对r0定义及特殊等式文献的实读结果；若后续出现18.5完整稿或可执行证书，再固定版本核主定理条件和依赖。MSE若后续可读，只核其AB定义与本题是否一致；当前不作为同题反例，也不据此阻断本轮回执。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "已做标题字段两轮检索并双卡核1006/1110，但没有逐卡核完整全库题面。",
+      "next_step": "有新严格同题候选时再核双方固定rev和定义/量词；当前两对不同秩不变量，均不建议合并。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "183780ab5d2d3482",
+      "codes": {}
+    }
+  ]
+}

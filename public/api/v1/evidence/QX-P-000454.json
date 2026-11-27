@@ -1,0 +1,1599 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000454",
+  "card_rev": "637c5ca6c47e2578",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-02"
+      ],
+      "parts": [
+        {
+          "subquestion": "一般精确值",
+          "value": "partial",
+          "note": "对F_m=C(x1,…,xm)、m,n为非负整数、p为素数，求sl(m,n,p)在N0∪{∞}中的精确值。已知低次/消失特例及二次上下界，未取得覆盖全参数的具体答案。源码answer定义仍sorry；仅定义一个最小上界/上确界或证明每类为有限符号和并未回答值问题。若主任务只要n≥1应明确排除零阶，不能无声改变范围。"
+        },
+        {
+          "subquestion": "逐参数有界",
+          "value": "partial",
+          "note": "量词是∀m,n,p（p素）∃B(m,n,p)∀α len(α)≤B；不是定义上逐类存在有限表示。n=2由Matzri给有限界；p=2的所有正次数可用有限u不变量理论；低次/消失范围另列。KrashenThm4.2是带有限扩张的低阶有效指标界假设、再依赖本类有效指标的结果，不能直接作为任意高阶奇素数的一般统一界。本轮指定查询未发现一般全范围确证。"
+        },
+        {
+          "subquestion": "不依赖素数的统一界",
+          "value": "partial",
+          "note": "准确为∀m≥0、n≥1∃B(m,n)∀素数p∀α len(α)≤B；同一个B须先于p选择。n=1上界1、n>m上界0等边界已知；一般范围未取得确证。Matzri的p^(m−1)−1随p变化，不能闭合本问；单独p=2有限性也不能。n=0若按空符号定义则长度p−1无统一p界，故源码明确n>0；此边界不是对正确范围的反例。"
+        },
+        {
+          "subquestion": "二次精确值m−1",
+          "value": "partial",
+          "note": "问∀m≥1∀素数p sl(m,2,p)=m−1。BH原式以r≥1和C(X0,…,Xr)共r+1个变量问λp=r，取总变量数m=r+1后得到非平凡m≥2范围。m=1为零群；m=2,p=2或3已有值1，不能据此推广所有p或所有m。对一般m,p，本轮核实了下界m−1与上界p^(m−1)−1，本轮未取得全题确证；不依据2004的open文字单独判断2026。deJong周期=指标不自动给循环性/单符号表示。"
+        },
+        {
+          "subquestion": "二次已知上下界",
+          "value": "partial",
+          "note": "这里单列的是既有定理，不称本轮解决整个问题。m≥1、p素时m−1≤sl(m,2,p)≤p^(m−1)−1。BHProp4.5构造指标p^(m−1)的符号代数张量积给下界；MatzriThm8.2对C_m域的K²/p^t给上界t(p^(m−1)−1)，适用t≥1，t=0模1平凡零。Milnor K版本无需单位根，Brauer版本需相应单位根，而本题含C自动满足。已读原定理与关键证明段；不是本轮完整形式化验证。"
+        },
+        {
+          "subquestion": "已知边界与精确特例",
+          "value": "partial",
+          "note": "已知精确边界：m=0,n≥1为0；m≥1,n=1为1；n>m为0；m=n=2,p=2或3为1；保留n=0且按非负个空符号1之和计数时为p−1。前两项和零阶已独立用定义/赋值核；n>m使用标准cd_p(F_m)=m及norm-residue同构，本轮未重证这些深定理。p=2双变量由上下界匹配，p=3据BH所引Artin结果，未另审Artin原稿。对1≤n≤m，迭代tame residues使{x1,…,xn}落到±1 modp，故该类非零、sl≥1；这不构成精确上界。"
+        },
+        {
+          "subquestion": "模2正次数有限性",
+          "value": "partial",
+          "note": "KrashenThm5.5：char(F)≠2且−1为平方时，有限u(F)等价于所有正次数mod2上同调类存在共同有限符号界。对F_m用其C_m性质推出u≤2^m，得到p=2的正次数有限性；这是本轮对已有定理适用范围的推论，不给所有p统一界，也不确定一般p=2的精确sl(m,n,2)。未把此结果或特征2论文移作整个主问题解。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/google-deepmind/formal-conjectures/blob/b576d527b271b936f9e61c0e367c302d7386bc80/FormalConjecturesForMathlib/FieldTheory/MilnorKTheory.lean"
+      ],
+      "note": "只覆盖：仅某子问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "当前rev637c5ca6c47e2578的“五条如上/这五条都未解决”没有列清单。实际旧引用b576d527…与当前ea8e3e…源码逐字相同，已有4研究问题、3已知研究结果和3教材结论，不能自行选出五条或一概称未解。应补m,n,p、零群/上确界∞及n=0约定，分清精确值、逐参数有界与独立p界。m−1需限制m≥1（BH非平凡原问为总变量数m≥2）。这些题面缺陷不是对BH原问的反例；本轮未给一般精确值或全范围新解。",
+      "evidence_ids": [
+        "E454-A1",
+        "E454-A2",
+        "E454-A3",
+        "E454-A4",
+        "E454-P1",
+        "E454-P2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "一般精确值",
+      "math_status": "有部分进展",
+      "scope_note": "对F_m=C(x1,…,xm)、m,n为非负整数、p为素数，求sl(m,n,p)在N0∪{∞}中的精确值。已知低次/消失特例及二次上下界，未取得覆盖全参数的具体答案。源码answer定义仍sorry；仅定义一个最小上界/上确界或证明每类为有限符号和并未回答值问题。若主任务只要n≥1应明确排除零阶，不能无声改变范围。",
+      "evidence_ids": [
+        "E454-A1",
+        "E454-A2",
+        "E454-A3",
+        "E454-A4",
+        "E454-P1",
+        "E454-P2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "逐参数有界",
+      "math_status": "有部分进展",
+      "scope_note": "量词是∀m,n,p（p素）∃B(m,n,p)∀α len(α)≤B；不是定义上逐类存在有限表示。n=2由Matzri给有限界；p=2的所有正次数可用有限u不变量理论；低次/消失范围另列。KrashenThm4.2是带有限扩张的低阶有效指标界假设、再依赖本类有效指标的结果，不能直接作为任意高阶奇素数的一般统一界。本轮指定查询未发现一般全范围确证。",
+      "evidence_ids": [
+        "E454-A1",
+        "E454-A4",
+        "E454-A5",
+        "E454-A6",
+        "E454-P1",
+        "E454-P2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "不依赖素数的统一界",
+      "math_status": "有部分进展",
+      "scope_note": "准确为∀m≥0、n≥1∃B(m,n)∀素数p∀α len(α)≤B；同一个B须先于p选择。n=1上界1、n>m上界0等边界已知；一般范围未取得确证。Matzri的p^(m−1)−1随p变化，不能闭合本问；单独p=2有限性也不能。n=0若按空符号定义则长度p−1无统一p界，故源码明确n>0；此边界不是对正确范围的反例。",
+      "evidence_ids": [
+        "E454-A1",
+        "E454-A4",
+        "E454-P1",
+        "E454-P2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "二次精确值m−1",
+      "math_status": "有部分进展",
+      "scope_note": "问∀m≥1∀素数p sl(m,2,p)=m−1。BH原式以r≥1和C(X0,…,Xr)共r+1个变量问λp=r，取总变量数m=r+1后得到非平凡m≥2范围。m=1为零群；m=2,p=2或3已有值1，不能据此推广所有p或所有m。对一般m,p，本轮核实了下界m−1与上界p^(m−1)−1，本轮未取得全题确证；不依据2004的open文字单独判断2026。deJong周期=指标不自动给循环性/单符号表示。",
+      "evidence_ids": [
+        "E454-A2",
+        "E454-A3",
+        "E454-A4",
+        "E454-P1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "二次已知上下界",
+      "math_status": "实质进展",
+      "scope_note": "这里单列的是既有定理，不称本轮解决整个问题。m≥1、p素时m−1≤sl(m,2,p)≤p^(m−1)−1。BHProp4.5构造指标p^(m−1)的符号代数张量积给下界；MatzriThm8.2对C_m域的K²/p^t给上界t(p^(m−1)−1)，适用t≥1，t=0模1平凡零。Milnor K版本无需单位根，Brauer版本需相应单位根，而本题含C自动满足。已读原定理与关键证明段；不是本轮完整形式化验证。",
+      "evidence_ids": [
+        "E454-A3",
+        "E454-A4",
+        "E454-P1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "已知边界与精确特例",
+      "math_status": "仅特例",
+      "scope_note": "已知精确边界：m=0,n≥1为0；m≥1,n=1为1；n>m为0；m=n=2,p=2或3为1；保留n=0且按非负个空符号1之和计数时为p−1。前两项和零阶已独立用定义/赋值核；n>m使用标准cd_p(F_m)=m及norm-residue同构，本轮未重证这些深定理。p=2双变量由上下界匹配，p=3据BH所引Artin结果，未另审Artin原稿。对1≤n≤m，迭代tame residues使{x1,…,xn}落到±1 modp，故该类非零、sl≥1；这不构成精确上界。",
+      "evidence_ids": [
+        "E454-A2",
+        "E454-A3",
+        "E454-A4",
+        "E454-P1",
+        "E454-P2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "模2正次数有限性",
+      "math_status": "仅特例",
+      "scope_note": "KrashenThm5.5：char(F)≠2且−1为平方时，有限u(F)等价于所有正次数mod2上同调类存在共同有限符号界。对F_m用其C_m性质推出u≤2^m，得到p=2的正次数有限性；这是本轮对已有定理适用范围的推论，不给所有p统一界，也不确定一般p=2的精确sl(m,n,2)。未把此结果或特征2论文移作整个主问题解。",
+      "evidence_ids": [
+        "E454-A6",
+        "E454-A1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "库内查重",
+      "site": "固定全库查重简索引",
+      "query": "title,title_en,aliases 正则 Milnor|符号长度|symbol length",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 3,
+      "note": "扫描2469条，仅本题同主题；000915为Milnor–Wood不等式，001277为link Milnor invariants，均是姓氏碰撞。未读两张范围明显不同卡全文，故不做正式两卡关系判定。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定全库查重简索引",
+      "query": "title,title_en,aliases 正则 Krashen|Becher|Hoffmann|K[- ]theory|K 理论",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 5,
+      "note": "本题外为Hoffmann-Ostenhof图论姓氏碰撞、Morava及拓扑K理论；未出现对象相符的Milnor K符号长度候选。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定全库查重简索引",
+      "query": "title,title_en,aliases 正则 Brauer|布劳尔|中央单|中心单|central simple|division algebra|symbol|二次型|quadratic form|period.index",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 5,
+      "note": "本题外是加法链或有限群Brauer特征标/块，同名词不同对象；本轮未提出需正文比对的具体候选。duplicates留空不等于全库无重复的证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"symbol length\" \"C(x\" Milnor 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际请求recency=730；结果含旧文及近期抓取，不把抓取时间当发表时间。发现BH2004全文、Krashen讲义与当前FC文档，交学术/代码路线核原稿。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Becher\" \"Hoffmann\" \"symbol length\" 2025 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际请求recency=730；命中2025有限平方类论文与特征2三阶符号长度论文，随后分别取作者arXiv全文及正式全文核范围。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "Hoffmann Lorenz \"On the number of Pfister forms\" symbol length 2025 pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "索引指向arxiv2101.12593；二手索引只作发现入口，具体范围取原稿。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Springer正式刊发全文",
+      "query": "open https://link.springer.com/article/10.1007/s00229-025-01666-3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00229-025-01666-3",
+      "locator": "摘要及§1，引言明确Throughout this paper characteristic2；Kato-Milne群定义",
+      "note": "Chapman–Laghribi–Mukhija，2025-09-08。论文为特征2的H_2^3(F)及给定二次型维数上界，不是C有理函数域的char0 Milnor K/p精确值。已读定义/范围，不声称逐条复核后文证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv作者原稿",
+      "query": "open https://arxiv.org/abs/2101.12593",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/2101.12593",
+      "locator": "摘要及Submission history",
+      "note": "核v1=2021-01-29、v4=2024-05-02；2025正式刊发线索不冒称2025新首发。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv作者原稿",
+      "query": "open https://arxiv.org/pdf/2101.12593",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2101.12593v4",
+      "locator": "pp1–2定义和假设，尤其p2 |F*/F*2|=2^d<∞、n≥2",
+      "note": "Hoffmann–Lorenz v4，正文日期2024-05-03、提交2024-05-02。明确有限平方类假设；对C(x1,...,xm),m≥1不满足：各x1−a的离散赋值奇偶给无限多个独立平方类。因此不能用该论文的有限d上界解决本题；后续组合估计证明未复核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file google-deepmind/formal-conjectures FormalConjectures/Other/SymbolLengthMilnorKTheory.lean ref=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Other/SymbolLengthMilnorKTheory.lean",
+      "locator": "完整238行，注释及全部定理；全文238行",
+      "note": "根亲读完整代码；answer及7 research theorem为sorry；3 textbook有证明体；同一源码不等于已完成独立构建。公开路线另核旧commit与依赖。；取得并完整静态读取主文件；4 open、3 research solved、3 textbook theorem；8处sorry（含answer）。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "open https://intlpress.com/api/bgcloud-front/resource/pdf/volume/1805807367881113602-1805807367881113602-ff937ebc6ab51fff5ea63b87c32dca8f.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://intlpress.com/api/bgcloud-front/resource/pdf/volume/1805807367881113602-1805807367881113602-ff937ebc6ab51fff5ea63b87c32dca8f.pdf",
+      "locator": "",
+      "note": "根此入口403；不能按搜索返回文本声称全文已取。学术路线另有成功原稿入口。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open",
+      "query": "open https://arxiv.org/pdf/1402.0332v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/1402.0332v1",
+      "locator": "",
+      "note": "此精确版本URL根访问DisabledError；记录失败，不算覆盖，另寻代理成功取得的原稿入口。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "IAS原始讲义",
+      "query": "open https://www.ias.edu/sites/default/files/pcmi-2024-07-24%20krashen.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.ias.edu/sites/default/files/pcmi-2024-07-24%20krashen.pdf",
+      "locator": "2024-07-24 draft，§2.1.3.4 p15",
+      "note": "已开完整22页PDF，随后定位读问题及相邻段。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "IAS原始讲义",
+      "query": "find 2.1.3.12; open lineno613 in pcmi-2024-07-24 krashen.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.ias.edu/sites/default/files/pcmi-2024-07-24%20krashen.pdf",
+      "locator": "p15 Problem2.1.3.12及前后各段",
+      "note": "准确为一般域/次数/模数的统一符号上界问题；原文泛称≥2阶无bound的下一段明确列Matzri H2界及独立模数的更强期望，不可断章说n=2无已知上界。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "International Press档案原文",
+      "query": "open successful BH2004 ref; find Question 4.6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://archive.intlpress.com/site/pub/files/_fulltext/journals/hha/2004/0006/0001/HHA-2004-0006-0001-a003.pdf",
+      "locator": "p29, Proposition4.5及Question4.6、m=1段",
+      "note": "根已通过原文档案入口亲读：F=C(X0,...,Xm)即m+1变量，问λp=m；下一段m=1明确双变量；文字m variables为索引失配。OCR将部分≥/≤显示成>/6，不将转写字符当严格不等式。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv原稿",
+      "query": "open successful Matzri1402.0332 ref; find Theorem8.2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1402.0332",
+      "locator": "Theorem8.2 p19、引言定理重述p3及紧接的C2模2例",
+      "note": "无版本URL实际返回2014v1；根读到C_m域K2/p^k最多k(p^(m−1)−1)符号的定理原文，以及p=2,m=2化两个符号为一的例子。此界不等于m−1精确值，不能闭合全参数问题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv原稿",
+      "query": "open Krashen1305.5217 successful refs; find Theorem4.2.; find Theorem5.5.",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1305.5217",
+      "locator": "v2 2015-07-03；Theorem4.2 p10及Theorem5.5 p14",
+      "note": "根亲读4.2的有效指标条件以及5.5 char≠2、−1平方、有限u等价于所有正次数mod2类由单一N控制。后者应用给当前域p=2有限性，并非全部p的统一界或精确值；本轮未重证全部引用依赖。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "Krashen \"2.1.3.12\" symbol length 2024",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位IAS原讲义，随后取得全文相关页。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "Becher Hoffmann 2004 \"Question 4.6\" symbol length",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位出版社原论文，随后读取题面与相邻下界证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"SymbolLengthMilnorKTheory\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中formal-conjectures实际文档、第三方索引和AI轨迹；数学判断追原论文，不按目录标签闭合。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "IAS原讲义",
+      "query": "open https://www.ias.edu/sites/default/files/pcmi-2024-07-24%20krashen.pdf ; find 2.1.3.12 / invertible / characteristic ; open lineno613 /637",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得22页PDF；实际读§2.1.3.4的定义、Problem2.1.3.12及随后Matzri段。该一般问题是找统一上界，并未列卡所谓五条。find invertible返回的是线性映射语境，没有据此宣称找到模数可逆的明示约定。",
+      "url": "https://www.ias.edu/sites/default/files/pcmi-2024-07-24%20krashen.pdf",
+      "locator": "draft July24,2024；printedp15，PDFpageno15",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "International Press原刊",
+      "query": "open https://archive.intlpress.com/site/pub/files/_fulltext/journals/hha/2004/0006/0001/HHA-2004-0006-0001-a003.pdf ; find Question 4.6 / Proposition 4.5 ; open lineno981 /994 /1000 /59 /70",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得15页正文；读pp17–18定义/Thm1.1、pp28–29 Prop4.5完整短证明和Q4.6/Artin/deJong说明。OCR将≥等符号提取为>，以相邻公式、证明及问题语义交叉核；不宣称全篇重证。",
+      "url": "https://archive.intlpress.com/site/pub/files/_fulltext/journals/hha/2004/0006/0001/HHA-2004-0006-0001-a003.pdf",
+      "locator": "2004pp17–18,28–29；Prop4.5与Q4.6",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv原稿",
+      "query": "open https://arxiv.org/pdf/1402.0332 ; find 8.2 / roots of unity ; open lineno1080 /1128 /1140 /548 /556",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "无版本后缀入口实际返回arXiv1402.0332v1,3Feb2014；读Thm3.4/3.5及证明、Thm4.4段、§8及Thm8.2与p=2示例。Milnor K²版本明确无需单位根；Brauer版本另有单位根条件。",
+      "url": "https://arxiv.org/pdf/1402.0332",
+      "locator": "v1 pp11–13,17–19；§8 Thm8.2",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "formal-conjectures文档页",
+      "query": "open https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Other/SymbolLengthMilnorKTheory/ ; find variants / theorem symbol_length_problem / finiteness / theorem symbol_length_problem : ; open lineno4580 /4613",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读当前文档实际题面与显示的声明/证明体。finiteness无匹配，实际名为bounded；多个research solved/open条目仍是sorry。此分代理只核实时文档，旧ref与固定commit源码由public路线独立处理；不以All goals completed显示当作通过。",
+      "url": "https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Other/SymbolLengthMilnorKTheory/",
+      "locator": "正文约L4585–4647",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"symbol length\" \"complex\" \"2025\" \"Milnor\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际recency730；命中原讲义、既有论文/题面索引，未取得覆盖全参数精确值的新完整解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"symbol length\" \"Becher\" \"Question 4.6\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际recency730；命中原BH题与当前文档，不把旧open或目录状态当全局无解证据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Krashen\" \"symbol length\" 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际recency730；返回讲义/既有来源，未取得同范围全题新证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "Matzri Symbol length Brauer group field Theorem 8.2 2016 pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "找到2016出版信息及arXiv原稿；正式刊本另尝试失败，实际证明版本以已读v1为准。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"symbol length\" \"complex function fields\" \"higher\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "找到现有条件性界及旧来源，没有据检索空白判定完整开放。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Period and index, symbol lengths, and generic splittings\" Krashen",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位arXiv1305.5217和2016BLMS出版记录；随后读实际定理。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "AMS正式刊本",
+      "query": "open https://www.ams.org/journals/tran/2016-368-01/S0002-9947-2015-06326-X/S0002-9947-2015-06326-X.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具not accessible；不宣称取得或逐字核对Matzri2016正式刊版。",
+      "url": "https://www.ams.org/journals/tran/2016-368-01/S0002-9947-2015-06326-X/S0002-9947-2015-06326-X.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv原稿",
+      "query": "open https://arxiv.org/pdf/1305.5217 ; find Theorem 4.2 / Theorem (4.2) / finite extensions / Theorem 1.2 ; open lineno1204",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际返回1305.5217v2,3Jul2015；读Thm4.2条件和短推导、Thm5.5完整条件及证明相关段。Theorem1.2搜索未定位该编号，而返回其他引用；不虚构该定理。",
+      "url": "https://arxiv.org/pdf/1305.5217",
+      "locator": "printedpp2,10,14–15；Theorem4.2及5.5",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web PDF screenshot",
+      "query": "screenshot https://archive.intlpress.com/site/pub/files/_fulltext/journals/hha/2004/0006/0001/HHA-2004-0006-0001-a003.pdf pageno12",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "请求只返回ImageDisplayed占位，没有可供本分代理可靠视觉核验的图像块；已读文字正文，但不声称核过页图。",
+      "url": "https://archive.intlpress.com/site/pub/files/_fulltext/journals/hha/2004/0006/0001/HHA-2004-0006-0001-a003.pdf",
+      "locator": "printedp29，PDFpageno12",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "search query=SymbolLengthMilnorKTheory; repository_name=[google-deepmind/formal-conjectures]; topn=5",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "返回主文件及FC100SolvedSet2；后者片段仅收录zero_mem_of_lt，不是全题证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file google-deepmind/formal-conjectures lean-toolchain ref=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lean-toolchain",
+      "note": "实际读取当前提交工具链leanprover/lean4:v4.33.1。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"symbol length\" \"Milnor\" \"OpenAI\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中FC文档、aiXiv候选扫描及OpenAI检索目录；目录Milnor重构稍后追到作者仓库原摘要。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"symbol_length_problem\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检索命中FC题面及Trough派生目录，不能将渲染页面All goals completed或research solved标签当Lean无sorry证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "site:mathoverflow.net \"symbol length\" \"Milnor\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中3-torsion part of Brauer group讨论，后实际读原帖。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file google-deepmind/formal-conjectures FormalConjectures/Other/SymbolLengthMilnorKTheory.lean ref=b576d52",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/b576d52/FormalConjectures/Other/SymbolLengthMilnorKTheory.lean",
+      "locator": "全文238行",
+      "note": "旧卡引用短SHA文件实际取得；blob 162194337b9702ab745956f8003acecfc2196cfd，与当前源逐字相同。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file google-deepmind/formal-conjectures FormalConjecturesForMathlib/FieldTheory/MilnorKTheory.lean ref=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/FieldTheory/MilnorKTheory.lean",
+      "locator": "Rel、MilnorK、symbol、grade、symbolLengthBounds",
+      "note": "实际取得完整文件；静态读定义及符号长度相关声明，全文扫描未见sorry/admit/axiom/native_decide/unsafe；未审计全部依赖。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file google-deepmind/formal-conjectures lake-manifest.json ref=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lake-manifest.json",
+      "note": "实际读取当前锁定mathlib 0df444a360eaa60ab8c11dca51a86af692955474；不是由源码相同推断。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "search query=symbol length Milnor; repository_name=[openai/math]; topn=8",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回6项泛词碰撞（Milnor数、字符串长度等）；返回片段未见本题完整解决声明，非全库穷尽结论。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_commit repo_full_name=google-deepmind/formal-conjectures commit_sha=b576d52",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/commit/b576d527b271b936f9e61c0e367c302d7386bc80",
+      "note": "解析完整提交b576d527b271b936f9e61c0e367c302d7386bc80，metadata时间2026-11-18T10:49:08Z；本commit改Erdos596，仅用于固定快照。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "search query=symbolLengthBounds; repository_name=[openai/math]; topn=5",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "本次精确标识符查询返回results=[]；不推导不存在其他命名实现。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"SymbolLengthMilnorKTheory\" proof; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "再次命中同源FC文档及派生目录，没有在所返回结果中找到一般精确值/统一有界的完整证明声明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"symbol length\" \"Milnor\" \"OpenAI\"; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中OpenAI目录中Milnor函数域重构，后以原仓库摘要核对象不同。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"symbol length\" \"Krashen\" \"solved\"; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Krashen旧论文及部分结果、FC文档；学术精确性交由学术路线，不将搜索摘要当全解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "open https://mathoverflow.net/questions/304243/3-torsion-part-of-brauer-group",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://mathoverflow.net/questions/304243/3-torsion-part-of-brauer-group",
+      "locator": "问题、Jason Starr评论67–79行、回答97–100行",
+      "note": "实际读2018问题/评论和2021回答：讨论3-torsion Brauer类由循环代数生成；未给本题统一数量上界，更非m−1精确值。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file google-deepmind/formal-conjectures FormalConjecturesForMathlib/FieldTheory/MilnorKTheory.lean ref=b576d527b271b936f9e61c0e367c302d7386bc80",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/b576d527b271b936f9e61c0e367c302d7386bc80/FormalConjecturesForMathlib/FieldTheory/MilnorKTheory.lean",
+      "note": "旧提交定义文件实际取得，blob bdb18a7a6644d7553c7c794d69aea23049e56fbe，与当前逐字相同。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file google-deepmind/formal-conjectures lean-toolchain ref=b576d527b271b936f9e61c0e367c302d7386bc80",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/b576d527b271b936f9e61c0e367c302d7386bc80/lean-toolchain",
+      "note": "旧提交工具链单独实际取得，v4.33.1，blob a8afa7d1b02d96f0671eba854a8dc4b416beb473。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file google-deepmind/formal-conjectures lake-manifest.json ref=b576d527b271b936f9e61c0e367c302d7386bc80",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/b576d527b271b936f9e61c0e367c302d7386bc80/lake-manifest.json",
+      "note": "旧提交manifest单独实际取得，mathlib 0df444a360eaa60ab8c11dca51a86af692955474，blob fae5d498d3f9dc3f6d1efd7c2adc03dd5bb6c8d6；与当前相同。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "search query=\"symbol length\"; repository_name=[openai/math]; topn=5",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回前5项为字符串符号长度、超字符串算法、sunflower编码、word entropy；片段对象可直接排除，不声称全库无相关论文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "open https://aixiv.online/trace/66/view?page=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://aixiv.online/trace/66/view?page=1",
+      "locator": "页首17–31行",
+      "note": "仅读页首及后续find相关段，非18,448行全读。页面自述为2026-10-03/04 Claude候选发现trace，不是本题证明正文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=SymbolLengthMilnorKTheory 〔私有记录编号：PR-000567〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://aixiv.online/trace/66/view?page=1",
+      "locator": "16303–16306行",
+      "note": "命中16303–16306行4个开放命题的扫描列表；未见此处给出证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=symbol_length_problem 〔私有记录编号：PR-000568〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://aixiv.online/trace/66/view?page=1",
+      "locator": "11725；16303–16306行",
+      "note": "另命中11725行Matzri degree_two已知结果的候选列表；不是一般全题解决声明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "search query=\"Reconstruction of Function Fields\"; repository_name=[openai/math]; topn=4",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "命中overview/README/main.tex/references；定位2026-10-05原作者仓库供下一步读取。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file openai/math preprints/Reconstruction-of-Function-Fields-from-Mod-ell-Milnor-K-Theory-October-5-2026/README.md ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Reconstruction-of-Function-Fields-from-Mod-ell-Milnor-K-Theory-October-5-2026/README.md",
+      "note": "实际读作者与发布日期元数据；README本身无符号长度全题声明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file openai/math preprints/Reconstruction-of-Function-Fields-from-Mod-ell-Milnor-K-Theory-October-5-2026/build/main.tex ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Reconstruction-of-Function-Fields-from-Mod-ell-Milnor-K-Theory-October-5-2026/build/main.tex",
+      "locator": "abstract",
+      "note": "实际读题名、原摘要及输入结构：声称K1/K2及双线性乘积恢复函数域/常数域，非计算符号长度；未读分节证明且未核重构定理真伪。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "Becher Hoffmann 2004 \"symbol lengths\" \"Question 4.6\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "独立边界审读定位BH原PDF及FC官方页面；后续读取相应正文，不依赖转载索引判数学状态。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"SymbolLengthMilnorKTheory\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "独立边界审读定位BH原PDF及FC官方页面；后续读取相应正文，不依赖转载索引判数学状态。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "open https://archive.intlpress.com/site/pub/files/_fulltext/journals/hha/2004/0006/0001/HHA-2004-0006-0001-a003.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://archive.intlpress.com/site/pub/files/_fulltext/journals/hha/2004/0006/0001/HHA-2004-0006-0001-a003.pdf",
+      "note": "独立边界审读实际打开；BH读取定义、引言及Prop4.5/Q4.6，FC读取声明类别、参数及边界引用，不称整份证明均重证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "open https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Other/SymbolLengthMilnorKTheory/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Other/SymbolLengthMilnorKTheory/",
+      "note": "独立边界审读实际打开；BH读取定义、引言及Prop4.5/Q4.6，FC读取声明类别、参数及边界引用，不称整份证明均重证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web find+screenshot（独立边界审读）",
+      "query": "find BH2004 Question 4.6 / {x, x}; find FC SymbolLengthMilnorKTheory degree_zero; screenshot BH2004 pageno12 /0",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://archive.intlpress.com/site/pub/files/_fulltext/journals/hha/2004/0006/0001/HHA-2004-0006-0001-a003.pdf",
+      "locator": "BH printedpp17–18,28–29；FC degree_zero",
+      "note": "Q4.6与degree_zero实际定位。{x,x}未返回直接所需反例；整Milnor K交错性反例来自本轮tame-symbol推导。截图仅引用/占位，未宣称可靠视觉校页。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"symbol length\" \"C_m\" \"2\" \"Milnor\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "独立边界审读专查潜在p=2附加结果；未取得可认证所有m之精确值的主文，因此不把p=2全范围判为m−1。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Milnor\" \"C_m\" \"single symbol\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "独立边界审读专查潜在p=2附加结果；未取得可认证所有m之精确值的主文，因此不把p=2全范围判为m−1。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Milnor K\" \"symbol length\" \"Arason\" \"2^\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "独立边界审读专查潜在p=2附加结果；未取得可认证所有m之精确值的主文，因此不把p=2全范围判为m−1。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "其他：数学边界核对",
+      "site": "本轮独立定义与赋值推导",
+      "query": "核零群/空和、n=0空符号、n=1的x1赋值、重复槽tame symbol、x1−a的模p独立性及{ x1,…,xn }迭代留数",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "454_task.json定义；固定FC定义；独立数学推导",
+      "note": "直接核m=0正阶零、m≥1一阶长度1、空符号约定下零阶p−1、有限p幂类假设失败、整群重复槽非零而本域模p后交错。n>m的消失另外依赖已知cohomological-dimension与norm-residue定理，没有冒称重证这些深结果。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E454-A1",
+      "url": "https://www.ias.edu/sites/default/files/pcmi-2024-07-24%20krashen.pdf",
+      "locator": "§2.1.3.4，Problem2.1.3.12及随后两段；printedp15",
+      "version": "Danny Krashen, PCMI Summer School (not quite) notes, draft July24,2024",
+      "subquestions": [
+        "主问题",
+        "逐参数有界",
+        "不依赖素数的统一界"
+      ],
+      "role": "原始提出",
+      "publication": "项目报告",
+      "scope_match": "仅某子问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "原问题对给定域k与次数i、模数ℓ求一个同时约束所有上同调类的符号长度上界；没有列五个问题，也不等同要求精确最小值。复有理函数域/素数模数是题库的特化。原页先宽泛称≥2阶未有界，随后明确给出Matzri的H²上界，故不能摘前一句否定二次已知界。对正特征的Galois上同调/单位根解释须另核ℓ可逆；当前C上无此障碍。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "original",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E454-A2",
+      "url": "https://archive.intlpress.com/site/pub/files/_fulltext/journals/hha/2004/0006/0001/HHA-2004-0006-0001-a003.pdf",
+      "locator": "Question4.6，printedp29；引言p18；紧随问题的循环代数讨论",
+      "version": "Becher–Hoffmann, Symbol lengths in Milnor K-theory, HHA6(1)(2004),17–31; DOI10.4310/HHA.2004.v6.n1.a3；publishedFeb6,2004",
+      "subquestions": [
+        "主问题",
+        "二次精确值m−1"
+      ],
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "原题令r≥1、p素数、C为代数闭域且char(C)≠p，F=C(X0,…,Xr)，问λp(F)=r。按变量总数m=r+1换元即m≥2时m−1；卡专取复数C是其特例。原文“in m variables”与X0,…,Xm不符，p18明确m+1变量且随后m=1指双变量，故按公式及语境辨识排字失配。原文并称双变量p=2,3肯定、deJong给指数等于周期，但大素数循环性另问；Artin/deJong原论文此次未另取。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E454-A3",
+      "url": "https://archive.intlpress.com/site/pub/files/_fulltext/journals/hha/2004/0006/0001/HHA-2004-0006-0001-a003.pdf",
+      "locator": "Proposition4.5及完整短证明，printedpp28–29；Thm1.1 pp17–18",
+      "version": "Becher–Hoffmann2004，已读出版社原刊PDF",
+      "subquestions": [
+        "主问题",
+        "二次已知上下界",
+        "二次精确值m−1"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅某子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "若基域含原始p次单位根，L介于F(X0,…,Xr)与F(X0)((X1))…((Xr))，存在r个p次符号代数的张量积为除环。取不同首一不可约fi(X0)，用其模p独立性和所引估值除环判据得到指标p^r，故需至少r个符号。对C(x1,…,xm)，m≥2，得到λp≥m−1；m=1下界0平凡。已读短证明并核指标/长度逻辑，未重新证明引用的估值判据。另Thm1.1的有限F*/F*^p假设不适用于正变量数复有理函数域。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E454-A4",
+      "url": "https://arxiv.org/pdf/1402.0332",
+      "locator": "Thm3.4/3.5及证明pp11–12，Thm4.4p13，§8pp17–19及Thm8.2p19",
+      "version": "Eliyahu Matzri, arXiv:1402.0332v1,3Feb2014；后刊TransAMS368(2016),413–427,DOI10.1090/tran/6326；正式刊版本轮未取",
+      "subquestions": [
+        "主问题",
+        "逐参数有界",
+        "二次已知上下界",
+        "二次精确值m−1"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅某子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "对C_m域及素数p，K²_M(F)/p^t每类可写为至多t(p^(m−1)−1)个符号，当前应用取m≥1、t≥1；t=0为模1零群的直接边界。§8明确Milnor K版本不需单位根；Brauer版本需相应单位根。C(x1,…,xm)为C_m域，故特别sl(m,2,p)≤p^(m−1)−1。该界是二次上界，不是m−1精确值，不是不依赖p的界，也不覆盖任意高阶n。已读缩短论证关键段和定理，未全篇重证或形式化复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E454-A5",
+      "url": "https://arxiv.org/pdf/1305.5217",
+      "locator": "Theorem4.2，printedp10；引言定理重述p2",
+      "version": "Daniel Krashen, arXiv:1305.5217v2,3Jul2015；后刊BLMS48(2016),985–1000,DOI10.1112/blms/bdw060",
+      "subquestions": [
+        "主问题",
+        "逐参数有界"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "模数ℓ为与char(F)互素的正整数；固定d>0，假设对每个扩张次数界m，所有[L:F]≤m及d′<d的上同调类的有效指标eind都有共同界，则d阶符号长度可依赖该类的有效指标而有界。要得到所有d阶类统一界仍须约束其自身有效指标；这不是任意C(x_i)高阶类无条件有界。eind为最小分裂域次数，不能直接换成分裂次数gcd的index。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E454-A6",
+      "url": "https://arxiv.org/pdf/1305.5217",
+      "locator": "Theorem5.5与证明相关段，printedpp14–15",
+      "version": "arXiv:1305.5217v2,3Jul2015",
+      "subquestions": [
+        "主问题",
+        "逐参数有界",
+        "模2正次数有限性"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅某子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "char(F)≠2且−1为平方时，u(F)<∞等价于所有正次数mod2上同调类的符号长度由同一有限常数控制。应用到C(x1,…,xm)使用其C_m性质推出u≤2^m，因而p=2正次数有限性有已知理论支持；这是本轮对定理的范围推论，不给全p统一界或一般精确值。只读定理及相关证明段，未重建全部依赖。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/b576d527b271b936f9e61c0e367c302d7386bc80/FormalConjectures/Other/SymbolLengthMilnorKTheory.lean",
+      "locator": "全文；answer112；research theorem122–219；textbook157–169及229–235",
+      "version": "commit b576d527b271b936f9e61c0e367c302d7386bc80; blob 162194337b9702ab745956f8003acecfc2196cfd；当前ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8相同blob",
+      "subquestions": [
+        "主问题",
+        "一般精确值",
+        "逐参数有界",
+        "不依赖素数的统一界",
+        "二次精确值m−1",
+        "二次已知上下界",
+        "已知边界与精确特例"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "此匹配指题卡现已写出的精确值与二次m−1问题及源码明确变体；无法将其唯一映成卡声称的五条。旧ref b576d52已解析完整SHA，旧/当前主文件、定义、toolchain、manifest均分别实际fetch且同blob。主文件238行有10个theorem：4 research open为value/bounded/uniform/degree_two_isLeast；3 research solved为degree_two/degree_two_ge/zero_mem_of_lt；3 textbook为degree_zero/degree_one/isAlgClosed。answer定义及7个research theorem共8处sorry（112,126,137,150,180,193,209,219行），没有TODO；不构成无占位证明，research solved只是所引数学文献标签。3个textbook有实质证明体，但本轮未构建或运行#print axioms。answer仍为sorry，未给任何精确值公式；不能把某最小上界/上确界存在的定义性命题当作求值答案。依赖已读：Lean leanprover/lean4:v4.33.1，mathlib 0df444a360eaa60ab8c11dca51a86af692955474；manifest blob fae5d498d3f9dc3f6d1efd7c2adc03dd5bb6c8d6，toolchain blob a8afa7d1b02d96f0671eba854a8dc4b416beb473。",
+      "evidence_id": "E454-P1",
+      "rerun": {
+        "commit": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+        "theorem": "SymbolLengthMilnorKTheory.symbol_length_problem及variants.bounded/uniform/degree_two_isLeast；已知/教材子项见note",
+        "toolchain": "leanprover/lean4:v4.33.1; mathlib 0df444a360eaa60ab8c11dca51a86af692955474",
+        "command": "本轮未执行Lean/Lake构建或#print axioms。",
+        "axioms": "主answer及7个research theorem显式sorry；未执行公理审计，不将显示All goals completed或分类标签视为验证。"
+      },
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/b576d527b271b936f9e61c0e367c302d7386bc80/FormalConjecturesForMathlib/FieldTheory/MilnorKTheory.lean",
+      "locator": "Rel80–83，MilnorK89，symbol136，grade161–162，symbolLengthBounds169–170",
+      "version": "commit b576d527b271b936f9e61c0e367c302d7386bc80; blob bdb18a7a6644d7553c7c794d69aea23049e56fbe；当前ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8实际另取且相同",
+      "subquestions": [
+        "主问题",
+        "一般精确值",
+        "逐参数有界",
+        "不依赖素数的统一界",
+        "二次精确值m−1",
+        "已知边界与精确特例"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "仅某子问",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "商张量代数+Steinberg及ℓ=0关系，grade为符号生成的加法子群，界表示每类可写≤m个无额外标量系数符号之和；不是最高次数、生成元个数或固定单一类的长度。 n=0的symbol为空乘积1；界的量词为所有同阶类共享m。定义中没有将一般整Milnor K的重复槽强行置零。基础文件全本文本扫描未见sorry/admit/新axiom/native_decide/unsafe，不等于所有依赖或运行时公理审计。F=MvRatFunc(Fin m) C是纯有理函数域，不能默认为所有复函数域或其有限扩张。",
+      "evidence_id": "E454-P2",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    }
+  ],
+  "duplicates": [],
+  "card_actions": [
+    {
+      "action": "补条件量词",
+      "field": "题面、形式化表述、标题、acceptance、statement_fidelity",
+      "old": "五条子问题如上；这五条相关的子问题都还没有解决；未列每项或参数范围。",
+      "new": "删除无可核清单的“五条”数量，明确列出实际研究目标：一般精确值sl(m,n,p)；固定m,n,p的全群有限界；固定m,n≥1而独立所有素数p的界；n=2是否精确m−1（m≥1，非平凡m≥2）。另列已知二次上下界和边界结论。若仍要按五条合并，须由来源提供精确声明身份，不能臆选。修订后新card_rev；本回执绑定现有hash不修改题卡。",
+      "reason": "旧快照与当前源已逐字核对，实际并非五个同等级开放问题；求值、有限性和统一p界不等价。",
+      "evidence_ids": [
+        "E454-A1",
+        "E454-A2",
+        "E454-P1",
+        "E454-P2"
+      ],
+      "small_case_check": "m=0,n≥1为零群；n=0按空符号定义长度p−1，故统一p界须n>0；m−1若普通整数m=0给−1会错，不能当BH原范围反例。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修复公式",
+      "field": "符号长度定义、人话版、零群与无穷约定",
+      "old": "任意一个元素最少符号个数的最大值；未说明空和/无统一有限界；整MilnorK笼统称交错。",
+      "new": "len(α)=min{r∈N0:α=Σ_{j=1}^r{a_1j,…,a_nj}}，各槽为F×；sl=sup_α len(α)∈N0∪{∞}，len(0)=0。整MilnorK以多重线性和Steinberg关系定义，一般重复槽不必零；本题含C、模p后−1为p次幂才可推出交错。",
+      "reason": "每个元素有有限表示不保证全群统一有界；“最大值”不能在尚未证明有限时预设。反对称不等于整群交错。",
+      "evidence_ids": [
+        "E454-A2",
+        "E454-P2"
+      ],
+      "small_case_check": "在K²_M(C(t))中{t,t}={t,−1}，t处tame symbol为−1≠1，故整群不交错；模p后−1是p次幂，此符号为0。m≥1时{x1}由赋值1非p倍知非零，故一阶长度恰1；m=0则正阶全为0。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "card_action": "fix_formula"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "sources、原文摘录、proposer及first_published",
+      "old": "以formal-conjectures目录链接和改写句当作Krashen2024+BH2004五条原文。",
+      "new": "补Krashen2024-07-24讲义§2.1.3.4 Problem2.1.3.12（统一上界一般问）及BH2004Q4.6 p29（原r+1变量λp=r）；当前纯复有理函数域精确值是特化/加强表述，不应作为逐字原文引号。BH索引公式和“r variables”文字有失配，按前后文总变量数重编号并说明。",
+      "reason": "须区分原作者问题、题库特化以及符号重编号，避免把二手代码注释冒作逐字原文。",
+      "evidence_ids": [
+        "E454-A1",
+        "E454-A2",
+        "E454-P1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展、相关进展与声称解决、acceptance.partial",
+      "old": "部分(m,n)已知；五条都未解决；未列二次上界和下界。",
+      "new": "列出已知sl(m,2,p)的m−1至p^(m−1)−1界及Matzri模p^t上界；列m=0、n=1、n>m、m=n=2且p=2/3等精确边界，并分开p=2正次数有限性。除有明确来源支持的范围外，不称全题解或所有p=2精确值已知。",
+      "reason": "原文定理已有实质结果，且几个子项并非未解决；同时这些结果不足以决定一般精确值和全p统一界。",
+      "evidence_ids": [
+        "E454-A3",
+        "E454-A4",
+        "E454-A5",
+        "E454-A6",
+        "E454-P1"
+      ],
+      "small_case_check": "m=2,p=2时上下界均1；m=3,p=2只得到2≤sl≤3，不能凭这一对界推等号2。m≥1时x1−a给无限多个独立p幂类，不能把有限p幂类定理的维数参数误用为变量个数m。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "formal_status、novelty证据及代码版本",
+      "old": "formal_status=none；旧查询只看快照open标签。",
+      "new": "登记已取得的固定FC源码及定义：旧b576d527b271b936f9e61c0e367c302d7386bc80和当前ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8均实取同blob；answer+7research theorem为sorry，3textbook有证明体。数学文献已知状态与源码占位/未复跑分别记录；本轮没有覆盖一般全题的完整公开AI证明声明。",
+      "reason": "代码题面已存在，不能记未找到任何形式化；有sorry的research solved标签也不能记机器证明完成。",
+      "evidence_ids": [
+        "E454-P1",
+        "E454-P2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "其他：题卡修订与二审",
+      "reason": "卡内“五条”身份不可从原文或所引固定快照恢复；已核旧/现源相同，并非只遗漏读取当前代码。",
+      "next_step": "接收方按准确声明列表修题面与acceptance，明确m,n,p、n=0约定、∞与BH重编号，生成新card_rev后核受影响结论迁移。本回执保留现rev，未修改题卡。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮没有得到全参数精确值、一般高阶奇素数有限性或全p统一界的完整确证；已有二次/p=2/边界结果不覆盖全部量词。",
+      "next_step": "后续深查如针对未覆盖范围，须取得具体完整新稿，逐项核F_m而非任意不同域、n/p/m范围、统一于哪些参数及最优性，再判断是否闭合；不以旧open或检索未命中作绝对开放证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "Matzri精确v1/AMS部分入口失败，但无版本arXiv入口实际返回v1并已读定理；BH页图请求仅占位，解析文本有符号/变量计数排字问题。",
+      "next_step": "如需要正式版校或长证明全面重审，补取Matzri2016刊版与BH可靠页图；保留已成功原稿读取，不把这些入口缺口误报整篇未读。Krashen2015v2与2016刊本也未逐字比较。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Artin/deJong、Serre/Voevodsky是已读文献引用的经典依据，本轮未另取得并重证所有原稿；已读现有定理范围不等于全部深依赖独立审查。",
+      "next_step": "需要对对应特例作独立全面验收时补核原定理条件；保持周期=指标与循环性分离，并保持cd/norm-residue理论与代码sorry状态分离。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "主answer及7research定理显式sorry；3textbook有正文但未构建、公理审计或观察CI。现成占位源码不能用于验证原开放题。",
+      "next_step": "仅在取得针对所需声明的无占位证明时固定新版commit与依赖，再实际构建并保存命令/日志/#print axioms。对已有textbook证明如需机器复核可按v4.33.1和mathlib锁定版本运行；未运行前不记通过。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "三组固定2469条索引搜索仅得同姓或不同K理论/Brauer对象碰撞，无相符具体候选；未取无关卡全文，因此没有正式跨卡关系。",
+      "next_step": "本轮duplicates留空，仅表示本次无待比对具体候选。若后续出现相同对象及量词的候选，再取双方固定正文和card_rev比较；不把空数组当全库无重复证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "637c5ca6c47e2578",
+      "codes": {}
+    }
+  ]
+}

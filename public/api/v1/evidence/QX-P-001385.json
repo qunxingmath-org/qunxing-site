@@ -1,0 +1,1538 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001385",
+  "card_rev": "115b1901c22875f6",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "按1978更正/1979重列原式的H-271文献解答状态",
+          "value": "no_evidence_in_scope",
+          "note": "正式累计索引至62.4(2024)仍以*****标H-271未解；本轮问题号、binary dual与作者定向查询未取得已发表公式解。2025–26新出版社入口403，不能声称所有后续刊物已遍查。当前卡另接受任意正确算法，本轮已独立核定原式的全n终止算法；该算法结论在下列单独子问登记，不自动改写历史刊题的“formula”目标或期刊记录。"
+        },
+        {
+          "subquestion": "原公式及参数的实质错误",
+          "value": "statement_error",
+          "note": "1979原刊截图确认D={∏_{i=0}^m(a_i+2i):m≥0,a_i∈{0,1}}；当前卡把2i误写成2^i并丢失乘积范围，不能作为同一题的合法定义。精确小例：原D的m=0正值只有1，m=1正值只有2、3，m≥2的正值至少8，所以4∉D。若机械把原指标0..m保留却改成卡中2^i，m=1、a0=1、a1=0便给(1+1)(0+2)=4，因此两公式确实不等价。这里比较只是揭示错误，不替无指标的当前伪式指定一个正式新问题。恢复原式会改变数学对象，需新card_rev。"
+        },
+        {
+          "subquestion": "原式的零、长度和排序下标边界",
+          "value": "partial",
+          "note": "i=0因子为a0，故a0=0给积0；D按原式包含0，但补集只相对于正整数，0不进入S序列。正值必须a0=1；m=0时正值是1（将i≥1部分写为空积1），因此1∈D且S_1不是1。原文未要求a_m=1，不能套普通二进制最高位为1的约定：例如a0=1、其余a_i=0给2^m m!，原备注也明确列此类值；增加一个高位0会添加因子2(m+1)，改变积，并非无害前导零。集合D要去重，不按参数串的重数排序。排序下标n≥1；S_0未定义。所有算例均依此1979原式，不依题卡误式。"
+        },
+        {
+          "subquestion": "按原式的有限精确算例",
+          "value": "partial",
+          "note": "已实际运行Python精确整数枚举并保存work_001385_math_checks.json。正值按长度分块：m=0为{1}；m=1为{2,3}；m=2为{8,10,12,15}；m=3为{48,56,60,70,72,84,90,105}。D∩[1,100]={1,2,3,8,10,12,15,48,56,60,70,72,84,90}；因为m≥4时2^m m!≥384>100，此范围完整性有证明。正补集起始为4,5,6,7,9,11,13,14,16,17,18,19,…。附加m=0..6的参数枚举分别得到1,2,4,8,16,32,64个不同正值；不据此猜或宣称所有长度都无碰撞。有限计算只检查定义与实现，未提供原刊要求的显式通项解。"
+        },
+        {
+          "subquestion": "可判定性和补集无穷性的直接证明",
+          "value": "partial",
+          "note": "对恢复后的原D，任何正值的长度m满足t≥∏_{i=1}^m2i=2^m m!；因此给定有限X，只需枚举满足2^m m!≤X的有限多个m和每层2^m个0/1选择，即可完整决定D∩[1,X]，无须把“不见于已枚举值”误作一般无穷集合非成员证书。又m=0只给正值1；m≥1必含因子a1+2∈{2,3}，所以每个6j−1（j≥1）均不在D。它们严格递增，证明正补集无限，并给每个n≥1的严格终止上界S_n≤6n−1。此证明只使用确认过的原式；任意递归可枚举集合并不自动拥有可判定补集，不能脱离具体长度界泛化。"
+        },
+        {
+          "subquestion": "当前任意正确算法验收分支过弱",
+          "value": "partial",
+          "note": "若恢复原D后仍保留题卡“给出对每个n都能算出S_n的正确算法即可”，则以下初等算法已经满足该分支：输入整数n≥1，置X=6n−1；枚举m≥0直到2^m m!>X；每层枚举(a1,…,am)∈{0,1}^m，计算∏_{i=1}^m(2i+a_i)，只保留≤X的正值并去重；依次扫描1,…,X，返回第n个未在集合中的整数。覆盖性来自正值≥2^m m!，终止性来自5,11,…,6n−1这n个确定补集元素，故全n正确性不靠有限测试。算法没有调用未知S_n或不可判定成员oracle。它证明该宽泛算法验收易满足，却不等于原刊“求formula”所期待的非循环显式通项已经有新解；如希望要求直接位数公式或特定效率，须明确标准，不能用未定义的“快速”在事后改变目标。 此终止界和有限枚举覆盖论证由两个独立核对者分别确认；不视为历史显式公式结案。"
+        },
+        {
+          "subquestion": "Moser–de Bruijn本身与正补集混淆",
+          "value": "statement_error",
+          "note": "正确类比集合A={Σ_i ε_i4^i:ε_i∈{0,1}，仅有限非零}，含0。若n=Σ_i b_i2^i，则a(n)=Σ_i b_i4^i枚举的是A本身，按0起始为0,1,4,5,16,17,20,21,…。独立单调性核验：两个二进制参数在最高不同位j处的改变量4^j严格大于所有低位可能差额Σ_{i<j}4^i=(4^j−1)/3，故映射按大小保序且由位数对应满射到A。其正整数补集却从2,3,6,7,8,9,10,11,…开始；例如a(1)=1∈A，而补集首项是2。因此题卡称“补集元素恰好把2的幂逐位搬过去”把A和补集混淆。另“由2的幂子和组成”也错误：若不加其他限制，互异2的幂子和覆盖全部非负整数，正补集为空。该类比修复不构成Whitney集合的通项推导。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "none_found",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://www.fq.math.ca/Scanned/17-3/advanced17-3.pdf"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面有误",
+      "scope_note": "当前卡声称对应FQ H-271，但关键因子把原文2i写成2^i，且省略i=0..m、m≥0，未完整交代零值、长度和去重约定。原式与错式生成不同集合；必须修复数学定义并换card_rev，不能把纠正后题上的检索或算法当当前错式原封不动已解。卡已写补集母集为正整数；原式D可含0不改变该正补集。1979是重列，首刊为1977并已有1978正式更正。",
+      "evidence_ids": [
+        "E1385-A-FQ77",
+        "E1385-A-FQ78",
+        "E1385-A-FQ79",
+        "E1385-A-IDX24",
+        "WHITNEY-M-FQ79"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "按1978更正/1979重列原式的H-271文献解答状态",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "正式累计索引至62.4(2024)仍以*****标H-271未解；本轮问题号、binary dual与作者定向查询未取得已发表公式解。2025–26新出版社入口403，不能声称所有后续刊物已遍查。当前卡另接受任意正确算法，本轮已独立核定原式的全n终止算法；该算法结论在下列单独子问登记，不自动改写历史刊题的“formula”目标或期刊记录。",
+      "evidence_ids": [
+        "E1385-A-FQ78",
+        "E1385-A-FQ79",
+        "E1385-A-IDX24",
+        "E1385-A-HERITAGE"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "原公式及参数的实质错误",
+      "math_status": "题面有误",
+      "scope_note": "1979原刊截图确认D={∏_{i=0}^m(a_i+2i):m≥0,a_i∈{0,1}}；当前卡把2i误写成2^i并丢失乘积范围，不能作为同一题的合法定义。精确小例：原D的m=0正值只有1，m=1正值只有2、3，m≥2的正值至少8，所以4∉D。若机械把原指标0..m保留却改成卡中2^i，m=1、a0=1、a1=0便给(1+1)(0+2)=4，因此两公式确实不等价。这里比较只是揭示错误，不替无指标的当前伪式指定一个正式新问题。恢复原式会改变数学对象，需新card_rev。",
+      "evidence_ids": [
+        "WHITNEY-M-CARD",
+        "WHITNEY-M-FQ79"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "原式的零、长度和排序下标边界",
+      "math_status": "仅特例",
+      "scope_note": "i=0因子为a0，故a0=0给积0；D按原式包含0，但补集只相对于正整数，0不进入S序列。正值必须a0=1；m=0时正值是1（将i≥1部分写为空积1），因此1∈D且S_1不是1。原文未要求a_m=1，不能套普通二进制最高位为1的约定：例如a0=1、其余a_i=0给2^m m!，原备注也明确列此类值；增加一个高位0会添加因子2(m+1)，改变积，并非无害前导零。集合D要去重，不按参数串的重数排序。排序下标n≥1；S_0未定义。所有算例均依此1979原式，不依题卡误式。",
+      "evidence_ids": [
+        "WHITNEY-M-FQ79"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "按原式的有限精确算例",
+      "math_status": "仅特例",
+      "scope_note": "已实际运行Python精确整数枚举并保存work_001385_math_checks.json。正值按长度分块：m=0为{1}；m=1为{2,3}；m=2为{8,10,12,15}；m=3为{48,56,60,70,72,84,90,105}。D∩[1,100]={1,2,3,8,10,12,15,48,56,60,70,72,84,90}；因为m≥4时2^m m!≥384>100，此范围完整性有证明。正补集起始为4,5,6,7,9,11,13,14,16,17,18,19,…。附加m=0..6的参数枚举分别得到1,2,4,8,16,32,64个不同正值；不据此猜或宣称所有长度都无碰撞。有限计算只检查定义与实现，未提供原刊要求的显式通项解。",
+      "evidence_ids": [
+        "WHITNEY-M-FQ79"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "可判定性和补集无穷性的直接证明",
+      "math_status": "条件性结果",
+      "scope_note": "对恢复后的原D，任何正值的长度m满足t≥∏_{i=1}^m2i=2^m m!；因此给定有限X，只需枚举满足2^m m!≤X的有限多个m和每层2^m个0/1选择，即可完整决定D∩[1,X]，无须把“不见于已枚举值”误作一般无穷集合非成员证书。又m=0只给正值1；m≥1必含因子a1+2∈{2,3}，所以每个6j−1（j≥1）均不在D。它们严格递增，证明正补集无限，并给每个n≥1的严格终止上界S_n≤6n−1。此证明只使用确认过的原式；任意递归可枚举集合并不自动拥有可判定补集，不能脱离具体长度界泛化。",
+      "evidence_ids": [
+        "WHITNEY-M-FQ79"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "当前任意正确算法验收分支过弱",
+      "math_status": "条件性结果",
+      "scope_note": "若恢复原D后仍保留题卡“给出对每个n都能算出S_n的正确算法即可”，则以下初等算法已经满足该分支：输入整数n≥1，置X=6n−1；枚举m≥0直到2^m m!>X；每层枚举(a1,…,am)∈{0,1}^m，计算∏_{i=1}^m(2i+a_i)，只保留≤X的正值并去重；依次扫描1,…,X，返回第n个未在集合中的整数。覆盖性来自正值≥2^m m!，终止性来自5,11,…,6n−1这n个确定补集元素，故全n正确性不靠有限测试。算法没有调用未知S_n或不可判定成员oracle。它证明该宽泛算法验收易满足，却不等于原刊“求formula”所期待的非循环显式通项已经有新解；如希望要求直接位数公式或特定效率，须明确标准，不能用未定义的“快速”在事后改变目标。 此终止界和有限枚举覆盖论证由两个独立核对者分别确认；不视为历史显式公式结案。",
+      "evidence_ids": [
+        "WHITNEY-M-CARD",
+        "WHITNEY-M-FQ79"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Moser–de Bruijn本身与正补集混淆",
+      "math_status": "题面有误",
+      "scope_note": "正确类比集合A={Σ_i ε_i4^i:ε_i∈{0,1}，仅有限非零}，含0。若n=Σ_i b_i2^i，则a(n)=Σ_i b_i4^i枚举的是A本身，按0起始为0,1,4,5,16,17,20,21,…。独立单调性核验：两个二进制参数在最高不同位j处的改变量4^j严格大于所有低位可能差额Σ_{i<j}4^i=(4^j−1)/3，故映射按大小保序且由位数对应满射到A。其正整数补集却从2,3,6,7,8,9,10,11,…开始；例如a(1)=1∈A，而补集首项是2。因此题卡称“补集元素恰好把2的幂逐位搬过去”把A和补集混淆。另“由2的幂子和组成”也错误：若不加其他限制，互异2的幂子和覆盖全部非负整数，正补集为空。该类比修复不构成Whitney集合的通项推导。",
+      "evidence_ids": [
+        "WHITNEY-M-CARD",
+        "WHITNEY-M-MOSER62"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "库内查重",
+      "site": "包内固定全库查重简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003831〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 48,
+      "note": "包含本题及大量乘积群/张量积、其他Moser问题等泛关键词命中；没有据标题判定同题或合并。",
+      "request_id": "QX-R3-11-001385-root-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内固定全库查重简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003832〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 13,
+      "note": "H-271/Whitney同名线索只见本题；其余是加性补集、补空间、补格等不同语境。未由此断言全库无重复，未选出具有同一原题号或定义线索的强候选，故无新增配对裁决。",
+      "request_id": "QX-R3-11-001385-root-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub/qunxingmath-org/qunxing-data",
+      "query": "fetch_file ref=73290369a8dcc632e25e555aec525565ea6e08f8: problems/001/QX-P-001385.meta.json与.text.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "固定源码元数据、card_rev=115b1901c22875f6及全文均与任务包逐项核合。此处只核本卡版本，不伪造其他候选的全文核对。",
+      "request_id": "QX-R3-11-001385-root-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Stanley Rabinowitz档案",
+      "query": "open http://stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "http://stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "note": "重定向https后502，未读取题卡所指p418，不能定位错误最初产生于此索引还是后续转录。另直接追到FQ原刊。",
+      "request_id": "QX-R3-11-001385-root-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Fibonacci Quarterly原刊",
+      "query": "open https://www.fq.math.ca/Scanned/17-3/advanced17-3.pdf；open https://www.fq.math.ca/Scanned/16-5/advanced16-5.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "1979印刷p288 Older Stumpers H-271；1978印刷p480 H-271(corrected)",
+      "note": "两版原始PDF文本都给a_i+2i，而非2^i；1979附2^n n!及3·2^(n−1)n!例。此请求核文本。v01将后续截图占位误记为视觉成功，现纠正；实际视觉补核见v02新增查询。",
+      "request_id": "QX-R3-11-001385-root-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Fibonacci Quarterly索引",
+      "query": "open https://www.fq.math.ca/FQindex/F-AdvProb-62.2.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.fq.math.ca/FQindex/F-AdvProb-62.2.pdf",
+      "note": "该62.2文件入口404；后续取得不同URL的62-4版，不把此失败记成索引已读。",
+      "request_id": "QX-R3-11-001385-root-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Fibonacci Quarterly原刊页图",
+      "query": "screenshot www.fq.math.ca/Scanned/17-3/advanced17-3.pdf pageno=2；screenshot www.fq.math.ca/Scanned/16-5/advanced16-5.pdf pageno=3",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "两次www入口页图请求超时；换无www入口仍不能确认当时取得实际图像，撤回v01所写后续截图成功。1978页图仍未读；1979已在v02另用实际下载渲染图补核。",
+      "request_id": "QX-R3-11-001385-root-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Fibonacci Quarterly原刊与正式索引",
+      "query": "open https://www.fq.math.ca/FQindex/F-AdvProblems-62-4.pdf；find H-271；find 62.4；open https://fq.math.ca/Scanned/17-3/advanced17-3.pdf 已返回来源；screenshot pageno=2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "索引p1图例、p13 H-271条、p44–46末尾2024记录；1979原刊p288文本，原截图不可见",
+      "note": "正式62-4索引H271列1977初刊、1978更正、1979重述，So为*****且图例明示未解；该索引范围止于2024，不能外推为2026所有新刊已核。此项原PDF文本读取成功，但截图仅返回占位，不构成当时亲阅页图；原v01的视觉声明撤回，现另列v02实际图核。",
+      "request_id": "QX-R3-11-001385-root-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A01",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "Fibonacci Quarterly \"H-271\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中1979年度索引，指向17.3(1979)288，后据正式累计索引再追1977首刊与1978更正。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A02",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "Whitney \"H-271\" D",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "按作者、题号及集合符号追源；未仅凭旧卡年份确认初刊。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A03",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "Rabinowitz unsolved problems Fibonacci Quarterly 418 Whitney",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "尝试定位所引二手索引；命中相似刊物条目，未取得Rabinowitz原书p418。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A04",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"H-271\" Whitney sequence",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中1979原刊及官方题目索引；混入同号生物学条目，已按题名与作者排除。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A05",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"H-271\" \"D\" Fibonacci",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中原刊binary dual题，搜索渲染明确因子a_i+2i，后核原PDF正文；v01所称后续独立页图核验的记录不足，v02补由根实际查看本地渲染图。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A06",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "site:fq.math.ca \"H-271\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中正式AdvancedProblemsIndex：1977初刊、1978 corrected、1979 restated；后来取得62-4新版全文。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A07",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"H-271\" \"binary dual\" solution",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未取得刊载完整解；命中更正、重列与未解索引。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A08",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"Sequences from the binary dual\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中官方累计索引，随后核图例和H-271整行，避免误把邻行solution当本题解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A09",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"Whitney\" \"binary dual\" formula",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中1978/1979原题转录，未取得另一篇解决该公式问题的原始全文。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A10",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "site:fq.math.ca/FQindex \"Advanced Problems\" \"63\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "尝试查较新索引；未取得63卷新索引。后旧站明确显示仅至2024且不再更新。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A11",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "site:fq.math.ca \"H-271\" solution corrected Whitney",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=1095；命中旧原刊、2024索引及年度作者索引，没有据抓取日期当新数学进展。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A12",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"binary dual\" \"Whitney\" \"formula\" solution",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "有限P0搜索未取得独立完整公式解或撤回声明；正式1978 correction单独登记。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A13",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "site:tandfonline.com \"H-271\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未取得新出版社域内可核同题索引或正文；不等于已遍查2025–26所有问题栏。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A14",
+      "route": "学术",
+      "site": "公开网络搜索 system1",
+      "query": "\"H-271\" Whitney solution proof erratum",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；结果仍指原刊更正与旧索引，未取得新完整解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A15",
+      "route": "原题与出处",
+      "site": "Fibonacci Quarterly原刊 / web open、click",
+      "query": "open https://www.fq.math.ca/17-3.html；click Advanced Problems and Solutions (link18)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "官方目录核Volume17 Number3 October1979；三页原PDF可读，p288的OLDER STUMPERS!下重列H-271，并附2^n n!等示例。",
+      "url": "https://www.fq.math.ca/Scanned/17-3/advanced17-3.pdf",
+      "locator": "印刷p288，PDF第3页(P2)，H-271及Note",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A16",
+      "route": "原题与出处",
+      "site": "Rabinowitz作者网站 / web open",
+      "query": "open https://stanleyrabinowitz.com/download/problems_1975-1979.pdf；open http://stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "https两次返回502；http被转到https后亦502。未读所指p418，不能据旧卡转录指责Rabinowitz本书印错。",
+      "url": "https://stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "locator": "目标印刷p418未取得",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A17",
+      "route": "原题与出处",
+      "site": "Fibonacci Quarterly原刊 / web open、click",
+      "query": "open https://www.fq.math.ca/15-1.html；click Advanced Problems and Solutions Part1 (link32)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "官方目录核February1977；原PDFp89含binary dual原题。OCR把题号显示为B-271、脚注与横线易混，依累计索引和后续corrected版识别H-271，不靠这一OCR猜具体勘误内容。",
+      "url": "https://www.fq.math.ca/Scanned/15-1/advanced15-1-a.pdf",
+      "locator": "印刷p89，PDF第1页(P0)",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A18",
+      "route": "原题与出处",
+      "site": "Fibonacci Quarterly原刊 / web open、click",
+      "query": "open https://www.fq.math.ca/16-5.html；click Advanced Problems and Solutions (link16)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "官方目录核October1978；p480明确H-271(corrected)，完整表述仍为binary dual乘积及正整数补集排序。没有solution作者/证明，不把更正误算解答。",
+      "url": "https://www.fq.math.ca/Scanned/16-5/advanced16-5.pdf",
+      "locator": "印刷p480，PDF第4页(P3)，H-271(corrected)",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A19",
+      "route": "原题与出处",
+      "site": "FQ官方旧版索引 / web open",
+      "query": "open https://www.fq.math.ca/FQindex/F-AdvProb-62.2.pdf；open https://fq.math.ca/FQindex/F-AdvProb-62.2.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "两个直接入口均失败/不可访问；其搜索索引可见条目，但后来另取62-4新版全文，不把62.2失败当全体索引缺失。",
+      "url": "https://www.fq.math.ca/FQindex/F-AdvProb-62.2.pdf",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A20",
+      "route": "原题与出处",
+      "site": "FQ原PDF / web screenshot",
+      "query": "screenshot https://www.fq.math.ca/Scanned/17-3/advanced17-3.pdf pageno2",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "本学术分支截图接口TimeoutError，本人未看见截图。v01转述另两路线亲看截图的记录无法证实为实际图像，现撤回；1979页图另由v02根实际下载渲染查看补核。",
+      "url": "https://www.fq.math.ca/Scanned/17-3/advanced17-3.pdf",
+      "locator": "印刷p288/P2",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A21",
+      "route": "原题与出处",
+      "site": "FQ原PDF第二域入口 / web open",
+      "query": "open https://fq.math.ca/Scanned/17-3/advanced17-3.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "换无www原刊入口成功读相同正文；与1978 corrected文本以及阶乘注例交叉核2i。",
+      "url": "https://fq.math.ca/Scanned/17-3/advanced17-3.pdf",
+      "locator": "H-271 p288",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A22",
+      "route": "原题与出处",
+      "site": "FQ索引入口 / web open",
+      "query": "open https://www.fq.math.ca/FQindex.html",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "该尝试入口工具不可访问；没有视作已检索完整当前索引。",
+      "url": "https://www.fq.math.ca/FQindex.html",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A23",
+      "route": "原题与出处",
+      "site": "FQ官方累计索引 / web open、find",
+      "query": "open https://www.fq.math.ca/FQindex/F-AdvProblems-62-4.pdf；find \"H-271\"、\"2024\"、\"Whitney\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "新版61页正式索引成功取得。p1图例说*****表示Unsolved Problems；p13 H-271列初刊/更正/重列且So:*****；最后条目覆盖62.4(2024)，不能称2026全量状态。",
+      "url": "https://www.fq.math.ca/FQindex/F-AdvProblems-62-4.pdf",
+      "locator": "p1图例；p13 H-271；pp44–46末尾至62.4(2024)",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A24",
+      "route": "学术",
+      "site": "FQ旧站 → Taylor & Francis / web open、click",
+      "query": "open https://www.fq.math.ca/list-of-issues.html；click new Fibonacci Quarterly portal (link1)",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "旧站列表页已完整读取，明示heritage且不再更新、目录止2024；跳转新出版社https://www.tandfonline.com/journals/ufbq20返回403，未取得2025–26所有Solutions栏目。",
+      "url": "https://www.tandfonline.com/journals/ufbq20",
+      "locator": "旧站迁移公告与新出版社入口",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-A25",
+      "route": "原题与出处",
+      "site": "FQ官方年度索引 / web open",
+      "query": "open https://fq.math.ca/Scanned/17-4/index.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "官方年度索引搜索摘录明确WHITNEY,RAYMOND E.对应H-254/H-271 17(3):288；直接全文打开超时，姓名归属只按可见索引层级记录。",
+      "url": "https://fq.math.ca/Scanned/17-4/index.pdf",
+      "locator": "Volume Index p384，Raymond E.Whitney行（搜索摘录）",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-C01",
+      "route": "代码、公开 AI 和社区",
+      "site": "本包任务全文",
+      "query": "读取任务.jsonl的QX-P-001385/115b1901c22875f6全文及本包查新约束",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "当前卡在人话/摘录中写∏(a_i+2^i)，未列乘积范围；验收接受任意全n算法。必须先与原刊核定义，不沿旧card_rev/旧无命中标签重签。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-C02",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网络检索 system2",
+      "query": "\"Whitney\" \"H-271\"\n\"Whitney\" \"D\" \"complement\" \"Fibonacci\" 1979\nsite:oeis.org \"Whitney\" \"complement\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "官方FQ1979摘要显示∏_{i=0}^n(a_i+2i)、n≥0及含2^n n!的注释；正式问题索引命中1977原题、1978更正、1979重述。已立即交学术/数学路线页图核定，不把搜索OCR当独立全文核读。OEIS命中Whitney图论/immersion及其他题，未识别本题序列。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-C03",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网络检索 system2",
+      "query": "\"binary dual\" \"Whitney\"\n\"binary dual\" site:oeis.org\n\"1, 2, 3, 8, 10, 12, 15, 48\"\n\"H-271\" \"solution\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中FQ1978更正的镜像、双阶乘谜题与大量抗生素H-271噪声；OEIS A223538是binary dual matrix线索，未符合Whitney产品补集；没有取得本题公式/实现。首项查询为根据2i候选定义先手算的前缀，后用本轮Python完整核≤200。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-C04",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub formal-conjectures代码搜索",
+      "query": "repository=google-deepmind/formal-conjectures; query=\"Whitney\" \"binary\"; topn=8",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "成功返回results=[]，仅为此索引与实际词的有限覆盖；未因此断言不存在其他命名的形式化。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-C05",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub全局代码搜索",
+      "query": "query=\"H-271\" \"Whitney\"; topn=10",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "result_count": 10,
+      "note": "十个返回均属字体SVG中h-271、姓名Whitney、历史/网页数据等相异语境，无同题数学代码。只核搜索片段足以作词义排除，未下载无关仓库。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-C06",
+      "route": "代码、公开 AI 和社区",
+      "site": "正式序列与公式检索 system1",
+      "query": "site:oeis.org \"1, 2, 3, 8, 10, 12, 15\"\nsite:oeis.org \"4, 5, 6, 7, 9, 11, 13, 14\"\nsite:oeis.org \"Whitney\" \"binary dual\"\n\"H-271\" \"Whitney\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未取得Whitney D/补集同题OEIS编号。返回A174063的三角阵含局部数字匹配，但定义为每行最小反链，非单一递增补集；A204002也是阵列。同名Whitney对偶拓扑/偏序论文排除。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-C07",
+      "route": "代码、公开 AI 和社区",
+      "site": "OEIS官方search及条目直访",
+      "query": "open https://oeis.org/search?q=1%2C2%2C3%2C8%2C10%2C12%2C15%2C48&fmt=json\nopen https://oeis.org/A000695",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "url": "https://oeis.org/search?q=1%2C2%2C3%2C8%2C10%2C12%2C15%2C48&fmt=json",
+      "note": "search JSON入口工具不可访问；A000695直访403 Forbidden。失败不记‘OEIS执行无命中’，也不据此给本题指派序列号。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-C08",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub全局术语代码搜索",
+      "query": "query=\"binary dual\" \"Whitney\"; topn=8",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "result_count": 3,
+      "note": "返回3个文件，分别是SMO二分类dual与Mann–Whitney统计、另一机器学习实现、综合模型笔记；不是R.Whitney/FQ乘积集合。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-C09",
+      "route": "代码、公开 AI 和社区",
+      "site": "OEIS类比核对与公开社区/AI检索 system2",
+      "query": "site:oeis.org/A000695 Moser de Bruijn complement\n\"Sequences from the binary dual\"\n\"H-271\" Fibonacci \"Lean\" OR \"AI\" OR \"solution\"\n\"binary dual\" Whitney site:mathoverflow.net OR site:math.stackexchange.com OR site:eulersolve.org",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "正式OEIS搜索展示A000695与A377463内容，后者确为Moser补集。没有取到本题精确社区解答或公开AI完整声明；MSE binary dual numbers等为别题。数学类比只用于纠正卡的序列混淆，不作为H-271解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-C10",
+      "route": "代码、公开 AI 和社区",
+      "site": "OEIS官方内部格式与术语search直访",
+      "query": "open https://oeis.org/A000695/internal\nopen https://oeis.org/search?q=%22binary%20dual%22&fmt=json",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "url": "https://oeis.org/A000695/internal",
+      "note": "internal返回403；术语JSON入口工具不可访问。条目定义仅按可读的官方搜索索引内容核，未下载当前完整修订历史、b-file或源码。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-C11",
+      "route": "代码、公开 AI 和社区",
+      "site": "OEIS官方GitHub数据仓库定向检索",
+      "query": "repository=oeis/oeisdata; query=A377463; topn=4",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "成功返回results=[]；这次代码搜索未取得固定提交的序列文件，不等于OEIS条目不存在（官方网页索引明确有）。因此不虚构commit/更新时间或GitHub文件路径。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-C12",
+      "route": "代码、公开 AI 和社区",
+      "site": "近期公开声明和OEIS精确条目检索 system1",
+      "query": "\"H-271\" \"Whitney\" \"proof\" OR \"solved\" OR \"AI\" (recency365)\n\"binary dual\" \"Whitney\" \"algorithm\" (recency365)\nsite:oeis.org/A377463 \"Complement\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "前两词仍命中旧FQ索引、Hassler Whitney流形、图对偶、John Whitney binary differencing等，未取得本题完整证明/算法。A377463官方展示定义、offset1,1及首67项表链接；未获固定历史版本或全量检索权限。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-C13",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地Python有限精确枚举（序列同一性核验）",
+      "query": "Python3.12.14: bound=200; 对所有n且2^n*n!≤200枚举bits∈{0,1}^{n+1}，计算prod(2*i+a_i)，去0并集合去重；正整数1..200取补集。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "按原刊候选2i定义、i=0..n完成精确有限核验；n=0..3正值15个，下一层n4最小384故≤200无遗漏。补集首30=[4,5,6,7,9,11,13,14,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37]，共185个≤200。只核数据识别与定义差异，未宣称解决原题全n显式公式。结果文件work_001385_prefix.json，SHA256=a38572f76be9343bbd675c56b02057be24b87082faedfbc39e02f09cb316b019。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-M01",
+      "route": "原题与出处",
+      "site": "本地原题包",
+      "query": "读取任务.jsonl 中 QX-P-001385 / card_rev=115b1901c22875f6 的题面、摘录、人话版、acceptance.criteria",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "原包对应记录",
+      "note": "发现主问未内联定义D，解释写乘积(a_i+2^i)而无i范围；在原刊确认前没有据此补下标求解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-M02",
+      "route": "学术",
+      "site": "OEIS",
+      "query": "直接打开 https://oeis.org/A000695；后续打开搜索ref对应同页",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "url": "https://oeis.org/A000695",
+      "note": "两次open均403；没有把搜索缓存视为已打开原页。后来取到所链接Moser原始论文。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-M03",
+      "route": "学术",
+      "site": "web system2 / Moser原始论文",
+      "query": "site.oeis.org/A000695 \"Moser\" \"4\"；\"Moser\" \"de Bruijn\" \"sums of distinct powers of 4\"；继而打开搜索所得 https://oeis.org/A000695/a000695.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://oeis.org/A000695/a000695.pdf",
+      "locator": "Leo Moser, An Application of Generating Series, Mathematics Magazine 35(1),1962,pp.37–38",
+      "note": "原文明确集合由互异4的幂之和组成，首项0,1,4,5,16,…。原PDF抽取混有邻栏/OCR错误，本轮不照抄其损坏的生成函数显示；位数映射及补集区别另作独立推导。只用于纠正类比，不充作Whitney问题解答。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-M04",
+      "route": "原题与出处",
+      "site": "Fibonacci Quarterly官方存档",
+      "query": "直接打开 https://fq.math.ca/Scanned/17-3/advanced17-3.pdf 并截图PDF第3页（零基P2）核H-271公式和补集上划线",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://fq.math.ca/Scanned/17-3/advanced17-3.pdf",
+      "locator": "Oct.1979，印刷p.288，OLDER STUMPERS! / H-271",
+      "note": "原PDF文本给D={t:t=∏_{i=0}^n(a_i+2i),a_i∈{0,1},n≥0}，相对于正整数取补集，从S_1排序。原截图只返回占位，不能据此声称当时亲看版面；v01该表述撤回。v02另用本地实际渲染图确认原式及Note，不把重刊当首刊。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-M05",
+      "route": "其他：本轮独立数学核对",
+      "site": "手工推导及Python精确整数枚举",
+      "query": "按已确认1979原式核a0、m=0、正值下界2^m m!和6n−1终止界；实际枚举m=0..6，核D∩[1,100]与前30个补集项；另核Moser序列及正补集前16项",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "work_001385_math_checks.json；全n终止性与覆盖证明见math_results",
+      "note": "运行Python itertools.product/math.prod/factorial的整数枚举，所有数字无浮点近似。计算用于查错；全n算法正确性由有限长度界和6n−1补集界手工证明。未枚举更大参数或运行Lean。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001385-root-v02-visual",
+      "route": "原题与出处",
+      "site": "原站PDF下载、本地Poppler渲染和实际图像查看",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://fq.math.ca/Scanned/17-3/advanced17-3.pdf；pdftoppm仅渲染第3页；view_image实际查看q1385_1979.png 〔私有记录编号：PR-003833〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://fq.math.ca/Scanned/17-3/advanced17-3.pdf",
+      "locator": "PDF第3页；SHA256=98052ba283b97ffd44cb01469011ab1f4ba6537d2378bafae0a1ac912c918e17",
+      "note": "实际图片清晰显示因子a_i+2i，乘积i=0..n，n≥0、a_i∈{0,1}，补集相对于正整数，Note为2^n·n!等；与此前正文和独立数学核对一致。 修订目的为如实区分此前占位截图与此次可见页图；保留v01，采用v02作为最新回执，同题仅计一次。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E1385-A-FQ77",
+      "url": "https://www.fq.math.ca/Scanned/15-1/advanced15-1-a.pdf",
+      "locator": "Advanced Problems and Solutions，印刷p89，PDF第1页(P0)，binary dual题",
+      "version": "Fibonacci Quarterly15(1)，February1977；官方目录与原刊刊头相互核",
+      "subquestions": [
+        "最早原刊出处",
+        "原题定义和目标",
+        "版本链"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "claimant": "R.Whitney，Lock Haven State College",
+      "note": "本轮已读初刊原PDF文本；官方累计索引认定此为H-271。原题问binary dual集合补集第n项公式；当前卡的2^i式不同于所核2i版本，不能直接迁移数学结论。初刊OCR题号、脚注和补集横线不可靠，后续1978 corrected/1979 restated为本轮定式依据；未凭OCR断定更正究竟改了哪个字。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1385-A-FQ78",
+      "url": "https://www.fq.math.ca/Scanned/16-5/advanced16-5.pdf",
+      "locator": "印刷p480，PDF第4页(P3)，H-271(corrected)",
+      "version": "Fibonacci Quarterly16(5)，October1978，pp477–480栏目",
+      "subquestions": [
+        "正式更正",
+        "正确集合定义",
+        "补集的整数域"
+      ],
+      "role": "勘误",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "claimant": "R.Whitney",
+      "note": "条目明确标corrected，乘积因子为a_i+2i，a_i∈{0,1}；补集相对于正整数，按递增顺序定义S_n，问其公式。它是题面更正而不是一份解决证明；未注明撤回原问题。精确下标以1979同式页图及正文交叉核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "retraction",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1385-A-FQ79",
+      "url": "https://fq.math.ca/Scanned/17-3/advanced17-3.pdf",
+      "locator": "印刷p288，PDF第3页(P2)，OLDER STUMPERS!之H-271与Note",
+      "version": "Fibonacci Quarterly17(3)，October1979，pp286–288栏目；原题重列",
+      "subquestions": [
+        "定式基准",
+        "指数误转录",
+        "n与i的参数域",
+        "原始验收目标"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "claimant": "R.Whitney",
+      "note": "定式D={∏_{i=0}^{m}(a_i+2i):m≥0,a_i∈{0,1}}（此处用m避免与序号n冲突）；未加a_m=1条件。i=0项为a0，D可含0；补集在正整数中取，0无害。注例2^m m!和3·2^{m−1}m!（后者m≥1）支持2i而非2^i。原刊只要求Find a formula，不明定“任意终止算法即足够”。本学术分支正文已读。v01所称两个独立核对者已亲核截图的记录撤回：原接口只显示占位。v02由根实际查看下载原PDF的本地渲染图，确认公式、上下限、补集横线和Note；这只计一次真实视觉补核。PDF SHA256=98052ba283b97ffd44cb01469011ab1f4ba6537d2378bafae0a1ac912c918e17。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1385-A-IDX24",
+      "url": "https://www.fq.math.ca/FQindex/F-AdvProblems-62-4.pdf",
+      "locator": "p1图例；p13 H-271条；pp44–46最近条目至62.4(2024)",
+      "version": "Advanced Problems and Solutions Index，文件版本F-AdvProblems-62-4，内容覆盖至Volume62 Number4(2024)；本轮2026-11-27直接读取61页PDF",
+      "subquestions": [
+        "后续Solutions追踪",
+        "首刊更正重列页码",
+        "索引状态的截止范围"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "H-271列To: Sequences from the binary dual,15.1(1977)89；Corrected16.5(1978)480；Restated17.3(1979)288；So:*****。p1定义星号为Unsolved Problems，所以只能报告截至该索引覆盖范围仍列未解；邻题的solution标题不可错配给H-271，也不能推为2026全网未解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E1385-A-HERITAGE",
+      "url": "https://www.fq.math.ca/list-of-issues.html",
+      "locator": "页首heritage/no longer updated公告及最新Volume62,2024列表",
+      "version": "本轮2026-11-27读取的FQ旧站公告；链接新出版平台Taylor & Francis",
+      "subquestions": [
+        "2025–26后续解答的访问边界"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "旧站声明不再更新，刊物现由Taylor & Francis出版。本轮新门户403；旧站检索未命中不足以排除2025–26新刊解答。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E1385-A-NAME79",
+      "url": "https://fq.math.ca/Scanned/17-4/index.pdf",
+      "locator": "Volume Index印刷p384，WHITNEY,RAYMOND E.条（官方搜索摘录）",
+      "version": "Fibonacci Quarterly17(4)，December1979年度索引；全文直访超时，仅索引摘录可见",
+      "subquestions": [
+        "提出者全名归属"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "官方年度作者索引将H-271(17.3:288)列在Raymond E.Whitney名下；原题署R.Whitney。未因这一索引称任何后续解答已发表。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "C1385-FQ-LEAD",
+      "url": "https://www.fq.math.ca/Scanned/17-3/advanced17-3.pdf",
+      "locator": "1979年17(3)，p288，OLDER STUMPERS下H-271（本代码路线只读搜索展示段）",
+      "version": "1979-10重述；2026-11-27搜索访问；学术、数学路线读取原文本，v02由根实际本地图核",
+      "subquestions": [
+        "定义与序列同一性",
+        "题面转录"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检到形式化",
+      "note": "可读官方搜索段为D={∏_{i=0}^n(a_i+2i):a_i∈{0,1},n≥0}，不是卡写的2^i，并说明D含2^n n!等。此线索已转交原刊路线，不在本片段谎称自己独立截图/全文复核。以下OEIS前缀和Python仅对2i、i=0..n的正整数交集，不能直接覆盖未修订的2^i卡。 这里相对于当前2^i误写版本登记范围差异；恢复原式后才对应历史H-271。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "C1385-MOSER",
+      "url": "https://oeis.org/A000695",
+      "locator": "NAME、OFFSET、首项及FORMULA中的binary-to-base4定义（官方搜索索引展示）",
+      "version": "2026-11-27检索；网页抓取显示约两月前；无固定修订号，直访403",
+      "subquestions": [
+        "Moser–de Bruijn类比",
+        "排序域与偏移"
+      ],
+      "role": "重述",
+      "publication": "个人索引",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "A000695是各互异4的幂之和，offset0,3；首项0,1,4,5,16,17,20,21。把n=Σb_j2^j的二进制位搬到Σb_j4^j得到本序列自身，而非其补集。卡进展所写‘2的幂子和’会给全体非负整数；人话把逐位公式放到补集也是混淆。仅核展示定义/公式，不把该条目作H-271解决证据，不宣称已读当前全页。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "C1385-MOSER-COMP",
+      "url": "https://oeis.org/A377463",
+      "locator": "NAME、COMMENTS、OFFSET、首项及表链接n=1..67（官方搜索索引展示）",
+      "version": "2026-11-27检索；抓取约一月前；未取得修订历史/固定commit",
+      "subquestions": [
+        "补集序列范围排除"
+      ],
+      "role": "重述",
+      "publication": "个人索引",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "正式定义为不是互异4的幂之和的数，即四进制展开含2或3；offset1,1；开头2,3,6,7,8,9,10,11,12,13,14,15,18,19,22,…。与原刊2i版本Whitney补集首项4不同，不可等同。搜索摘要展示一个digits(n,4)判定函数，仅为此异题成员测试，未取得/复跑完整程序，不能冒称本题算法。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "WHITNEY-M-CARD",
+      "url": "https://www.qunxingmath.org/p/QX-P-001385/",
+      "locator": "用户原包任务.jsonl 的题面、解释、原文摘录和验收标准",
+      "version": "QX-R3-11，id=QX-P-001385，card_rev=115b1901c22875f6；2026-11-27实际读取",
+      "subquestions": [
+        "原公式错误",
+        "算法验收的强弱",
+        "Moser类比纠错"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "note": "实际读用户提供题卡，不声称已访问群星在线页面。主问题未给D定义，解释中指数误写会改变集合。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "WHITNEY-M-FQ79",
+      "url": "https://fq.math.ca/Scanned/17-3/advanced17-3.pdf",
+      "locator": "印刷p.288，PDF P2，OLDER STUMPERS! 下 H-271及Note；v02本地渲染图实际核验",
+      "version": "Fibonacci Quarterly Vol.17 No.3，Oct.1979；2026-11-27实际读取原扫描",
+      "subquestions": [
+        "原公式和参数范围",
+        "边界与有限算例",
+        "任意正确算法分支"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "原式为∏_{i=0}^m(a_i+2i)，a_i∈{0,1}、m≥0；这里改用m区分乘积长度与排序下标。正整数补集从n=1起。与当前卡2^i伪式不等价，故不能把对原式的结论直接贴给未经修订的伪式。原文只求formula，未写“任何正确算法即通过”。未声称1979是首刊，历史版本由学术分支核定。 v01原截图接口只有占位，不能计为当时视觉核验；v02根实际查看渲染图后补足，未扩大数学审阅范围。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "WHITNEY-M-MOSER62",
+      "url": "https://oeis.org/A000695/a000695.pdf",
+      "locator": "An Application of Generating Series, pp.37–38；互异4的幂之和及首项列表",
+      "version": "Leo Moser，Mathematics Magazine 35(1),1962；2026-11-27读取存档扫描文本",
+      "subquestions": [
+        "Moser–de Bruijn本身与补集"
+      ],
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "review_status": "本轮独立数学核对",
+      "note": "仅用于类比对象的准确定义。另独立证明二进制数字改读为4进制时枚举A本身，并以首项区分正补集；不把该映射或生成函数挪作Whitney积集合的解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "original",
+        "publication": "journal"
+      }
+    }
+  ],
+  "duplicates": [],
+  "card_actions": [
+    {
+      "action": "修复公式",
+      "field": "原文摘录 / 人话版D定义 / 形式化表述",
+      "old": "D={∏(a_i+2^i):a_i∈{0,1}}，未给乘积范围。",
+      "new": "按1978更正/1979重列建议恢复D={∏_{i=0}^{m}(a_i+2i):m∈Z_{≥0},a_i∈{0,1}}；令S_n为Z_{>0}\\D的第n个元素，n≥1。2i是普通乘法，不是2^i；m只是为避免与序号n混淆而改用的哑变量。",
+      "reason": "三版原刊文本及1979阶乘注例相互支持，1979页图另由本轮两个独立核对者核定。改因子和参数域改变集合，需换card_rev；查新方只提建议，不直接改卡。",
+      "evidence_ids": [
+        "E1385-A-FQ78",
+        "E1385-A-FQ79",
+        "WHITNEY-M-FQ79"
+      ],
+      "small_case_check": "原式正元素从{1,2,3,8,10,12,15,…}开始，所以S1=4；若给现卡错式临时补i=0..m，则4=(1+2^0)(0+2^1)落入错集合，已与原题不同。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "card_action": "fix_formula"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "边界与约定 / D的整数域",
+      "old": "得到的所有正整数构成D；有限01序列，未指明空项/起点/最高位限制。",
+      "new": "保留原文m≥0和i=0..m；a0=0时乘积0，a0=1才给正元素。可以明确仅用D^+=D∩Z_{>0}等价地取正整数补集，但不得额外加a_m=1、任意选择稀疏下标或改变连续乘积范围。",
+      "reason": "原文允许0出现在D而补集只在正整数中取；“binary”解释不能替代打印出来的量词或擅加最高位为1。",
+      "evidence_ids": [
+        "E1385-A-FQ79"
+      ],
+      "small_case_check": "m=0时D包含0、1；m=1新增正元素2、3；0不属于要排序的正整数母集，故不会改变S_n。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "proposer / first_published / sources / 原文摘录",
+      "old": "R.Whitney（FQ H-271,1979）；只引Rabinowitz索引p418。",
+      "new": "补R.Whitney（官方年度索引给全名Raymond E.Whitney）；首刊FQ15.1(1977)p89，正式更正16.5(1978)p480，重列17.3(1979)p288。优先链接三份官方原刊；Rabinowitz p418本轮未取得，只保留追溯入口。",
+      "reason": "原文、官方目录及累计题号索引三方确认年份链；不能把1979重列或后期汇编年份当最初提出年，也不能在未读p418时断言错误来自Rabinowitz原书。",
+      "evidence_ids": [
+        "E1385-A-FQ77",
+        "E1385-A-FQ78",
+        "E1385-A-FQ79",
+        "E1385-A-IDX24",
+        "E1385-A-NAME79"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "正式勘误 / 已知结果与进展",
+      "old": "FQ索引无解决命中；未记录正式更正。",
+      "new": "明确登记1978 H-271(corrected)与1979 OLDER STUMPERS!重列。它们是题面更正/重新征解，不是Solution；本轮没有逐字核定1977→1978具体改动，勿宣称1978已经把2^i改成2i。",
+      "reason": "两个原刊都显示2i，卡上的指数误写不能随意归给1977原刊或某次正式勘误。",
+      "evidence_ids": [
+        "E1385-A-FQ77",
+        "E1385-A-FQ78",
+        "E1385-A-FQ79"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "informal_status / 开放状态证据 / novelty",
+      "old": "2026-11-21 open weak；旧novelty.card_rev=0b732a6e0d872a07；零直接命中。",
+      "new": "当前版先标公式有误；另列原式H-271在截至62.4(2024)的官方索引仍未解，2025–26新平台未完成全文覆盖。本轮未取得已发表完整解；旧novelty绑定版本与当前115b1901c22875f6不同，仅作历史参考。",
+      "reason": "无搜索命中不是开放性证明；已核官方索引比旧弱记录具体，但有明确截止和迁站访问缺口。",
+      "evidence_ids": [
+        "E1385-A-IDX24",
+        "E1385-A-HERITAGE"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "card_metadata.acceptance.criteria及“显式公式/算法”目标",
+      "old": "给出S_n的显式公式……或给出对每个n都能算出S_n的正确算法。",
+      "new": "区分原刊要求的通项公式与宽泛算法子问。若接受任意正确算法，应将已给出终止界的有限枚举登记为该较弱子问已可处理；若目标是非循环显式公式、位数直接表达或特定效率，预先明确所接受的表达式/复杂度标准。不得把初等有界扫描当作原刊显式公式的新解决。",
+      "reason": "恢复原式后S_n≤6n−1且有限长度穷举判定D，任何正确算法这一分支可直接满足；原刊只说find a formula，没有本卡的算法替代验收。改变验收需新版本，不自定效率门槛。",
+      "evidence_ids": [
+        "WHITNEY-M-CARD",
+        "WHITNEY-M-FQ79",
+        "E1385-A-FQ79"
+      ],
+      "small_case_check": "n=1时X=5，枚举长度m≤1得D∩[1,5]={1,2,3}，第一个缺数是4；全n终止由6j−1均在补集证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "binary dual的含义 / Moser–de Bruijn类比",
+      "old": "D结构类比Moser–deBruijn；4幂子和的补集由2幂逐位搬过去；这里把和换成积。",
+      "new": "原刊binary dual的解释是把二进制表达式的加法与乘法互换，因子为a_i+2i。所核原题没有Moser–deBruijn关联；若保留类比，写清Moser集合是互异4的幂之和，二进制位改读四进制给该集合自身，并非补集。其正补集从2,3,6,7起，不是Whitney原式补集。类比不是本题已知部分解。",
+      "reason": "原刊三版只给binary dual及阶乘例子，没有提供Moser关联；类比不是本题已知部分结果。",
+      "evidence_ids": [
+        "E1385-A-FQ78",
+        "E1385-A-FQ79",
+        "WHITNEY-M-MOSER62",
+        "C1385-MOSER",
+        "C1385-MOSER-COMP"
+      ],
+      "small_case_check": "Moser集合含0,1,4,5，二进制1改读四进制仍为1，属于本集；正补集首项2，而Whitney原式正补集首项4。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "边界与约定/核验记录",
+      "old": "核定义边界；建议小参数穷举/数值实验。",
+      "new": "明确D允许0但补集只取正整数、n从1起、m从0起且没有a_m=1要求；按集合去重。本轮实际做精确整数小例并用2^m m!界证明截断完备性；全n算法终止用S_n≤6n−1。未做Lean，未把有限匹配当显式通项证明。",
+      "reason": "显式记录实际执行范围与无限断言的独立论证，防止默认前导零归一化或将抽样改报证明。",
+      "evidence_ids": [
+        "WHITNEY-M-FQ79"
+      ],
+      "small_case_check": "a0=0给0；a0=1且m=0给1；增加高位零会改变乘积。m≥4最小正值384，所以D∩[1,100]已完全核准。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "库内查重",
+      "reason": "固定简索引检索未产生同一H-271或Whitney binary-dual定义的其他强候选；没有取得其他卡全文作配对结论。",
+      "next_step": "保留当前查重覆盖仅为题名/别名索引和本卡固定版本；若以后发现正文同源候选，按双方固定card_rev和原始定义重新核对，由较小编号负责人裁决。不能把本轮索引无强候选写成全库无重复。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "Rabinowitz作者站目标PDF的http/https访问均502，未读印刷p418。",
+      "next_step": "如需确定误转录从何而来，再取得该页对照；本轮已由FQ三版原文核定数学定义，不让该二手入口缺失阻断原题恢复，也不指控未读汇编印错。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "1977原PDF文本题号/补集横线/脚注有OCR异常，1978明确corrected，但未逐字做两版页图差异核查。",
+      "next_step": "若需说明正式勘误的具体改动，核1977p89与1978p480版面；当前仅登记其正式更正关系，以1978/1979式为基准，禁止发明“某次修正把2^i改2i”的历史。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "累计官方索引只覆盖至62.4(2024)；旧站明示不再更新，新Taylor & Francis门户403，定向搜索未获同题新结果。",
+      "next_step": "如需把文献状态延伸到2025–26，取得新出版社Advanced Problems and Solutions相关卷期的可访问全文或最新累计索引，再按H-271/binary dual核，不把2024星号当2026完备结论。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {}
+    },
+    {
+      "route": "其他：验收口径",
+      "reason": "原刊“公式”、题卡“任意正确算法”和人话“快速算法”不具有自动等价的验收标准；主定义又有指数错误。",
+      "next_step": "先确定目标并修复定义、更新card_rev，再区分算法分支的独立证明与历史显式公式问题。原式可终止算法与小例已由本轮两个独立核对者独立核完，勿再列为内部待查；此处只保留维护者验收定义和版本修订问题，不抢报历史显式公式全解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "有限题号/名称/作者搜索未取得已发表公式解或撤回；索引未解不能排除未被收录的结果。",
+      "next_step": "新声明出现时核其集合确为连续因子2i版本、补集在正整数中、集合去重且排序n≥1，并按包规独立二审完整公式/算法适用范围。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "正式OEIS search JSON及A000695/internal直访受403/工具访问限制，代码镜像检索未取到固定文件；网页索引匹配不足以证明本题未收录。",
+      "next_step": "未来可访问时按确认后的2i定义，用完整D/补集初项和‘binary dual’检索，核候选的offset、集合去重、是否含0、n及i范围、程序输入与输出。现不指派Whitney同题OEIS编号，也不把A000695/A377463误作其解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "formal-conjectures/GitHub及公开AI/社区有限检索未取得同题完成代码/完整解声明；词‘Whitney’‘binary dual’有大量图论、拓扑和机器学习歧义。",
+      "next_step": "形式化状态记本次范围未检到，不是全网不存在。若未来命中，必须先核线性2i而非指数2^i、i=0..n和补集正整数域，再核真实证明体、假设、sorry/axiom、固定依赖与执行日志；本轮无待复跑同题项目。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "115b1901c22875f6",
+      "codes": {}
+    }
+  ]
+}

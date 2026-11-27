@@ -1,0 +1,2044 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000446",
+  "card_rev": "9f348e928bf23f01",
+  "summary": {
+    "math_status": {
+      "value": "claimed_resolution",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-08"
+      ],
+      "parts": [
+        {
+          "subquestion": "三个正电荷的通用上界12降至6",
+          "value": "partial",
+          "note": "Gabrielov–Novikov–Novikov–Shapiro 2607.28785v1 Theorem1.1限正电荷、n≥2、Vα=Σζ_iρ_i^(−α)、α>0，给至多6个非退化平衡点；Coulomb为α=1/2。原文§6还说降到4需要额外消除Rolle估计松弛，§7仅说特殊α可能有6，未给6可达构型。此文不能反驳本卡，也不自动覆盖异号电荷。已核定理及相关段落，未重跑verify_genericity.py或完整独立复证。"
+        },
+        {
+          "subquestion": "一般n点Maxwell上界的五点反例",
+          "value": "claimed_counterexample",
+          "note": "2607.27197v1 Theorem1给5点、至少24个非退化临界点，并说明微扰可令全部临界点非退化且有限。5≠3，因此这是一般猜想的反例声明，不能作为本卡三点反例。原稿已读到构造与定理，未独立复跑其算术。"
+        },
+        {
+          "subquestion": "历史出处与已知三点子类",
+          "value": "partial",
+          "note": "GNS math-ph/0409009v1 p2 Conj1.3及紧接Remark明确现代三点≤4表述，p3 Thm1.5(b)给旧上界12，§4转录Maxwell §113。Tsai2015等绝对值子类本轮仅取得出版摘要/索引及原作者后续引用，全文403，不能扩为任意强度或冒称已核证明。"
+        },
+        {
+          "subquestion": "形式化证据",
+          "value": "not_assessed",
+          "note": "FC固定版three_charges仍含sorry；一般反例定理依赖含sorry的counterexample_morse。已找到形式化题面，未找到本题已完成Lean证明。Kintali七个Python/SymPy证书只涉及指定代数身份，不是整篇Lean证明；作者自报通过、本轮静态审阅和未复跑分开。"
+        },
+        {
+          "subquestion": "三电荷六可达的二手误传",
+          "value": "not_assessed",
+          "note": "ProbXiv/VibeMathed称6可达并标Resolved，但所引2607.28785v1没有给这种构型且§7还留为可能性。此平台说法没有获得被引原稿支持，本轮不采为三电荷≤4的反例；也不因此声称已证明不存在6点构型。"
+        },
+        {
+          "subquestion": "库内候选对核对",
+          "value": "not_assessed",
+          "note": "000446与002439固定版本全文已核，判同源不同问：固定n=3的精确4界与全n的未知常数多项式统一界互不推出；不提合并。000311经正文核对为刚性问题同名噪声。"
+        },
+        {
+          "subquestion": "三正电荷数值探索与计算辅助证明尝试",
+          "value": "partial",
+          "note": "Foundation0固定报告有有限网格/形状探索及局部符号证书，且作者明确列G1–G7缺口，未证明三点全局上界。本轮仅静态核报告及扫描日志，未复跑。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/shivakintali/Maxwell3/blob/7b28771b26cf352ee6f59c945b4864b1191ac8f1/certificates/README.md"
+      ],
+      "note": "只覆盖：仅子问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "revised",
+      "url": "https://shivakintali.github.io/Shiva-Kintali-Maxwell3.pdf",
+      "review": "read_unchecked",
+      "by": "Shiva Kintali",
+      "date": "2026-08-01（封面日期，非当前PDF全部修订的日期）"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "完整声明待核",
+      "scope_note": "按所引FC的精确对象：R³中三个互异位置、非零任意实强度、V=Σq_i/||x-a_i||，在电荷位置外所有临界点非退化时问总数≤4。Kintali《A Sharp Maxwell Bound for Three Point Charges》Theorem1声明更强的有限临界集≤4（允许孤立退化点）。其p3的半代数论证可将本卡非退化假设接到有限性：引入正距离变量、清分母并投影得半代数临界集；非退化使每点孤立，有限连通分支遂给有限性。本轮核这一适用性桥及声明范围，未独立核全篇计数证明或复跑证书，故只登记完整声明待核，交维护方二审。题卡旧open标签与FC尚未更新的注记不能否定新稿，也不能把作者稿直接提升为已证。",
+      "evidence_ids": [
+        "E0446-A1"
+      ],
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "三个正电荷的通用上界12降至6",
+      "math_status": "有部分进展",
+      "scope_note": "Gabrielov–Novikov–Novikov–Shapiro 2607.28785v1 Theorem1.1限正电荷、n≥2、Vα=Σζ_iρ_i^(−α)、α>0，给至多6个非退化平衡点；Coulomb为α=1/2。原文§6还说降到4需要额外消除Rolle估计松弛，§7仅说特殊α可能有6，未给6可达构型。此文不能反驳本卡，也不自动覆盖异号电荷。已核定理及相关段落，未重跑verify_genericity.py或完整独立复证。",
+      "evidence_ids": [
+        "E0446-A2"
+      ],
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "一般n点Maxwell上界的五点反例",
+      "math_status": "完整反例声明",
+      "scope_note": "2607.27197v1 Theorem1给5点、至少24个非退化临界点，并说明微扰可令全部临界点非退化且有限。5≠3，因此这是一般猜想的反例声明，不能作为本卡三点反例。原稿已读到构造与定理，未独立复跑其算术。",
+      "evidence_ids": [
+        "E0446-A3"
+      ],
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "math_status": "claimed_counterexample"
+      }
+    },
+    {
+      "subquestion": "历史出处与已知三点子类",
+      "math_status": "有部分进展",
+      "scope_note": "GNS math-ph/0409009v1 p2 Conj1.3及紧接Remark明确现代三点≤4表述，p3 Thm1.5(b)给旧上界12，§4转录Maxwell §113。Tsai2015等绝对值子类本轮仅取得出版摘要/索引及原作者后续引用，全文403，不能扩为任意强度或冒称已核证明。",
+      "evidence_ids": [
+        "E0446-O1",
+        "E0446-A4"
+      ],
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "形式化证据",
+      "math_status": "未作判断",
+      "scope_note": "FC固定版three_charges仍含sorry；一般反例定理依赖含sorry的counterexample_morse。已找到形式化题面，未找到本题已完成Lean证明。Kintali七个Python/SymPy证书只涉及指定代数身份，不是整篇Lean证明；作者自报通过、本轮静态审阅和未复跑分开。",
+      "evidence_ids": [
+        "E0446-C01",
+        "E0446-C02",
+        "E0446-C07",
+        "E0446-A5"
+      ],
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    },
+    {
+      "subquestion": "三电荷六可达的二手误传",
+      "math_status": "未作判断",
+      "scope_note": "ProbXiv/VibeMathed称6可达并标Resolved，但所引2607.28785v1没有给这种构型且§7还留为可能性。此平台说法没有获得被引原稿支持，本轮不采为三电荷≤4的反例；也不因此声称已证明不存在6点构型。",
+      "evidence_ids": [
+        "E0446-C06",
+        "E0446-A2"
+      ],
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    },
+    {
+      "subquestion": "库内候选对核对",
+      "math_status": "未作判断",
+      "scope_note": "000446与002439固定版本全文已核，判同源不同问：固定n=3的精确4界与全n的未知常数多项式统一界互不推出；不提合并。000311经正文核对为刚性问题同名噪声。",
+      "evidence_ids": [
+        "E0446-D01",
+        "E0446-D02"
+      ],
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    },
+    {
+      "subquestion": "三正电荷数值探索与计算辅助证明尝试",
+      "math_status": "有部分进展",
+      "scope_note": "Foundation0固定报告有有限网格/形状探索及局部符号证书，且作者明确列G1–G7缺口，未证明三点全局上界。本轮仅静态核报告及扫描日志，未复跑。",
+      "evidence_ids": [
+        "E0446-C04",
+        "E0446-C05"
+      ],
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "R308-0446-ROOT-01",
+      "route": "学术",
+      "site": "公开网页检索system1",
+      "query": "Maxwell conjecture three point charges critical points four 2026（recency=365）",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "note": "命中Kintali完整稿、正电荷上界6、一般5点反例，随后逐一开原文。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "R308-0446-ROOT-02",
+      "route": "学术",
+      "site": "公开网页检索system1",
+      "query": "\"2607.27197\" Maxwell three charges",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "note": "随后核到五点反例而非三点。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "R308-0446-ROOT-03",
+      "route": "学术",
+      "site": "公开网页检索system1",
+      "query": "\"Maxwell\" \"three\" \"2607.28785\"",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "note": "取得正电荷12→6论文入口。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "R308-0446-ROOT-04",
+      "route": "学术",
+      "site": "作者PDF",
+      "query": "open https://shivakintali.github.io/Shiva-Kintali-Maxwell3.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "42页完整稿可达，主审读Theorem1及pp1–3，独立审查者继续核修订与关键步骤。",
+      "url": "https://shivakintali.github.io/Shiva-Kintali-Maxwell3.pdf",
+      "locator": "Theorem1；pp2–3",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-ROOT-05",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2607.28785；https://arxiv.org/html/2607.28785v1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "核官方版本及HTML Theorem1.1、§5–7；仅正电荷6上界，未证6可达。",
+      "url": "https://arxiv.org/html/2607.28785v1",
+      "locator": "Theorem1.1；§5–7",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R308-0446-ROOT-06",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/html/2607.27197v1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "Theorem1是五点≥24，不是三点。",
+      "url": "https://arxiv.org/html/2607.27197v1",
+      "locator": "Theorem1",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R308-0446-ROOT-07",
+      "route": "学术",
+      "site": "ScienceDirect",
+      "query": "open https://www.sciencedirect.com/science/article/pii/S0167278915001347；/science/article/abs/pii/S0167278915001347",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "note": "两个直接入口均403；搜索摘要可读，未取得全文。",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0167278915001347",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "R308-0446-ROOT-08",
+      "route": "原题与出处",
+      "site": "公开网页检索system2",
+      "query": "Gabrielov Novikov Shapiro mystery point charges 2007 Maxwell conjecture pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "发现作者PDF、正式刊发条目及arXiv2004版本，随后开全文。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-ROOT-09",
+      "route": "学术",
+      "site": "公开网页检索system2",
+      "query": "Tsai \"Maxwell\" \"equal magnitudes\" pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位2015等绝对值子类及出版书目信息。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-ROOT-10",
+      "route": "原题与出处",
+      "site": "公开网页检索system2",
+      "query": "Maxwell Treatise 1873 section 113 equilibrium cyclosis",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "找到原书目录及作者论文历史说明，未取得1873原版页图。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-ROOT-11",
+      "route": "原题与出处",
+      "site": "作者旧PDF",
+      "query": "open https://www.wisdom.weizmann.ac.il/~dnovikov/Papers/MaxwellPublished.pdf",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "note": "404，改查arXiv及另一作者网页。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "R308-0446-ROOT-12",
+      "route": "原题与出处",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/math-ph/0409009；https://arxiv.org/pdf/math-ph/0409009；find 113. / Thomson",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "已核官方v1提交史、Conj1.3、Thm1.5b及附录§113转录。Thomson单词查找因断行无命中不等于无该段。",
+      "url": "https://arxiv.org/pdf/math-ph/0409009v1",
+      "locator": "pp2–3、27–29",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-ROOT-13",
+      "route": "原题与出处",
+      "site": "原作者主页",
+      "query": "open https://www.math.purdue.edu/~gabriea/publ.html；click Mystery of point charges PDF；open maxwell.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "作者所链33页稿仍有投稿样式/占位DOI，不冒充最终刊版；Conj1.3仍对应现代原问。",
+      "url": "https://www.math.purdue.edu/~gabriea/maxwell.pdf",
+      "locator": "pp1–3",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-C01",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "site:github.com/google-deepmind/formal-conjectures \"Maxwell.lean\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中当前FC文档，后续取得固定版本全文。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-C02",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Maxwell\" \"three_charges\" Lean proof [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中FC三电荷题面、相关公开研究页，索引不当证明。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-C03",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Maxwell conjecture\" \"three charges\" proof 2026 [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "note": "命中Foundation0数值研究及ProbXiv/VibeMathed对三点上界6的Resolved/可达说法，进入P0原文核对。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "R308-0446-C04",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST",
+      "query": "GET /repos/google-deepmind/formal-conjectures/commits/main",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/commit/5bd8bfb9def462c19a87d2d275af3db3341dc727",
+      "note": "固定观察时main=5bd8bfb9def462c19a87d2d275af3db3341dc727，提交时间2026-11-26T13:20:16Z；仅作为后续源码版本锚点。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-C05",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "maxwell_conjecture repository=google-deepmind/formal-conjectures topn=20",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/FormalConjectures/Arxiv/2607.27197/MaxwellConjecture.lean",
+      "note": "返回当前MaxwellConjecture.lean路径。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-C06",
+      "route": "代码、公开 AI 和社区",
+      "site": "FC生成文档",
+      "query": "open https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Arxiv/«2607.27197»/MaxwellConjecture/；find maxwell_conjecture.variants.three_charges",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://google-deepmind.github.io/formal-conjectures/src/FormalConjectures/Arxiv/%C2%AB2607.27197%C2%BB/MaxwellConjecture/",
+      "note": "文档显示three_charges为research open且by sorry；后续以固定源码为准。",
+      "locator": "three_charges、three_equal_magnitudes、counterexample_morse",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-C07",
+      "route": "代码、公开 AI 和社区",
+      "site": "ProbXiv",
+      "query": "open https://probxiv.com/problems/maxwell-three-charge-bound",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "url": "https://probxiv.com/problems/maxwell-three-charge-bound",
+      "note": "页面声称三正电荷6可达并标solved；页面同时称无人审查且为导入记录。其引用2607.28785的正式数学内容交学术路线核对，不按平台标签给本题结案。",
+      "locator": "Statement；Record；Comments",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "R308-0446-C08",
+      "route": "代码、公开 AI 和社区",
+      "site": "VibeMathed",
+      "query": "open https://vibemathed.com/problem/maxwell-three-charge-bound",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "url": "https://vibemathed.com/problem/maxwell-three-charge-bound",
+      "note": "页面声称sharp6/六可达、Resolved，同时Unreviewed；不能据其二手表述判三点≤4已反驳。",
+      "locator": "Statement；What was actually shown；Verification",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "R308-0446-C09",
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv HTML",
+      "query": "open https://arxiv.org/html/2607.28785v1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/html/2607.28785v1",
+      "note": "此代码分线请求返回DisabledError。主代理随后独立取得并阅读该HTML全文；应以主代理实际访问记录合并，不能把本条失败改为成功。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R308-0446-C10",
+      "route": "代码、公开 AI 和社区",
+      "site": "Foundation0",
+      "query": "open https://fdn0.org/research/maxwell-charges/；find Three charges / 5b73d78",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://fdn0.org/research/maxwell-charges/",
+      "note": "三点仅有限数值搜索，4/5/6点另有程序证书自报。网站明确未有人审查；不能以更多电荷结果关闭本题。",
+      "locator": "§04 Three charges；§05；commit 5b73d78",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R308-0446-C11",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository=google-deepmind/formal-conjectures ref=5bd8bfb9def462c19a87d2d275af3db3341dc727 path=FormalConjectures/Arxiv/2607.27197/MaxwellConjecture.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/FormalConjectures/Arxiv/2607.27197/MaxwellConjecture.lean",
+      "note": "完整源码已取得；核关键定义、命题范围、sorry及依赖。未构建Lean、未运行#print axioms。",
+      "locator": "L53–69；L94–113；L229–249",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-C12",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub issues search",
+      "query": "repository=google-deepmind/formal-conjectures query=Maxwell topn=50",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/issues/4682",
+      "note": "返回两issue，排除Vlasov-Maxwell PDE；#4682为当前问题陈述加入计划。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-C13",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"three_charges\" topn=50",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回50个结果（截断在topn，不作穷尽）；有FC同题条目及大量程序/游戏异义。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-C14",
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2607.28785；find Abstract / Submission history",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2607.28785v1",
+      "note": "官方摘要仅宣称正电荷上界12改为6，v1=2026-07-30；摘要未给六可达构型。全文进一步核对由主代理进行。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-C15",
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv PDF",
+      "query": "open https://arxiv.org/pdf/2607.28785",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/2607.28785",
+      "note": "本分线返回DisabledError；未用此入口宣称读到PDF。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R308-0446-C16",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub网页",
+      "query": "click Foundation0 note link 12; open NOTE.md at 5b73d78",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Foundation-0/point-charges/blob/5b73d78f8609cd9e0162275c1b4f3f4125906ca9/NOTE.md",
+      "note": "后由GitHub fetch_file取得完整源码文字，明确§3三点扫描仅数值证据。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R308-0446-C17",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub网页",
+      "query": "click Foundation0 link 28 results/SUMMARY.md",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://github.com/Foundation-0/point-charges/blob/5b73d78f8609cd9e0162275c1b4f3f4125906ca9/results/SUMMARY.md",
+      "note": "Web返回503；此汇总未取得，不影响另行取得专门三点扫描日志。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R308-0446-C18",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"maxwell_conjecture.variants.three_charges\" topn=20",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/FormalConjectures/Arxiv/2607.27197/MaxwellConjecture.lean",
+      "note": "只返回FC当前题面条目；搜索无其他命中不等于全网无证明。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-C19",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub PR search",
+      "query": "repository=google-deepmind/formal-conjectures query=Maxwell state=all topn=50",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/4683",
+      "note": "返回#4683和#7719，分别为题面加入和Hessian定义整理；两者都不是三点上界完整证明。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-C20",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository=Foundation-0/point-charges ref=5b73d78f8609cd9e0162275c1b4f3f4125906ca9 path=NOTE.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Foundation-0/point-charges/blob/5b73d78f8609cd9e0162275c1b4f3f4125906ca9/NOTE.md",
+      "note": "§3三正电荷有限网格阴性，不涵盖所有三角形、任意符号或无界参数端点；未复跑。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R308-0446-C21",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository=Foundation-0/point-charges ref=5b73d78f8609cd9e0162275c1b4f3f4125906ca9 path=results/three_scan_summary.txt",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Foundation-0/point-charges/blob/5b73d78f8609cd9e0162275c1b4f3f4125906ca9/results/three_scan_summary.txt",
+      "note": "日志1289形状，799单覆盖、487未解析区域、3个多覆盖像素再求解为0或1极小值；是作者数值运行记录，非本轮复跑。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R308-0446-C22",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "[\"\\\"Maxwell\\\" \\\"three charges\\\" Lean proof\", \"\\\"Maxwell conjecture\\\" \\\"three charges\\\" \\\"proof\\\" site:mathoverflow.net\", \"\\\"Maxwell\\\" \\\"three_charges\\\" site:palomar-registry.org\"]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "批请求返回FC、公开AI索引、旧学术原稿与无关异义；未取得Palomar同题完整证明条目。不把批响应强作各查询0命中。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-C23",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST",
+      "query": "GET /repos/google-deepmind/formal-conjectures/pulls/4683；GET /repos/google-deepmind/formal-conjectures/pulls/7719",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/4683",
+      "note": "#4683于2026-11-02已合并，文案明确只加入statements；#7719仍open仅提取Hessian定义。作者自报build通过不证明sorry命题。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-C24",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub issues search",
+      "query": "repository=Foundation-0/point-charges query=three topn=30",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Foundation-0/point-charges/issues/4",
+      "note": "返回#4、#3、#2；#4明确三点问题仍待完整计算机辅助证明，并链接PR14。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R308-0446-C25",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "[\"site:palomar-registry.org Maxwell three charges\", \"\\\"Maxwell conjecture\\\" \\\"three charges\\\" \\\"Lean\\\" proof\", \"\\\"Maxwell\\\" \\\"three charges\\\" \\\"counterexample\\\" 2026\"] [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "url": "https://shivakintali.github.io/Shiva-Kintali-Maxwell3.pdf",
+      "note": "新命中Shiva Kintali三点≤4完整证明声明，转入P0；另有Pith及FC来源。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "R308-0446-C26",
+      "route": "代码、公开 AI 和社区",
+      "site": "作者PDF",
+      "query": "open https://shivakintali.github.io/Shiva-Kintali-Maxwell3.pdf；find github / Python / certificate suite / 10 Computer",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://shivakintali.github.io/Shiva-Kintali-Maxwell3.pdf",
+      "note": "本分线读Thm1、有限性桥及§10代码范围。完整数学审阅由主代理与数学分线承接，非本分线全文逐行复证。",
+      "locator": "印刷pp.1–3及§10 pp.37–38",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-C27",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub网页",
+      "query": "open https://github.com/Foundation-0/point-charges/pull/14",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://github.com/Foundation-0/point-charges/pull/14",
+      "note": "Web DisabledError；下一条REST成功，保留失败入口差异。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R308-0446-C28",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST",
+      "query": "GET /repos/Foundation-0/point-charges/pulls/14",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Foundation-0/point-charges/pull/14",
+      "note": "PR已合并，head=555c311632f2b4555d596b464a455f17c5bc3812。文案明确未证明任一单形状的Z单射，也未证明任何三点Maxwell上界；仅局部有限检查。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R308-0446-C29",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository=Foundation-0/point-charges ref=555c311632f2b4555d596b464a455f17c5bc3812 path=results/n3_inverse_map.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Foundation-0/point-charges/blob/555c311632f2b4555d596b464a455f17c5bc3812/results/n3_inverse_map.md",
+      "note": "亲读G1–G7缺口：形状空间、边界、全局单射、折叠曲线、比值端点、独立验证、终止界。未把PROVEN局部区间标签当主定理证明。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R308-0446-C30",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "query=Maxwell repository=shivakintali/shivakintali.github.io topn=20",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/shivakintali/shivakintali.github.io",
+      "note": "定位作者站仓库固定commit 6849d16bc156dfe709278b6f34f844f7731b98c5。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-C31",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST",
+      "query": "GET /repos/shivakintali/shivakintali.github.io/git/trees/6849d16bc156dfe709278b6f34f844f7731b98c5?recursive=1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/shivakintali/shivakintali.github.io/blob/6849d16bc156dfe709278b6f34f844f7731b98c5/Shiva-Kintali-Maxwell3.pdf",
+      "note": "tree truncated=false；Shiva-Kintali-Maxwell3.pdf和papers/Maxwell3.pdf同blob=88840d166bed44a435480f1b7a4e1445dcd0e9df，size=681607。此为版本定位，不是重新取PDF字节。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-C32",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST",
+      "query": "GET /repos/shivakintali/Maxwell3/commits/main",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/shivakintali/Maxwell3/commit/7b28771b26cf352ee6f59c945b4864b1191ac8f1",
+      "note": "固定commit=7b28771b26cf352ee6f59c945b4864b1191ac8f1，日期2026-08-06T17:44:07Z，合并题为Sync audited certificate files。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-C33",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "[\"\\\"Shiva Kintali\\\" \\\"Maxwell\\\" proof correction\", \"\\\"A Sharp Maxwell Bound for Three Point Charges\\\" review\"] [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://kintali.wordpress.com/2026/08/07/me-my-math-proofs-and-ai-part-ii/",
+      "note": "命中作者论文、主页、2026-08-07作者博客声明及二手tracker；本轮未取得针对三点稿的独立数学审查结论。博客仅搜索索引读取，不能记全文已阅。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-C34",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository=shivakintali/Maxwell3 ref=7b28771b26cf352ee6f59c945b4864b1191ac8f1 path=README.md",
+      "date": "2026-11-26",
+      "outcome": "档案或版本缺失",
+      "url": "https://github.com/shivakintali/Maxwell3/blob/7b28771b26cf352ee6f59c945b4864b1191ac8f1/README.md",
+      "note": "根README返回404；实际说明位于certificates/README.md，下一条取得。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "request_id": "R308-0446-C35",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository=shivakintali/Maxwell3 ref=7b28771b26cf352ee6f59c945b4864b1191ac8f1 path=certificates/README.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/shivakintali/Maxwell3/blob/7b28771b26cf352ee6f59c945b4864b1191ac8f1/certificates/README.md",
+      "note": "已读七脚本清单及方程映射；作者明确仅核代数恒等式，解析、拓扑、degree论证仍在论文。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-C36",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository=shivakintali/Maxwell3 ref=7b28771b26cf352ee6f59c945b4864b1191ac8f1 path=certificates/run_all.py",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/shivakintali/Maxwell3/blob/7b28771b26cf352ee6f59c945b4864b1191ac8f1/certificates/run_all.py",
+      "note": "已静态核runner要求-I、禁止-O、CPython3.13、固定依赖及subprocess.check=True传播失败；未运行，七个子脚本未逐行审阅。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-C37",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository=shivakintali/Maxwell3 ref=7b28771b26cf352ee6f59c945b4864b1191ac8f1 paths=certificates/requirements.txt;certificates/runtime.txt",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/shivakintali/Maxwell3/blob/7b28771b26cf352ee6f59c945b4864b1191ac8f1/certificates/runtime.txt",
+      "note": "SymPy1.14.0，mpmath1.3.0；记录审计CPython3.13.9。只核依赖声明和runner，不宣称本轮复跑或Lean形式化。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-DUP-001",
+      "route": "库内查重",
+      "site": "本包全库查重简索引.jsonl与任务.jsonl",
+      "query": "Python读取JSONL，精确筛选id in ['QX-P-000311','QX-P-000446','QX-P-002439']；从任务.jsonl取QX-P-000446完整题卡",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "result_count": 3,
+      "url": "package/全库查重简索引.jsonl",
+      "locator": "索引第306、440、2405行；任务原清单第711行",
+      "note": "候选ID由主代理前序筛选交接；本次实际读取索引的题号、card_rev、path及标题，不据此裁定关系。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "R308-0446-DUP-002",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file(repository_full_name='qunxingmath-org/qunxing-data', path='problems/000/QX-P-000446.meta.json', ref='73290369a8dcc632e25e555aec525565ea6e08f8', encoding='utf-8')",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "result_count": 1,
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000446.meta.json",
+      "locator": "problems/000/QX-P-000446.meta.json",
+      "note": "已取得完整UTF-8内容；按Git blob规则重算SHA-1与返回sha=e9424ca35323e512db43524d2d01b0413f887ec4一致。与本包task.card_metadata或task.card_text逐项/逐字相等。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-DUP-003",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file(repository_full_name='qunxingmath-org/qunxing-data', path='problems/000/QX-P-000446.text.md', ref='73290369a8dcc632e25e555aec525565ea6e08f8', encoding='utf-8')",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "result_count": 1,
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000446.text.md",
+      "locator": "problems/000/QX-P-000446.text.md",
+      "note": "已取得完整UTF-8内容；按Git blob规则重算SHA-1与返回sha=415b26137f96470eb8438505c2211270a25b68e7一致。与本包task.card_metadata或task.card_text逐项/逐字相等。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-DUP-004",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file(repository_full_name='qunxingmath-org/qunxing-data', path='problems/002/QX-P-002439.meta.json', ref='73290369a8dcc632e25e555aec525565ea6e08f8', encoding='utf-8')",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "result_count": 1,
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002439.meta.json",
+      "locator": "problems/002/QX-P-002439.meta.json",
+      "note": "已取得完整UTF-8内容；按Git blob规则重算SHA-1与返回sha=9f3eac5fc0623885d889a763e310a6796f19337e一致。meta.card_rev=d3b34f1159697c61与简索引一致；正文只用于范围比较，未把其旧数学状态或旧检索记录当本轮查新。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R308-0446-DUP-005",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file(repository_full_name='qunxingmath-org/qunxing-data', path='problems/002/QX-P-002439.text.md', ref='73290369a8dcc632e25e555aec525565ea6e08f8', encoding='utf-8')",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "result_count": 1,
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002439.text.md",
+      "locator": "problems/002/QX-P-002439.text.md",
+      "note": "已取得完整UTF-8内容；按Git blob规则重算SHA-1与返回sha=6f2aa7217fbae4dbb60af6cf112e4376583e5a80一致。meta.card_rev=d3b34f1159697c61与简索引一致；正文只用于范围比较，未把其旧数学状态或旧检索记录当本轮查新。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R308-0446-DUP-006",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file(repository_full_name='qunxingmath-org/qunxing-data', path='problems/000/QX-P-000311.meta.json', ref='73290369a8dcc632e25e555aec525565ea6e08f8', encoding='utf-8')",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "result_count": 1,
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000311.meta.json",
+      "locator": "problems/000/QX-P-000311.meta.json",
+      "note": "已取得完整UTF-8内容；按Git blob规则重算SHA-1与返回sha=62e77e974a26c212a989c01d1d95fe93b94db8a6一致。meta.card_rev=d07ccbec1e67d4a3与简索引一致；全文为图的三维通用刚性，属Maxwell同名噪声。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R308-0446-DUP-007",
+      "route": "库内查重",
+      "site": "GitHub qunxingmath-org/qunxing-data",
+      "query": "fetch_file(repository_full_name='qunxingmath-org/qunxing-data', path='problems/000/QX-P-000311.text.md', ref='73290369a8dcc632e25e555aec525565ea6e08f8', encoding='utf-8')",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "result_count": 1,
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000311.text.md",
+      "locator": "problems/000/QX-P-000311.text.md",
+      "note": "已取得完整UTF-8内容；按Git blob规则重算SHA-1与返回sha=7d29fc4bd44233f12b20222deb9988a394036266一致。meta.card_rev=d07ccbec1e67d4a3与简索引一致；全文为图的三维通用刚性，属Maxwell同名噪声。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R308-0446-DUP-008",
+      "route": "库内查重",
+      "site": "本包全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003098〕",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "result_count": 3,
+      "url": "package/全库查重简索引.jsonl",
+      "locator": "第306行QX-P-000311；第440行QX-P-000446；第2405行QX-P-002439",
+      "note": "扩展关键词复查只返回这三条；除本题外的2439已按版本+全文分类，311仅作为同名筛选噪声排除，不建立正式pair裁定。索引字段检索不能证明全库无重复。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-001",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"A Sharp Maxwell Bound for Three Point Charges\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中作者稿、主页和博客；随后读原稿。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-001",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Shiva Kintali\" \"Maxwell\" correction OR erratum OR withdrawn OR counterexample OR gap",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未定位针对三电荷当前稿的具体撤回/质疑。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-001",
+      "route": "学术",
+      "site": "Web open/find",
+      "query": "open https://shivakintali.github.io/Shiva-Kintali-Maxwell3.pdf；find Lemma 8、9.1、10 Exact、GitHub；按原稿定位打开2570、2650、2790、3038、3099、3140、3143、239等行",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://shivakintali.github.io/Shiva-Kintali-Maxwell3.pdf",
+      "locator": "Theorem1；pp.2–5；§8–10；§3–7关键命题定位",
+      "note": "42页完整文件可达；本次定向阅读范围与未审核心步骤分开列出。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-002",
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Kintali\" \"Maxwell3\" gap OR error OR correction OR rebuttal",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "未取得针对本稿的明确批评；返回的同名/综合索引不能替代本题证据。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-002",
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"A Sharp Maxwell Bound\" criticism OR erratum OR withdrawn OR mistake",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "没有同题更正原文命中。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-002",
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Kintali\" \"Maxwell\" \"three\" \"proof\" \"error\"",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "无针对当前42页稿的可核错误定位。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-003",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "open https://kintali.wordpress.com/2026/08/07/me-my-math-proofs-and-ai-part-ii/；再open lineno=15",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://kintali.wordpress.com/2026/08/07/me-my-math-proofs-and-ai-part-ii/",
+      "locator": "2026-08-07正文第二项及AI辅助说明",
+      "note": "作者声明原始来源；无独立复核报告。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-003",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "open https://github.com/shivakintali/Maxwell3",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://github.com/shivakintali/Maxwell3",
+      "note": "网页通道DisabledError；后以GitHub只读接口取得。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-004",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Maxwell3\" \"Kintali\" correction",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365；无明确更正通知命中。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-004",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Kintali\" \"Maxwell\" \"gap\"",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "recency=365；多为作者其他课题及无关gap，不作本题批评证据。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-004",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Kintali\" \"Maxwell\" site:mathoverflow.net",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "recency=365；无本题直接讨论命中；不是全站穷尽检索。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-004",
+      "route": "学术",
+      "site": "Web open",
+      "query": "open https://shivakintali.github.io/papers/Maxwell3.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://shivakintali.github.io/papers/Maxwell3.pdf",
+      "locator": "42页，封面与Theorem1",
+      "note": "与旧URL所见文本页数、行数和定理一致；没有做字节比较。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-005",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Maxwell3\" \"Kintali\" (erratum OR correction OR withdrawn OR flaw OR rebuttal)",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365；未取到当前稿明确撤回或错误定位。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-005",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"A Sharp Maxwell Bound for Three Point Charges\" (review OR criticism OR revised OR v2)",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365；主要返回作者稿和作者声明，不能据此认定同行评审。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-005",
+      "route": "学术",
+      "site": "Web open",
+      "query": "open https://shivakintali.github.io/",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://shivakintali.github.io/",
+      "locator": "第19项",
+      "note": "作者状态Submitted to a Journal。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-006",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch/search_issues",
+      "query": "GET https://api.github.com/repos/shivakintali/Maxwell3；search_issues query=repo:shivakintali/Maxwell3 topn=100",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "公开仓库存在、默认main；search_issues空，之后以全状态列表补核。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-006",
+      "route": "学术",
+      "site": "GitHub fetch",
+      "query": "GET https://api.github.com/repos/shivakintali/shivakintali.github.io/commits?path=Shiva-Kintali-Maxwell3.pdf&per_page=10",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "返回9个文件历史提交，最早2026-08-03；8月5–6多次修订，8月10调整。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-007",
+      "route": "学术",
+      "site": "GitHub fetch",
+      "query": "GET https://api.github.com/repos/shivakintali/shivakintali.github.io/commits?path=papers/Maxwell3.pdf&per_page=100；GET https://api.github.com/repos/shivakintali/shivakintali.github.io/contents/papers?ref=fbb2ca5521882c7df30ebd9d4790a474ac0f79a7",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "新路径2次提交；目录元数据确认Maxwell3.pdf blob 88840d166bed44a435480f1b7a4e1445dcd0e9df，681607B。只取元数据，未借二进制接口宣称全文字节固定。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-007",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch/fetch_file",
+      "query": "GET https://api.github.com/repos/shivakintali/Maxwell3/git/ref/heads/main；fetch_file README.md；fetch_file certificates/README.md ref=7b28771b26cf352ee6f59c945b4864b1191ac8f1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/shivakintali/Maxwell3/blob/7b28771b26cf352ee6f59c945b4864b1191ac8f1/certificates/README.md",
+      "note": "根README.md返回404；实际目录内README成功。说明七证书为Python精确代数检查，分析拓扑仍在正文；本轮未执行。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-AR-008",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch",
+      "query": "GET https://api.github.com/repos/shivakintali/Maxwell3/issues?state=all&per_page=100",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/shivakintali/Maxwell3/pull/1",
+      "locator": "PR#1 body，2026-08-06合并",
+      "note": "全状态列表返回单一已合并PR，comments=0；作者自报同步已审核证书及七脚本通过。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R308-0446-ROOT-DUP0",
+      "route": "库内查重",
+      "site": "本包全库查重简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003099〕",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "result_count": 3,
+      "note": "根代理初筛得到000311、000446、002439，随后分线按固定版本取全文，正式配对见duplicates。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E0446-A1",
+      "url": "https://shivakintali.github.io/Shiva-Kintali-Maxwell3.pdf",
+      "locator": "Theorem1，印刷pp2–3；p3非退化推出有限的半代数论证；各后续引理的完整证明链待二审",
+      "version": "封面2026-08-01的42页修订稿；作者站papers/Maxwell3.pdf metadata固定commit fbb2ca5521882c7df30ebd9d4790a474ac0f79a7，blob88840d166bed44a435480f1b7a4e1445dcd0e9df；文件历史有8月5–6日修订",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "完整证明",
+      "publication": "作者主页",
+      "scope_match": "严格蕴含",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "Shiva Kintali",
+      "claim_date": "2026-08-01（封面日期，非当前PDF全部修订的日期）",
+      "note": "本轮读取实时两个作者PDF入口，均42页同定位；固定Git blob元数据取得但未与实时PDF做字节对照。作者主页仍标Submitted to a Journal。主审及独立审查者核有限性桥；独立审查者另读Lemma2.1、Lemma8.1、零总电荷远场及共线分支，未发现所读局部显见错误；§3–7主计数链未全审，七证书未运行。不能当已证明或独立形式化通过。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "implies",
+        "role": "full_proof",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E0446-A2",
+      "url": "https://arxiv.org/html/2607.28785v1",
+      "locator": "Theorem1.1；§5 Proposition5.1和结尾证明；§6末、§7第1条；Acknowledgments",
+      "version": "arXiv:2607.28785v1，2026-07-30",
+      "subquestions": [
+        "三个正电荷的通用上界12降至6"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "只核上界、正性/α条件与作者对6可达的措辞；本文自述Claude辅助，作者独立验证，非本轮复跑。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E0446-A3",
+      "url": "https://arxiv.org/html/2607.27197v1",
+      "locator": "§1；§2 Theorem1及式(1)；Tool and computational resource disclosure",
+      "version": "arXiv:2607.27197v1，2026-07-29",
+      "subquestions": [
+        "一般n点Maxwell上界的五点反例"
+      ],
+      "role": "反例",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "原稿公开说明LLM辅助构造；本轮确认5点参数及非退化微扰语句，未独立复证24点，不能迁移到三点。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E0446-O1",
+      "url": "https://arxiv.org/pdf/math-ph/0409009v1",
+      "locator": "pp2–3 Conjecture1.3、Remark、Theorem1.5(b)；§4 pp27–29转录Maxwell §113",
+      "version": "arXiv:math-ph/0409009v1，提交2004-09-03；本轮同时核官方submission history",
+      "subquestions": [
+        "主问题",
+        "历史出处与已知三点子类"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "note": "这里的原题等价仅指Conj1.3三点特化；12界是不同强度结果。PDF页脚自动日期不据以另造版本。1873原版书页未独立取得；附录转录只作追溯。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E0446-A4",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0167278915001347",
+      "locator": "出版摘要/索引：Maxwell’s conjecture on three point charges with equal magnitudes；Physica D309(2015)86–98",
+      "version": "2015正式刊发条目；2026-11-26摘要可检索，原文/abstract页直接访问403",
+      "subquestions": [
+        "历史出处与已知三点子类"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "未检索",
+      "note": "仅用来界定等绝对值子类，不宣称已读完整证明。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E0446-C01",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/FormalConjectures/Arxiv/2607.27197/MaxwellConjecture.lean",
+      "locator": "L53–69定义；L243–249 maxwell_conjecture.variants.three_charges",
+      "version": "commit 5bd8bfb9def462c19a87d2d275af3db3341dc727; blob 8eebad1a37cdc06c49b1d3b029a289b8069bcd9b",
+      "subquestions": [
+        "主问题",
+        "形式化证据"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读，未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "已亲读当前源码：三点互异，非零任意实数强度，R³除去电荷位置，所有平衡点非退化，encard≤4；证明体为sorry。目录research open只是维护标签；没有独立构建或公理输出。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E0446-C02",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/5bd8bfb9def462c19a87d2d275af3db3341dc727/FormalConjectures/Arxiv/2607.27197/MaxwellConjecture.lean",
+      "locator": "L93–113 counterexample_morse及maxwell_conjecture；L228–234 three_equal_magnitudes",
+      "version": "commit 5bd8bfb9def462c19a87d2d275af3db3341dc727",
+      "subquestions": [
+        "五点反例与三点主问题的区分",
+        "等模三电荷特例"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读，未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "五点Morse反例核心lemma含sorry；general theorem虽无直接sorry但调用该lemma，不能当完整Lean证明。等模三点≤4也含sorry，仅为已发表子类结果的题面。两个坐标test证明只核距离。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E0446-C03",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/4683",
+      "locator": "Statements；Formalisation notes",
+      "version": "merged 2026-11-02; head a04d076472369d98dd7e33470aa39eb2df7f7fcc",
+      "subquestions": [
+        "形式化证据"
+      ],
+      "role": "重述",
+      "publication": "PR",
+      "scope_match": "原题等价",
+      "claim_state": "公开声称",
+      "review_status": "已读，未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "PR作者自报build通过且说明只加statements；未把带sorry的仓库编译当证明。#7719仅重构Hessian定义。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E0446-C04",
+      "url": "https://github.com/Foundation-0/point-charges/blob/5b73d78f8609cd9e0162275c1b4f3f4125906ca9/NOTE.md",
+      "locator": "§3 Three charges: the inverse map；results/three_scan_summary.txt",
+      "version": "commit 5b73d78f8609cd9e0162275c1b4f3f4125906ca9; 2026-10-18",
+      "subquestions": [
+        "三正电荷数值探索"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读，未核关键步骤",
+      "note": "作者公开AI生成研究报告，三点只是有限形状/网格探索；已读报告和扫描日志，未运行源码或认证数值穷尽性。4/5/6点证书自报与本题分开。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E0446-C05",
+      "url": "https://github.com/Foundation-0/point-charges/blob/555c311632f2b4555d596b464a455f17c5bc3812/results/n3_inverse_map.md",
+      "locator": "Claim labels；G1–G7",
+      "version": "PR14 head 555c311632f2b4555d596b464a455f17c5bc3812",
+      "subquestions": [
+        "三正电荷计算辅助证明尝试"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "已读，未核关键步骤",
+      "note": "作者明确尚未证明任何单形状的全局单射或任何三点Maxwell上界；已列7类缺口。区间盒局部符号检查不能提升为主问题完整证明。本轮仅读报告、未复跑。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E0446-C06",
+      "url": "https://probxiv.com/problems/maxwell-three-charge-bound",
+      "locator": "Statement；Record；Comments（VibeMathed同来源）",
+      "version": "页面记录added 2026-08-17；本轮访问2026-11-26",
+      "subquestions": [
+        "三电荷六可达的二手误传"
+      ],
+      "role": "重述",
+      "publication": "二手索引",
+      "scope_match": "尚未确认",
+      "claim_state": "公开声称",
+      "review_status": "已读，未核关键步骤",
+      "note": "平台声称6可达并标solved，但其引用的2607.28785官方摘要仅为正电荷上界6。主代理已另取全文并核§7仍把某些α的恰6列为待研究；请合并主代理证据后登记为不受所引原稿支持的二手说法，不能当三点≤4反例。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "secondary_index"
+      }
+    },
+    {
+      "evidence_id": "E0446-C07",
+      "url": "https://github.com/shivakintali/Maxwell3/blob/7b28771b26cf352ee6f59c945b4864b1191ac8f1/certificates/README.md",
+      "locator": "Equation-level manifest；末段scope；run_all.py；requirements.txt；runtime.txt",
+      "version": "commit 7b28771b26cf352ee6f59c945b4864b1191ac8f1 (2026-08-06T17:44:07Z)",
+      "subquestions": [
+        "Kintali完整证明声明的计算证书"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "已读，未核关键步骤",
+      "formal_status": "已静态检查，未复跑",
+      "note": "仅已取得并静态核certificates说明、runner和依赖；七个证明相关子脚本未逐行审阅或执行。runner锁CPython3.13.x/SymPy1.14.0/mpmath1.3.0，要求-I禁止-O并传播子进程失败。证书只覆盖所列代数等式，解析拓扑degree论证仍需独立数学审查；不是Lean形式化。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E0446-C08",
+      "url": "https://shivakintali.github.io/Shiva-Kintali-Maxwell3.pdf",
+      "locator": "Theorem1及其后非退化⇒有限说明；§10",
+      "version": "署期2026-08-01；作者站commit6849d16bc156dfe709278b6f34f844f7731b98c5，blob88840d166bed44a435480f1b7a4e1445dcd0e9df",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "完整证明",
+      "publication": "作者主页",
+      "scope_match": "严格蕴含",
+      "claim_state": "完整稿已取得",
+      "review_status": "未读全文",
+      "note": "本分线新检到42页完整稿，并只定向核Thm1、有限性桥、§10：任意非零实电荷互异三点R³，有限临界集≤4，含退化点。主体数学复核交主代理及另一分线；本项不得表述为本分线读完/证明成立。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "not_read",
+        "scope_match": "implies",
+        "role": "full_proof",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E0446-D01",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000446.text.md",
+      "locator": "本题正文L5–17及L31–34；配对meta.acceptance.criteria；双方正式位置详见duplicates.positions",
+      "version": "qunxing-data@73290369a8dcc632e25e555aec525565ea6e08f8；000446=9f348e928bf23f01；002439=d3b34f1159697c61",
+      "subquestions": [
+        "库内候选对核对"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "本轮取得并全文比较两卡，版本与包/索引一致；仅判题目关系，不把题卡旧查新记录计成本轮外部学术证据。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E0446-D02",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002439.text.md",
+      "locator": "正文L5–30、L72–85及meta.acceptance.criteria",
+      "version": "qunxing-data@73290369a8dcc632e25e555aec525565ea6e08f8；card_rev d3b34f1159697c61",
+      "subquestions": [
+        "库内候选对核对"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "该卡问全n的多项式统一上界，允许任意固定C,d；不能从其结论代n=3就得到上界4。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E0446-A5",
+      "url": "https://github.com/shivakintali/Maxwell3/pull/1",
+      "locator": "PR#1 2026-08-06作者说明：旧公开证书与修订稿不同步，现已同步；作者报告七个代数证书通过",
+      "version": "Maxwell3@7b28771b26cf352ee6f59c945b4864b1191ac8f1；merged 2026-08-06",
+      "subquestions": [
+        "主问题",
+        "Kintali完整证明声明的计算证书"
+      ],
+      "role": "勘误",
+      "publication": "PR",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已取得代码未重跑",
+      "note": "这是公开代码/稿件同步修订记录，不声称期刊正式勘误。作者环境CPython3.13.9/SymPy1.14.0/mpmath1.3.0；本轮没有运行脚本。全状态issues列表只返此PR，限定检索未检到撤回或针对当前稿具体独立数学质疑，不据此背书正确性。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "formal_evidence": "code_unchecked",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "code_repo"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-002439",
+      "other_card_rev": "d3b34f1159697c61",
+      "relation": "同源不同问",
+      "reason": "pair_id=QX-P-000446--QX-P-002439；较小题号000446在本包，负责此对。双方同属库仑势非退化临界点计数，但本题主式和验收固定三个点电荷、精确上界4；2439量化所有n>0，并问是否存在不依赖n及构型的常数C,d使计数≤Cn^d。2439在n=3处只给未知的C·3^d界，不能推出4；本题只管n=3，也不提供全n的多项式增长界，因此不能把本题视为2439的字面特例或据一题结案另一题。二者不是严格同题，不建议合并。",
+      "positions": {
+        "self": "problems/000/QX-P-000446.text.md L5–11（固定三电荷、≤4、非退化）、L17（库仑势意图）、L31–34（n=3边界）；problems/000/QX-P-000446.meta.json acceptance.criteria。",
+        "other": "problems/002/QX-P-002439.text.md L5–30（R^3、n、互异位置、非零强度、非退化、∃C,d∀n统一界）、L72–85（域及与000446的区分）；problems/002/QX-P-002439.meta.json acceptance.criteria。"
+      },
+      "note": "双方固定提交meta与正文均已取得并核过版本；本题正文及meta与任务包完全一致。2439明确写R^3、互异位置、非零强度；446这些域约定在卡面较简略，若主代理发现实质题面问题须另列card_actions并遵守换版本规则。本记录只裁定两张当前版本的题目关系，不重签2439的数学状态、不查下一题、不改线上库。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "duplicate_relation": "related"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补声明",
+      "field": "相关进展与声称解决 / informal_status",
+      "old": "无公认解决记录；FC快照status_fc=open。",
+      "new": "新增Kintali三点≤4完整稿声明及修订日期/固定来源，标完整声明待核；保留FC旧快照是编目观察。同步记正电荷上界6仅为进展。",
+      "reason": "已有适用完整声明应入二审，不用旧open标签覆盖新证据。新增引文/声明不直接修改题面或线上闭合状态。",
+      "evidence_ids": [
+        "E0446-A1",
+        "E0446-A2"
+      ],
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "sources / 原文摘录",
+      "old": "formal-conjectures Maxwell.lean；链接仅指FormalConjectures目录。",
+      "new": "补GNS math-ph/0409009v1 Conj1.3三点特化及Maxwell §113追溯；FC给固定commit下具体MaxwellConjecture.lean路径和variants.three_charges。当前英文摘录标为现代重述。",
+      "reason": "代码库条目不是1873首发原文；出处和访问层级应分开。",
+      "evidence_ids": [
+        "E0446-O1"
+      ],
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述 / 边界与约定",
+      "old": "#crit(V)≤4（非退化）；三个任意强度点电荷；人话写平面上（或空间中）。",
+      "new": "显式写互异a1,a2,a3∈R³及qi∈R\\{0}，域R³\\{a1,a2,a3}，V(x)=Σqi/||x−ai||；∀临界点Hessian可逆⇒临界集基数≤4。平面描述仅指电荷位置共面，避免改成二维log势。",
+      "reason": "逐项对照：源FC是R³、互异位置、每项非零、全体平衡点非退化、总集合基数；现卡省略定义域及配置条件。维护者若正式补域/量词须新card_rev，本回执不改原卡。",
+      "evidence_ids": [
+        "E0446-O1",
+        "E0446-A1"
+      ],
+      "small_case_check": "手算三等正电荷共线：横向场系数Σqi/ri³>0故平衡点在轴上；轴向场每个两间隙严格递减且两端异号，各有一零点，外侧无零点，共2≤4。该例只作条件检验，不证明一般上界。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "formal_status",
+      "old": "value=none（2026-11-21）",
+      "new": "已定位对应三点命题的Lean题面/骨架；固定FC提交的proof仍为sorry，未完成形式化证明。",
+      "reason": "存在题面与有完整机器证明必须分开，不能继续把none理解为没有任何形式化题面，也不能把编译通过升级为证明。",
+      "evidence_ids": [
+        "E0446-C01",
+        "E0446-C03"
+      ],
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "reason": "覆盖主问题的作者完整稿有8月修订；本轮只核范围、有限性桥和部分局部步骤，计数主链未独立全审。",
+      "next_step": "固定作者稿与Maxwell3@7b28771b26cf352ee6f59c945b4864b1191ac8f1，重点二审Propositions3.3–3.4、5.1、6.1、Lemma7.2、Propositions7.3–7.4，核全局延拓/折叠/尖点计数与证书覆盖；确认实时PDF与固定blob字节一致后再作可复现证明审查。非退化⇒有限桥和部分末端局部论证已核，不替代主链。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "正电荷上界6与一般五点反例均未在本轮完整复证；出版子类原文403。",
+      "next_step": "分别保留正电荷、指数α、点数n的边界；若要升级证明等级再取原源和计算脚本。不得把6上界写成6可达，也不得把五点反例迁移成三点反例。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "1873原书未独立取得，仅核GNS原作者论文的历史转录和现代重述；2015全文受限。",
+      "next_step": "有条件时补原版§113页图及Tsai2015完整稿，分清历史原话、现代非退化版本及等绝对值子类。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {}
+    },
+    {
+      "route": "其他：题卡修订",
+      "reason": "正式式和定义域过于简写，当前审计使用FC精确目标。",
+      "next_step": "维护方逐项确认补全非零、互异、R³及全体非退化假设；若改变正式域/量词生成新card_rev再核，保留本回执9f348e928bf23f01。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "FC主问题仅sorry题面，作者build自报非完整证明。",
+      "next_step": "formal_status应由none改为已定位形式化题面；不为已知sorry骨架做无意义复跑。若出现具体无占位完整实现，再固定依赖、运行日志与#print axioms。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "Kintali证书只读manifest、runner、依赖，未审七脚本正文或执行。",
+      "next_step": "若需独立核代数证书，固定7b28771b26cf352ee6f59c945b4864b1191ac8f1并按-I运行CPython3.13.x、SymPy1.14.0、mpmath1.3.0，保存日志并逐项核公式映射；即使全通过也不替代论文解析、拓扑和degree步骤复核。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "Foundation0的三点数据只是有限探索并明确G1–G7缺口；本轮未复跑。",
+      "next_step": "保留有限数值探索范围，不把报告PROVEN局部盒断言或4/5/6电荷证书升为本题三点全称结论。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "新检到Kintali完整证明声明，作者站及证书可核，但尚未独立证明主定理。",
+      "next_step": "由主数学分线记录完整声明待核并核关键引理/闭合推导；FC旧open标签不得覆盖具体新声明。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "本轮仅固定简索引关键词筛选及两个候选正文核对，未做全库全文两两比较。",
+      "next_step": "保留本次有限范围；若出现新实质候选，先取得固定版本meta与正文，再由较小题号负责人判关系。当前不建议合并000446与002439。",
+      "batch_id": "QX-R3-08",
+      "card_rev": "9f348e928bf23f01",
+      "codes": {}
+    }
+  ]
+}

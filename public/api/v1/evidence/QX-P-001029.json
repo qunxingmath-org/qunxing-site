@@ -1,0 +1,2063 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001029",
+  "card_rev": "5d3c6b9c932bfbcc",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-02"
+      ],
+      "parts": [
+        {
+          "subquestion": "rank1及本原元非零幂的完整特例",
+          "value": "partial",
+          "note": "若u=v^m，v属于某自由基且m≠0，则全部正规根模共轭恰为v^d，其中d为m的非零有符号整数约数，精确2τ(|m|)类。换基令v=x1后，含其他字母的循环约化正规根会由Freiheitssatz保证x1在商中无限阶，不能杀x1^m；所以根必须为x1^d且d|m，反向直接成立。rank1同样是整数整除；m=±1时两普通共轭类，若额外合并反演才是一类。此为本轮完整短证/经典定理应用，不是新的一般研究突破。"
+        },
+        {
+          "subquestion": "双幂词的已发表有限性及算法结果",
+          "value": "partial",
+          "note": "对于固定非平凡u=x^k y^l（x、y为不同自由基字母），BMS和2025综述明确转述McCool2000：正规根共轭类有限且可算法求出。限定(k,l)≠(0,0)；零指数支路由上一本原元幂特例覆盖，不能把单位元误纳入有限性。McCool出版社正文/PDF本轮不可访问，未核原算法证明；原作者问题集的finitely many roots应按共轭类读。该特殊形状不能覆盖全部u∉F_n′。"
+        },
+        {
+          "subquestion": "阿贝尔化必要条件及其局限",
+          "value": "partial",
+          "note": "手证正规根必满足e(u)=m e(r)，m∈Z\\{0}；若g=gcd(|e_i(u)|)>0，则m|g，可能向量至多2τ(g)个。这是必要条件，不是成员关系的充分条件，更不是共轭类数量界。例ab^(-1)的向量(1,−1)非零但坐标总和为0；w_k=a²b^k a^(-1)b^(-k)具有同一向量(1,0)却循环长度2k+3互异。它们均不是u=a的正规根（Freiheitssatz），因此不能把此无限字族当成主题反例。"
+        },
+        {
+          "subquestion": "正规根、普通幂根与闭包等号的区别",
+          "value": "partial",
+          "note": "完整手证取w=a²ba^(-1)b^(-1)，有e(w)=(1,0)，且w是a的共轭及逆共轭的乘积，所以a为w的正规根；w不是a的普通幂。令a作用为T(t)=t+1、b作用为D(t)=2t，则D T^(-1)D^(-1)=T^(-2)，w作用为恒等而a非恒等，故a∉⟪w⟫，得到⟪w⟫⊊⟪a⟫。同一例也说明e(u)=e(r)不足以判断u∈⟪r⟫。只是概念边界和反向商证书，没有主问题反例。"
+        },
+        {
+          "subquestion": "交换子内无限族及绕数例子的排除范围",
+          "value": "partial",
+          "note": "取约定[x,y]=xyx^(-1)y^(-1)，固定u=[a,b]，令r_k=ab^k(k≥0)，则[r_k,b]=u，所以u∈⟪r_k⟫；向量(1,k)两两不同保证非共轭。该无限族严格在被排除的u∈F2′域内，仅说明主假设必要。Barmak作者稿Question101重述主问；Example102的铺砖多根也在F2′内，既不满足outside条件，也不能靠有限展示关闭无限性问题。"
+        },
+        {
+          "subquestion": "文献和公开完整声明的实际核验范围",
+          "value": "no_evidence_in_scope",
+          "note": "截至2026-11-27实际学术、代码/公开AI/社区定向查询未取得一般主问完整解或同题形式化工程。2025原综述p25仍列同题未解决，这是作者当时的报告，不是全球开放的证明。BMS F16最短元形状问题与综述p138的长根结构转述未在本轮证明等价；相关McCool2001反驳属于不同问题，不能作15.102反例。求全部normalroots、严格递增正规闭包链以及相同正规闭包的Magnus共轭定理也不能替代本题。公开CB仅旧编目，JUrban同题记录明确未完成；无本轮GAP/Lean执行或证明体/锁/公理审核，不声称搜索穷尽全部仓库。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "none_found",
+      "as_of": "2026-11-27"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "有部分进展",
+      "scope_note": "原核心问题保持：是否存在一个固定有限秩自由群F_n中的固定u∉[F_n,F_n]，有无限多个两两不共轭正规根r（u∈⟪r⟫）。已核本原元及其非零幂、rank1的完整特例，以及McCool2000关于非平凡x^k y^l的已发表有限性/算法结果的原作者重述。本轮未取得覆盖任意合格u的一般有限性证明或固定u的无限正规根族。不是把目录open、有限向量数、绕数例或F16反例当成一般结论；不关闭主问题。",
+      "evidence_ids": [
+        "E1029-A1",
+        "E1029-A2",
+        "E1029-A3",
+        "E1029-A4",
+        "E1029-A5",
+        "E1029-M3",
+        "E1029-M5",
+        "E1029-P1",
+        "E1029-P2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "原题、出处和量词",
+      "math_status": "有部分进展",
+      "scope_note": "最新所读Kourovka v50的15.102（2002年辑，印刷99页）和BMS第二版F27（2002，印刷13页）量词一致。本轮最早直接核到精确当前问句为2002；不据Magnus归属倒填1930，也未把1999第一版或1997网络草稿当成已逐字核过。正规根等价于⟪u⟫⊆⟪r⟫，不是两闭包相等或普通幂根；有限性按每个固定u，既不要求统一根数上界，也不额外要求算法。n=1边界已解；n=0若允许则没有合格u。",
+      "evidence_ids": [
+        "E1029-A1",
+        "E1029-A2",
+        "E1029-M1",
+        "E1029-M5"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "rank1及本原元非零幂的完整特例",
+      "math_status": "仅特例",
+      "scope_note": "若u=v^m，v属于某自由基且m≠0，则全部正规根模共轭恰为v^d，其中d为m的非零有符号整数约数，精确2τ(|m|)类。换基令v=x1后，含其他字母的循环约化正规根会由Freiheitssatz保证x1在商中无限阶，不能杀x1^m；所以根必须为x1^d且d|m，反向直接成立。rank1同样是整数整除；m=±1时两普通共轭类，若额外合并反演才是一类。此为本轮完整短证/经典定理应用，不是新的一般研究突破。",
+      "evidence_ids": [
+        "E1029-M3",
+        "E1029-A2",
+        "E1029-A5"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "双幂词的已发表有限性及算法结果",
+      "math_status": "仅特例",
+      "scope_note": "对于固定非平凡u=x^k y^l（x、y为不同自由基字母），BMS和2025综述明确转述McCool2000：正规根共轭类有限且可算法求出。限定(k,l)≠(0,0)；零指数支路由上一本原元幂特例覆盖，不能把单位元误纳入有限性。McCool出版社正文/PDF本轮不可访问，未核原算法证明；原作者问题集的finitely many roots应按共轭类读。该特殊形状不能覆盖全部u∉F_n′。",
+      "evidence_ids": [
+        "E1029-A2",
+        "E1029-A3",
+        "E1029-A5",
+        "E1029-M3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "阿贝尔化必要条件及其局限",
+      "math_status": "有部分进展",
+      "scope_note": "手证正规根必满足e(u)=m e(r)，m∈Z\\{0}；若g=gcd(|e_i(u)|)>0，则m|g，可能向量至多2τ(g)个。这是必要条件，不是成员关系的充分条件，更不是共轭类数量界。例ab^(-1)的向量(1,−1)非零但坐标总和为0；w_k=a²b^k a^(-1)b^(-k)具有同一向量(1,0)却循环长度2k+3互异。它们均不是u=a的正规根（Freiheitssatz），因此不能把此无限字族当成主题反例。",
+      "evidence_ids": [
+        "E1029-M1",
+        "E1029-M2",
+        "E1029-M4"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "正规根、普通幂根与闭包等号的区别",
+      "math_status": "仅特例",
+      "scope_note": "完整手证取w=a²ba^(-1)b^(-1)，有e(w)=(1,0)，且w是a的共轭及逆共轭的乘积，所以a为w的正规根；w不是a的普通幂。令a作用为T(t)=t+1、b作用为D(t)=2t，则D T^(-1)D^(-1)=T^(-2)，w作用为恒等而a非恒等，故a∉⟪w⟫，得到⟪w⟫⊊⟪a⟫。同一例也说明e(u)=e(r)不足以判断u∈⟪r⟫。只是概念边界和反向商证书，没有主问题反例。",
+      "evidence_ids": [
+        "E1029-M1",
+        "E1029-M4"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "交换子内无限族及绕数例子的排除范围",
+      "math_status": "仅特例",
+      "scope_note": "取约定[x,y]=xyx^(-1)y^(-1)，固定u=[a,b]，令r_k=ab^k(k≥0)，则[r_k,b]=u，所以u∈⟪r_k⟫；向量(1,k)两两不同保证非共轭。该无限族严格在被排除的u∈F2′域内，仅说明主假设必要。Barmak作者稿Question101重述主问；Example102的铺砖多根也在F2′内，既不满足outside条件，也不能靠有限展示关闭无限性问题。",
+      "evidence_ids": [
+        "E1029-M4",
+        "E1029-A4"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "文献和公开完整声明的实际核验范围",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "截至2026-11-27实际学术、代码/公开AI/社区定向查询未取得一般主问完整解或同题形式化工程。2025原综述p25仍列同题未解决，这是作者当时的报告，不是全球开放的证明。BMS F16最短元形状问题与综述p138的长根结构转述未在本轮证明等价；相关McCool2001反驳属于不同问题，不能作15.102反例。求全部normalroots、严格递增正规闭包链以及相同正规闭包的Magnus共轭定理也不能替代本题。公开CB仅旧编目，JUrban同题记录明确未完成；无本轮GAP/Lean执行或证明体/锁/公理审核，不声称搜索穷尽全部仓库。",
+      "evidence_ids": [
+        "E1029-A2",
+        "E1029-A3",
+        "E1029-A4",
+        "E1029-A5",
+        "E1029-P1",
+        "E1029-P2",
+        "E1029-M5"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "1029-ac-web1-1",
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "Kourovka 15.102 Magnus normal roots",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中18版原PDF、作者F27网页与Winding；实际原段随后读取。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web1-2",
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "Baumslag Myasnikov Shpilrain problems2.pdf Magnus normal closure roots",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中作者Second edition完整PDF与背景。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web1-3",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Magnus\" \"normal roots\" solved [recency=365]",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中2025综述及旧特例线索，未取得一般主问完整解声明；不是全网无解证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web2-1",
+      "route": "原题与出处",
+      "site": "arXiv / Web.open",
+      "query": "open https://arxiv.org/pdf/1401.0300v50",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "封面/前言和本条后续find；319页工具文本。",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "封面、前言；后续15.102",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web2-2",
+      "route": "原题与出处",
+      "site": "作者主页 / Web.open",
+      "query": "open https://shpilrain.ccny.cuny.edu/problems2.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "38页作者PDF，标题/前言及后续F27原段。",
+      "url": "https://shpilrain.ccny.cuny.edu/problems2.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web2-3",
+      "route": "学术",
+      "site": "作者主页 / Web.open",
+      "query": "open https://mate.dm.uba.ar/~jbarmak/windinginv4.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "61页作者稿，定义和§11.2定点读取；非全文逐证审核。",
+      "url": "https://mate.dm.uba.ar/~jbarmak/windinginv4.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web2-4",
+      "route": "原题与出处",
+      "site": "作者主页 / Web.open",
+      "query": "open https://shpilrain.ccny.cuny.edu/gworld/problems/Back.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "F27背景页面，原作者重述历史特例。",
+      "url": "https://shpilrain.ccny.cuny.edu/gworld/problems/Back.html",
+      "locator": "F27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web3-1",
+      "route": "原题与出处",
+      "site": "arXiv / Web.find",
+      "query": "find 15.102. in 1401.0300v50",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "原题全部文字及署名已读，无本条跟随评论；未凭无评论判开放。",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "印刷99页；工具P98为0基页号",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web3-2",
+      "route": "原题与出处",
+      "site": "作者PDF / Web.find",
+      "query": "find F27 in problems2.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "原题外交换子条件、non-conjugate和normal closure定义。",
+      "url": "https://shpilrain.ccny.cuny.edu/problems2.pdf",
+      "locator": "印刷/物理13页；工具P12",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web3-3",
+      "route": "原题与出处",
+      "site": "作者PDF / Web.find",
+      "query": "find [120] in problems2.pdf",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "编号定位命中无关书目，并非McCool；未用作本题进展。",
+      "url": "https://shpilrain.ccny.cuny.edu/problems2.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "1029-ac-web3-4",
+      "route": "学术",
+      "site": "作者PDF / Web.find",
+      "query": "find Question 101 in windinginv4.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "Question101匹配当前问；邻Example102明确在F2′内。",
+      "url": "https://mate.dm.uba.ar/~jbarmak/windinginv4.pdf",
+      "locator": "印刷53页/工具P52",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web3-5",
+      "route": "学术",
+      "site": "作者PDF / Web.find",
+      "query": "find Proposition 100 in windinginv4.pdf",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "后续直接读到的是Example100；没有以误编号主张定理。",
+      "url": "https://mate.dm.uba.ar/~jbarmak/windinginv4.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "1029-ac-web3-6",
+      "route": "原题与出处",
+      "site": "作者网页 / Web.find",
+      "query": "find F27 in Back.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "背景列Magnus1930、Steinberg1986、McCool2000书目及限定结果。",
+      "url": "https://shpilrain.ccny.cuny.edu/gworld/problems/Back.html",
+      "locator": "F27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web3-7",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Free group roots of\" \"McCool\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中2000研究文摘要/书目，后续DOI和出版社全文入口失败；未冒称读到原证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web3-8",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"The theory of one-relator groups\" \"2025\" normal root arxiv",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位2501.18306v1及其normal root和Remeslennikov不同问题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web3-9",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"15.102\" \"Magnus\" solved proof [recency=365]",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "返回原Notebook等，未取得一般全题proof/counterclaim；阴性限该查询。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web4-1",
+      "route": "原题与出处",
+      "site": "作者PDF / Web.open",
+      "query": "open problems2.pdf at line 475",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "F27及全部紧邻背景L482–502、primitive、x^k y^l、[x^k,y]范围实际读。",
+      "url": "https://shpilrain.ccny.cuny.edu/problems2.pdf",
+      "locator": "印刷/物理13页",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web4-2",
+      "route": "学术",
+      "site": "作者PDF / Web.open",
+      "query": "open windinginv4.pdf at line 4620",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "§11.2 Question101及Example100/102相关段；绕数/平面边界例排在主问之外。",
+      "url": "https://mate.dm.uba.ar/~jbarmak/windinginv4.pdf",
+      "locator": "印刷52–53页",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web4-3",
+      "route": "学术",
+      "site": "arXiv / Web.open",
+      "query": "open https://arxiv.org/abs/2501.18306",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "官方版本记录只有v1=2025-01-30；摘要系165页综述，实际相关正文随后读。",
+      "url": "https://arxiv.org/abs/2501.18306",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web4-4",
+      "route": "学术",
+      "site": "DOI / Web.open",
+      "query": "open https://doi.org/10.1142/S0218196700000133",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具返回not accessible；不能视为原刊全文阅读。",
+      "url": "https://doi.org/10.1142/S0218196700000133",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "1029-ac-web5-1",
+      "route": "学术",
+      "site": "arXiv / Web.open",
+      "query": "open https://arxiv.org/html/2501.18306v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "目录与后续§1.3.1–1.3.2、§2.8.2定点读取，不通审165页。",
+      "url": "https://arxiv.org/html/2501.18306v1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web5-2",
+      "route": "学术",
+      "site": "World Scientific / Web.open",
+      "query": "open https://www.worldscientific.com/doi/10.1142/S0218196700000133",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "403 Forbidden。",
+      "url": "https://www.worldscientific.com/doi/10.1142/S0218196700000133",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "1029-ac-web5-3",
+      "route": "原题与出处",
+      "site": "作者主页 / Web.open",
+      "query": "open https://shpilrain.ccny.cuny.edu/papers.html",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "作者书目核Second edition 2002/296,1–38及第一版1999/250,1–27；未读1999正文。",
+      "url": "https://shpilrain.ccny.cuny.edu/papers.html",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web5-4",
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Barmak\" \"The Winding Invariant\" arxiv publication",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位arXiv1904.10072和作者版，未据抓取日期当出版年。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web5-5",
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"McCool\" \"Free group roots of\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "结果多为摘要/索引，不采用二手混入Howie为作者或2002年等不一致元数据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web6-1",
+      "route": "学术",
+      "site": "arXiv / Web.find",
+      "query": "find 2.8.9 in 2501.18306v1 HTML",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "§2.8.2一般求所有normal roots与上升normal-closure链是相邻不同问，F16被驳也非15.102。",
+      "url": "https://arxiv.org/html/2501.18306v1",
+      "locator": "§2.8.2，PDF印刷138页",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "1029-ac-web6-2",
+      "route": "学术",
+      "site": "arXiv / Web.find",
+      "query": "find normal root in 2501.18306v1 HTML",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "§1.3.2同题及经典背景，另§2.8.2区别不同问题。",
+      "url": "https://arxiv.org/html/2501.18306v1",
+      "locator": "§1.3.2及§2.8.2",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web6-3",
+      "route": "学术",
+      "site": "arXiv / Web.find",
+      "query": "find Freiheitssatz) in 2501.18306v1 HTML",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "Theorem1.3.1经典自由子群定理完整声明读，作为primitive特例的接口，不是全题新解。",
+      "url": "https://arxiv.org/html/2501.18306v1",
+      "locator": "Thm1.3.1，PDF印刷21页",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "1029-ac-web6-4",
+      "route": "原题与出处",
+      "site": "作者主页 / Web.find",
+      "query": "find 1999 in papers.html",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "只核1999第一版书目；无本轮已阅第一版F27的主张。",
+      "url": "https://shpilrain.ccny.cuny.edu/papers.html",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web6-5",
+      "route": "原题与出处",
+      "site": "作者PDF / Web.find",
+      "query": "find [135] in problems2.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "McCool书目与F27引用实际定位；原刊页末不同二手索引暂不据此改成绝对精确页数。",
+      "url": "https://shpilrain.ccny.cuny.edu/problems2.pdf",
+      "locator": "F27及参考文献[135]，物理36页",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web6-6",
+      "route": "学术",
+      "site": "arXiv / Web.open",
+      "query": "open https://arxiv.org/abs/1904.10072",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "官方记录v1=2019-04-22、v2=2019-08-27；本轮读作者windinginv4.pdf，未逐字比对其与v2，不能把本地作者稿自动归为v2。",
+      "url": "https://arxiv.org/abs/1904.10072",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web6-7",
+      "route": "学术",
+      "site": "World Scientific / Web.open",
+      "query": "open https://www.worldscientific.com/doi/pdf/10.1142/S0218196700000133",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "PDF入口not accessible；无进一步绕过访问控制。",
+      "url": "https://www.worldscientific.com/doi/pdf/10.1142/S0218196700000133",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "1029-ac-web7-1",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Magnus\" \"normal roots\" (\"2026\" OR \"2025\") proof counterexample [recency=730]",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "新近权威补覆盖：命中2025综述、原作者背景，无可核一般完整声明；不宣称全网无解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web7-2",
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Open problems in combinatorial group theory\" \"1999\" F27 pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "第一版书目与第二版原稿命中；未取得第一版精确F27页，最早已读同题仍2002。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web7-3",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "site:worldscientific.com \"S0218196700000133\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "仅摘要/交叉索引，原刊全文未成功；摘要明写finite conjugacy classes，与BMS简写需区分。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web7-4",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"normal roots\" \"15.102\" solved correction withdrawn",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "返回原问题/背景等，未得到对应完整proof或撤回勘误；不将非命中当不存在。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-web8-1",
+      "route": "学术",
+      "site": "arXiv / Web.open",
+      "query": "open 2501.18306v1 HTML at line 485",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "§1.3.2全相关段L469–487读完；排除相邻Magnus isomorphism猜想，省略BS旁支符号争议。",
+      "url": "https://arxiv.org/html/2501.18306v1",
+      "locator": "PDF印刷24–25页",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-web8-2",
+      "route": "学术",
+      "site": "DOI / Web.open",
+      "query": "open https://doi.org/10.1017/S0017089501010102",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "McCool2001 F16反例原文入口不可达；该不同问范围来自实际读2025综述，不声称亲核反例证明。",
+      "url": "https://doi.org/10.1017/S0017089501010102",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "1029-ac-web8-3",
+      "route": "原题与出处",
+      "site": "De Gruyter Brill / Web.click",
+      "query": "click author bibliography link 7: Combinatorial Group Theory: Open Problems on Infinite Groups (2026)",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "仅出版社书籍元数据命中；未取得该书本题正文或任何新完整解声明，不用书目标题当结果。",
+      "url": "https://www.degruyterbrill.com/document/doi/10.1515/9783112208137/html",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "1029-ac-fetch-1",
+      "route": "原题与出处",
+      "site": "官方作者主页 / Python urllib",
+      "query": "GET https://shpilrain.ccny.cuny.edu/problems2.pdf; pdftotext -layout",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "HTTP200，254687B；本地读取F27印刷13页、原参考文献，未计算/证明程序。",
+      "url": "https://shpilrain.ccny.cuny.edu/problems2.pdf",
+      "locator": "1029_source/academic/bms2002.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-fetch-2",
+      "route": "学术",
+      "site": "官方作者主页 / Python urllib",
+      "query": "GET https://mate.dm.uba.ar/~jbarmak/windinginv4.pdf; pdftotext -layout",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "HTTP200，653569B；作者稿§11.2定点阅读，不声称全文通审。",
+      "url": "https://mate.dm.uba.ar/~jbarmak/windinginv4.pdf",
+      "locator": "1029_source/academic/winding_author.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-fetch-3",
+      "route": "学术",
+      "site": "arXiv / Python urllib",
+      "query": "GET https://arxiv.org/pdf/2501.18306v1; pdftotext -layout",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "HTTP200，2051146B；印刷21、24–25、138页相关定义/定理/问题段实际读。",
+      "url": "https://arxiv.org/pdf/2501.18306v1",
+      "locator": "1029_source/academic/survey2501.18306v1.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "1029-ac-local-read",
+      "route": "学术",
+      "site": "本地原PDF转文本",
+      "query": "read extracted pages matching Theorem1.3.1, infinitely many normal roots, and Problem2.8.9; read BMS F27 complete page",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际核物理=印刷21/25/138和BMS13；未做自由群计算/Lean/GAP。",
+      "url": "https://arxiv.org/pdf/2501.18306v1",
+      "locator": "1029_source/academic/*.txt",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包全库查重简索引.jsonl",
+      "query": "UTF-8 JSON各行大小写无关包含匹配：[\"Magnus\", \"正规根\", \"normal root\", \"15.102\", \"Shpilrain\", \"winding\", \"绕数\"]",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 1,
+      "locator": "2469条索引全部扫描；exact terms",
+      "note": "精确词只命中1029本题；宽词95条仅作候选，不声称全库无重复。选择1036/1109/2369核固定正文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包全库查重简索引.jsonl",
+      "query": "UTF-8 JSON各行大小写无关包含匹配：[\"正规闭包\", \"normal closure\", \"自由群\", \"free group\", \"normal subgroup\", \"共轭\"]",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 95,
+      "locator": "2469条索引全部扫描；broader terms",
+      "note": "精确词只命中1029本题；宽词95条仅作候选，不声称全库无重复。选择1036/1109/2369核固定正文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub/qunxingmath-org/qunxing-data",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/001/QX-P-001036.meta.json\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001036.meta.json",
+      "locator": "problems/001/QX-P-001036.meta.json 全文；git blob d2897793bacd4ab1c7d759f1c3de83a1b1c4dc88",
+      "note": "已读完整内容；固定版本与简索引核对。仅为1029查重比较，不为外包题作新查新结论。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub/qunxingmath-org/qunxing-data",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/001/QX-P-001036.text.md\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001036.text.md",
+      "locator": "problems/001/QX-P-001036.text.md 全文；git blob 764ef07d970dba6c152ae9835cbf204603bfd377",
+      "note": "已读完整内容；固定版本与简索引核对。仅为1029查重比较，不为外包题作新查新结论。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub/qunxingmath-org/qunxing-data",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/001/QX-P-001109.meta.json\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001109.meta.json",
+      "locator": "problems/001/QX-P-001109.meta.json 全文；git blob 3fc3ec8c3201bd68eab03d4c40a497b5055984c2",
+      "note": "已读完整内容；固定版本与简索引核对。仅为1029查重比较，不为外包题作新查新结论。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub/qunxingmath-org/qunxing-data",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/001/QX-P-001109.text.md\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001109.text.md",
+      "locator": "problems/001/QX-P-001109.text.md 全文；git blob f754f45962fe3ff66b96fcf8a8242f20e376b63f",
+      "note": "已读完整内容；固定版本与简索引核对。仅为1029查重比较，不为外包题作新查新结论。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub/qunxingmath-org/qunxing-data",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/002/QX-P-002369.meta.json\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002369.meta.json",
+      "locator": "problems/002/QX-P-002369.meta.json 全文；git blob 60d163ce9f12002147be1214c568c5d16d826695",
+      "note": "已读完整内容；固定版本与简索引核对。仅为1029查重比较，不为外包题作新查新结论。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub/qunxingmath-org/qunxing-data",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/002/QX-P-002369.text.md\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002369.text.md",
+      "locator": "problems/002/QX-P-002369.text.md 全文；git blob 09c6cc32c1411b1cb9ffef5cc117cb6ebb9cbcbd",
+      "note": "已读完整内容；固定版本与简索引核对。仅为1029查重比较，不为外包题作新查新结论。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方HTML",
+      "query": "open https://arxiv.org/html/2501.18306v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2501.18306v1",
+      "locator": "§1.3.2 L469–488；§2.8.2 L3230–3238；References McC00/McC01",
+      "note": "根级独立读取同题段及区分F16；不把2025作者当时open描述外推到当前全球。survey的finitely many roots/all k,l要理解为非平凡词的共轭类；(0,0)应排除。F16的长度结构猜想与固定u无限类问题量词不同，其被驳不能关闭15.102。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方HTML",
+      "query": "find https://arxiv.org/html/2501.18306v1 pattern=normal root",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2501.18306v1",
+      "locator": "§1.3.2 L469–488；§2.8.2 L3230–3238；References McC00/McC01",
+      "note": "根级独立读取同题段及区分F16；不把2025作者当时open描述外推到当前全球。survey的finitely many roots/all k,l要理解为非平凡词的共轭类；(0,0)应排除。F16的长度结构猜想与固定u无限类问题量词不同，其被驳不能关闭15.102。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方HTML",
+      "query": "find https://arxiv.org/html/2501.18306v1 pattern=Remeslennikov",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2501.18306v1",
+      "locator": "§1.3.2 L469–488；§2.8.2 L3230–3238；References McC00/McC01",
+      "note": "根级独立读取同题段及区分F16；不把2025作者当时open描述外推到当前全球。survey的finitely many roots/all k,l要理解为非平凡词的共轭类；(0,0)应排除。F16的长度结构猜想与固定u无限类问题量词不同，其被驳不能关闭15.102。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p1029_c1_0",
+      "route": "原题与出处",
+      "site": "本地缓存",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000963〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整读取当前 1029_task.json，锁定 QX-P-001029/rev5d3c6b9c932bfbcc；只承担公开代码/AI/社区路线。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "p1029_c1_1",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地缓存",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000964〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "先实际列已有本地缓存文件，避免重拉公共树；未把其他题材料视为本题已核证据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p1029_c1_2#0",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "query": "{\"q\":\"\\\"Kourovka\\\" \\\"15.102\\\"\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际定向检索；搜索结果仅作来源线索，不当完整证明。 命中作者F27和旧Notebook重述、专题综述；原题/学术来源已交academic，避免重复其论文审查。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p1029_c1_2#1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "query": "{\"q\":\"\\\"Magnus\\\" \\\"normal roots\\\" group\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际定向检索；搜索结果仅作来源线索，不当完整证明。 命中作者F27和旧Notebook重述、专题综述；原题/学术来源已交academic，避免重复其论文审查。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p1029_c1_2#2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "query": "{\"q\":\"\\\"normal roots\\\" \\\"commutator subgroup\\\"\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际定向检索；搜索结果仅作来源线索，不当完整证明。 命中作者F27和旧Notebook重述、专题综述；原题/学术来源已交academic，避免重复其论文审查。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p1029_c2_0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_full_name\":\"bespokelabsai/conjecture-bench\",\"path\":\"problems/extended-catalog/kourovka-notebook/kourovka-main-15-102.json\",\"ref\":\"8d494791ace5894b860585d67ba8e69dbfed6376\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-15-102.json",
+      "note": "固定 CB 条目全文保留 r 是 u 正规根 iff u∈normalClosure(r)、u∉[Fn,Fn]、infinitely many non-conjugate；listed-unsolved 仅2026-07-03固定快照的编目。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "p1029_c2_1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_name\":\"google-deepmind/formal-conjectures\",\"query\":\"\\\"normal root\\\"\",\"topn\":10}",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "GitHub default-branch 索引查询返回零条；未取得同题 Lean 文件，不声称穷尽固定 ea8 提交全部树。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "p1029_c2_2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_name\":\"openai/math\",\"query\":\"\\\"normal roots\\\"\",\"topn\":10}",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "仅一处等变几何中 equivariant normal roots 命中，路径为 Virasoro-Constraints-under-Projectivization 的05-shift.tex；真实命中片段不是自由群正规闭包。未取该异题全文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "p1029_c2_3",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地缓存",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000965〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "实际 rg 固定 OAI3344…已缓存 overview.tex 返回1，无匹配；限这个概览文件。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "p1029_c2_4#0",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1_search_query",
+      "query": "{\"q\":\"\\\"15.102\\\" \\\"Kourovka\\\" (proof OR solution OR Lean)\",\"recency\":400}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际定向检索；搜索结果仅作来源线索，不当完整证明。 recency=400；命中官方2026更新、Maidenhead与AI汇编等候选目录，但未见精确15.102完整解声明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p1029_c2_4#1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1_search_query",
+      "query": "{\"q\":\"\\\"normal roots\\\" \\\"Magnus\\\" (solved OR proof OR Lean OR AI)\",\"recency\":400}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际定向检索；搜索结果仅作来源线索，不当完整证明。 recency=400；命中官方2026更新、Maidenhead与AI汇编等候选目录，但未见精确15.102完整解声明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p1029_c2_4#2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1_search_query",
+      "query": "{\"q\":\"\\\"normal roots\\\" site:mathoverflow.net\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际定向检索；搜索结果仅作来源线索，不当完整证明。 recency=400；命中官方2026更新、Maidenhead与AI汇编等候选目录，但未见精确15.102完整解声明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p1029_c2_4#3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "{\"ref_id\":\"https://kourovkanotebookorg.wordpress.com/repository/\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "note": "实际读官方Repository可访问文本，共272行，列出拟解入口；页面声明并非所有稿已核，不能把目录标签当验证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p1029_c2_4#4",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "{\"ref_id\":\"https://kourovkanotebookorg.wordpress.com/updates/\"}",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://kourovkanotebookorg.wordpress.com/updates/",
+      "note": "通用 /updates/ URL 返回 Internal Error；之后通过实际命中11月更新文章和其链接取得正确PDF，不将此次失败当空内容。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "p1029_c3_0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_name\":\"google-deepmind/formal-conjectures\",\"query\":\"Magnus\",\"topn\":10}",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "GitHub 搜索 Magnus 零条，索引检索阴性不等于全仓库/全球无形式化。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "p1029_c3_1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_name\":\"openai/math\",\"query\":\"Shpilrain\",\"topn\":10}",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "实际七个路径命中：Shpilrain 的仿射空间消去/稳定坐标论文引用，及CAT(0)群问题H11引用。按命中片段确认为异题；没有将同作者或同清单引用当15.102证明，未取无关全文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "p1029_c3_2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_name\":\"JUrban/kour1\",\"query\":\"\\\"15.102\\\"\",\"topn\":10}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "精确15.102定位 JUrban/kour1 的triage及problem-index，固定dce7931…；随后取得相关triage全文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p1029_c3_3#0",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "query": "{\"q\":\"\\\"normal roots\\\" \\\"Magnus\\\" site:github.com\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际定向检索；搜索结果仅作来源线索，不当完整证明。 精确 normal roots/Magnus 的GitHub及MathOverflow域查询，未取得精确同题新完成候选；合并搜索只返回Notebook转载，不能推断所有论坛没有相关材料。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p1029_c3_3#1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "query": "{\"q\":\"\\\"normal roots\\\" \\\"Magnus\\\" site:mathoverflow.net\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际定向检索；搜索结果仅作来源线索，不当完整证明。 精确 normal roots/Magnus 的GitHub及MathOverflow域查询，未取得精确同题新完成候选；合并搜索只返回Notebook转载，不能推断所有论坛没有相关材料。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p1029_c3_3#2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "query": "{\"q\":\"\\\"15.102\\\" \\\"Kourovka\\\" AI proof 2026\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际定向检索；搜索结果仅作来源线索，不当完整证明。 精确 normal roots/Magnus 的GitHub及MathOverflow域查询，未取得精确同题新完成候选；合并搜索只返回Notebook转载，不能推断所有论坛没有相关材料。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p1029_c3_3#3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "{\"ref_id\":\"https://kourovkanotebookorg.wordpress.com/2026/11/02/november-2026-update-for-the-21st-edition/\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://kourovkanotebookorg.wordpress.com/2026/11/02/november-2026-update-for-the-21st-edition/",
+      "note": "实际读官方11月2日更新说明，明确 ♯ 为尚未经数学家确认的AI拟解；随后点其真实updates链接。该说明不是15.102已解决证据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p1029_c3_3#4",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "{\"ref_id\":\"https://maidenhead.solutions/\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://maidenhead.solutions/",
+      "note": "实际读取项目公开页的可访问文本视图，共491行；不是访问其私有源码。后续对目标号码及normal roots作全文文本find。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p1029_c4_0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_full_name\":\"JUrban/kour1\",\"path\":\"research/triage-2026-09-11-evening.md\",\"ref\":\"dce7931e980c7db83100a07fbe084fc1dd655fdb\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/JUrban/kour1/blob/dce7931e980c7db83100a07fbe084fc1dd655fdb/research/triage-2026-09-11-evening.md",
+      "note": "完整取得固定triage文件，实际审核 Issue15 source boundaries 中15.102段：x^k y^l 特例不覆盖任意词，阿贝尔化限制不界定根长度或共轭类数；文档明确不增加完整解候选。其他题不处理。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "p1029_c4_1#0",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"15.102\"} 〔私有记录编号：PR-000966〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "对可访问网页文本定点find返回No matching text；只证明当前文本内未匹配该词，不覆盖私有仓库/隐藏内容或全球证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "p1029_c4_1#1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"15.102\"} 〔私有记录编号：PR-000967〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "对可访问网页文本定点find返回No matching text；只证明当前文本内未匹配该词，不覆盖私有仓库/隐藏内容或全球证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "p1029_c4_1#2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"normal roots\"} 〔私有记录编号：PR-000968〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "对可访问网页文本定点find返回No matching text；只证明当前文本内未匹配该词，不覆盖私有仓库/隐藏内容或全球证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "p1029_c4_1#3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web click",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"id\":5} 〔私有记录编号：PR-000969〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21upd.pdf",
+      "note": "从官方11月更新文章真实id5取得2026/11/21upd.pdf，39页/1767文本行；本轮只读取返回文本和后续目标find，没有逐页视觉审阅，也未全审其他题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p1029_c5_0#0",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"15.102\"} 〔私有记录编号：PR-000970〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21upd.pdf",
+      "note": "在所取11月更新PDF文本中分别查15.102和normal roots均No matching text；只作为本次编目覆盖，不证明数学开放。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "p1029_c5_0#1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web find",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"normal roots\"} 〔私有记录编号：PR-000971〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21upd.pdf",
+      "note": "在所取11月更新PDF文本中分别查15.102和normal roots均No matching text；只作为本次编目覆盖，不证明数学开放。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q1029-M1",
+      "route": "原题与出处",
+      "site": "本地当前题卡",
+      "query": "local_read: 1029_task.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整读取当前Fn题面、指数和口语、有限/无限验收与旧来源。",
+      "url": "https://www.qunxingmath.org/p/QX-P-001029/",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1029-M2",
+      "route": "学术",
+      "site": "作者原PDF / Web",
+      "query": "web_open: https://shpilrain.ccny.cuny.edu/problems2.pdf at F27",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读38页PDF中的F27（physicalpage13/P12）：原定义和问题、primitive结论及McCool特殊形状背景。未通审全清单或原McCool证明。；工具ref=〔原始工具引用已私有留存〕",
+      "url": "https://shpilrain.ccny.cuny.edu/problems2.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1029-M3",
+      "route": "学术",
+      "site": "作者原PDF / Web",
+      "query": "web_find: BMS problems2.pdf；pattern Freiheitssatz",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际读Magnus1930原Freiheitssatz文献[127]及McCool2000[135]书目信息。原1930证明未本轮重读；短应用以下明确列出。；工具ref=〔原始工具引用已私有留存〕",
+      "url": "https://shpilrain.ccny.cuny.edu/problems2.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E1029-A1",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "15th Issue (2002), Problem15.102；印刷99页、工具P98（0基，物理第99页）；题文及署名全部读取",
+      "version": "The Kourovka Notebook No.21；arXiv1401.0300v50，2026-11-02；本轮2026-11-27读取",
+      "subquestions": [
+        "主问题",
+        "原题、出处和量词"
+      ],
+      "role": "原始提出",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "review_status": "已读未核关键步骤",
+      "note": "W.Magnus括号归属、V.E.Shpilrain署名；本条在15th Issue(2002)区。r为u的normalroot定义为u∈⟪r⟫_Fn，要求固定u∉[Fn,Fn]，问是否可有无限多个两两不共轭的r。当前段没有附加评论，但不据此宣告全球开放；仅说明最新所读条目仍呈现该问。不能用卡内旧novelty的不同card_rev替代本轮核对。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E1029-A2",
+      "url": "https://shpilrain.ccny.cuny.edu/problems2.pdf",
+      "locator": "Baumslag–Myasnikov–Shpilrain, Open problems in combinatorial group theory. Second edition；F27，印刷/物理13页；标题/前言、参考文献[127],[135],[136],[176]相关条目",
+      "version": "Contemporary Mathematics296(2002),1–38；作者原PDF SHA256 26e85a1adc40d4e8a14ba66cb4e44e935233a32248f5a625f5cb0b58931ce700（254687B）",
+      "subquestions": [
+        "主问题",
+        "原题、出处和量词",
+        "本原元及双幂词的已知特例",
+        "rank1及本原元非零幂的完整特例",
+        "双幂词的已发表有限性及算法结果",
+        "文献和公开完整声明的实际核验范围"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "review_status": "已读未核关键步骤",
+      "note": "本轮最早直接读到精确outside-commutator/infinite-nonconjugate问句的原题文本为此2002作者版，亦对应Kourovka2002。作者书目另列第一版Contemp.Math250(1999),1–27，前言提1997首个网络草稿；这些版本的F27具体文字本轮未取，故不宣称2002是绝对首次提出。Magnus1930文章是根问题和若干特例的早源，未取得该原刊精确无限性问句。F27背景明确primitive u仅u±的共轭，以及McCool2000双幂词特例；只读这些陈述，未独立复核所引旧文全证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1029-A3",
+      "url": "https://shpilrain.ccny.cuny.edu/problems2.pdf",
+      "locator": "F27背景印刷13页及文献[135]；并交叉读Shpilrain作者背景网页F27与2025综述p25",
+      "version": "2002作者版，SHA256 26e85a1adc40d4e8a14ba66cb4e44e935233a32248f5a625f5cb0b58931ce700；所引J.McCool, Free group roots of a^k b^l and [a^k,b], IJAC10(2000), DOI10.1142/S0218196700000133",
+      "subquestions": [
+        "主问题",
+        "本原元及双幂词的已知特例",
+        "学术结果的核验范围",
+        "双幂词的已发表有限性及算法结果",
+        "文献和公开完整声明的实际核验范围"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "review_status": "未读全文",
+      "note": "可核的原作者问题集重述：对于固定u=x^k y^l，已有有限个正规根共轭类并可算法求出；本回执限定至少一指数非零以保证当前u∉F′，零指数退化为本原元幂另有Freiheitssatz短证。不能把每一共轭元素数量也写有限，不能将k=l=0的单位元纳入。原McCool出版社正文和PDF均403/不可访问；本轮只读其摘要索引、BMS重述和2025综述，未审原算法。DOI与作者McCool可信，部分二手索引误并Howie为作者/给2002年或页末348，故不依这些冲突扩写书目。另[ x^k,y ]分类在F′内，只作不同范围背景，不给主问反例。此E与A2同源，不能计作独立证明认证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "claim_review": "not_read",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E1029-A4",
+      "url": "https://mate.dm.uba.ar/~jbarmak/windinginv4.pdf",
+      "locator": "Jonathan Ariel Barmak, The Winding Invariant；§1定义；§11.2，印刷52–53页；Question101及Example102相关完整段",
+      "version": "本轮作者61页PDF SHA256 e946ca4f8fa74c354011de2485250c0093b11f38cd62d93d0885c55bd51a3a13（653569B）；arXiv1904.10072官方v1=2019-04-22/v2=2019-08-27，未逐字比对作者PDF与v2",
+      "subquestions": [
+        "主问题",
+        "绕数方法与交换子内例子的范围",
+        "学术结果的核验范围",
+        "交换子内无限族及绕数例子的排除范围",
+        "文献和公开完整声明的实际核验范围"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "review_status": "已读未核关键步骤",
+      "note": "Question101精确重述本题而非给出解答。绕数映射定义在F2′上；§11.2说明交换子内元素的primitive normalroots以及Example102由平面区域得到七个正规根。这些例子的u仍在F2′，不满足本题outside条件，且固定有限示例本身也不证明无限族。只核定义、问题及例子所属范围，未通审全文绕数理论或所有铺砖证明；该稿自己的open表述仅为当时作者报告。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E1029-A5",
+      "url": "https://arxiv.org/pdf/2501.18306v1",
+      "locator": "Marco Linton–Carl-Fredrik Nyberg-Brodda, The theory of one-relator groups: history and recent progress；§1.3.1 Thm1.3.1 p21、§1.3.2 pp24–25；§2.8.2 Problems2.8.9/2.8.10 p138",
+      "version": "arXiv2501.18306v1，提交2025-01-30；165页；SHA256 48c9436ac575b917827c4cd0ed942600afdb63a13ed88f134dd77d3f159b023b（2051146B）；官方abs本轮仅列v1",
+      "subquestions": [
+        "主问题",
+        "本原元及双幂词的已知特例",
+        "正规根长度猜想与相邻问题的排除",
+        "学术结果的核验范围",
+        "rank1及本原元非零幂的完整特例",
+        "双幂词的已发表有限性及算法结果",
+        "文献和公开完整声明的实际核验范围"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "review_status": "已读未核关键步骤",
+      "note": "相关页原文实际读，p25明确列当前outside-F′无限normalroot问题为作者认为仍开放，并综述Magnus/Steinberg/McCool特例；本轮将finitely many解释为共轭类、限定非平凡双幂词，未照抄压缩文字的all k,l到单位元。Thm1.3.1给循环约化one-relator的Freiheitssatz，供本原元幂特例应用；未重证经典定理。BMS F16原题涉及正规闭包中最短元素的形状；此综述p138转述为|r|>|w|时w与交换子的关系并引用McCool2001反驳。本轮不主张两种文字表述未经桥接就严格相同。这里仅作范围排除：F16的最短元/长度结构问题被驳，不等于构造固定outside-u的无限两两不共轭正规根，不能移作15.102反例。Problem2.8.9求全部根与Question2.8.10严格递增normal-closure链亦非本题。未取得McCool2001原反例证明，不以该综述替代一般问题的新证据；截至本轮的定向最新检索未取得全题完整声明，结论限实际覆盖。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E1029-P1",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-15-102.json",
+      "locator": "完整 kourovka-main-15-102.json 的 statement、status_observation、provenance",
+      "version": "commit 8d494791ace5894b860585d67ba8e69dbfed6376; blob 78fe752337d84f8a6498001c52843eca97feac74; source snapshot 2026-07-03",
+      "subquestions": [
+        "主问题",
+        "文献和公开完整声明的实际核验范围"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "Fn自由群，r是u的正规根当且仅当u属于r的正规闭包；保留u在[Fn,Fn]之外以及无限多个互不共轭根的精确量词。条目不是Lean定理或证明；listed-unsolved仅固定版本文字编目，source_locator为15.102/main/page94，不据此推当前无解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1029-P2",
+      "url": "https://github.com/JUrban/kour1/blob/dce7931e980c7db83100a07fbe084fc1dd655fdb/research/triage-2026-09-11-evening.md",
+      "locator": "Issue 15 source boundaries, 19:20 UTC；15.102段；文首和范围声明",
+      "version": "commit dce7931e980c7db83100a07fbe084fc1dd655fdb; blob 2d81c9c95ac905fb1535d662bb1b5031ff00e7bd; dated filename 2026-09-11（非独立验证的首次公开日期）",
+      "subquestions": [
+        "主问题",
+        "文献和公开完整声明的实际核验范围"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "已取得全文并实际审同题段。该公开研究记录明确保留边界：x^k y^l 的已发表根分类不处理任意u∉[Fn,Fn]；一个正规根的阿贝尔化受限不提供词长或共轭类数量上界。文件把这些检查归为范围排除/未完成路线，不是新完整解；未取得同题Lean或GAP代码，未构建或运行。它是该项目自己的范围报告，不可替代原学术定理，也不能把项目未解外推为全局开放。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E1029-M1",
+      "url": "https://www.qunxingmath.org/p/QX-P-001029/",
+      "locator": "本轮手证：有限秩、正规闭包乘积定义、包含方向与固定u的量词；完整关键等式和论证内嵌于note",
+      "version": "2026-11-27群星本轮手证；原审计SHA256 23545b1fd7610dfb2b07206703a668f553b6a71d6df4c4dd79649fbfecf0fb44",
+      "subquestions": [
+        "原题、出处和量词",
+        "阿贝尔化必要条件及其局限",
+        "正规根、普通幂根与闭包等号的区别"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "note": "此链接锚定被审题卡；以下为本轮新增手证报告，不声称原题卡已含这些结论。根级已独立静态核查全部短证；没有程序执行、GAP或Lean构建，也没有重证Freiheitssatz。完整关键内容：{\"domain\":\"F_n为选定有限秩n的自由群，通常n≥1；实质非交换问题在n≥2。若允许n=0则F_0=1，没有交换子群外元素。不能把n默认改成无限秩或只检n=2就声称覆盖全部有限秩。\",\"normal_root\":\"r是u的正规根 iff u∈<<r>>_(F_n)，即存在有限t及g_j∈F_n、ε_j∈{±1}使u=∏_(j=1)^t g_j r^(ε_j)g_j^(-1)。正规闭包是由全部共轭生成的正规子群，而不是只取共轭类本身。\",\"closure_direction\":\"该定义等价于<<u>>⊆<<r>>；不要求二者相等。关于相等正规闭包的结论不能未经另证替代此处的单向包含。M4给严格包含例。\",\"normal_vs_ordinary\":\"普通幂根u=r^k自然是正规根，但正规根不必满足任何这种幂等式；M4给在主非交换子域内的明确例。\",\"equivalence_relation\":\"这里比较F_n中的普通共轭类，不是Aut(F_n)轨道。r、g r g^(-1)、r^(-1)生成相同正规闭包，因此共轭和反演都保留正规根性质；但原题只模共轭，没有直接合并反演。\",\"inverse_classes\":\"在主假设u∉[F_n,F_n]下，每个正规根也不在交换子群（见M2），故其指数向量非零；r与r^(-1)的向量互反而不同，所以它们不共轭。若额外合并反演，每个类至多二合一，不改变有限/无限判定。\",\"quantifiers\":\"肯定构造须固定一个有限秩n和一个u∉[F_n,F_n]，给无限个两两不共轭r_k且对每个k都有u∈<<r_k>>。不能让u随k变化。否定结论是对每个固定u，正规根共轭类集有限；原题不要求所有u共享统一数目上界，也不额外要求算法。\"}",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1029-M2",
+      "url": "https://www.qunxingmath.org/p/QX-P-001029/",
+      "locator": "本轮手证：指数向量必要条件、有符号约数界及同向量的无限非根族；完整关键等式和论证内嵌于note",
+      "version": "2026-11-27群星本轮手证；原审计SHA256 23545b1fd7610dfb2b07206703a668f553b6a71d6df4c4dd79649fbfecf0fb44",
+      "subquestions": [
+        "阿贝尔化必要条件及其局限"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "note": "此链接锚定被审题卡；以下为本轮新增手证报告，不声称原题卡已含这些结论。根级已独立静态核查全部短证；没有程序执行、GAP或Lean构建，也没有重证Freiheitssatz。完整关键内容： 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1029-M3",
+      "url": "https://www.qunxingmath.org/p/QX-P-001029/",
+      "locator": "本轮手证：rank1及本原元非零幂的精确正规根分类；应用经典Freiheitssatz；完整关键等式和论证内嵌于note",
+      "version": "2026-11-27群星本轮手证；原审计SHA256 23545b1fd7610dfb2b07206703a668f553b6a71d6df4c4dd79649fbfecf0fb44",
+      "subquestions": [
+        "主问题",
+        "rank1及本原元非零幂的完整特例",
+        "双幂词的已发表有限性及算法结果"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "review_status": "本轮独立数学核对",
+      "note": "此链接锚定被审题卡；以下为本轮新增手证报告，不声称原题卡已含这些结论。根级已独立静态核查全部短证；没有程序执行、GAP或Lean构建，也没有重证Freiheitssatz。完整关键内容： 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1029-M4",
+      "url": "https://www.qunxingmath.org/p/QX-P-001029/",
+      "locator": "本轮手证：仿射商反证、严格正规闭包包含及交换子内无限正规根族；完整关键等式和论证内嵌于note",
+      "version": "2026-11-27群星本轮手证；原审计SHA256 23545b1fd7610dfb2b07206703a668f553b6a71d6df4c4dd79649fbfecf0fb44",
+      "subquestions": [
+        "阿贝尔化必要条件及其局限",
+        "正规根、普通幂根与闭包等号的区别",
+        "交换子内无限族及绕数例子的排除范围"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "review_status": "本轮独立数学核对",
+      "note": "此链接锚定被审题卡；以下为本轮新增手证报告，不声称原题卡已含这些结论。根级已独立静态核查全部短证；没有程序执行、GAP或Lean构建，也没有重证Freiheitssatz。完整关键内容：{\"ordinary_vs_normal_and_strict_containment\":{\"words\":\"令w=a² b a^(-1)b^(-1)。\",\"membership\":\"w=a·a·(b a^(-1)b^(-1))，显式为a的共轭及逆共轭的有限乘积，所以a是w的正规根，<<w>>⊆<<a>>。\",\"main_domain\":\"e(w)=(1,0)≠0，故此例在交换子群外。它不是a的普通幂：若w=a^k，阿贝尔化迫k=1，但w是循环约化长度5的字，不等于a。\",\"affine_obstruction\":\"定义F2→Aff(Q)：a映为T(t)=t+1，b映为D(t)=2t。则D T^(-1) D^(-1)=T^(-2)，所以w映成T² T^(-2)=id，而a映成非恒等T。于是<<w>>包含于此同态核，a不在<<w>>，从而<<w>>⊊<<a>>。\",\"same_vector_not_sufficient\":\"特别地，候选r=w与固定u=a具有相同非零阿贝尔化向量，却u∉<<r>>。这给出阿贝尔化条件不充分的完整商证书。\"},\"commutator_infinite_family\":{\"convention\":\"本例记[x,y]=x y x^(-1)y^(-1)。\",\"fixed_element\":\"u=[a,b]∈[F2,F2]。\",\"roots\":\"r_k=a b^k，k≥0。\",\"universal_identity\":\"[r_k,b]=a b^k b b^(-k)a^(-1)b^(-1)=[a,b]=u。故u=r_k·(b r_k^(-1)b^(-1))∈<<r_k>>对全部k成立。\",\"nonconjugacy\":\"e(r_k)=(1,k)两两不同，所以r_k两两不共轭。\",\"scope\":\"这是删除u∉[F,F]条件后的真正无限族，说明该条件必要；它不满足本题主假设，不能用来反驳本题。\"},\"execution\":\"所有字恒等式与仿射关系均为显式手证；未调用GAP、自由字枚举、随机搜索或数值矩阵计算。\"}",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E1029-M5",
+      "url": "https://www.qunxingmath.org/p/QX-P-001029/",
+      "locator": "本轮手证：全题有限性/固定元素无限族与有限证书的验收界限；完整关键等式和论证内嵌于note",
+      "version": "2026-11-27群星本轮手证；原审计SHA256 23545b1fd7610dfb2b07206703a668f553b6a71d6df4c4dd79649fbfecf0fb44",
+      "subquestions": [
+        "主问题",
+        "原题、出处和量词",
+        "文献和公开完整声明的实际核验范围"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "note": "此链接锚定被审题卡；以下为本轮新增手证报告，不声称原题卡已含这些结论。根级已独立静态核查全部短证；没有程序执行、GAP或Lean构建，也没有重证Freiheitssatz。完整关键内容：{\"positive_answer\":\"需固定同一个合格u，并证明整个无限序列都满足正规闭包成员关系和两两非共轭。有限多样本、任意多但u随样本改变、交换子群内例子都不够。\",\"negative_answer\":\"需证明对每个合格固定u共轭类集有限；不能仅证明可能的指数向量有限，也不能仅排除某个长度界内的候选。\",\"individual_certificates\":\"某个候选r的成员性可由有限共轭乘积恒等式作证；非成员性可由一个杀r但不杀u的商同态作证，如M4。有限枚举未找到更多根不证明穷尽。\",\"literature_limits\":\"BMS还记录x^k y^l等特殊形状的有限性，但本agent未读McCool原证明；由academic按实际原稿获取情况独立登记，不能直接泛化。\"}",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001036",
+      "other_card_rev": "1d7554709a402fdc",
+      "relation": "仅相似",
+      "reason": "1036问无限生成自由群的自同构群Aut(F)是否由单元素/对合正规生成；1029问有限秩自由群F_n中一个u的正规根共轭类数量，环境群、生成目标和量词均不同。",
+      "positions": {
+        "self": "1029§题面、形式化表述、原文摘录、acceptance.criteria",
+        "other": "QX-P-001036§题面、形式化表述/边界、原文摘录、metadata.acceptance"
+      },
+      "note": "pair QX-P-001029__QX-P-001036；owner1029本包。双方身份与固定rev已核；meta blob d2897793bacd4ab1c7d759f1c3de83a1b1c4dc88；text blob 764ef07d970dba6c152ae9835cbf204603bfd377。不建议合并，不采用外题旧进展作为1029结果。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001109",
+      "other_card_rev": "11c12f4eb43b958b",
+      "relation": "仅相似",
+      "reason": "1109问自由群下中心列第k项是否由整套权k基本换位子正规生成；1029问交换子群外固定u落在单个r正规闭包中的无限多非共轭r。集合生成等式不等于正规根分类。",
+      "positions": {
+        "self": "1029§题面、形式化表述、原文摘录、acceptance.criteria",
+        "other": "QX-P-001109§题面、形式化表述/边界、原文摘录、metadata.acceptance"
+      },
+      "note": "pair QX-P-001029__QX-P-001109；owner1029本包。双方身份与固定rev已核；meta blob 3fc3ec8c3201bd68eab03d4c40a497b5055984c2；text blob f754f45962fe3ff66b96fcf8a8242f20e376b63f。不建议合并，不采用外题旧进展作为1029结果。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-002369",
+      "other_card_rev": "97eeaaedb6821cb7",
+      "relation": "仅相似",
+      "reason": "2369把普通幂根t通过关系t^m=w附加到自由群并问二维忠实表示；1029的正规根r原本位于F_n，定义是u属于r的正规闭包，既非普通幂根也非根附加群。对象和验收不同。",
+      "positions": {
+        "self": "1029§题面、形式化表述、原文摘录、acceptance.criteria",
+        "other": "QX-P-002369§题面、形式化表述/边界、原文摘录、metadata.acceptance"
+      },
+      "note": "pair QX-P-001029__QX-P-002369；owner1029本包。双方身份与固定rev已核；meta blob 60d163ce9f12002147be1214c568c5d16d826695；text blob 09c6cc32c1411b1cb9ffef5cc117cb6ebb9cbcbd。不建议合并，不采用外题旧进展作为1029结果。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "修复公式",
+      "field": "题面中的交换子群记号",
+      "old": "[F]_{Fn} 外的 u",
+      "new": "u∈F_n\\[F_n,F_n]，且r为u的正规根指u∈⟪r⟫_{F_n}。",
+      "reason": "原英文摘录与形式化行已经明确[F_n,F_n]；修复损坏的中文公式，不改变本回执锚定的5d3c6b9c932bfbcc。接收方若落实正式公式修订，应生成新card_rev。",
+      "evidence_ids": [
+        "E1029-A1",
+        "E1029-A2",
+        "E1029-M1"
+      ],
+      "small_case_check": "F1交换子群为1，非零幂属于合格域；u=1不在该域。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "card_action": "fix_formula"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版的指数和及长度解释",
+      "old": "u的指数和不为零；指数和不为零使它有「长度」可用。",
+      "new": "u相对于自由基的各指数和组成的向量非零；正规根的阿贝尔化向量只有有限种必要选择，但这不给出循环长度或共轭类数量上界。",
+      "reason": "总指数和与向量非零不同。仅人话澄清不强制换rev；不得把有限向量数写成一般有限性证明。",
+      "evidence_ids": [
+        "E1029-M2",
+        "E1029-M4"
+      ],
+      "small_case_check": "e(ab^(-1))=(1,−1)，总和0但不在交换子群；同向量w_k循环长度2k+3无界，且均不是a的正规根。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述、边界与acceptance",
+      "old": "u∉[Fn,Fn]: infinitely many non-conjugate normal roots ?；独立验证：自由群正规闭包计算GAP。",
+      "new": "明确有限秩n与固定同一个u；肯定答案需给无限族并逐项证明正规闭包成员关系及两两非共轭；否定答案需对每个合格u证明根的共轭类集有限。n=1为已解边界，不额外要求uniform数目上界或算法。有限GAP/字搜索只能作局部证据。",
+      "reason": "保留原二择验收。若接收方修改正式域、量词或数学验收，应新建card_rev；本回执保持原rev。普通幂根或闭包等号不能代替单向包含。",
+      "evidence_ids": [
+        "E1029-M1",
+        "E1029-M3",
+        "E1029-M4",
+        "E1029-M5"
+      ],
+      "small_case_check": "primitive非零幂精确2τ(|m|)类；[a,b]的ab^k无限族必须排除，因为u在交换子群内。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展、相关进展与声称解决",
+      "old": "Baumslag-Myasnikov-Shpilrain清单收录；Winding Invariant相关——开放。",
+      "new": "分列本原元/其非零幂与rank1的完整特例、McCool2000非平凡x^k y^l有限分类；绕数例限F2′。2025survey所述F16反例是不同问题，不能关闭本题。",
+      "reason": "登记具体范围和核验层级：本轮短证已核，McCool原刊正文不可访问，采用原作者重述而不伪称完整复核。不是对一般主问结案。",
+      "evidence_ids": [
+        "E1029-A2",
+        "E1029-A3",
+        "E1029-A4",
+        "E1029-A5",
+        "E1029-M3",
+        "E1029-M4"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "sources、proposer、first_published",
+      "old": "V.E.Shpilrain；2002年辑；Kourovka15.102。",
+      "new": "保留Kourovka的W.Magnus归属与V.E.Shpilrain署名，并补BMS第二版F27(Contemp.Math296,2002)。精确当前问句本轮最早已读2002；1930根问题、1999第一版及1997网络草稿只注明已核书目/历史层级。",
+      "reason": "不把“本轮最早已读”冒作绝对首次提出年，不据署名推未经原文核验的年份。",
+      "evidence_ids": [
+        "E1029-A1",
+        "E1029-A2",
+        "E1029-A5"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "informal_status、novelty、formal_status和开放状态证据",
+      "old": "旧OPEN/not_found_in_scope；formal_status=none；novelty内部card_rev=db97e3efe80be99f。",
+      "new": "对当前5d3c6b9c932bfbcc登记有部分进展，一般主问本轮未取得完整确证；公开路线未检到同题形式化。旧内部rev记录仅作历史，不可迁移成当前回执。",
+      "reason": "无♯/∗/评论和平台listed-unsolved只是编目状态；旧记录不是本轮查新。没有实际构建或GAP执行，不标复跑成功。",
+      "evidence_ids": [
+        "E1029-A1",
+        "E1029-A3",
+        "E1029-A5",
+        "E1029-P1",
+        "E1029-P2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "1999第一版/1997草稿未取到当前F27精确原句，1930原刊亦未读无限性问句；目前最早已读同题为2002。",
+      "next_step": "按最早已读出处登记；仅在需要精确首次提出年时补读更早原文，不把归属Magnus等同1930已提出当前量词。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "McCool2000原刊正文403/不可达；2001 F16原论文入口也不可达。已读BMS和2025原作者综述相应结果陈述，但没有独立核其算法或反例全证明。",
+      "next_step": "特殊族按已发表结果的明确重述记录并保留阅读层级；将来有原稿可补核，不因此将F16或交换子内例误用作主问题全解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2026-11-27有限定向检索未取得覆盖任意outside-u的完整声明；文献/目录open标签不能证明全球未解决。",
+      "next_step": "保持一般主问未闭合；新证明须对全部该域u给有限类，或给固定u及无限两两不共轭normalroots并证明成员关系。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "未取得同题完整候选或形式化源码；FC/OAI及公开页面阴性仅限实际查询范围，不能据此完成无穷数学判定。",
+      "next_step": "后续如有精确15.102完成声明，先取得固定原稿/源码，逐项核u∉[Fn,Fn]、正规闭包包含方向、无限多互不共轭根或全部u有限性的量词，再核证明及可能依赖/日志；不从有限GAP搜索直接推出全题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "5d3c6b9c932bfbcc",
+      "codes": {}
+    }
+  ]
+}

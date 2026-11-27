@@ -1,0 +1,3322 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000741",
+  "card_rev": "2a3f7387d6edc5cc",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-10"
+      ],
+      "parts": [
+        {
+          "subquestion": "充分大素数的全部非零子集",
+          "value": "claimed_proof",
+          "note": "本轮原站论文明确完成充分大素数p的全部子集；拼接小段BeKr、中段PhSa、大段BBKMM后无渐近大小缺口，但仍有有限小素数缺口，未核显式阈值/全量有限验证。非主问题全部p已证。"
+        },
+        {
+          "subquestion": "素域小集与近满集的既有结论",
+          "value": "partial",
+          "note": "2020正式稿Prop4.2覆盖素域|A|≤12的valid口径。旧近满Alspach结论附ΣA≠0，不能无条件套到所有零和集合；全体非零特例另核。"
+        },
+        {
+          "subquestion": "小集大小随最小素因子增长的范围",
+          "value": "claimed_proof",
+          "note": "2602.19989v1 Thm1.3将小集指数由1/4改为1/3，适用k的最小素因子p；仅核主定理范围，未通审证明。t-weak结果不当作完整排列互异。"
+        },
+        {
+          "subquestion": "任意阿贝尔群的20/22/23规模声明",
+          "value": "claimed_resolution",
+          "note": "20/22/23是公开计算辅助证明声明。原文一般Q-span终止推理存在有挠群障碍，需核实际代码采用的证书与可达矩阵；本轮不能升级确证，也不能因该障碍宣布结论已反驳。"
+        },
+        {
+          "subquestion": "计算证明中有理行空间终止判据",
+          "value": "conflicting",
+          "note": "原文p7给出Q-rowspan即可推出群关系的通用断言；本轮精确F11例说明通用断言不成立。此冲突限于终止判据，无实际搜索树可达性证据，不是原题反例。"
+        },
+        {
+          "subquestion": "任意有限阿贝尔群的充分大子集",
+          "value": "claimed_proof",
+          "note": "两篇10月稿的已读镜像主定理均限于|S|超过与群无关的绝对阈值。NTV摘要full generality不能覆盖正文省略的所有小集。原站不可达/镜像真实性与全证明未独立核，保留来源层级。"
+        },
+        {
+          "subquestion": "Atomicium AI 辅助证明候选是否给出无条件完整证明",
+          "value": "partial",
+          "note": "本轮命中全局候选并取得原稿；实际原稿自明为依赖四局部认证块的条件性方案。本标签仅登记候选声明的条件范围，不表示本轮证明这些局部块或全局重组。Python 局部合同与 p≤13 回测不接合成所有素数证明；未检到公认完成证明或 Lean 全定理。"
+        },
+        {
+          "subquestion": "公开有限计算可核范围",
+          "value": "partial",
+          "note": "Jared 固定仓库声称104个有限行；本轮实际只复核公开短脚本覆盖的一个 Z53 大小41见证及控制例。无对应全枚举源码和104行原始证书，不能称复跑全部计算；原题仍需全素数量词。"
+        },
+        {
+          "subquestion": "边界与定义：s0不计、总和可为0、空集及小集合",
+          "value": "partial",
+          "note": "直接核对：空集的空排序真空成立，单元素显然成立，任意二元素{a,b}⊆F_p*的排序(a,b)给前缀a、a+b，因b≠0而互异，无需a+b≠0。特别F3的A={1,2}给1、0，不能擅加s0或非零总和假设。对域外A={0,1,2}⊂F3的8节点完整回溯无解，且有零元素位置的直接反证；这只是说明不能随意放宽输入，不是现卡反例。详见q007_direct_math_checks.md与q007_boundary_checks.json。"
+        },
+        {
+          "subquestion": "本轮有限精确检验：所有素数p≤13的全部非零元素子集",
+          "value": "partial",
+          "note": "2026-11-26实际执行标准库Python 3.12.14精确回溯，时间上限120秒，实际约0.457秒，完成p=2,3,5,7,11,13全部5206个子集（含6个空集；5200个非空；421个非空总和为0）。每个输入找到一个有效排序，保存q007_certificates.jsonl。总DFS节点1021275；不使用对称归约或启发式排除，仅在已重复非空前缀时剪枝。单独验证器未导入DFS，使用itertools.combinations核对完整输入域并按整数求和模p验证全部证书，通过。覆盖止于p≤13，不是任意素数的证明、反例、文献新成果或Lean/其他证明助理复跑。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/certificates/GLOBAL_EXECUTABLE_CERTIFICATE.md"
+      ],
+      "note": "只覆盖：有附加假设"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://math.colgate.edu/~integers/y113/y113.pdf",
+      "review": "key_steps_checked"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "有部分进展",
+      "scope_note": "现卡量化每个素数p、每个A⊆Fp*，只比较非空部分和s1,…,s|A|，允许总和0；该口径与CB固定稿及原论文重述一致。当前论文拼接覆盖所有充分大的p，但本轮未取得有效总阈值与其下全部素数的全量验证，不能推出全部p已解。公开AI稿仍依赖四局部认证块；20/22/23基数论文的通用Q行空间判据受精确有挠群例质疑，该例未证实际搜索可达，不是原题反例。另已实际完成p≤13的5206子集正证书检查和一个公开Z53见证短检查，均不是一般证明或Lean内核复跑。原站/镜像/摘要及作者声明/本轮验证分别记录。",
+      "evidence_ids": [
+        "R10-Q007-E-CB",
+        "R10-Q007-E-Kravitz2024",
+        "Q007-ACA-PHSA",
+        "Q007-ACA-BEKR",
+        "Q007-ACA-BBKMM",
+        "Q007-ACA-SMALL2026",
+        "Q007-ACA-SPAN-CHECK",
+        "QX-P-000741-code-e1",
+        "QX-P-000741-code-e3"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "充分大素数的全部非零子集",
+      "math_status": "完整证明声明",
+      "scope_note": "本轮原站论文明确完成充分大素数p的全部子集；拼接小段BeKr、中段PhSa、大段BBKMM后无渐近大小缺口，但仍有有限小素数缺口，未核显式阈值/全量有限验证。非主问题全部p已证。",
+      "evidence_ids": [
+        "Q007-ACA-PHSA",
+        "Q007-ACA-BEKR",
+        "Q007-ACA-BBKMM"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "素域小集与近满集的既有结论",
+      "math_status": "仅特例",
+      "scope_note": "2020正式稿Prop4.2覆盖素域|A|≤12的valid口径。旧近满Alspach结论附ΣA≠0，不能无条件套到所有零和集合；全体非零特例另核。",
+      "evidence_ids": [
+        "Q007-ACA-COP2020",
+        "Q007-ACA-HOS2018"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "小集大小随最小素因子增长的范围",
+      "math_status": "完整证明声明",
+      "scope_note": "2602.19989v1 Thm1.3将小集指数由1/4改为1/3，适用k的最小素因子p；仅核主定理范围，未通审证明。t-weak结果不当作完整排列互异。",
+      "evidence_ids": [
+        "Q007-ACA-CDF2026"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "任意阿贝尔群的20/22/23规模声明",
+      "math_status": "完整声明待核",
+      "scope_note": "20/22/23是公开计算辅助证明声明。原文一般Q-span终止推理存在有挠群障碍，需核实际代码采用的证书与可达矩阵；本轮不能升级确证，也不能因该障碍宣布结论已反驳。",
+      "evidence_ids": [
+        "Q007-ACA-SMALL2026",
+        "Q007-ACA-SPAN-CHECK"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "计算证明中有理行空间终止判据",
+      "math_status": "有冲突",
+      "scope_note": "原文p7给出Q-rowspan即可推出群关系的通用断言；本轮精确F11例说明通用断言不成立。此冲突限于终止判据，无实际搜索树可达性证据，不是原题反例。",
+      "evidence_ids": [
+        "Q007-ACA-SMALL2026",
+        "Q007-ACA-SPAN-CHECK"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "math_status": "conflicting"
+      }
+    },
+    {
+      "subquestion": "任意有限阿贝尔群的充分大子集",
+      "math_status": "完整证明声明",
+      "scope_note": "两篇10月稿的已读镜像主定理均限于|S|超过与群无关的绝对阈值。NTV摘要full generality不能覆盖正文省略的所有小集。原站不可达/镜像真实性与全证明未独立核，保留来源层级。",
+      "evidence_ids": [
+        "Q007-ACA-KW2026",
+        "Q007-ACA-NTV2026"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "Atomicium AI 辅助证明候选是否给出无条件完整证明",
+      "math_status": "条件性结果",
+      "scope_note": "本轮命中全局候选并取得原稿；实际原稿自明为依赖四局部认证块的条件性方案。本标签仅登记候选声明的条件范围，不表示本轮证明这些局部块或全局重组。Python 局部合同与 p≤13 回测不接合成所有素数证明；未检到公认完成证明或 Lean 全定理。",
+      "evidence_ids": [
+        "QX-P-000741-code-e1",
+        "QX-P-000741-code-e2",
+        "QX-P-000741-code-e5"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "公开有限计算可核范围",
+      "math_status": "仅特例",
+      "scope_note": "Jared 固定仓库声称104个有限行；本轮实际只复核公开短脚本覆盖的一个 Z53 大小41见证及控制例。无对应全枚举源码和104行原始证书，不能称复跑全部计算；原题仍需全素数量词。",
+      "evidence_ids": [
+        "QX-P-000741-code-e3"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "边界与定义：s0不计、总和可为0、空集及小集合",
+      "math_status": "仅特例",
+      "scope_note": "直接核对：空集的空排序真空成立，单元素显然成立，任意二元素{a,b}⊆F_p*的排序(a,b)给前缀a、a+b，因b≠0而互异，无需a+b≠0。特别F3的A={1,2}给1、0，不能擅加s0或非零总和假设。对域外A={0,1,2}⊂F3的8节点完整回溯无解，且有零元素位置的直接反证；这只是说明不能随意放宽输入，不是现卡反例。详见q007_direct_math_checks.md与q007_boundary_checks.json。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "本轮有限精确检验：所有素数p≤13的全部非零元素子集",
+      "math_status": "仅特例",
+      "scope_note": "2026-11-26实际执行标准库Python 3.12.14精确回溯，时间上限120秒，实际约0.457秒，完成p=2,3,5,7,11,13全部5206个子集（含6个空集；5200个非空；421个非空总和为0）。每个输入找到一个有效排序，保存q007_certificates.jsonl。总DFS节点1021275；不使用对称归约或启发式排除，仅在已重复非空前缀时剪枝。单独验证器未导入DFS，使用itertools.combinations核对完整输入域并按整数求和模p验证全部证书，通过。覆盖止于p≤13，不是任意素数的证明、反例、文献新成果或Lean/其他证明助理复跑。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "R10-Q007-root-01",
+      "route": "原题与出处",
+      "site": "ErdosProblems / Web open",
+      "query": "OPEN https://www.erdosproblems.com/475",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "restricted URL；未取得2026-11-26 live正文。",
+      "url": "https://www.erdosproblems.com/475",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-02",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"Erdos\" \"475\" partial sums solved ; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中475主站及forum缓存。主站缓存标DECIDABLE / Resolved up to a finite check，last edited 2026-03-05；抓取早于本轮，不能冒充当天更新。定位充分大素数结果，后续取得原稿。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-03",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"Alspach\" \"2611.24725\" ; recency=365",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "该编号指向代数拓扑论文；后续已在arXiv原站题名、作者和摘要独立核实，不支持本题进展。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-04",
+      "route": "原题与出处",
+      "site": "GitHub native connector",
+      "query": "fetch_file bespokelabsai/conjecture-bench problems/conjectures/cb-0141.json ref=main",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "完整JSON已读；非空前缀和反例目标与题卡一致。state=open只是as_of=2026-07-23的策展观察，不是当前开放性证明。",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/357bcb1a1daf93917d42e8206ceaa55645729a09/problems/conjectures/cb-0141.json",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-05",
+      "route": "原题与出处",
+      "site": "GitHub native connector",
+      "query": "GET https://api.github.com/repos/bespokelabsai/conjecture-bench/commits?path=problems/conjectures/cb-0141.json&per_page=1",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "取得该路径最近提交357bcb1a1daf93917d42e8206ceaa55645729a09，2026-07-31T15:11:09Z；用于固定本轮读取版本，不把提交日当问题提出日。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-06",
+      "route": "原题与出处",
+      "site": "GitHub native connector",
+      "query": "fetch_file bespokelabsai/conjecture-bench problems/conjectures/cb-0141.json ref=357bcb1a1daf93917d42e8206ceaa55645729a09",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "固定版本与此前main读取的Git blob SHA均为94d2b96b5b1e96f385dd6c35dfd6248a98758905；验收方向为存在一个p,A，使所有排序重复非空部分和。",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/357bcb1a1daf93917d42e8206ceaa55645729a09/problems/conjectures/cb-0141.json",
+      "locator": "完整JSON：statement、counterexample、status_observation、provenance",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-07",
+      "route": "原题与出处",
+      "site": "Integers 正式论文 PDF",
+      "query": "OPEN https://math.colgate.edu/~integers/y113/y113.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "取得5页全文，读Conjecture1、Theorem1、Theorem2及参考文献[12]。一般素域问题定义一致；本文结论仅小集范围，不是全题解。",
+      "url": "https://math.colgate.edu/~integers/y113/y113.pdf",
+      "locator": "pp1–2 Conj1/Thm1/Thm2；References[12]",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-08",
+      "route": "原题与出处",
+      "site": "WebSearch system2",
+      "query": "\"Graham\" \"On sums of integers taken from a fixed sequence\" pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Graham作者档案1971原PDF及后续论文；原稿访问结果另列，不以搜索片段当原问题正文。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-09",
+      "route": "原题与出处",
+      "site": "UCSD Graham 作者档案 PDF",
+      "query": "OPEN https://mathweb.ucsd.edu/~ronspubs/71_08_integer_sums.pdf",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "note": "入口返回19页扫描PDF但文本提取为0行；尚未取得可读的1971原问题正文。书目及p36定位来自已读2024/2026论文，明确属于后续作者的追溯。",
+      "url": "https://mathweb.ucsd.edu/~ronspubs/71_08_integer_sums.pdf",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-10",
+      "route": "原题与出处",
+      "site": "Web PDF screenshot",
+      "query": "SCREENSHOT https://mathweb.ucsd.edu/~ronspubs/71_08_integer_sums.pdf pageno=0,18",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "截图调用返回ImageDisplayed占位但没有可见图像内容；本轮未据此声称视觉读过原页。",
+      "url": "https://mathweb.ucsd.edu/~ronspubs/71_08_integer_sums.pdf",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-11",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "OPEN https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/paper/graham_rearrangement_candidate.tex",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "主复核web入口DisabledError；分工已通过原生GitHub取到固定TeX，保留两入口的不同结果。",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/paper/graham_rearrangement_candidate.tex",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-12",
+      "route": "代码、公开 AI 和社区",
+      "site": "固定源码的本地独立阅读",
+      "query": "Python读取 q007_atomic_candidate.tex 的摘要/导言及 thm:reassemblage-conditionnel 邻近行",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "根代理独立复核源稿明确保留R、H0-B+、U0simple、C0四局部认证假设，未取得无条件完整证明；这不是编译、Lean复跑或局部块逐行审校。",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/paper/graham_rearrangement_candidate.tex",
+      "locator": "摘要、Introduction et statut conditionnel、thm:reassemblage-conditionnel",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-13",
+      "route": "学术",
+      "site": "arXiv primary HTML",
+      "query": "OPEN https://arxiv.org/html/2603.20961v1 ; FIND \"Terminal certificates\" ; FIND \"clearing denominators\" ; OPEN lineno=195",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "独立读取§1定义、§2部分及§3终止判据。§3以Q行空间/秩相等推出任意阿贝尔群中的零元/等元关系，并说用numpy.linalg.matrix_rank；清分母一般只得d*a=0。该步骤被下列精确算例质疑，不能将作者20/22/23基数声明无条件升级为本轮已证。",
+      "url": "https://arxiv.org/html/2603.20961v1",
+      "locator": "§3 Terminal certificates，HTML L228–250；范围§1 Theorems1.4–1.6",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-14",
+      "route": "学术",
+      "site": "本地独立精确算术核对",
+      "query": "root: 从q007_rational_span_countercheck.json读取C，以整数点积及Bareiss无分数消元独立检验C*a、det(C)和系数线性组合；未import sympy",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "note": "全部断言通过：det(C)=-11，C*(1,...,10)^T=(11,...,11)^T，整数系数组合等于11e1；在F11所有a_i非零互异且Ca=0，但a1=1。仅反驳一般Q-rowspan到群关系的无条件推理；未证明此矩阵在论文实际树中可达，不是主猜想/整篇定理反例。",
+      "url": "https://arxiv.org/html/2603.20961v1",
+      "locator": "q007_root_countercheck.json；精确矩阵与系数见学术片段证据",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-15",
+      "route": "学术",
+      "site": "arXiv primary HTML 独立范围复核",
+      "query": "OPEN https://arxiv.org/html/2602.15797v1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "根独立读摘要、Conj1.1、Thm1.2及其后句：每个alpha存在C_alpha，覆盖C_alpha≤|S|≤p^(1-alpha)；拼接前作只推出所有充分大的p。原文给1971原稿p36及Erdos–Graham p95书目定位。本轮不称已独立验证整篇概率证明。",
+      "url": "https://arxiv.org/html/2602.15797v1",
+      "locator": "Introduction，Conjecture1.1、Theorem1.2及其后句",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-16",
+      "route": "学术",
+      "site": "arXiv primary abstract 独立排除",
+      "query": "OPEN https://arxiv.org/abs/2611.24725v1",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "2026-11-18 v1题名为An Atiyah–Hirzebruch to Adams map and the hastened Adams spectral sequence for supercohomology；Arun Debray、Weicheng Ye、Matthew Yu，math.AT；与部分和排序无关。",
+      "url": "https://arxiv.org/abs/2611.24725v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R10-Q007-root-17",
+      "route": "原题与出处",
+      "site": "作者主页 PDF 独立定义复核",
+      "query": "OPEN https://community.middlebury.edu/~jschmitt/papers/HicksOllisSchmitt2018.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "根独立读第2页Conj1.1–1.2：经典Alspach版要求总和非零并计入s0，另一版只比较s1,...,sk。本卡后一口径的素数情形正确；近满子集旧结果的额外总和条件不可静默删去。",
+      "url": "https://community.middlebury.edu/~jschmitt/papers/HicksOllisSchmitt2018.pdf",
+      "locator": "作者PDF日期2019-01-29；p2 Conjectures1.1–1.2",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-01-open-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/abs/2611.24725v1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "实际入口返回DisabledError，未取得该原站页面/正文；同文其他入口或镜像的成功不得迁移至本条。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2611.24725v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-01-open-2",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/abs/2603.20961\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "本次实际已读返回内容限书目/版本/摘要（或全文地址的摘要段），没有据此计为已读定理证明。后续正文读取如有，另有独立记录。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2603.20961",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-01-system1_search_query-1",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"Erdos\\\" \\\"475\\\" \\\"2026\\\" partial sums\",\"recency\":90}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-01-system1_search_query-2",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"2611.24725\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-01-system1_search_query-3",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"2603.20961\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-02-open-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/abs/2611.24725\"}",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "原站abs的标题、作者、分类与摘要已阅：这是Debray–Ye–Yu的Atiyah–Hirzebruch/Adams谱序列代数拓扑稿，与本题无关。只核书目身份，不声称读论文证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2611.24725",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-02-open-2",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/html/2603.20961v1\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2603.20961v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-02-system1_search_query-1",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"Pham Sauermann Graham conjecture distinct partial sums sufficiently large primes 2025 2026\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-02-system1_search_query-2",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"Bedert Bucić Kravitz Montgomery Müyesser sequencing partial sums \\\"2026\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-02-system1_search_query-3",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"Graham conjecture \\\"partial sums\\\" correction withdrawn 2026\",\"recency\":365}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-03-open-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/abs/2602.15797\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "本次实际已读返回内容限书目/版本/摘要（或全文地址的摘要段），没有据此计为已读定理证明。后续正文读取如有，另有独立记录。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2602.15797",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-03-open-2",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/html/2602.15797v1\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "本次正文返回原问题/valid ordering的定义或重述，量词与本题相同；只记这段定义已读，不表示取得或独立验证全部素数的证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2602.15797v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-03-open-3",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":62} 〔私有记录编号：PR-003420〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2603.20961v1",
+      "locator": "工具文本行 62（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-03-open-4",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":270} 〔私有记录编号：PR-003421〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2603.20961v1",
+      "locator": "工具文本行 270（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-03-system1_search_query-1",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"Graham\\\" \\\"Bedert\\\" \\\"Bucić\\\" \\\"Montgomery\\\" arxiv 2025\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-03-system1_search_query-2",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"Graham\\\" \\\"Müyesser\\\" \\\"Pokrovskiy\\\" arxiv\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-03-system1_search_query-3",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"Costa\\\" \\\"Pellegrini\\\" \\\"12\\\" \\\"partial sums\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-04-open-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":35} 〔私有记录编号：PR-003422〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2602.15797v1",
+      "locator": "工具文本行 35（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-04-open-2",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":180} 〔私有记录编号：PR-003423〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2603.20961v1",
+      "locator": "工具文本行 180（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-04-open-3",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/abs/2508.18254\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "本次实际已读返回内容限书目/版本/摘要（或全文地址的摘要段），没有据此计为已读定理证明。后续正文读取如有，另有独立记录。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2508.18254",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-04-open-4",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/html/2508.18254v1\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "本次实际已读返回内容限书目/版本/摘要（或全文地址的摘要段），没有据此计为已读定理证明。后续正文读取如有，另有独立记录。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2508.18254v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-04-open-5",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":723} 〔私有记录编号：PR-003424〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2602.15797v1",
+      "locator": "工具文本行 723（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-04-open-6",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":306} 〔私有记录编号：PR-003425〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2603.20961v1",
+      "locator": "工具文本行 306（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-05-open-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/abs/2409.07403\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "本次实际已读返回内容限书目/版本/摘要（或全文地址的摘要段），没有据此计为已读定理证明。后续正文读取如有，另有独立记录。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2409.07403",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-05-open-2",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/html/2409.07403v2\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "本次实际已读返回内容限书目/版本/摘要（或全文地址的摘要段），没有据此计为已读定理证明。后续正文读取如有，另有独立记录。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2409.07403v2",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-05-open-3",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":80} 〔私有记录编号：PR-003426〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2508.18254v1",
+      "locator": "工具文本行 80（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-05-open-4",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":225} 〔私有记录编号：PR-003427〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2603.20961v1",
+      "locator": "工具文本行 225（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-05-open-5",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":327} 〔私有记录编号：PR-003428〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本次已读参考文献列表，仅作书目定位；未因列表中出现题名而声称读过所引论文。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2603.20961v1",
+      "locator": "工具文本行 327（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-05-system1_search_query-1",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"A random Hall-Paige conjecture\\\" arxiv\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-05-system1_search_query-2",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"Costa\\\" \\\"Pellegrini\\\" \\\"A problem on partial sums\\\" 12\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-06-open-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/abs/2610.34424\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "实际入口返回DisabledError，未取得该原站页面/正文；同文其他入口或镜像的成功不得迁移至本条。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2610.34424",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-06-open-2",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/html/2610.34424v1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "实际入口返回DisabledError，未取得该原站页面/正文；同文其他入口或镜像的成功不得迁移至本条。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2610.34424v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-06-open-3",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":105} 〔私有记录编号：PR-003429〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2508.18254v1",
+      "locator": "工具文本行 105（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-06-open-4",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":36} 〔私有记录编号：PR-003430〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2409.07403v2",
+      "locator": "工具文本行 36（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-06-open-5",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/abs/2602.19989\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "本次实际已读返回内容限书目/版本/摘要（或全文地址的摘要段），没有据此计为已读定理证明。后续正文读取如有，另有独立记录。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2602.19989",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-06-open-6",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/html/2602.19989v1\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2602.19989v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-07-open-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/pdf/2610.34424\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "实际入口返回DisabledError，未取得该原站页面/正文；同文其他入口或镜像的成功不得迁移至本条。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/pdf/2610.34424",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-07-open-2",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/pdf/2603.20961\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/pdf/2603.20961",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-07-open-3",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://link.springer.com/article/10.1007/s00222-025-01328-x\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "本次实际已读返回内容限书目/版本/摘要（或全文地址的摘要段），没有据此计为已读定理证明。后续正文读取如有，另有独立记录。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://link.springer.com/article/10.1007/s00222-025-01328-x",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-07-open-4",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://link.springer.com/article/10.1007/s00013-020-01507-7\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://link.springer.com/article/10.1007/s00013-020-01507-7",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-07-system1_search_query-1",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"2610.34424\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-07-system1_search_query-2",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"Graham\\\" \\\"Peiru Kuang\\\" \\\"Yan Wang\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-07-system1_search_query-3",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"2603.20961\\\" correction OR erratum OR withdrawn\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-07-system1_search_query-4",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"Graham\\\" \\\"Sauermann\\\" \\\"conjecture\\\" correction OR withdrawn OR erratum\",\"recency\":365}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-08-open-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/abs/2610.34424v1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "实际入口返回DisabledError，未取得该原站页面/正文；同文其他入口或镜像的成功不得迁移至本条。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2610.34424v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-08-open-2",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/pdf/2610.34424v1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "实际入口返回DisabledError，未取得该原站页面/正文；同文其他入口或镜像的成功不得迁移至本条。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/pdf/2610.34424v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-08-open-3",
+      "route": "学术",
+      "site": "borowiecki.dev",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://borowiecki.dev/pdf/2610.34424\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "本次实际已读返回内容限书目/版本/摘要（或全文地址的摘要段），没有据此计为已读定理证明。后续正文读取如有，另有独立记录。 访问对象是作者论文镜像；原站失败入口独立记录，未核镜像与原档字节一致。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://borowiecki.dev/pdf/2610.34424",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-08-find-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"find\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Terminal certificates\"} 〔私有记录编号：PR-003431〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/pdf/2603.20961",
+      "locator": "页内字符串：Terminal certificates",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-08-find-2",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "{\"operation\":\"find\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Graham\"} 〔私有记录编号：PR-003432〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 此find命中的是Graham–Sloane等讨论/书目，未定位MuPo对应重排结论的原始证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://link.springer.com/article/10.1007/s00222-025-01328-x",
+      "locator": "页内字符串：Graham",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-08-find-3",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "{\"operation\":\"find\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"12\"} 〔私有记录编号：PR-003433〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "本次实际已读返回内容限书目/版本/摘要（或全文地址的摘要段），没有据此计为已读定理证明。后续正文读取如有，另有独立记录。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://link.springer.com/article/10.1007/s00013-020-01507-7",
+      "locator": "页内字符串：12",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-08-find-4",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"find\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 1.3\"} 〔私有记录编号：PR-003434〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2602.19989v1",
+      "locator": "页内字符串：Theorem 1.3",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-08-system1_search_query-1",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"2610.34424\\\" site:arxiv.org\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-08-system1_search_query-2",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"2610.34424\\\" correction OR withdrawn OR erratum\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-09-open-1",
+      "route": "学术",
+      "site": "borowiecki.dev",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":0} 〔私有记录编号：PR-003435〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "本次实际已读返回内容限书目/版本/摘要（或全文地址的摘要段），没有据此计为已读定理证明。后续正文读取如有，另有独立记录。 访问对象是作者论文镜像；原站失败入口独立记录，未核镜像与原档字节一致。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://borowiecki.dev/pdf/2610.34424",
+      "locator": "工具文本行 0（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-09-open-2",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":255} 〔私有记录编号：PR-003436〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题",
+      "note": "本次实际返回仅相关章节/定理标题和少量引导文字，没有返回该定理的完整陈述；不当作已读该定理。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://link.springer.com/article/10.1007/s00013-020-01507-7",
+      "locator": "工具文本行 255（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-09-open-3",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":331} 〔私有记录编号：PR-003437〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/pdf/2603.20961",
+      "locator": "工具文本行 331（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-09-find-1",
+      "route": "学术",
+      "site": "borowiecki.dev",
+      "query": "{\"operation\":\"find\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 1.1\"} 〔私有记录编号：PR-003438〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 访问对象是作者论文镜像；原站失败入口独立记录，未核镜像与原档字节一致。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://borowiecki.dev/pdf/2610.34424",
+      "locator": "页内字符串：Theorem 1.1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-09-find-2",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"find\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 7.1\"} 〔私有记录编号：PR-003439〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2508.18254v1",
+      "locator": "页内字符串：Theorem 7.1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-09-find-3",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "{\"operation\":\"find\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Alspach\"} 〔私有记录编号：PR-003440〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "页内find返回No matching text found；只表示这个字符串在该次页内检索未命中，不代表整篇文献不存在，也不算已读对应结果。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://link.springer.com/article/10.1007/s00222-025-01328-x",
+      "locator": "页内字符串：Alspach",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-09-find-4",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "{\"operation\":\"find\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 4.\"} 〔私有记录编号：PR-003441〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题",
+      "note": "本次实际返回仅相关章节/定理标题和少量引导文字，没有返回该定理的完整陈述；不当作已读该定理。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://link.springer.com/article/10.1007/s00013-020-01507-7",
+      "locator": "页内字符串：Theorem 4.",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-09-screenshot-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"screenshot\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pageno\":6} 〔私有记录编号：PR-003442〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "请求PDF第7页截图；实际仅返回文本<<ImageDisplayed>>占位，原始结果没有image内容块，未取得可供视觉核验的图像，不计截图视觉已核。该页文字来自另列的PDF文本open/find，不由此截图证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/pdf/2603.20961",
+      "locator": "请求PDF第 7 页；仅占位，图像未取得",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-10-open-1",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":166} 〔私有记录编号：PR-003443〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://link.springer.com/article/10.1007/s00013-020-01507-7",
+      "locator": "工具文本行 166（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-10-open-2",
+      "route": "学术",
+      "site": "borowiecki.dev",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":20} 〔私有记录编号：PR-003444〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "本次正文返回原问题/valid ordering的定义或重述，量词与本题相同；只记这段定义已读，不表示取得或独立验证全部素数的证明。 访问对象是作者论文镜像；原站失败入口独立记录，未核镜像与原档字节一致。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://borowiecki.dev/pdf/2610.34424",
+      "locator": "工具文本行 20（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-10-open-3",
+      "route": "学术",
+      "site": "borowiecki.dev",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":100} 〔私有记录编号：PR-003445〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 访问对象是作者论文镜像；原站失败入口独立记录，未核镜像与原档字节一致。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://borowiecki.dev/pdf/2610.34424",
+      "locator": "工具文本行 100（不是论文印刷页码）",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-10-find-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"find\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Müyesser and Pokrovskiy\"} 〔私有记录编号：PR-003446〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2508.18254v1",
+      "locator": "页内字符串：Müyesser and Pokrovskiy",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-10-find-2",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "{\"operation\":\"find\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"p-3\"} 〔私有记录编号：PR-003447〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "页内find返回No matching text found；只表示这个字符串在该次页内检索未命中，不代表整篇文献不存在，也不算已读对应结果。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://link.springer.com/article/10.1007/s00013-020-01507-7",
+      "locator": "页内字符串：p-3",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-10-find-3",
+      "route": "学术",
+      "site": "borowiecki.dev",
+      "query": "{\"operation\":\"find\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"arXiv\"} 〔私有记录编号：PR-003448〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本次已读参考文献列表，仅作书目定位；未因列表中出现题名而声称读过所引论文。 访问对象是作者论文镜像；原站失败入口独立记录，未核镜像与原档字节一致。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://borowiecki.dev/pdf/2610.34424",
+      "locator": "页内字符串：arXiv",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-10-system2_search_query-1",
+      "route": "学术",
+      "site": "web.system2",
+      "query": "{\"operation\":\"system2_search_query\",\"q\":\"\\\"Distinct partial sums in cyclic groups\\\" \\\"arxiv\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-10-system2_search_query-2",
+      "route": "学术",
+      "site": "web.system2",
+      "query": "{\"operation\":\"system2_search_query\",\"q\":\"\\\"Graham\\\" \\\"p-3\\\" \\\"zero\\\" partial sums\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-11-open-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/abs/2610.40712\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "实际入口返回DisabledError，未取得该原站页面/正文；同文其他入口或镜像的成功不得迁移至本条。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2610.40712",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-11-open-2",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/html/2610.40712v1\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "实际入口返回DisabledError，未取得该原站页面/正文；同文其他入口或镜像的成功不得迁移至本条。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2610.40712v1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-11-open-3",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/abs/2608.10015\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "实际入口返回DisabledError，未取得该原站页面/正文；同文其他入口或镜像的成功不得迁移至本条。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/2608.10015",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-11-open-4",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/html/2608.10015v2\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "实际入口返回DisabledError，未取得该原站页面/正文；同文其他入口或镜像的成功不得迁移至本条。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/html/2608.10015v2",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-11-open-5",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/abs/1809.02684\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "本次实际已读返回内容限书目/版本/摘要（或全文地址的摘要段），没有据此计为已读定理证明。后续正文读取如有，另有独立记录。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/abs/1809.02684",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-11-open-6",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/pdf/1809.02684\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "本次实际已读返回内容限书目/版本/摘要（或全文地址的摘要段），没有据此计为已读定理证明。后续正文读取如有，另有独立记录。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/pdf/1809.02684",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-11-find-1",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "{\"operation\":\"find\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 4.1\"} 〔私有记录编号：PR-003449〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://link.springer.com/article/10.1007/s00013-020-01507-7",
+      "locator": "页内字符串：Theorem 4.1",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-11-find-2",
+      "route": "学术",
+      "site": "link.springer.com",
+      "query": "{\"operation\":\"find\",\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"4.1 The Graham\"} 〔私有记录编号：PR-003450〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 工具返回§4.1 G-ADMS及Prop4.2等相邻正文，未把查询用语“4.1 The Graham”当成原文真实标题。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://link.springer.com/article/10.1007/s00013-020-01507-7",
+      "locator": "页内字符串：4.1 The Graham",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-12-open-1",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/pdf/2610.40712\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "实际入口返回DisabledError，未取得该原站页面/正文；同文其他入口或镜像的成功不得迁移至本条。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/pdf/2610.40712",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-12-open-2",
+      "route": "学术",
+      "site": "arxiv.org",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.org/pdf/2608.10015v2\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "实际入口返回DisabledError，未取得该原站页面/正文；同文其他入口或镜像的成功不得迁移至本条。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.org/pdf/2608.10015v2",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-12-open-3",
+      "route": "学术",
+      "site": "arxiv.cnoctave.top",
+      "query": "{\"operation\":\"open\",\"ref_id\":\"https://arxiv.cnoctave.top/pdf/2610.40712\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "本次实际返回的正文段落已读；涉及附加范围、特例、变体或其证明步骤，不能因此将主问题标为全部素数已解决，也不等于独立通审整篇证明。 访问对象是作者论文镜像；原站失败入口独立记录，未核镜像与原档字节一致。 返回ref：〔原始工具引用已私有留存〕。",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.40712",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-12-system1_search_query-1",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"2610.40712\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-Q007-ACA-12-system1_search_query-2",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "{\"operation\":\"system1_search_query\",\"q\":\"\\\"2608.10015\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际搜索请求；本条仅记录标题/索引/摘要层级，后续打开原站或镜像另列。工具将同批子查询结果合并返回，未单独给出本子查询命中数，因此不虚构计数或“无命中”。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-001",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Erdos 475\" Lean proof",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "四词并发检索的实际请求；批次返回 Atomicium 证明候选、Reddit 作者帖及 Jared 有限计算入口。结果混有同姓和其他部分和问题；不把索引状态当原题证明，也不按批次返回推断各词命中数。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-002",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Erdős 475\" AI proof",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "四词并发检索的实际请求；批次返回 Atomicium 证明候选、Reddit 作者帖及 Jared 有限计算入口。结果混有同姓和其他部分和问题；不把索引状态当原题证明，也不按批次返回推断各词命中数。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-003",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Alspach\" Lean formalization",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "四词并发检索的实际请求；批次返回 Atomicium 证明候选、Reddit 作者帖及 Jared 有限计算入口。结果混有同姓和其他部分和问题；不把索引状态当原题证明，也不按批次返回推断各词命中数。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-004",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "site:mathoverflow.net Alspach partial sums",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "四词并发检索的实际请求；批次返回 Atomicium 证明候选、Reddit 作者帖及 Jared 有限计算入口。结果混有同姓和其他部分和问题；不把索引状态当原题证明，也不按批次返回推断各词命中数。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-005",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "query=475; repository_name=google-deepmind/formal-conjectures; topn=8",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "返回的 8 个摘录是其他题号、文献页码和文件名等；未命中本题，不据此声称全库无形式化。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-006",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "query=Alspach; repository_name=openai/math; topn=8",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "url": "https://github.com/openai/math",
+      "note": "2 个摘录是 Dale E. Alspach 的 Banach 空间不动点文献，同姓不同问题。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-007",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/Atomicium-org/graham-rearrangement-certificates/commits/main",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/Atomicium-org/graham-rearrangement-certificates/commits/main",
+      "note": "解析 main 当前提交为 23cb1d03e718d0798ff79161bff516444e7ca335，提交日期 2026-05-04。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-008",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/Atomicium-org/graham-rearrangement-certificates/contents/",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/Atomicium-org/graham-rearrangement-certificates/contents/",
+      "note": "读取根目录文件清单，为定向读取候选稿/证书/脚本定位。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-009",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://github.com/Atomicium-org/graham-rearrangement-certificates",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates",
+      "note": "读取仓库元数据，默认分支 main。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-010",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://github.com/jaredwilder/graham-alspach-z53-z71",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/jaredwilder/graham-alspach-z53-z71",
+      "note": "读取仓库元数据，默认分支 master；说明为有限群阶/基数计算。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-011",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Erdos 475\" \"proof\" \"Atomicium\"; recency=180",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核公开 AI 完整证明候选入口；返回作者仓库及 Reddit 发布帖。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Alspach\" \"partial sums\" \"s_0\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回 Hicks–Ollis–Schmitt 作者 PDF 与 Costa–Pellegrini 摘要，经典版含 s0 和总和非零；后续另开作者 PDF。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-013",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Graham\" \"475\" \"Lean\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "与上述两词并发；未取得一般命题 Lean 解答，不能用相邻题号或同姓图分解结果代替。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-014",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository_full_name=Atomicium-org/graham-rearrangement-certificates; path=README.md; ref=23cb1d03e718d0798ff79161bff516444e7ca335",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/README.md",
+      "note": "全文已阅；明确研究候选与数学分支到证书的待核桥梁。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-015",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository_full_name=Atomicium-org/graham-rearrangement-certificates; path=docs/EXTERNAL_REVIEW_GUIDE.md; ref=23cb1d03e718d0798ff79161bff516444e7ca335",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/docs/EXTERNAL_REVIEW_GUIDE.md",
+      "note": "全文已阅；明确研究候选与数学分支到证书的待核桥梁。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-016",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository_full_name=Atomicium-org/graham-rearrangement-certificates; path=paper/graham_rearrangement_candidate.tex; ref=23cb1d03e718d0798ff79161bff516444e7ca335",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/paper/graham_rearrangement_candidate.tex",
+      "note": "已取得完整 3,823 行 TeX；本轮定向阅读摘要、条件性说明、零和还原、主条件定理及认证附录，未逐行验证全部局部证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-017",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository_full_name=Atomicium-org/graham-rearrangement-certificates; path=scripts/run_all.sh; ref=23cb1d03e718d0798ff79161bff516444e7ca335",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/scripts/run_all.sh",
+      "note": "全文已阅。默认实际素数回测只到 13；局部证书随机/有限穷举均不等于所有素数、所有子集定理。未运行这些脚本。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-018",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository_full_name=Atomicium-org/graham-rearrangement-certificates; path=certificates/GLOBAL_EXECUTABLE_CERTIFICATE.md; ref=23cb1d03e718d0798ff79161bff516444e7ca335",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/certificates/GLOBAL_EXECUTABLE_CERTIFICATE.md",
+      "note": "全文已阅。默认实际素数回测只到 13；局部证书随机/有限穷举均不等于所有素数、所有子集定理。未运行这些脚本。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-019",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository_full_name=Atomicium-org/graham-rearrangement-certificates; path=certificates/GLOBAL_CERTIFICATE.json; ref=23cb1d03e718d0798ff79161bff516444e7ca335",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/certificates/GLOBAL_CERTIFICATE.json",
+      "note": "全文已阅。默认实际素数回测只到 13；局部证书随机/有限穷举均不等于所有素数、所有子集定理。未运行这些脚本。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-020",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/jaredwilder/graham-alspach-z53-z71/commits/master",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/jaredwilder/graham-alspach-z53-z71/commits/master",
+      "note": "锁定 Jared master=c879d1791d21b72021213cc23a5d0cd20018e48a，提交日期 2026-09-18。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-021",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/Atomicium-org/graham-rearrangement-certificates/issues?state=all&per_page=100",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/issues/1",
+      "note": "state=all、per_page=100 返回唯一 issue #1，公开请求核数学分支→有限证书；open，comments=0，updated_at=2026-05-04T15:43:28Z。未发现该仓库内已完成独立复核的记录。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-022",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository_full_name=jaredwilder/graham-alspach-z53-z71; path=README.md; ref=master",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/jaredwilder/graham-alspach-z53-z71/blob/c879d1791d21b72021213cc23a5d0cd20018e48a/README.md",
+      "note": "全文已阅；锁定到同次 master 提交。作者报告 104 个有限 (p,k) 行，明确未计算中央基数，不是一般证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-023",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository_full_name=Atomicium-org/graham-rearrangement-certificates; path=checkers/computational/small_prime_graham_checker.py; ref=23cb1d03e718d0798ff79161bff516444e7ca335",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/checkers/computational/small_prime_graham_checker.py",
+      "note": "全文静态检查：dfs 初始化 seen_sums_mask=0，故不计空和；遍历有限 p 的所有非零子集。未执行。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-024",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository_full_name=Atomicium-org/graham-rearrangement-certificates; path=checkers/C03/c03_certificate_checker.py; ref=23cb1d03e718d0798ff79161bff516444e7ca335",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/checkers/C03/c03_certificate_checker.py",
+      "note": "取得全文并静态阅读 C03Certificate、validate_trigger、check_c03_certificate、make_random_cert；检查的是所给字段的局部契约，不构造每个原题实例的证书。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-025",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository_full_name=jaredwilder/graham-alspach-z53-z71; path=verify.py; ref=c879d1791d21b72021213cc23a5d0cd20018e48a",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/jaredwilder/graham-alspach-z53-z71/blob/c879d1791d21b72021213cc23a5d0cd20018e48a/verify.py",
+      "note": "全文静态检查：只核一个显式见证和控制例/数值，未实现 README 中的 104 行全枚举；后续实际运行单独登记。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-026",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "query=erdosproblems.com/475; repository_name=google-deepmind/formal-conjectures; topn=5",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "返回 results=[]；仅限默认分支代码搜索这条精确词，不宣称全部形式化路线已穷尽。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-027",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://community.middlebury.edu/~jschmitt/papers/HicksOllisSchmitt2018.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://community.middlebury.edu/~jschmitt/papers/HicksOllisSchmitt2018.pdf",
+      "locator": "pp.1–3; Conjectures 1.1–1.2",
+      "note": "作者 PDF 共 18 页；实际核第 1–3 页定义及 Conjectures 1.1、1.2 的量词区别。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-028",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://www.reddit.com/r/accelerate/comments/1t3vxtw/erd%C5%91s_475_grahams_rearrangement_conjecture_gpt55/",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.reddit.com/r/accelerate/comments/1t3vxtw/erd%C5%91s_475_grahams_rearrangement_conjecture_gpt55/",
+      "note": "阅读作者主帖及可见澄清评论；明确 GPT-5.5 Pro-assisted 候选，无同行评审或 Lean/Coq 声称。其公开主张仍待数学审计。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-029",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://github.com/Atomicium-org/graham-rearrangement-certificates",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates",
+      "note": "网页 README 与固定提交文件交叉核对；并非新的独立证明来源。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-030",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地文本检索",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003451〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/paper/graham_rearrangement_candidate.tex",
+      "note": "实际搜索用于定位条件性总定理、认证附录和阈值；结合 run_all.sh 未找到将 p≤13 回测与已有渐近结果接合的显式 p0 证书。未将文本无某词等同于数学否证。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-031",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/jaredwilder/graham-alspach-z53-z71/git/trees/c879d1791d21b72021213cc23a5d0cd20018e48a?recursive=1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/jaredwilder/graham-alspach-z53-z71/git/trees/c879d1791d21b72021213cc23a5d0cd20018e48a?recursive=1",
+      "note": "recursive=1，truncated=false；只有 README.md、verify.py、CITATION.cff、LICENSE 四文件，没有报告中大规模枚举引擎、逐行原始结果或 1,345 个见证集合。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-032",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地 Python 执行",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003452〕",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "url": "https://github.com/jaredwilder/graham-alspach-z53-z71/blob/c879d1791d21b72021213cc23a5d0cd20018e48a/verify.py",
+      "note": "实际退出 0，ALL CHECKS PASS。仅一个 Z53 大小41见证、零和约定例、2个二项式、3个复杂度估值、负控；不是104行复跑，更不是 Lean/kernel 验证。日志与固定来源快照保存在本题工作目录。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-033",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"graham-rearrangement-certificates\" (error OR gap OR review OR withdrawal OR correction); recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定向追查争议/勘误；返回原仓库，并出现 ProofAtlas 条件性 all-rank 路线和 Fabian Arevalo 有限 p≤37 作者索引。两条新增入口本轮仅见搜索摘录，未扩充为已核证明；本请求未命中明确撤回或独立完成证明报告。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000741-code-034",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "open 〔原始工具引用已私有留存〕 at lineno=34 〔私有记录编号：PR-003453〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://community.middlebury.edu/~jschmitt/papers/HicksOllisSchmitt2018.pdf",
+      "locator": "pp.2–3",
+      "note": "实际续读 Conjectures 1.1–1.2 对照及定义；不是另一独立来源。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003454〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 9,
+      "locator": "q007_index_scan_1.log",
+      "note": "实际执行并为保存原始输出重复同一检索。9条含自卡；最相关候选为QX-P-000904。其他Graham同名或partial sums同词条目只看索引，不扩展为已完成正文查重。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003455〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 65,
+      "locator": "q007_index_scan_2.log",
+      "note": "实际执行并为保存原始输出重复同一检索。宽词sequenc与475也命中无关序列、编号或哈希；逐条标题筛选未增加更强同源候选。此索引筛选不等于全库不存在其他重复。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000741.meta.json\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000741.meta.json",
+      "locator": "problems/000/QX-P-000741.meta.json（全文；无起止行截断）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；原始文件保存在q007_dedup_sources/QX-P-000741.meta.json，Git blob SHA=7b8dfa2565975da12aceca3c226a94bfb94847e6，已按保存文件字节重新计算核对。自卡meta与任务对象完全一致，text与任务card_text完全一致。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000741.text.md\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000741.text.md",
+      "locator": "problems/000/QX-P-000741.text.md（全文；无起止行截断）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；原始文件保存在q007_dedup_sources/QX-P-000741.text.md，Git blob SHA=61f972bb02465af852c3631c872eac20a5860f1a，已按保存文件字节重新计算核对。自卡meta与任务对象完全一致，text与任务card_text完全一致。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000904.meta.json\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000904.meta.json",
+      "locator": "problems/000/QX-P-000904.meta.json（全文；无起止行截断）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；原始文件保存在q007_dedup_sources/QX-P-000904.meta.json，Git blob SHA=5dc8deab015ca54de314ca09ec3f972744d0bae2，已按保存文件字节重新计算核对。候选一般有限群命题完整正文已阅；不重复核验候选的外部历史状态。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000904.text.md\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000904.text.md",
+      "locator": "problems/000/QX-P-000904.text.md（全文；无起止行截断）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；原始文件保存在q007_dedup_sources/QX-P-000904.text.md，Git blob SHA=5ce6649a0a0b8dd76d0b6eaa7f0024c1f50e7297，已按保存文件字节重新计算核对。候选一般有限群命题完整正文已阅；不重复核验候选的外部历史状态。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地Python 3.12.14",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003456〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "locator": "q007_exact_backtrack.py；q007_backtrack_log.json；q007_certificates.jsonl",
+      "note": "此处“无命中”专指在完整覆盖的5206个子集中未发现反例；每个输入均找到排序并输出证书。实际完成全部p≤13，约0.457秒，未触发120秒上限；不包含p>13。脚本SHA256=ea6c759a05802e9a03dc2936de64edca2e895a73dd0aefb06788f1ef201b5ef6；证书SHA256=d9aa9ec2cad8af86e31aee82a9f634a9db189eb884742b432b0ffa282addb1ed。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地Python 3.12.14",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003457〕",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "locator": "q007_verify_certificates.py；q007_certificate_verification.log",
+      "note": "此项为执行证书校验而非文献检索。实际退出码0、PASS：独立于DFS的组合输入域覆盖检查及逐项模p前缀重算，核过5206个子集、5200个非空、421个非空总和为0；未调用证明助理。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地Python 3.12.14",
+      "query": "使用importlib加载q007_exact_backtrack.py，分别调用ordering(p,A,time.monotonic()+10)：(2,[]),(2,[1]),(3,[1,2]),(3,[0,1,2])；逐项计算非空前缀并assert结果。",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "locator": "q007_boundary_checks.json；q007_direct_math_checks.md",
+      "note": "实际运行的边界断言全部通过；前三项给空排序、(1)、(1,2)，末项属现卡输入域之外，完整回溯8节点无有效排序。不是现卡反例。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "not_applicable"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R10-Q007-E-CB",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/357bcb1a1daf93917d42e8206ceaa55645729a09/problems/conjectures/cb-0141.json",
+      "locator": "完整JSON：statement、counterexample、status_observation、provenance",
+      "version": "commit 357bcb1a1daf93917d42e8206ceaa55645729a09；blob 94d2b96b5b1e96f385dd6c35dfd6248a98758905；2026-07-31",
+      "subquestions": [
+        "主问题",
+        "原题量词与出处"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "CB cb-0141的反例目标明确重复非空部分和，finite=true表示可用有限p,A并穷举全部排列证伪；与现卡一致。open(as_of=2026-07-23)是历史策展状态，不能作本轮开放性证明；不是1971原始提出，也不是证明助理代码。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R10-Q007-E-Kravitz2024",
+      "url": "https://math.colgate.edu/~integers/y113/y113.pdf",
+      "locator": "Conjecture1 (p1)、Theorem1/2 (p2)、References[12]",
+      "version": "Integers24(2024)A113；DOI10.5281/zenodo.14547951；2024-12-23正式发表",
+      "subquestions": [
+        "主问题",
+        "原题量词与出处",
+        "小集渐近结果"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索",
+      "note": "Noah Kravitz, Rearranging small sets for distinct partial sums。本文Conj1重述与本卡全素数主题一致；Theorem1只证|A|≤log p/loglog p，不能据此关闭主题。参考文献[12]给R.L.Graham, On sums of integers taken from a fixed sequence, Washington State University Conference on Number Theory (1971),22–40；1971原扫描无可读文本，原问题页尚待原件复核。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q007-ACA-PHSA",
+      "url": "https://arxiv.org/html/2602.15797v1",
+      "locator": "§1 valid ordering 定义；Theorem 1.2 及其后一段",
+      "version": "arXiv:2602.15797v1，2026-02-17；原站版本记录与正文本轮2026-11-26访问",
+      "subquestions": [
+        "充分大素数的全部非零子集",
+        "非空部分和与含初始零的变体"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Huy Tuan Pham; Lisa Sauermann",
+      "claim_date": "2026-02-17",
+      "note": "∀α∈(0,1)∃Cα>0，素数p、非零子集S且Cα≤|S|≤p^(1−α)时有valid ordering。定义仅列s1,…,s_|S|，不含s0；元素为集合、互异，允许总和0。紧接定理的合并结论为充分大p，不是全部p。本轮读定理、量词与拼接说明，未独立通审证明，也未计算可执行p0。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕。 根代理另独立读原站同版Conj1.1/Thm1.2及后句，确认充分大p限制；没有独立通审全证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q007-ACA-BEKR",
+      "url": "https://arxiv.org/html/2409.07403v2",
+      "locator": "§1.1 Theorem 1.2；§1.2 two-sided valid 定义",
+      "version": "arXiv:2409.07403v2，2025-01-07，吸收审稿意见；v1 2024-09-11；访问2026-11-26",
+      "subquestions": [
+        "充分大素数的全部非零子集",
+        "小集大小随最小素因子增长的范围"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Benjamin Bedert; Noah Kravitz",
+      "claim_date": "2025-01-07",
+      "note": "对每固定c>0及充分大的素数p，|A|≤exp(c(log p)^(1/4))有valid排序；证明实际构造two-sided valid：任何真非空连续段不为0，允许全段总和0。与中段、大段拼接可覆盖充分大p的全部大小。只核主陈述与定义，未独立复核证明。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q007-ACA-BBKMM",
+      "url": "https://arxiv.org/html/2508.18254v1",
+      "locator": "Theorem 1.4；Theorem 7.1（引Müyesser–Pokrovskiy）；§1.1 valid定义",
+      "version": "arXiv:2508.18254v1，2025-08-25；访问2026-11-26",
+      "subquestions": [
+        "充分大素数的全部非零子集"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Benjamin Bedert; Matija Bucić; Noah Kravitz; Richard Montgomery; Alp Müyesser",
+      "claim_date": "2025-08-25",
+      "note": "Thm1.4：有绝对c>0，任意有限群G的非单位元子集大小≥|G|^(1−c)可valid排序，适用于Fp。Thm7.1 引用MuPo的更近满范围：固定γ>0、N充分大、|S|≥N−N^(1−γ)。后一个引用陈述已读；虽取得MuPo正式刊HTML，本轮未定位其对应原始证明，不宣称通审。现大段Thm1.4已包含最满端，四段是历史分工而非四个尚余缺口。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q007-ACA-COP2020",
+      "url": "https://link.springer.com/article/10.1007/s00013-020-01507-7",
+      "locator": "Conjecture 1.1；§4.1 Proposition 4.2；Abstract",
+      "version": "Archiv der Mathematik 115 (2020),479–488；DOI10.1007/s00013-020-01507-7；2020-08-29上线；访问2026-11-26",
+      "subquestions": [
+        "素域小集与近满集的既有结论",
+        "非空部分和与含初始零的变体"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Simone Costa; Marco Antonio Pellegrini",
+      "claim_date": "2020-08-29",
+      "note": "Proposition4.2为G-ADMS/Graham口径：素数阶循环群子集|A|≤12、非空部分和互异，无全和非零假设。摘要中的≤11关联Alspach较强口径：加ΣA≠0且所有s1,…,st非零（等价连s0=0也互异）；不能混成同一量词。正式HTML相关段落已读，所用Magma系数未本轮复算。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q007-ACA-HOS2018",
+      "url": "https://arxiv.org/pdf/1809.02684",
+      "locator": "Abstract及§1 Alspach定义，PDF p1；近满结论的前提",
+      "version": "arXiv:1809.02684v1，2018-09-07（稿面2018-09-11）；正式发表于J.Combin.Des.27(2019)369–385；访问2026-11-26",
+      "subquestions": [
+        "素域小集与近满集的既有结论",
+        "非空部分和与含初始零的变体"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Jacob Hicks; M. A. Ollis; John R. Schmitt",
+      "claim_date": "2018-09-07",
+      "note": "所读原文明确先设ΣA≠0，并要求s0,…,st全互异；其k≥p−3和k≤10结论属于此Alspach版本。不可仅摘k≥p−3而删总和非零；尤其p−1全非零集合对奇p总和0，不能由此定理支撑（Graham全体非零特例另有构造）。仅核前提与范围，不主张所有近满零和情形未知。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q007-ACA-CDF2026",
+      "url": "https://arxiv.org/html/2602.19989v1",
+      "locator": "Theorem 1.3 (Improved classical bound)；§1 sequencing定义；Thm1.4区别",
+      "version": "arXiv:2602.19989v1，2026-02-23；访问2026-11-26",
+      "subquestions": [
+        "小集大小随最小素因子增长的范围"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Simone Costa; Stefano Della Fiore",
+      "claim_date": "2026-02-23",
+      "note": "Thm1.3声称存在绝对c>0，p为k最小素因子，A⊂Z_k\\{0}且|A|≤exp(c(log p)^(1/3))时有sequencing。这比旧1/4指数改进，仍是小集范围。Thm1.4的t-weak只排除局部距离内碰撞，不能当完整sequencing；两者分开。只读定义、主定理和末段p小常数处理，未通审证明。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q007-ACA-SMALL2026",
+      "url": "https://arxiv.org/pdf/2603.20961",
+      "locator": "PDF p1定义，p2 Theorems1.4–1.6；p7 §3 Terminal certificates；pp8–9 Propositions4.1–4.2",
+      "version": "arXiv:2603.20961v1，2026-03-21；原站PDF/HTML访问2026-11-26",
+      "subquestions": [
+        "任意阿贝尔群的20/22/23规模声明",
+        "计算证明中有理行空间终止判据",
+        "非空部分和与含初始零的变体"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "关键步骤受质疑",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Simone Costa; Stefano Della Fiore; Mattia Fontana; Lluís Vena",
+      "claim_date": "2026-03-21",
+      "note": "作者声称任意阿贝尔群|A|≤20、零和≤22、零和且无逆元对≤23有sequencing；其定义允许末和0但内部和不为0，强于题卡valid。证明依赖§4计算输出，代码DOI10.5281/zenodo.18997904。p7以Q-rowspan/rank相等推出群元素为0/相等，并称清分母可直接得a_i=0；一般有挠群下此推理不成立。本轮F11矩阵检验另列；未证明该矩阵能由实际搜索产生，不能据此说定理或原猜想被反驳。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕/7。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "step_disputed",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q007-ACA-SPAN-CHECK",
+      "url": "https://arxiv.org/html/2603.20961v1",
+      "locator": "§3 Terminal certificates（原文被检查的断言）；本回执note内完整给出可重建矩阵的行集合与系数",
+      "version": "2026-11-26本轮精确SymPy核算；根代理另以整数点积及Bareiss消元独立验证",
+      "subquestions": [
+        "计算证明中有理行空间终止判据"
+      ],
+      "role": "反例",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "只反驳一般Q行空间终止推理。C的行对应{1,10},{2,9},{3,8},{4,7},{5,6},{1,2,8},{1,3,7},{1,4,6},{2,3,6},{2,4,5}。det C=−11，rank_Q=10，Ca=(11,…,11)^T≡0 mod11，而所有a_i非零互异。e1=(−2r3−5r4−r5+2r6+5r7+4r8−3r9+r10)/11。清分母仅给11a1=0，不能得a1=0。实际树可达性未查；不反驳Graham结论或整篇小集定理。 根代理未import SymPy，另从10个行集合重核Ca的整数值、给定整数系数组合=11e1与Bareiss行列式=-11，全部断言通过。只属普通精确算术核验，不是证明助理内核验证。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "counterexample",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q007-ACA-KW2026",
+      "url": "https://borowiecki.dev/pdf/2610.34424",
+      "locator": "作者论文镜像PDF p3 Theorem1.6；p4 Theorem1.8；p1 rearrangeable定义",
+      "version": "37页镜像稿；镜像书目标arXiv:2610.34424v1，2026-10-25；未与原站版本交叉确认；访问2026-11-26",
+      "subquestions": [
+        "任意有限阿贝尔群的充分大子集"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Peiru Kuang; Yan Wang",
+      "claim_date": "2026-10-25",
+      "note": "仅镜像作者正文可达，原站abs/html/pdf和显式v1路径均DisabledError。Thm1.6：存在与G无关的绝对n0，有限阿贝尔群G的非零子集|S|≥n0可排序；不是所有大小。Thm1.8另加大dissociated维数条件，可构造全和非零时的彩虹路径/零和时的彩虹环。仅读主定理范围，未独立核证明，也未验证镜像与原档字节一致。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q007-ACA-NTV2026",
+      "url": "https://arxiv.cnoctave.top/pdf/2610.40712",
+      "locator": "作者论文镜像PDF p1 Abstract；p2 Theorems1.3及1.5",
+      "version": "38页PDF自带arXiv:2610.40712v1，2026-10-29页边戳；原站访问失败；镜像访问2026-11-26",
+      "subquestions": [
+        "任意有限阿贝尔群的充分大子集",
+        "充分大素数的全部非零子集"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Hoi H. Nguyen; Tuan Tran; Van H. Vu",
+      "claim_date": "2026-10-29",
+      "note": "摘要说full generality，但正文Thm1.5明确存在绝对C，仅|S|≥C的有限阿贝尔群非零子集有valid排序；不能删规模阈值。p2 Thm1.3回顾素域结果也保留p≥C。原站abs/html/pdf不可达，实际读镜像作者正文前3页，未通审全证明/核镜像字节。不要依摘要或新闻写成全部素数已解。refs 〔原始工具引用已私有留存〕；镜像摘要索引turn679131752search0。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000741-code-e1",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/paper/graham_rearrangement_candidate.tex",
+      "locator": "摘要；§ Introduction et statut conditionnel；label thm:reassemblage-conditionnel；Appendice de certification",
+      "version": "commit 23cb1d03e718d0798ff79161bff516444e7ca335 (2026-05-04)",
+      "subquestions": [
+        "Atomicium AI 辅助证明候选是否覆盖所有素数、所有子集"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "Atomicium；公开发布帖用户 EqualFit7779，自述 GPT-5.5 Pro 辅助",
+      "claim_date": "2026-05-04",
+      "note": "已取得全部 TeX，定向阅读范围见 queries。原稿明确条件性：若 R、H0-B+、U0simple、C0 四局部块以及指定势下降获得认证，则推出全素数全非零子集的结论。作者未将当前包称作公认完成证明；本轮未逐行验证这些局部引理。社会媒体 full proof-candidate 不能记成无条件完整证明已成立。 根代理另独立读同一固定TeX的摘要、导言和条件总定理，确认四认证假设仍保留；未通审局部证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000741-code-e2",
+      "url": "https://github.com/Atomicium-org/graham-rearrangement-certificates/blob/23cb1d03e718d0798ff79161bff516444e7ca335/certificates/GLOBAL_EXECUTABLE_CERTIFICATE.md",
+      "locator": "Exact status、Last default run、Interpretation；scripts/run_all.sh；checkers/C03/c03_certificate_checker.py: validate_trigger/check_c03_certificate/make_random_cert",
+      "version": "commit 23cb1d03e718d0798ff79161bff516444e7ca335 (2026-05-04)",
+      "subquestions": [
+        "Atomicium 局部证书与有限回测的验证边界"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "本轮已读公开证书报告、运行脚本、小素数 checker 全文及 C03 关键函数，未执行 Atomicium 测试。默认回测仅 p=2,3,5,7,11,13；C03 随机生成器人为构造下降/触发/中性分支。validate_trigger 的 first_return 分支核已给 block 的尺寸分类，而不从原题集合导出零和性质。该设计与作者自承的局部契约用途一致，不能当原数学对象到证书桥梁已证。唯一 issue #1 仍请求审计该桥梁。本轮未取得可把有限回测接到充分大素数定理的显式 p0 与全余区间证书；也未据此否证候选整体。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000741-code-e3",
+      "url": "https://github.com/jaredwilder/graham-alspach-z53-z71/blob/c879d1791d21b72021213cc23a5d0cd20018e48a/verify.py",
+      "locator": "README 的 Verified computation/Computational boundary；verify.py 的 sequenceable_order、test_witness、main；固定提交 recursive tree",
+      "version": "commit c879d1791d21b72021213cc23a5d0cd20018e48a (2026-09-18)",
+      "subquestions": [
+        "Jared Wilder 有限群阶/基数计算声明与可执行覆盖"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "Jared Wilder",
+      "rerun": {
+        "commit": "c879d1791d21b72021213cc23a5d0cd20018e48a",
+        "command": "python 〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material",
+        "cache": "Python 标准库短检查；未复用任何大规模枚举缓存",
+        "axioms": "不适用：Python 检查器，不是证明助手"
+      },
+      "note": "作者 README 报告 104 个有限 (p,k) 行及 20,001,879,972 轨道代表元，范围为 p=37:k21–36，41:21–40，43:27–42，47:34–46，53:41–52，71:62–70，29:21–28，31:21–30，并明确不涵盖未算基数。本轮固定 tree 仅 4 个文件，无全枚举引擎和原始逐行数据。实际运行 verify.py 退出0，只复核1个 p53,k41 排序（最终和23）与控制例、二项式/估值；不能据此确认104行。其判据禁止真前缀和为0，允许最终零和，比本卡仅非空部分和互异的排序判据更强；同一见证仍蕴含卡中要求。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000741-code-e4",
+      "url": "https://community.middlebury.edu/~jschmitt/papers/HicksOllisSchmitt2018.pdf",
+      "locator": "pp.1–3，Conjectures 1.1–1.2 及紧随其后的区别说明",
+      "version": "作者 PDF，页首日期 2019-01-29；访问 2026-11-26",
+      "subquestions": [
+        "经典 Alspach 版与本卡非空部分和约定"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "只用于核定义。经典 Alspach 的循环群版假设 sum(A)≠0，要求 s0,...,sk 两两不同；文中 Conjecture1.2 无总和非零假设，仅要求 s1,...,sk 不同。本卡是后一口径的素数情形。不能不加说明地把经典版所有结论或 s0 判据搬入卡中。原卡人话版已经明列 s1 开始，故此处建议只修相关命名/族注记，不改题面、参数域或验收。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000741-code-e5",
+      "url": "https://www.reddit.com/r/accelerate/comments/1t3vxtw/erd%C5%91s_475_grahams_rearrangement_conjecture_gpt55/",
+      "locator": "作者主帖及 Small clarification 评论；web lines17–87、116–134",
+      "version": "公开发布帖 2026-05-04；本轮访问 2026-11-26",
+      "subquestions": [
+        "公开 AI 完整解声称筛查"
+      ],
+      "role": "进展",
+      "publication": "社区帖子",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "u/EqualFit7779；自述 GPT-5.5 Pro assistance",
+      "claim_date": "2026-05-04",
+      "note": "第一人称发布说明明确为 proof-candidate/audit package，否认已有同行评审或 Lean/Coq 全定理形式化，强调 scripts passing 不等于数学分支到证书的桥梁已证。只作声明来源；证明范围以固定仓库原稿及检查器为准。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000904",
+      "other_card_rev": "73b48b6550cce590",
+      "relation": "特例",
+      "reason": "QX-P-000741量化任意素数p与A⊆F_p*，要求非空前缀和s1,…,sk互异；QX-P-000904量化任意有限群G及不含单位元的子集S，要求非空前缀积互异。取G=(F_p,+)、e=0，部分积正是本题的部分和，因此本题是候选一般有限群断言的素数阶循环群特例。候选还覆盖合数阶及非阿贝尔群，两卡验收范围不同，不能合并。",
+      "positions": {
+        "self": "commit 73290369a8dcc632e25e555aec525565ea6e08f8：problems/000/QX-P-000741.text.md全文，重点「题面」「形式化表述」「人话版」；同名meta.json全文，重点acceptance.criteria与card_rev=2a3f7387d6edc5cc。",
+        "other": "commit 73290369a8dcc632e25e555aec525565ea6e08f8：problems/000/QX-P-000904.text.md全文，重点「题面」「形式化表述」「人话版」「原文摘录」；同名meta.json全文，重点acceptance.criteria与card_rev=73b48b6550cce590。"
+      },
+      "note": "pair_id=QX-P-000741__QX-P-000904；较小编号负责人为本包QX-P-000741。双方版本与任务/固定简索引相符，完整meta/text已取得且Git blob SHA核对通过。候选形式化简记用⊂，但原文摘录明确S⊆且人话版与验收均为每个不含单位元子集；此处按这些完整正文说明比较，包括全体非单位元子集。没有把候选的历史进展声称当作本轮文献核验。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "duplicate_relation": "special_case"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "first_published; proposer; sources",
+      "old": "CB策展日期2026-07-23及提问者占位",
+      "new": "补R.L.Graham (1971), On sums of integers taken from a fixed sequence, pp22–40；后续原论文精确追溯p36。当前CB日期另列作状态观察日；原始扫描题文待复核。",
+      "reason": "已读2024/2026原论文的书目及原题重述；未把1971扫描视作已阅正文。仅补出处/历史记录，不改题面或card_rev。",
+      "evidence_ids": [
+        "R10-Q007-E-Kravitz2024",
+        "R10-Q007-E-CB"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "开放状态证据中arXiv编号",
+      "old": "2026-11-18 2611.24725v1",
+      "new": "排除arXiv:2611.24725；该编号是Debray–Ye–Yu的Atiyah–Hirzebruch/Adams谱序列论文，与本题无关。",
+      "reason": "原站abs/2611.24725实际打开确认标题、作者、math.AT分类和v1日期；初次显式v1打开失败另有记录，不把失败误记全文。见q007请求审计w1/w2，ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "人话版／边界与约定（仅解释既有定义）",
+      "new": "p为素数，A⊆Fp\\{0}是集合，a1,…,at是其不重复枚举；只要求s_i=Σ_{j=1}^i a_j在1≤i≤t间两两互异，不把s0=0纳入比较，也不假设ΣA≠0。A=∅按空枚举平凡成立。",
+      "reason": "题卡人话已有非空部分和含义；用明确指标避免与Alspach/strong sequencing变体混淆，属于补口径而非判原题错误。 本项只补人话解释，不修改形式化表述、参数域或acceptance.criteria；不因这一解释建议换card_rev。",
+      "evidence_ids": [
+        "Q007-ACA-PHSA",
+        "Q007-ACA-COP2020"
+      ],
+      "small_case_check": "手算p=3,A={1,2}：顺序(1,2)的非空部分和(1,0)互异；若额外纳入s0=0则必与末和碰撞。这是变体差异，不是原题反例。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "已知结果与进展/数学状态",
+      "new": "明确区分：充分大p的全部子集已由文献拼接覆盖；有限小素数仍需核。补2602.15797v1及10月有限阿贝尔群充分大子集声明，保持p阈值/|S|阈值；不要写成全部p已证。",
+      "reason": "主定理逐条保留阈值；新的有条件大子集结果不解决所有小素数。",
+      "evidence_ids": [
+        "Q007-ACA-PHSA",
+        "Q007-ACA-BBKMM",
+        "Q007-ACA-KW2026",
+        "Q007-ACA-NTV2026"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "2603.20961的小规模进展",
+      "new": "补|A|≤20、零和≤22、零和无逆元对≤23的计算辅助证明声明；附§3有理行空间终止判据的待核问题与本轮精确小例，暂不标为独立复核通过。",
+      "reason": "论文明确依赖计算；Q关系清分母在有挠群中不能直接消去整数因子。实际树/程序证书尚未核足，不能否定整篇定理。",
+      "evidence_ids": [
+        "Q007-ACA-SMALL2026",
+        "Q007-ACA-SPAN-CHECK"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "≤11/12与p−3≤t≤p−1既有范围",
+      "new": "按来源分列：Costa–Pellegrini2020 Prop4.2给Graham非空部分和口径≤12；Alspach口径的≤11及Hicks–Ollis–Schmitt近满结果需保留全和非零、s0也参与比较。Graham t=p−1另列原有构造。",
+      "reason": "这些不是完全同一个量词版本；去掉ΣA≠0会造成来源不支撑。",
+      "evidence_ids": [
+        "Q007-ACA-COP2020",
+        "Q007-ACA-HOS2018"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "ai_claims / 相关进展与声称解决",
+      "new": "补 Atomicium 2026-05-04 GPT-5.5 Pro 辅助条件性证明候选，固定提交及四局部块/证书语义桥待审边界；不标无条件完整证明，不标 Lean 验证。",
+      "reason": "这是真实公开声明，旧卡未列。仅补进展/声明及来源，不改变 card_rev。",
+      "evidence_ids": [
+        "QX-P-000741-code-e1",
+        "QX-P-000741-code-e2",
+        "QX-P-000741-code-e5"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展 / 有限计算验证",
+      "new": "Jared Wilder 的有限 (p,k) 行仅记作者报告；公开短检查器本轮通过只覆盖一个 p=53,|A|=41 见证及控制例，104行尚无可核完整引擎/数据。",
+      "reason": "避免把有限观察或短脚本 ALL CHECKS PASS 升为所有素数的证明。只补进展，不换 card_rev。",
+      "evidence_ids": [
+        "QX-P-000741-code-e3"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "difficulty.note / 已知结果与进展中的族风险注记",
+      "old": "任意阿贝尔群版为 Alspach 猜想；本条限素域",
+      "new": "本条采用 Graham / Erdős475 的非空部分和口径（不计 s0，不要求 sum(A)≠0）。经典 Alspach 循环群版另有总和非零条件并计入 s0；更广阿贝尔群版及 Alspach–Liversidge 命名应按对应原文分列。",
+      "reason": "只校正相关问题注记；现卡人话版已正确规定 s1,...,sk，毋须因此改题面或验收，也不建议换 card_rev。",
+      "evidence_ids": [
+        "QX-P-000741-code-e4"
+      ],
+      "small_case_check": "可手算 p=3,A={1,2}：顺序(1,2)的非空和为1,0互异；若另计 s0=0则相撞。Jared短脚本亦实际复核p=53,{1,2,50}最终和必0但有合格非空部分和排序。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "题面、形式化表述、acceptance.criteria",
+      "old": "∀A⊆F_p*，存在排序使非空部分和两两互异；人话版明确定义s1,…,sk。",
+      "new": "保留原对象、量词、非零元素域及验收；不加入s0，也不增加ΣA≠0限制。",
+      "reason": "本轮边界试算与现卡的非空部分和定义一致，未据此发现正式主命题错误。原出处与一般状态由主线文献复核汇总。",
+      "small_case_check": "p=3，A={1,2}，排序(1,2)给(s1,s2)=(1,0)，互异；加s0=0会立即失效。p=2的空集与单元素{1}均通过。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版／边界与约定",
+      "old": "部分和全不同；现有边界段为通用模板，未特意提醒s0不计。",
+      "new": "明确比较范围为s1,…,sk（不含空前缀s0=0）；允许某一个非空部分和等于0，尤其允许总和s_k=0。A是集合而非允许重复的多重集，且A⊆F_p*。",
+      "reason": "这是对既有定义的说明，不改正式题面、参数域或acceptance.criteria，不因这项人话解释另造题卡版本。",
+      "small_case_check": "A={1,2}⊂F3是允许总和0的最小提示例；若擅自放宽至允许0，则A={0,1,2}⊂F3无有效排序：0若非第一项导致相邻前缀重复，若为第一项则首末前缀都为0。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "已知结果与进展的族/风险注记；metadata.difficulty.note中的Alspach归属说明",
+      "old": "任意阿贝尔群版为Alspach猜想；本条限素域。",
+      "new": "分别说明本题的非空前缀互异口径与所引Alspach版本的定义。若引用含ΣA≠0且要求s0,…,sk互异（等价于s1,…,sk互异且非零）的版本，必须明列这两项差别；推广到一般有限群的非空前缀积问题见QX-P-000904。",
+      "reason": "现卡背景一句话容易混同两套验收要求。该建议仅更正背景解释并要求主线文献提供精确出处，不把经典名称的区别转成现卡题面错误，也不修改acceptance.criteria。",
+      "small_case_check": "在F3中A={1,2}总和为0，满足本题但不在附加ΣA≠0的输入范围；在F7中排序(1,6,2)的非空前缀为(1,0,2)，是本题允许的排序，却不满足每个非空前缀非零的要求。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定／建议独立验证",
+      "old": "小实例计算（n≤10穷举/数值）或非数值文献核对。",
+      "new": "可附本轮明确覆盖：对p=2,3,5,7,11,13的全部A⊆F_p*使用精确模p回溯寻找排序，并保存逐集合证书与单独覆盖校验。初始化已见前缀集合必须为空，不能预先放入0；允许最后和为0。仅登记为有限范围验证。",
+      "reason": "原建议中的n与数值口径不够明确。本轮实际完成5206个子集、5200个非空子集的检查；这不能推出任意素数的一般命题，也不是证明助理形式化验证。不修改acceptance.criteria。",
+      "small_case_check": "q007_exact_backtrack.py已实际运行；q007_verify_certificates.py按组合枚举全部输入并重算前缀，5206条证书全部PASS，其中421个非空子集总和为0。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "1971作者档案PDF可定位但无OCR文字，截图未取得可见图像；当前p36只由已读后续原论文追溯。ErdosProblems直读也受限。",
+      "next_step": "取得可读1971原页并核p36提问；恢复主站访问时补当日状态/修订记录。保留已核CB固定版本及非空前缀量词，不因入口失败写成未找到来源。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "充分大p结果未给本轮可直接执行的显式总阈值，且未取得覆盖阈值以下全部素数/全部子集的验证证书。",
+      "next_step": "如欲结案全部p主问题，应给出有效p0并完整验证其下范围，或取得真正无阈值的新证明；不能只引用“resolved”“full generality”标题/摘要。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "2603.20961v1 p7的Q-rowspan通用判据被本轮F11小例质疑；未证小例矩阵在实际搜索树可达，未复跑作者全量计算。",
+      "next_step": "核Zenodo18997904固定代码版本：实际判据是否整数行格、模群指数或仅Q/浮点秩；查输出证书分母、整数饱和性与全部可达终止节点，修正或补充正确性论证后再评价20/22/23声明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2610.34424与2610.40712只取得作者论文镜像，原站多路径DisabledError；主定理范围已读但原版身份/最新版本未原站交叉确认。",
+      "next_step": "取得原站或作者机构提供的固定稿，与镜像主定理和版次核对；核是否有修订/勘误。未完成前保持镜像正文已读、未通审证明的层级。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2608.10015v2来自已读新稿参考文献与二手索引，原站abs/html/pdf失败，二手书目更新日期也不一致；只作附加线索。",
+      "next_step": "若后续要记录复合循环群进展，取得固定原稿核其强sequenceable基群、素因子数量/可比性及充分大素因子条件；本轮不把二手摘要升级证据。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "Atomicium 原稿和作者 issue 均未给每个数学分支到有限证书的完整认证；本轮只核范围及关键程序，未逐行审四局部证明。",
+      "next_step": "独立核原稿 R、H0-B+、U0simple、C0，尤其 Vis 完备性、Car(T) 支撑和 C0.3 中性收缩，再核条件总定理的无循环下降；不得以再次运行随机/有限合同测试替代。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "Jared 固定提交仅四文件；短 verifier 不能重现其大规模覆盖声明。",
+      "next_step": "如要采用104行作为已核进展，取得原轨道枚举程序、全部逐行覆盖总和与见证/失败日志并固定版本，独立核覆盖及见证；未取得前保留作者声明层级。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "最后定向检索新增 ProofAtlas 条件性 all-rank 路线和 Fabian Arevalo p≤37 证书索引；本轮仅看搜索摘要，均不是一般完整解声明。",
+      "next_step": "若继续补有限特例，分别打开 https://www.proofatlas.ai/collaboration/grahams-rearrangement-conjecture/ 和 https://fabianarevalo.com/math 定位原始稿/证书，勿用索引或 CHAT-PROVED 标签直接升级数学状态。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "只完成两轮固定简索引筛选及最相关QX-P-000904的双方固定版本全文比较；其余宽词同名命中未逐卡读全文。",
+      "next_step": "保留本对负责人和特例关系；仅在有新的具体候选证据时按固定版本全文再核，不能把本轮索引筛选写成全库无重复。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "有限范围的5206条正证书只覆盖p≤13；普通Python整数算术运行与证明助理形式化不同。",
+      "next_step": "合并时把本项保留为附属有限验证，主问题另由实际文献与代码证据定级；保留脚本、证书、日志及校验哈希，不将本项标成一般解或形式化通过。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "一般主问题尚无覆盖全部素数的确证；各完整子范围声明没有在本轮通审全部证明，普通Python通过不构成形式化验证。",
+      "next_step": "按精确范围二审文献子结果；若拟闭合任何子问或主题，执行包规二审。当前只建议补进展/出处/解释，不修改线上题卡，不改变固定card_rev。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "2a3f7387d6edc5cc",
+      "codes": {}
+    }
+  ]
+}

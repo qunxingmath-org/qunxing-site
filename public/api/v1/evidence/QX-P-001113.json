@@ -1,0 +1,2221 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001113",
+  "card_rev": "50059a8a33472d29",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "准确量词与验收",
+          "value": "statement_error",
+          "note": "准确正命题为存在一个f:N→N，使对全部有限A、U<H<A、H正规于A且H=⋃_{a∈A}U^a，都有d=[H:U]≤f(n)，n=[A:H]。不要求多项式增长、显式公式或可计算性；也可无损把f换成其非减包络。其否定等价于存在一个固定n0，使所有符合条件且[A:H]=n0的d无界。若每个固定n都有有限上界，逐点取最小整数上界就得到f。因此acceptance“相对n无界”须改成固定n的无界族或严格等价量词；仅让n_j与d_j同时增大、甚至d_j/n_j→∞，都不够。单个有限例子只能给f(n)的下界。n≥2由H<A决定；不能把f依赖于|A|、|H|、chief length等隐藏参数。"
+        },
+        {
+          "subquestion": "覆盖的对象与指数不是群阶",
+          "value": "statement_error",
+          "note": "约定U^a=a^{-1}Ua，H正规保证所有U^a≤H。覆盖是集合并，不能换成由这些共轭生成的正规闭包，也不是左右陪集平移；每个U^a都含单位元。目标是d=[H:U]，不是|H|或|U|。例如A=A4，H=V4，U=< (12)(34) >，三个A共轭为V4的三个2阶子群，其并恰H，n=3、d=2。将三者同时与任意有限C_m作直积仍是覆盖，n,d不变而|H|=4m、|U|=2m可任意大。此例验证题目不在控制绝对群阶，也显示U正规于H但不必正规于A。"
+        },
+        {
+          "subquestion": "n1与正规子群边界",
+          "value": "partial",
+          "note": "n=1在严格题面中不出现；即使放宽H=A，也没有proper覆盖U：设d=[H:U]>1，H内不同共轭数t=[H:N_H(U)]≤d，所有共轭含1，故其并大小≤1+t(|U|−1)≤1+d(|U|−1)=|H|−d+1<|H|。若U正规于A，所有共轭就是U，更直接不可能。若仅U正规于H，则H≤N_A(U)，不同A共轭数至多n；覆盖要求|H|≤1+n(|U|−1)，推出d<n、整数界d≤n−1。H阿贝尔是此子情形，不能据此推广一般非正规U。A4/V4例在n=3达d=n−1。U=1覆盖只能给H=1，与U<H矛盾；若允许U=H，d=1只是退化平凡情形。"
+        },
+        {
+          "subquestion": "忠实化与normal core",
+          "value": "partial",
+          "note": "C=core_A(U)=⋂_{a∈A}U^a正规于A且C≤U。商三元组(A/C,H/C,U/C)保留n、d、strictproper及覆盖，且A/C在A/U上的作用忠实。不能改用K=core_H(U)直接写A/K，因为K未必正规于A：A4/V4例中K=U但U不正规于A，C=1。H在H/U上的诱导群是H/K；其核和A在A/U上的核不同。即使先商掉C，H在其自身一个coset orbit上的作用仍可能有核K/C。每个已知定理的innately transitive假设必须作用于它实际指定的诱导置换群。"
+        },
+        {
+          "subquestion": "覆盖与derangement图的精确归约",
+          "value": "partial",
+          "note": "令A作用在Ω={Ua:a∈A}，次数[A:U]=nd。元素g固定一个点当且仅当g属于U的某个A共轭。因此本题覆盖精确意味着固定点元素集合=H，derangements集合=A\\H。在derangement Cayley图中，a,b相邻当且仅当ab^{-1}∉H；由于H正规，这恰是a,b属于不同H陪集。图为完全n部图，clique数恰n。若需要忠实置换群，先商core_A(U)，此结论及Ω次数不变。这里考察A对A/U的作用；innately transitive定理考察的是H对H/U的诱导作用，二者不可混同。"
+        },
+        {
+          "subquestion": "固定外层指数n=3",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；正式2026论文给[H:U]≤10。所需从derangement图Thm1.1到本题的短归约已独立核；Thm1.1分类依赖保持外部已刊输入，不声称本轮全篇复现。原问所有n不因此结案。 期刊§2给达到10的度30例；本轮只核原构造的陈述与参数，未复跑Magma。n=2的f(2)=1按GMP2026原刊引Saxl的结果登记，严格U<H时无此实例，不宣称本轮重证三角形/分类定理。"
+        },
+        {
+          "subquestion": "innately transitive/maximal范围",
+          "value": "partial",
+          "note": "innately transitive指诱导的有限忠实置换群具有传递的极小正规子群，不是仅“传递”；H对H/U本来总是传递。若U在H中极大，则此诱导作用primitive；任何非平凡正规子群的轨道构成块系，在primitive忠实作用中必传递，故该群innately transitive。2026 Theorem1.6的精确前提是A有限、H正规指数n、U<H、prime-power-covering P_A(U)=P_A(H)，并且H在H/U上的诱导商群innately transitive。全元素A覆盖蕴涵prime-power-covering，因为共轭保持元素阶；所以该定理确给本题这个附加作用条件下的f(n)，并进一步迫该诱导作用primitive，即U极大。不能删去作用条件，也不能反过来把只覆盖素数幂元素当全部元素覆盖。这里核了逻辑适配和声明，没有重证其CFSG长依赖。"
+        },
+        {
+          "subquestion": "H=UL且L为极小非平凡A不变子群",
+          "value": "partial",
+          "note": "Fusari–Harper–Spiga Proposition3.1给单参数界；同文Thm1.2修复旧证明但界仍依赖A-chief长度c。"
+        },
+        {
+          "subquestion": "derangement clique猜想的等价及双参数归约",
+          "value": "partial",
+          "note": "2026固定v2给等价性及h(c,ℓ)，不是原题全解；不能循环引用相互等价来证明任何一方。"
+        },
+        {
+          "subquestion": "自同构表述的参数换算与双参数界",
+          "value": "partial",
+          "note": "原题中的A通过共轭作用于H，像B≤Aut(H)包含Inn(H)。精确地[B:Inn(H)]=[A:H C_A(H)]，它整除n=[A:H]，但未必等于n。于是自同构版本单参数界f(m)可先换为非减包络max_{1≤i≤n}f(i)，即可适用于原题；A不变子群与B不变子群相同。FHS的c=ℓ_B(H/core_A(U))是额外参数；g(m,c)即使有正确补证，在没有c的n界时仍不能给一般f(n)。此处只给原题应用到自同构版本的方向，不冒充另重证所有Kronecker等价版本。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "none_found",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001113.text.md"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://arxiv.org/html/1401.0300v50",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "按完整原摘录，有限群、正规子群与A共轭覆盖的核心意图明确；已有极大子群、innate、n=3、补充极小非平凡A不变子群等肯定结果及双参数补证。本次定向原刊/近期检索未取得任意有限A、H、U的统一单参数全解或反例，不能以v50未标符号当全网开放证明。",
+      "evidence_ids": [
+        "a1113_book",
+        "a1113_praeger1994",
+        "a1113_fps2024",
+        "a1113_cgs2026",
+        "a1113_fhs_bounds",
+        "a1113_gmp2026",
+        "R1113-CARD"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "准确量词与验收",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "准确正命题为存在一个f:N→N，使对全部有限A、U<H<A、H正规于A且H=⋃_{a∈A}U^a，都有d=[H:U]≤f(n)，n=[A:H]。不要求多项式增长、显式公式或可计算性；也可无损把f换成其非减包络。其否定等价于存在一个固定n0，使所有符合条件且[A:H]=n0的d无界。若每个固定n都有有限上界，逐点取最小整数上界就得到f。因此acceptance“相对n无界”须改成固定n的无界族或严格等价量词；仅让n_j与d_j同时增大、甚至d_j/n_j→∞，都不够。单个有限例子只能给f(n)的下界。n≥2由H<A决定；不能把f依赖于|A|、|H|、chief length等隐藏参数。",
+      "evidence_ids": [
+        "Q1113-M-E1",
+        "Q1113-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "覆盖的对象与指数不是群阶",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "约定U^a=a^{-1}Ua，H正规保证所有U^a≤H。覆盖是集合并，不能换成由这些共轭生成的正规闭包，也不是左右陪集平移；每个U^a都含单位元。目标是d=[H:U]，不是|H|或|U|。例如A=A4，H=V4，U=< (12)(34) >，三个A共轭为V4的三个2阶子群，其并恰H，n=3、d=2。将三者同时与任意有限C_m作直积仍是覆盖，n,d不变而|H|=4m、|U|=2m可任意大。此例验证题目不在控制绝对群阶，也显示U正规于H但不必正规于A。",
+      "evidence_ids": [
+        "Q1113-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "n1与正规子群边界",
+      "math_status": "仅特例",
+      "scope_note": "n=1在严格题面中不出现；即使放宽H=A，也没有proper覆盖U：设d=[H:U]>1，H内不同共轭数t=[H:N_H(U)]≤d，所有共轭含1，故其并大小≤1+t(|U|−1)≤1+d(|U|−1)=|H|−d+1<|H|。若U正规于A，所有共轭就是U，更直接不可能。若仅U正规于H，则H≤N_A(U)，不同A共轭数至多n；覆盖要求|H|≤1+n(|U|−1)，推出d<n、整数界d≤n−1。H阿贝尔是此子情形，不能据此推广一般非正规U。A4/V4例在n=3达d=n−1。U=1覆盖只能给H=1，与U<H矛盾；若允许U=H，d=1只是退化平凡情形。",
+      "evidence_ids": [
+        "Q1113-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "忠实化与normal core",
+      "math_status": "实质进展",
+      "scope_note": "C=core_A(U)=⋂_{a∈A}U^a正规于A且C≤U。商三元组(A/C,H/C,U/C)保留n、d、strictproper及覆盖，且A/C在A/U上的作用忠实。不能改用K=core_H(U)直接写A/K，因为K未必正规于A：A4/V4例中K=U但U不正规于A，C=1。H在H/U上的诱导群是H/K；其核和A在A/U上的核不同。即使先商掉C，H在其自身一个coset orbit上的作用仍可能有核K/C。每个已知定理的innately transitive假设必须作用于它实际指定的诱导置换群。",
+      "evidence_ids": [
+        "Q1113-M-E3",
+        "Q1113-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "覆盖与derangement图的精确归约",
+      "math_status": "实质进展",
+      "scope_note": "令A作用在Ω={Ua:a∈A}，次数[A:U]=nd。元素g固定一个点当且仅当g属于U的某个A共轭。因此本题覆盖精确意味着固定点元素集合=H，derangements集合=A\\H。在derangement Cayley图中，a,b相邻当且仅当ab^{-1}∉H；由于H正规，这恰是a,b属于不同H陪集。图为完全n部图，clique数恰n。若需要忠实置换群，先商core_A(U)，此结论及Ω次数不变。这里考察A对A/U的作用；innately transitive定理考察的是H对H/U的诱导作用，二者不可混同。",
+      "evidence_ids": [
+        "Q1113-M-E2",
+        "Q1113-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "固定外层指数n=3",
+      "math_status": "原题已证",
+      "scope_note": "正式2026论文给[H:U]≤10。所需从derangement图Thm1.1到本题的短归约已独立核；Thm1.1分类依赖保持外部已刊输入，不声称本轮全篇复现。原问所有n不因此结案。 期刊§2给达到10的度30例；本轮只核原构造的陈述与参数，未复跑Magma。n=2的f(2)=1按GMP2026原刊引Saxl的结果登记，严格U<H时无此实例，不宣称本轮重证三角形/分类定理。",
+      "evidence_ids": [
+        "a1113_cgs2026"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "innately transitive/maximal范围",
+      "math_status": "仅特例",
+      "scope_note": "innately transitive指诱导的有限忠实置换群具有传递的极小正规子群，不是仅“传递”；H对H/U本来总是传递。若U在H中极大，则此诱导作用primitive；任何非平凡正规子群的轨道构成块系，在primitive忠实作用中必传递，故该群innately transitive。2026 Theorem1.6的精确前提是A有限、H正规指数n、U<H、prime-power-covering P_A(U)=P_A(H)，并且H在H/U上的诱导商群innately transitive。全元素A覆盖蕴涵prime-power-covering，因为共轭保持元素阶；所以该定理确给本题这个附加作用条件下的f(n)，并进一步迫该诱导作用primitive，即U极大。不能删去作用条件，也不能反过来把只覆盖素数幂元素当全部元素覆盖。这里核了逻辑适配和声明，没有重证其CFSG长依赖。",
+      "evidence_ids": [
+        "Q1113-M-E1",
+        "Q1113-M-E3",
+        "Q1113-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "H=UL且L为极小非平凡A不变子群",
+      "math_status": "仅特例",
+      "scope_note": "Fusari–Harper–Spiga Proposition3.1给单参数界；同文Thm1.2修复旧证明但界仍依赖A-chief长度c。",
+      "evidence_ids": [
+        "a1113_fhs_bounds"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "derangement clique猜想的等价及双参数归约",
+      "math_status": "实质进展",
+      "scope_note": "2026固定v2给等价性及h(c,ℓ)，不是原题全解；不能循环引用相互等价来证明任何一方。",
+      "evidence_ids": [
+        "a1113_equivalence2026"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "自同构表述的参数换算与双参数界",
+      "math_status": "条件性结果",
+      "scope_note": "原题中的A通过共轭作用于H，像B≤Aut(H)包含Inn(H)。精确地[B:Inn(H)]=[A:H C_A(H)]，它整除n=[A:H]，但未必等于n。于是自同构版本单参数界f(m)可先换为非减包络max_{1≤i≤n}f(i)，即可适用于原题；A不变子群与B不变子群相同。FHS的c=ℓ_B(H/core_A(U))是额外参数；g(m,c)即使有正确补证，在没有c的n界时仍不能给一般f(n)。此处只给原题应用到自同构版本的方向，不冒充另重证所有Kronecker等价版本。",
+      "evidence_ids": [
+        "a1113_praeger1994",
+        "a1113_fhs_bounds",
+        "R1113-CARD"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "原题包及GitHub固定提交",
+      "query": "任务.jsonl定位001113；fetch_file完整text.md和meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "本包第32题，rank1812，list_row1032，rev50059a8a33472d29；text blob74c9bbe3068775f8a4aad3e6b1f1a87002361bee；meta blob62a5d3631eb1e0e2f2aa89c8e89a0def170f909b。旧novelty rev816e4ecd768cb593不迁移。全文人话含完整有限性/正规性/严格包含条件，formal仅占位。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001113.text.md",
+      "request_id": "QX-R3-11-001113-root-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv固定PDF",
+      "query": "open1401.0300v50；find11.71.；open原文及完整Comments of 2025",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "主审亲读印刷p54/PDF P53，三项评论确实存在，不能沿用无评论的旧索引判断。",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "11.71，印刷p54",
+      "request_id": "QX-R3-11-001113-root-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Neumann Praeger\" \"covering\" \"2026\"; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "近期定向检索命中三篇Cambridge原刊以及2026等价稿；Scribd摘要把Archive标题和11.71拼接，不能据此判已解决。只把后续取得的第一手正文作为进展依据。",
+      "request_id": "QX-R3-11-001113-root-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"11.71\" \"Kourovka\" \"solved\"; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "近期定向检索命中三篇Cambridge原刊以及2026等价稿；Scribd摘要把Archive标题和11.71拼接，不能据此判已解决。只把后续取得的第一手正文作为进展依据。",
+      "request_id": "QX-R3-11-001113-root-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge原刊HTML",
+      "query": "open Kronecker classes, normal coverings and chief factors of groups；find error/Theorem 1.1；open§3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "主审核Conj1.1、Thm1.2、旧证错误位置和Prop3.1及替代证明结构；这是双参数g(n,c)与H=UL特例，未消去chief length。旧证在商G=商U时错误使用p≤指数1。新稿不是撤销定理。未把阅读长证明标成独立重证全部分类依赖。",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/kronecker-classes-normal-coverings-and-chief-factors-of-groups/77CF799AF568AF316065490E4D755513",
+      "locator": "§1 Thm1.2；§3 Prop3.1和Proof of Thm1.2",
+      "request_id": "QX-R3-11-001113-root-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge原刊PDF",
+      "query": "open Kronecker classes and cliques in derangement graphs；find Theorem1.1；读Conjecture1.3后n3证明及§2例",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "主审独立核无4-clique⇒[A:U]≤30⇒[H:U]≤10这一步，以及core_A忠实化；完整分类定理的长证明和Magma计算未独立复跑。原稿§2给degree30达到指数10例，本轮仅核陈述和参数，不声称跑了该例。2026正式稿作者为Cazzola/Gogniat/Spiga，旧2025评论作者不得当最终书目。",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/ECF0504384D16C4922C84422210E245C/S1446788726101505a.pdf/kronecker-classes-and-cliques-in-derangement-graphs.pdf",
+      "locator": "Thm1.1；Conj1.3后Proof for n=3；§2",
+      "request_id": "QX-R3-11-001113-root-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge原刊HTML",
+      "query": "open Prime power coverings of groups and field extensions；find Theorem1.6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "主审亲读Thm1.6、Cor1.7、Remark1.8及§2.2定义：素数幂覆盖且H在H/U的诱导群innately transitive才有函数界，并迫该作用primitive；普通transitive不够。仅核适用条件和原题蕴含其覆盖假设，未独立重证CFSG长链。",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "Thm1.6；Cor1.7；Remark1.8；§2.2",
+      "request_id": "QX-R3-11-001113-root-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv固定HTML",
+      "query": "open2601.20500v2",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "主审本次open只返回首段元数据与摘要，确认2026-03-08v2及作者；实际定理阅读由学术路线记载，主审不扩大自称阅读范围。",
+      "url": "https://arxiv.org/html/2601.20500v2",
+      "request_id": "QX-R3-11-001113-root-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "仅join(title,title_en,aliases)后regex:11\\.71|A.covering|A.覆盖|Neumann.Praeger|innately",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际1项；第一式仅本题，第二式有相关和同名术语噪音。选150/1115取完整正文与meta，未声称全库所有卡都核过。",
+      "request_id": "QX-R3-11-001113-root-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "仅join(title,title_en,aliases)后regex:derangement|无不动点|覆盖.*子群|covering.*subgroup|共轭.*覆盖|conjugat.*cover",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际9项；第一式仅本题，第二式有相关和同名术语噪音。选150/1115取完整正文与meta，未声称全库所有卡都核过。",
+      "request_id": "QX-R3-11-001113-root-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定提交",
+      "query": "fetch_file problems/000/QX-P-000150.text.md及.meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "双文件实际全文已读，card_rev9850b4a22d5fcb3d；150是有限单群derangement比例，1115是Fitting类和形成的覆盖术语，不与本题共轭覆盖指数界等价。原始blob保存在核查输入manifest中；只比较本题关系，不为这些包外题另做查新。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000150.text.md",
+      "request_id": "QX-R3-11-001113-root-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定提交",
+      "query": "fetch_file problems/001/QX-P-001115.text.md及.meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "双文件实际全文已读，card_revde373b1be0ff9a65；150是有限单群derangement比例，1115是Fitting类和形成的覆盖术语，不与本题共轭覆盖指数界等价。原始blob保存在核查输入manifest中；只比较本题关系，不为这些包外题另做查新。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001115.text.md",
+      "request_id": "QX-R3-11-001113-root-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/pdf/1401.0300v50",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "固定v50完整319页PDF文本；并亲读序言符号说明。",
+      "request_id": "QX-R3-11-001113-academic-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Fusari\" \"Previtali\" \"Spiga\" \"covering\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.degruyterbrill.com/document/doi/10.1515/jgth-2023-0284/pdf?licenseType=open-access",
+      "note": "同时命中多项Kronecker覆盖近期研究，随后按原稿范围筛选。",
+      "request_id": "QX-R3-11-001113-academic-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"Neumann\" \"Praeger\" \"covering subgroups\" \"maximal\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/DF9A4C4AB77EDAF6E8190C508BBFF1E6/S1446788700036028a.pdf/kronecker-classes-of-fields-and-covering-subgroups-of-finite-groups.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "request_id": "QX-R3-11-001113-academic-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "\"11.71\" \"Kourovka\" covering",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "note": "命中原书及2026 n=3论文。",
+      "request_id": "QX-R3-11-001113-academic-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv 固定PDF",
+      "query": "find \"11.71.\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "〔原始工具引用已私有留存〕",
+      "request_id": "QX-R3-11-001113-academic-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Cambridge 原刊",
+      "query": "open 〔原始工具引用已私有留存〕 〔私有记录编号：PR-003907〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/DF9A4C4AB77EDAF6E8190C508BBFF1E6/S1446788700036028a.pdf/kronecker-classes-of-fields-and-covering-subgroups-of-finite-groups.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "取得1994原刊文本，特别Conj4.3、Thm4.4/4.6。",
+      "request_id": "QX-R3-11-001113-academic-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open 〔原始工具引用已私有留存〕 〔私有记录编号：PR-003908〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/ECF0504384D16C4922C84422210E245C/S1446788726101505a.pdf/kronecker-classes-and-cliques-in-derangement-graphs.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "2026正式稿只核n=3≤10及derangement主定理范围，不作一般n结案。",
+      "request_id": "QX-R3-11-001113-academic-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open 〔原始工具引用已私有留存〕 〔私有记录编号：PR-003909〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/kronecker-classes-normal-coverings-and-chief-factors-of-groups/77CF799AF568AF316065490E4D755513",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "命中并亲读1994双参数界证明的正式补证。",
+      "request_id": "QX-R3-11-001113-academic-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open 〔原始工具引用已私有留存〕 〔私有记录编号：PR-003910〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "2026 prime-power覆盖的innate特例，不是一般全解。",
+      "request_id": "QX-R3-11-001113-academic-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv 固定PDF",
+      "query": "open v50 lineno=1987",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "〔原始工具引用已私有留存〕；印刷p54/PDF P53",
+      "note": "完整Comments2025有三项，本卡只截首项却背景宣称无评论。",
+      "request_id": "QX-R3-11-001113-academic-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open n3 paper lineno=0",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/ECF0504384D16C4922C84422210E245C/S1446788726101505a.pdf/kronecker-classes-and-cliques-in-derangement-graphs.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "核当前三位作者、DOI、Thm1.1及n3归约。",
+      "request_id": "QX-R3-11-001113-academic-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open chief-factors article lineno=506",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/kronecker-classes-normal-coverings-and-chief-factors-of-groups/77CF799AF568AF316065490E4D755513",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "核online2025/volume2026区分、Thm1.2精确c参数和A-core。",
+      "request_id": "QX-R3-11-001113-academic-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open prime-power article lineno=480",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "核摘要及原问、素数幂版本边界。",
+      "request_id": "QX-R3-11-001113-academic-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "find \"Proposition 1.3\" in chief-factors article",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/kronecker-classes-normal-coverings-and-chief-factors-of-groups/77CF799AF568AF316065490E4D755513",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "未定位此编号；实际附加条件结果为Proposition3.1，后已核。",
+      "request_id": "QX-R3-11-001113-academic-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "find \"Fusari, M., Previtali\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/kronecker-classes-normal-coverings-and-chief-factors-of-groups/77CF799AF568AF316065490E4D755513",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "定位JGT2024完整书目。",
+      "request_id": "QX-R3-11-001113-academic-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "find \"Theorem 1.\" in prime-power article",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "定位Thm1.5/1.6、定义及引用；只取本题必要范围。",
+      "request_id": "QX-R3-11-001113-academic-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open chief-factors article lineno=525",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/kronecker-classes-normal-coverings-and-chief-factors-of-groups/77CF799AF568AF316065490E4D755513",
+      "locator": "〔原始工具引用已私有留存〕",
+      "request_id": "QX-R3-11-001113-academic-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open prime-power article lineno=520",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "n2/n3与innate进展的综述定位。",
+      "request_id": "QX-R3-11-001113-academic-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Neumann\" \"Praeger\" covering conjecture solved 2026 [recency=730]",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/html/2601.20500v2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "命中新2026等价性稿；不是全解标题，随后核官方固定v2。",
+      "request_id": "QX-R3-11-001113-academic-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Fusari\" \"Previtali\" \"Spiga\" \"929\" \"965\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.degruyterbrill.com/document/doi/10.1515/jgth-2023-0284/pdf?licenseType=open-access",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "定位正式JGT27(5),929–965，DOI10.1515/jgth-2023-0284。",
+      "request_id": "QX-R3-11-001113-academic-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "De Gruyter 原刊",
+      "query": "open 〔原始工具引用已私有留存〕 〔私有记录编号：PR-003911〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.degruyterbrill.com/document/doi/10.1515/jgth-2023-0284/pdf?licenseType=open-access",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "取得37页正式稿文本；读引言、Thm1.1–1.3和§2范围归约，没有全篇重核分类。",
+      "request_id": "QX-R3-11-001113-academic-021",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2502.01287",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/abs/2502.01287",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "官方abs只列v1 2025-02-03，当前三作者，相关DOI指2026正式稿。",
+      "request_id": "QX-R3-11-001113-academic-022",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2601.20500",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/abs/2601.20500",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "v1 2026-01-28、最新所见v2 2026-03-08，作者注minor corrections in introduction。",
+      "request_id": "QX-R3-11-001113-academic-023",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open chief-factors article lineno=527",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/kronecker-classes-normal-coverings-and-chief-factors-of-groups/77CF799AF568AF316065490E4D755513",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "定位原1994 p29倒数7行、Gbar=Ubar时p≤1失效；新文另给证明。",
+      "request_id": "QX-R3-11-001113-academic-024",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open prime-power article lineno=530",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "定义P_A(U)，非所有元素自动满足的性质；full covering严格足以满足此假设。",
+      "request_id": "QX-R3-11-001113-academic-025",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "De Gruyter 原刊",
+      "query": "find \"Theorem 1.1\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.degruyterbrill.com/document/doi/10.1515/jgth-2023-0284/pdf?licenseType=open-access",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "clique定理无例外；半正则子群定理的M11族例外在§2处理，不可混同。",
+      "request_id": "QX-R3-11-001113-academic-026",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "De Gruyter 原刊",
+      "query": "find \"Conjecture 1.5\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.degruyterbrill.com/document/doi/10.1515/jgth-2023-0284/pdf?licenseType=open-access",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "读§1.1 Kronecker/covering联系及footnote8，未把文中各群符号直接照抄为本卡变量。",
+      "request_id": "QX-R3-11-001113-academic-027",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "find \"Proposition 3.1.\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/kronecker-classes-normal-coverings-and-chief-factors-of-groups/77CF799AF568AF316065490E4D755513",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "准确附加条件G=UL，L极小非平凡A不变；g(n,c)与f(n)区分。",
+      "request_id": "QX-R3-11-001113-academic-028",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open prime-power article lineno=540",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "读取Conjectures1.2–1.4相关范围，后用find补齐。",
+      "request_id": "QX-R3-11-001113-academic-029",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv",
+      "query": "click 2601.20500 abs link 9 HTML",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2601.20500v2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "固定v2全文取得，重点§1.3 Thm1.3–1.4及§3一方向归约。",
+      "request_id": "QX-R3-11-001113-academic-030",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open prime-power article lineno=555",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "Thm1.5是三个素数幂版本等价，不是证明这些猜想。",
+      "request_id": "QX-R3-11-001113-academic-031",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv 固定v2",
+      "query": "open 2601.20500v2 lineno=20",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2601.20500v2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "固定banner v2日期。",
+      "request_id": "QX-R3-11-001113-academic-032",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv 固定v2",
+      "query": "find \"Theorem 1.1.\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2601.20500v2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "返回相关Conj1.1、主Thm1.3等价及Thm1.4双参数界，未错记编号。",
+      "request_id": "QX-R3-11-001113-academic-033",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "find \"and U must be a maximal\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "摘要说明innate在覆盖假设下实际迫primitive/maximal；正式Thm1.6后单独补核。",
+      "request_id": "QX-R3-11-001113-academic-034",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "find \"Published online by Cambridge\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "明确2026-09-29正式online。",
+      "request_id": "QX-R3-11-001113-academic-035",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "find \"Let A be a finite group\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "完整Conjecture1.3、Theorem1.6及作用域。",
+      "request_id": "QX-R3-11-001113-academic-036",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "find \"an increasing integer function\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "读Thm1.6以及Proposition3.2的ambient/automorphism版本参数关系。",
+      "request_id": "QX-R3-11-001113-academic-037",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "find \"sharp\" in n3 paper",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/ECF0504384D16C4922C84422210E245C/S1446788726101505a.pdf/kronecker-classes-and-cliques-in-derangement-graphs.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "不由此否认最优性；新prime-power文另明确sharp，该项核查不重建达界例。",
+      "request_id": "QX-R3-11-001113-academic-038",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "open prime-power article lineno=564",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "Theorem1.6准确全文。",
+      "request_id": "QX-R3-11-001113-academic-039",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Neumann\" \"Praeger\" \"covering\" \"counterexample\" [recency=730]",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/kronecker-classes-normal-coverings-and-chief-factors-of-groups/77CF799AF568AF316065490E4D755513",
+      "note": "主要命中旧证明错误的补证与部分进展；未取到原主问完整反例。",
+      "request_id": "QX-R3-11-001113-academic-040",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Kronecker classes\" \"covering\" corrigendum erratum correction [recency=730]",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/kronecker-classes-normal-coverings-and-chief-factors-of-groups/77CF799AF568AF316065490E4D755513",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "命中正式补证，明确不是全猜想被否定。",
+      "request_id": "QX-R3-11-001113-academic-041",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Cliques in derangement graphs for innately transitive groups\" erratum correction",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.degruyterbrill.com/document/doi/10.1515/jgth-2023-0284/pdf?licenseType=open-access",
+      "locator": "turn651795634academia7/〔原始工具引用已私有留存〕",
+      "note": "命中原论文/2023预印本；本次未取得另行撤回或勘误。",
+      "request_id": "QX-R3-11-001113-academic-042",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge 原刊",
+      "query": "find \"2. Examples\" in n3 paper",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/ECF0504384D16C4922C84422210E245C/S1446788726101505a.pdf/kronecker-classes-and-cliques-in-derangement-graphs.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "未以此继续展开达界实例。",
+      "request_id": "QX-R3-11-001113-academic-043",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Cambridge 原刊",
+      "query": "find \"PROOF OF THEOREM 4.4\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/DF9A4C4AB77EDAF6E8190C508BBFF1E6/S1446788700036028a.pdf/kronecker-classes-of-fields-and-covering-subgroups-of-finite-groups.pdf",
+      "locator": "〔原始工具引用已私有留存〕；印刷pp26–30",
+      "note": "读极大子群定理、CFSG依赖，以及p29旧归纳中问题行；未把旧Thm4.6的证明照用。",
+      "request_id": "QX-R3-11-001113-academic-044",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地原任务记录",
+      "query": "读取work_001113_sources/task.json全部字段，对照定义、strictproper、acceptance及截断原文",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "urn:qunxing:private-material",
+      "locator": "QX-P-001113 / card_rev50059a8a33472d29",
+      "note": "未改题卡。",
+      "request_id": "QX-R3-11-001113-math-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv官方Kourovka v50",
+      "query": "open 1401.0300v50；find11.71；open至原题及完整Comments of2025",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/1401.0300v50",
+      "locator": "11.71，HTML lines1122–1124",
+      "note": "评论明确列出innately transitive、n=3及H=UL三项进展；卡“无解题评论”不符实际内容。",
+      "request_id": "QX-R3-11-001113-math-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge原刊PDF",
+      "query": "读取Kronecker classes and cliques in derangement graphs的Abstract、Theorem1.1、Definition1.2、Conjecture1.3及n=3归约",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/ECF0504384D16C4922C84422210E245C/S1446788726101505a.pdf/kronecker-classes-and-cliques-in-derangement-graphs.pdf",
+      "locator": "印刷pp307–310，尤其p309 Theorem1.1及n=3证明",
+      "note": "独立核coset action/derangement归约；未重证29页分类定理或重跑其Magma计算。",
+      "request_id": "QX-R3-11-001113-math-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cambridge原刊HTML",
+      "query": "读取Prime power coverings of groups and field extensions，Intro、Theorem1.6、Corollary1.7、Remark1.8、§2.2定义；find induced/innately",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "Theorem1.6及§2.2；Intro关于maximal、n2/n3和chief length",
+      "note": "原定理处理prime-power-covering且要求诱导商群innately transitive；亲核全元素覆盖到此前提的单向蕴涵。未逐条重证CFSG长依赖。",
+      "request_id": "QX-R3-11-001113-math-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：独立数学核验",
+      "site": "手工群论审校",
+      "query": "固定n量词；n1共轭计数；U正规于H的界；A4/V4小例；core_A与core_H；coset作用与n部derangement图",
+      "date": "2026-11-27",
+      "outcome": "不适用",
+      "url": "urn:qunxing:private-material",
+      "locator": "math_results自含证书",
+      "note": "均为手算及原文阅读；未运行GAP、Magma、Lean或有限群扫描。执行脚本仅读写JSON与Schema校验。",
+      "request_id": "QX-R3-11-001113-math-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C01",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地题包",
+      "query": "读取work_001113_sources/task.json完整任务条目",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "urn:qunxing:private-material",
+      "note": "QX-P-001113 / card_rev50059a8a33472d29。题卡自身原文节选含Comments of 2025，已知结果却声称无评论，内部不一致。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C02",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API / maxvonhippel/budden-bench",
+      "query": "GET contents/problems/kourovka/problem_11.71?ref=66a10282fec151c6ca447e28cebf050e5a815fb8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/maxvonhippel/budden-bench/tree/66a10282fec151c6ca447e28cebf050e5a815fb8/problems/kourovka/problem_11.71",
+      "note": "固定版本精确目录实际只有problem.json（999 bytes）；无formalization.lean或proof脚本，不把其他题目录的Lean状态类推本题。",
+      "result_count": 1,
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C03",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search / google-deepmind/formal-conjectures",
+      "query": "11_71; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "实际返回空；未取得对应Lean题面或证明文件，不对整个仓库/全部形式化系统作无证明断言。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C04",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search / openai/math",
+      "query": "A-covering; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://github.com/openai/math",
+      "note": "该精确术语查询为空；仅此词组覆盖。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C05",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Kourovka\" \"11.71\" solution; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.cambridge.org/core/journals/journal-of-the-australian-mathematical-society/article/kronecker-classes-and-cliques-in-derangement-graphs/ECF0504384D16C4922C84422210E245C",
+      "note": "命中Cambridge《KRONECKER CLASSES AND CLIQUES IN DERANGEMENT GRAPHS》称11.71为central open问题，以及旧Length and eigenvalue equivalence的相关讨论。本文稿范围由学术路线核；该项核查仅命中摘要并移交，不冒认已阅读全文或以检索发布时间代替原刊日期。",
+      "locator": "〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C06",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"A-covering\" \"AI\" group; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://kourovkanotebookorg.wordpress.com/",
+      "note": "返回官方站AI符号说明及Ansätze数据库状态页等入口，未取得本题完整AI证明/反例声称。Ansätze旧v48索引不作为当前主状态依据。",
+      "locator": "〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C07",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka官方Repository / Web open",
+      "query": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "note": "当前页面272行完整读取；该目录明确包含部分AI-generated、未经数学家确认的稿件，需以main file判断状态。本题11.71未列；未把这个未列视为全部互联网无声明。",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C08",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file / maxvonhippel/budden-bench",
+      "query": "problems/kourovka/problem_11.71/problem.json @ 66a10282fec151c6ca447e28cebf050e5a815fb8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/maxvonhippel/budden-bench/blob/66a10282fec151c6ca447e28cebf050e5a815fb8/problems/kourovka/problem_11.71/problem.json",
+      "note": "全文取得，实际题号11.71、定义∪_{a∈A}U^a=H，外层指数n，f与具体群无关；包含完整三项2025评论。不是形式化代码。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C09",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search / google-deepmind/formal-conjectures",
+      "query": "Praeger covering; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "note": "作者+术语补查返回空；未取得同题源码，不做sorry/axiom或编译通过的虚假审查。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C10",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search / openai/math",
+      "query": "Neumann Praeger; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://github.com/openai/math",
+      "note": "作者组合补查返回空；不能据此排除改名、未索引或未公开内容。",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C11",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"A-covering\" \"subgroup\" \"Lean\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiver.lazybrains.com/author/810344",
+      "note": "出现作者聚合页混排A-covering论文与其他Lean群分类、拓扑covering-space形式化、格covering radius等；按摘录定义排除不同对象，未把这些条目当11.71证明，也未逐篇审非候选全文。",
+      "locator": "〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C12",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "site:mathoverflow.net \"Neumann\" \"Praeger\" covering",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://mathoverflow.net/questions/101874/computing-the-zariski-closure-of-a-subgroup-of-sln-z",
+      "note": "命中Neumann–Praeger矩阵生成算法/Zariski closure、数学史及insipid-number问题，均不是A-covering统一指数界。仅检索摘录范围排除，没有本题MO原帖/回答可阅读全文。",
+      "locator": "〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C13",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Kourovka\" \"11.71\" \"AI\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.scribd.com/document/273587224/The-Kourovka-Notebook",
+      "note": "命中旧Notebook页面的AI-enhanced-description标签，没有本题完整AI数学证明；该标签是页面描述功能，不能记为AI解答。",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C14",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka官方Repository / Web find",
+      "query": "find 11.71",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "note": "当前272行页面精确题号无匹配。",
+      "locator": "〔原始工具引用已私有留存〕",
+      "result_count": 0,
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C15",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka官方Repository / Web click",
+      "query": "点击53 Solutions of several problems",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "note": "取得《Results on problems from the Kourovka Notebook》，Version4—19September2026，92页/5557提取行；读封面、版本和主/partial/prior-work索引，之后针对本题查词，未声称本轮全文重审45个其他题。",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C16",
+      "route": "代码、公开 AI 和社区",
+      "site": "官方链接AI稿 / Web find",
+      "query": "分别find 11.71、A-covering、Praeger",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "note": "11.71与A-covering无匹配；Praeger命中15.65的有限经典群矩阵枚举参考与20.1 totally2-closed问题、参考文献，具体已读上下文范围排除。此结果仅覆盖该固定v4，不能提升为所有日期/所有AI稿无本题。",
+      "locator": "〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-Q32-C17",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地文件校验",
+      "query": "保存GitHub原UTF8内容，Python重算git blob SHA1及SHA256",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "urn:qunxing:private-material",
+      "note": "999 bytes；git blob65c4639a9cc645b376b2d6230a1b0d60b0ab9a48吻合API；SHA2563bef7c4cb6f235390945cf73403495885523b9fafcf953b7ca6ce43018c91492。没有运行GAP/Lean或群枚举。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-001113-root-013",
+      "route": "学术",
+      "site": "Cambridge期刊落地页",
+      "query": "open正式n3论文HTML；find Volume/Published online",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.cambridge.org/core/journals/journal-of-the-australian-mathematical-society/article/kronecker-classes-and-cliques-in-derangement-graphs/ECF0504384D16C4922C84422210E245C",
+      "note": "实际网页元数据：online2026-04-13；Volume121 Issue3 December2026 pp307–335。12月是网页标注卷期，不能说今天已过该卷期日；论文已在线正式发表。下载PDF当前仍FirstView页1–29，关键n3归约在PDFp3，对应排定期刊p309。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R1113-CARD",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001113.text.md",
+      "locator": "题面、人话、原文11.71、已知结果及meta.acceptance/novelty",
+      "version": "commit73290369a8dcc632e25e555aec525565ea6e08f8；card_rev50059a8a33472d29",
+      "subquestions": [
+        "主问题",
+        "量词与定义",
+        "旧卡进展缺漏"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "本题有限A、H正规、U<H<A且H为U所有A共轭的并。指数越大U相对H越小；平移应改为共轭。已有原题摘录2025评论，与已知结果无评论和2024–26无直接命中的断言自相矛盾。反例须某个固定n下指数无界；随n增长的一列大指数不能排除任意f。核心数学问题仍可由完整人话及原题确定，不仅因formal占位就判数学题错误。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "a1113_book",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "11.71，印刷p54/PDF P53；Comments of2025；序言p4及第11辑目录",
+      "version": "arXiv1401.0300v50，2026-11-02，第21版",
+      "subquestions": [
+        "主问题",
+        "原题量词",
+        "三项2025评论"
+      ],
+      "role": "原始提出",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "核过关键步骤",
+      "note": "有限A，U<H<A，H⊲A，n=[A:H]，H=∪_{a∈A}U^a，问统一f(n)控制[H:U]；提出人Neumann/Praeger。第11辑标1990。完整2025评论包括innately transitive、n=3≤10、H=UL极小非平凡A不变三项。本卡“无解题评论”与实际原页直接冲突；未标符号不能推全网未解。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "a1113_praeger1994",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/DF9A4C4AB77EDAF6E8190C508BBFF1E6/S1446788700036028a.pdf/kronecker-classes-of-fields-and-covering-subgroups-of-finite-groups.pdf",
+      "locator": "§4 Conj4.3、Thm4.4及证明，印刷pp26–28；Thm4.6 p29另有修正",
+      "version": "Cheryl E.Praeger，J.Austral.Math.Soc.(A)57(1994),17–34；DOI10.1017/S1446788700036028，received1993-09-07",
+      "subquestions": [
+        "极大子群特例",
+        "原始明确论文出处"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "原刊作者为Praeger；猜想共同归Neumann/Praeger并引Kourovka11.71。Thm4.4证U在G中极大时肯定，证明依赖有限单群分类。论文采用Inn(G)≤A≤Aut(G)、n=[A:Inn(G)]版本；换回原题须通过共轭像并取单调包络，不能偷换参数相等。原刊全文文本已取得，长分类未重证。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a1113_fps2024",
+      "url": "https://www.degruyterbrill.com/document/doi/10.1515/jgth-2023-0284/pdf?licenseType=open-access",
+      "locator": "Thm1.1–1.3 pp931–932；§1.1 pp933–934；§2 pp934–935及footnote8",
+      "version": "Fusari/Previtali/Spiga，J.Group Theory27(5)(2024),929–965；DOI10.1515/jgth-2023-0284；revised2024-02-28",
+      "subquestions": [
+        "innately transitive特例",
+        "derangement clique路线"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "Innately transitive指诱导置换群存在传递的极小正规子群，并非仅传递。Thm1.1为无k-clique⇒degree≤f₁(k)，本身无M11例外；例外属于半正则子群Thm1.3，§2用2^κ个元素构成clique消除。书中据此记本题相应innate情形肯定；本轮只核原定理/归约范围，未重跑文中Magma或重证全部分类。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a1113_cgs2026",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/ECF0504384D16C4922C84422210E245C/S1446788726101505a.pdf/kronecker-classes-and-cliques-in-derangement-graphs.pdf",
+      "locator": "Theorem1.1；Conjecture1.3及n=3短证明，当前PDFp3（排定期刊p309）；§2sharp例",
+      "version": "Cazzola–Gogniat–Spiga；online2026-04-13；J.Aust.Math.Soc.网页排定121(3),December2026,307–335；doi10.1017/S1446788726101505；当前PDF FirstView1–29",
+      "subquestions": [
+        "n=3特例",
+        "一般n范围排除"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅某子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "核过关键步骤",
+      "note": "Thm1.1：有限传递置换群degree>30⇒derangement图含4-clique。A在[A:U]作用时H全为有不动点元素，clique至多占每个H陪集一个元素；[A:H]=3故[A:U]≤30，得到[H:U]≤10。短归约已核，长分类定理作已刊外部输入；主审数学另核。官方2502.01287 abs当前仅列v1 2025-02-03并链接此DOI，正式稿署名须补三作者。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a1113_fhs_error",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/kronecker-classes-normal-coverings-and-chief-factors-of-groups/77CF799AF568AF316065490E4D755513",
+      "locator": "§1，Theorem1.2后错误定位；对照Praeger1994印刷p29倒数7行",
+      "version": "Fusari/Harper/Spiga，online2025-04-14；Bull.Aust.Math.Soc.113(2026),108–115；DOI10.1017/S0004972725000176",
+      "subquestions": [
+        "1994 Thm4.6旧证明错误及补证"
+      ],
+      "role": "勘误",
+      "publication": "正式刊发",
+      "scope_match": "仅某子问",
+      "claim_state": "有修订",
+      "review_status": "核过关键步骤",
+      "note": "新文指出旧证明在Gbar=Z_p^k且Ubar=Gbar时仍用p≤[Gbar:Ubar]，实际右边为1，故该步不给p上界；本轮两份原文本已对照。作者另给正确证明，不是撤回或反驳双参数定理，也不影响仅凭此资料对Thm4.4作范围登记。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "revised",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a1113_fhs_bounds",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/kronecker-classes-normal-coverings-and-chief-factors-of-groups/77CF799AF568AF316065490E4D755513",
+      "locator": "Theorem1.2；Proposition3.1；§3证明",
+      "version": "同Fusari/Harper/Spiga正式论文，2025online/2026卷期",
+      "subquestions": [
+        "有界A-chief长度",
+        "U补充极小非平凡A不变子群"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "Thm1.2给g(n,c)，c=ℓ_A(G/U_A)，U_A=∩U^a；未控制c只依赖n，不能推出原单参数界。Prop3.1在存在极小非平凡A不变L且G=UL时给f(n)。这些写在v50完整评论中；原文与证明取得，本轮未对全部长证明独立二审。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a1113_gmp2026",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "§1 Definition(1.1)、Theorem1.6及Remarks1.8；§2.2；§5",
+      "version": "Michael Giudici/Luke Morgan/Cheryl E.Praeger；Forum Math.Sigma14(2026),e131；DOI10.1017/fms.2026.10281；online2026-09-29",
+      "subquestions": [
+        "素数幂覆盖加强的innate特例",
+        "maximal/primitive边界"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "Thm1.6只假设U meets every A-conjugacy class of prime-power elements of G，以及G在[G:U]的诱导置换群innately transitive，即给[G:U]≤f([A:G])并迫诱导群primitive，所以U为G极大子群。全元素A-cover足以满足素数幂覆盖，故适用于本题相应子类；没有去掉innate假设。已读全文入口及关键范围，未重证CFSG相关结构。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a1113_equivalence2026",
+      "url": "https://arxiv.org/html/2601.20500v2",
+      "locator": "§1.3 Theorem1.3、Theorem1.4；§3；arXiv abs版本史",
+      "version": "Jessica Anzanello/Pablo Spiga，arXiv2601.20500v2，2026-03-08（v1 2026-01-28）；作者注intro minor corrections",
+      "subquestions": [
+        "Neumann–Praeger与clique猜想关系",
+        "额外正规块系长度参数"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "note": "Thm1.3证明Neumann–Praeger的同共轭并子群界猜想与传递群derangement图无c-clique的degree界猜想等价。Thm1.4仅给h(c,ℓ)，ℓ为最长正规块系链长度。不是无条件证明两猜想。需更新2026早期n3稿里反向关系尚不清楚的旧评论；本轮未独立重核25页等价性长证。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q1113-M-E1",
+      "url": "https://arxiv.org/html/1401.0300v50",
+      "locator": "11.71与完整Comments of2025",
+      "version": "arXiv1401.0300v50，2026-11-02",
+      "subquestions": [
+        "准确量词与验收",
+        "现有结果适用范围"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "U<H<A严格；A有限、H正规；覆盖是所有A共轭的集合并。原题不是仅讨论极大U。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q1113-M-E2",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/ECF0504384D16C4922C84422210E245C/S1446788726101505a.pdf/kronecker-classes-and-cliques-in-derangement-graphs.pdf",
+      "locator": "Theorem1.1；Conjecture1.3及n=3短证明，当前PDFp3（排定期刊p309）；§2sharp例",
+      "version": "Cazzola–Gogniat–Spiga；online2026-04-13；J.Aust.Math.Soc.网页排定121(3),December2026,307–335；doi10.1017/S1446788726101505；当前PDF FirstView1–29",
+      "subquestions": [
+        "n=3的已知指数界",
+        "覆盖与derangement图的精确归约"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "定理排除次数>30而无4-clique的transitive permutation group；本轮独立核到d≤10的归约。完整分类与达到10的例子未在数学路线重证或复跑。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q1113-M-E3",
+      "url": "https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/prime-power-coverings-of-groups-and-field-extensions/B0FE900D1A2681D4FFD5519EBABB1FB2",
+      "locator": "Theorem1.6、§2.2、Introduction",
+      "version": "M.Giudici–L.Morgan–C.E.Praeger, Forum Math.Sigma14(2026),e131；online2026-09-29；doi10.1017/fms.2026.10281",
+      "subquestions": [
+        "innately transitive/maximal范围",
+        "忠实化与normal core",
+        "n=2边界"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "亲读准确声明及定义；核本题全元素覆盖蕴涵prime-power-covering与maximal⇒primitive⇒innately transitive；未重证整篇分类证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q1113-M-E4",
+      "url": "urn:qunxing:private-material",
+      "locator": "math_results中的独立手工推导",
+      "version": "2026-11-27 / QX-P-001113 / 50059a8a33472d29",
+      "subquestions": [
+        "准确量词与验收",
+        "n1与正规子群边界",
+        "忠实化与normal core",
+        "覆盖与derangement图的精确归约"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "不声称已给出一般f或固定n的无界反例；无机器枚举。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q32-C1",
+      "url": "https://github.com/maxvonhippel/budden-bench/blob/66a10282fec151c6ca447e28cebf050e5a815fb8/problems/kourovka/problem_11.71/problem.json",
+      "locator": "problem_number11.71与完整problem_text；固定同题目录仅problem.json",
+      "version": "maxvonhippel/budden-bench@66a10282fec151c6ca447e28cebf050e5a815fb8；本轮2026-11-27实际读取",
+      "subquestions": [
+        "11.71全题语义",
+        "现有代码/形式化范围",
+        "2025进展评论索引"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "这是自然语言数据，不是Lean题面骨架或proof。A有限，U<H<A且H◁A，A-covering是所有A共轭U^a之并等于H，n=[A:H]；问题要∃f:ℕ→ℕ对所有此类有限群统一控制[H:U]，不能依赖具体A/H/U。固定数据含U极大时肯定与三项Comments of2025：H在[H:U]上innately transitive（Fusari–Previtali–Spiga，JGT27(2024)929–965）；n=3时[H:U]≤10（Gogniat–Spiga，arxiv2502.01287）；H=UL、L为极小A不变子群（Fusari–Harper–Spiga，doi10.1017/S0004972725000176）。该项核查只确认目录确有这些评论，不据此二手重述完成论文证明复核，原论文由学术路线负责。本题目录仅此999-byte JSON；blob65c4639a9cc645b376b2d6230a1b0d60b0ab9a48和SHA2563bef7c4cb6f235390945cf73403495885523b9fafcf953b7ca6ce43018c91492均已独立核。无可审theorem/sorry/axiom，无GAP或Lean运行。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q32-C2",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "locator": "Repository当前完整272行；精确题号find11.71；Solutions of several problems链接",
+      "version": "2026-11-27访问的官方目录",
+      "subquestions": [
+        "公开AI完整稿入口"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "本题11.71未列在实际读取的官方Repository正文；这是指定官方入口的有限覆盖结果，不代表其他网址无声明。目录自己提示其中有未经数学家验证的AI稿，并要求参考main file当前状态；无法以目录未列、旧编目无符号，推导没有已知特例或没有2025评论。已跟进其合辑链接，对固定v4作同题检索，见Q32-C3。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q32-C3",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "locator": "Version4封面、§2主/partial/prior-results索引；全文find11.71/A-covering；Praeger命中上下文",
+      "version": "Version4—19September2026；2026-11-27重新访问并针对本题查词",
+      "subquestions": [
+        "官方链接AI合辑是否含11.71"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "92页PDF中精确11.71与A-covering均无匹配；作者名Praeger虽有命中，但对应15.65的Fulman–Neumann–Praeger枚举结果及20.1 totally2-closed群，不是A-covering子群指数。这里只读封面/索引和检索命中上下文，未在本题任务中审核其其他45个候选证明。合辑不是本题证明或反例证据；范围限定该版本，不以2026-09固定报告替代今日全部AI生态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000150",
+      "other_card_rev": "9850b4a22d5fcb3d",
+      "relation": "相关但不等价",
+      "reason": "150/21.28限制有限单传递置换群，求无不动点元素比例下界89/325；1113/11.71对任意有限A的正规H及共轭覆盖U求内外指数函数界。derangement图建立联系，但比例与clique参数不同，群的单性也不同，不能相互替换验收或合并。",
+      "positions": {
+        "self": "001113.text.md人话、原文11.71及meta.acceptance",
+        "other": "000150.text.md原文21.28、人话δ定义及meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000150__QX-P-001113；owner=QX-P-000150；双方正文与meta已核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001115",
+      "other_card_rev": "de373b1be0ff9a65",
+      "relation": "相关但不等价",
+      "reason": "1115的F-covering涉及遗传可解局部形成F及对子群存在的分类，另含Fitting类injector；1113的A-covering中A是实际有限外群，共轭并覆盖一个正规子群，并求指数有界。覆盖子群汉语/英文词面重合不是同一定义，提出人及题号/验收均不同，不合并。",
+      "positions": {
+        "self": "001113.text.md人话A-covering定义及原文11.71",
+        "other": "001115.text.md原文11.117/11.118及meta.acceptance"
+      },
+      "note": "pair_id=QX-P-001113__QX-P-001115；owner=QX-P-001113；仅确认对象和量词差异，不为1115两子问另判状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补进展",
+      "field": "原文摘录/已知结果与进展/开放状态证据",
+      "old": "2025评论只截innate首项，随后宣称v50无解题评论",
+      "new": "补完整2025三项：FPS2024innate；n=3时≤10；H=UL且L极小非平凡A不变。删去“无评论”的错误据点",
+      "reason": "实际v50印刷p54逐字可核，与本卡自身截录也冲突。",
+      "evidence_ids": [
+        "a1113_book"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "历史与2026论文信息",
+      "old": "n3条仍只可能沿用Gogniat/Spiga2025预印本",
+      "new": "登记2026正式Cazzola/Gogniat/Spiga三作者与DOI10.1017/S1446788726101505，同时保留2502.01287v1历史入口",
+      "reason": "正式来源与书中2025评论不是同一书目状态；不得从搜索发布日期误记成果始于2026。",
+      "evidence_ids": [
+        "a1113_cgs2026"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "已有证明可靠性/勘误",
+      "old": "未记录Praeger1994 Thm4.6的错误与补证",
+      "new": "单列旧归纳步骤在Ubar=Gbar时失效，链接2025online/2026卷期FHS替代证明；保留c参数",
+      "reason": "P0勘误影响所援证明，但已有补证，不写成原猜想反例或定理撤回。",
+      "evidence_ids": [
+        "a1113_fhs_error",
+        "a1113_fhs_bounds"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "最新进展",
+      "old": "2024–2026无直接命中",
+      "new": "补2026素数幂覆盖innate特例及原始群作用必须primitive的结论；补2601.20500v2等价性与正规块系链双参数界",
+      "reason": "准确标附加条件；等价性不是解答。",
+      "evidence_ids": [
+        "a1113_gmp2026",
+        "a1113_equivalence2026"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "formal/acceptance",
+      "old": "占位形式化；构造一列使|H:U|相对n无界",
+      "new": "写全A有限、U<H<A、H正规、集合并覆盖及∃f∀三元组；否定验收明确为存在固定n0的覆盖族而[H:U]无界。",
+      "reason": "任意随n增长的序列不足以否定不限制增长速度的函数f。核心形式化修订须新card_rev，该项核查不直接改卡。",
+      "evidence_ids": [
+        "Q1113-M-E1",
+        "Q1113-M-E4"
+      ],
+      "small_case_check": "A4/V4/U给n3,d2；固定三元组作C_m直积时群阶增长但n,d均不变，不能据此制造无界反例。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "human",
+      "old": "靠平移覆盖；它到底能有多大",
+      "new": "通过A中的共轭覆盖H；要控制的是子群指数[H:U]。区分共轭集合并、陪集覆盖和共轭生成。",
+      "reason": "原问不是控制|H|，共轭操作也不等于平移。",
+      "evidence_ids": [
+        "Q1113-M-E4"
+      ],
+      "small_case_check": "所有共轭含单位元；A4直积C_m可使|H|无界而指数固定。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "独立验证建议",
+      "new": "GAP等有限计算可核具体A,H,U的严格包含、正规性、全部共轭并及两个指数；一般肯定结论仍需统一证明，否定仍需固定n无限族。",
+      "reason": "单个有限群或随群阶截断的扫描只能提供局部证书。core_A(U)与core_H(U)必须分别命名。",
+      "evidence_ids": [
+        "Q1113-M-E4"
+      ],
+      "small_case_check": "A4例core_A(U)=1而core_H(U)=U，后者不正规于A。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "符号解释/novelty.card_rev/status依据",
+      "old": "♯(AI拟解)/∗(AI确认解)，无标记推出编目开放；旧novelty.card_rev=816e4ecd768cb593",
+      "new": "按v50序言：♯为未被数学家确认的AI方案；∗为适当确认的解答标记，不反向断言所有∗均AI来源。当前只对50059a8a33472d29回传，旧novelty哈希参考；状态依据改为已读进展和本轮搜索范围",
+      "reason": "序言对♯的AI含义确有定义，不能一概否定；但无标记、旧哈希和目录层面都不是数学开放证明。",
+      "evidence_ids": [
+        "a1113_book"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "reason": "当前核心仍是所有n的统一函数存在性；本轮原刊和定向近期检索只取得限定情形与等价性。",
+      "next_step": "后续仅优先跟踪明确全称解/固定n反例或撤回，不把额外chief-length/normal-imprimitivity-length界升级为原题全解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "FPS2024、CGS2026、FHS补证、GMP2026及Anzanello–Spiga等价稿的长分类/全部外引并未本轮独立重证。",
+      "next_step": "保持“全文取得、定理范围核准/短归约已核”的审阅层级；如提出依赖这些论文的完整新解，再针对关键分类/计算证书补二审，而非要求本题回执重证所有已刊定理。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "亲读的是v50对第11辑1990的保留题文及Praeger1994原刊；未取得1990第11辑独立历史扫描。",
+      "next_step": "历史字段可写第11辑1990（当前官方题簿及原论文共同支持），若必须判定更早1988相关猜想与此精确版本谁先，再取对应旧原稿，当前不把2026回顾中的1988泛化为此编号首刊。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮指定仓库、作者/题号检索及官方AI目录/固定v4合辑未取得同题形式化或完整新AI数学稿；不是对未索引/未公开内容的穷尽证明。",
+      "next_step": "将当前限定覆盖与原文、学术、数学片段合并；若后续出现11.71完整证明/反例或可执行证书，再按实际固定源检查量词、核心假设、依赖和复跑结果。当前没有需要安装GAP或用有限枚举代替全题证明的候选。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "两轮标题/英文标题/别名筛选及150/1115全文比较只覆盖明确近邻。",
+      "next_step": "如出现别名或正文中的严格同题候选，先核双方card_rev及所有条件再登记pair_id；当前两对不建议合并，不声称逐卡穷尽全库。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "50059a8a33472d29",
+      "codes": {}
+    }
+  ]
+}

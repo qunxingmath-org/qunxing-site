@@ -1,0 +1,2554 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000413",
+  "card_rev": "b4e584cf9728c7bb",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-10"
+      ],
+      "parts": [
+        {
+          "subquestion": "原意中的一般有限群naive角统一计数命题",
+          "value": "partial",
+          "note": "对任意0<α≤1，在所有有限G及|A|≥α|G|²上是否有T≥c(α)|G|³，本轮未取得一般完整解。Austin仅覆盖足够拟随机群；2026稳定性稿需少半图条件；2025 v2 Cor1.5虽适用所有有限群，却是角自由密度界/存在结果，不能直接迁移为统一计数。BMZ乘法方向不同，公开AI PR亦无有效证明。含e全群与排e大群、精确密度与密度下限的等价已经直接数学核对，但这些表述等价不是猜想证明。"
+        },
+        {
+          "subquestion": "quasirandom群统一计数特例",
+          "value": "partial",
+          "note": "Austin Theorem B对D足够大（随密度变）的quasirandom群给下界；没有覆盖所有有限群。只核陈述/局部证明，非本轮独立全证明。"
+        },
+        {
+          "subquestion": "almost surely stable集合的统一计数特例",
+          "value": "partial",
+          "note": "2026正式稿Cor.5.5带少半图条件，计数的是更强方形；可推出同条件的naive角计数，不能去掉条件。"
+        },
+        {
+          "subquestion": "任意有限群角自由集密度的定量进展",
+          "value": "partial",
+          "note": "2025 v2 Cor.1.5适用任意有限群，但只定量化非平凡角存在/角自由集上界；没有从此得到主问题uniform supersaturation。未通审75页主证明。"
+        },
+        {
+          "subquestion": "BMZ变体的三个公开AI形式化解决声明",
+          "value": "no_evidence_in_scope",
+          "note": "三个AI PR均关闭未合并，只改标签且保留sorry；可排除为真实形式化证明，不否定BMZ数学文献结果，也不覆盖naive主问题。公开社区任务亦只是BMZ题面补证招募。"
+        },
+        {
+          "subquestion": "验收对象：单个有限实例能否否定未知的统一c(α)>0",
+          "value": "statement_error",
+          "note": "P0明确定位于acceptance.criteria的反例验收分支及人话“可靠计算找反例”的量词解释，不是原有限群计数断言已被反驳。按现卡包含g=e，T_G(A)≥|A|，故对α>0每个固定实例的T/|G|³≥α/|G|>0；单个实例不能否定存在某个正统一常数。有效否定需固定正密度且∀ε>0有实例使T/|G|³<ε，等价给固定正密度族及归一化计数→0证明。数学笔记给出完整量词与小例。改验收须新card_rev。"
+        },
+        {
+          "subquestion": "边界与有限群表述对应：身份元计数、非平凡大群版本",
+          "value": "not_assessed",
+          "note": "本轮直接推导：|A|≤T≤|G||A|；T*=T−|A|。计入g=e的统一全有限群计数下界与排除g=e且允许|G|≥m₀(α)的版本等价，可用常数c/2和min(d,α/M)相互转换。此项只证明表述对应和边界，不对开放主命题作真伪判断，不标为形式化复跑。只讨论有限群，不声称其与所有紧群Haar问题等价。"
+        },
+        {
+          "subquestion": "精确密度与固定密度下限的对应",
+          "value": "not_assessed",
+          "note": "标准|A|≥α|G|²口径可与对每个精确正密度都存在统一下界的版本相互转化：选固定有理β∈(0,α)，对G乘一个固定有限循环群H使β|G×H|²为整数；把A提升为A×H²，再抽取精确密度β的子集B。T(B)≤T(A)|H|³，故精确β下界给原A的统一下界。此为直接表述等价核对，不是求出c或解决猜想；若正式修改量词仍随验收修订更新版本。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "statement_only",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/GreensOpenProblems/18.lean"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面有误",
+      "scope_note": "此标签指当前卡acceptance.criteria的反例验收分支与人话计算证伪解释有误，不指Green18/Austin有限群统一计数命题本身错误。现卡允许g=e，故T_G(A)≥|A|，每个正密度有限实例的T/|G|³>0；一个有限G,A不能否定未知统一正c(α)的存在。否定需固定正密度、归一化计数可任意小的族或等价完整反证。修改验收及正式量词必须新card_rev，本回执仍绑定b4e584cf9728c7bb。原意中的一般命题未找到覆盖全范围的证明或反例；子范围进展与Lean占位分别列，不关闭一般题。",
+      "evidence_ids": [
+        "R10-Q008-E-GREEN",
+        "R10-Q008-E-AUSTIN-CHECK",
+        "QX-P-000413-code-e1"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "原意中的一般有限群naive角统一计数命题",
+      "math_status": "有部分进展",
+      "scope_note": "对任意0<α≤1，在所有有限G及|A|≥α|G|²上是否有T≥c(α)|G|³，本轮未取得一般完整解。Austin仅覆盖足够拟随机群；2026稳定性稿需少半图条件；2025 v2 Cor1.5虽适用所有有限群，却是角自由密度界/存在结果，不能直接迁移为统一计数。BMZ乘法方向不同，公开AI PR亦无有效证明。含e全群与排e大群、精确密度与密度下限的等价已经直接数学核对，但这些表述等价不是猜想证明。",
+      "evidence_ids": [
+        "Q008-A03",
+        "Q008-A05",
+        "Q008-A06",
+        "QX-P-000413-code-e3"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "quasirandom群统一计数特例",
+      "math_status": "仅特例",
+      "scope_note": "Austin Theorem B对D足够大（随密度变）的quasirandom群给下界；没有覆盖所有有限群。只核陈述/局部证明，非本轮独立全证明。",
+      "evidence_ids": [
+        "Q008-A03",
+        "Q008-A04"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "almost surely stable集合的统一计数特例",
+      "math_status": "条件性结果",
+      "scope_note": "2026正式稿Cor.5.5带少半图条件，计数的是更强方形；可推出同条件的naive角计数，不能去掉条件。",
+      "evidence_ids": [
+        "Q008-A05"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "任意有限群角自由集密度的定量进展",
+      "math_status": "实质进展",
+      "scope_note": "2025 v2 Cor.1.5适用任意有限群，但只定量化非平凡角存在/角自由集上界；没有从此得到主问题uniform supersaturation。未通审75页主证明。",
+      "evidence_ids": [
+        "Q008-A06",
+        "Q008-A07"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "naive主问题的公开形式化证明覆盖",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "固定当前formal-conjectures只提供左左构型的开放题面，by sorry。已独立核含平凡步的全群阶计数与排除平凡步的充分大群阶计数之间常数转换，未发现真实一般证明，未进行Lean构建。",
+      "evidence_ids": [
+        "QX-P-000413-code-e1",
+        "QX-P-000413-code-e4"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "BMZ变体的三个公开AI形式化解决声明",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "三个AI PR均关闭未合并，只改标签且保留sorry；可排除为真实形式化证明，不否定BMZ数学文献结果，也不覆盖naive主问题。公开社区任务亦只是BMZ题面补证招募。",
+      "evidence_ids": [
+        "QX-P-000413-code-e2",
+        "QX-P-000413-code-e3",
+        "QX-P-000413-code-e5"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "验收对象：单个有限实例能否否定未知的统一c(α)>0",
+      "math_status": "题面有误",
+      "scope_note": "P0明确定位于acceptance.criteria的反例验收分支及人话“可靠计算找反例”的量词解释，不是原有限群计数断言已被反驳。按现卡包含g=e，T_G(A)≥|A|，故对α>0每个固定实例的T/|G|³≥α/|G|>0；单个实例不能否定存在某个正统一常数。有效否定需固定正密度且∀ε>0有实例使T/|G|³<ε，等价给固定正密度族及归一化计数→0证明。数学笔记给出完整量词与小例。改验收须新card_rev。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "边界与有限群表述对应：身份元计数、非平凡大群版本",
+      "math_status": "未作判断",
+      "scope_note": "本轮直接推导：|A|≤T≤|G||A|；T*=T−|A|。计入g=e的统一全有限群计数下界与排除g=e且允许|G|≥m₀(α)的版本等价，可用常数c/2和min(d,α/M)相互转换。此项只证明表述对应和边界，不对开放主命题作真伪判断，不标为形式化复跑。只讨论有限群，不声称其与所有紧群Haar问题等价。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    },
+    {
+      "subquestion": "精确密度与固定密度下限的对应",
+      "math_status": "未作判断",
+      "scope_note": "标准|A|≥α|G|²口径可与对每个精确正密度都存在统一下界的版本相互转化：选固定有理β∈(0,α)，对G乘一个固定有限循环群H使β|G×H|²为整数；把A提升为A×H²，再抽取精确密度β的子集B。T(B)≤T(A)|H|³，故精确β下界给原A的统一下界。此为直接表述等价核对，不是求出c或解决猜想；若正式修改量词仍随验收修订更新版本。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "R10-Q008-root-01",
+      "route": "原题与出处",
+      "site": "Ben Green 作者主页 PDF",
+      "query": "OPEN https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "取得62页PDF；本文自记Most recent update: December2025，不能把抓取日期当内容更新日。随后定位Problem18。",
+      "url": "https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-02",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"Green\" \"Problem 18\" \"Austin\" corners ; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Green原PDF及conjectures.io形式化题面索引；后者显示True↔量词不等于已有证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-03",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"naive corners\" \"2026\" ; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2026稳定性/二维构型正式论文，交本题学术分工读取其固定k半图条件；索引未给一般稠密集解。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-04",
+      "route": "原题与出处",
+      "site": "Ben Green 作者主页 PDF",
+      "query": "FIND \"Problem 18.\" in https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "读印刷p11 Problem18及p12开头注释：主题为左左naive corners，区别右左BMZ，后者Solymosi已解决；高拟随机群特例引用Austin ThmB。主题未标Solved，但旧版清单不是2026开放性确证。",
+      "url": "https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "locator": "印刷pp11–12；Problem18",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-05",
+      "route": "原题与出处",
+      "site": "Ben Green 作者主页 PDF",
+      "query": "FIND \"[15]\" in https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "参考文献[15]为Tim Austin, Ajtai–Szemerédi theorems over quasirandom groups, Recent trends in combinatorics, IMA159, Springer2016,453–484；题意和原文归属不应只写Ben Green。",
+      "url": "https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "locator": "印刷p49，References[15]",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-06",
+      "route": "原题与出处",
+      "site": "arXiv Web PDF",
+      "query": "OPEN https://arxiv.org/pdf/1503.08746v3",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "显式v3路径返回DisabledError；后续非显式版本路径实际成功并由PDF页首核为v3，分别记录。",
+      "url": "https://arxiv.org/pdf/1503.08746v3",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-07",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub Web open",
+      "query": "OPEN https://github.com/google-deepmind/formal-conjectures/pull/2735",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "web入口DisabledError；随后原生GitHub metadata和patch可读，不能混记web原页成功。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/2735",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-08",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub native fetch_file 独立核查",
+      "query": "repository_full_name=google-deepmind/formal-conjectures; path=FormalConjectures/GreensOpenProblems/18.lean; ref=9097e2f90e66d2f6244209cb1c07f7120d17ec53",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "根读完整源，blob050d3756b799917da691898da18d36fce5753094：numNaiveCorners排g=1且左左，green_18有∃m0、≥密度；BMZ改右左，两者均by sorry。此处只是题面/源码静态核对，没有构建和#print axioms。两种naive计数口径等价转换在本回执说明，不把逐字不同判作错题。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/GreensOpenProblems/18.lean",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-09",
+      "route": "原题与出处",
+      "site": "arXiv primary PDF 独立核查",
+      "query": "OPEN https://arxiv.org/pdf/1503.08746",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "实际取得30页、页首v3 19May2015。根读pp2–4定义、TheoremsA/B/C、Question2：Q2为紧可度量群、Haar测度≥δ的统一计数问题，集合式没有g≠e。有限群为其特化。仅存在一个非平凡角的ThmA不能推出c|G|³数量级。",
+      "url": "https://arxiv.org/pdf/1503.08746",
+      "locator": "v3印刷p2式(4)/(5)、pp3–4 ThmA/B/C与Question2",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-10",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub native get_pr_diff 独立核查",
+      "query": "repo_full_name=google-deepmind/formal-conjectures; pr_number=2735; format=diff",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "实际补丁仅将BMZ定理category research solved改formally solved using formal_conjectures并自链main文件；不含新增证明。目标还是BMZ子变体，不能关闭naive主题。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/2735",
+      "locator": "单文件补丁：1行替换",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-11",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub native get_pr_info 独立核查",
+      "query": "repository_full_name=google-deepmind/formal-conjectures; pr_number=2735",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "state=closed, merged=false；head=c1e3a518c92436b814caba6d1dc2b29687539a38。正文自述Claude Sonnet4.6/Aletheia-style及Lean compilation，亦自承loophole pattern和sorryAx。根独立核过正文与补丁，不把所谓编译通过当已验证定理，也未本轮复跑。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/2735",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-12",
+      "route": "原题与出处",
+      "site": "arXiv primary abstract/version history",
+      "query": "OPEN https://arxiv.org/abs/1503.08746",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "原站记录v1为2015-03-30、v2为03-31、v3为05-19；v3注说明补引文及小错更正。本轮原题正文实际核到v3，不假定逐页读过v1。",
+      "url": "https://arxiv.org/abs/1503.08746",
+      "locator": "Submission history及Comments",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-13",
+      "route": "学术",
+      "site": "本轮手工量词与计数核验",
+      "query": "令T计所有g、T*计g≠e；验证T=T*+|A|，推出单一有限实例不能否定未知统一c，并证明含平凡角全群版与非平凡角充分大群版的等价",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "note": "根独立核验：T≥|A|≥αn²>0。T≥cn³时n≥2/c给T*≥(c/2)n³；反向设m=max(1,m0)，c′=min(c,α/m)，小群用T≥αn²补底。α∈(0,1]；α>1输入真空。G={e},A={(e,e)}给T=1,T*=0，说明不能只删g=e却保留所有小群。未做穷举或证明助理构建。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-14",
+      "route": "学术",
+      "site": "arXiv primary PDF 独立范围复核",
+      "query": "OPEN https://arxiv.org/pdf/2504.07006v2 ; FIND \"Corollary 1.5\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "根独立读p4 Cor1.5及证明：所有有限群的右右naive corner-free集合密度≤exp[-c(log|G|)^(1/1200)]；对双坐标取逆得到本题左左型。结论是角自由密度上界/存在性，不能直接作为统一c(α)|G|³计数。未通审75页全文。",
+      "url": "https://arxiv.org/pdf/2504.07006v2",
+      "locator": "2025-07-14 v2；§1.1 Corollary1.5",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-15",
+      "route": "学术",
+      "site": "Cambridge 正式勘误独立阅读",
+      "query": "OPEN https://www.cambridge.org/core/services/aop-cambridge-core/content/view/19D58CB2016D8DB8B5A5734709B28625/S0963548315000243a.pdf/quantitative-equidistribution-for-certain-quadruples-in-quasi-random-groups-erratum.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "根读2页：更正另一篇Austin论文Cor3中复表示的张量等式，改用Schur正交性和CS，得到D^-1界。是修复/加强辅助估计，不是本题或TheoremB撤回；未逐行独立通审表示论证明。",
+      "url": "https://doi.org/10.1017/S0963548315000243",
+      "locator": "CPC25(2016)484–485",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-16",
+      "route": "学术",
+      "site": "arXiv primary PDF 引用定位",
+      "query": "FIND \"error, corrected\" in https://arxiv.org/pdf/1503.08746",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际定位印刷p9 Lemma4证明，已明确说明前作Cor3证明错误并引用[2]修复；不要错记成Lemma3。",
+      "url": "https://arxiv.org/pdf/1503.08746",
+      "locator": "Lemma4 proof，印刷p9",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q008-root-17",
+      "route": "学术",
+      "site": "本轮手工密度接口核验",
+      "query": "用有限直积G×C_q与抽取精确1/q密度子集，核严格等密度版与至少α密度版的统一计数命题等价",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "note": "给定α>0选q使1/q≤α。A提升到(G×C_q)²中A′，T(A′)=q³T(A)；从A′取|B|=q|G|²，B在群G×C_q的密度恰1/q。若精确密度版成立，T(B)≥c(1/q)(q|G|)³且T(B)≤q³T(A)，故原A满足统一正下界。反向是直接特例。只做有限集合计数推导，无新增文献或程序复跑。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W1-01",
+      "route": "原题与出处",
+      "site": "Web search system1",
+      "query": "检索词／定位词：Tim Austin 2016 Question 2 finite groups corners gx y x gy 〔私有记录编号：PR-003458〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W1；合并搜索来源：〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W1-02",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"nonabelian\" \"corners\" \"2026\" 〔私有记录编号：PR-003459〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W1；合并搜索来源：〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W1-03",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"Austin\" \"naive corners\" 〔私有记录编号：PR-003460〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W1；合并搜索来源：〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W2-01",
+      "route": "原题与出处",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"Ajtai-Szemerédi Theorems over quasirandom groups\" arxiv 〔私有记录编号：PR-003461〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W2；合并搜索来源：turn153737210academia8, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W2-02",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"naive corners\" solved OR proof OR counterexample 〔私有记录编号：PR-003462〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W2；合并搜索来源：turn153737210academia8, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W2-03",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"naïve corners\" \"2026\" 〔私有记录编号：PR-003463〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W2；合并搜索来源：turn153737210academia8, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W2-04",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"Austin\" \"Question 2\" \"corners\" 〔私有记录编号：PR-003464〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W2；合并搜索来源：turn153737210academia8, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W3-01",
+      "route": "原题与出处",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/abs/1503.08746 〔私有记录编号：PR-003465〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "已读 arXiv 摘要、版史和 v3 修订说明；未从该入口读论文证明。",
+      "url": "https://arxiv.org/abs/1503.08746",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/abs/1503.08746\",\"lineno\":null})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W3-02",
+      "route": "原题与出处",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/pdf/1503.08746 〔私有记录编号：PR-003466〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "PDF 返回 v3 首页及 pp.1–2 的角定义；正文可达，未通审全篇。",
+      "url": "https://arxiv.org/pdf/1503.08746",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/pdf/1503.08746\",\"lineno\":null})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W3-03",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://www.cambridge.org/core/journals/canadian-journal-of-mathematics/article/stability-corners-and-other-twodimensional-shapes/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1 〔私有记录编号：PR-003467〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "此次 open 仅显示站点导航起始窗口；不能据此记作正文已读。后续 find 另记。",
+      "url": "https://www.cambridge.org/core/journals/canadian-journal-of-mathematics/article/stability-corners-and-other-twodimensional-shapes/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://www.cambridge.org/core/journals/canadian-journal-of-mathematics/article/stability-corners-and-other-twodimensional-shapes/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1\",\"lineno\":null})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W3-04",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"naive corners\" \"finite groups\" \"2026\" theorem 〔私有记录编号：PR-003468〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W3；合并搜索来源：〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W3-05",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"naïve corners\" solved counterexample correction withdrawn 〔私有记录编号：PR-003469〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W3；合并搜索来源：〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W3-06",
+      "route": "原题与出处",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"Ajtai–Szemerédi Theorems\" \"Question 2\" 〔私有记录编号：PR-003470〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W3；合并搜索来源：〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W4-01",
+      "route": "原题与出处",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Question 2. 〔私有记录编号：PR-003471〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "定位 v3 印刷 p.4 Question 2，含单位元的 compact metrizable group 计数问句；有限群为其特化。",
+      "url": "https://arxiv.org/pdf/1503.08746",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Question 2.\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W4-02",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Theorem B 〔私有记录编号：PR-003472〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "定位 Theorem B 及相关证明窗口：D-quasirandom 限制；已读陈述与局部上下文，未独立核整证明。",
+      "url": "https://arxiv.org/pdf/1503.08746",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem B\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W4-03",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Corollary 5.5 〔私有记录编号：PR-003473〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "正文 Cor.5.5/5.6，分别需要少半图条件及更强有界指数条件。",
+      "url": "https://www.cambridge.org/core/journals/canadian-journal-of-mathematics/article/stability-corners-and-other-twodimensional-shapes/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Corollary 5.5\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W4-04",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Published online 〔私有记录编号：PR-003474〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位正式出版页的 Published online 及作者元信息；不是证明阅读。",
+      "url": "https://www.cambridge.org/core/journals/canadian-journal-of-mathematics/article/stability-corners-and-other-twodimensional-shapes/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Published online\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W4-05",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Authors 〔私有记录编号：PR-003475〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "Authors 命中主要为页面导航/署名区域；不作为数学结论核验。",
+      "url": "https://www.cambridge.org/core/journals/canadian-journal-of-mathematics/article/stability-corners-and-other-twodimensional-shapes/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Authors\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W4-06",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://www.cambridge.org/core/services/aop-cambridge-core/content/view/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1/S0008414X25101971a.pdf/stability-corners-and-other-two-dimensional-shapes.pdf 〔私有记录编号：PR-003476〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "PDF 首次返回首页题名、作者、刊年和摘要开头；后续定位正文另记。",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1/S0008414X25101971a.pdf/stability-corners-and-other-two-dimensional-shapes.pdf",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://www.cambridge.org/core/services/aop-cambridge-core/content/view/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1/S0008414X25101971a.pdf/stability-corners-and-other-two-dimensional-shapes.pdf\",\"lineno\":null})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W5-01",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003477〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "v3 p.2 任意充分大群中存在型结果的前文；定量计数仍须区分。",
+      "url": "https://arxiv.org/pdf/1503.08746",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":63})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W5-02",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003478〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "v3 p.4 Question 2 前后，BMZ 计数已知而 naive 另提问。",
+      "url": "https://arxiv.org/pdf/1503.08746",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":173})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W5-03",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003479〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "稳定性文章 Prop.5.4 及 Cor.5.5 邻近正文；附加稳定性条件。",
+      "url": "https://www.cambridge.org/core/journals/canadian-journal-of-mathematics/article/stability-corners-and-other-twodimensional-shapes/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":1000})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W5-04",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Corollary 5.5 〔私有记录编号：PR-003480〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "PDF p.22 Cor.5.5 原文及证明、p.22–23 Cor.5.6；只核陈述、证明路径，未独立核技术引理。",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1/S0008414X25101971a.pdf/stability-corners-and-other-two-dimensional-shapes.pdf",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Corollary 5.5\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W5-05",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Λ 〔私有记录编号：PR-003481〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "页内 Λ 查找命中方形计数定义/Cor.5.5 附近；使用文本提取，不声称视觉核验。",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1/S0008414X25101971a.pdf/stability-corners-and-other-two-dimensional-shapes.pdf",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Λ\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W5-06",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：2309.02353 〔私有记录编号：PR-003482〕",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "2309.02353 在参考文献中实为 Bloom–Sisask 的 Roth 论文，不是该 stability 论文预印本编号。",
+      "url": "https://www.cambridge.org/core/journals/canadian-journal-of-mathematics/article/stability-corners-and-other-twodimensional-shapes/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"2309.02353\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W5-07",
+      "route": "原题与出处",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"Ajtai–Szemerédi Theorems over Quasirandom Groups\" Springer 453 484 〔私有记录编号：PR-003483〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W5；合并搜索来源：〔原始工具引用已私有留存〕, turn303633354academia8, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W5-08",
+      "route": "原题与出处",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"Austin\" \"Ajtai\" \"Erratum\" 〔私有记录编号：PR-003484〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W5；合并搜索来源：〔原始工具引用已私有留存〕, turn303633354academia8, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W5-09",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"Stability, corners\" correction erratum withdrawn 〔私有记录编号：PR-003485〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W5；合并搜索来源：〔原始工具引用已私有留存〕, turn303633354academia8, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W6-01",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://link.springer.com/chapter/10.1007/978-3-319-24298-9_19 〔私有记录编号：PR-003486〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "Springer 正式章 DOI 元信息：First Online 2016-04-13、pp.453–484；页面明确 subscription preview，正式章全文未取得。",
+      "url": "https://link.springer.com/chapter/10.1007/978-3-319-24298-9_19",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://link.springer.com/chapter/10.1007/978-3-319-24298-9_19\",\"lineno\":null})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W6-02",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003487〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "Austin Theorem A：充分大 compact metrizable 群上的非平凡方形/立方体存在；p.3 紧接说明不能据此得统一计数。",
+      "url": "https://arxiv.org/pdf/1503.08746",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":67})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W6-03",
+      "route": "原题与出处",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003488〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "Austin Q2 p.4完整量词、无 g≠e；顺带读§2开头的 Abelian-subgroup 证明路径。",
+      "url": "https://arxiv.org/pdf/1503.08746",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":176})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W6-04",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://eccc.weizmann.ac.il/report/2024/170/ 〔私有记录编号：PR-003489〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "ECCC TR24-170 版本页初始窗口，已读 revision #2 日期及摘要；修订说明后续 find 单记。",
+      "url": "https://eccc.weizmann.ac.il/report/2024/170/",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://eccc.weizmann.ac.il/report/2024/170/\",\"lineno\":null})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W6-05",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://eccc.weizmann.ac.il/report/2024/170/download/ 〔私有记录编号：PR-003490〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "默认 download 的36页PDF题名及引言可达；这一 URL 的具体 revision 未能由PDF页首固定，不把它当最新有效版本。",
+      "url": "https://eccc.weizmann.ac.il/report/2024/170/download/",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://eccc.weizmann.ac.il/report/2024/170/download/\",\"lineno\":null})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W6-06",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"Quantitative equidistribution for certain quadruples\" \"erratum\" 〔私有记录编号：PR-003491〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W6；合并搜索来源：〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W6-07",
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "检索词／定位词：\"naive corners\" \"solved\" OR \"counterexample\" OR \"proof\" 2026 〔私有记录编号：PR-003492〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本条为实际独立搜索串；与同一 request_id 主编号下其他搜索合并返回索引，工具未提供逐串命中分配。只计索引检索，不计原文已读；未从合并输出推断某单串零命中。该批返回 ref 见 q008_academic_requests_audit.json。",
+      "locator": "QX-R3-10-008-ACA-W6；合并搜索来源：〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W7-01",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://www.cambridge.org/core/services/aop-cambridge-core/content/view/19D58CB2016D8DB8B5A5734709B28625/S0963548315000243a.pdf/quantitative-equidistribution-for-certain-quadruples-in-quasi-random-groups-erratum.pdf 〔私有记录编号：PR-003493〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "正式2页 Erratum 的p.484首段，指出早期四元组论文 Cor.3 证明错误；本次初始窗口尚未读完整修补。",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/19D58CB2016D8DB8B5A5734709B28625/S0963548315000243a.pdf/quantitative-equidistribution-for-certain-quadruples-in-quasi-random-groups-erratum.pdf",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://www.cambridge.org/core/services/aop-cambridge-core/content/view/19D58CB2016D8DB8B5A5734709B28625/S0963548315000243a.pdf/quantitative-equidistribution-for-certain-quadruples-in-quasi-random-groups-erratum.pdf\",\"lineno\":null})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W7-02",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Theorem 1.2 〔私有记录编号：PR-003494〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "旧 ECCC PDF Theorem1.2 对 SL2(Fp) 的角自由密度上界；另有修订，不能据此当本题通解。",
+      "url": "https://eccc.weizmann.ac.il/report/2024/170/download/",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 1.2\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W7-03",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：na 〔私有记录编号：PR-003495〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "find(pattern='na') 明确 No matching text found。此页内查找失败不证明全文无 naive 内容。",
+      "url": "https://eccc.weizmann.ac.il/report/2024/170/download/",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"na\"})",
+      "result_count": 0,
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W7-04",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：error 〔私有记录编号：PR-003496〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "Austin v3 印刷p.9 Lemma4 证明承认前作 Cor.3 证明错误且已由[2]勘误修复；不涉及撤回 Theorem B。",
+      "url": "https://arxiv.org/pdf/1503.08746",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"error\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W7-05",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Revision 〔私有记录编号：PR-003497〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "ECCC官方 revision #2 (2025-04-14) 明示旧工作被 TR25-047 吸收并修复 previous version 的 technical issue；属于原始版本公告正文。",
+      "url": "https://eccc.weizmann.ac.il/report/2024/170/",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Revision\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W7-06",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Jaber 〔私有记录编号：PR-003498〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "出版社正文脚注3和参考文献[23]指向 2504.07006；此入口只核引文链，不等于读被引论文。",
+      "url": "https://www.cambridge.org/core/journals/canadian-journal-of-mathematics/article/stability-corners-and-other-twodimensional-shapes/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Jaber\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W8-01",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003499〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "Erratum pp.484–485 完整两页文本：Schur 正交性及 Cauchy–Schwarz 修补，作者给出 D^-1 bound；未独立通审表示论。",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/19D58CB2016D8DB8B5A5734709B28625/S0963548315000243a.pdf/quantitative-equidistribution-for-certain-quadruples-in-quasi-random-groups-erratum.pdf",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":15})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W8-02",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003500〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "再次定位同一2页勘误后半部，输出实际重复两页；不计第二份独立证据。",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/19D58CB2016D8DB8B5A5734709B28625/S0963548315000243a.pdf/quantitative-equidistribution-for-certain-quadruples-in-quasi-random-groups-erratum.pdf",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":45})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W8-03",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://eccc.weizmann.ac.il/report/2025/047/ 〔私有记录编号：PR-003501〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "ECCC TR25-047 元信息及摘要，只见 finite abelian 主结果；非阿贝尔推论由PDF后续查找单独核。",
+      "url": "https://eccc.weizmann.ac.il/report/2025/047/",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://eccc.weizmann.ac.il/report/2025/047/\",\"lineno\":null})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W8-04",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/abs/2504.07006 〔私有记录编号：PR-003502〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "arXiv 摘要及版史：2504.07006v2，2025-07-14，v1 2025-04-09；非整稿审读。",
+      "url": "https://arxiv.org/abs/2504.07006",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/abs/2504.07006\",\"lineno\":null})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W8-05",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/pdf/2504.07006 〔私有记录编号：PR-003503〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得75页 v2 PDF，实际初始窗口为首页及引言；没有通审全部75页。",
+      "url": "https://arxiv.org/pdf/2504.07006",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"https://arxiv.org/pdf/2504.07006\",\"lineno\":null})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W9-01",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：Theorem 1.1 〔私有记录编号：PR-003504〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "2504.07006v2 pp.3–4：Theorem1.1 阿贝尔；Cor.1.4 BMZ，Cor.1.5 任意有限群 naive 角自由密度上界；读两条推论短证明，未核上游主定理。",
+      "url": "https://arxiv.org/pdf/2504.07006",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 1.1\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W9-02",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：quasirandom 〔私有记录编号：PR-003505〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "quasirandom 查找仅定位§2.3 quasirandom sifting 概述，不等于一般有限群统一计数。",
+      "url": "https://arxiv.org/pdf/2504.07006",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"quasirandom\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W9-03",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "检索词／定位词：SQUARE 〔私有记录编号：PR-003506〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "stability PDF p.2 方形右右定义、p.21 Cor.5.3 的 Λ 定义及 p.22 Cor.5.5；可确认与卡左左在双坐标取逆后对应。",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1/S0008414X25101971a.pdf/stability-corners-and-other-two-dimensional-shapes.pdf",
+      "locator": "〔原始工具引用已私有留存〕；find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"SQUARE\"})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-008-ACA-W9-04",
+      "route": "学术",
+      "site": "原站/论文正文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003507〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "旧 ECCC PDF 定位77行实际只返回通信复杂性 Theorem1.1 附近，未显示所求两类角定义；不能以这次 open 声称已核定义。",
+      "url": "https://eccc.weizmann.ac.il/report/2024/170/download/",
+      "locator": "〔原始工具引用已私有留存〕；open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":77})",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-001",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository_full_name=google-deepmind/formal-conjectures; path=FormalConjectures/GreensOpenProblems/18.lean; ref omitted (default branch)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/GreensOpenProblems/18.lean",
+      "note": "实际取得当前文件全文；后续按提交号重取锁版，blob 相同。naive 和 BMZ 两个定理均 by sorry。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-002",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "note": "固定 main=9097e2f90e66d2f6244209cb1c07f7120d17ec53；当前提交日期2026-11-24T14:16:43Z，顶端提交主题为另一题123，不作为本题进展。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-003",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository_full_name=google-deepmind/formal-conjectures; path=FormalConjectures/GreensOpenProblems/18.lean; ref=9097e2f90e66d2f6244209cb1c07f7120d17ec53",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/GreensOpenProblems/18.lean",
+      "note": "全文已阅，blob=050d3756b799917da691898da18d36fce5753094；静态核 definitions、量词、2个sorry及标签，无真实证明，不构建。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-004",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub PR search",
+      "query": "query=\"GreensOpenProblems/18\"; repository_full_name=google-deepmind/formal-conjectures; state=all; topn=30",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pulls",
+      "note": "实际返回6项；同题PR2206以及AI声明PR2735、3027、3257后续逐条取meta+patch；另2项为Green14的W(3,4)=18，已按标题和摘要排除。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-005",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub PR search",
+      "query": "query=\"green_18\"; repository_full_name=google-deepmind/formal-conjectures; state=all; topn=30",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pulls",
+      "note": "返回PR3257、2735，均BMZ variant声称形式化；不是naive一般解。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-006",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/google-deepmind/formal-conjectures/commits?path=FormalConjectures/GreensOpenProblems/18.lean&per_page=100",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/commits?path=FormalConjectures/GreensOpenProblems/18.lean&per_page=100",
+      "note": "返回该文件5条提交元数据：初建#2206、import迁移#4433、module迁移#4688、question标签#6740、删除Prop answer包装#6762。读取提交说明用于追溯，未把语法维护或当前研究open标签当独立数学证据。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-007",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Green\" \"18\" \"naive corners\" Lean",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "四词同批实际检索；返回形式化题面镜像、公开题目目录、Botnet的BMZ占位任务及大量无关corner/green命中。仅登记索引访问，未当作一般解。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-008",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"naive corners\" \"AI\" proof",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "四词同批实际检索；返回形式化题面镜像、公开题目目录、Botnet的BMZ占位任务及大量无关corner/green命中。仅登记索引访问，未当作一般解。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-009",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Austin\" \"Question 2\" \"corners\" solved",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "四词同批实际检索；返回形式化题面镜像、公开题目目录、Botnet的BMZ占位任务及大量无关corner/green命中。仅登记索引访问，未当作一般解。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-010",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"green_18\" proof",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "四词同批实际检索；返回形式化题面镜像、公开题目目录、Botnet的BMZ占位任务及大量无关corner/green命中。仅登记索引访问，未当作一般解。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-011",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/google-deepmind/formal-conjectures/pulls/2206",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/2206",
+      "note": "已读创建PR正文及状态；2026-02-14合并，正文明确成对添加g≠1与m₀，并声称题面build成功。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/google-deepmind/formal-conjectures/pulls/2206/files?per_page=100",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/2206",
+      "note": "完整单文件新增patch已读；naive及BMZ两证明体均sorry。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-013",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/google-deepmind/formal-conjectures/pulls/2735",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/2735",
+      "note": "已读正文及状态；closed，merged=false，2026-03-03关闭；自述Claude辅助并承认sorryAx。head=c1e3a518c92436b814caba6d1dc2b29687539a38。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-014",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/google-deepmind/formal-conjectures/pulls/2735/files?per_page=100",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/2735",
+      "note": "完整单文件patch已读；只改BMZ category为research formally solved，给出指向自身main题面文件的链接；没有任何证明体新增，三个PR改后blob相同。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-015",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/google-deepmind/formal-conjectures/pulls/3027",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/3027",
+      "note": "已读正文及状态；closed，merged=false，2026-03-03关闭；自述Claude辅助并承认sorryAx。head=03d2f8d90969237273ab12cbf9d4946b0b695f72。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-016",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/google-deepmind/formal-conjectures/pulls/3027/files?per_page=100",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/3027",
+      "note": "完整单文件patch已读；只改BMZ category为research formally solved，给出指向自身main题面文件的链接；没有任何证明体新增，三个PR改后blob相同。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-017",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/google-deepmind/formal-conjectures/pulls/3257",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/3257",
+      "note": "已读正文及状态；closed，merged=false，2026-03-03关闭；自述Claude辅助并承认sorryAx。head=39bc97f666469696098692ba4b2ca9a0102f040f。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-018",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub GET",
+      "query": "https://api.github.com/repos/google-deepmind/formal-conjectures/pulls/3257/files?per_page=100",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/3257",
+      "note": "完整单文件patch已读；只改BMZ category为research formally solved，给出指向自身main题面文件的链接；没有任何证明体新增，三个PR改后blob相同。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-019",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"naive corners\" \"proof\" Lean; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "针对一般证明、AI/Lean和MathOverflow路线补查。返回Botnet BMZ占位任务及附稳定性条件的相关论文等；本分支没有取得naive一般证明声明。学术正文交根代理的学术路线核。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-020",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Green\" \"Problem 18\" \"solved\"; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "针对一般证明、AI/Lean和MathOverflow路线补查。返回Botnet BMZ占位任务及附稳定性条件的相关论文等；本分支没有取得naive一般证明声明。学术正文交根代理的学术路线核。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-021",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"naive corners\" site:mathoverflow.net",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "针对一般证明、AI/Lean和MathOverflow路线补查。返回Botnet BMZ占位任务及附稳定性条件的相关论文等；本分支没有取得naive一般证明声明。学术正文交根代理的学术路线核。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-022",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "repository_full_name=theaustinhatfield/formal-conjectures; path=FormalConjectures/GreensOpenProblems/18.lean; ref=c1e3a518c92436b814caba6d1dc2b29687539a38",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theaustinhatfield/formal-conjectures/blob/c1e3a518c92436b814caba6d1dc2b29687539a38/FormalConjectures/GreensOpenProblems/18.lean",
+      "note": "PR2735固定head全文已阅；blob=04ef30c9fc7b74c4a6f73da20484273bebcfa3d4；2个by sorry仍在。其他两PR的API files给出相同blob，故代码内容相同。没有Lean编译或#print axioms。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-023",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://github.com/google-deepmind/formal-conjectures/pull/2735",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/2735",
+      "note": "web open返回DisabledError；不能记作网页全文成功。相应PR的GitHub API meta与单文件patch已另行成功取得，并独立列项。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-024",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://github.com/google-deepmind/formal-conjectures/pull/3027",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/3027",
+      "note": "web open返回DisabledError；不能记作网页全文成功。相应PR的GitHub API meta与单文件patch已另行成功取得，并独立列项。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-025",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://github.com/google-deepmind/formal-conjectures/pull/3257",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/3257",
+      "note": "web open返回DisabledError；不能记作网页全文成功。相应PR的GitHub API meta与单文件patch已另行成功取得，并独立列项。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-000413-code-026",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://botnet.com/topics/7d056a6f-baac-4f2e-9e28-f36d7c699ed7",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://botnet.com/topics/7d056a6f-baac-4f2e-9e28-f36d7c699ed7",
+      "note": "实际重定向至/posts/同ID，读主帖及唯一可见回帖；2026-11-05任务明确目标green_18.bmz_corners且题面仍sorry，说明该帖子自己没有编译或独立验证证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003508〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 20,
+      "locator": "q008_index_scan_1.log",
+      "note": "实际全索引关键词筛选；宽词也命中无关群论、三角形、数值编号或角一词。选择与corner构型最接近的QX-P-001359作固定全文比较，其余仅索引层；不把索引没有新增候选写成全库无重复。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003509〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 60,
+      "locator": "q008_index_scan_2.log",
+      "note": "实际全索引关键词筛选；宽词也命中无关群论、三角形、数值编号或角一词。选择与corner构型最接近的QX-P-001359作固定全文比较，其余仅索引层；不把索引没有新增候选写成全库无重复。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003510〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 4,
+      "locator": "q008_index_scan_3.log",
+      "note": "实际全索引关键词筛选；宽词也命中无关群论、三角形、数值编号或角一词。选择与corner构型最接近的QX-P-001359作固定全文比较，其余仅索引层；不把索引没有新增候选写成全库无重复。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000413.meta.json\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000413.meta.json",
+      "locator": "problems/000/QX-P-000413.meta.json（全文，未指定行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；保存到q008_dedup_sources/QX-P-000413.meta.json并重算Git blob SHA=cb00029825461d563b9328a5f36c89b539b31dd5核对通过。自卡meta与task_008.card_metadata相同，text与card_text相同。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/000/QX-P-000413.text.md\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000413.text.md",
+      "locator": "problems/000/QX-P-000413.text.md（全文，未指定行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；保存到q008_dedup_sources/QX-P-000413.text.md并重算Git blob SHA=ec65532c29593e6654c120fcc24e77c584a93229核对通过。自卡meta与task_008.card_metadata相同，text与card_text相同。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/001/QX-P-001359.meta.json\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001359.meta.json",
+      "locator": "problems/001/QX-P-001359.meta.json（全文，未指定行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；保存到q008_dedup_sources/QX-P-001359.meta.json并重算Git blob SHA=a9a142458fd0f0f2350d708bb13ba5ff16856a0f核对通过。仅比较候选正文与验收，没有研究其外部解题状态。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.fetch_file {\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/001/QX-P-001359.text.md\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001359.text.md",
+      "locator": "problems/001/QX-P-001359.text.md（全文，未指定行范围）",
+      "result_count": 1,
+      "note": "固定commit=73290369a8dcc632e25e555aec525565ea6e08f8；保存到q008_dedup_sources/QX-P-001359.text.md并重算Git blob SHA=0eda3de80198d08b228481a34bd7fd06fe186369核对通过。仅比较候选正文与验收，没有研究其外部解题状态。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内schema/qunxing.vocab-1.json",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003511〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "实际exit_code=1，无输出；这份表未提供主问题checkability枚举语义，不自行猜测替代值。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "github.search {\"query\":\"checkability\",\"repository_name\":\"qunxingmath-org/qunxing-data\",\"topn\":5}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "实际返回results=[]；默认分支代码索引搜索，不是固定版本全文证据，也不能据此断言规范不存在。本调用仅查字段规范，不作题库配对或学术查新依据。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "no_hits"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R10-Q008-E-GREEN",
+      "url": "https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "locator": "Problem18，印刷pp11–12；References[15]印刷p49；版本脚注p2",
+      "version": "本轮取得作者PDF自记December2025；访问2026-11-26",
+      "subquestions": [
+        "主问题",
+        "原题与计数口径"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索",
+      "note": "原文直接列(x,y),(gx,y),(x,gy)三点，量化有限群、密度α、Ωα(|G|³)计数，未排g=e。BMZ改第一坐标右乘，不可在非交换群混淆。列出Austin拟随机特例，原题未标Solved；文稿自身版本早于本轮，不能作为2026最新状态确证。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "R10-Q008-E-AUSTIN-CHECK",
+      "url": "https://arxiv.org/pdf/1503.08746",
+      "locator": "印刷p2 Eq(4)/(5)，pp3–4 TheoremsA/B/C及Question2",
+      "version": "PDF页首arXiv:1503.08746v3，2015-05-19；首投2015-03-30据abs记录，原题文未读取v1",
+      "subquestions": [
+        "原题与计数口径",
+        "单一有限反例与验收量词"
+      ],
+      "role": "原始提出",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索",
+      "note": "Q2全量化紧可度量群（正文约定），以归一化Haar测度计，明确密度下限≥δ且不排g=e；本题有限群是其特化，未证明紧群全问可由有限问反推。§1非平凡naive corner定义中有g≠e，不等于Q2计数式有该限制。原文ThmA只给充分大群中非平凡配置存在，原文随后明确这种方法不提供统一|G|³计数。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "original",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q008-A01",
+      "url": "https://arxiv.org/pdf/1503.08746v3",
+      "locator": "印刷p.4 Question2；p.2 (4)/(5)；p.2 compact默认为metrizable说明。web refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "version": "arXiv:1503.08746v3，2015-05-19；本轮2026-11-26读取。v1首投日2015-03-30仅由版史确认，未读v1正文。",
+      "subquestions": [
+        "主问题",
+        "最早出处与量词"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Tim Austin",
+      "claim_date": "2015-05-19",
+      "note": "Q2对compact metrizable群问统一Haar三重测度下界，有限群给题卡计数形式；未证明有限版反推紧群版。Q2不排除g=e；(4)非平凡naive定义虽排除e，不能将该限制擅自加到Q2。naive左左与BMZ不可混同。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "earliest_source",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q008-A02",
+      "url": "https://link.springer.com/chapter/10.1007/978-3-319-24298-9_19",
+      "locator": "正式出版页 title/First Online/pp/Abstract；web ref 〔原始工具引用已私有留存〕",
+      "version": "Springer DOI 10.1007/978-3-319-24298-9_19，First Online 2016-04-13，pp.453–484；2026-11-26访问",
+      "subquestions": [
+        "最早出处与正式刊发"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "claimant": "Tim Austin",
+      "claim_date": "2016-04-13",
+      "note": "该入口只有正式章元信息和摘要，全文为subscription preview。本轮Q2具体字句核自2015 v3，不能说已对读2016正式章Q2。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q008-A03",
+      "url": "https://arxiv.org/pdf/1503.08746v3",
+      "locator": "Theorem A pp.2–3及其后计数局限；Theorem B p.3；web refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "version": "arXiv:1503.08746v3，2015-05-19",
+      "subquestions": [
+        "充分大群的存在型结果",
+        "quasirandom群统一计数特例"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Tim Austin",
+      "claim_date": "2015-05-19",
+      "note": "A给任意充分大群的非平凡方形存在，作者指出其子群方法不能给统一计数。B限定D-quasirandom：使每个g的角密度≥δ³−ε的g比例≥1−2√3 D^(−1/4)/ε；D须随δ够大。已读陈述及局部证明入口，未独立通审。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q008-A04",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/19D58CB2016D8DB8B5A5734709B28625/S0963548315000243a.pdf/quantitative-equidistribution-for-certain-quadruples-in-quasi-random-groups-erratum.pdf",
+      "locator": "正式pp.484–485全两页；关联1503.08746v3 p.9 Lemma4 proof、Refs[2]/[3]。web refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "version": "DOI 10.1017/S0963548315000243；CPC25(2016)484–485；官网搜索元信息online2015-09-22；2026-11-26读取",
+      "subquestions": [
+        "辅助表示论引理勘误"
+      ],
+      "role": "勘误",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Tim Austin",
+      "claim_date": "2015-09-22",
+      "note": "修正的是《Quantitative Equidistribution for Certain Quadruples…》Cor.3证明的复表示张量等式；以Schur正交性和CS修补，作者末段将D^(-1/2)加强到D^(-1)。v3 Lemma4已引用此勘误；不是Q2或Theorem B撤回。读了两页修补，未独立审计表示论。 根代理另独立读正式两页全文及v3 Lemma4引用，确认修订对象；仍未通审表示论技术。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q008-A05",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/AFAAEA5F0DDEFAB81AE205BA6AD9CAA1/S0008414X25101971a.pdf/stability-corners-and-other-two-dimensional-shapes.pdf",
+      "locator": "引言p.2右右方形；Cor.5.3 p.21；Cor.5.5 p.22；Cor.5.6 pp.22–23。web refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "version": "DOI 10.4153/S0008414X25101971；出版页online2025-12-26，PDF页眉Canad.J.Math.2026 pp.1–29；2026-11-26读取",
+      "subquestions": [
+        "almost surely stable集合的统一计数特例"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Amador Martin-Pizarro; Daniel Palacín; Julia Wolf",
+      "claim_date": "2025-12-26",
+      "note": "Cor.5.5固定k,δ，存在ℓ0,θ,ε>0：|G|≥ℓ0、|S|≥δ|G|²且诱导k阶半图数≤θ|G|^(2k)，则右右方形数≥ε|G|³。其子角经双坐标取逆对应卡左左。半图条件不可删除；Cor.5.6还要求有界指数。全文可达，实际读陈述/局部证明，未核模型论技术链。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q008-A06",
+      "url": "https://arxiv.org/pdf/2504.07006v2",
+      "locator": "§1.1 印刷p.4 Corollary1.5及短证明；p.3 Theorem1.1、p.4 Cor1.4用于区分。web refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "version": "arXiv:2504.07006v2，2025-07-14；v1=2025-04-09，实际取得75页v2 PDF",
+      "subquestions": [
+        "任意有限群角自由集密度的定量进展"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Michael Jaber; Yang P. Liu; Shachar Lovett; Anthony Ostuni; Mehtaab Sawhney",
+      "claim_date": "2025-07-14",
+      "note": "Cor.1.5对任意有限G的非平凡右右naive角自由A给|A|≤|G|²exp[-c(log|G|)^(1/1200)]。右右与左左经(A,x,y,g)同时取逆双射对应。该结果是存在阈值/角自由密度界，未给本题统一|G|³计数。短证明依赖Theorem1.1及Pyber大阿贝尔子群，主证明未通审；不能仅依据摘要称只涵盖阿贝尔。 根代理另独立读同版p4 Cor1.5及子群短证明，确认存在界与统一计数要求不同。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q008-A07",
+      "url": "https://eccc.weizmann.ac.il/report/2024/170/",
+      "locator": "Revision#2及Changes to previous version，指向TR25-047；web refs 〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕",
+      "version": "TR24-170 revision#2，2025-04-14 01:46；替代稿TR25-047，2025-04-10/13发布；2026-11-26访问",
+      "subquestions": [
+        "旧quasirandom角稿修订链"
+      ],
+      "role": "勘误",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "有修订",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "claimant": "Michael Jaber; Shachar Lovett; Anthony Ostuni",
+      "claim_date": "2025-04-14",
+      "note": "官方版本公告说旧工作被TR25-047吸收，替代稿修复previous version的technical issue。旧默认download可达但未固定其revision，未审具体技术问题；引用有效进展应转2504.07006v2 Cor.1.5。此公告不证明主问题已解或旧主结论已反驳。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "retraction",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000413-code-e1",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/GreensOpenProblems/18.lean",
+      "locator": "Green18.numNaiveCorners；Green18.green_18；文件内g≠1/m₀说明",
+      "version": "commit 9097e2f90e66d2f6244209cb1c07f7120d17ec53；blob 050d3756b799917da691898da18d36fce5753094；访问2026-11-26",
+      "subquestions": [
+        "naive主问题的形式化题面与证明覆盖"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "全文静态核对：∀α>0,∃c>0,∃m₀,∀有限群G和A，|G|≥m₀且|A|≥α|G|²时，排除g=1的左左构型(g*x,g*y)数≥c|G|³；research open，证明体by sorry。与含g=1的全群阶计数版按共同α-dense约定等价：T_all=T_nontriv+|A|；若T_all≥cN³，则N≥2/c时T_nontriv≥cN³/2；反向令m=max(1,m₀)，c'=min(c,α/m)，小群由T_all≥|A|≥αN²补足。不是只删g=1而保持所有小群不变。现卡若把密度写成严格等号，应由主负责人统一澄清与α-dense的接口。本轮未build或#print axioms。 源码注释将排除g=e归于Austin原题；主审已独立核Austin Q2的实际计数式包含g=e，应以主审原文证据纠正这句来源描述，不能照抄代码注释作为Q2原文。成对排除g=e并加m₀的等价结论不受影响。本分支未据主审访问另造查询记录。 根代理独立取同commit全文，复核两处sorry及计数方向，并与查重分工独立验证精确密度到密度下限的G×C_q提升。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000413-code-e2",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/GreensOpenProblems/18.lean",
+      "locator": "Green18.numBmzCorners；Green18.green_18.bmz_corners",
+      "version": "commit 9097e2f90e66d2f6244209cb1c07f7120d17ec53；访问2026-11-26",
+      "subquestions": [
+        "BMZ变体的形式化证明覆盖"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "BMZ定义用(x*g,y),(x,g*y)，与naive左左版在非交换群不可混同。此项research solved是数学文献状态标签，引用Solymosi2013 Theorem2.1 pp1456–1457；代码仍by sorry，无formal_proof链接。本分支没有据标签独立确认原数学证明，数学来源由学术路线核。不得将此项solved移到naive主问题。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000413-code-e3",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/2735",
+      "locator": "PR2735、3027、3257的正文、state/merged字段及完整单文件patch；PR2735固定head18.lean",
+      "version": "PR2735 head c1e3a518c92436b814caba6d1dc2b29687539a38；PR3027 head 03d2f8d90969237273ab12cbf9d4946b0b695f72；PR3257 head 39bc97f666469696098692ba4b2ca9a0102f040f；2026-03-03；访问2026-11-26",
+      "subquestions": [
+        "公开AI声称形式化解决的BMZ变体"
+      ],
+      "role": "形式化",
+      "publication": "PR",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "核对发现漏洞",
+      "formal_status": "仅有形式化题面或骨架",
+      "claimant": "theaustinhatfield；PR自述Claude Sonnet/Claude Sonnet4.6与OpenCode/Aletheia-style harness",
+      "claim_date": "2026-03-03",
+      "note": "三PR均closed、merged=false且无评论/评审评论。正文声称Lean编译和公理检查，却同时承认sorryAx；实际patch仅把BMZ category标签改为research formally solved并自指上游main同一题面，没有证明新增。三份改后blob均04ef30c9fc7b74c4a6f73da20484273bebcfa3d4，已取PR2735 head全文核仍by sorry。此处漏洞是把占位/标签修改当形式化证明的声明证据缺陷，不是推翻BMZ数学定理。其他URL：https://github.com/google-deepmind/formal-conjectures/pull/3027 ；https://github.com/google-deepmind/formal-conjectures/pull/3257 。无必要构建占位文件，也未执行构建。 根代理另独立读取PR2735正文、closed/merged状态与完整diff，确认仅改标签；另两个相同补丁由本题代码分工核验。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "public_claim",
+        "claim_review": "gap_found",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000413-code-e4",
+      "url": "https://github.com/google-deepmind/formal-conjectures/pull/2206",
+      "locator": "Description的3条clarifications；初建18.lean patch；Testing",
+      "version": "merge ef5f06192670a627a8dd7570139da553cea3b418；merged_at2026-02-14T19:25:32Z；访问2026-11-26",
+      "subquestions": [
+        "formal-conjectures题面量词来源"
+      ],
+      "role": "重述",
+      "publication": "PR",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "创建者明确将g≠e、群阶阈值m₀和α-dense约定一并引入；原提交两定理都sorry。Testing中的lake build成功只是作者报告题面可编译，不证明任一定理。本轮等价计算说明见e1，严格说须采用共同的至少α密度口径。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-000413-code-e5",
+      "url": "https://botnet.com/posts/7d056a6f-baac-4f2e-9e28-f36d7c699ed7",
+      "locator": "主帖Target declaration/source snapshot及唯一可见回帖",
+      "version": "帖子标checked2026-11-05；源快照3f4490479b53386e1c18d2cccf4f1164c16655ca；本轮访问2026-11-26",
+      "subquestions": [
+        "公开社区形式化任务的实际目标"
+      ],
+      "role": "重述",
+      "publication": "社区帖子",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "帖子题名泛称Green18，实际目标是green_18.bmz_corners，占位任务不是解决声明；帖子明确没有编译/独立验证证明。本轮只核该公开帖子与当前源一致的目标边界，未把任务站或镜像作为数学独立证据。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001359",
+      "other_card_rev": "d5e99c334cbf5f02",
+      "relation": "仅相似",
+      "reason": "本题在任意有限群G×G的正密度集合内计数三点(x,y),(gx,y),(x,gy)，要求统一的密度相关|G|³量级下界。候选在整数n×n网格的任意二染色中寻找四个同色点(a,b),(a+s,b),(a,b+s),(a+s,b+s)，且要求s>0，验收为最小强制规模G_sq的精确值。三点与四点、有限群与整数网格、密度统一计数与二染色最小阈值均不同；只有corner/角点构型的宽泛相似性，不建议合并。",
+      "positions": {
+        "self": "commit 73290369a8dcc632e25e555aec525565ea6e08f8：problems/000/QX-P-000413.text.md全文，重点「题面」「人话版」「原文摘录」「边界与约定」；meta.json全文，重点acceptance.criteria与card_rev=b4e584cf9728c7bb。",
+        "other": "commit 73290369a8dcc632e25e555aec525565ea6e08f8：problems/001/QX-P-001359.text.md全文，重点「题面」「形式化表述」「人话版」；meta.json全文，重点acceptance.criteria与card_rev=d5e99c334cbf5f02。"
+      },
+      "note": "pair_id=QX-P-000413__QX-P-001359；较小编号负责人QX-P-000413在本包。双方固定版本全文及Git blob SHA已核，版本与任务/简索引一致；候选其他历史文献和当前数学状态未在本子任务重新研究。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "proposer; first_published; sources",
+      "old": "Ben Green（Lean形式化贡献者）；2024 Green清单与2024–2026形式化",
+      "new": "原问题归Tim Austin；补Ajtai–Szemerédi Theorems over quasirandom groups, arXiv1503.08746（2015首投，本轮题文核至2015-05-19 v3 Question2；2016正式章453–484）。Green18是有限群重述，Lean是题面表达。",
+      "reason": "原稿及Green本人注释已取得；仅补归属、时间与出处，不因这些书目说明换card_rev。",
+      "evidence_ids": [
+        "R10-Q008-E-GREEN",
+        "R10-Q008-E-AUSTIN-CHECK"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "proposer / first_published / sources",
+      "old": "Green清单2024；原始source指formal-conjectures目录",
+      "new": "补Tim Austin, Ajtai–Szemerédi Theorems over quasirandom groups：本轮已核2015-05-19 v3 p.4 Q2；首投元信息2015-03-30；2016-04-13正式章 DOI10.1007/978-3-319-24298-9_19。Green列为有限群特化。",
+      "reason": "具体原问早于2024清单；只把读过的v3绑定Question2。",
+      "evidence_ids": [
+        "Q008-A01",
+        "Q008-A02"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述 / 边界与约定",
+      "old": "count≥c(α)|G|³，未显式列全量词",
+      "new": "对每0<α≤1，存在c(α)>0，使每个有限群G及|A|≥α|G|²都满足#{(x,y,g)∈G³:(x,y),(gx,y),(x,gy)∈A}≥c(α)|G|³；计入g=e，使用左左乘法。",
+      "reason": "Austin Q2与卡人话均是此方向；右右须同时取逆集合和变量，BMZ混合方向不可直接代换。 如采纳正式量词或验收修改，必须按包规生成新card_rev，并在新版本重核相关路线；不在此回执改线上卡或替换旧哈希。",
+      "evidence_ids": [
+        "Q008-A01"
+      ],
+      "small_case_check": "G={e},A=G²时唯一三元组计数1；若擅加g≠e则计数0，改变小群断言。A=∅须排除α=0。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "acceptance.criteria / 人话版反例说明",
+      "old": "或构造一个有限群与集合A作为反例；小群枚举",
+      "new": "否定统一下界需固定α0>0并给(G_n,A_n)使|A_n|≥α0|G_n|²且角计数/|G_n|³→0，或等价的对任意c>0的构造。单个有限例只能否定已指定的候选c。",
+      "reason": "g=e贡献|A|，所以每个正密度有限例归一化计数≥α0/|G|>0；不能单独否定存在某统一正c的量词。此是本轮逻辑核对，不是主问题反例。 如采纳正式量词或验收修改，必须按包规生成新card_rev，并在新版本重核相关路线；不在此回执改线上卡或替换旧哈希。",
+      "evidence_ids": [
+        "Q008-A01"
+      ],
+      "small_case_check": "G={e},A=G²给normalized count=1；一般有限非空A至少有|A|个g=e三元组。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展",
+      "new": "并列区分：Austin quasirandom特例；2025 Cor1.5任意群角自由密度界；2026 Cor5.5少半图条件的方形/naive计数。",
+      "reason": "三者覆盖范围不同，不能据标题/摘要宣布一般有限群统一计数已解。",
+      "evidence_ids": [
+        "Q008-A03",
+        "Q008-A05",
+        "Q008-A06"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "证据版本与勘误记录",
+      "new": "登记Austin辅助Cor3正式勘误及v3 Lemma4引用；登记ECCC TR24-170被TR25-047吸收并修技术问题。",
+      "reason": "修订链应可追溯，同时不得扩大为TheoremB/主问题撤回或已反驳。",
+      "evidence_ids": [
+        "Q008-A04",
+        "Q008-A07"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "formal / formal_status / ai_claims / 相关进展与声称解决",
+      "new": "补固定formal-conjectures题面及验证层级：naive与BMZ均有Lean题面但无本文件内证明。登记三个2026-03-03已关闭未合并的AI PR，明确只改标签、保留sorry、目标BMZ，不能列作naive一般解或有效形式化证明。",
+      "reason": "当前卡formal为空，且未列这组公开AI声明。这里只补形式化覆盖/公开声明核查，不改变题面、参数域或验收，原则上不换card_rev。",
+      "evidence_ids": [
+        "QX-P-000413-code-e1",
+        "QX-P-000413-code-e2",
+        "QX-P-000413-code-e3",
+        "QX-P-000413-code-e4",
+        "QX-P-000413-code-e5"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "边界与约定 / 形式化证据说明",
+      "new": "说明本卡含g=1的计数与Lean排除g=1但只要求|G|≥m₀的计数，在共同α-dense定义下经常数调整等价；不要把BMZ中的xg改记成naive中的gx。",
+      "reason": "避免误判代码比题面多g≠1即不对应，也避免把BMZ已知结果借给非交换naive一般题。本建议只加等价说明；若主负责人要修改当前验收或正式量词，需另按规则换版。",
+      "evidence_ids": [
+        "QX-P-000413-code-e1",
+        "QX-P-000413-code-e2",
+        "QX-P-000413-code-e4"
+      ],
+      "small_case_check": "单位群G={e},A=G²时T_all=1而T_nontriv=0，故排除g=e版本必须保留群阶阈值。恒等式T_all=T_nontriv+|A|直接按g=e的三元组与A逐一对应得到；未执行Python或Lean。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "acceptance.criteria",
+      "old": "证明存在只依赖α的c(α)>0，使每个这样的A都含至少c(α)|G|³组三元组；或构造一个有限群与集合A作为反例。",
+      "new": "证明：对每个0<α≤1，存在c_α>0，使对每个有限群G和A⊆G×G，只要|A|≥α|G|²，就有T_G(A)≥c_α|G|³；其中T_G(A)=#{(x,y,g)∈G³:(x,y),(gx,y),(x,gy)∈A}，g=e计入。或证明其否定：存在固定α₀>0及一列有限群G_n与A_n⊆G_n²，|A_n|≥α₀|G_n|²，且T_{G_n}(A_n)/|G_n|³→0（须给出族与极限证明，或等价的完整反证）。若编辑保留原文精确密度=α口径，则反证应固定同一个正密度；两种口径的对应证明见数学笔记。",
+      "reason": "现卡给“一个有限群与集合”作为未指定常数的统一存在命题反例目标，漏掉否定命题中的∀c>0。由于g=e，每个固定非空实例的归一化计数严格为正，只能排除某个指定c，不能排除所有正c。修改acceptance.criteria属于包规§2.2的新版本变更，必须新card_rev；本行仍绑定b4e584cf9728c7bb，不直接改卡，不把原数学猜想标为已推翻。",
+      "small_case_check": "G=C₂，A={(e,e)}，α=1/4，T=1，T/|G|³=1/8。它可排除声称c(1/4)=1/4的具体数值，却满足任何0<c≤1/8的本实例下界，不能否定存在统一正c。任意有限样本若群阶≤M，也都满足T/|G|³≥α/M>0。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述／边界与约定",
+      "old": "count ≥ c(α)|G|³；边界仅称常数只依赖α。",
+      "new": "明列0<α≤1、∀α∃c_α>0∀有限群G∀A⊆G²的量词顺序，精确写出计数T_G(A)及密度条件。建议采用|A|≥α|G|²的标准下限表述，并说明与原文of density α的对应；g=e计入，所有三元组按(x,y,g)计数。不得把∃c放在G,A之后。",
+      "reason": "防止把真正的统一常数问题降成每个实例各自存在常数的平凡命题。α=0不可纳入要求c(0)>0的范围。主线已核原出处；如采纳正式量词或参数域重写，按包规生成新card_rev并重核原出处/学术及受影响形式化路线；不能在本轮把旧哈希换贴到新稿。",
+      "small_case_check": "A=∅时T=0，故必须排除α=0的正下界要求。A=G²时α=1且T=|G|³。G=C₂单点例给严格正但非统一的α/|G|下界。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版最后一句",
+      "old": "由于群可以有限，反例原则上能靠计算搜索。",
+      "new": "小群计算可以检验某个明确给定的候选下界，或寻找可能扩展成反例族的结构；要否定这里“只依赖正密度的统一正常数”断言，须证明固定正密度的归一化计数可以趋于0，单个有限实例不够。",
+      "reason": "单例可计算并不意味着整个∀α∃c∀G∀A命题拥有单例反例。本条单独作为人话纠正不改数学定义；本次同时修改验收或正式量词时，整张卡仍按相关新版本流程处理。",
+      "small_case_check": "单点集合族虽有T/|G|³=|G|⁻³→0，但密度|G|⁻²也趋0，不能反驳固定正密度断言。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "checkability及计算反例任务配置",
+      "old": "checkability=falsifiable，并以单个有限群/集合为反例对象。",
+      "new": "撤销由此标签触发的“寻找一个有限实例即可否定未知统一c”的任务解释。该题需要一般证明或固定正密度反例族的反证；checkability具体替代枚举须依仓库主问题规范的定义核定，不能由本回传自造标签。",
+      "reason": "本轮在包内取值表未找到checkability定义，GitHub规范检索亦未命中，因此不武断宣称该枚举在仓库的所有语义下非法；已确定错误的是现有单实例反例验收路径。若规范把falsifiable专指单个有限反例，应改为相应的证明/反证类；与验收更改一并走新版本。",
+      "small_case_check": "g=e使任意非空有限A的T严格正；不存在凭一个计数为0的有限输入直接击穿所有正c的机会。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定／独立验证建议",
+      "old": "小群枚举最小计数对照c(α)理论值。",
+      "new": "仅在明确给定候选c(α)时用小群计数检验该数值；若c仅为未知存在量，不以有限搜索作为一般证伪验收。比较排除g=e的表述时，必须同时核对是否允许|G|≥m₀(α)；该非平凡大群版本与计入g=e的全有限群版本等价。",
+      "reason": "设T*=T−|A|。由T≥c|G|³及|A|≤|G|²，|G|≥2/c时有T*≥(c/2)|G|³；反向对|G|≥M有T*≥d|G|³时，小群由T≥α|G|²补底，统一取min(d,α/M)>0。这只是同一有限群问题的表述对应，不是主问题证明，也不把有限群版与全部紧群Haar版说成等价。",
+      "small_case_check": "G=C₂的单点A有T=1但T*=0，足以说明不能单独删去g=e而仍要求所有小群；与∃m₀配套时，该小例不构成反例。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "reason": "Green现可读作者版自记2025-12；原始Austin的紧群全版强于本卡有限群版，不能凭名字合并所有对象范围。",
+      "next_step": "保持有限群主题范围；新进展按naive/BMZ、一般群/拟随机/稳定性条件逐项审。只有真正覆盖原量词的完整证据才送结案二审。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "2016 Springer入口仅摘要/元信息，实际字句读v3；v1首投日只核版史。",
+      "next_step": "若需将首次提出精确到2015-03-30或正式2016章页码，另取v1或正式章全文并对读Q2；现条目只声称v3已核。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮读到原问及各结果陈述/局部证明，未独立通审Austin§4、75页corners主证明或stability模型论链。",
+      "next_step": "保留review_status=已读未核关键步骤；如要升级独立复核，分别核上游定理与依赖，不凭全文可达升级。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "TR24-170官方公告仅写technical issue及替代稿，未给本轮读到的精确错误位置；旧默认download版本未固定。",
+      "next_step": "如将旧稿技术修复列为核心依据，再逐版对读；当前只保留修订公告、引用2504.07006v2范围，不泛化漏洞。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本分支只读Lean关于Solymosi2013 BMZ定理的引用，并未独立读该论文证明。",
+      "next_step": "由学术分支核Theorem2.1 pp1456–1457的具体乘法方向、非平凡条件及计数范围，再确定BMZ作为已知相关结果的数学标签；勿用research solved注解单独结案。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "本轮完成三次全简索引筛选及QX-P-001359一个最相关角点候选的固定版本全文比较；没有逐卡扫描整个库的正文。",
+      "next_step": "保留pair_id与本题负责人，仅相似不合并；未来有具体新候选时再固定双方版本读全文，不把目前索引筛选写成全库无重复。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "acceptance的反例对象与统一常数量词不符；正式补量词/参数域及修改验收属于包规新版本事项。",
+      "next_step": "由题库维护方按原文与本轮双栏数学核对提交修订PR，生成新card_rev；本轮旧版记录保留。新版本重核原出处、学术及受影响形式化路线，未修正前不以单例反例机制进入抽样。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "包内qunxing.vocab-1.json未包含checkability定义；GitHub默认分支搜索checkability无命中，不能据此推断该字段没有正式规范。",
+      "next_step": "维护方查主问题schema/文档中checkability的枚举及语义，选定合适标签；确定先修复单实例反例验收，不自行发明新的字段值。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "b4e584cf9728c7bb",
+      "codes": {}
+    }
+  ]
+}

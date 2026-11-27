@@ -1,0 +1,2748 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001247",
+  "card_rev": "5d4efcc881550f22",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "当前卡的损坏公式与互相冲突条件",
+          "value": "statement_error",
+          "note": "卡的formal只有“见AKS论文”，摘录只有(p−1)^((x^r−1)/q)≡…而无右端、模理想或完整参数域，不构成通常多项式环中的确定命题。若候选整数p>1且gcd(p,r−1)=1，则p²|(r−1)绝不可能，因为后者迫p|r−1。若q>1并且q|r−1，gcd条件已经推出q∤p；若允许q=1，则1|r−1却1∤p为假，说明q域缺失会改变真假。对q>1，(x^r−1)/q也不是通常非负整数指数，不能未经说明把这个幂当作Z[x]表达式。现r=1边界与旧gcd条件同时用于p>1时更是直接不相容。以上只识别题面错误，未对未定义式构造所谓原猜想反例。"
+        },
+        {
+          "subquestion": "可靠原式：2004 prime-r版本与2003一般r版本须分开",
+          "value": "statement_error",
+          "note": "AKS原刊Conjecture6.1在n>1的素性问题语境中问：r为素数、r∤n，若(X−1)^n≡X^n−1 mod(n,X^r−1)，是否n为素数或n²≡1 mod r。结论中的例外是r|(n²−1)，不是n²|(r−1)，条件是r∤n而不是gcd(n,r−1)=1；原式没有辅助q。AIM2003 B.1另明确写n,r为互素正整数，未限r素数。一般r版蕴含prime-r版，但没有取得把一般r反例转换为prime-r反例的逆向证明，故不能按同名自动称两版等价。恢复卡时必须明确采用哪个版本。n不为完全幂及ord_r(n)>log²n不在原Conj6.1的前提里，不能从AKS算法偷偷移入，缩小待证域。"
+        },
+        {
+          "subquestion": "模理想的精确语义与素数方向",
+          "value": "partial",
+          "note": "对n>1、r≥1，等式发生在R_(n,r)=(Z/nZ)[X]/(X^r−1)，等价于两式之差属于Z[X]中的理想(n,X^r−1)。因X^r−1首一，任何余类都有唯一次数<r的代表，即把各幂按指数模r归并并将系数模n。n合成时Z/nZ和这个商环一般不是域，不能默认非零元可除。若n=ℓ为素数，二项式系数在0<j<ℓ时都被ℓ整除，故Frobenius直接给(X−1)^ℓ=X^ℓ−1于F_ℓ[X]，进而任意r的商环同余也成立，ℓ=2时−1=1无例外。原猜想的困难全在合成n方向；另有r∤n是猜想参数要求，虽然素数方向的形式恒等式本身不需要它。"
+        },
+        {
+          "subquestion": "AKS Lemma2.1未取X^r−1商时的完整初等核验",
+          "value": "partial",
+          "note": "原Lemma2.1为n≥2、gcd(a,n)=1时，(X+a)^n≡X^n+a mod n在整个(Z/nZ)[X]中成立当且仅当n素数。正向由Frobenius及a^n≡a。反向设n合成，取素因子ℓ<n并令ν_ℓ(n)=e≥1。中间系数X^ℓ为binom(n,ℓ)a^(n−ℓ)。由binom(n,ℓ)=(n/ℓ)∏_{j=1}^{ℓ−1}(n−j)/j，乘积所有分子分母均ℓ单位，所以其ℓ进赋值为e−1；a也是ℓ单位，故该系数不能被ℓ^e、更不能被n整除。于是全多项式恒等式不成立。这也排除非平凡完全幂。取了X^r−1商以后，不同次数的系数会合并，这个孤立中间系数反证不再直接适用。旧人话“某个模多项式下相符当且仅当n素数”把两种判据混淆。"
+        },
+        {
+          "subquestion": "已证AKS算法的附加检验不能省成原单同余猜想",
+          "value": "partial",
+          "note": "实际看过原刊p784像素：输入n>1，先排n=a^b、b>1；找ord_r(n)>(log₂n)²的r；检查a≤r是否有1<gcd(a,n)<n；若n≤r则可判prime；否则对1≤a≤floor(sqrt(φ(r))log₂n)逐个检查(X+a)^n≡X^n+a mod(n,X^r−1)，任一失败就composite，全部通过才prime。Theorem4.1证明的是这一整套算法的正确性，不能删去前置与多a条件后说单个a=−1已证。ord_r(n)必须在gcd(n,r)=1时定义；原刊算法的r不要求素数，而Conj6.1的r要求素数，两处参数角色也不能混用。该项核查核了算法准确声明和逻辑范围，未重新证明全套复杂度与所有辅助引理。"
+        },
+        {
+          "subquestion": "n=341,r=2的精确手算证书：通过单同余但落在允许例外",
+          "value": "partial",
+          "note": "取n=341=11·31，r=2。gcd(341,2)=1，2为素数。2^10=1024=3·341+1，故2^340≡1 mod341。在R=(Z/341Z)[X]/(X²−1)中令y=X−1，则y²=X²−2X+1=−2y，因此y^341=(−2)^340 y=2^340 y=y。又X^341=X，所以(X−1)^341=X^341−1。这个合数确通过单同余，但341²≡1 mod2，恰为原猜想允许的例外，并非反例；它也表明不能把例外分支删掉。若把原同余与错误的“n²|r−1”结论硬拼，则341²∤1，暴露错误改写；这不是对当前省略号式的完整反例，更不反驳原猜想。该参数也不满足AKS算法的阶下界：ord₂(341)=1。以上全部为手算，没有执行伪素数扫描。"
+        },
+        {
+          "subquestion": "r=1与小素数参数的退化范围",
+          "value": "partial",
+          "note": "2004 prime-r版本不允许r=1。若采用AIM的一般正r版本，则r=1时商环设X=1，n>0下左右均0，而n²≡1 mod1也是恒真，因此这只是无信息边界。r=2且gcd(n,2)=1时n奇，n²≡1 mod2自动；r=3且gcd(n,3)=1时n≡±1，n²≡1 mod3也自动。因此r=2、3都不能产生违反例外分支的反例，虽然它们能用于检查同余实现或排错。若允许n=1，模1为零环且1²≡1 modr，仍是平凡边界；素性判定主体应写n>1。原卡把r=1与gcd(p,r−1)=1并列，会排掉所有p>1，不能照此执行扫描。"
+        },
+        {
+          "subquestion": "Lenstra条件反例族的CRT与Frobenius桥：独立核验",
+          "value": "partial",
+          "note": "按AIM B.1的k≡1 mod4分支，设n=∏_{i=1}^k p_i，p_i互异素数、p_i≡3 mod80，且每个p_i−1|n−1、p_i+1|n+1。于是n≡3^k≡3 mod80，特别n²≡4≠1 mod5。固定p=p_i；因ord₅(p)=4，Φ₅在F_p不可约，令ζ为相应域中的本原5次单位根，α=ζ−1≠0。Frobenius给α^(p²)=ζ^(p²)−1=ζ⁻¹−1=−ζ⁻¹α，所以α的乘法阶整除10(p²−1)。由于p≡3 mod80，5、16、(p−1)/2、(p+1)/4两两互素，乘积恰10(p²−1)。n≡p mod80给前两个因子上的同余；整除假设分别给n≡p mod(p−1)/2及mod(p+1)/4。CRT遂得n≡p mod10(p²−1)，从而α^n=α^p=ζ^p−1=ζ^n−1。对互异p_i再用CRT合回模n；X−1和Φ₅在模n多项式环中互素，因为Φ₅(1)=5且gcd(5,n)=1，而X=1处两式都0，故最终得到模(n,X⁵−1)的原同余。若另有k>1，n即合成且r=5为素数、r∤n、例外分支不成立，会成为2004原猜想的真实反例。"
+        },
+        {
+          "subquestion": "条件族存在性、heuristic和反例验收的边界",
+          "value": "partial",
+          "note": "前条只证“若满足全部条件，则得到坏实例”，没有证明存在这样的k>1数据。k≡1 mod4且k>1至少为5；k=1时n=p本来素数，虽仍有n²≠1 mod5，却不反驳结论的素数分支。AIM后段明确转入解析数论的heuristic，不能把它写成无条件存在定理或已经找到反例。另一方面，有限n/r范围无反例只能给该范围的检查结果；它既不证明全称猜想，也不排除更大的候选。当前卡没有完整模环/域，建议的n≤10^6、r≤100扫描无法按字面实施。该项核查未运行此扫描或任何其他有限多项式扫描。"
+        },
+        {
+          "subquestion": "2019正式勘误只修辅助r构造，并不决定单同余猜想",
+          "value": "partial",
+          "note": "已读Errata：原Lemma4.3的r=s/gcd(s,n)可能留下与n共有的素因子，令ord_r(n)未定义。修正令B为所给参数上界、M=floor(log₂B)，取r=s/gcd(s,n^M)。独立核其中互素步骤：s≤B时，对任意素数ℓ|gcd(s,n)，ν_ℓ(s)≤floor(log₂B)=M，而ν_ℓ(n^M)≥M，故gcd完全去掉s中这些素因子的幂，剩下r与n互素。再由s不整除n^M∏(n^i−1)得r不整除相应乘积，进而排除小乘法阶。这里未重算全文LCM数值界；这一正式修补支持AKS辅助参数论证，既不是Conj6.1的证明，也不是其反例。"
+        },
+        {
+          "subquestion": "2026单二项式新判据与固定底修改版的范围排除",
+          "value": "partial",
+          "note": "实际读Shunia2611.02280v1：其证明构造在C_n=(Z/nZ)[Y]/Φ_r(Y)上再取C_n[X]/(X^r−b(Y))，并用系数环中的额外归一化/相容等式；这不是原R_(n,r)的单同余。§7另列未证修改猜想：n>3奇，r为不整除n(n−1)的最小正整数，先有2^(n−1)≡1 modn，再要求(1+X)^n≡1+X^n mod(n,X^r−2)，结论n素数。原文明确不声称两猜想等价，也明确未从固定底2同余推出其主证明所需归一化。独立可核该r只保证为素数幂：若r有至少两个素因子，所有真素数幂因子都由最小性整除n(n−1)，它们的LCM=r也会整除，矛盾。例如n=7时n(n−1)=42，1、2、3皆整除而4不整除，故r=4并非素数。于是参数域、移项符号、模多项式和附加测试均有变化，不能把新稿标题或主算法声明当作2004单同余猜想全解。该项核查未审它的主构造或外部零点自由区依赖。"
+        },
+        {
+          "subquestion": "恢复后的 AKS2004 Conjecture6.1 是否已有无条件证明或具体复合反例",
+          "value": "no_evidence_in_scope",
+          "note": "有限强检索和原文核读取得 LP/Popovych 的条件性候选族、普通 AKS 勘误以及两篇不同对象的2026稿；没有在本次范围取得 prime-r 原猜想的完整无条件证明或实际反例。不是由清单仍列开放推导，亦不宣称全网不存在解决。"
+        },
+        {
+          "subquestion": "2019 AKS 正式勘误对本猜想的影响",
+          "value": "partial",
+          "note": "勘误修 Lemma4.3 中清除 n 的公共素因子幂的步骤；不改此处已核 Conjecture6.1，不构成该猜想的撤回或解答。"
+        },
+        {
+          "subquestion": "2026 Shunia 完整算法声明及 fixed-base 猜想能否关闭原 Agrawal 命题",
+          "value": "not_assessed",
+          "note": "已取得全稿并精确排除范围误迁：新算法有不同商环与额外构造/归一化条件，§7 自称只是修改版且未宣称等价。本轮未审完其新算法与外部解析依赖，不给该算法本身终审结论。"
+        },
+        {
+          "subquestion": "2026 Cinkir 二项式系数判据能否关闭原 Agrawal 命题",
+          "value": "not_assessed",
+          "note": "核得 Theorem2.3 是若干指定二项式系数各自同余，未取得原单一循环多项式同余蕴含这一组条件的证明；按不同问题保留，不用邻卡摘要宣称原猜想解决。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/HOL-Theorem-Prover/HOL/blob/5da890e716bb47caff1dd1adb23f074a83dd9ec2/examples/AKS/theories/AKStheoremScript.sml"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "当前5d4efcc881550f22缺完整恒等式、变量域与模理想，formal仅指未定位文献，acceptance错误写成p素或p²|(r−1)，不能按一个明确的数学命题验收。对p>1，gcd(p,r−1)=1本就排除p²|(r−1)；这不是标准Agrawal猜想的反例。已实际核2004原刊Conj6.1：n>1语境、r prime、r∤n，(X−1)^n≡X^n−1 mod(n,X^r−1)⇒n prime或r|(n²−1)；2003 AIM原记录另有任意互素正整数r版，两范围未建立等价，须分层。修复公式/参数域/验收必需新card_rev，不静默用完整邻卡768覆盖本版。对恢复后的明确版本，本轮有限搜索未取得全题证明或反例；Lenstra–Pomerance的CRT/Frobenius条件族已核短桥，尚无满足合成性全部条件的本轮见证，heuristic非否定。2019 AKS勘误只修算法参数引理，2026单同余新稿采用不同环及额外检查、另列未证fixed-base版本，均非此猜想全解。FC固定源码只有sorry题面；HOL4/openai/math是带多检查的普通AKS，静态未复跑。768同意图残缺、769附加同余关系交低号包外负责人待核，不合并。",
+      "evidence_ids": [
+        "R1247-CARD",
+        "R1247-AKS",
+        "R1247-AIM",
+        "R1247-SHUNIA",
+        "R1247-DUP",
+        "C1247-FC",
+        "C1247-HOL4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "当前卡的损坏公式与互相冲突条件",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "卡的formal只有“见AKS论文”，摘录只有(p−1)^((x^r−1)/q)≡…而无右端、模理想或完整参数域，不构成通常多项式环中的确定命题。若候选整数p>1且gcd(p,r−1)=1，则p²|(r−1)绝不可能，因为后者迫p|r−1。若q>1并且q|r−1，gcd条件已经推出q∤p；若允许q=1，则1|r−1却1∤p为假，说明q域缺失会改变真假。对q>1，(x^r−1)/q也不是通常非负整数指数，不能未经说明把这个幂当作Z[x]表达式。现r=1边界与旧gcd条件同时用于p>1时更是直接不相容。以上只识别题面错误，未对未定义式构造所谓原猜想反例。",
+      "evidence_ids": [
+        "Q1247-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "可靠原式：2004 prime-r版本与2003一般r版本须分开",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "AKS原刊Conjecture6.1在n>1的素性问题语境中问：r为素数、r∤n，若(X−1)^n≡X^n−1 mod(n,X^r−1)，是否n为素数或n²≡1 mod r。结论中的例外是r|(n²−1)，不是n²|(r−1)，条件是r∤n而不是gcd(n,r−1)=1；原式没有辅助q。AIM2003 B.1另明确写n,r为互素正整数，未限r素数。一般r版蕴含prime-r版，但没有取得把一般r反例转换为prime-r反例的逆向证明，故不能按同名自动称两版等价。恢复卡时必须明确采用哪个版本。n不为完全幂及ord_r(n)>log²n不在原Conj6.1的前提里，不能从AKS算法偷偷移入，缩小待证域。",
+      "evidence_ids": [
+        "Q1247-M-E1",
+        "Q1247-M-E2",
+        "Q1247-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "模理想的精确语义与素数方向",
+      "math_status": "部分进展",
+      "scope_note": "对n>1、r≥1，等式发生在R_(n,r)=(Z/nZ)[X]/(X^r−1)，等价于两式之差属于Z[X]中的理想(n,X^r−1)。因X^r−1首一，任何余类都有唯一次数<r的代表，即把各幂按指数模r归并并将系数模n。n合成时Z/nZ和这个商环一般不是域，不能默认非零元可除。若n=ℓ为素数，二项式系数在0<j<ℓ时都被ℓ整除，故Frobenius直接给(X−1)^ℓ=X^ℓ−1于F_ℓ[X]，进而任意r的商环同余也成立，ℓ=2时−1=1无例外。原猜想的困难全在合成n方向；另有r∤n是猜想参数要求，虽然素数方向的形式恒等式本身不需要它。",
+      "evidence_ids": [
+        "Q1247-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "AKS Lemma2.1未取X^r−1商时的完整初等核验",
+      "math_status": "部分进展",
+      "scope_note": "原Lemma2.1为n≥2、gcd(a,n)=1时，(X+a)^n≡X^n+a mod n在整个(Z/nZ)[X]中成立当且仅当n素数。正向由Frobenius及a^n≡a。反向设n合成，取素因子ℓ<n并令ν_ℓ(n)=e≥1。中间系数X^ℓ为binom(n,ℓ)a^(n−ℓ)。由binom(n,ℓ)=(n/ℓ)∏_{j=1}^{ℓ−1}(n−j)/j，乘积所有分子分母均ℓ单位，所以其ℓ进赋值为e−1；a也是ℓ单位，故该系数不能被ℓ^e、更不能被n整除。于是全多项式恒等式不成立。这也排除非平凡完全幂。取了X^r−1商以后，不同次数的系数会合并，这个孤立中间系数反证不再直接适用。旧人话“某个模多项式下相符当且仅当n素数”把两种判据混淆。",
+      "evidence_ids": [
+        "Q1247-M-E1",
+        "Q1247-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "已证AKS算法的附加检验不能省成原单同余猜想",
+      "math_status": "部分进展",
+      "scope_note": "实际看过原刊p784像素：输入n>1，先排n=a^b、b>1；找ord_r(n)>(log₂n)²的r；检查a≤r是否有1<gcd(a,n)<n；若n≤r则可判prime；否则对1≤a≤floor(sqrt(φ(r))log₂n)逐个检查(X+a)^n≡X^n+a mod(n,X^r−1)，任一失败就composite，全部通过才prime。Theorem4.1证明的是这一整套算法的正确性，不能删去前置与多a条件后说单个a=−1已证。ord_r(n)必须在gcd(n,r)=1时定义；原刊算法的r不要求素数，而Conj6.1的r要求素数，两处参数角色也不能混用。该项核查核了算法准确声明和逻辑范围，未重新证明全套复杂度与所有辅助引理。",
+      "evidence_ids": [
+        "Q1247-M-E2",
+        "Q1247-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "n=341,r=2的精确手算证书：通过单同余但落在允许例外",
+      "math_status": "仅特例",
+      "scope_note": "取n=341=11·31，r=2。gcd(341,2)=1，2为素数。2^10=1024=3·341+1，故2^340≡1 mod341。在R=(Z/341Z)[X]/(X²−1)中令y=X−1，则y²=X²−2X+1=−2y，因此y^341=(−2)^340 y=2^340 y=y。又X^341=X，所以(X−1)^341=X^341−1。这个合数确通过单同余，但341²≡1 mod2，恰为原猜想允许的例外，并非反例；它也表明不能把例外分支删掉。若把原同余与错误的“n²|r−1”结论硬拼，则341²∤1，暴露错误改写；这不是对当前省略号式的完整反例，更不反驳原猜想。该参数也不满足AKS算法的阶下界：ord₂(341)=1。以上全部为手算，没有执行伪素数扫描。",
+      "evidence_ids": [
+        "Q1247-M-E1",
+        "Q1247-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "r=1与小素数参数的退化范围",
+      "math_status": "仅特例",
+      "scope_note": "2004 prime-r版本不允许r=1。若采用AIM的一般正r版本，则r=1时商环设X=1，n>0下左右均0，而n²≡1 mod1也是恒真，因此这只是无信息边界。r=2且gcd(n,2)=1时n奇，n²≡1 mod2自动；r=3且gcd(n,3)=1时n≡±1，n²≡1 mod3也自动。因此r=2、3都不能产生违反例外分支的反例，虽然它们能用于检查同余实现或排错。若允许n=1，模1为零环且1²≡1 modr，仍是平凡边界；素性判定主体应写n>1。原卡把r=1与gcd(p,r−1)=1并列，会排掉所有p>1，不能照此执行扫描。",
+      "evidence_ids": [
+        "Q1247-M-E1",
+        "Q1247-M-E2",
+        "Q1247-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Lenstra条件反例族的CRT与Frobenius桥：独立核验",
+      "math_status": "条件性结果",
+      "scope_note": "按AIM B.1的k≡1 mod4分支，设n=∏_{i=1}^k p_i，p_i互异素数、p_i≡3 mod80，且每个p_i−1|n−1、p_i+1|n+1。于是n≡3^k≡3 mod80，特别n²≡4≠1 mod5。固定p=p_i；因ord₅(p)=4，Φ₅在F_p不可约，令ζ为相应域中的本原5次单位根，α=ζ−1≠0。Frobenius给α^(p²)=ζ^(p²)−1=ζ⁻¹−1=−ζ⁻¹α，所以α的乘法阶整除10(p²−1)。由于p≡3 mod80，5、16、(p−1)/2、(p+1)/4两两互素，乘积恰10(p²−1)。n≡p mod80给前两个因子上的同余；整除假设分别给n≡p mod(p−1)/2及mod(p+1)/4。CRT遂得n≡p mod10(p²−1)，从而α^n=α^p=ζ^p−1=ζ^n−1。对互异p_i再用CRT合回模n；X−1和Φ₅在模n多项式环中互素，因为Φ₅(1)=5且gcd(5,n)=1，而X=1处两式都0，故最终得到模(n,X⁵−1)的原同余。若另有k>1，n即合成且r=5为素数、r∤n、例外分支不成立，会成为2004原猜想的真实反例。",
+      "evidence_ids": [
+        "Q1247-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "条件族存在性、heuristic和反例验收的边界",
+      "math_status": "部分进展",
+      "scope_note": "前条只证“若满足全部条件，则得到坏实例”，没有证明存在这样的k>1数据。k≡1 mod4且k>1至少为5；k=1时n=p本来素数，虽仍有n²≠1 mod5，却不反驳结论的素数分支。AIM后段明确转入解析数论的heuristic，不能把它写成无条件存在定理或已经找到反例。另一方面，有限n/r范围无反例只能给该范围的检查结果；它既不证明全称猜想，也不排除更大的候选。当前卡没有完整模环/域，建议的n≤10^6、r≤100扫描无法按字面实施。该项核查未运行此扫描或任何其他有限多项式扫描。",
+      "evidence_ids": [
+        "Q1247-M-E1",
+        "Q1247-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "2019正式勘误只修辅助r构造，并不决定单同余猜想",
+      "math_status": "部分进展",
+      "scope_note": "已读Errata：原Lemma4.3的r=s/gcd(s,n)可能留下与n共有的素因子，令ord_r(n)未定义。修正令B为所给参数上界、M=floor(log₂B)，取r=s/gcd(s,n^M)。独立核其中互素步骤：s≤B时，对任意素数ℓ|gcd(s,n)，ν_ℓ(s)≤floor(log₂B)=M，而ν_ℓ(n^M)≥M，故gcd完全去掉s中这些素因子的幂，剩下r与n互素。再由s不整除n^M∏(n^i−1)得r不整除相应乘积，进而排除小乘法阶。这里未重算全文LCM数值界；这一正式修补支持AKS辅助参数论证，既不是Conj6.1的证明，也不是其反例。",
+      "evidence_ids": [
+        "Q1247-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "2026单二项式新判据与固定底修改版的范围排除",
+      "math_status": "部分进展",
+      "scope_note": "实际读Shunia2611.02280v1：其证明构造在C_n=(Z/nZ)[Y]/Φ_r(Y)上再取C_n[X]/(X^r−b(Y))，并用系数环中的额外归一化/相容等式；这不是原R_(n,r)的单同余。§7另列未证修改猜想：n>3奇，r为不整除n(n−1)的最小正整数，先有2^(n−1)≡1 modn，再要求(1+X)^n≡1+X^n mod(n,X^r−2)，结论n素数。原文明确不声称两猜想等价，也明确未从固定底2同余推出其主证明所需归一化。独立可核该r只保证为素数幂：若r有至少两个素因子，所有真素数幂因子都由最小性整除n(n−1)，它们的LCM=r也会整除，矛盾。例如n=7时n(n−1)=42，1、2、3皆整除而4不整除，故r=4并非素数。于是参数域、移项符号、模多项式和附加测试均有变化，不能把新稿标题或主算法声明当作2004单同余猜想全解。该项核查未审它的主构造或外部零点自由区依赖。",
+      "evidence_ids": [
+        "Q1247-M-E2",
+        "Q1247-M-E5"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "恢复后的 AKS2004 Conjecture6.1 是否已有无条件证明或具体复合反例",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "有限强检索和原文核读取得 LP/Popovych 的条件性候选族、普通 AKS 勘误以及两篇不同对象的2026稿；没有在本次范围取得 prime-r 原猜想的完整无条件证明或实际反例。不是由清单仍列开放推导，亦不宣称全网不存在解决。",
+      "evidence_ids": [
+        "a1247_aks2004",
+        "a1247_lp2003_index",
+        "a1247_popovych2008",
+        "a1247_shunia2026",
+        "a1247_cinkir2026"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "2019 AKS 正式勘误对本猜想的影响",
+      "math_status": "部分进展",
+      "scope_note": "勘误修 Lemma4.3 中清除 n 的公共素因子幂的步骤；不改此处已核 Conjecture6.1，不构成该猜想的撤回或解答。",
+      "evidence_ids": [
+        "a1247_aks_erratum2019"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "2026 Shunia 完整算法声明及 fixed-base 猜想能否关闭原 Agrawal 命题",
+      "math_status": "未作判断",
+      "scope_note": "已取得全稿并精确排除范围误迁：新算法有不同商环与额外构造/归一化条件，§7 自称只是修改版且未宣称等价。本轮未审完其新算法与外部解析依赖，不给该算法本身终审结论。",
+      "evidence_ids": [
+        "a1247_shunia2026"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    },
+    {
+      "subquestion": "2026 Cinkir 二项式系数判据能否关闭原 Agrawal 命题",
+      "math_status": "未作判断",
+      "scope_note": "核得 Theorem2.3 是若干指定二项式系数各自同余，未取得原单一循环多项式同余蕴含这一组条件的证明；按不同问题保留，不用邻卡摘要宣称原猜想解决。",
+      "evidence_ids": [
+        "a1247_cinkir2026"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "原题包",
+      "query": "读取任务.jsonl中QX-P-001247完整task/card_metadata/card_text/prior_evidence",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "当前rev5d4efcc881550f22；旧novelty绑定a3827109dcfd0129且只批级交叉，无专属检索，不能作为有效本轮回执。",
+      "request_id": "QX-R3-11-001247-root-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "GitHub connector",
+      "query": "fetch problems/001/QX-P-001247.text.md + .meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整读固定正文和metadata；text blob7c460cb6f72aa9e252c5dd0c297e51a9c76a0f00，meta blob0070fb5803702b6fcadd6c512721821a0df8e69b。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001247.text.md",
+      "request_id": "QX-R3-11-001247-root-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "Agrawal|AKS|阿格拉瓦尔",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "2469条title/title_en/aliases大小写不敏感正则。AKS未设词界，匹配peaks等噪声；仅768/769实际全文续核，其他题仅索引排查，不转为独立查新。",
+      "result_count": 4,
+      "request_id": "QX-R3-11-001247-root-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "primality|素性|素数判定",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "2469条title/title_en/aliases大小写不敏感正则。AKS未设词界，匹配peaks等噪声；仅768/769实际全文续核，其他题仅索引排查，不转为独立查新。",
+      "result_count": 6,
+      "request_id": "QX-R3-11-001247-root-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "pseudoprime|伪素数|Carmichael|Pocklington",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "2469条title/title_en/aliases大小写不敏感正则。AKS未设词界，匹配peaks等噪声；仅768/769实际全文续核，其他题仅索引排查，不转为独立查新。",
+      "result_count": 5,
+      "request_id": "QX-R3-11-001247-root-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector",
+      "query": "fetch problems/000/QX-P-000768.text.md + .meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读完整题面、人话、来源和meta.acceptance；768是原Agrawal prime-r单同余版，769再加X+2同余，两者低号负责人均不在此包；不直接合并、不重查邻卡新状态。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000768.text.md",
+      "request_id": "QX-R3-11-001247-root-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector",
+      "query": "fetch problems/000/QX-P-000769.text.md + .meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读完整题面、人话、来源和meta.acceptance；768是原Agrawal prime-r单同余版，769再加X+2同余，两者低号负责人均不在此包；不直接合并、不重查邻卡新状态。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000769.text.md",
+      "request_id": "QX-R3-11-001247-root-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "Agrawal conjecture n r polynomial x minus 1 p squared r minus 1",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中原题/Lenstra–Pomerance条件族与Popovych2009/008；原卡p²|(r−1)未由这些摘要支持。原始论文后续实际读取。",
+      "request_id": "QX-R3-11-001247-root-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "Agrawal conjecture Lenstra Pomerance counterexample",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中AIM笔记、IACR、历史MO、论文索引；新增2611.02280已交学术路线并由主审读取范围，formal-conjectures与社区入口交代码路线，不凭标题判已解。",
+      "request_id": "QX-R3-11-001247-root-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Wikipedia指定来源",
+      "query": "open https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics；find Agrawal",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "只用作实际采集来源核对，不以清单开放标签决定数学状态。该页Prime numbers条目确写一般互素正整数n,r与n²≡1(modr)，没有现卡的gcd(p,r−1)、指数(x^r−1)/q或p²|(r−1)。原始文献另核。",
+      "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+      "locator": "Prime numbers段Agrawal条目",
+      "request_id": "QX-R3-11-001247-root-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "AIM官方",
+      "query": "open https://www.aimath.org/WWN/primesinp/articles/html/50a/",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "本主审直接URL请求404；随后通过数学路线实际返回的同源PDF引用重新open成功并读取B.1，失败不等于最终全文缺失。",
+      "url": "https://www.aimath.org/WWN/primesinp/articles/html/50a/",
+      "request_id": "QX-R3-11-001247-root-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "AIM官方",
+      "query": "open https://aimath.org/WWN/primesinp/articles/html/50a/",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "本主审直接URL请求404；随后通过数学路线实际返回的同源PDF引用重新open成功并读取B.1，失败不等于最终全文缺失。",
+      "url": "https://aimath.org/WWN/primesinp/articles/html/50a/",
+      "request_id": "QX-R3-11-001247-root-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "AIM官方",
+      "query": "open https://aimath.org/WWN/primesinp/primesinp.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "本主审直接URL请求404；随后通过数学路线实际返回的同源PDF引用重新open成功并读取B.1，失败不等于最终全文缺失。",
+      "url": "https://aimath.org/WWN/primesinp/primesinp.pdf",
+      "request_id": "QX-R3-11-001247-root-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "open https://arxiv.org/html/2611.02280v1；find 7 A fixed-base conjecture",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读摘要、§1完整参数与接受等式、§2开头Lemmas2.1/2.2/Theorem2.3目标、§7全部。主算法在C_n[X]/(X^r−b(Y))而非(Z/n)[X]/(X^r−1)，有两项系数环检查及前处理；§7 fixed-base另为猜想且明确不宣称与原Agrawal等价。未审全文构造/外部解析输入或Lean。",
+      "url": "https://arxiv.org/html/2611.02280v1",
+      "locator": "Abstract；§1–2开头；§7 Conj7.1/Prop7.2及AI Assistance Disclosure",
+      "request_id": "QX-R3-11-001247-root-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "作者IIT Kanpur原稿",
+      "query": "open https://www.cse.iitk.ac.in/users/manindra/algebra/primality_v6.pdf；find Conjecture 6.1；find [BP]",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读Lemma2.1与完整算法，随后§6 Conjecture、历史检验与heuristic段；此作者v6的猜想未编号为6.1，正式2004刊版由另一核查路线固定p791 Conj6.1。字面[BP]未命中，v6实际引文键BP01。未独立完整重证AKS或2019更正。",
+      "url": "https://www.cse.iitk.ac.in/users/manindra/algebra/primality_v6.pdf",
+      "locator": "§2 Lemma2.1；§4算法；§6 pp7–8",
+      "request_id": "QX-R3-11-001247-root-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "IACR官方",
+      "query": "open https://eprint.iacr.org/2009/008.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "直接URL403；后续通过学术路线成功原PDF引用重新open得到976行原文抽取，指定段可读，复杂公式排版破碎，不声称完整证明重证。",
+      "url": "https://eprint.iacr.org/2009/008.pdf",
+      "request_id": "QX-R3-11-001247-root-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Agrawal\" \"gcd(p,r\" conjecture",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "有实际执行；返回原单同余陈述及社区/索引，未取得现卡损坏条件的同一原始数学命题。",
+      "request_id": "QX-R3-11-001247-root-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Agrawal\" \"p²\" \"r\" conjecture",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "有实际执行；未获得支持p²整除r−1的原始Agrawal条件；搜索命中不等于穷尽可能出处。",
+      "request_id": "QX-R3-11-001247-root-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "AIM官方PDF检索缓存",
+      "query": "open此前数学路线返回的AIM primesinp.pdf源引用；find B.1 Remarks",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "重试取得同一URL原始PDF文本，首页版本Wed Apr30 11:57:16 2003，研讨会March24–28。实际读B.1完整条件命题/证明至其heuristic开头；AIM确有任意互素正整数n,r版，不能把广域全归为Wiki错误，也不默认与2004 prime-r版等价。",
+      "url": "https://aimath.org/WWN/primesinp/primesinp.pdf",
+      "locator": "首页；B.1 pp30–31，Conjecture及Lenstra Proposition",
+      "request_id": "QX-R3-11-001247-root-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "IACR官方PDF检索缓存",
+      "query": "open此前学术路线返回的2009/008.pdf源引用；find But no counterexample",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取§3结尾明确conditional family后仍no counterexample known（仅当时）；§4给额外primitive条件的链条与双同余方向。部分公式抽取破碎，本主审未逐式/像素复核，不将条件命题当已构造反例。",
+      "url": "https://eprint.iacr.org/2009/008.pdf",
+      "locator": "§3结尾；§4范围，主要只核声明含义",
+      "request_id": "QX-R3-11-001247-root-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地正式原刊PDF文本",
+      "query": "读取aks_errata2019.txt两页完整勘误",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "2019 Annals189 pp317–318修正Lemma4.3选r的证明，取s对n的互素部分；并非Conjecture6.1的证明或反例。本主审确认更正对象与取商互素条件，未重证AKS整篇。",
+      "url": "https://doi.org/10.4007/annals.2019.189.1.6",
+      "locator": "Errata完整两页",
+      "request_id": "QX-R3-11-001247-root-021",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地arXiv官方PDF文本",
+      "query": "读取binomial2608_v1.txt Theorem1.3及Theorem2.3与证明开头",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "Thm2.3域p>2，M最小使sqrt(p)≤2^M≤p−1，测试一组binom(p−1,2^m)≡1modp；不是单循环商同余。未独立核该稿全证明/运行复杂度，也未有从原猜想前件到这些系数检查的桥。",
+      "url": "https://arxiv.org/pdf/2608.27493v1",
+      "locator": "Theorems1.3/2.3",
+      "request_id": "QX-R3-11-001247-root-022",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "a1247-s2-01",
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "Agrawal conjecture Lenstra Pomerance counterexample primality r 2005",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际返回 AKS、AIM 的 Lenstra–Pomerance 文本索引、Popovych 和社区近邻；未以搜索摘要代替原式。检索输出 turn519017107。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "a1247-s2-02",
+      "route": "原题与出处",
+      "site": "web system2",
+      "query": "Agrawal conjecture gcd p r-1 p squared divides r-1",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未找到支持题卡残缺式的同一原始命题；所得原始线索后续逐一读取。不是零结果宣称。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "a1247-s1-01",
+      "route": "学术",
+      "site": "web system1",
+      "query": "Agrawal conjecture proof counterexample primality",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；命中 2026 单二项式检验新稿及旧 LP/AKS 来源，随后核具体条件；turn779969292。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "a1247-s1-02",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Deterministic Polynomial-Time Primality Testing with a Single Binomial Congruence\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 arXiv:2611.02280；后续固定 v1 全文。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "a1247-s1-03",
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"PRIMES is in P\" \"Conjecture 6.1\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 Annals 原刊及作者副本；选择正式原刊固定 PDF 核式。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "a1247-s1-04",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Agrawal conjecture\" counterexample solved correction",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730；命中旧条件性反例构造讨论及新近邻；未取得满足原 prime-r 版本的完整反例数值或全称证明。turn434718554；这是有限检索覆盖，不是全网无解证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "a1247-s1-05",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Primes is in P\" erratum 2019",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中原刊 2019 勘误，随后读两页全文，限定为 Lemma 4.3 的证明修订。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "a1247-s1-06",
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"Primality and identity testing via Chinese remaindering\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 Agrawal–Biswas 作者稿；下载后文字层乱码，实际渲染看首页确定随机算法范围和版本日期。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "a1247-s2-03",
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"2608.27493\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "主要命中 SciRate 索引（公告日期 2026-08-31），不能由索引认定已解决原猜想；实际官方 PDF banner 日期为 2026-08-26。turn151091193。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "a1247-s2-04",
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Agrawal conjecture\" \"counterexample\" 2026 2025 -site:scribd.com -site:rxiv.org",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回旧 MO/形式化题面等；另有无关 elementary proof 题名碰撞，未将其当同题。没有取得原猜想的新完整解决证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "a1247-open-01",
+      "route": "原题与出处",
+      "site": "AIM / web open",
+      "query": "open https://aimath.org/WWN/primesinp/articles/html/50a/",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://aimath.org/WWN/primesinp/articles/html/50a/",
+      "note": "HTTP 404；。检索索引可读部分正文，但此请求没有读到完整原页。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "a1247-open-02",
+      "route": "原题与出处",
+      "site": "AIM / web open",
+      "query": "open https://aimath.org/WWN/primesinp/primesinp.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://aimath.org/WWN/primesinp/primesinp.pdf",
+      "note": "HTTP 404；。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "a1247-open-03",
+      "route": "学术",
+      "site": "IACR / web open",
+      "query": "open https://eprint.iacr.org/2009/008.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://eprint.iacr.org/2009/008.pdf",
+      "note": "直接 URL 返回 403；。后从搜索结果 ref 打开同文成功，不能把本次失败当最终未取得全文。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "a1247-open-04",
+      "route": "原题与出处",
+      "site": "Annals / web open",
+      "query": "open https://annals.math.princeton.edu/2004/160-2/p12",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://annals.math.princeton.edu/2004/160-2/p12",
+      "locator": "期刊落地页，作者、卷页、DOI、2004 年发表元数据",
+      "note": "；本条落地页元数据与后续原刊全文配合，不将该页当全部数学证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "a1247-open-05",
+      "route": "原题与出处",
+      "site": "AIM / web open",
+      "query": "open https://www.aimath.org/WWN/primesinp/articles/html/50a/",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.aimath.org/WWN/primesinp/articles/html/50a/",
+      "note": "HTTP 404；。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "a1247-open-06",
+      "route": "学术",
+      "site": "arXiv / web open",
+      "query": "open https://arxiv.org/abs/2611.02280",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2611.02280",
+      "locator": "提交史及摘要",
+      "note": "；仅列 v1，2026-11-01 23:17:13 UTC，作者 Joseph M. Shunia；摘要的 12 页与本轮固定 PDF 实际 14 页分开记录。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "a1247-open-07",
+      "route": "学术",
+      "site": "arXiv / web open",
+      "query": "open https://arxiv.org/html/2611.02280v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2611.02280v1",
+      "locator": "引言、Theorems 1.1–1.2、§2 代数接受准则及 §7",
+      "note": "；新商环 X^r-b(Y) 及额外归一化/旋转条件，不是原 X^r-1 单条件猜想。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "a1247-open-08",
+      "route": "原题与出处",
+      "site": "AIM / web open search-ref",
+      "query": "open https://www.aimath.org/WWN/primesinp/articles/html/50a/",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.aimath.org/WWN/primesinp/articles/html/50a/",
+      "note": "搜索 ref 回开仍 404，；只保留实际索引文本层级。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "a1247-open-09",
+      "route": "学术",
+      "site": "IACR / web open search-ref",
+      "query": "open https://eprint.iacr.org/2009/008.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://eprint.iacr.org/2009/008.pdf",
+      "locator": "§1、§3 Propositions 3.1–3.2、§4–5",
+      "note": "，成功取得全文文本；部分数学公式抽取断裂，未取得本地 PDF 图像，故没有声称完整独立复核所有公式。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "a1247-open-10",
+      "route": "学术",
+      "site": "arXiv / web open",
+      "query": "open https://arxiv.org/html/2611.02280v1 around line 360",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2611.02280v1",
+      "locator": "§6 附近",
+      "note": "；追加读取复杂度及外部解析输入范围。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "a1247-open-11",
+      "route": "学术",
+      "site": "arXiv / web open",
+      "query": "open https://arxiv.org/html/2611.02280v1 around line 375",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2611.02280v1",
+      "locator": "返回 §5–6 段",
+      "note": "；该次返回未覆盖目标 §7，后用 find 补到，不将请求行号冒充实际阅读位置。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "a1247-find-01",
+      "route": "学术",
+      "site": "arXiv / web find",
+      "query": "find \"not asserted\" in https://arxiv.org/html/2611.02280v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2611.02280v1",
+      "locator": "§7",
+      "note": "；作者明确不宣称两个猜想等价。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "a1247-find-02",
+      "route": "学术",
+      "site": "arXiv / web find",
+      "query": "find \"Conjecture 7.1\" in https://arxiv.org/html/2611.02280v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2611.02280v1",
+      "locator": "§7 Conjecture 7.1、Proposition 7.2、AI Assistance Disclosure",
+      "note": "；modified fixed-base test 仍作为猜想，带 base-2 Fermat 前提，模 X^r-2。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "a1247-find-03",
+      "route": "学术",
+      "site": "IACR / web find",
+      "query": "find \"Proposition 3.2\" in https://eprint.iacr.org/2009/008.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://eprint.iacr.org/2009/008.pdf",
+      "locator": "§3 与末尾 §5",
+      "note": "；有限特定素因子条件给潜在反例，但没有提供满足这些条件的实际复合整数。2008 年未获反例的原句不能用作 2026 年状态证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "a1247-open-12",
+      "route": "学术",
+      "site": "arXiv / web open",
+      "query": "open https://arxiv.org/abs/2608.27493",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2608.27493",
+      "note": "DisabledError；。后官方 PDF 下载成功，本条只记录该入口。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "a1247-open-13",
+      "route": "学术",
+      "site": "arXiv / web open",
+      "query": "open https://arxiv.org/html/2608.27493v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/html/2608.27493v1",
+      "note": "DisabledError；。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "a1247-open-14",
+      "route": "学术",
+      "site": "Annals / web open",
+      "query": "open https://annals.math.princeton.edu/wp-content/uploads/annals-v189-n1-p06-s.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://annals.math.princeton.edu/wp-content/uploads/annals-v189-n1-p06-s.pdf",
+      "locator": "2019 勘误全文 pp.317–318",
+      "note": "；修 Lemma 4.3，不是 Conjecture 6.1 的证明、反例或撤回。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "a1247-open-15",
+      "route": "原题与出处",
+      "site": "IIT Kanpur / web open",
+      "query": "open https://cse.iitk.ac.in/users/manindra/algebra/identity.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://cse.iitk.ac.in/users/manindra/algebra/identity.pdf",
+      "note": " 虽返回 PDF，但文字层大量乱码，不据此声称全文可读；后续实际下载及首页渲染补足题名/日期/摘要阅读。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "a1247-get-aks2004",
+      "route": "原题与出处",
+      "site": "公开原始 URL / urllib",
+      "query": "GET https://annals.math.princeton.edu/wp-content/uploads/annals-v160-n2-p12.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://annals.math.princeton.edu/wp-content/uploads/annals-v160-n2-p12.pdf",
+      "locator": "§2 p.783、§6 Conjecture 6.1 p.791、参考文献 pp.792–793",
+      "note": "实际下载、pdftotext，并渲染/view_image p.791 核数学原式。 HTTP 200, 274461 bytes, SHA256 cdf418fbe5948a9a3e4ffd0fe2f916db3194547bd9401c4dccb5d9317b0e1dbe.",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "a1247-get-aim2003",
+      "route": "原题与出处",
+      "site": "公开原始 URL / urllib",
+      "query": "GET https://www.aimath.org/WWN/primesinp/primesinp.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.aimath.org/WWN/primesinp/primesinp.pdf",
+      "note": "urllib GET 404；原稿全页缺口保留。 <HTTPError 404: 'Not Found'>",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "a1247-get-popovych2008",
+      "route": "学术",
+      "site": "公开原始 URL / urllib",
+      "query": "GET https://eprint.iacr.org/2009/008.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://eprint.iacr.org/2009/008.pdf",
+      "note": "urllib GET 403；但 web 搜索 ref 的全文文本已成功取得，二者分层。 <HTTPError 403: 'Forbidden'>",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "a1247-get-bp2001page",
+      "route": "原题与出处",
+      "site": "公开原始 URL / urllib",
+      "query": "GET https://www.cse.iitk.ac.in/research/btp2001/primality.html",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.cse.iitk.ac.in/research/btp2001/primality.html",
+      "note": "urllib GET 404；2001 年原始技术报告仅由 AKS2004 [BP] 回指，未直接读到。 <HTTPError 404: 'Not Found'>",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "a1247-get-shunia2026_v1",
+      "route": "学术",
+      "site": "公开原始 URL / urllib",
+      "query": "GET https://arxiv.org/pdf/2611.02280v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2611.02280v1",
+      "locator": "pp.1–4、§7 pp.12–13",
+      "note": "固定 PDF 实际 14 页；读主定理/接受准则与完整 §7，未独立重证整篇算法和外部零点定理。 HTTP 200, 434772 bytes, SHA256 dfdd6e53577a94fede588a075057377c693483ac18fa756b6507331b07b2e8fa.",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "a1247-get-agrawal_biswas2003",
+      "route": "原题与出处",
+      "site": "公开原始 URL / urllib",
+      "query": "GET https://cse.iitk.ac.in/users/manindra/algebra/identity.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://cse.iitk.ac.in/users/manindra/algebra/identity.pdf",
+      "locator": "p.1 标题、日期、摘要、引言及脚注",
+      "note": "15 页 PDF；文字层乱码，实际渲染/view_image 首页，确认随机素性检验与 FOCS1999 前稿；没有声称通读其长证明。 HTTP 200, 266092 bytes, SHA256 88c00b7b697f2e51e7265bc8274ad75b84b78a5132bad178d9e830bca1981c5e.",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "a1247-get-aks_errata2019",
+      "route": "学术",
+      "site": "公开原始 URL / urllib",
+      "query": "GET https://annals.math.princeton.edu/wp-content/uploads/annals-v189-n1-p06-s.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://annals.math.princeton.edu/wp-content/uploads/annals-v189-n1-p06-s.pdf",
+      "locator": "pp.317–318 两页全文",
+      "note": "正式原刊勘误；本地文本与已读取 web 全文一致。 HTTP 200, 222384 bytes, SHA256 1bce3f60ca1b3b3042ee90167bd6a87150fcf6cbb29982667eddf22e04314109.",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "a1247-get-binomial2608_v1",
+      "route": "学术",
+      "site": "公开原始 URL / urllib",
+      "query": "GET https://arxiv.org/pdf/2608.27493v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2608.27493v1",
+      "locator": "pp.1–4，Theorems 1.3、2.3 及后者证明",
+      "note": "官方固定 PDF 9 页；是若干二项式系数逐项同余，不是 Agrawal 单一循环多项式同余。 HTTP 200, 286347 bytes, SHA256 c7ee5cd27f72c23c3c577cbeabf6efe113f9ea5c36ca989b6aed3b2baa8f673c.",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "a1247-local-01",
+      "route": "原题与出处",
+      "site": "本地固定原稿 / pdftotext + view_image",
+      "query": "read aks2004.txt §2/§6/references; view aks2004_p791.png",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://annals.math.princeton.edu/wp-content/uploads/annals-v160-n2-p12.pdf",
+      "locator": "Conjecture 6.1 p.791",
+      "note": "图像像素实际返回并查看；明确 n²≡1 (mod r)，不是 n² | (r−1)。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "a1247-local-02",
+      "route": "原题与出处",
+      "site": "本地固定作者稿 / view_image",
+      "query": "view agrawal_biswas2003_p1.png",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://cse.iitk.ac.in/users/manindra/algebra/identity.pdf",
+      "locator": "p.1",
+      "note": "实际图像确认两作者、February 21, 2003、随机算法摘要和 FOCS’99 前稿脚注；只读首页。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "a1247-local-03",
+      "route": "学术",
+      "site": "本地固定全文 / 定位读取",
+      "query": "read shunia2026_v1.txt §7; binomial2608_v1.txt Theorem 2.3; aks_errata2019.txt",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "locator": "各固定 PDF 对应段落",
+      "note": "用公式和量词排除近邻；不将不同完整算法或二项式判据直接登记为原 Agrawal 猜想解答。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原包完整任务记录",
+      "query": "完整读取 work_001247_sources/task.json，核formal占位、原文摘录中gcd与整除分支、缺失的q/r域和多项式指数、acceptance及建议扫描范围。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.qunxingmath.org/p/QX-P-001247/",
+      "locator": "card_text全文及card_metadata.acceptance.criteria",
+      "note": "QX-P-001247 rev5d4efcc881550f22。没有对省略号或损坏恒等式自行补条件后假称执行了原题反例搜索，未编辑源卡。",
+      "request_id": "QX-R3-11-001247-math-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "网页定向检索",
+      "query": "实际system2查询 Agrawal conjecture (X-1)^n congruence r primality conjecture counterexample，以及 Agrawal conjecture n not perfect power r prime 2005 Lenstra Pomerance。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://aimath.org/WWN/primesinp/primesinp.pdf",
+      "locator": "搜索结果中的AIM研讨会原始记录及其后固定PDF全文读取",
+      "note": "检索turn948542305search0/2/27及academia31；非原始百科/平台命中仅作入口，不作为数学结论依据。AIM HTML50a直接与搜索ref打开均404（、）；改开PDF搜索ref成功turn460073339view1。",
+      "request_id": "QX-R3-11-001247-math-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "AKS原刊及正式勘误",
+      "query": "实际读取学术路线下载的 aks2004.txt：Lemma2.1、§3模理想/阶定义、§4算法与Theorem4.1、§6 Conjecture6.1；渲染PDF第4页并view_image核算法不等号；另读aks_errata2019.txt两页。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://annals.math.princeton.edu/wp-content/uploads/annals-v160-n2-p12.pdf",
+      "locator": "原刊pp783–785、791；2019 Errata pp317–318",
+      "note": "原刊PDF SHA256 cdf418fbe5948a9a3e4ffd0fe2f916db3194547bd9401c4dccb5d9317b0e1dbe。实际像素为work_001247_sources/aks2004_math_p784.png，确认step5为≠时COMPOSITE；文本提取丢失否定斜线，不将它误报为作者算法错误。该项核查未重证AKS全部正确性及复杂度链。",
+      "request_id": "QX-R3-11-001247-math-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "AIM2003原始研讨会记录",
+      "query": "从成功PDF全文实际读取Chapter B Problem1及B.1 Remarks on Agrawal’s Conjecture，核任意正整数r版本、Lenstra条件性族及CRT/Frobenius短证明，区分其后heuristic存在性。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://aimath.org/WWN/primesinp/primesinp.pdf",
+      "locator": "Chapter B Problem1；B.1 Conjecture、Proposition与其Proof；随后heuristic段",
+      "note": "网页全文turn460073339view1。该原始记录确写coprime正整数n,r，2004正式Conj6.1另限r prime。范围区别不能凭名称忽略；条件族没有在所读段落给出k>1的具体数。",
+      "request_id": "QX-R3-11-001247-math-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "2026固定预印本",
+      "query": "实际读取 work_001247_sources/shunia2026_v1.txt 的摘要、§1系数环和额外等式，以及§7 Conjecture7.1/Proposition7.2与末端范围说明。",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2611.02280v1",
+      "locator": "摘要、§1式(2)–(4)；§7印刷pp12–13",
+      "note": "Joseph M. Shunia，arXiv2611.02280v1，2026-11-01；PDF SHA256 dfdd6e53577a94fede588a075057377c693483ac18fa756b6507331b07b2e8fa。只核不同系数环、参数与条件性短桥；未审主构造、零点自由区或其AI辅助长证明，不以标题Single Binomial Congruence认作原Agrawal猜想全解。",
+      "request_id": "QX-R3-11-001247-math-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1247-C-GHCURRENT",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "locator": "main commit元数据",
+      "note": "固定当前FC为ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8；commit日期2026-11-26T15:20:47Z。提交本身为另一题，无本猜想解决声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1247-C-OAISEARCH",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/math",
+      "query": "Agrawal AKS primality",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回4文件，主要为量子分解稿附录的普通AKS变体，另有Miller测试背景提及；后续全文读附录限定多同余算法，不作本猜想解。",
+      "result_count": 4,
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1247-C-FCSEARCH",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub google-deepmind/formal-conjectures",
+      "query": "Agrawal",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回2个文件：Agrawal.lean是同题形式化题面，Green97仅同姓作者；随后固定当前commit取全文。",
+      "result_count": 2,
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEB1",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1_search_query",
+      "query": "\"Agrawal conjecture\" proof Lean Isabelle",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本批3条system1，原样搜索；返回AIM摘录、MO45855、FC派生任务页、HOL4论文及普通AKS近邻。 recency=730日。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEB1",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1_search_query",
+      "query": "\"AKS\" \"Isabelle\" primality formal verification",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本批3条system1，原样搜索；返回AIM摘录、MO45855、FC派生任务页、HOL4论文及普通AKS近邻。 recency=730日。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEB1",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system1_search_query",
+      "query": "\"Agrawal conjecture\" counterexample proof 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本批3条system1，原样搜索；返回AIM摘录、MO45855、FC派生任务页、HOL4论文及普通AKS近邻。 recency=365日。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1247-C-FCFILE",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub google-deepmind/formal-conjectures",
+      "query": "fetch_file path=FormalConjectures/Wikipedia/Agrawal.lean ref=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Wikipedia/Agrawal.lean",
+      "note": "完整79行；两个theorem各有proof sorry；一般互素正整数r，不含r.Prime；当前源码没有answer(sorry)。与原论文prime-r域分层，旧卡省略式无法直接等价匹配。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1247-C-OAIFILE",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/math",
+      "query": "fetch_file path=preprints/Exact-quantum-factoring-over-a-fixed-finite-gate-set-September-25-2026/build/sections/appendix-primality.tex ref=3344da59991ed94f9ba711217b29c1d760badfa6",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Exact-quantum-factoring-over-a-fixed-finite-gate-set-September-25-2026/build/sections/appendix-primality.tex",
+      "note": "完整附录正文已阅；主Lemma给一般多项式时间素性算法，需排除完美幂、找素数s及ord_s(m)>n²、小因子检查和1≤a≤8s全部同余。没有原单a=-1断言；未独立审完整正确性链。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEBREAD1",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.open",
+      "query": "https://mathoverflow.net/questions/45855/what-is-the-current-status-of-agrawals-conjecture",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://mathoverflow.net/questions/45855/what-is-the-current-status-of-agrawals-conjecture",
+      "note": "MO45855完整174行，3答案；2010 REU特例/有限搜索历史报告。页顶18days修改不代表新解；本轮未取API精确最近编辑年份。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEBREAD1",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.open",
+      "query": "https://openresearch-repository.anu.edu.au/items/8558101c-e4a4-40ea-8752-61394ea48960",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://openresearch-repository.anu.edu.au/items/8558101c-e4a4-40ea-8752-61394ea48960",
+      "note": "ANU普通AKS HOL4论文landing返回403；只读取前次搜索摘要，不称读论文全文。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEBREAD1",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.open",
+      "query": "https://open.argusbot.cn/",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://open.argusbot.cn/",
+      "note": "Argus Open根页530，未取得该平台Agrawal任务或解答。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "Q1247-C-FCLAKE",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub google-deepmind/formal-conjectures",
+      "query": "fetch_file path=lake-manifest.json ref=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lake-manifest.json",
+      "note": "依赖文件全文，mathlib rev 0df444a360eaa60ab8c11dca51a86af692955474；不是证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1247-C-FCTOOL",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub google-deepmind/formal-conjectures",
+      "query": "fetch_file path=lean-toolchain ref=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lean-toolchain",
+      "note": "依赖文件全文，Lean v4.33.1；不是证明或运行日志。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1247-C-HOLSEARCH",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub HOL-Theorem-Prover/HOL",
+      "query": "AKS",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回5条README/算法文件；后续取固定README与AKStheoremScript.sml，不能凭AKS名称当强化猜想已证。",
+      "result_count": 5,
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEB2",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system2_search_query",
+      "query": "\"Agrawal conjecture\" \"AI\" proof 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本批2条system2，原样搜索；精确命中we-solve CS-246及Cairn/ProveTogether，另有同姓作者和无关AI新闻，后者不纳入证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEB2",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.system2_search_query",
+      "query": "\"agrawal_conjecture\" \"proof\" \"Lean\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本批2条system2，原样搜索；精确命中we-solve CS-246及Cairn/ProveTogether，另有同姓作者和无关AI新闻，后者不纳入证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q1247-C-HOLREADME",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub HOL-Theorem-Prover/HOL",
+      "query": "fetch_file path=examples/AKS/README.md ref=5da890e716bb47caff1dd1adb23f074a83dd9ec2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/HOL-Theorem-Prover/HOL/blob/5da890e716bb47caff1dd1adb23f074a83dd9ec2/examples/AKS/README.md",
+      "note": "README全文已阅，项目分theories/compute/machine，是AKS基础算法体系。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEBREAD2",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.open",
+      "query": "https://aimath.org/WWN/primesinp/articles/html/50a/",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://aimath.org/WWN/primesinp/articles/html/50a/",
+      "note": "AIM搜索ref open返回404；此前摘录显示一般互素n,r，仅为搜索层。不冒认该项核查已读原页；其他分支的原始PDF核验由主回执合并。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEBREAD2",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.open",
+      "query": "https://cairn-commons.com/problems/agrawal",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://cairn-commons.com/problems/agrawal",
+      "note": "完整152行：claims/verified/disputed/refuted均0，自动FC观察截至2026-11-23。是本站目录状态，不能当全网开放性证明；当前正文已去answer(sorry)，与搜索缓存不同。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEBREAD2",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.open",
+      "query": "https://www.primaboinca.com/",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://www.primaboinca.com/",
+      "note": "工具报告URL不可访问；MO历史计算不能升级为当前项目范围或复跑证书。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "Q1247-C-HOLSOURCE",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub HOL-Theorem-Prover/HOL",
+      "query": "fetch_file path=examples/AKS/theories/AKStheoremScript.sml ref=5da890e716bb47caff1dd1adb23f074a83dd9ec2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/HOL-Theorem-Prover/HOL/blob/5da890e716bb47caff1dd1adb23f074a83dd9ec2/examples/AKS/theories/AKStheoremScript.sml",
+      "note": "完整源文件已取得；实际静态读Ancestors、主定理类型与AKS_main_ulog_8及其短证明调用，未逐一审其全部辅助定理和导入闭包。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEAI",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.open",
+      "query": "https://we-solve.github.io/problems/cyclic-binomial-structure-in-an-early-agrawal-conjecture/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://we-solve.github.io/problems/cyclic-binomial-structure-in-an-early-agrawal-conjecture/",
+      "locator": "CS-246题目页完整94行",
+      "note": "实际是早期所有r≤log²n的多周期(1+X)测试；页面明确partial仅目录快照。随后读完整贡献。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEFULL",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.click",
+      "query": "ref_id=https://we-solve.github.io/contributions/cyclic-binomial-structure-in-an-early-agrawal-conjecture/attempt-1/r1/; id=15",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://we-solve.github.io/contributions/cyclic-binomial-structure-in-an-early-agrawal-conjecture/attempt-1/r1/",
+      "note": "完整218行；作者自报Exploration/unresolved/completion0%，只循环系数/pruning/341小例，不是单r猜想全解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEFULL",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.click",
+      "query": "ref_id=https://we-solve.github.io/problems/cyclic-binomial-structure-in-an-early-agrawal-conjecture/source/statement.tex; id=14",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://we-solve.github.io/problems/cyclic-binomial-structure-in-an-early-agrawal-conjecture/source/statement.tex",
+      "note": "web不支持application/x-tex；完整rendered题文和贡献仍已读，不伪称原TeX字节校验。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "Q1247-C-WEFULL",
+      "route": "代码、公开 AI 和社区",
+      "site": "web.click",
+      "query": "ref_id=https://github.com/we-solve/research; id=23",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/we-solve/research",
+      "note": "仓库landing/README完整页面；只定位存档布局，无独立验算或正式核验声明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q1247-C-LOCALSTATIC",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地静态源审",
+      "query": "读取formal_Agrawal.lean/hol_AKStheoremScript.sml定义与主目标；扫描sorry/axiom/new_axiom/cheat/admit；逐个Git blob SHA1和SHA256；shutil.which(lean,lake,Holmake,poly,isabelle)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "locator": "code_static_audit.json; code_source_manifest.json",
+      "note": "6个完整源码/依赖文件API原字节与Git blob吻合；5个工具均None；未编译、未启动数值扫描。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R1247-CARD",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001247.text.md",
+      "locator": "题面/形式化/原文摘录/人话/acceptance与旧novelty",
+      "version": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；card_rev5d4efcc881550f22；text blob7c460cb6f72aa9e252c5dd0c297e51a9c76a0f00；meta blob0070fb5803702b6fcadd6c512721821a0df8e69b",
+      "subquestions": [
+        "当前题是否可判定",
+        "原式及验收损坏"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "没有完整可执行命题：formal只指向未定位文献；摘录指数含未定义的多项式表达式且右端省略，p/q/r域与模理想缺失；acceptance把正确模r例外误成p²|(r−1)。对p>1，若gcd(p,r−1)=1则p²不可能整除r−1，所以按现卡字面例外支必被排除；这只证明摘录/验收不自洽，不能补齐省略后宣告标准猜想被反驳。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R1247-AKS",
+      "url": "https://www.cse.iitk.ac.in/users/manindra/algebra/primality_v6.pdf",
+      "locator": "Lemma2.1 p2；§4算法；§6 Conjecture pp7–8",
+      "version": "作者IITK提供primality_v6.pdf，9页，本轮实际读取；正式2004刊版另见学术证据",
+      "subquestions": [
+        "prime-r原题恢复",
+        "原始多项式恒等式与商环检验的区别",
+        "历史来源回指"
+      ],
+      "scope_match": "尚未确认",
+      "role": "原始提出",
+      "publication": "预印本",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "note": "原猜想在n>1语境下：r为素数且r∤n，若(X−1)^n≡X^n−1 mod(n,X^r−1)，则n素或r|(n²−1)。猜想本身没有AKS完整算法的non-perfect-power、ord_r(n)>log²n、多个shift等前置，不能偷偷加上而称原猜想已证。Lemma2.1是在整多项式环中、a与n互素时的充要判据；取商X^r−1后会丢失系数信息，原文明确要适当r与一整段a。主审独立核系数短桥：若q^e||合成n，则C(n,q)=(n/q)C(n−1,q−1)，后因子模q非零，故q阶为e−1，与a互素使该系数不被n整除；不能把此结论直接带到循环商。v6回指BP01/KS02与LP03b，并未据此读过2001学位原稿；不拿2005/06当可核最早年份。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "unconfirmed",
+        "role": "original",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "R1247-AIM",
+      "url": "https://aimath.org/WWN/primesinp/primesinp.pdf",
+      "locator": "首页版本；B.1 pp30–31 Conjecture/Proposition及证明",
+      "version": "AIM Future Directions in Algorithmic Number Theory；2003-04-30 11:57:16版本；March24–28研讨会实时笔记",
+      "subquestions": [
+        "任意互素r版本的原始记录",
+        "r5潜在反例的条件族"
+      ],
+      "scope_match": "尚未确认",
+      "role": "目前最早可核实出处",
+      "publication": "原始档案",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "note": "B.1确有任意互素正整数n,r版，2004 AKS版则限r素；二者必须并列范围，未建立逆向等价。Lenstra命题若n是互异p_i≡3(mod80)之积，k≡1(mod4)，且每个p_i−1|n−1及p_i+1|n+1，则r=5同余成立而n²≠1(mod5)；k≡3也有备注。主审独立核k≡1的CRT/Frobenius桥：n≡p_i mod80；5、16、(p_i−1)/2、(p_i+1)/4两两互素且积为10(p_i²−1)，据两整除条件得n≡p_i模此积；ζ−1阶整除10(p_i²−1)，因此(ζ−1)^n=(ζ−1)^p_i=ζ^n−1；再以平方自由n与(X−1),Φ5互素合并。命题未提供k>1的合成n实例或存在性证明；k=1只给素数，不能称反例已构造。启发式不是全题否定。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "unconfirmed",
+        "role": "earliest_source",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "R1247-SHUNIA",
+      "url": "https://arxiv.org/html/2611.02280v1",
+      "locator": "Abstract；§1(2)–(5)及Thm1.2；§7 Conj7.1/Prop7.2；AI披露",
+      "version": "Joseph M. Shunia，arXiv2611.02280v1，2026-11-01；文内日期2026-10-30",
+      "subquestions": [
+        "最新单同余完整声明的同一性排除"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "未读全文",
+      "note": "题名single binomial不能抹去C_n=(Z/nZ)[Y]/Φ_r(Y)、X^r−b(Y)及b的两项归一/相容检查与整数前处理。作者主张另一算法L^(32+o(1))，本轮仅读准确范围、未核整个构造/外部zero-free定理/Lean。§7另以X^r−2、shift+1、最小不整除n(n−1)的r和base2 Fermat作为未证fixed-base猜想，原文明确不称与原Agrawal等价；不能据算法已给证明宣布本卡原单一循环同余已解。AI披露称GPT-6 Astra参与证明与写作，这是作者自述，不是本轮独立验证结论。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "R1247-DUP",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001247.text.md",
+      "locator": "与768、769完整正文和meta.acceptance逐项对照",
+      "version": "固定commit 73290369a8dcc632e25e555aec525565ea6e08f8；双方rev/blob见duplicates",
+      "subquestions": [
+        "同意图残缺候选及附加同余版本"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "768有完整prime-r单同余原式，是当前损坏卡的高度同意图候选；但当前题未定义完整，不能直接判严格同题。769同域增加X+2同余，若原单同余猜想为真当然推出双同余蕴含，反向未立；加前提使逻辑命题较弱，不能凭两检验更强就说其数学蕴含更强。两低号负责人均在包外，按规则待核，不查其新状态或合并。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "a1247_aks2004",
+      "url": "https://annals.math.princeton.edu/wp-content/uploads/annals-v160-n2-p12.pdf",
+      "locator": "§2 Lemma 2.1 p.783；§6 Conjecture 6.1 p.791；[BP]/[KS]/[AB]/[LP2] pp.792–793",
+      "version": "Annals of Mathematics 160(2004), 781–793；DOI 10.4007/annals.2004.160.781；本轮 274461 bytes，SHA256 cdf418fbe5948a9a3e4ffd0fe2f916db3194547bd9401c4dccb5d9317b0e1dbe",
+      "subquestions": [
+        "恢复原始 prime-r 猜想的精确式与量词",
+        "普通 AKS/全多项式恒等式与猜想的区别",
+        "最早可读出处及 LP 线索"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Manindra Agrawal, Neeraj Kayal, Nitin Saxena",
+      "claim_date": "2004",
+      "note": "此处等价只指恢复的标准原意，不是当前残缺题卡文字。完整命题为：n≥2，r 为素数，r∤n，且 (X−1)^n≡X^n−1 于 (Z/nZ)[X]/(X^r−1)，则 n 为素数或 n²≡1 (mod r)。已实际查看 p.791 像素；没有 q 或 gcd(n,r−1) 条件。Lemma 2.1 的 iff 在 (Z/nZ)[X] 中，不能直接迁到商 X^r−1。§6 指更早 [BP] 技术报告 2001；本轮未取到该报告，故 2001 只是原作者追溯，不冒称已亲读。§6 亦仅将 Lenstra–Pomerance 描述为提示可能为假的启发式。作者报告 [KS] 扫描 r≤100,n≤10^10，本轮未复跑。文件 work_001247_sources/aks2004.pdf/.txt 和 aks2004_p791.png。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a1247_ab2003",
+      "url": "https://cse.iitk.ac.in/users/manindra/algebra/identity.pdf",
+      "locator": "首页标题、日期、摘要、引言及 FOCS’99 脚注；与 AKS2004 [AB] 对照",
+      "version": "作者稿 February 21, 2003；正式引文 J. ACM 50(2003), 429–443；15 页，266092 bytes，SHA256 88c00b7b697f2e51e7265bc8274ad75b84b78a5132bad178d9e830bca1981c5e",
+      "subquestions": [
+        "Agrawal–Biswas 与本题的关系"
+      ],
+      "scope_match": "同源不同问",
+      "role": "重述",
+      "publication": "作者主页",
+      "claim_state": "完整稿已取得",
+      "review_status": "未读全文",
+      "claimant": "Manindra Agrawal, Somenath Biswas",
+      "claim_date": "2003-02-21",
+      "note": "标题 Primality and Identity Testing via Chinese Remaindering。文本层乱码后实际渲染首页并查看，摘要明确为随机素性/恒等式检验，脚注述 FOCS1999 前稿。该来源不提供题卡省略的所谓组合条件，也不能把这个算法定理当 Agrawal Conjecture 6.1 的证明。只核首页与引文，没有重审整篇算法。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "a1247_lp2003_index",
+      "url": "https://www.aimath.org/WWN/primesinp/articles/html/50a/",
+      "locator": "AIM March2003 workshop note；搜索索引中的 Proposition 和随后讨论；AKS2004 [LP2]",
+      "version": "Lenstra–Pomerance, Remarks on Agrawal’s conjecture，March2003；原站全页/PDF 多入口 404，只取得原站搜索索引及 AKS 原始引用",
+      "subquestions": [
+        "潜在 r=5 反例族与实际反例的差别",
+        "原文版本的 r 条件"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "原始档案",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "claimant": "Hendrik W. Lenstra Jr., Carl Pomerance",
+      "claim_date": "2003-03",
+      "note": "原站索引给出条件式构造：n 为互异素数 p_i 之积，k≡1 mod4，各 p_i≡3 mod80，p_i−1|n−1 且 p_i+1|n+1，则得到 r=5 的同余与 n²≠1 mod5；需要实际复合 n（排 k=1）才能成为反例。此处没有取得该 n 的存在证书，也未读到全证明。索引所述一般 r 只要求与 n 互素，与 AKS prime-r 版本必须分别记，不能未经证明视为等价。 主审随后实际取得 AIM 汇编2003-04-30的 B.1 全文并独立核该条件族；该项核查上述失败仅为入口日志，最终整题需合并主审完整原稿证据，不能宣称全轮未取得 LP 内容。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "a1247_popovych2008",
+      "url": "https://eprint.iacr.org/2009/008.pdf",
+      "locator": "§1 标准 prime-r 猜想；§3 Propositions 3.1–3.2 及其后讨论；§5 Modified conjecture",
+      "version": "Roman Popovych, A note on Agrawal conjecture；稿内 December30,2008；IACR ePrint2009/008；web 搜索 ref  成功读全文文本",
+      "subquestions": [
+        "条件性反例构造的已知进展",
+        "增加第二个多项式同余的修改版"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Roman Popovych",
+      "claim_date": "2008-12-30",
+      "note": "直接 URL 和 urllib 均 403，但打开已返回的搜索 ref 成功，不能保留最终全文未取得的错误结论。§1 恢复式与 AKS 一致；§3 将特定素因子余数和 p_i±1 整除条件下的 r=5 潜在反例推广，紧后明确当时尚未得到实际反例。该句只说明 2008 年，不是当前无反例的证据。§5 增加 (X+2)^n≡X^n+2 (mod n,X^r−1)，是更强前提的另一个猜想，不能当原猜想已证。部分公式抽取断裂，未取得可视 PDF，未完整独立复核 Propositions3.1–3.2。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a1247_aks_erratum2019",
+      "url": "https://annals.math.princeton.edu/wp-content/uploads/annals-v189-n1-p06-s.pdf",
+      "locator": "两页全文 pp.317–318，Lemma4.3 修正",
+      "version": "Annals of Mathematics 189(2019), 317–318；DOI 10.4007/annals.2019.189.1.6；222384 bytes；SHA256 1bce3f60ca1b3b3042ee90167bd6a87150fcf6cbb29982667eddf22e04314109",
+      "subquestions": [
+        "普通 AKS 原稿勘误是否关闭或否定本猜想"
+      ],
+      "scope_match": "同源不同问",
+      "role": "勘误",
+      "publication": "正式刊发",
+      "claim_state": "有修订",
+      "review_status": "仅核关键步骤",
+      "claimant": "Manindra Agrawal, Neeraj Kayal, Nitin Saxena",
+      "claim_date": "2019",
+      "note": "原 Lemma4.3 证明取 r=s/gcd(s,n) 不能清除高次公共素因子，作者改成 r=s/gcd(s,n^floor(log B))，保留 r≤max{3,ceil(log^5 n)} 与 ord_r(n)>log²n。已读两页修正文本并核修正所针对的互素性问题；未据此宣布 AKS 失效。勘误没有证明/撤回 Conjecture6.1，也不是题卡损坏公式的来源。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "retraction",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a1247_shunia2026",
+      "url": "https://arxiv.org/pdf/2611.02280v1",
+      "locator": "Theorems1.1–1.2；§2 Theorem2.3；§7 Conjecture7.1、Proposition7.2 pp.12–13；AI Assistance Disclosure",
+      "version": "arXiv:2611.02280v1，官方史 2026-11-01 23:17:13 UTC；PDF 内 October30,2026；实际14页，434772 bytes；SHA256 dfdd6e53577a94fede588a075057377c693483ac18fa756b6507331b07b2e8fa",
+      "subquestions": [
+        "2026 单二项式检验完整声明是否为原 Agrawal 解答",
+        "固定基修改版猜想的量词"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Joseph M. Shunia",
+      "claim_date": "2026-11-01",
+      "note": "标题 Deterministic Polynomial-Time Primality Testing with a Single Binomial Congruence。主算法在 C_n=(Z/nZ)[Y]/Φ_r(Y)、A_n=C_n[X]/(X^r−b(Y)) 中工作；还检验 b 的归一化和 Frobenius 旋转，另有 r,D 的构造/度界及完美幂预处理，不能删除为原单条件。Theorem1.2 声称总位复杂度 L^(32+o(1))、构造 b 后检验 L^(6+o(1))，依赖 Theorem1.1 外部零点定理；本轮仅读主范围与接受准则，未重证整个算法或该外部输入。§7 明确两个猜想未主张等价：n>3 奇数，r 为不整除 n(n−1) 的最小正整数，另有 2^(n−1)≡1 mod n 与 (1+X)^n≡1+X^n mod(n,X^r−2) 的修改版仍列猜想。该 r 不必素数。作者披露 GPT-6 Astra 协助发展和撰写证明，形式化/代码由另一路核；此处不冒称独立验证。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a1247_cinkir2026",
+      "url": "https://arxiv.org/pdf/2608.27493v1",
+      "locator": "引言 Theorem1.3；§2 Theorem2.3 与证明，pp.1–4",
+      "version": "Zubeyir Cinkir, The Sufficient Set of Congruences of Binomial Coefficients for Primality；固定v1 PDF banner 26Aug2026；9页，286347 bytes；SHA256 c7ee5cd27f72c23c3c577cbeabf6efe113f9ea5c36ca989b6aed3b2baa8f673c",
+      "subquestions": [
+        "2026 二项式系数充分集是否蕴含原猜想"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Zubeyir Cinkir",
+      "claim_date": "2026-08-26",
+      "note": "官方 abs/HTML 工具失败，但官方固定 PDF 下载成功。Theorem2.3 对整数 p>2、M=ceil((log₂p)/2)，要求每个 1≤m≤M 均满足 binom(p−1,2^m)≡1 mod p，得到 p 素当且仅当。已读该短证明的最小素因子归约；这里只按主定理条件作范围排除，不宣称复核全部9页。该组逐项二项式同余不同于商 X^r−1 后的系数合并条件，未建立原 Agrawal 前件到该组条件的桥；O(log p) 个同余也不自动给每项可在多项式于 log p 的时间内计算。SciRate索引公告8月31日与PDF版日期8月26日分层，未取得abs完整史故不推最新版本。",
+      "formal_status": "未检索形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q1247-M-E1",
+      "url": "https://www.qunxingmath.org/p/QX-P-001247/",
+      "locator": "原包题面、formal、人话、原文摘录及acceptance",
+      "version": "QX-P-001247 rev5d4efcc881550f22",
+      "subquestions": [
+        "损坏公式",
+        "条件冲突",
+        "恢复原目标",
+        "反例验收"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "原始档案",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "完整卡已读，但卡自身没有给出可判真假的完整恒等式。不能据此宣称原数学猜想已被小例推翻。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q1247-M-E2",
+      "url": "https://annals.math.princeton.edu/wp-content/uploads/annals-v160-n2-p12.pdf",
+      "locator": "Lemma2.1；§3；§4算法及Theorem4.1；Conjecture6.1",
+      "version": "Agrawal–Kayal–Saxena，PRIMES is in P，Annals of Mathematics160(2004),781–793，DOI10.4007/annals.2004.160.781",
+      "subquestions": [
+        "原猜想准确形式",
+        "未商多项式的素性等价",
+        "AKS已证算法与单同余区别"
+      ],
+      "scope_match": "尚未确认",
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "这是恢复损坏卡的可靠候选原义，不能称与卡的缺式及错误整除分支已经等价。原刊Conj6.1限r素数；算法定义另含非完全幂、乘法阶、小因子和多a检验。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "unconfirmed",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q1247-M-E3",
+      "url": "https://aimath.org/WWN/primesinp/primesinp.pdf",
+      "locator": "Chapter B Problem1和B.1 Remarks on Agrawal’s Conjecture",
+      "version": "AIM Primality Testing研讨会2003原始记录；B.1注明内容来自Lenstra与Pomerance",
+      "subquestions": [
+        "任意coprime r的版本",
+        "条件反例族",
+        "heuristic与实际反例区别"
+      ],
+      "scope_match": "尚未确认",
+      "role": "进展",
+      "publication": "原始档案",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "该项核查独立核所给条件族的r=5结论；没有证明存在满足全部条件的合成n，不把heuristic当反例。原始研讨会版本比2004 prime-r陈述域更宽，未核两版逆向归约。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "unconfirmed",
+        "role": "progress",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q1247-M-E4",
+      "url": "https://annals.math.princeton.edu/wp-content/uploads/annals-v189-n1-p06-s.pdf",
+      "locator": "Errata全文，特别r=s/gcd(s,n^floor(log B))的修正",
+      "version": "Agrawal–Kayal–Saxena，Errata: PRIMES is in P，Annals189(2019),317–318，DOI10.4007/annals.2019.189.1.6",
+      "subquestions": [
+        "乘法阶定义需要互素",
+        "AKS辅助参数证明修补的范围"
+      ],
+      "scope_match": "同源不同问",
+      "role": "勘误",
+      "publication": "正式刊发",
+      "claim_state": "有修订",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "正式勘误修的是已证算法Lemma4.3中的参数构造，不是单同余Conj6.1的证明或反例。该项核查核剥离共同素因子的逻辑，未重算全部数值复杂度不等式。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "retraction",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q1247-M-E5",
+      "url": "https://arxiv.org/pdf/2611.02280v1",
+      "locator": "摘要、§1与§7",
+      "version": "Joseph M. Shunia，arXiv:2611.02280v1，2026-11-01，内文日期2026-10-30",
+      "subquestions": [
+        "2026单二项式新判据是否覆盖原目标",
+        "固定底2修改版的条件性推论"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "原稿明确不声称其固定底修改猜想与Agrawal原猜想等价；证明构造采用更大的系数环和额外归一化。未据其主算法声明给本题结案。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "C1247-FC",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Wikipedia/Agrawal.lean",
+      "locator": "AgrawalConjecture.agrawal_conjecture；agrawal_conjecture.variants.popovych；文件全文79行及同commit工具链/manifest",
+      "version": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "subquestions": [
+        "单多项式同余猜想的形式化题面及参数域",
+        "Popovych双同余近邻"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "只有形式化题面",
+      "rerun": {
+        "commit": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+        "theorem": "AgrawalConjecture.agrawal_conjecture; AgrawalConjecture.agrawal_conjecture.variants.popovych",
+        "toolchain": "Lean leanprover/lean4:v4.33.1；mathlib 0df444a360eaa60ab8c11dca51a86af692955474",
+        "command": "仅静态读取及哈希核验；未执行lake/Lean",
+        "cache": "work_001247_sources/formal_Agrawal.lean; lean-toolchain.txt; lake-manifest.json; code_static_audit.json",
+        "axioms": "两个theorem分别以sorry结束。直接文件无新增axiom声明，不表示无sorryAx依赖；未执行#print axioms或导入闭包核验。"
+      },
+      "note": "实际主式：∀n r:ℕ，n>1→r>0→gcd(n,r)=1→[在(Z/nZ)[X]/(X^r−1)中(X−1)^n=X^n−1]→[n.Prime∨n²=1 in ZMod r]。r未限素数，不能不经桥接就称与2004原文prime-r版等价；现卡省略式及p²|(r−1)也不匹配此完整表达。当前固定源码无answer(sorry)包装，两个证明体仍sorry；搜索/旧渲染的包装不是当前字节。Popovych目标另增(X+2)^n=X^n+2同余，增前提使逻辑命题更弱，不能把doc中的stronger解释为已证明更强结论。文件2712 bytes，SHA256 8b18fdc05f72100e31b529621eeb4bffb5832375141fc93090c2e074b8a19b6d，Git blob 9f1ce473bffa1efb2ee0896c1857627483d0b7c5；6份缓存均按API原字节核验。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C1247-HOL4",
+      "url": "https://github.com/HOL-Theorem-Prover/HOL/blob/5da890e716bb47caff1dd1adb23f074a83dd9ec2/examples/AKS/theories/AKStheoremScript.sml",
+      "locator": "Theory/Ancestors及AKS_main_ulog_8 lines1450–1463；配套examples/AKS/README.md",
+      "version": "5da890e716bb47caff1dd1adb23f074a83dd9ec2",
+      "subquestions": [
+        "普通AKS定理与强化猜想的区分"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "rerun": {
+        "commit": "5da890e716bb47caff1dd1adb23f074a83dd9ec2",
+        "theorem": "AKS_main_ulog_8",
+        "toolchain": "HOL4 Standard ML源码；本机Holmake/poly均未发现，未另钉SML编译器版本/构建依赖",
+        "command": "只取全文及检查主目标/短proof调用；没有Holmake",
+        "cache": "work_001247_sources/hol_AKStheoremScript.sml; hol_aks_README.md",
+        "axioms": "直接文件扫描new_axiom/cheat/admit/sorry均0；未审全部Ancestors闭包，不声称内核重放成功。"
+      },
+      "note": "定理是prime n iff power_free n且存在素数k，(2·ulog n)²≤ordz k n，小因子范围不整除n，且k<n时所有0<c≤2·SQRT(phi k)·ulog n均通过相应多项式同余。证明以metis_tac调用AKS_main_ulog_7、poly_intro_X_add_c、power_free_gt_1等。power_free、order和整段c检查是实质前提，不能删成单个(X−1)条件。本次完整文件已取74826 bytes，SHA256 ec1ea0376be9e246d862a62d43b336ceb3616af6e93e373f31005d28ef5fcd15，Git blob 9d07c11214e9881cf99489660f4563ec8bc4b7c7；只静态复阅主范围，不是完整旧项目独立复核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C1247-OAI",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Exact-quantum-factoring-over-a-fixed-finite-gate-set-September-25-2026/build/sections/appendix-primality.tex",
+      "locator": "An elementary polynomial-time primality test；Lemma lem:primality及四步算法，完整附录已阅",
+      "version": "3344da59991ed94f9ba711217b29c1d760badfa6",
+      "subquestions": [
+        "公开AI相关AKS算法的实际目标"
+      ],
+      "role": "完整证明",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "原作者给出的目标为输入n≥128、2≤m<2^n的普通确定性poly(n)素性测试。测试先排除完美幂，选素数s≤n^8、gcd(s,m)=1、ord_s(m)>n²，小因子检查，再验证所有1≤a≤8s的(X+a)^m≡X^m+a mod(m,X^s−1)。该附录包括正确性和运行时间论证，但不是只验a=−1的Agrawal猜想；该项核查仅审范围、未独立核全证明。全文7149 bytes，SHA256 56f34d05d5bcf957c1d27a859fed760c8fe7c49cf6ea02a15463d8f29fb10bd5，Git blob1789259f1b874aa3a0a5f4bbc3856dffe686a526。未因库名/AI来源将其登记为原题解决。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "full_proof",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C1247-MO",
+      "url": "https://mathoverflow.net/questions/45855/what-is-the-current-status-of-agrawals-conjecture",
+      "locator": "主帖及3条答案完整174行；Voloch2010-11-19、Cantwell2010-11-21、Developer2010-11-30",
+      "version": "2026-11-27抓取；帖子始于2010-11-12；最近编辑显示Nov7而未取API年份",
+      "subquestions": [
+        "一般互素n,r的社区重述",
+        "历史r>n/2特例及r=5有限搜索"
+      ],
+      "role": "进展",
+      "publication": "社区帖子",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "Voloch报告REU证明r>n/2情形并试搜r5无反例；本轮未取该REU完整证明或原运行日志。其余答案指Popovych稿和历史PRIMABOINCA项目，报告n<10^10未找反例；原页面排版1010须按数学指数理解，且不补造其r覆盖、程序版本或本轮复跑。页面新增修改显示不能当新证明。PRIMABOINCA当前站无法访问，故历史计算只作线索，不用于全称断言或当前无反例证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "C1247-CAIRN",
+      "url": "https://cairn-commons.com/problems/agrawal",
+      "locator": "当前状态表、claims计数、完整Lean题面及来源段；152行",
+      "version": "2026-11-27实访；自动上游观察2026-11-23；页面last reviewed2026-11-11",
+      "subquestions": [
+        "公开AI协作平台同题记录"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "只有形式化题面",
+      "note": "实际页面显示claims=0、verified=0、disputed=0、refuted=0；当前可见题面与FC直接forall版本一致。本站status只是采集FC两条research open，不能作全网未解证明，也没有可下载证明/验算日志。本次搜索缓存仍出现answer(sorry)但活页已无，该差异不影响两个目标均未给证明这一源码事实。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "C1247-WESOLVE",
+      "url": "https://we-solve.github.io/contributions/cyclic-binomial-structure-in-an-early-agrawal-conjecture/attempt-1/r1/",
+      "locator": "CS-246-A1 revision r1完整稿，Recovered target/Audit and gap/Completion Estimate/Final status；218行",
+      "version": "r1；2026-10-11；con_47d1c4e931f44517992e9ca3f5173a5a",
+      "subquestions": [
+        "公开AI探索的实际目标与未解决声明"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "we-solve记录：gpt-6-astra ultra；上传者mehmetmars7",
+      "claim_date": "2026-10-11",
+      "note": "该完整稿研究早期多周期版：对所有r≤log²n验证(1+X)^n≡1+X^n；不是本题的单r/例外n²≡1版本。作者只给循环二项系数表示、整除周期冗余裁剪、n341小例，并明确unresolved与completion0%、无新颖性结论。页面声明not screened、0 reviews、formal not checked；该项核查已读全部可见数学段但未复跑作者小例或重证辅助结论。源TeX点击因content-type失败，未取得原TeX字节hash；持久r1网页及本地检索文本足以复核其范围。不能将目录partially solved升级为原猜想的部分新进展。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000768",
+      "other_card_rev": "c35305a99c3b25a6",
+      "relation": "待核",
+      "reason": "实际全文显示同意图但当前1247残缺：768准确要求n>1、r prime、r∤n、单同余⇒n prime或n²≡1(modr)，1247缺完整公式并错写p²|(r−1)，故不能确认严格同题。低号768包外负责人应先决定采用哪个原始版本、修复当前卡后再按新rev复核，不在本轮自动合并。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001247.text.md：题面/摘录/人话及同名meta.acceptance",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000768.text.md：完整题面/原文摘录及同名meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000768__QX-P-001247；低号负责人在包外；对方text blob4ed1c5e4b17cd6b1b1b0c43e6646c53dc935865f、meta blob9312d47b386b76d2bf03cdeaf177ae089a6bdbba；仅查重，不改卡、不合并、不作对方独立查新。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-000769",
+      "other_card_rev": "85c31c31c558065e",
+      "relation": "待核",
+      "reason": "769还要求(X+2)^n≡X^n+2，同目标n prime或n²≡1modr。相对按prime-r原文修复后的单同余命题，这是加前提后的逻辑弱化，未有等价桥；当前1247自身残缺，低号769包外按规则待核而不直接合并。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001247.text.md：题面/摘录/人话及同名meta.acceptance",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000769.text.md：完整题面/原文摘录及同名meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000769__QX-P-001247；低号负责人在包外；对方text blobf196522bd9635edefe62ffaa472beb3bae11b053、meta blobf7a229ba9ce2ba19cb487e58effdcea1ee266066；仅查重，不改卡、不合并、不作对方独立查新。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "题面纠错",
+      "field": "题面/形式化/原文摘录/acceptance",
+      "old": "只指AKS/Agrawal–Biswas型；gcd(p,r−1)=1；未定q条件；(p−1)^((x^r−1)/q)≡...；p素或p²|(r−1)",
+      "new": "建议按2004正式Conj6.1单列：n∈Z,n>1；r为素数且r∤n；在(Z/nZ)[X]/(X^r−1)中若(X−1)^n=X^n−1，则n素或r|(n²−1)。另将AIM2003任意互素正整数r版明确作为不同范围记录，不默认等价或静默替代。",
+      "reason": "公式、域及验收均需实质修复，采纳必须新card_rev，并重查原题/学术与涉及的形式化；不能以修正人话豁免。这里只给可审建议、不编辑源卡。",
+      "evidence_ids": [
+        "R1247-CARD",
+        "R1247-AKS",
+        "R1247-AIM"
+      ],
+      "small_case_check": "p>1且gcd(p,r−1)=1排除p²|(r−1)，显示旧例外不匹配；n=341,r=2满足原单同余且n合成，但n²≡1mod2，恰为允许例外而非标准猜想反例。r=1只属广域版的恒真退化，不能塞进prime-r版。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "某个模多项式同余的充要性说明",
+      "old": "n素当且仅当某个模n、模一个多项式下的(X+a)^n和X^n+a相符",
+      "new": "整多项式环中有(a,n)=1时的精确充要判据；缩到循环商环后单次检验可能有合数通过，已证AKS另有r的阶条件、多个shift与前处理。本题猜想则保留n²≡1modr的合数例外。",
+      "reason": "不能将整环与其商环同余互换，也不能把充分多检查的定理降成单个检查；此人话修改需随核心修复的新版本审阅。",
+      "evidence_ids": [
+        "R1247-AKS"
+      ],
+      "small_case_check": "341=11·31，2^10≡1mod341；X²=1下(X−1)^341=2^340(X−1)=X−1，所以单商环同余不是素性充要。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "旧状态、时间及直接进展",
+      "old": "2005/2006首提；无反例无证明；AKS主定理证明作为本条进展",
+      "new": "补AIM2003直接原记录与2004正式Conj6.1；2001 BP学位文献只标原文引述、未直接取得。当前损坏版先修题；对恢复后的确定版本，只写实际检索未取得全域证明或反例。AKS已证、Lenstra条件族/heuristic、Shunia2026其它算法与fixed-base猜想各按范围分开。",
+      "reason": "旧novelty错rev且无专属检索；当前题面不明确，不能凭名单或另一算法结案。",
+      "evidence_ids": [
+        "R1247-CARD",
+        "R1247-AKS",
+        "R1247-AIM",
+        "R1247-SHUNIA"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "acceptance.criteria",
+      "old": "证明该强化条件下恒等式蕴含p素数或p²整除r−1；或给反例。",
+      "new": "在选定的精确版本中证明全称蕴含；或提供n>1合成、合法r、互素/不整除条件、n²不恒等于1 mod r及完整多项式商环同余的精确证书。不得以允许的例外或只满足部分条件的数据验收。",
+      "reason": "错误例外分支会把原猜想允许的合数误报为反例。改正式验收须新card_rev；修复前不将损坏式当独立开放命题结案。",
+      "evidence_ids": [
+        "Q1247-M-E1",
+        "Q1247-M-E2",
+        "Q1247-M-E3"
+      ],
+      "small_case_check": "n=341,r=2为合数通过同余的完整手证，但341²≡1mod2，不能反驳原猜想；341²∤1只反映错分支问题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展/相关进展与声称解决",
+      "old": "无反例无证明；AKS主算法已证即全部背景",
+      "new": "补2003 LP启发式和2008 Popovych条件性构造，并明确尚须实际复合数存在证书；本轮限定范围没有取到原版全解。补2019 AKS Lemma4.3正式勘误及其修正范围。",
+      "reason": "既不能忽略有针对性的已知工作，也不能将启发式或不同引理勘误当猜想被反驳。",
+      "evidence_ids": [
+        "a1247_lp2003_index",
+        "a1247_popovych2008",
+        "a1247_aks_erratum2019"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "2026近邻论文/ai_claims",
+      "old": "没有专属近期核查",
+      "new": "登记 Shunia arXiv2611.02280v1 的不同商环算法声明及 AI 协作披露；§7的 fixed-base test 仍是另一个猜想，不与原式等价。Cinkir2608.27493v1是若干二项式系数同余的充分集，不自动推出原单条件。",
+      "reason": "标题含单二项式或素性充分集不能越过实际额外假设；完整声明只在其自身范围登记，未审完全稿不升为本题确证。",
+      "evidence_ids": [
+        "a1247_shunia2026",
+        "a1247_cinkir2026"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定/独立验证建议",
+      "old": "按现残式 n≤10^6,r≤100 全扫描即可核查",
+      "new": "先固定正确 prime-r、商环和例外分支，再用精确模多项式运算给有限证书；作者2004报告的 r≤100,n≤10^10 历史检查与本轮执行应分栏。",
+      "reason": "该项核查没有运行该历史全扫描；有限无反例不证明全称命题，残缺式也无法直接定义搜索空间。",
+      "evidence_ids": [
+        "a1247_aks2004"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "statement_fidelity/statement_audit/novelty.card_rev",
+      "old": "audited/pass；novelty.card_rev=a3827109dcfd0129 但当前为5d4efcc881550f22",
+      "new": "当前公式和来源应退回待修订；旧异版泛检索仅保留历史记录，本轮查询/证据必须绑定当前版本。恢复核心后再用新 rev 重新验收，不继承旧 pass。",
+      "reason": "完整任务文件显示异版 novelty 与无专属查询记录；本轮不静默篡改元信息。",
+      "evidence_ids": [
+        "a1247_aks2004"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "formal/形式化证据",
+      "old": "formal为空；未区分现存题面与普通AKS形式证明",
+      "new": "补FC固定版本的两个sorry目标、工具链及一般r域；将HOL4普通AKS定理列为同源不同问。仅补证据不要求新card_rev；若借源码改动原题r域或验收公式，须另行生成新card_rev。",
+      "reason": "实际定义/前提/占位比项目名或网页machine-checkable标签更明确。",
+      "evidence_ids": [
+        "C1247-FC",
+        "C1247-HOL4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "公开AI及社区记录",
+      "old": "无专属检索，未记录公开平台具体声明与范围",
+      "new": "登记openai/math普通多同余算法、we-solve早期多周期探索均非当前单r猜想全解；Cairn零claim只是该平台记录；MO历史计算留作待取证线索。补引文和核验等级本身不改核心版本。",
+      "reason": "避免把目录状态、AI稿标签、有限扫描或旧页面修改日期当成原题完整解决。",
+      "evidence_ids": [
+        "C1247-OAI",
+        "C1247-WESOLVE",
+        "C1247-CAIRN",
+        "C1247-MO"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "库内查重",
+      "reason": "768/769低号负责人均不在本包；当前1247仍缺完整逻辑命题。",
+      "next_step": "先按原出处选择并修复明确版本，再交768负责人核同意图残缺关联与769负责人核附加同余关系；双方新rev对齐后才能判严格同题/合并，当前只留待核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "最早2001 BP学位稿是2004作者原文回指，本轮未直接读；现卡p/q/r残式的准确采集损坏过程未知。",
+      "next_step": "若要求绝对最早提出/恢复原采集文本，取得BP2001原稿和原抓取快照；现可据AIM2003及2004正式版给清楚修题建议，不虚构2005/06重述原文。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Popovych2008由搜索ref读到了全文文本，但部分关键数学公式抽取断裂，未取得可视PDF或实际候选复合n；不是最终全文完全不可达。",
+      "next_step": "有可视原稿时再核Propositions3.1–3.2全部公式及各素因子条件；在取得真实复合数证书之前维持条件性结果，不宣布原猜想反驳。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "近期强检索和固定原稿范围有限；Shunia2026新算法的外部零点定理、参数构造和完整接受证明未全独立复核，且它明确不是原式等价。Cinkir固定v1已读，但官方abs史入口失败。",
+      "next_step": "仅在出现与标准prime-r命题真正同一的完整证明/反例时深化审核；若讨论两篇新稿本身，应另列其完整证明与最新版本待核，不占用本题主解标签。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "当前card_rev没有完整可核恒等式，恢复prime-r还是一般coprime-r版本会影响全称域与查重。",
+      "next_step": "按真实来源形成有明确参数、模理想和例外分支的新rev；再对新核心重新核受影响查新路线。当前仅交题面错误与候选恢复稿，不能默认为已与残缺卡等价。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "FC主目标虽完整但r域广于2004prime-r表述；其两证明仍sorry。本轮无Lean/HOL4/Isabelle可执行环境，也没有待重放的本题完整证明。",
+      "next_step": "主回执按原题分问分层保存prime-r与一般互素r；若以后出现具体填洞证明，先核同域及依赖闭包再运行固定工具链。当前不为普通AKS安装工程或扫描到10^6。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "该项核查AIM50a404、ANU403、Argus530、PRIMABOINCA站不可访问，MO计算仅历史报告且缺实际参数/日志。2批web共5个literal搜索及3个仓库检索只能给有限覆盖。",
+      "next_step": "与其他分支已取得的原始文献合并，不把该项核查失败当全题无文献；后续若要采纳历史计算，需取当时程序、n/r覆盖和运行记录。we-solve仅读可见全文，未取得TeX原字节或验证其辅助小例。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "5d4efcc881550f22",
+      "codes": {}
+    }
+  ]
+}

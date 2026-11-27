@@ -1,0 +1,2624 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001379",
+  "card_rev": "e1f220ca60db0d57",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-01"
+      ],
+      "parts": [
+        {
+          "subquestion": "早期三异面线必要条件与立方体特例",
+          "value": "partial",
+          "note": "Pólya1954第IX章19题给三条skew线最优三角形的内心垂线必要性质，20题给立方体异面棱中点特例。已读相关题面/解答转写；未把物理论证当任意位置的完整构造，未引用OCR乱码的数值式。"
+        },
+        {
+          "subquestion": "两两不交三线的最优性条件与迭代算法",
+          "value": "claimed_resolution",
+          "note": "完整声明限定于论文明确的两两不交凸集、存在性条件与迭代收敛定理，不代表现卡全部位置已有有限精确构造。对三线非全平行时，每线至少一条邻线方向不平行，沿线逃向无穷距离到该邻线趋无穷，满足GWP增长条件；全平行另有截面特例。相交/重合零边不能直接用非零边单位方向公式。GHWP权重归零不符合其Thm4.2严格正权等条件。"
+        },
+        {
+          "subquestion": "允许退化模型的最小值取到性",
+          "value": "claimed_proof",
+          "note": "本轮独立给出允许退化模型的全域取到性：差分向量的像为闭仿射子空间，范数子水平集紧，从而取最小值。仅此存在性子项已核关键步骤；不将存在性证明或SOCP模型当完成一般构造验收，若将该子项设为闭合仍交二审。"
+        },
+        {
+          "subquestion": "退化与平行等五个配置的精确最优证书",
+          "value": "partial",
+          "note": "五个明确配置在Q(√2)上精确核可行性、支持向量、全局下界与候选周长相等：共点0、全平行12、含一对平行且两两不交2+2√2、正最小值但零边√2、非全平行却非唯一4。根流程再次执行得到相同stdout。这是有限证书复算，不是一般求解器或Lean内核复跑。"
+        },
+        {
+          "subquestion": "现代论文数值例的独立核对",
+          "value": "conflicting",
+          "note": "arXiv2601.11554v1 Example5.2正文坐标算得15.038661，与所称13.4567不符，表末约5.852606。独立有理可行点给sqrt6+2sqrt5<9，故13.4567不是定义的三个闭球的最小值；局部数值声称确错。没有由此反驳Theorem4.1或三直线原题，未认证表末点最优。"
+        },
+        {
+          "subquestion": "代码与形式化覆盖",
+          "value": "no_evidence_in_scope",
+          "note": "已查入口没有同题机器形式化或作者可运行MATLAB源码。固定GitHub命中只是Aitken辅助定理的LaTeX转录；verified_editable_tex不是证明助理验证。作者数值声称、本轮静态来源核查、本轮独立算术分别登记。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "none_found",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://arxiv.org/html/2601.11554v1"
+      ],
+      "note": "只覆盖：有附加假设"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "主问题状态待定",
+      "scope_note": "现卡为任意三条完整仿射直线上各取一点的周长最小化，核心公式忠实；重述未明示闭式。已得到三维相关文献、特定范围的迭代算法和本轮独立存在性/支持证书；尚未核定当前验收中的显式刻画、闭式、有限精确构造与极限近似之间的要求，亦未取到AMM原刊和全部后续。因此不直接记已证明，也不继续以旧零命中认定开放。",
+      "evidence_ids": [
+        "R1379-S-E02",
+        "R1379-S-E03",
+        "R1379-S-E04",
+        "F1379-A-E01",
+        "F1379-A-E02",
+        "T1379-D-E01"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "math_status": "main_pending"
+      }
+    },
+    {
+      "subquestion": "原题口径与退化边界",
+      "math_status": "有部分进展",
+      "scope_note": "原重述是AB+BC+CA，允许任意线位形；不存在将其改成AB+BC的依据。原文摘录中显式/算法属于额外验收表述，应分清来源与本站约定。任何新非退化/两两不交限制会改变问题；共点三坐标轴如强制非退化只能逼近0。书目原刊未取全文，重述不是逐字原刊验证。",
+      "evidence_ids": [
+        "R1379-S-E01",
+        "R1379-S-E02",
+        "R1379-S-E03",
+        "T1379-D-E01",
+        "T1379-D-E02"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "早期三异面线必要条件与立方体特例",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "Pólya1954第IX章19题给三条skew线最优三角形的内心垂线必要性质，20题给立方体异面棱中点特例。已读相关题面/解答转写；未把物理论证当任意位置的完整构造，未引用OCR乱码的数值式。",
+      "evidence_ids": [
+        "R1379-S-E04"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "两两不交三线的最优性条件与迭代算法",
+      "math_status": "完整证明或反例声明待核",
+      "scope_note": "完整声明限定于论文明确的两两不交凸集、存在性条件与迭代收敛定理，不代表现卡全部位置已有有限精确构造。对三线非全平行时，每线至少一条邻线方向不平行，沿线逃向无穷距离到该邻线趋无穷，满足GWP增长条件；全平行另有截面特例。相交/重合零边不能直接用非零边单位方向公式。GHWP权重归零不符合其Thm4.2严格正权等条件。",
+      "evidence_ids": [
+        "F1379-A-E01",
+        "F1379-A-E02",
+        "F1379-A-E03"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "允许退化模型的最小值取到性",
+      "math_status": "完整证明声明",
+      "scope_note": "本轮独立给出允许退化模型的全域取到性：差分向量的像为闭仿射子空间，范数子水平集紧，从而取最小值。仅此存在性子项已核关键步骤；不将存在性证明或SOCP模型当完成一般构造验收，若将该子项设为闭合仍交二审。",
+      "evidence_ids": [
+        "T1379-D-E01"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "退化与平行等五个配置的精确最优证书",
+      "math_status": "仅特例",
+      "scope_note": "五个明确配置在Q(√2)上精确核可行性、支持向量、全局下界与候选周长相等：共点0、全平行12、含一对平行且两两不交2+2√2、正最小值但零边√2、非全平行却非唯一4。根流程再次执行得到相同stdout。这是有限证书复算，不是一般求解器或Lean内核复跑。",
+      "evidence_ids": [
+        "T1379-D-E01",
+        "T1379-D-E02"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "现代论文数值例的独立核对",
+      "math_status": "有冲突",
+      "scope_note": "arXiv2601.11554v1 Example5.2正文坐标算得15.038661，与所称13.4567不符，表末约5.852606。独立有理可行点给sqrt6+2sqrt5<9，故13.4567不是定义的三个闭球的最小值；局部数值声称确错。没有由此反驳Theorem4.1或三直线原题，未认证表末点最优。",
+      "evidence_ids": [
+        "F1379-A-E04"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "math_status": "conflicting"
+      }
+    },
+    {
+      "subquestion": "代码与形式化覆盖",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "已查入口没有同题机器形式化或作者可运行MATLAB源码。固定GitHub命中只是Aitken辅助定理的LaTeX转录；verified_editable_tex不是证明助理验证。作者数值声称、本轮静态来源核查、本轮独立算术分别登记。",
+      "evidence_ids": [
+        "R1379-C-E01",
+        "R1379-C-E02"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "R1379-S-Q01",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "system1_search_query: {\"q\": \"\\\"E2757\\\" Ruderman\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_01.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q02",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "system1_search_query: {\"q\": \"\\\"E2757\\\" solution\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_01.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q03",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"http://stanleyrabinowitz.com/download/problems_1975-1979.pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "http://stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "locator": "1379_source_raw_01.json request/response",
+      "note": "题卡原链接本轮跳至HTTPS后502；没有据此称已阅作者站PDF。ResearchGate公开全文可经web阅读。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q04",
+      "route": "原题与出处",
+      "site": "Web search/system2",
+      "query": "system2_search_query: {\"q\": \"\\\"E 2757\\\" Ruderman\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_02.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q05",
+      "route": "原题与出处",
+      "site": "Web search/system2",
+      "query": "system2_search_query: {\"q\": \"\\\"Ruderman\\\" \\\"three lines\\\" minimum\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_02.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q06",
+      "route": "原题与出处",
+      "site": "Web search/system2",
+      "query": "system2_search_query: {\"q\": \"\\\"E2757\\\" \\\"Monthly\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_02.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q07",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"https://www.academia.edu/37249387/Index_to_Mathematical_Problems_1975_1979\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.academia.edu/37249387/Index_to_Mathematical_Problems_1975_1979",
+      "locator": "1379_source_raw_02.json request/response",
+      "note": "已读Rabinowitz–Bowron同号E2757重述及出处/年代说明。重述为三边AB+BC+CA最小，未限定闭式、尺规或特定算法；不是1979原刊扫描。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q08",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "locator": "1379_source_raw_02.json request/response",
+      "note": "已读Rabinowitz–Bowron同号E2757重述及出处/年代说明。重述为三边AB+BC+CA最小，未限定闭式、尺规或特定算法；不是1979原刊扫描。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q09",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "system1_search_query: {\"q\": \"\\\"E2757\\\" \\\"Ruderman\\\" math\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_03.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q10",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "system1_search_query: {\"q\": \"\\\"E 2757\\\" \\\"1979\\\" mathematical\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_03.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q11",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "system1_search_query: {\"q\": \"\\\"Ruderman\\\" \\\"AMM\\\" \\\"2757\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_03.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q12",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"E2757\"} 〔私有记录编号：PR-000105〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "locator": "1379_source_raw_03.json request/response",
+      "note": "已读同号题目/作者索引或索引说明。E2757位于印416、PDF零基425；作者索引给AMM86(1979)128p。星号仅表示收入未解章，How to Use明写名单截至1991，不是2026开放证明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q13",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"E 2757\"} 〔私有记录编号：PR-000106〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "locator": "1379_source_raw_03.json request/response",
+      "note": "该检索变体工具回报无匹配；同文件E2757另一检索已成功定位，不能把此无匹配误作问题不存在。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q14",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"Find the shortest\"} 〔私有记录编号：PR-000107〕",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "url": "https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "locator": "1379_source_raw_03.json request/response",
+      "note": "探索性定位返回邻近或其他练习，未提供本题所需新证据；本题以E2757及Pólya9.19/9.20精确段落为准。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q15",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"unsolved as of\"} 〔私有记录编号：PR-000108〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "locator": "1379_source_raw_03.json request/response",
+      "note": "已读同号题目/作者索引或索引说明。E2757位于印416、PDF零基425；作者索引给AMM86(1979)128p。星号仅表示收入未解章，How to Use明写名单截至1991，不是2026开放证明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q16",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "system1_search_query: {\"q\": \"\\\"Ruderman\\\" \\\"1979\\\" \\\"128\\\" Monthly\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_04.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q17",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "system1_search_query: {\"q\": \"\\\"E2757\\\" site:jstor.org\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_04.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q18",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "system1_search_query: {\"q\": \"\\\"E2757\\\" site:tandfonline.com\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_04.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q19",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"lineno\": 56948} 〔私有记录编号：PR-000109〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "locator": "1379_source_raw_04.json request/response",
+      "note": "已读Rabinowitz–Bowron同号E2757重述及出处/年代说明。重述为三边AB+BC+CA最小，未限定闭式、尺规或特定算法；不是1979原刊扫描。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q20",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"2757\"} 〔私有记录编号：PR-000110〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "locator": "1379_source_raw_04.json request/response",
+      "note": "该检索变体工具回报无匹配；同文件E2757另一检索已成功定位，不能把此无匹配误作问题不存在。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q21",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "system1_search_query: {\"q\": \"\\\"American Mathematical Monthly\\\" \\\"1979\\\" \\\"128\\\" \\\"Elementary\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_05.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q22",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "system1_search_query: {\"q\": \"\\\"Elementary Problems and Solutions\\\" \\\"86\\\" \\\"1979\\\" \\\"127\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_05.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q23",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "system1_search_query: {\"q\": \"\\\"Ruderman\\\" \\\"triangle\\\" \\\"lines\\\" minimum\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_05.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q24",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"https://www.jstor.org/journal/amermathmont\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/journal/amermathmont",
+      "locator": "1379_source_raw_05.json request/response",
+      "note": "已读正式期刊目录/元信息，只用于定位原刊卷期和栏目，不当成题目或解答全文。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q25",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"https://www.tandfonline.com/toc/uamm20/86/2\"}",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://www.tandfonline.com/toc/uamm20/86/2",
+      "locator": "1379_source_raw_05.json request/response",
+      "note": "本轮出版社目录、abs或PDF入口实际返回403；保留原刊正文访问缺口。不能判断这一定是订阅限制，不能写成已经读过原刊。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q26",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"https://www.jstor.org/stable/i315097\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/i315097",
+      "locator": "1379_source_raw_06.json request/response",
+      "note": "已读正式期刊目录/元信息，只用于定位原刊卷期和栏目，不当成题目或解答全文。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q27",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"https://www.jstor.org/action/doBasicSearch?Query=%22E2757%22\"}",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.jstor.org/action/doBasicSearch?Query=%22E2757%22",
+      "locator": "1379_source_raw_06.json request/response",
+      "note": "JSTOR站内精确编号搜索入口不可访问；外部检索另有实际日志，未把此失败记作零命中。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q28",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"E2757\"} 〔私有记录编号：PR-000111〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.academia.edu/37249387/Index_to_Mathematical_Problems_1975_1979",
+      "locator": "1379_source_raw_06.json request/response",
+      "note": "已读同号题目/作者索引或索引说明。E2757位于印416、PDF零基425；作者索引给AMM86(1979)128p。星号仅表示收入未解章，How to Use明写名单截至1991，不是2026开放证明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q29",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "screenshot: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pageno\": 425} 〔私有记录编号：PR-000112〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "locator": "1379_source_raw_06.json request/response",
+      "note": "请求重印PDF零基425页截图；工具响应仅给ImageDisplayed文字引用，没有返回本分工可查看的图像数据，故不计作原页视觉核验。公式依据该PDF正文转写与另一全文转写相互对照。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q30",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "click: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"id\": 45} 〔私有记录编号：PR-000113〕",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_07.json request/response",
+      "note": "已定位Elementary Problems:E2755–E2760的JSTOR正式条目2321953；页面或PDF链接均只返回含Google Tag Manager的空正文，未取得1979原页。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q31",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "click: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"id\": 46} 〔私有记录编号：PR-000114〕",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://www.jstor.org/stable/pdf/2321953.pdf",
+      "locator": "1379_source_raw_07.json request/response",
+      "note": "已定位Elementary Problems:E2755–E2760的JSTOR正式条目2321953；页面或PDF链接均只返回含Google Tag Manager的空正文，未取得1979原页。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q32",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "system1_search_query: {\"q\": \"\\\"E2757\\\" solution geometry Ruderman\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_08.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q33",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "system1_search_query: {\"q\": \"\\\"E2757\\\" correction errata\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "1379_source_raw_08.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q34",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"https://www.tandfonline.com/doi/abs/10.1080/00029890.1979.11994753\"}",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://www.tandfonline.com/doi/abs/10.1080/00029890.1979.11994753",
+      "locator": "1379_source_raw_08.json request/response",
+      "note": "本轮出版社目录、abs或PDF入口实际返回403；保留原刊正文访问缺口。不能判断这一定是订阅限制，不能写成已经读过原刊。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q35",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"https://www.tandfonline.com/doi/pdf/10.1080/00029890.1979.11994753\"}",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://www.tandfonline.com/doi/pdf/10.1080/00029890.1979.11994753",
+      "locator": "1379_source_raw_08.json request/response",
+      "note": "本轮出版社目录、abs或PDF入口实际返回403；保留原刊正文访问缺口。不能判断这一定是订阅限制，不能写成已经读过原刊。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q36",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"https://pdfarchive.kunaldawn.com/archive/computer_engineering/Mathematics_and_Plausible_Reasoning_Volume_1_-_G_Polya.pdf\"}",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://pdfarchive.kunaldawn.com/archive/computer_engineering/Mathematics_and_Plausible_Reasoning_Volume_1_-_G_Polya.pdf",
+      "locator": "1379_source_raw_08.json request/response",
+      "note": "Pólya扫描PDF入口实际403；随后从Academia完整书籍转写读取相关练习与解答，并保留扫描页图缺口。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q37",
+      "route": "原题与出处",
+      "site": "Web search/system2",
+      "query": "system2_search_query: {\"q\": \"\\\"Polya\\\" \\\"three skew\\\" \\\"perimeter\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.academia.edu/42170473/Polya_1954_Mathematics_and_Plausible_Reasoning_I_Induction_and_Analogy_in_Mathematics",
+      "locator": "1379_source_raw_09.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q38",
+      "route": "原题与出处",
+      "site": "Web search/system2",
+      "query": "system2_search_query: {\"q\": \"\\\"Pólya\\\" \\\"three skew\\\" minimum\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.academia.edu/42170473/Polya_1954_Mathematics_and_Plausible_Reasoning_I_Induction_and_Analogy_in_Mathematics",
+      "locator": "1379_source_raw_09.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q39",
+      "route": "原题与出处",
+      "site": "Web search/system2",
+      "query": "system2_search_query: {\"q\": \"\\\"E2757\\\" \\\"128\\\"\"}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.academia.edu/42170473/Polya_1954_Mathematics_and_Plausible_Reasoning_I_Induction_and_Analogy_in_Mathematics",
+      "locator": "1379_source_raw_09.json request/response",
+      "note": "按原样记录本次搜索字符串；同一请求中并列搜索的合并返回保存在raw文件。大量同号异义命中已排除；没有由搜索摘要认定AMM E2757已解决或仍开放。重印、原刊元数据和Pólya书籍线索均在后续原文入口另核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q40",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"https://www.academia.edu/42170473/Polya_1954_Mathematics_and_Plausible_Reasoning_I_Induction_and_Analogy_in_Mathematics\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.academia.edu/42170473/Polya_1954_Mathematics_and_Plausible_Reasoning_I_Induction_and_Analogy_in_Mathematics",
+      "locator": "1379_source_raw_10.json request/response",
+      "note": "已读1954原书转写的题名出版页、ChapterIX Exercises19–20及对应Solutions。三条skew线的内心垂线必要条件和立方体特例，不是一般三线问题的完整构造算法。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q41",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"three skew\"} 〔私有记录编号：PR-000115〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.academia.edu/42170473/Polya_1954_Mathematics_and_Plausible_Reasoning_I_Induction_and_Analogy_in_Mathematics",
+      "locator": "1379_source_raw_11.json request/response",
+      "note": "已读书籍转写中ChapterIX练习19、20及对应解答。练习19只要求证明最优非退化三角形的内心垂线性质；练习20为立方体三异面棱特例。没有将其扩大为任意三条线的显式求解。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q42",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"minimum perimeter\"} 〔私有记录编号：PR-000116〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.academia.edu/42170473/Polya_1954_Mathematics_and_Plausible_Reasoning_I_Induction_and_Analogy_in_Mathematics",
+      "locator": "1379_source_raw_11.json request/response",
+      "note": "已读书籍转写中ChapterIX练习19、20及对应解答。练习19只要求证明最优非退化三角形的内心垂线性质；练习20为立方体三异面棱特例。没有将其扩大为任意三条线的显式求解。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q43",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"8.22\"} 〔私有记录编号：PR-000117〕",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "url": "https://www.academia.edu/42170473/Polya_1954_Mathematics_and_Plausible_Reasoning_I_Induction_and_Analogy_in_Mathematics",
+      "locator": "1379_source_raw_11.json request/response",
+      "note": "探索性定位返回邻近或其他练习，未提供本题所需新证据；本题以E2757及Pólya9.19/9.20精确段落为准。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q44",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"lineno\": 1209} 〔私有记录编号：PR-000118〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.academia.edu/42170473/Polya_1954_Mathematics_and_Plausible_Reasoning_I_Induction_and_Analogy_in_Mathematics",
+      "locator": "1379_source_raw_12.json request/response",
+      "note": "已读1954原书转写的题名出版页、ChapterIX Exercises19–20及对应Solutions。三条skew线的内心垂线必要条件和立方体特例，不是一般三线问题的完整构造算法。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q45",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "open: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"lineno\": 260} 〔私有记录编号：PR-000119〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "locator": "1379_source_raw_12.json request/response",
+      "note": "已读Rabinowitz–Bowron同号E2757重述及出处/年代说明。重述为三边AB+BC+CA最小，未限定闭式、尺规或特定算法；不是1979原刊扫描。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q46",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"E2757*\"} 〔私有记录编号：PR-000120〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.academia.edu/37249387/Index_to_Mathematical_Problems_1975_1979",
+      "locator": "1379_source_raw_12.json request/response",
+      "note": "已读同号题目/作者索引或索引说明。E2757位于印416、PDF零基425；作者索引给AMM86(1979)128p。星号仅表示收入未解章，How to Use明写名单截至1991，不是2026开放证明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q47",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"E2757 86(1979)128\"} 〔私有记录编号：PR-000121〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.academia.edu/37249387/Index_to_Mathematical_Problems_1975_1979",
+      "locator": "1379_source_raw_12.json request/response",
+      "note": "已读同号题目/作者索引或索引说明。E2757位于印416、PDF零基425；作者索引给AMM86(1979)128p。星号仅表示收入未解章，How to Use明写名单截至1991，不是2026开放证明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q48",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"asterisk\"} 〔私有记录编号：PR-000122〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "locator": "1379_source_raw_13.json request/response",
+      "note": "已读同号题目/作者索引或索引说明。E2757位于印416、PDF零基425；作者索引给AMM86(1979)128p。星号仅表示收入未解章，How to Use明写名单截至1991，不是2026开放证明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q49",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"9-16\"} 〔私有记录编号：PR-000123〕",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "url": "https://www.academia.edu/42170473/Polya_1954_Mathematics_and_Plausible_Reasoning_I_Induction_and_Analogy_in_Mathematics",
+      "locator": "1379_source_raw_13.json request/response",
+      "note": "探索性定位返回邻近或其他练习，未提供本题所需新证据；本题以E2757及Pólya9.19/9.20精确段落为准。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q50",
+      "route": "原题与出处",
+      "site": "Web source retrieval",
+      "query": "find: {\"ref_id\": \"〔原始工具引用已私有留存〕\", \"pattern\": \"SOLUTIONS TO PROBLEMS 26\"} 〔私有记录编号：PR-000124〕",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "url": "https://www.academia.edu/42170473/Polya_1954_Mathematics_and_Plausible_Reasoning_I_Induction_and_Analogy_in_Mathematics",
+      "locator": "1379_source_raw_13.json request/response",
+      "note": "探索性定位返回邻近或其他练习，未提供本题所需新证据；本题以E2757及Pólya9.19/9.20精确段落为准。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q51",
+      "route": "原题与出处",
+      "site": "HTTP retrieval",
+      "query": "urllib.request.urlopen https://www.jstor.org/stable/pdf/2321953.pdf",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://www.jstor.org/stable/pdf/2321953.pdf",
+      "locator": "1379_pdf_downloads.json",
+      "note": "HTTP200但Content-Type为text/html且不是%PDF文件，3038字节；已记内容哈希但不伪造PDF文件或称已阅原刊。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q52",
+      "route": "原题与出处",
+      "site": "HTTP retrieval",
+      "query": "urllib.request.urlopen https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "locator": "1379_pdf_downloads.json",
+      "note": "本轮实际HTTP失败：<HTTPError 403: 'Forbidden'>；不计作已取得PDF。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q53",
+      "route": "原题与出处",
+      "site": "HTTP retrieval",
+      "query": "urllib.request.urlopen https://stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://stanleyrabinowitz.com/download/problems_1975-1979.pdf",
+      "locator": "1379_extra_downloads.json",
+      "note": "本轮实际HTTP失败：<HTTPError 503: 'Service Unavailable'>；不计作已取得PDF。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q54",
+      "route": "原题与出处",
+      "site": "HTTP retrieval",
+      "query": "urllib.request.urlopen https://pdfarchive.kunaldawn.com/archive/computer_engineering/Mathematics_and_Plausible_Reasoning_Volume_1_-_G_Polya.pdf",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://pdfarchive.kunaldawn.com/archive/computer_engineering/Mathematics_and_Plausible_Reasoning_Volume_1_-_G_Polya.pdf",
+      "locator": "1379_extra_downloads.json",
+      "note": "本轮实际HTTP失败：<HTTPError 403: 'Forbidden'>；不计作已取得PDF。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q55",
+      "route": "原题与出处",
+      "site": "Crossref publisher-deposited metadata",
+      "query": "https://api.crossref.org/works?query.bibliographic=Elementary+Problems&filter=issn%3A0002-9890%2Cfrom-pub-date%3A1979-01-01%2Cuntil-pub-date%3A1979-12-31&rows=100",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.crossref.org/works?query.bibliographic=Elementary+Problems&filter=issn%3A0002-9890%2Cfrom-pub-date%3A1979-01-01%2Cuntil-pub-date%3A1979-12-31&rows=100",
+      "locator": "1379_crossref_1979.json",
+      "note": "实际HTTP200。1979同刊筛选定位JSTOR10.2307/2321953（E2755–E2760，起页127）及T&F10.1080/00029890.1979.11994753（整栏127–131）。E2757精确编号查询返回0，只是元数据检索的覆盖边界，不能排除全文内的后续解答或勘误。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-S-Q56",
+      "route": "原题与出处",
+      "site": "Crossref publisher-deposited metadata",
+      "query": "https://api.crossref.org/works?query.bibliographic=E2757&filter=issn%3A0002-9890&rows=100",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://api.crossref.org/works?query.bibliographic=E2757&filter=issn%3A0002-9890&rows=100",
+      "locator": "1379_crossref_E2757.json",
+      "note": "实际HTTP200。1979同刊筛选定位JSTOR10.2307/2321953（E2755–E2760，起页127）及T&F10.1080/00029890.1979.11994753（整栏127–131）。E2757精确编号查询返回0，只是元数据检索的覆盖边界，不能排除全文内的后续解答或勘误。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "F1379-A-001",
+      "route": "学术",
+      "site": "Web system2",
+      "query": "Ruderman \"E2757\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检出原题重印、一般几何题和同姓地图商品噪声；第二词组命中Generalized Waist Problem。只将检索结果作线索。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-002",
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"three lines\" \"minimum perimeter\" space triangle",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检出原题重印、一般几何题和同姓地图商品噪声；第二词组命中Generalized Waist Problem。只将检索结果作线索。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-003",
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Ruderman\" \"shortest\" lines",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检出原题重印、一般几何题和同姓地图商品噪声；第二词组命中Generalized Waist Problem。只将检索结果作线索。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-004",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"A Generalized Waist Problem\" \"Optimality\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "补强权威覆盖；命中arXiv:2601.11554与Rabinowitz重印入口，未从摘要判定任意三线完整构造。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-005",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Ruderman\" \"E2757\" solution",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "补强权威覆盖；命中arXiv:2601.11554与Rabinowitz重印入口，未从摘要判定任意三线完整构造。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-006",
+      "route": "学术",
+      "site": "arXiv official",
+      "query": "open https://arxiv.org/abs/2601.11554",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "官方版本史仅显示v1，Submitted on 10 Dec 2025；其月份与2601编号不同，按实际页面记录，不按编号虚改日期。",
+      "url": "https://arxiv.org/abs/2601.11554",
+      "locator": "Submission history; Abstract",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-007",
+      "route": "学术",
+      "site": "arXiv official",
+      "query": "open https://arxiv.org/html/2601.11554v1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得HTML正文并细读§1.1(4)、Thm3.1/3.9/3.10、Thm4.1与§5.2。三线周长相同，但主要光滑公式限两两不交；迭代收敛不等于有限精确构造。",
+      "url": "https://arxiv.org/html/2601.11554v1",
+      "locator": "Eq(1); Theorems3.1,3.10,4.1",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "F1379-A-008",
+      "route": "学术",
+      "site": "arXiv PDF via web",
+      "query": "open https://arxiv.org/pdf/2601.11554v1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "DisabledError；本轮阅读依据是成功取得的官方HTML，不能记PDF已阅。",
+      "url": "https://arxiv.org/pdf/2601.11554v1",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "F1379-A-009",
+      "route": "学术",
+      "site": "arXiv official HTML",
+      "query": "find References; Theorem 3.1; Theorem 3.10; Theorem 4.1; open lineno790,240,480,535",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "定位参考书、存在性、法锥平衡及收敛定理；只记录实际读取的定理范围。",
+      "url": "https://arxiv.org/html/2601.11554v1",
+      "locator": "HTML lines327–525,823–838",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "F1379-A-010",
+      "route": "学术",
+      "site": "arXiv official HTML",
+      "query": "open lineno827,522,342",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "核2011引书、Thm4.1证明引用经典次梯度收敛和Remark3.2平行线截面解。",
+      "url": "https://arxiv.org/html/2601.11554v1",
+      "locator": "References[5]; Theorem4.1; Remark3.2",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "F1379-A-011",
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"waist problem\" Tyrrell convexity three lines",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中新Heron–Waist论文与Pólya原书线索；原书由出处路线继续核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-012",
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"minimum perimeter\" \"three skew\" lines Ruderman",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中新Heron–Waist论文与Pólya原书线索；原书由出处路线继续核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-013",
+      "route": "学术",
+      "site": "Local Python requests",
+      "query": " 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。 公开来源：https://arxiv.org/html/2601.11554v1) 〔私有记录编号：PR-000125〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "环境无requests模块，请求尚未发出；随后用urllib成功下载，二者不混写。",
+      "url": "https://arxiv.org/html/2601.11554v1",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "F1379-A-014",
+      "route": "学术",
+      "site": "Python urllib / arXiv",
+      "query": "urlopen(https://arxiv.org/html/2601.11554v1, timeout=35)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "HTTP200；709469 bytes；sha256=bc9030054748701fd045b410afcc4952d8b11579226b8cee67b20049e1613c84。保存官方HTML用于本轮核对；非形式化代码。",
+      "url": "https://arxiv.org/html/2601.11554v1",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "F1379-A-015",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"A Generalized Heron-Waist Problem\" arxiv",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位arXiv2603.00071及Princeton出版社书目。未以代理站摘要代替官方正文。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-016",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Optimization: Insights and Applications\" \"waist\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位arXiv2603.00071及Princeton出版社书目。未以代理站摘要代替官方正文。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-017",
+      "route": "学术",
+      "site": "arXiv official",
+      "query": "open https://arxiv.org/abs/2603.00071",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "官方显示v1,11 Feb2026；仅有v1，无撤回标记。",
+      "url": "https://arxiv.org/abs/2603.00071",
+      "locator": "Submission history",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-018",
+      "route": "学术",
+      "site": "arXiv official",
+      "query": "open https://arxiv.org/html/2603.00071v1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "正文引入环边权rho和中心hub权omega。须细核omega=0是否满足主定理，而非标题广义便认覆盖。",
+      "url": "https://arxiv.org/html/2603.00071v1",
+      "locator": "§1.2,§3,§4",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "F1379-A-019",
+      "route": "学术",
+      "site": "Princeton University Press",
+      "query": "open https://press.princeton.edu/books/hardcover/9780691102870/optimization",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "作者书目官方页：出版2005-09-18，copyright2006；未取得书内Problem4.3.4全文。论文引2011可能另版，本轮不能确认。",
+      "url": "https://press.princeton.edu/books/hardcover/9780691102870/optimization",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-020",
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Brinkhuis\" \"Tikhomirov\" \"waist\" pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回近期论文引书与大量无关waist词义结果；未取得原书Problem4.3.4。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-021",
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"waist problem\" \"4.3.4\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回近期论文引书与大量无关waist词义结果；未取得原书Problem4.3.4。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-022",
+      "route": "学术",
+      "site": "arXiv official HTML",
+      "query": "find beta; Assumption; Theorem 4.; 3.1.; open lineno80,320,490",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "beta无匹配；实际权符号rho/omega。Thm3.2对纯环每连通分量要求至少一个有界集合；Thm4.2要求全部权严格正、两两不交、至少一个集合有界。故设omega=0并取完整直线不满足所述主算法定理。",
+      "url": "https://arxiv.org/html/2603.00071v1",
+      "locator": "Assumption1; Theorems3.2,4.2; Remark4.1",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "F1379-A-023",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Ruderman\" \"E2757\" solution correction",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365；未检出可核专门勘误/撤回或AMM正式续答。搜索无命中与全局不存在分开；arXiv元数据只见v1。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-024",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"2601.11554\" correction OR withdrawn OR erratum",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365；未检出可核专门勘误/撤回或AMM正式续答。搜索无命中与全局不存在分开；arXiv元数据只见v1。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-025",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Brinkhuis\" \"waist\" \"223\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未找到可直接读取的书内相关页。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "F1379-A-026",
+      "route": "学术",
+      "site": "arXiv official HTML",
+      "query": "open lineno759; find 13.4567; find 5.852600",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "独立定位Example5.2正文与Table3–4的明显数值不一致，随后作本轮精确可行点检查。",
+      "url": "https://arxiv.org/html/2601.11554v1",
+      "locator": "Example5.2; Tables3–4",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "F1379-A-027",
+      "route": "代码、公开 AI 和社区",
+      "site": "Local Python 3.12.14",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000126〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际运行成功；只计算原文坐标的目标值和有理可行替代点。未运行作者MATLAB程序或形式化内核。",
+      "url": "urn:qunxing:private-material",
+      "locator": "1379_numeric_audit_log.json",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R1379-C-001",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub连接器",
+      "query": "mcp__codex_apps__github_search {\"query\":\"E2757\",\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "10条GitHub命中为EXFOR核反应记录、提交哈希片段等同号噪声，未命中Ruderman AMM E2757。",
+      "result_count": 10,
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R1379-C-002",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub连接器",
+      "query": "mcp__codex_apps__github_search {\"query\":\"Ruderman\",\"repository_name\":[\"google-deepmind/formal-conjectures\",\"leanprover-community/mathlib4\"],\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "FormalConjectures/mathlib按Ruderman检索0结果；限已查索引，不据此作全局不存在断言。",
+      "result_count": 0,
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "R1379-C-003",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub连接器",
+      "query": "mcp__codex_apps__github_search {\"query\":\"three skew lines minimum perimeter\",\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "10条按three/skew/lines/perimeter分散命中的图形或算法材料，未见三直线周长目标的对应证明/实现。",
+      "result_count": 10,
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R1379-C-004",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网页检索/读取",
+      "query": "检索词／定位词：\"E2757\" (\"solution\" OR \"Ruderman\" OR \"code\")；\"three lines\" \"minimum perimeter\" space；\"three skew lines\" \"triangle\" minimum 〔私有记录编号：PR-000127〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "E2757有大量商品/编号噪声；空间三线搜索命中MO给定边长问题和Pólya书的最低周长练习线索。前者目标不同，后者已交原题/学术分支核，不作本分支已阅全文。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-C-005",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网页检索/读取",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/html/2601.11554v1 〔私有记录编号：PR-000128〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得arXiv2601.11554v1主要页面；waist背景为两两不交且不全平行三直线，推广为闭凸集。本分支只核算法/代码可得性，数学范围由根流程独立核。",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R1379-C-006",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub连接器",
+      "query": "mcp__codex_apps__github_search {\"query\":\"waist\",\"repository_name\":[\"google-deepmind/formal-conjectures\",\"leanprover-community/mathlib4\"],\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "FormalConjectures/mathlib按waist检索0结果。",
+      "result_count": 0,
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "R1379-C-007",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub连接器",
+      "query": "mcp__codex_apps__github_search {\"query\":\"Generalized Waist Problem\",\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "Generalized Waist Problem词查询返回词库、网络架构与拟合等噪声，没有目标MATLAB/形式化实现。",
+      "result_count": 10,
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R1379-C-008",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网页检索/读取",
+      "query": "检索词／定位词：\"A Generalized Waist Problem\" (\"code\" OR \"MATLAB\" OR \"github\")；\"E2757\" Ruderman mathematical solution；\"three skew lines\" \"minimum perimeter\" (\"code\" OR \"Lean\" OR \"ChatGPT\" OR \"proof\") 〔私有记录编号：PR-000129〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "S1精确标题+MATLAB/code/GitHub等命中作者ResearchGate版和相关Heron-Waist续作；只看到MATLAB实现的文字声明，未得到代码下载。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-C-009",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网页检索/读取",
+      "query": "检索词／定位词：\"three lines\" \"minimum perimeter\"；\"Ruderman\" \"three lines\" 〔私有记录编号：PR-000130〕",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "公开社区/AI入口定向查询返回标签页、其他三线问题及天体物理Ruderman同名材料，未见AMM E2757完整代码声明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R1379-C-010",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网页检索/读取",
+      "query": "检索词／定位词：MATLAB；available；github.com；code 〔私有记录编号：PR-000131〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "原稿全文find MATLAB命中§5.1/5.2实验；find available/code无匹配；github.com命中arXiv/LaTeXML报告渲染错误链接，不是作者代码。球例文字D*=13.4567与表格5.852600不一致，根流程另做独立算术核对。",
+      "locator": "〔原始工具引用已私有留存〕/1/2/3",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R1379-C-011",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub连接器",
+      "query": "mcp__codex_apps__github_search {\"query\":\"2601.11554\",\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "按arXiv号命中cross-theory-formal-database固定提交的TeX/metadata、论文索引及数字噪声；随后只取该条材料，不扫大仓库。",
+      "result_count": 10,
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-C-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub连接器",
+      "query": "mcp__codex_apps__github_search {\"query\":\"Fagnano\",\"repository_name\":[\"google-deepmind/formal-conjectures\",\"leanprover-community/mathlib4\"],\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "FormalConjectures/mathlib按Fagnano检索0结果；未取得可审计sorry/axiom的同题Lean文件。",
+      "result_count": 0,
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "R1379-C-013",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网页检索/读取",
+      "query": "检索词／定位词：\"waist problem\" (\"code\" OR \"MATLAB\" OR \"Github\")；\"three skew lines\" \"perimeter\"；\"minimum perimeter\" \"lines\" \"space\"；\"E2757\" Ruderman 〔私有记录编号：PR-000132〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "S1对MATLAB/GitHub与MO/MSE/AoPS/公开AI作域限制复核，命中论文MATLAB文字、其他三线相交/双曲面问题，未取得目标实现。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-C-014",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub连接器",
+      "query": "mcp__codex_apps__github_fetch_file {\"repository_full_name\":\"AlexenderSokolov/cross-theory-formal-database\",\"ref\":\"3b9207c03d9dc146f393f68bcb683bbc4583979a\",\"path\":\"editable-corpus/items/192883_author_proof.tex\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "固定TeX全文仅是论文Aitken加速辅助定理及原37行书面证明，不是waist目标的形式化或MATLAB实现。",
+      "url": "https://github.com/AlexenderSokolov/cross-theory-formal-database/blob/3b9207c03d9dc146f393f68bcb683bbc4583979a/editable-corpus/items/192883_author_proof.tex",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R1379-C-015",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网页检索/读取",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000133〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "读原稿§4.1至§5 Algorithm1及实验；有PSD伪代码和目标差停止规则，无可执行MATLAB源/依赖声明。未运行作者实验。",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R1379-C-016",
+      "route": "代码、公开 AI 和社区",
+      "site": "公开网页检索/读取",
+      "query": "检索词／定位词：\"waist\" \"Manohar Choudhary\" (\"MATLAB\" OR \"code\" OR \"software\")；\"waist\" \"Triloki Nath\" github；\"E 2757\" \"Ruderman\" 〔私有记录编号：PR-000134〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "按作者+waist+MATLAB/GitHub补查只命中作者论文记录及不相关同名程序员，未取得匹配作者的代码仓库；未将同名个人关联到论文。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R1379-C-017",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub连接器",
+      "query": "mcp__codex_apps__github_fetch_file {\"repository_full_name\":\"AlexenderSokolov/cross-theory-formal-database\",\"ref\":\"3b9207c03d9dc146f393f68bcb683bbc4583979a\",\"path\":\"editable-corpus/sources/192883/provenance.json\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "固定provenance明确claim_key为arxiv:2601.11554:thm:aitken，status为verified_editable_tex；这是可编辑TeX状态，不是内核证明通过。",
+      "url": "https://github.com/AlexenderSokolov/cross-theory-formal-database/blob/3b9207c03d9dc146f393f68bcb683bbc4583979a/editable-corpus/sources/192883/provenance.json",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R1379-C-018",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地运行环境",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000135〕",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "note": "实际探测matlab/octave/lean/lake/elan均不存在；没有进行MATLAB或Lean复跑。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "request_id": "R1379-C-019",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地来源范围/字节检查",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000136〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "urn:qunxing:private-material",
+      "note": "实际运行退出码0；两个固定文本文件Git blob匹配，TeX SHA256与provenance匹配。仅确认来源身份/辅助定理范围，未运行任何优化程序或形式化证明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "T1379-D-I01",
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl（2469条）",
+      "query": "正则 three.line|三.{0,2}直线|三线|perimeter|周长|Fagnano|minimum.triangle|minimal.triangle|shortest.triangle|smallest.triangle|最小.*三角|三角.*最小|最短.*三角，扫描全2469条title/title_en/aliases；第一组亦实际执行rg -n -i全文行检索",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "urn:qunxing:private-material",
+      "locator": "1379_duplicates_index_log.json；全库2469条",
+      "result_count": 5,
+      "note": "两组分别5、11条，均含本卡。Ruderman/E2757/三直线最小周长精确对象只见本卡；其他为周长面积比、三线性分析、网格折线、Steiner图论/系统或Fermat数论等索引关联。未发现需逐项正文核对的强同题候选，不从标题制造查重关系。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "T1379-D-I02",
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl（2469条）",
+      "query": "正则 Ruderman|E.?2757|broken.line|broken.path|three.*lines|waist|三.{0,3}线.*最|Steiner|Fermat|Torricelli|费马|斯坦纳|折线|最短.*空间|空间.*最短，扫描全2469条title/title_en/aliases；第一组亦实际执行rg -n -i全文行检索",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "urn:qunxing:private-material",
+      "locator": "1379_duplicates_index_log.json；全库2469条",
+      "result_count": 11,
+      "note": "两组分别5、11条，均含本卡。Ruderman/E2757/三直线最小周长精确对象只见本卡；其他为周长面积比、三线性分析、网格折线、Steiner图论/系统或Fermat数论等索引关联。未发现需逐项正文核对的强同题候选，不从标题制造查重关系。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "T1379-D-F01",
+      "route": "库内查重",
+      "site": "GitHub/qunxingmath-org/qunxing-data",
+      "query": "github_fetch_file repository_full_name=qunxingmath-org/qunxing-data ref=73290369a8dcc632e25e555aec525565ea6e08f8 path=problems/001/QX-P-001379.meta.json",
+      "date": "2026-11-26",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001379.meta.json",
+      "locator": "固定版problems/001/QX-P-001379.meta.json",
+      "outcome": "仅标题/索引或摘要",
+      "note": "固定meta与任务包一致，card_rev及Git blob SHA-1核实；meta不计正文阅读。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "T1379-D-F02",
+      "route": "库内查重",
+      "site": "GitHub/qunxingmath-org/qunxing-data",
+      "query": "github_fetch_file repository_full_name=qunxingmath-org/qunxing-data ref=73290369a8dcc632e25e555aec525565ea6e08f8 path=problems/001/QX-P-001379.text.md",
+      "date": "2026-11-26",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001379.text.md",
+      "locator": "固定版problems/001/QX-P-001379.text.md",
+      "outcome": "原文已阅且同题",
+      "note": "本卡固定正文全文已读，与任务包完全一致，Git blob SHA-1核实。不把旧PARTIAL或无文献标签视为本轮结果。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "T1379-D-F03",
+      "route": "库内查重",
+      "site": "GitHub/qunxingmath-org/qunxing-data",
+      "query": "github_fetch_file repository_full_name=qunxingmath-org/qunxing-data ref=73290369a8dcc632e25e555aec525565ea6e08f8 path=problems/001/QX-P-001379.evidence.json",
+      "date": "2026-11-26",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001379.evidence.json",
+      "locator": "固定版problems/001/QX-P-001379.evidence.json",
+      "outcome": "档案或版本缺失",
+      "note": "固定提交该路径404 NOT_FOUND；未取得远程evidence文件，随后按授权从包内同card_rev的prior_evidence恢复导入前legacy快照，来源单列。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "request_id": "T1379-D-H01",
+      "route": "库内查重",
+      "site": "本地任务包prior_evidence",
+      "query": "读取QX-P-001379_task.json的prior_evidence原JSON对象，保存到repo_snapshot/problems/001/QX-P-001379.evidence.json",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "urn:qunxing:private-material",
+      "locator": "prior_evidence；1379_duplicates_fixed_files.json",
+      "note": "仅恢复同card_rev的导入前legacy快照；远程固定路径404，不冒充远程取回或本轮数学证据。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "T1379-D-R01",
+      "route": "代码、公开 AI 和社区",
+      "site": "本轮手算",
+      "query": "将任务包三直线周长公式写成闭仿射像上的块欧氏范数最小化；检验全域取到、全平行、共点和允许退化边界",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "urn:qunxing:private-material",
+      "locator": "T1379-D-E01 note的完整范围证明",
+      "note": "本轮独立范围核对/有限计算；只证明存在性、全平行特例和给定点的充分最优性证书；不声称一般显式构造已交付。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "T1379-D-R02",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地Python标准库",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000137〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "urn:qunxing:private-material",
+      "locator": "5个精确配置；完整代码与实际stdout均内嵌",
+      "note": "本轮独立范围核对/有限计算；实际运行通过；有理数和√2精确支持证书，不是一般数值优化器、不涉及未列配置。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "T1379-D-S01",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "site.math.purdue.edu Basu Pollack Roy algorithms real algebraic geometry sample point quantifier elimination pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.math.purdue.edu/~sbasu/raag_survey2011_final-sep4-2014.pdf",
+      "locator": "〔原始工具引用已私有留存〕；1379_qe_source_raw.json",
+      "note": "本轮独立范围核对/有限计算；仅核一般精确算法方法入口，未视作E2757同题解或实现。此查询原样包含site.math.purdue.edu，未冒充site:域限定。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "T1379-D-S02",
+      "route": "代码、公开 AI 和社区",
+      "site": "Basu作者主页PDF",
+      "query": "open https://www.math.purdue.edu/~sbasu/raag_survey2011_final-sep4-2014.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.math.purdue.edu/~sbasu/raag_survey2011_final-sep4-2014.pdf",
+      "locator": "〔原始工具引用已私有留存〕；§§1.1–1.2的输入模型、量词消去问题定义",
+      "note": "本轮独立范围核对/有限计算；读取一般实代数方法说明；不是三线问题论文，也没有据此设计、运行或承诺完整精确算法。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "T1379-D-S03",
+      "route": "代码、公开 AI 和社区",
+      "site": "同一Basu作者PDF",
+      "query": "find \"Theorem 2.1\"；find \"sample points\"；find \"cylindrical algebraic decomposition\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.math.purdue.edu/~sbasu/raag_survey2011_final-sep4-2014.pdf",
+      "locator": "〔原始工具引用已私有留存〕/1/2；§2.1、Theorem2.4与样点方法入口",
+      "note": "本轮独立范围核对/有限计算；仅方法范围核对，未把存在一般消去算法升级为本轮已交付E2757的构造算法；后续停止扩展。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R1379-S-E01",
+      "url": "https://www.jstor.org/stable/2321953",
+      "locator": "The American Mathematical Monthly86(2),1979-02；Elementary Problems:E2755–E2760，栏目起页127；E2757具体p128据重印作者索引",
+      "version": "原刊1979；JSTOR DOI10.2307/2321953；出版社整栏DOI10.1080/00029890.1979.11994753,pp127–131；本轮核到正式目录与Crossref元数据，原刊正文未取得",
+      "subquestions": [
+        "主问题",
+        "原题口径与退化边界"
+      ],
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "原刊目录与出版商登记相互支持1979年2月86卷2期及Ruderman列为该问题组作者。E2757页码128由同号重印作者索引具体化。T&F403，JSTOR网页空正文/PDF入口为HTML；因此只核书目信息，原刊逐字量词仍未独立看扫描。2018电子上线日期若出现，不替代1979原刊年。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "R1379-S-E02",
+      "url": "https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "locator": "Index to Mathematical Problems1975–1979，Unsolved Problems印416，E2757；PDF零基425，web行56951–56955；Academia全文转写亦有同题",
+      "version": "Rabinowitz–Bowron编辑；版权/出版页1999，ISBN0-9626401-3-1，修订PDF未标精确修订日；本轮2026-11-26读相关完整重述",
+      "subquestions": [
+        "主问题",
+        "原题口径与退化边界"
+      ],
+      "role": "重述",
+      "publication": "二手索引",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "同号重述要求给定R³三条线a,b,c，分别取点A,B,C使AB+BC+CA最小，确为闭合三边周长；并非仅AB+BC。优化对象和约束与现卡一致，但原重述只说Find points，没有明示闭式、尺规、有限几何步骤或特定计算精度。当前卡将“显式/闭式/构造算法”混为验收，是额外且未定清的输出要求，故严格全卡同一性保守列同源不同问，不据此宣称核心最小化公式错。未要求三线两两异面、不全平行，也未要求点互异或三角形非退化。原刊未取得，不能声称该重述逐字无删改。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "secondary_index"
+      }
+    },
+    {
+      "evidence_id": "R1379-S-E03",
+      "url": "https://www.researchgate.net/profile/Mark-Bowron/publication/267164498_Index_to_Mathematical_Problems_1975-1979/links/5be86bd84585150b2baf32fd/Index-to-Mathematical-Problems-1975-1979.pdf",
+      "locator": "How to Use印2/PDF零基11的Unsolved Problems说明；Subject Index印15/PDF零基24星号说明；作者索引Harry D.Ruderman印344/PDF零基353；E2757未解重述印416",
+      "version": "1999修订电子版书目；未解列表说明明确截至1991；本轮2026-11-26定位",
+      "subquestions": [
+        "主问题",
+        "原题口径与退化边界"
+      ],
+      "role": "重述",
+      "publication": "二手索引",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "该书星号表示收入其Unsolved Problems章；名单截至1991，不能据1999版权年推成1999状态，更不能用为2026开放证明。作者索引给E2757的AMM86(1979)128p。现代精确题号、solution/errata、两种搜索引擎、JSTOR/T&F域名检索及Crossref编号查询未取得可核的本题正式解答/勘误；访问受限与未逐期读完后续AMM另列pending。索引中的其他编号或同号医学/工业目录已排除。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "secondary_index"
+      }
+    },
+    {
+      "evidence_id": "R1379-S-E04",
+      "url": "https://www.academia.edu/42170473/Polya_1954_Mathematics_and_Plausible_Reasoning_I_Induction_and_Analogy_in_Mathematics",
+      "locator": "G.Pólya, Mathematics and Plausible Reasoning,Vol.I:Induction and Analogy in Mathematics，ChapterIX Physical Mathematics，Exercises19–20（题目转写在印160–161页之间）；Solutions ChapterIX #19–20（转写位于印260–262间，未看扫描精确页）",
+      "version": "Princeton University Press1954，原书标题/出版页在全文转写可核；Academia完整书籍转写2026-11-26实际阅读；独立PDF下载入口403，未取得扫描图像",
+      "subquestions": [
+        "早期三异面线必要条件与立方体特例"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "9.19考虑三条skew直线上的最小周长三角形，要求证其顶点到内心的连线垂直对应直线；解答用闭合橡皮筋解释、partial variation并引9.16/9.18。9.20是立方体三条异面棱，解答给棱中点、等边三角形和立方体中心。只读取相关题面/解答，不把物理解释当作任意退化构型的全局算法证明，也未独立补全其全部关键步骤。网页OCR的立方体体积/周长公式乱码未静默修补，未引用数值式。这足以否定题卡“3D无文献”的绝对表述，但不是AMM E2757正式解答，也不证明它是所有同类问题绝对最早出处。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "F1379-A-E01",
+      "url": "https://arxiv.org/html/2601.11554v1",
+      "locator": "§1.1(4),Eq(1); Thm3.1,3.10; Remark3.2; Thm4.1; §5.2",
+      "version": "arXiv:2601.11554v1; official history 2025-12-10; HTML retrieved2026-11-26",
+      "subquestions": [
+        "两两不交三线的最优性条件与迭代算法"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "已取得完整稿",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "Triloki Nath; Manohar Choudhary; Ram K. Pandey",
+      "claim_date": "2025-12-10",
+      "note": "本文将两两不交三线周长归为waist问题；Thm3.10给法锥平衡，Thm4.1给满足存在条件的投影次梯度迭代收敛。当前题卡还容许相交、重合直线，且未明确有限精确构造与极限算法的验收区别。只把所核范围登记为进展；球例正文数值另有本轮反核，不由该局部错误推翻收敛定理。摘要称至少一个严格凸集，Thm3.9正式假设为全部严格凸集；不把该唯一性定理套给直线。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "F1379-A-E02",
+      "url": "https://arxiv.org/html/2603.00071v1",
+      "locator": "§1.2,Eqs(3)–(5); Thm3.2; Thm4.2; Remark4.1",
+      "version": "arXiv:2603.00071v1; official history2026-02-11; retrieved2026-11-26",
+      "subquestions": [
+        "两两不交三线的最优性条件与迭代算法"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "已取得完整稿",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "Manohar Choudhary; Triloki Nath; Ram K. Pandey",
+      "claim_date": "2026-02-11",
+      "note": "加权环链加中心hub的扩展。目标可在rho=1,omega=0时退成原题，但Thm4.2的严格正权和有界假设不容许这次代入；Thm3.2纯环也需一有界集。因此不将该文完整解决声明迁移到任意三完整直线。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "F1379-A-E03",
+      "url": "https://press.princeton.edu/books/hardcover/9780691102870/optimization",
+      "locator": "book metadata; related citation in arXiv2601.11554v1 reference[5] and Problem4.3.4",
+      "version": "publisher record retrieved2026-11-26; publication2005-09-18,copyright2006",
+      "subquestions": [
+        "两两不交三线的最优性条件与迭代算法"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "Brinkhuis–Tikhomirov书内waist章节是引文线索；只核官方书目信息，未取得该章节正文。不能把近期作者转述升级为本轮读原书证明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "F1379-A-E04",
+      "url": "urn:qunxing:private-material",
+      "locator": "Example5.2 arithmetic audit; embedded Python source and actual stdout below",
+      "version": "Independent audit2026-11-26,Python3.12.14",
+      "subquestions": [
+        "现代论文数值例的独立核对"
+      ],
+      "role": "反例",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "已取得完整稿",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "反例仅针对论文球约束数值例宣称的最优值，不是三线原题反例。完全有理可行点(3,2,0),(4,0,1),(5,2,1)分别距中心平方3,4,3；周长sqrt6+2sqrt5<9<13.4567。正文所列坐标实际周长约15.038661，表尾坐标约5.8526056。表尾点只作舍入数值检查，不认定为认证最优。SCRIPT=import json, math, sys 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "counterexample",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "R1379-C-E01",
+      "url": "https://arxiv.org/html/2601.11554v1",
+      "locator": "§1.1 Waist Problem；§4/Algorithm1；§5 Examples5.1/5.2、Tables1–4；〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕",
+      "version": "arXiv:2601.11554v1；HTML页内手稿日期2025-12-10；本分支不由此判首发日期",
+      "subquestions": [
+        "代码与形式化覆盖"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "Triloki Nath、Manohar Choudhary、Ram K. Pandey",
+      "rerun": {
+        "toolchain": "论文只称MATLAB；未取得版本、工具箱或依赖锁。本机matlab/octave/lean/lake/elan不可用。",
+        "command": "未运行作者MATLAB程序、PSD实验或Lean；本轮仅检索/读文与来源哈希检查。",
+        "log_url": "urn:qunxing:private-material"
+      },
+      "note": "代码审计范围：算法伪代码已读，但没有作者源码/公开release/固定commit。网页code、available无匹配，github.com只是arXiv的HTML问题反馈链接。论文waist背景附两两不交、不全平行条件；实验在圆盘/实心球而非本卡任意三直线，不能直接迁移数值验证。Example5.2正文D*=13.4567与表格收敛5.852600冲突；根流程独立算术核查另记，不能把这一数值错误扩大为否定Theorem4.1或原题。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "R1379-C-E02",
+      "url": "https://github.com/AlexenderSokolov/cross-theory-formal-database/blob/3b9207c03d9dc146f393f68bcb683bbc4583979a/editable-corpus/items/192883_author_proof.tex",
+      "locator": "TeX第27行Editorial scope、第28–79行thm:aitken；同提交editable-corpus/sources/192883/provenance.json",
+      "version": "commit3b9207c03d9dc146f393f68bcb683bbc4583979a；TeX blob873fcd8bb26092b2be7a7e7ab18fcdc9b473d4ed；SHA256 763860879002de55ba1977233c64343a20042c6d94e9cb42519bb0f29d2e0988",
+      "subquestions": [
+        "代码与形式化覆盖"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "rerun": {
+        "commit": "3b9207c03d9dc146f393f68bcb683bbc4583979a",
+        "theorem": "LaTeX标签thm:aitken，对应原论文Theorem4.6；不是Lean定理",
+        "command": "已执行python 〔私有材料定位已省略〕，只核字节与范围；未编译TeX或运行证明检查器",
+        "log_url": "urn:qunxing:private-material"
+      },
+      "note": "provenance的verified_editable_tex是文档状态；该条保存Aitken辅助定理与37行原书面证明，没有新增或修复数学。它不是原三线周长命题，也不是MATLAB/Lean代码。两个文本Git blob及TeX声明SHA256全部匹配；对这种TeX材料做sorry/axiom计数不能产生机器证明结论。\nACTUAL_ 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "T1379-D-E01",
+      "url": "urn:qunxing:private-material",
+      "locator": "note：精确模型、闭仿射像紧性证明、平行/共点边界、支持证书与算法限制",
+      "version": "2026-11-26；本轮独立数学核对v1",
+      "subquestions": [
+        "允许退化模型的最小值取到性",
+        "原题口径与退化边界"
+      ],
+      "role": "完整证明",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "本轮独立数学核对；不是文献已解决声明，也不是一般显式构造算法。\n\n精确模型：三条非空完整仿射直线l_i={p_i+t_i u_i:t_i∈R}⊂R³，u_i≠0；允许三条线相交、重合、平行；允许所选点相同或共线。目标为F(t)=||X1−X2||+||X2−X3||+||X3−X1||，Xi=p_i+t_i u_i。该模型就是任务包形式化公式的直接读法，没有额外的非退化约束；原刊域与验收仍由主流程核实。\n\n全域取到性证明：设z(t)=(X1−X2,X2−X3,X3−X1)=d+Lt∈R^9。有限维线性映射的像是闭线性子空间，故S=d+im L是闭仿射子空间。N(z)=||z1||+||z2||+||z3||是R^9上的范数，且N(z)≥||z||_2。取z0∈S，则S∩{N≤N(z0)}非空、闭、有界，因而紧；连续N在其中取最小值z*。任意S外部于该子水平集的点都不能改进它，所以z*也在S上全局最小。因为z*∈d+im L，存在t*使z*=d+Lt*，对应三点达到最优。证明不需两两不交、不需排除某对平行。\n\n参数强制增长的准确范围：Lt=0等价于t1u1=t2u2=t3u3。若三线方向并非全平行，该共同向量只能为0，u_i≠0又给t=0。因此L单射，在有限维空间存在c>0使N(Lt)≥c||t||，F(t)≥c||t||−N(d)，所以F强制增长且子水平集有界。若三线全平行，ker L恰有一维共同平移自由度，F不强制增长但上段取到性仍成立。强制增长并不推出唯一性，见E02的第五配置。\n\n全平行闭式特例：选共同单位方向u，令r_i=p_i−(p_i·u)u。正交投影不增距离，故任意可行三点的周长≥Σ_{i<j}||r_i−r_j||。取Xi=r_i+s u、三个点使用同一个s，逐边取到等号。这给出全平行情形的完整特例解，包括某些线重合的情况，但不提供一般三线解。\n\n共点及退化：若三线共有P，取X1=X2=X3=P，最小值0。反过来周长0强制三点相同，所以三线若无公共点，已经取到的最小值严格正。若额外要求非退化三角形，就改变了可行域且可能失去取到性：三坐标轴上Xi=ε e_i（ε>0）均非共线，周长3√2 ε趋于0，但非退化三角形周长不能是0。三条重合直线则根本不存在非退化可行三角形。因此不能从人话版的“组成三角形”静默添加非退化条件。\n\n凸性与证书：F是三个仿射向量的欧氏范数之和，故凸。对循环边v1=X1−X2,v2=X2−X3,v3=X3−X1，若存在q_i满足||q_i||≤1、q_i·v_i=||v_i||，且u1·(q1−q3)=u2·(q2−q1)=u3·(q3−q2)=0，则对任意另一个可行Y，Σ||Yi−Yi+1||≥Σq_i·(Yi−Yi+1)=Σq_i·(p_i−p_i+1)=F(X)。这严格证明给定三点全局最优。边长非零时q_i=v_i/||v_i||；零边时须允许单位球内的支持向量，不能对零边除以长度。\n\n算法范围：等价SOCP可写为min r1+r2+r3，约束||Xi−Xi+1||≤r_i及Xi=p_i+t_i u_i。这个等价表述本身没有交付一个有限步返回精确坐标的通用算法。给出收敛的数值序列、最优性条件或固定精度近似，也不自动等于闭式解、尺规构造或有限终止精确算法。本轮未实现一般求解器，未给一般算法的停止准则和误差证书。实代数量词消去只做了方法出处入口核对，未设计或交付其用于本题的 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "T1379-D-E02",
+      "url": "urn:qunxing:private-material",
+      "locator": "note中BEGIN COMPLETE PYTHON与BEGIN ACTUAL STDOUT；五个配置的精确全局支持证书",
+      "version": "2026-11-26；code_sha256=0e57ebf08bf4f744f61a664d066789569e8e8d55ea18dc160c9a6d81be2a680a；stdout_sha256=1c3dccbbd608df48ba742640888f23c65139003c2fc2cbc1a2559960ec91d2ec",
+      "subquestions": [
+        "退化与平行等五个配置的精确最优证书",
+        "原题口径与退化边界"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "toolchain": "Python 3.12.14标准库；Q(√2)精确算术",
+        "command": "python 1379_geometry_check.py",
+        "log_url": "urn:qunxing:private-material",
+        "cache": "无需网络、随机源、外部输入、浮点或第三方优化器",
+        "axioms": "精确有理运算、√2代数关系、欧氏范数支持不等式；不是证明助理复跑"
+      },
+      "note": "本轮仅检验五个明确配置，运算全在Q(√2)中，使用Fraction保存a+b√2，不使用浮点、随机搜索或优化库。每例不仅核可行坐标和周长，还核E01所列支持向量的单位球条件、逐边等号及沿线方向平衡，得到对所有可行点成立的全局下界，与候选周长相等。因此每例是精确全局最优证书，不是仅观察优化器输出。\n\n1. 三坐标轴共点：三点均原点，最优0。另列ε=1,1/2,1/4的非退化三角形；一般ε>0时周长3√2ε说明添加非退化要求后只有下确界0而不取到。\n2. 三条平行于z轴的线穿过(0,0,0),(3,0,0),(0,4,0)：共同水平截面给3、5、4三边，最优周长12。\n3. 两两不交且一对平行：a={(t,0,0)},b={(t,2,0)},c={(0,s,1)}。取A=(0,0,0),B=(0,2,0),C=(0,1,1)，周长2+2√2。投影x=0再以凸性/关于s=1的对称性亦可手证。代码核a,b平行分离、其余两对异面。\n4. 相交的平面三线：a为x轴，b为y轴，c={(s,1−s,0)}。A=B=(0,0,0),C=(1/2,1/2,0)，最优√2；AB为零边，其支持向量取(1,−1,0)/√2。此例展示不能统一使用非零边的单位方向公式。\n5. 三线并非全平行而最优不唯一：a={(-1,t,0)},b={(1,t,0)},c={(s,0,0)}。A=(-1,0,0),B=(1,0,0),C=(s,0,0)且−1≤s≤1时周长恒为4。任意可行配置AB≥2且AC+CB≥AB，所以全局周长≥4；代码核s=0的精确证书。参数线性差分映射秩3，说明强制增长不蕴含唯一。\n\n代码仅是上述证书的验证器，不是对任意三直线返回最优三点的算法。以下保留完整自包含代码与本轮 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [],
+  "card_actions": [
+    {
+      "action": "建议修订",
+      "field": "title/title_en、人话版与关键词",
+      "old": "Ruderman三线最小折线；minimal broken line meeting three lines in space。",
+      "new": "Ruderman三线最小周长取点问题（AMM E2757）；英文以minimum-perimeter triangle with one vertex on each of three lines表意，并注明允许退化取点。",
+      "reason": "已读重述目标是AB+BC+CA，标题“最短折线”容易误作AB+BC；核心公式无需换成两段。",
+      "evidence_ids": [
+        "R1379-S-E02"
+      ],
+      "small_case_check": "本轮手算三条平行线a=(0,0,t)、b=(1,0,t)、c=(2,0,t)：同高取点给周长1+1+2=4且每对距离不小于对应横向距离，所以最小值4；两段AB+BC的最小值则2。两目标确实不同，最优三点还可共线。未运行数值优化。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "原文摘录、题面、形式化表述与acceptance.criteria；如修改验收须新card_rev",
+      "old": "原文摘录写“求显式刻画/算法”；形式化要求闭式/构造算法。",
+      "new": "原题重述只要求找到分别在三条给定直线上的最优点。把“显式刻画”“闭式表达”“有限准确算法”“带误差界近似算法”等输出要求分清；选定的加强要求作为本站验收约定，不能放进原文引号冒称原刊要求。",
+      "reason": "同号全文重述没有这些具体计算模型；仅列一阶必要条件、提供普通数值样例或声称通用优化可用，都不能自动满足现卡尚未定清的显式输出验收。原刊尚未取得，保持出处层面的限制。 若采纳并改正式定义、量词、参数域或验收，生成新card_rev并重查受影响的出处/学术（涉及形式化再加代码）路线；单纯补引文/进展或修正人话不换数学版本。",
+      "evidence_ids": [
+        "R1379-S-E01",
+        "R1379-S-E02"
+      ],
+      "small_case_check": "三坐标轴允许三点重合时最小0；若排除退化只有下确界0。精确目标与普通近似输出的验收不能混用。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "定义与边界；保持任意三线的原目标",
+      "old": "给定三条直线；人话默认组成三角形，特殊位置仅列检查点。",
+      "new": "对给定三条仿射直线a,b,c⊂R³，找(A*,B*,C*)∈a×b×c，使其三边长度和不大于任意(A,B,C)∈a×b×c的三边长度和；允许目标点重合/共线。不要在未另说明的情况下增加两两不交、不全平行或非退化条件；涉及这些条件的进展分列适用范围。",
+      "reason": "重述未加这些几何位置限制。加非退化要求可能改变取到最小值的结论；当代waist文献若只处理特定线位形须单独核对。 若采纳并改正式定义、量词、参数域或验收，生成新card_rev并重查受影响的出处/学术（涉及形式化再加代码）路线；单纯补引文/进展或修正人话不换数学版本。",
+      "evidence_ids": [
+        "R1379-S-E02"
+      ],
+      "small_case_check": "若三线共点O，取A=B=C=O使目标0。若强制非退化点组，可能只剩下确界0而没有达到者；因此非退化不能作为默认验收条件。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "sources、first_published与原文定位",
+      "old": "first_published=null；Rabinowitz索引p416记作original。",
+      "new": "本条AMM出处登记为Harry D.Ruderman,E2757,The American Mathematical Monthly86(2),1979-02,p128；所属问题组DOI10.2307/2321953（起页127），整栏DOI10.1080/00029890.1979.11994753。Rabinowitz–Bowron1999,p416标为重述，明确原刊扫描本轮未取得。",
+      "reason": "将原刊书目和实际已读重印分开；Pólya1954为更早的相关必要条件/特例，不能把1979说成此类几何问题绝对首次出现。",
+      "evidence_ids": [
+        "R1379-S-E01",
+        "R1379-S-E02",
+        "R1379-S-E04"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展、[PARTIAL]及开放状态证据",
+      "old": "R³异面情形无现代文献命中；3D无文献。",
+      "new": "补Pólya1954第IX章9.19的三维必要条件和9.20的立方体特例，并按条件性子项记状态。Rabinowitz未解列表只代表截至1991的编目记录。本轮后续正式解答/勘误仍有访问与穷尽性缺口，不能将搜索无直接命中写成全局未解决。",
+      "reason": "本轮读到了三维原书条目及对应解答；这不是只存在二维类比。近期论文和waist问题的完整适用范围由学术路线另审，本来源片段不重复裁决。",
+      "evidence_ids": [
+        "R1379-S-E03",
+        "R1379-S-E04"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展/相关进展与声称解决",
+      "old": "R³异面情形无现代文献命中；[PARTIAL]2D类比经典；3D无文献。",
+      "new": "补waist问题的现代最优性/迭代文献及准确的两两不交等条件，并将数值例错误另列；不得据标题或原无命中记录保留绝对无文献。",
+      "reason": "原无命中是旧有限检索，现有可读原稿；仅增进展不变card_rev。",
+      "evidence_ids": [
+        "F1379-A-E01",
+        "F1379-A-E02"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "informal_status/complete closure",
+      "reason": "现代论文不直接覆盖现卡全部几何退化情形与未定算法验收口径；球例局部错误不能作原问题反例。完整结案须二审。",
+      "evidence_ids": [
+        "F1379-A-E01",
+        "F1379-A-E04"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "代码/形式化检索说明",
+      "new": "区分一般waist论文的PSD伪代码、作者MATLAB数值声称、取得的Aitken书面TeX片段与本轮独立验证。当前未取得作者可运行源码或同题机器证明。",
+      "reason": "避免把仓库名称含formal、verified_editable_tex或论文声称MATLAB实现直接写成已形式化/已复跑。论文数学结论与原题同一性由根流程合并。",
+      "evidence_ids": [
+        "R1379-C-E01",
+        "R1379-C-E02"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "text.边界与约定.退化",
+      "new": "依当前形式化公式，A、B、C可相同或共线，三条完整直线可相交、重合或平行；不额外要求非退化三角形。原刊若有更窄域，应另核并修订版本。",
+      "reason": "允许退化时最小值总能取到；额外排除退化会改变问题，并可能只有下确界或无可行配置。 若采纳并改正式定义、量词、参数域或验收，生成新card_rev并重查受影响的出处/学术（涉及形式化再加代码）路线；单纯补引文/进展或修正人话不换数学版本。",
+      "evidence_ids": [
+        "T1379-D-E01",
+        "T1379-D-E02"
+      ],
+      "small_case_check": "共点三坐标轴最小0由三点重合取得；非退化点εe_i的周长3√2ε趋0但不取0。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "acceptance.算法精度与输出形式",
+      "new": "二审须区分闭式/几何构造、有限终止的精确算法、带停止准则和误差证书的固定精度算法，以及仅给收敛序列的数值方法；当前存在性证明和SOCP等价模型不自动满足一般显式构造验收。",
+      "reason": "现有题卡将显式刻画、闭式与构造算法并列，精确/近似及可接受输出未明确。本轮不自行放宽验收，也不凭通用凸优化描述结案。 若采纳并改正式定义、量词、参数域或验收，生成新card_rev并重查受影响的出处/学术（涉及形式化再加代码）路线；单纯补引文/进展或修正人话不换数学版本。",
+      "evidence_ids": [
+        "T1379-D-E01"
+      ],
+      "small_case_check": "三坐标轴允许三点重合时最小0；若排除退化只有下确界0。精确目标与普通近似输出的验收不能混用。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "1979原刊p128本轮未取得：T&F403，JSTOR空正文/HTTP200非PDF。已读的是Rabinowitz同号重述及正式书目。",
+      "next_step": "取得AMM86(2)(1979)p128的合法可读扫描后，核是否有重述略去的条件、脚注或构造要求；此前将精确原刊措辞列为待核，核心三边周长据完整重述报告。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "本轮已执行精确编号、解答/勘误关键词、期刊域名和Crossref搜索，但未穷尽1991以后全部AMM问题栏全文；JSTOR站内搜索入口不可访问。",
+      "next_step": "如出现具体后续解答或勘误线索，按卷期页码取得全文复核；在此之前只记“本轮未取得可核的同题正式解答/勘误”，不宣称没有后续解答。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "Pólya原书通过完整转写读到题面和解答，但独立扫描PDF403，OCR的立方体数值式乱码、解答精确页图未核。",
+      "next_step": "若需使用9.20周长的数值公式或精确页码，补原扫描页图；当前只引用清楚的9.19几何性质、9.20中点等边特例和章节编号，不依赖乱码公式。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "未取得Brinkhuis–Tikhomirov原书Problem4.3.4全文；AMM后续检索见出处路线缺口。",
+      "next_step": "补原书版本和章节，核其仅存在唯一性还是给所需构造；按已核定的算法验收口径复议完整性。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "GWP论文算法只在特定假设下陈述；球例正文数值已检出错误，未找到正式勘误。",
+      "next_step": "二审算法定理及相交/重合情形的补足；沿作者版本史核球例修正，不以数值例错误否定全部理论。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "作者MATLAB源码、版本与依赖在已查入口未取得；论文§5只是实验文字/表格。",
+      "next_step": "若后续要复现这份论文实验，先取得作者源程序与版本，明确实际步长、投影、停止准则和输入数据；此前不写作者代码复跑通过。本轮不需要为此延迟交付。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "全2469条简索引两组筛选未见强同题候选，仅一般关键词关联；本轮未逐读全库正文，因此不能断言全库无重复。",
+      "next_step": "保留duplicates空数组及覆盖限制。若后续出现Ruderman/E2757或同一三直线周长目标的候选，再核双方固定rev、完整正文及positions，区分空间/平面、直线/线段、退化允许与算法验收，并按较小ID侧负责。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本分工只证明允许退化模型的全域存在性、全平行特例和明确小例的最优性；未交付一般三直线的显式解或有限终止精确构造。",
+      "next_step": "结合原刊精确题意与主流程已有论文，二审确定算法验收所需的输入编码、输出形式、误差/停止标准及退化边界；不能将SOCP写法或渐近收敛自动当完整解。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "e1f220ca60db0d57",
+      "codes": {}
+    }
+  ]
+}

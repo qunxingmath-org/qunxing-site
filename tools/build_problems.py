@@ -480,7 +480,30 @@ def detail(c, commit):
     return page("zh", f"{pid} {m.get('title') or ''} · 群星题库"[:120], desc, body, f"/p/{pid}/", None, alt)
 
 
-def api(cards, commit):
+def evidence_api(cards, data, commit):
+    if data is None or not (data / "evidence").is_dir():
+        return {}
+    files = {"api/v1/vocab.json": (data / "schema/qunxing.vocab-1.json").read_bytes()}
+    items = []
+    for card in cards:
+        pid = card["meta"]["id"]
+        raw = (data / "evidence" / pid[5:8] / f"{pid}.json").read_bytes()
+        evidence = json.loads(raw)
+        files[f"api/v1/evidence/{pid}.json"] = raw
+        summary = evidence["summary"]
+        states = {dimension: summary[dimension]["value"] for dimension in
+                  ("math_status", "formal_evidence", "search_coverage", "math_status_proposed") if dimension in summary}
+        if "claim" in summary:
+            states["claim"] = {key: value for key, value in summary["claim"].items() if key in ("state", "review")}
+        items.append({"id": pid, "card_rev": evidence["card_rev"], "summary": states,
+                      "url": f"{SITE}/api/v1/evidence/{pid}.json"})
+    index = {"schema": "qunxing.site-evidence/1", "source": {"repo": DATA_REPO, "commit": commit},
+             "vocabulary": f"{SITE}/api/v1/vocab.json", "count": len(items), "items": items}
+    files["api/v1/evidence.json"] = (json.dumps(index, ensure_ascii=False, separators=(",", ":")) + "\n").encode("utf-8")
+    return files
+
+
+def api(cards, commit, data=None):
     src = {"repo": DATA_REPO, "commit": commit}
     lic = {"metadata": "CC0-1.0", "text": "CC-BY-SA-4.0", "note": "Quoted source passages keep their original licenses."}
     def item(c):
@@ -497,16 +520,27 @@ def api(cards, commit):
         files[f"api/v1/problems/{c['meta']['id']}.json"] = c["meta_raw"]
     for k, items in sectors.items():
         files[f"api/v1/problems/by-sector/{k}.json"] = dump({"schema": "qunxing.site-problems/1", "source": src, "license": lic, "sector": k, "count": len(items), "items": items})
+    links = {"problems": f"{SITE}/api/v1/problems.json", "problem": f"{SITE}/api/v1/problems/{{id}}.json", "by_sector": f"{SITE}/api/v1/problems/by-sector/{{sector}}.json"}
+    evidence = evidence_api(cards, data, commit)
+    if evidence:
+        files.update(evidence)
+        links.update(evidence=f"{SITE}/api/v1/evidence.json", problem_evidence=f"{SITE}/api/v1/evidence/{{id}}.json",
+                     vocabulary=f"{SITE}/api/v1/vocab.json")
     files["api/v1/index.json"] = (json.dumps({"schema": "qunxing.site-api/1", "version": "v1", "source": src, "license": lic,
-        "files": {"problems": f"{SITE}/api/v1/problems.json", "problem": f"{SITE}/api/v1/problems/{{id}}.json", "by_sector": f"{SITE}/api/v1/problems/by-sector/{{sector}}.json"},
+        "files": links,
         "sectors": sorted(sectors)}, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
     return files
 
 
-def build(data):
+def data_commit(data):
     commit = subprocess.run(["git", "-C", str(data), "rev-parse", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
     if not re.match(r"^[0-9a-f]{40}$", commit):
         raise SystemExit("取不到 qunxing-data 的提交号")
+    return commit
+
+
+def build(data, api_data=None):
+    commit = data_commit(data)
     cards = load(data)
     if not cards:
         raise SystemExit("没有读到题卡：--data 应指向 qunxing-data 的克隆")
@@ -526,7 +560,10 @@ def build(data):
         pid = c["meta"]["id"]
         files[f"p/{pid}/index.html"] = detail(c, commit).encode("utf-8")
         files[f"p/{pid}.md"] = c["text"].encode("utf-8")
-    files.update(api(cards, commit))
+    if api_data is not None and api_data != data:
+        files.update(api(load(api_data), data_commit(api_data), api_data))
+    else:
+        files.update(api(cards, commit, data))
     bank = (json.dumps({"schema": "qunxing.site-bank/1", "source": {"repo": DATA_REPO, "commit": commit}, "count": len(cards)}, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
     return files, bank
 
@@ -545,15 +582,25 @@ def existing():
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--data", type=Path, required=True, help="qunxing-data 的本地克隆")
+    ap.add_argument("--api-data", type=Path, help="Separate frozen data checkout for static JSON only")
     ap.add_argument("--check", action="store_true")
     a = ap.parse_args()
-    files, bank = build(a.data.resolve())
+    files, bank = build(a.data.resolve(), a.api_data.resolve() if a.api_data else None)
+    api_bank = None
+    if a.api_data:
+        index = json.loads(files["api/v1/problems.json"])
+        api_bank = (json.dumps({"schema": "qunxing.site-bank/1", "source": index["source"],
+                               "count": index["count"]}, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
     if a.check:
         have = existing()
         bad = sorted(set(files) ^ set(have)) + sorted(k for k in files if k in have and have[k] != files[k])
         bank_path = ROOT / "data" / "bank.json"
         if not bank_path.exists() or bank_path.read_bytes() != bank:
             bad.append("data/bank.json")
+        if api_bank is not None:
+            api_bank_path = ROOT / "data/api-bank.json"
+            if not api_bank_path.exists() or api_bank_path.read_bytes() != api_bank:
+                bad.append("data/api-bank.json")
         if bad:
             print(f"题库页面和数据不一致（{len(bad)} 个文件），请运行 python3 tools/build_problems.py --data <qunxing-data> 后提交。前几个：", *bad[:10], sep="\n  ")
             return 1
@@ -569,6 +616,8 @@ def main():
         p.write_bytes(data)
     (ROOT / "data").mkdir(exist_ok=True)
     (ROOT / "data" / "bank.json").write_bytes(bank)
+    if api_bank is not None:
+        (ROOT / "data/api-bank.json").write_bytes(api_bank)
     print(f"题库已生成：{len(files)} 个文件。")
     return 0
 

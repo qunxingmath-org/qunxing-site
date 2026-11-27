@@ -1,0 +1,3724 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000422",
+  "card_rev": "e7e2074f7cc3dd3d",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-04"
+      ],
+      "parts": [
+        {
+          "subquestion": "k=2数量级",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；仅该子问：无区间限制的差基F2(N)=Θ(sqrt N)，上下界有独立初等证明；不表示精确最优常数或所有N极小值已定。"
+        },
+        {
+          "subquestion": "k=3经典下界",
+          "value": "partial",
+          "note": "独立核对KT1999 Thm1.1到本题的输入桥，得到F3(N)≥N^(6/11)；不声称该下界最新、最优或与上界匹配。"
+        },
+        {
+          "subquestion": "算术Kakeya等价及欧氏问题联系",
+          "value": "partial",
+          "note": "GR正式Thm1.6给各算术版本等价；算术猜想若真推出任意维upper Minkowski Kakeya。未得与Euclidean Kakeya的逆向等价，不能用某一维几何突破封本题。"
+        },
+        {
+          "subquestion": "固定k与k趋大目标的区分",
+          "value": "partial",
+          "note": "原猜想先让N大再考察k增大；F2指数1/2直接排除“每个固定k都近线性”的替代题。冻结卡只写广义渐近，不能擅把错误替代题强加给它。"
+        },
+        {
+          "subquestion": "Tomar的k=3下界声明",
+          "value": "claimed_resolution",
+          "note": "只就Tomar Thm1.1/Remark1.5的固定三项子问有完整稿和直接Lean端点，且一份有理证书实际PASS；数学输入全链和Lean内核未独立复跑。若输入成立，已核转移给F3(N)≥N^0.5472566470859…，不是原题全称匹配渐近。本轮另取得Farnamfar更强固定k=3声明，单列，不把Tomar称为当前最新纪录。"
+        },
+        {
+          "subquestion": "k=3小N表与见证",
+          "value": "partial",
+          "note": "AIRR声称精确N≤17值；本轮仅确认有限化Lemma和N15/N27上界见证。公开zip缺少证明/模型数据，最优性下界本轮未证。没有渐近结论。"
+        },
+        {
+          "subquestion": "AlphaEvolve固定斜率数值下界",
+          "value": "claimed_resolution",
+          "note": "只指子问公开数值声明：C({0,1,2,∞};−1)≥1.668及三斜率第8小数位改善。已核原文和真实代码链接，未独立重现精确数值证书；公开主notebook存在静态语法阻碍。"
+        },
+        {
+          "subquestion": "固定三输入斜率的高有理复杂度",
+          "value": "partial",
+          "note": "本文p41给C({0,1,∞};a/b)=2−Theta(1/log height)并转引Tao后续论文。只能按固定输入/变化输出的范围登记；该后续完整证明本轮未审核。"
+        },
+        {
+          "subquestion": "k=3新的更强有理指数下界",
+          "value": "claimed_resolution",
+          "note": "最强record的exact+Z[1/2] domain在本轮单次strict检查器复跑通过；结合Cor13得到m(N,3)≥N^(1/C*)的更强声明。原稿数学链由另一支线独立审，程序语义/第二checker/形式化内核未全部独立验证；不把任何较弱companion或旧Tomar的Lean结果冒充本纪录验证。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "rerun_partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/arr-research/arr-research.github.io/tree/433925f84af6bbdea47c5fc39aa8ab107e086488/papers/2026/10/0P/ARR-2026-0P0HZ24A6Z9A1A20"
+      ],
+      "note": "只覆盖：特例"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://link.springer.com/article/10.1007/s10998-018-0270-z",
+      "review": "key_steps_checked"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "回执绑定e7e2074f7cc3dd3d。冻结卡的Fk(N)=min|S|、S⊂N且无直径上界、每个1≤d≤N分别有k-AP之定义有效。Green37广义问是求渐近；Comments的主要猜想须另明确为Fk(N)≳_k N^(1−c_k)、c_k→0，不能改作每个固定k都近线性。已取得k=2初等匹配数量级、Green–Ruzsa等价与上界等进展，且找到2026两份固定k=3改善的完整声明和证书。它们以及AlphaEvolve固定投影构造、有限小例、哈希/端点覆盖关联均未在本轮核到一般固定k匹配上下界或完整AK的证明/反例。状态描述限定于实际四路线及各条阅读/复跑范围，不以题库标签或未检到材料证明无解。",
+      "evidence_ids": [
+        "E422-ORIGIN-GREEN",
+        "E422-ORIGIN-GR",
+        "E422-ORIGIN-MATH",
+        "E422-CODE-FC",
+        "E422-ACA-TOMAR-BRIDGE",
+        "E422-NEWRECORD-VERSION",
+        "E422-NEWRECORD-UPPER",
+        "E422-NEWRECORD-MATH",
+        "E422-NEWRECORD-TRANSFER",
+        "E422-CODE-FARNAMFAR-SOURCE",
+        "E422-CODE-FARNAMFAR-STATIC",
+        "E422-CODE-FARNAMFAR-RERUN",
+        "E422-ALPHA-PAPER",
+        "E422-ALPHA-REPO",
+        "E422-ALPHA-SCOPE"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "k=2数量级",
+      "math_status": "原题已证",
+      "scope_note": "仅该子问：无区间限制的差基F2(N)=Θ(sqrt N)，上下界有独立初等证明；不表示精确最优常数或所有N极小值已定。",
+      "evidence_ids": [
+        "E422-ORIGIN-MATH"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "k=3经典下界",
+      "math_status": "部分进展",
+      "scope_note": "独立核对KT1999 Thm1.1到本题的输入桥，得到F3(N)≥N^(6/11)；不声称该下界最新、最优或与上界匹配。",
+      "evidence_ids": [
+        "E422-ORIGIN-KT1999"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "算术Kakeya等价及欧氏问题联系",
+      "math_status": "条件性结果",
+      "scope_note": "GR正式Thm1.6给各算术版本等价；算术猜想若真推出任意维upper Minkowski Kakeya。未得与Euclidean Kakeya的逆向等价，不能用某一维几何突破封本题。",
+      "evidence_ids": [
+        "E422-ORIGIN-GR",
+        "E422-ORIGIN-GR-V1",
+        "E422-ORIGIN-KT2001"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "固定k与k趋大目标的区分",
+      "math_status": "部分进展",
+      "scope_note": "原猜想先让N大再考察k增大；F2指数1/2直接排除“每个固定k都近线性”的替代题。冻结卡只写广义渐近，不能擅把错误替代题强加给它。",
+      "evidence_ids": [
+        "E422-ORIGIN-GREEN",
+        "E422-ORIGIN-MATH"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Tomar的k=3下界声明",
+      "math_status": "完整声明待核",
+      "scope_note": "只就Tomar Thm1.1/Remark1.5的固定三项子问有完整稿和直接Lean端点，且一份有理证书实际PASS；数学输入全链和Lean内核未独立复跑。若输入成立，已核转移给F3(N)≥N^0.5472566470859…，不是原题全称匹配渐近。本轮另取得Farnamfar更强固定k=3声明，单列，不把Tomar称为当前最新纪录。",
+      "evidence_ids": [
+        "E422-ACA-TOMAR",
+        "E422-ACA-TOMAR-BRIDGE",
+        "E422-CODE-TOMAR",
+        "E422-CODE-TOMAR-RERUN"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "端点覆盖反例是否反驳原题",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "2609.02041反驳的是每个足够大终点可向前补齐的覆盖猜想，量词与本题每个公差都出现不同；其Thm7对本题只给以AK为假设的后果。",
+      "evidence_ids": [
+        "E422-ACA-SPARSE",
+        "E422-ACA-SPARSE-BRIDGE"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "近期哈希、随机公差和高维变体是否解主问题",
+      "math_status": "条件性结果",
+      "scope_note": "核得已有Fk上界的应用、新条件转移和较弱的k随N增长版本；未得到完整固定k极限AK或每k的匹配上下界。",
+      "evidence_ids": [
+        "E422-ACA-HASH",
+        "E422-ACA-ZAMIR",
+        "E422-ACA-RANDOM",
+        "E422-ACA-PZ"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "k=3小N表与见证",
+      "math_status": "仅特例",
+      "scope_note": "AIRR声称精确N≤17值；本轮仅确认有限化Lemma和N15/N27上界见证。公开zip缺少证明/模型数据，最优性下界本轮未证。没有渐近结论。",
+      "evidence_ids": [
+        "E422-CODE-AIRR",
+        "E422-CODE-AIRR-ARTIFACTS",
+        "E422-CODE-WITNESSES"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "AlphaEvolve固定斜率数值下界",
+      "math_status": "完整声明待核",
+      "scope_note": "只指子问公开数值声明：C({0,1,2,∞};−1)≥1.668及三斜率第8小数位改善。已核原文和真实代码链接，未独立重现精确数值证书；公开主notebook存在静态语法阻碍。",
+      "evidence_ids": [
+        "E422-ALPHA-PAPER",
+        "E422-ALPHA-REPO"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "固定三输入斜率的高有理复杂度",
+      "math_status": "部分进展",
+      "scope_note": "本文p41给C({0,1,∞};a/b)=2−Theta(1/log height)并转引Tao后续论文。只能按固定输入/变化输出的范围登记；该后续完整证明本轮未审核。",
+      "evidence_ids": [
+        "E422-ALPHA-PAPER"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "k=3新的更强有理指数下界",
+      "math_status": "完整声明待核",
+      "scope_note": "最强record的exact+Z[1/2] domain在本轮单次strict检查器复跑通过；结合Cor13得到m(N,3)≥N^(1/C*)的更强声明。原稿数学链由另一支线独立审，程序语义/第二checker/形式化内核未全部独立验证；不把任何较弱companion或旧Tomar的Lean结果冒充本纪录验证。",
+      "evidence_ids": [
+        "E422-CODE-FARNAMFAR-STATIC",
+        "E422-CODE-FARNAMFAR-RERUN"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "web system2_search_query",
+      "query": "Green Ruzsa arithmetic Kakeya conjecture progressions every common difference F_k(N)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索原题出处及版本；采用的来源另有逐条访问记录，未把搜索未命中当作开放证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2_search_query",
+      "query": "Katz Tao arithmetic Kakeya conjecture original conjecture projections 1999 2002",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索原题出处及版本；采用的来源另有逐条访问记录，未把搜索未命中当作开放证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原始网站／固定版本",
+      "query": "open https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取范围及固定版本见对应 evidence。",
+      "url": "https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原始网站／固定版本",
+      "query": "open https://arxiv.org/abs/1712.02108",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "官方历史仅v1，2017-12-06；随后取得22页PDF，但本支只审指定段落。",
+      "url": "https://arxiv.org/abs/1712.02108",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原始网站／固定版本",
+      "query": "open https://arxiv.org/pdf/1712.02108",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取范围及固定版本见对应 evidence。",
+      "url": "https://arxiv.org/pdf/1712.02108",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原始网站／固定版本",
+      "query": "open https://pmc.ncbi.nlm.nih.gov/articles/PMC6528801/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "初次取得正式刊元数据和导言；后续页面进入reCAPTCHA，并非本文无全文。",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6528801/",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原始网站／固定版本",
+      "query": "open https://arxiv.org/pdf/math/9906097",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "固定取得v3（2000-01-20）6页稿；本支读pp1–2定理/背景，非全篇证明审计。",
+      "url": "https://arxiv.org/pdf/math/9906097",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原始网站／固定版本",
+      "query": "open 〔原始工具引用已私有留存〕 〔私有记录编号：PR-002178〕",
+      "date": "2026-11-27",
+      "outcome": "限流或权限",
+      "note": "PMC最初入口可读；此次按行打开触发reCAPTCHA，未绕过。后改读公开Springer原刊全文。",
+      "locator": "web lineno=580",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原始网站／固定版本",
+      "query": "open 〔原始工具引用已私有留存〕 〔私有记录编号：PR-002179〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "按正文位置检索引文/历史；返回包括§5–6片段，本支不把这些片段算作全篇或完整证明复核。",
+      "locator": "web lineno=1450",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "PMC find",
+      "query": "Theorem 1.1",
+      "date": "2026-11-27",
+      "outcome": "限流或权限",
+      "note": "在初读成功的PMC文章内检索时触发reCAPTCHA；后使用开放的Springer正式全文。",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6528801/",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "PMC find",
+      "query": "Theorem 1.6",
+      "date": "2026-11-27",
+      "outcome": "限流或权限",
+      "note": "在初读成功的PMC文章内检索时触发reCAPTCHA；后使用开放的Springer正式全文。",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6528801/",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "PMC find",
+      "query": "4.2",
+      "date": "2026-11-27",
+      "outcome": "限流或权限",
+      "note": "在初读成功的PMC文章内检索时触发reCAPTCHA；后使用开放的Springer正式全文。",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6528801/",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1_search_query",
+      "query": "Ruzsa Sumsets 2005 \"4.2\" arithmetic progressions",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索原题出处及版本；采用的来源另有逐条访问记录，未把搜索未命中当作开放证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1_search_query",
+      "query": "Ruzsa \"Sumsets\" \"381\" \"389\" 2005 pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索原题出处及版本；采用的来源另有逐条访问记录，未把搜索未命中当作开放证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1_search_query",
+      "query": "Katz Tao \"New bounds for Kakeya problems\" 234 conjecture",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索原题出处及版本；采用的来源另有逐条访问记录，未把搜索未命中当作开放证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2_search_query",
+      "query": "\"Ruzsa\" \"Sumsets\" \"Conjecture 4.2\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索原题出处及版本；采用的来源另有逐条访问记录，未把搜索未命中当作开放证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system2_search_query",
+      "query": "\"Katz\" \"Tao\" \"New bounds for Kakeya problems\" arxiv",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际检索原题出处及版本；采用的来源另有逐条访问记录，未把搜索未命中当作开放证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原始网站／固定版本",
+      "query": "open https://ems.press/books/standalone/3/85",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "官方目录显示作者、2005-06-30、DOI；正文明确需订阅，未读取Conjecture4.2原条款。",
+      "url": "https://ems.press/books/standalone/3/85",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原始网站／固定版本",
+      "query": "open https://link.springer.com/article/10.1007/s10998-018-0270-z",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取范围及固定版本见对应 evidence。",
+      "url": "https://link.springer.com/article/10.1007/s10998-018-0270-z",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原始网站／固定版本",
+      "query": "open https://arxiv.org/abs/math/0102135",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "官方history v1于2001-02-16，24页。",
+      "url": "https://arxiv.org/abs/math/0102135",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原始网站／固定版本",
+      "query": "open https://arxiv.org/pdf/math/0102135v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "web open 返回DisabledError；随后直接下载同一公开arXiv URL成功，另记访问。",
+      "url": "https://arxiv.org/pdf/math/0102135v1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原始网站／固定版本",
+      "query": "open 〔原始工具引用已私有留存〕 〔私有记录编号：PR-002180〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取范围及固定版本见对应 evidence。",
+      "locator": "web lineno=63",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地原题包",
+      "query": "读取 internal/p422_task.json；核对 QX-P-000422/card_rev e7e2074f7cc3dd3d",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "只读当前卡；旧PASS/open标签不作当前状态证据。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Oxford作者PDF缓存",
+      "query": "Problem 37；Comments；bibliography [156]",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "复用p33_Green_current.pdf，实际本题读取p20的问题37/评论与[156]；未重查整份清单。",
+      "url": "https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "locator": "p20 Problem37、参考文献[156]",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv公开PDF固定下载",
+      "query": "https://arxiv.org/pdf/1712.02108v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得22页完整稿；实际精读pp2–9（原猜想、版本、等价链关键桥）及文献[13][17][20]，未全审22页。",
+      "url": "https://arxiv.org/pdf/1712.02108v1",
+      "locator": "Conjectures1–5；Theorem1.1；§2 Proposition2.1与投影桥",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv公开PDF固定下载",
+      "query": "https://arxiv.org/pdf/math/9906097v3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得6页完整稿，读pp1–2；Theorem1.1的输入/输出核对而非其全部证明重证。",
+      "url": "https://arxiv.org/pdf/math/9906097v3",
+      "locator": "pp1–2 Theorem1.1及其上下文",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv公开PDF固定下载",
+      "query": "https://arxiv.org/pdf/math/0102135v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "web解析失败后urllib读取同一公开PDF成功，24页；只精读pp1–4尤其p3 Definition3.1及SD(1)猜想，未复证后文全链。",
+      "url": "https://arxiv.org/pdf/math/0102135v1",
+      "locator": "p3 Definition3.1及随后SD(1)段",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：数学核对",
+      "site": "本轮独立推导",
+      "query": "N与Z平移；k=1,N=1；F2差对计数与sqrt(N)构造；F3投影输入",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "有限性、k=2完整数量级及k=3条件于已刊定理的输入桥见E422-ORIGIN-MATH；没有声称运行Lean或穷举全问题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"arithmetic Kakeya\" conjecture proof 2026",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际以recency=365执行。命中作者论文、相关覆盖/哈希新作及二手索引；只把取得的第一手原文作为结论依据。检索命中或未命中不证明全称开放/已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"Tomar\" \"sum-difference\" correction proof",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "实际以recency=60执行。命中作者论文、相关覆盖/哈希新作及二手索引；只把取得的第一手原文作为结论依据。检索命中或未命中不证明全称开放/已解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Sparse k-AP Covering Sets",
+      "query": "GET https://arxiv.org/pdf/2609.02041v1；阅读所述范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整下载10页；阅读pp1–3、8–10，核定义、Theorems4/5/7及§4条件转移，未完整复核§2傅里叶估计。",
+      "url": "https://arxiv.org/pdf/2609.02041v1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Dahia随机数论",
+      "query": "GET https://arxiv.org/pdf/2610.18859v1；阅读所述范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整下载并阅读5页；Thm1.1和Lemma1.2的组合/概率桥核对，输入Green–Ruzsa及Varnavides未重证。",
+      "url": "https://arxiv.org/pdf/2610.18859v1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Bakshi等哈希论文",
+      "query": "GET https://arxiv.org/pdf/2608.24866v2；阅读所述范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整下载22页，阅读pp1–5、§4 pp13–16及p17 AI说明；核多项式长度版本与原问题的强弱，未复核全篇哈希下界。",
+      "url": "https://arxiv.org/pdf/2608.24866v2",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Zamir哈希论文",
+      "query": "GET https://arxiv.org/pdf/2608.23502v2；阅读所述范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整下载19页，阅读pp1–4的定理/定义；density-Kakeya不要求完整AP，未核完整算法证明。",
+      "url": "https://arxiv.org/pdf/2608.23502v2",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv版本页",
+      "query": "GET https://arxiv.org/abs/2609.02041；阅读所述范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "web入口曾DisabledError；随后urllib实际取得完整HTML，Submission history仅显示v1 2026-09-02 03:16:21 UTC。",
+      "url": "https://arxiv.org/abs/2609.02041",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv版本页",
+      "query": "GET https://arxiv.org/abs/2608.23502；阅读所述范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "web入口曾失败；urllib取得完整HTML，v1 2026-08-24、v2 2026-08-31 16:36:07 UTC。",
+      "url": "https://arxiv.org/abs/2608.23502",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv版本页",
+      "query": "GET https://arxiv.org/abs/2411.13395；阅读所述范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "版本页只显示v1 2024-11-20；另读HTML正文导言两主定理，非全文核证。",
+      "url": "https://arxiv.org/abs/2411.13395",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Pohoata–Zakharov原文",
+      "query": "GET https://arxiv.org/html/2411.13395v1；阅读所述范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "阅读导言定义、Theorem1/2和higher-dimensional目标；未逐步复核后续证明。",
+      "url": "https://arxiv.org/html/2411.13395v1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Hexagon官方记录",
+      "query": "GET https://hexagonmath.org/2611.00469v1；阅读所述范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "只覆盖固定k=3子问；站点ID不是同号arXiv论文。2026-11-15版本，未见正式同行评议标记。",
+      "url": "https://hexagonmath.org/2611.00469v1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Tomar作者论文",
+      "query": "GET https://hexagonmath.org/pdf/2611.00469v1；阅读所述范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整下载16页SHA256 d3b2b977f04c265c47e727a4a9a81a02128311b5da161a7621970ea955aaaaf1；实际读pp1–8、11–15，重点§§2–3/5/Appendices A/B，未核不同问题的完整§4。渲染p1目视核restricted-pair定义。",
+      "url": "https://hexagonmath.org/pdf/2611.00469v1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Tomar作者主页",
+      "query": "GET https://www.mefyi.com/papers/sum-difference-exponents/；阅读所述范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核First posted 2026-10-20、预印本状态、精确Lean目标及作者复跑说明；页面明确AP端点未附print axioms报告，作者自述不作为本轮Lean复跑。",
+      "url": "https://www.mefyi.com/papers/sum-difference-exponents/",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "本地精确有理运算",
+      "query": "Fraction逐项相加Appendix B的λX、λY、λS；比较证书总系数；取倒数",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "三系数精确和与证书相同；倒数0.5472566470859017，经典6/11=0.5454545454545454。普通代数核对不代替证书概率语义或Lean内核。",
+      "url": "https://hexagonmath.org/pdf/2611.00469v1",
+      "locator": "Appendix B p15；本回执E422-ACA-TOMAR-BRIDGE",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "\"Green\" \"Problem 37\" arithmetic progressions",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回 FC 题面/旧形式化审计、AIRR 小值稿及 OpenAI 几何 Kakeya 邻题；仅把这些作定位入口，随后分开读取 primary。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "\"GreensOpenProblems\" \"37.lean\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回 FC 题面/旧形式化审计、AIRR 小值稿及 OpenAI 几何 Kakeya 邻题；仅把这些作定位入口，随后分开读取 primary。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "\"arithmetic Kakeya\" \"OpenAI\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回 FC 题面/旧形式化审计、AIRR 小值稿及 OpenAI 几何 Kakeya 邻题；仅把这些作定位入口，随后分开读取 primary。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET google-deepmind/formal-conjectures git/ref/heads/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "当前 main=ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8；随后固定该提交读取本题文件。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch_file FormalConjectures/GreensOpenProblems/37.lean @ ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全文读取；7个直接sorry；仅粗界 m≤kN+1 有证明体。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/GreensOpenProblems/37.lean",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repository=google-deepmind/formal-conjectures; \"def ContainsAP\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "首个字面查询未召回；随后放宽定位到底层定义，不据此判断定义不存在。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repository=google-deepmind/formal-conjectures; ContainsAP path:FormalConjecturesForMathlib; topn=20",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "命中 Combinatorics/AP/Basic.lean，进一步固定提交取源。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "fetch_file FormalConjecturesForMathlib/Combinatorics/AP/Basic.lean @ ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读取 IsAPOfLengthWith L44–45 与 ContainsAP L233–234；前者要求基数k及相应等差集合，正d确保k项互异。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/AP/Basic.lean",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub issues search",
+      "query": "repository=google-deepmind/formal-conjectures; \"green_37\" OR \"Green37\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "返回 #5005、#6476。读取 #5005 中 Green37 旧answer参数作用域问题部分和 #6476 旧bigO/littleO问题；未将审计修题当作数学求解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/google-deepmind/formal-conjectures/issues/6476",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "当前closed、comments=0；正文为未人工审阅的语言模型审计，解释旧大O/小o目标为何可用粗界平凡解决。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/issues/6476",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repository=mathdb-lean/problems; \"green:37\" OR \"Green37\" OR \"arithmetic Kakeya\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "精确查询返回空；宽查询前20项只见其他Green题及提交串/编号中的37，未从该返回集取得本题证明。代码索引和topn覆盖有限，不能据此否定所有mathdb条目。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repository=mathdb-lean/problems; \"Green\" \"37\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "精确查询返回空；宽查询前20项只见其他Green题及提交串/编号中的37，未从该返回集取得本题证明。代码索引和topn覆盖有限，不能据此否定所有mathdb条目。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repository=mathdb-lean/problems; path:37.lean; topn=20",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "精确查询返回空；宽查询前20项只见其他Green题及提交串/编号中的37，未从该返回集取得本题证明。代码索引和topn覆盖有限，不能据此否定所有mathdb条目。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "repository=openai/math; \"arithmetic Kakeya\" OR \"APCover\" OR \"Green37\"; topn=20",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "本轮返回空，不证明仓库所有文件不存在同题材料。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "OpenAI fixed catalog / local text scan",
+      "query": "复用 3344da59991ed94f9ba711217b29c1d760badfa6 的 overview.tex(865行)、CONTENTS.md(9262行)，搜索 arithmetic Kakeya|APCover|green.?37|kakeya",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "命中 family074 几何3/4维Kakeya和 family079 Euclidean local smoothing 的目录声明；未命中算术AK全题。只审目录适用范围，未审这些邻题大稿；几何结果不能经单向蕴含倒推算术AK。原返回在p997_code_source_cache.json，扫描在p422_oai_catalog_scan.json。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/CONTENTS.md",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S1",
+      "query": "\"Exact small values of m(N,3)\"; recency=365",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "召回并打开 AIRR v1，非已接收或同行评审证明。",
+      "url": "https://airr.science/papers/ARR-2026-0P0HZ24A6Z9A1A20/versions/v1/",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "AIRR primary",
+      "query": "open immutable v1 record; click Read PDF, Files & code, Sources",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整5页PDF文字已读。GitHub Sources网页初次返回 restricted/internal error；后用正式GitHub API成功取固定源，记录网页失败但不把整个源码标不可得。",
+      "url": "https://airr.science/papers/ARR-2026-0P0HZ24A6Z9A1A20/versions/v1/",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET release/tag ARR-2026-0P0HZ24A6Z9A1A20-v1; fixed paper directory and supplement recursive tree",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "锁定commit 433925f84af6bbdea47c5fc39aa8ab107e086488；supplement递归树truncated=false；只有README、SHA清单、Lean、exit0文本、Python checker，无g37目录。",
+      "url": "https://github.com/arr-research/arr-research.github.io/tree/433925f84af6bbdea47c5fc39aa8ab107e086488/papers/2026/10/0P/ARR-2026-0P0HZ24A6Z9A1A20",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "433925f84af6bbdea47c5fc39aa8ab107e086488: main.tex; supplement/README_supp.txt; supplement/lean/Green2737.lean; supplement/verify_witnesses.py; supplement/lean/lean_out.txt",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全文实际取得并读取；Lean只有有限covers断言，上界而非最优性。main.tex的17项列表正确，不能沿用模型评语的错误18项指控。",
+      "url": "https://github.com/arr-research/arr-research.github.io/tree/433925f84af6bbdea47c5fc39aa8ab107e086488/papers/2026/10/0P/ARR-2026-0P0HZ24A6Z9A1A20",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "HTTP source bundle",
+      "query": "GET AIRR release ARR-2026-0P0HZ24A6Z9A1A20-v1-sources.zip",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "首次Python requests模块不可用，改标准库urllib后HTTP200；32,636 bytes，SHA256 8d78de232f18bcec1812e5990a729078b053a0c2e666640da80cdf2e29cfe72d。枚举zip同样未含g37模型/JSON/DRUP；未运行引用缺失数据的作者checker。",
+      "url": "https://github.com/arr-research/arr-research.github.io/releases/download/ARR-2026-0P0HZ24A6Z9A1A20-v1/ARR-2026-0P0HZ24A6Z9A1A20-v1-sources.zip",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Local independent finite check",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002181〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "只检查论文两个明确见证的每个正差：N15基数12直径35；N27基数18直径54。均通过，日志列出各d起点；未搜其他样本、未证下界、未跑SAT或Lean。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "ULAM primary",
+      "query": "open https://www.ulam.ai/research/erdos1143-partial.pdf; read definitions/Theorem3/§5.3–8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "9页Apr29,2026 draft。K_r(u)要求任意u个不同差，并非本题全部1..N；给与Erdos1143最坏素数组的转移及既有固定指数，不证明AK(1)。正文/摘要及转移scope已读，未独立核全稿熵/引用链。",
+      "url": "https://www.ulam.ai/research/erdos1143-partial.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S1",
+      "query": "\"Green's Problem 37\" proof arithmetic progressions; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "更新检索召回 AIRR、FC镜像、Epoch题包及Tomar新和差集指数稿；只把前三者作定位/题面索引，新Tomar材料继续取原文和固定代码。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S1",
+      "query": "\"arithmetic Kakeya\" \"Lean\"; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "更新检索召回 AIRR、FC镜像、Epoch题包及Tomar新和差集指数稿；只把前三者作定位/题面索引，新Tomar材料继续取原文和固定代码。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Hexagon primary",
+      "query": "open /pdf/2611.00469v1 and /2611.00469v1; find \"5. Verification\", \"github\", \"Artificial\", \"axiom\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读摘要、Theorems1.1–1.3、Remark1.5、§5、Data availability、AI acknowledgements；正文数学主链由主审另核。find Artificial/axiom字符串无命中不能否定正文的AI/axioms文字，已从§5和p15实际读到。",
+      "url": "https://hexagonmath.org/pdf/2611.00469v1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Zenodo",
+      "query": "open https://zenodo.org/records/23716680",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "web工具报告URL不可访问；没有绕过访问限制，改用论文明确提供的GitHub公开源。",
+      "url": "https://zenodo.org/records/23716680",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET tejasvi/sum-difference-exponents git/ref/tags/v4; git/tags/416ea0ea75003b6c7c85b862d7c7a270bce1eaa4; git/trees/v4?recursive=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "annotated tag v4 解引用至 9b39a721f25575058605ae71e6697f53fb161cfe；tree truncated=false。tag日期2026-10-28原样保留，不把Nov15发布页日期替换commit日期。",
+      "url": "https://github.com/tejasvi/sum-difference-exponents/tree/9b39a721f25575058605ae71e6697f53fb161cfe",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "9b39a721f25575058605ae71e6697f53fb161cfe: README.md; checker/check630.py; certs/c3b_torsionfree.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整README和21,485-byte checker已读，133,575-byte证书已实际取到；两者SHA256与README匹配。只此相关C3b证书复跑，未取/跑1.4指数的巨大two-set证书。",
+      "url": "https://github.com/tejasvi/sum-difference-exponents/tree/9b39a721f25575058605ae71e6697f53fb161cfe",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed source",
+      "query": "9b39a721f25575058605ae71e6697f53fb161cfe: lean/EntropyBounds/GlueG/Erdos1097.lean; Certs/CL3B6SC/General.lean; Certs/CL3B6SC/Final.lean; lean/Axioms.lean; lean-toolchain; lake-manifest.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取完整Erdos1097/General/Axioms/toolchain，Final核公开目标、hyp及调用链并扫描直接sorry/axiom；没有全审所有Rows/Ids/Mathlib传递依赖。",
+      "url": "https://github.com/tejasvi/sum-difference-exponents/tree/9b39a721f25575058605ae71e6697f53fb161cfe",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Local bounded certificate rerun",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002182〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际Python3.12.14，CPU/墙钟45秒限额，6.763秒returncode0/PASS；仅作者exact-rational checker复跑，不等于独立重写checker或Lean内核证明。lean/lake均未安装。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "internal/p422_task.json / package/任务.jsonl",
+      "query": "核对 QX-P-000422 task、包内任务、冻结正文及meta、card_rev和Git blob SHA。",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-TASK",
+      "outcome": "原文已阅且同题",
+      "locator": "QX-P-000422 rev e7e2074f7cc3dd3d",
+      "result_count": 1,
+      "note": "一致。旧meta.novelty.card_rev=2ca4e1c0506626d6，与当前版本不同；不把旧审查文字当成本轮证明或状态判断。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl",
+      "query": "Kakeya|卡凯亚|挂谷|Green.?37|arithmetic.?Kakeya|算术.*[级进]数",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-INDEX-1",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "全2469条简索引；完整召回保存在 internal/p422_index_scan.json",
+      "result_count": 3,
+      "note": "召回3张几何Kakeya卡；作者/编号词未直接召回422，但另一个AP词组检到自身。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl",
+      "query": "sparse.?ruler|稀疏.*[尺标]|difference.?bas[ie]s|difference.?cover|差集|差分.*[尺覆]|A-220",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-INDEX-2",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "全2469条简索引；完整召回保存在 internal/p422_index_scan.json",
+      "result_count": 1,
+      "note": "唯一召回26；实际读取其meta.provenance确认它就是旧包号A-220，不能只看标题认定两模型相同。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl",
+      "query": "每.*公差|公差.*[每所]|arithmetic.?progression|等差数列|等差级数",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-INDEX-3",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "全2469条简索引；完整召回保存在 internal/p422_index_scan.json",
+      "result_count": 8,
+      "note": "8条AP候选中选择涉及任意长度AP及4-AP染色的最相关项全文比较。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "package/全库查重简索引.jsonl",
+      "query": "差基|差分基|尺|差.*覆盖|覆盖.*整数|所有.*方向",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-INDEX-4",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "全2469条简索引；完整召回保存在 internal/p422_index_scan.json",
+      "result_count": 10,
+      "note": "10条召回中419最相关；其中“尺寸”含“尺”的误召回不当作数学命中。419的正文是模q的和基而非标题暗示的差基。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen repository; github_fetch_file",
+      "query": "repository_full_name=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/000/QX-P-000422.meta.json AND path=problems/000/QX-P-000422.text.md; 实际读取完整返回内容",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-READ-000422",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000422.text.md",
+      "locator": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev e7e2074f7cc3dd3d; text blob eaa7d75c87847340a04e9b881ac82d90d8e22c2f; meta blob 4d83f0218f883a7d2df3058dace6e2f85c043292",
+      "result_count": 2,
+      "note": "两份文件缓存并验证Git blob SHA；meta的card_rev与简索引一致。仅据完整题面/条件/acceptance作范围比较，不继承旧查新结论。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen repository; github_fetch_file",
+      "query": "repository_full_name=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/000/QX-P-000026.meta.json AND path=problems/000/QX-P-000026.text.md; 实际读取完整返回内容",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-READ-000026",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000026.text.md",
+      "locator": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev 6b10a6b29bafea5f; text blob 18d2b19ba5841aca3d95aa0db2ade7576786921b; meta blob 84e7e5fdce21239a13ed1258642edf0fbeee55ca",
+      "result_count": 2,
+      "note": "两份文件缓存并验证Git blob SHA；meta的card_rev与简索引一致。仅据完整题面/条件/acceptance作范围比较，不继承旧查新结论。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen repository; github_fetch_file",
+      "query": "repository_full_name=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/000/QX-P-000419.meta.json AND path=problems/000/QX-P-000419.text.md; 实际读取完整返回内容",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-READ-000419",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000419.text.md",
+      "locator": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev fc10a8400740f5ef; text blob 8857a5bce84dc8b61a0575e7f78a62ba6fe92a74; meta blob fdaedae049034504792974a317074ec33abb2ff6",
+      "result_count": 2,
+      "note": "两份文件缓存并验证Git blob SHA；meta的card_rev与简索引一致。仅据完整题面/条件/acceptance作范围比较，不继承旧查新结论。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen repository; github_fetch_file",
+      "query": "repository_full_name=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/002/QX-P-002358.meta.json AND path=problems/002/QX-P-002358.text.md; 实际读取完整返回内容",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-READ-002358",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002358.text.md",
+      "locator": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev 4109c92b03d006f9; text blob 95050a0370f2ccd43f6e60ac18047fcf1a12a73c; meta blob cfb4b2c693139c35f5644cd0b5749120fd3b44c3",
+      "result_count": 2,
+      "note": "两份文件缓存并验证Git blob SHA；meta的card_rev与简索引一致。仅据完整题面/条件/acceptance作范围比较，不继承旧查新结论。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen repository; github_fetch_file",
+      "query": "repository_full_name=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/002/QX-P-002359.meta.json AND path=problems/002/QX-P-002359.text.md; 实际读取完整返回内容",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-READ-002359",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002359.text.md",
+      "locator": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev 54695442b4f631b2; text blob 9db0a402adb19d621b2f3b61ca2679e7e1069a01; meta blob 0967a21254e833c5154748cfc73f1634df3dbd0a",
+      "result_count": 2,
+      "note": "两份文件缓存并验证Git blob SHA；meta的card_rev与简索引一致。仅据完整题面/条件/acceptance作范围比较，不继承旧查新结论。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen repository; github_fetch_file",
+      "query": "repository_full_name=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/001/QX-P-001994.meta.json AND path=problems/001/QX-P-001994.text.md; 实际读取完整返回内容",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-READ-001994",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001994.text.md",
+      "locator": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev ce94070932e4310e; text blob 29a825828e9745377e02e59cbf3099ced272ad24; meta blob 6e2af9d03f50d80e2da19cd86ad0c58b53b38125",
+      "result_count": 2,
+      "note": "两份文件缓存并验证Git blob SHA；meta的card_rev与简索引一致。仅据完整题面/条件/acceptance作范围比较，不继承旧查新结论。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen repository; github_fetch_file",
+      "query": "repository_full_name=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/001/QX-P-001663.meta.json AND path=problems/001/QX-P-001663.text.md; 实际读取完整返回内容",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-READ-001663",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001663.text.md",
+      "locator": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev 79259b3b29b1fb8f; text blob 36cd1623181d22bbe13bbccb85a4244e712b8b76; meta blob 908218427e75c1f9a3cb8a1c1196b1eec75a05ea",
+      "result_count": 2,
+      "note": "两份文件缓存并验证Git blob SHA；meta的card_rev与简索引一致。仅据完整题面/条件/acceptance作范围比较，不继承旧查新结论。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub frozen repository; github_fetch_file",
+      "query": "repository_full_name=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; path=problems/000/QX-P-000023.meta.json AND path=problems/000/QX-P-000023.text.md; 实际读取完整返回内容",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-READ-000023",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000023.text.md",
+      "locator": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev 19b42542a7fd4966; text blob ce16facaca1e0af293aee6c6dbd64634a7de9f2d; meta blob c978d5e29ddb3cc6db0e8ac31196dd2619f190c5",
+      "result_count": 2,
+      "note": "两份文件缓存并验证Git blob SHA；meta的card_rev与简索引一致。仅据完整题面/条件/acceptance作范围比较，不继承旧查新结论。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本地Python标准库与独立代数证明",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002183〕",
+      "date": "2026-11-27",
+      "request_id": "P422-DUP-BOUNDARIES",
+      "outcome": "原文已阅但范围不同",
+      "locator": "internal/p422_boundary_checks.json / .log；证据E422-DUP-K12、E422-DUP-MODELS、E422-DUP-FINITE、E422-DUP-MODULAR",
+      "note": "只检验定义、边界和查重逻辑；不求渐近常数、不算k≥3主问题已解。未调用外部SAT或网络学术检索。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2_search_query",
+      "query": "\"2511.02864\" \"Kakeya\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "第三方页面只用于发现原始来源，不采其结果标签；新命中Borowiecki2611.19594已转主审。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2_search_query",
+      "query": "\"AlphaEvolve\" \"arithmetic Kakeya\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "第三方页面只用于发现原始来源，不采其结果标签；新命中Borowiecki2611.19594已转主审。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "原始网站",
+      "query": "open https://arxiv.org/abs/2511.02864",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核官方版本历史v1/v2/v3，最新固定v3 2025-12-22。",
+      "url": "https://arxiv.org/abs/2511.02864",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "原始网站",
+      "query": "open https://arxiv.org/html/2511.02864v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际只核当前题对应段落及版本；范围见证据。",
+      "url": "https://arxiv.org/html/2511.02864v1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "原始网站",
+      "query": "open https://arxiv.org/html/2511.02864v3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际只核当前题对应段落及版本；范围见证据。",
+      "url": "https://arxiv.org/html/2511.02864v3",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv HTML find",
+      "query": "arithmetic Kakeya",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "用于定位Problem6.30、作者仓库链接和对应原段落；不会把文章其它问题当本题结果。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv HTML find",
+      "query": "github.com",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "用于定位Problem6.30、作者仓库链接和对应原段落；不会把文章其它问题当本题结果。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv HTML find",
+      "query": "1.778",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "用于定位Problem6.30、作者仓库链接和对应原段落；不会把文章其它问题当本题结果。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv HTML链接",
+      "query": "click 〔原始工具引用已私有留存〕 id=32 〔私有记录编号：PR-002184〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "id32定位主题15；id73是作者Repository of Problems，后续固定commit读取。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv HTML链接",
+      "query": "click 〔原始工具引用已私有留存〕 id=73 〔私有记录编号：PR-002185〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "id32定位主题15；id73是作者Repository of Problems，后续固定commit读取。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "原始网站",
+      "query": "open 〔原始工具引用已私有留存〕 〔私有记录编号：PR-002186〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际只核当前题对应段落及版本；范围见证据。",
+      "locator": "lineno 1060",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "原始网站",
+      "query": "open https://github.com/google-deepmind/alphaevolve_repository_of_problems/blob/8f447457957deac61e28bf1676746f0753b3b2f8/experiments/arithmetic_kakeya_conjecture/arithmetic_kakeya_conjecture.ipynb",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "web open DisabledError；GitHub公开API和固定raw URL另成功取得内容。",
+      "url": "https://github.com/google-deepmind/alphaevolve_repository_of_problems/blob/8f447457957deac61e28bf1676746f0753b3b2f8/experiments/arithmetic_kakeya_conjecture/arithmetic_kakeya_conjecture.ipynb",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "原始网站",
+      "query": "open https://google-deepmind.github.io/alphaevolve_repository_of_problems/problems/30.html",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "页面依赖JS，web仅返回模板；随后读固定commit的problem30.html内problemData。",
+      "url": "https://google-deepmind.github.io/alphaevolve_repository_of_problems/problems/30.html",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv固定PDF",
+      "query": "https://arxiv.org/pdf/2511.02864v3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整81页PDF已下载；实际精读p41的主题15/Problem6.30及版本相关导言，不声称通审81页或其它66题。",
+      "url": "https://arxiv.org/pdf/2511.02864v3",
+      "locator": "p41",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub公开API",
+      "query": "GET repo metadata; GET commits/main; GET git/trees/8f447457957deac61e28bf1676746f0753b3b2f8?recursive=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整tree返回truncated=false，筛当前题路径；固定commit 2026-07-11T19:25:35Z。没有克隆或运行整仓库。",
+      "url": "https://github.com/google-deepmind/alphaevolve_repository_of_problems/tree/8f447457957deac61e28bf1676746f0753b3b2f8",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定raw",
+      "query": "GET experiments/arithmetic_kakeya_conjecture/arithmetic_kakeya_conjecture.ipynb; GET experiments/arithmetic_kakeya/arithmetic_kakeya.ipynb at 8f447457957deac61e28bf1676746f0753b3b2f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "两本notebook所有markdown/code cell均静态读取，过滤图像输出；均无保存输出。",
+      "url": "https://github.com/google-deepmind/alphaevolve_repository_of_problems/blob/8f447457957deac61e28bf1676746f0753b3b2f8/experiments/arithmetic_kakeya_conjecture/arithmetic_kakeya_conjecture.ipynb",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定raw",
+      "query": "GET problems/30.html at 8f447457957deac61e28bf1676746f0753b3b2f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "problemData明确主题30题面、论文Section6.15及主notebook链接；没有访问前后题。",
+      "url": "https://github.com/google-deepmind/alphaevolve_repository_of_problems/blob/8f447457957deac61e28bf1676746f0753b3b2f8/problems/30.html",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：数学核对",
+      "site": "本轮静态检查",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002187〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "仅语法静态检查和量词推导，无1000秒优化搜索、无数学代码完整复跑；具体结果见E422-ALPHA-REPO和SCOPE。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1_search_query + PDF open",
+      "query": "\"A New Record for the Katz-Tao Sum-Difference Exponent\" (recency=30); open https://borowiecki.dev/pdf/2611.19594",
+      "date": "2026-11-27",
+      "request_id": "P422-NEWREC-SEARCH",
+      "outcome": "原文已阅且同题",
+      "url": "https://borowiecki.dev/pdf/2611.19594",
+      "locator": "14页原稿；初始读摘要、定义、Theorems1–3及Lemma4/6",
+      "note": "与422的k=3方向数子问匹配，不视为全部k的解答。检索命中作者Atrin Farnamfar；承载域名不作为作者身份。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "open https://arxiv.org/abs/2611.19594 AND https://arxiv.org/pdf/2611.19594v1",
+      "date": "2026-11-27",
+      "request_id": "P422-NEWREC-WEB-OFFICIAL",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2611.19594",
+      "note": "两次Web open均DisabledError；后续普通urllib GET官方abs成功，所以不能记录为官方材料不可访问。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web PDF focused read",
+      "query": "open 〔原始工具引用已私有留存〕 lineno190 〔私有记录编号：PR-002188〕",
+      "date": "2026-11-27",
+      "request_id": "P422-NEWREC-PROOF-1",
+      "outcome": "原文已阅且同题",
+      "url": "https://borowiecki.dev/pdf/2611.19594",
+      "locator": "§§2–5，Lemma4/6/7，Proposition8，Lemma9，Proposition10，证书行规则",
+      "note": "核条件复制、selector、共享/搬运变量和无2挠的域条件；没有以PDF阅读替代证书运算。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web PDF focused read + screenshot",
+      "query": "open 〔原始工具引用已私有留存〕 lineno421; screenshot page0 〔私有记录编号：PR-002189〕",
+      "date": "2026-11-27",
+      "request_id": "P422-NEWREC-PROOF-2",
+      "outcome": "原文已阅且同题",
+      "url": "https://borowiecki.dev/pdf/2611.19594",
+      "locator": "§§5–7 Proposition11、Corollaries12–13；AppendixB及references；视觉核首篇页作者/日期/版本",
+      "note": "已读主证明的证书依赖与转移；没有逐条手算AppendixA全部cross forms。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1_search_query",
+      "query": "site:arxiv.org/abs/2611.19594 \"Farnamfar\" (domains=arxiv.org, recency=30)",
+      "date": "2026-11-27",
+      "request_id": "P422-NEWREC-OFFICIAL-SEARCH",
+      "outcome": "执行无命中",
+      "note": "该限定查询未返回新结果；初始标题查询已有官方URL索引，最终身份/版本由直接官方HTML核实。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "urllib GET / local PDF",
+      "query": "GET https://borowiecki.dev/pdf/2611.19594; pdftotext -layout internal/p422_newrecord.pdf internal/p422_newrecord.txt",
+      "date": "2026-11-27",
+      "request_id": "P422-NEWREC-PDF-GET",
+      "outcome": "原文已阅且同题",
+      "url": "https://borowiecki.dev/pdf/2611.19594",
+      "locator": "HTTP200 application/pdf, 408508 bytes, 14页；SHA256 df6d0c20bab227919584ce069256c14791281616a8da3c6154e98c668fc09e44",
+      "note": "首次使用requests的本地下载脚本因缺模块而在HTTP请求前失败，随即改用标准库urllib成功；未把失败计为网站不可访问。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "official arXiv via urllib GET",
+      "query": "GET https://arxiv.org/abs/2611.19594; read citation metadata, submission history, real ancillary hrefs",
+      "date": "2026-11-27",
+      "request_id": "P422-NEWREC-ARXIV-GET",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/2611.19594",
+      "locator": "HTTP200; citation_title/author/date/arxiv_id；history仅v1，Sat14Nov2026 19:59:53UTC",
+      "note": "已实际取得官方HTML，48304bytes，SHA256 bc5ede1a49d2c77f895714df20bc5aff86d1283e8415fb4f82249707db45bab7；确认真实登记而非从托管文件名推断。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本地Fraction与手核",
+      "query": "精确相加Thm1三权重；比较已取Tomar c3b_torsionfree.json权重和；核整数3AP→投影→F3下界；手核Lemma4/6/7/9适用条件。",
+      "date": "2026-11-27",
+      "request_id": "P422-NEWREC-MATH",
+      "outcome": "原文已阅且同题",
+      "locator": "p422_newrecord_arithmetic.json；E422-NEWRECORD-MATH与TRANSFER",
+      "note": "Fraction计算只检验目标权重和比较，不能代替熵证书。新稿主证书strict复跑由独立代码支线完成，其日志另存p422_newrecord_run.json/.log。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Primary PDF via public mirror",
+      "query": "open https://borowiecki.dev/pdf/2611.19594",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取主定理、AI研究方法及§7/Appendix B代码/证书范围；完整数学审读由另一支线负责。正文署2026-10-27，页边arXiv2611.19594v1/2026-11-14，不混同两个时间。",
+      "url": "https://borowiecki.dev/pdf/2611.19594",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv official web",
+      "query": "open https://arxiv.org/abs/2611.19594",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "本工具返回DisabledError；该失败只限web入口，随后官方源包HTTP成功，不能写成全部arXiv不可访问。",
+      "url": "https://arxiv.org/abs/2611.19594",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "PDF find",
+      "query": "find \"github\", \"Verification\", \"Data\" in arXiv2611.19594v1 mirror",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "定位Appendix B的anc路径和两种检查器。唯一GitHub链接是被引用的Tomar旧库，不能误称Farnamfar新纪录repo。",
+      "url": "https://borowiecki.dev/pdf/2611.19594",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "\"Farnamfar\" \"Katz\" \"record.json\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回arXiv镜像附属文件清单、二手AI汇总、论文索引；随后只使用论文原文及官方源包，不凭二手Confirmed标签判断正确。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web S2",
+      "query": "\"A New Record for the Katz\" code github",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回arXiv镜像附属文件清单、二手AI汇总、论文索引；随后只使用论文原文及官方源包，不凭二手Confirmed标签判断正确。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "global query \"record-original-format.json\"; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "没有召回独立GitHub仓库；非不存在证明。新稿代码实际由arXiv ancillary分发。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv mirror record",
+      "query": "open https://arxiv.cnoctave.top/abs/2611.19594",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取v1 submission history及实际anc目录链接，列record.json/verify_group.py/stackcheck.py等；首屏提示另44文件未展示，未假称已看全网页清单，后用完整官方tar核对。",
+      "url": "https://arxiv.cnoctave.top/abs/2611.19594",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "arXiv official source",
+      "query": "web open /src/2611.19594v1; Python urllib GET https://arxiv.org/src/2611.19594v1 timeout20s",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "官方HTTP200 application/gzip；174119bytes，SHA256 279dcf35eff027cd3a1509dfb4402edcee669517499d88b1634a54806ebad7f8。实际完整源包已存p422_newrecord_arxiv_source.dat，安全解包至p422_newrecord_source/。",
+      "url": "https://arxiv.org/src/2611.19594v1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Local fixed arXiv source",
+      "query": "read SHA256SUMS; anc/README.md; anc/CERTIFICATE_INDEX.md; anc/receipts/record-group.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "52个清单项目逐个SHA256吻合。读作者旧receipt与当前输入分离，作者receipt的10.088s不冒充本轮时间。README区分最强record与两个较弱original-format companion。",
+      "url": "https://arxiv.org/src/2611.19594v1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Local full source static review",
+      "query": "read anc/verify_group.py (7711 bytes), stackcheck.py (20304), ring_lattice.py (7965); count record fields and *.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "三文件全文已读；仅stdlib及本地数学依赖，无外部模型或producer程序调用。record=540rows、9copy、78extra、167EL、72lemma。源包没有Lean文件，不凭被引Tomar曾有Lean就给新纪录赋形式化验证。",
+      "url": "https://arxiv.org/src/2611.19594v1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Local single bounded rerun",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002190〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "唯一数学程序复跑；CPU/墙钟各45s、1GiB限额、非-O、默认strict，实际7.228s returncode0。全部1647/1647闭包严格相等，record主恒等式/72lemma PASS；未跑较弱companion、第二checker、负控或Lean。",
+      "url": "https://arxiv.org/src/2611.19594v1",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者镜像原文 / WebSearch system2",
+      "query": "open https://borowiecki.dev/pdf/2611.19594；query site:arxiv.org/abs/2611.19594 \"Record\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "主审亲开镜像原文核Thms1–3、版本标注和与AlphaEvolve的方向区别；随后读本地PDF pp8–10核域审计/证书接口及集合转移。同时system2特定URL查询未返回目标，不能据此否定出处；代码支线随后用官方源包补核版本。只覆盖k=3子问。",
+      "url": "https://borowiecki.dev/pdf/2611.19594",
+      "locator": "pp1–4、8–10；关键证明同时由学术补充支线核对",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E422-ORIGIN-GREEN",
+      "url": "https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "locator": "p20 Problem37及Comments；参考文献[156]",
+      "version": "作者当前62页PDF，页1称Most recent update: December2025；本轮2026-11-27读取；SHA256 e06971245914947f152550dee59bbb29fe0e798f0c51b2bc2557f824c2f9a44a",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "作者主页",
+      "review_status": "仅核关键步骤",
+      "note": "原问的量就是无位置上界的自然数集，逐个覆盖d=1,…,N的k项等差数列；a可随d变化。Comments补上主要猜想F_k(N)≥C_k N^(1−c_k)、c_k→0（k→∞），并援引[156]的算术Kakeya等价。冻结卡的S_k(N)定义与广义渐近问题有效对应；没有写出这一可验收猜想目标是目标粗略，不足以把原定义判错。不能把目标改成每个固定k都N^(1−o(1))，也不能补S⊂[1,N]。当前作者清单只是重述，不能据其收录或无解标记断言2026仍开放。本支只读该问题与所引文献，未声称遍读62页。",
+      "claim_state": "无声明",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E422-ORIGIN-GR",
+      "url": "https://link.springer.com/article/10.1007/s10998-018-0270-z",
+      "locator": "§1 Conjectures1.1–1.5、Theorem1.6与Remark(2)、Theorem1.7；§2；参考文献17",
+      "version": "正式刊online 2018-11-02；Period.Math.Hungar.78(2)(2019)135–151；与arXiv1712.02108v1(2017-12-06)对应但编号改变",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "正式刊发",
+      "review_status": "仅核关键步骤",
+      "note": "正式Conj1.1定义k,N正整数及有限整数集F_k(N)，猜想先N→∞后k→∞的log F/log N趋1；Conj1.3为∀ε>0先选有限有理/∞斜率r_i≠−1，再对所有有限A⊂Z²控制|π_{−1}(A)|≤max_i|π_{r_i}(A)|^(1+ε)。Thm1.6证明五种算术版本等价，不是已证猜想。Conj1.2正式稿明确∀ε∃slopes∀(X,Y)，消除了v1先写X,Y的表述歧义，不能让斜率逐样本任意选择。Remark(2)只给算术版本推出所有欧氏维数的upper Minkowski Kakeya；更弱的k=N^η随动版本已足够，未证明逆向，也未给full Hausdorff等价。已读并核§2的随机压缩、有限舍入修正、O(log N)平移覆盖机制及张量/整系数编码保留有限投影数的关键桥，未逐步复核全文所有等价方向。Theorem1.7给固定k指数的严格次线性上界族，其全构造证明不在本支复核范围。",
+      "claim_state": "完整稿已取得",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E422-ORIGIN-GR-V1",
+      "url": "https://arxiv.org/pdf/1712.02108v1",
+      "locator": "pp2–5 Conjectures1–5/Thm1.1/Thm1.2；pp5–9 Proposition2.1及第一段等价桥；参考文献[17]",
+      "version": "v1 2017-12-06；本轮官方history仅此版，22页，SHA256 06b68eca50af717a9de8beeb6f79e561e5faea6656343fdbd2c8f7475ce4f53d",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "预印本",
+      "review_status": "仅核关键步骤",
+      "note": "原始预印本p2由Ruzsa本人联署回溯：精确整数集猜想先发表于其2005 Sumsets, Conjecture4.2，彼时未提Kakeya联系。p2脚注将投影版的tentative提法指向Katz–Tao正式2002稿p234，显式版本指向Tao讲义。p5–7定义F′_k(N)只要求N个不同公差，N≥2渐近范围内F′≤F≤O(k³log N)F′，所以两者在所研究幂指数极限层面等价，但不是每个k,N最小基数逐值相等。p7–9用张量放大、避开有限多个非零多项式根的编码、清分母，将投影反例转成进展集反例。只核上述机制/量词与正式版对照；本支没有把有限域全部斜率熵定理误报为整数主猜想已证，也未通审后半证明。",
+      "claim_state": "完整稿已取得",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E422-ORIGIN-RUZSA2005",
+      "url": "https://ems.press/books/standalone/3/85",
+      "locator": "EMS章节目录；Green–Ruzsa正式§1 Conj1.1后和参考文献17给Conjecture4.2定位",
+      "version": "Imre Z.Ruzsa, Sumsets, European Congress of Mathematics, pp381–389, EMS 2005；官方日期2005-06-30，DOI10.4171/009-1/24",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "目前最早可核实出处",
+      "publication": "正式刊发",
+      "review_status": "未读全文",
+      "note": "EMS官方只取得目录/摘要与出版日期，正文显示需订阅；没有把Conjecture4.2原条款算作已读。题目到2005的回溯由Ruzsa共同署名的2017/2019论文明确给出，足以纠正“Green2024首次提出”，但具体2005页内条款、可能更早公开讲稿仍留待核。不得把会议年份或Lean形式化时间当原问题首次公开时间。",
+      "claim_state": "无声明",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E422-ORIGIN-KT2001",
+      "url": "https://arxiv.org/pdf/math/0102135v1",
+      "locator": "p2 proper slope；p3 §3 Definition3.1及SD(1)猜想；pp1–4上下文",
+      "version": "arXiv math/0102135v1 2001-02-16 23:40:21 UTC，24页；正式J.Anal.Math.87(2002)231–263；PDF SHA256 8190c152f75a7b4ba8c0bb9fb5f93809ca946118c86b8d44c8d887117f2ff374",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "目前最早可核实出处",
+      "publication": "预印本",
+      "review_status": "仅核关键步骤",
+      "note": "目前直接读到的早期算术投影猜想：在实向量空间Z上，G⊂Z×Z有限且π_{−1}在G单射；SD(R,α)控制|G|与proper slopes投影数，SD(α)要求∀ε>0∃有限R使指数α+ε成立。p3明确提出SD(1)的tentative猜想，并说明其推出upper Minkowski Kakeya。此处为同一算术Kakeya谱系的投影表述，不是逐字的整数AP最小集问题；有限A可每个目标投影值取代表使π_{−1}单射，但从原稿实斜率/实向量域到正式GR有理斜率整数版本应以GR的等价论证为准。只精读pp1–4，不宣称重证24页。web PDF解析失败后同一公开URL直接下载成功，非绕过权限。",
+      "claim_state": "完整稿已取得",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "earliest_source",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E422-ORIGIN-KT1999",
+      "url": "https://arxiv.org/pdf/math/9906097v3",
+      "locator": "p1 Theorem1.1及(1)–(6)；p2进一步斜率与Kakeya联系",
+      "version": "固定v3 2000-01-20；原1999发表Math.Res.Lett.6(5–6)625–630，DOI10.4310/MRL.1999.v6.n6.a3；6页PDF SHA256 4175c00f29cbc9de195ab998db8d907fc8b5f57ea490c218fb6e6780f4592841",
+      "subquestions": [
+        "k=3下界与早期投影谱系"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "正式刊发",
+      "review_status": "仅核关键步骤",
+      "note": "已读原稿pp1–2而非全6页证明。Thm1.1：任意加法Abelian群内有限A,B各≤M，G⊂A×B且partial sumset≤M，推出partial difference set≤M^(11/6)；再加partial(a+2b)≤M可改为M^(7/4)。1999文末这一段只建议进一步投影有望改善，不能单凭其摘要把精确RuzsaAP猜想首提归于1999。对本题F3的独立输入桥：每d择三项a_d,a_d+d,a_d+2d，令G={(a_d,a_d+2d)}⊂S×S，和集⊂2S、差集含全部−2d，故N≤|S|^(11/6)，F3(N)≥N^(6/11)。这里2S指倍乘{2s}，不是和集S+S。桥接核对通过；定理本身按正式原文引用，没有声称本轮重跑其证明。",
+      "claim_state": "完整稿已取得",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E422-ORIGIN-MATH",
+      "url": "https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "locator": "Problem37定义的本轮独立初等边界核对；不属作者新定理",
+      "version": "2026-11-27；独立手工证明；无数值枚举或Lean复跑声明",
+      "subquestions": [
+        "定义与量词边界",
+        "k=1与k=2完整数量级",
+        "稀疏尺区间差异"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "有限整数见证可整体平移到正自然数，保基数、公差及所有AP，故Z/N两写法同值；任意无限见证只取N条AP的有限并已足够，且[0,(k−1)N]是有限见证。对k,N≥1有F1(N)=1及Fk(1)=k。k=2时等价[1,N]⊂S−S；m=|S|给N≤m(m−1)/2，所以下界ceil((1+sqrt(1+8N))/2)。令h=ceil(sqrt N)，S={0,…,h−1}∪{h,2h,…,h²}，|S|=2h；任意d≤N取j=ceil(d/h)、i=jh−d∈[0,h−1]，则d=jh−i，故F2(N)=Θ(sqrt N)，log指数为1/2。例F2(1)=2、F2(3)=3（{0,1,3}）、F2(4)=4由配对数及{0,1,2,4}确定。通常“长度N的完整稀疏尺”另加S⊂[0,N]；本题没加，S={0,1,4,6}覆盖1,…,4却直径6，说明可行对象域不同，不据此声称两极小值必不同。∀d∃a_d不能换为共用同一a：后者在k≥2含a+d全部N点，至少N+1，已与F2的sqrt N阶不符。",
+      "claim_state": "无声明",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E422-ACA-TOMAR",
+      "url": "https://hexagonmath.org/pdf/2611.00469v1",
+      "locator": "pp1–2 Theorem1.1与Remark1.5；pp3–7 §§2–3；pp11–15 §5/Appendices A/B",
+      "version": "Hexagon2611.00469v1，2026-11-15；作者首发日2026-10-20；PDF SHA256 d3b2b977f04c265c47e727a4a9a81a02128311b5da161a7621970ea955aaaaf1",
+      "subquestions": [
+        "k=3新的下界声明",
+        "固定斜率与任意斜率的区别"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "仅核关键步骤",
+      "note": "Thm1.1对无挠阿贝尔群的任意有限A,B及G⊂A×B给restricted difference的加权上界；三权重非负、和C=4785864240814563464816432634036471899/2619096017836492522862695316182077572<1.8272963，适用整数。根已核copy lemma构造、closure规则的函数依赖、Lemma3.1由差唯一选代表到集合计数/一般随机变量的桥，以及三copy配置的关系和证书非负组合论证。具体大证书由代码支线单检查器实际复跑，见E422-CODE-TOMAR-RERUN；没有人工逐行核全部生成关系或Lean传递语义。Thm1.2全阿贝尔群为较弱9213/5036；Remark3.3称Thm1.1可扩到无2挠，但本轮Q消元复跑只据无挠范围。不同Thm1.3的1.42084184作用于完整X×Y之和差，不能套在本题所选配对G；C3a的1.29619190更不是F3下界指数。此新固定三投影结果既不提供k→∞指数趋1，也不改任意选斜率的AK(γ)上界。作者自述AI写代码/分析/草稿及Lean三个检查器通过，不等于本轮完成该复验。",
+      "claim_state": "已取得完整稿",
+      "claimant": "Tejasvi Singh Tomar",
+      "claim_date": "2026-11-15",
+      "formal_status": "已静态检查未复跑",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E422-ACA-TOMAR-BRIDGE",
+      "url": "https://hexagonmath.org/pdf/2611.00469v1",
+      "locator": "Remark1.5及Appendix B；以下为本轮独立代数转移，不是作者已发布勘误",
+      "version": "2026-11-27独立核对，绑定上述Hexagon v1和源代码v4",
+      "subquestions": [
+        "k=3新的下界声明"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "设N≥1、S含每个d=1,…,N的一条3-AP，m=|S|。各选a_d，把G={(a_d+2d,a_d):1≤d≤N}⊂S×S。restricted differences恰{2,4,…,2N}，故其基数N；restricted sums是{2(a_d+d)}⊂2S，其中2S此处是倍乘像{2s:s∈S}而非加法和集，故基数≤m。Thm1.1于是N≤m^(λX+λY+λS)=m^C，即F3(N)≥N^(1/C)；k≥3又有Fk≥F3。Appendix B三项用Fraction逐项相加恰得C，1/C=2619096017836492522862695316182077572/4785864240814563464816432634036471899≈0.5472566470859017>6/11。该推导本身已核，新的输入定理只达到关键步骤+一份确切证书实跑的深度。不得写成原题匹配阶、全AK证明或不附范围的“已解”。单个三投影上界C也不等于任意有限投影族可取的最优上界。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E422-ACA-SPARSE",
+      "url": "https://arxiv.org/pdf/2609.02041v1",
+      "locator": "pp1–3 Definition1/Theorems4–7；pp8–10 §4及致谢/参考文献",
+      "version": "arXiv2609.02041v1，2026-09-02 03:16:21 UTC；10页；SHA256 642f92408ae6b893052ffd91059895acba76eef031c94b63c1d4d852f828bb10",
+      "subquestions": [
+        "端点覆盖与公差覆盖的区别",
+        "与AK相关的条件转移"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "仅核关键步骤",
+      "note": "Saengrungkongka的k-AP covering要求无限A⊂N0对每个充分大的终点x，存在d≥0使x−d,…,x−(k−1)d∈A；未要求x∈A，更未要求每个预指定公差d都出现。Thm4反驳Kiss–Sándor–Yang在k≥6的端点覆盖指数猜想；k=3已有平方根阶，不能把“k<6未解决”整体照搬。Thm5大k构造计数≤n^(1−c/loglog k)，其幂仍随k趋1，与本题主猜想不冲突。Thm7是AK⇒端点覆盖集在k足够大时近线性，反向原文只期待。§2傅里叶核心未全核，因此不认证端点反例全证明；就量词已足以排除“此文反驳本题”。原文AI致谢仅说明纠错帮助，不据此扩大结论。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E422-ACA-SPARSE-BRIDGE",
+      "url": "https://arxiv.org/pdf/2609.02041v1",
+      "locator": "§4 Theorem7；本轮独立核量词和投影代换",
+      "version": "同上v1，2026-11-27本轮核对",
+      "subquestions": [
+        "与AK相关的条件转移"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "核原文条件桥：给定目标ε>0，取δ>0使1/(1+δ)>1−ε。AK选有限有理投影R避开−1；通过固定−1的分式线性变换，可令所有r有限且r>−1。取L清分母，k使j=L(1+r)均落1..k−1。若A为该k的端点覆盖集，各x>n0选d(x)，对n构造B={(x−Ld(x),−Ld(x)):n0<x≤n}。π−1(B)是n−n0个不同x，πr(B)={x−L(1+r)d(x)}⊂A∩[0,n]。故n−n0≤|A∩[0,n]|^(1+δ)，从而充分大n有|A∩[0,n]|≥n^(1−ε)。坐标可为负但原投影猜想允许整数点；非负性只用于被计数的A项。此证明明确依赖尚未在本回执证明的AK，不能作为原问题的无条件解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E422-ACA-HASH",
+      "url": "https://arxiv.org/pdf/2608.24866v2",
+      "locator": "pp1–5导言；pp13–16 §4 Conjecture4.1/Lemma4.3/Theorem4.4；p17致谢",
+      "version": "arXiv2608.24866v2，2026-08-31 16:29:10 UTC；22页；SHA256 da62d07e9626f2833ec37737cf6f04c80b91bad52c5f6f0c593734219eb4aabf",
+      "subquestions": [
+        "多项式长度版本及哈希条件转移"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "仅核关键步骤",
+      "note": "Bakshi–Conway–Komlós–Kuszmaul–Westover的指数级次多项式哈希下界使用既有Green–Ruzsa小AP覆盖集构造，不是原Fk新匹配界。§4的多项式长度AK让k=floor(D^η)随D增长：∀η,ε>0，F_floor(D^η)(D)≥D^(1−ε)最终成立。它弱于先固定足够大k再令D趋∞的完整AK。核Theorem4.4的条件反证：若存在小覆盖A，取δ=.5min(η,ε,1)、k≈D^δ及n=floor(D/k)；压缩后宇宙D|A|+n为n的多项式，所有哈希种子最大负载≥k/2，与对每个多项式宇宙均存在次多项式上界相抵触。p16明确该路线不证明完整AK：固定k只迫使常数负载。Lemma4.3先压缩相邻AP连通分量到[D|A|]才得到有限宇宙，不能默加S⊂[0,D]。本轮核定义和条件桥，未复核全部22页哈希证明及所用旧构造。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E422-ACA-ZAMIR",
+      "url": "https://arxiv.org/pdf/2608.23502v2",
+      "locator": "pp1–4定义、主定理与算术Kakeya联系",
+      "version": "arXiv2608.23502v2，2026-08-31 16:36:07 UTC；19页；SHA256 a6e20f758810cc9cb10a1c9580fb0779851c5f682efb22470c4ef5b1b1de9978",
+      "subquestions": [
+        "density-Kakeya及哈希邻题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "已读未核关键步骤",
+      "note": "Or Zamir的density-Kakeya允许在许多方向的AP内只命中一定比例点，不保证包含整条k-AP；该对象不能直接作为本题Fk见证或反例。哈希下界使用既有Green–Ruzsa构造；对更佳哈希上界推出AK改进的陈述为条件性联系，本轮未取得所需上界。TAU 2026-11-29预告系同文报告，按查新日11月27日仍属未来事件，不计作新证明。只读前4页，未核19页全部技术链。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E422-ACA-RANDOM",
+      "url": "https://arxiv.org/pdf/2610.18859v1",
+      "locator": "全文5页；Theorem1.1、Lemma1.2及证明",
+      "version": "arXiv2610.18859v1，2026-10-13 17:59:26 UTC；SHA256 46c43906f9ac66c65c4685c3f24495f195d2147cb642f456d8c712849bf530a2",
+      "subquestions": [
+        "随机公差命中问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "仅核关键步骤",
+      "note": "Dahia研究随机D以p≥Cδ,k n^(−c/loglog k)命中每个稠密S⊂[n]的k-AP公差集；不是建一个小S覆盖所有d。短证的实际输入是既有Green–Ruzsa集合Y⊂[Ckn]及|Y|≤n^(1−c/loglog k)。根核Lemma1.2桥：Varnavides给稠密S中εn²条AP；对Y中每个公差的代表平移，鸽巢得某平移(t+Y)∩S拥有γn个公差。所有候选F至多(2Cn+1)2^|Y|，对每个F随机漏掉全部公差概率≤exp(−pγn)，并集界在大C下趋0。该新应用不改善Fk本身下界或解决AK。全5页已读，Varnavides与GR输入没有重证。AI贡献说明记录为作者所述组合策略建议，不能替代数学范围核对。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E422-ACA-PZ",
+      "url": "https://arxiv.org/html/2411.13395v1",
+      "locator": "导言定义和Theorems1–2；对应PDF pp1–3",
+      "version": "arXiv2411.13395v1，2024-11-20 15:30:56 UTC；arXiv页仅该版，2026-11-27访问",
+      "subquestions": [
+        "高维算术Kakeya变体"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "已读未核关键步骤",
+      "note": "Pohoata–Zakharov Theorem1为β_h(R)=β(R)的齐次熵强化；Theorem2把一维参数β转移到d≥2的高维变体，给β(R^d)≤d[β/(β−1)]^d/([β/(β−1)]^d−1)。它不把d=1的任意斜率指数降到1，不提供本题固定k的匹配阶。仅核导言的定义和定理方向，未完整核10页证明；2024稿对几何低维问题的旧开放描述不当2026状态证据。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E422-CODE-FC",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/GreensOpenProblems/37.lean",
+      "locator": "L39–44 definition; L46–76 answer endpoints; L81–93 crude bound; L101–105 AK lower bound",
+      "version": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8; file blob c17337bdd23bbd57d2d65bde8dd493fd6f882589",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "review_status": "仅核关键步骤",
+      "note": "实际定义每个1≤d≤N分别选AP，起点可依d，A没有直径上限。ContainsAP底层要有恰k项集合；Basic.lean blob c081b077c0faaaa69dd9d4d8e993766bb0254d0c L44–45/L233–234已对照。当前三answer定义、三个value/theta端点及green_37_lower_bound共7个sorry。后者是存在c_k→0且固定k的N渐近下界，不是固定k精细匹配渐近；green_37_asymptotic实际写最终精确相等，另有Theta端点，均无答案。m_le_mul_add_one具有完整粗界证明体，可由[0,kN]手核，不能当作research解决。本轮未编译FC，未查完整传递公理closure。",
+      "formal_status": "仅有形式化题面或骨架",
+      "claim_state": "无声明",
+      "rerun": {
+        "commit": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+        "theorem": "Green37.green_37 / green_37_asymptotic / green_37_theta / green_37_lower_bound; API m_le_mul_add_one",
+        "cache": "internal/p422_fc37.lean; internal/p422_fc_ap_basic.lean",
+        "axioms": "7个直接sorry；粗界体无直接sorry，但未运行#print axioms及传递closure"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E422-CODE-AUDIT",
+      "url": "https://github.com/google-deepmind/formal-conjectures/issues/6476",
+      "locator": "#6476正文/closed/0 comments；#5005 Green37段；与当前源比较",
+      "version": "checked 2026-11-27; audit snapshot 782312817c; #5005 snapshot 638da20efd8eeeed2993fc2550fc596dc90c1ce8",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "仅子问",
+      "role": "勘误",
+      "publication": "社区帖子",
+      "review_status": "仅核关键步骤",
+      "note": "旧bigO/littleO仅要求存在任意比较函数，m≤kN+1已能给O(N)、o(N²)，不是最优阶。旧answer未依N,k亦造成量词问题。当前固定源answer均双参数并已有AK下界端点，旧问题修复不等于主问题求解。#6476明确语言模型审计且未人工核；作者所称compiles未在本轮复跑。",
+      "claim_state": "有修订",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "E422-CODE-AIRR",
+      "url": "https://airr.science/papers/ARR-2026-0P0HZ24A6Z9A1A20/versions/v1/",
+      "locator": "完整5pp; Theorem1/Tables1–2; Lemma1; §§4–6; record review clarification",
+      "version": "v1 2026-10-22; release commit 433925f84af6bbdea47c5fc39aa8ab107e086488; record PDF SHA256 ffc62527ad7d291639c5f81ec4cf9c41d433e2df946ab8f86b106aed42a2d74e",
+      "subquestions": [
+        "k=3小N最小值及有限见证"
+      ],
+      "scope_match": "特例",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "仅核关键步骤",
+      "note": "完整稿声称N1..17的值依次3,4,5,6,7,8,8,8,9,10,11,11,12,12,12,13,13；N≤10自报DRUP支持，N11..17仅CP-SAT status（N13另有CaDiCaL），无独立证书；N18..27主要是上界/单调性下界。Lemma1已独立手核：每个>N间隙无必要AP跨越，平移右部使间隙变1，保持基数和覆盖；故≤s点解可放[0,N(s−1)]，没有将[0,2N]当全空间。N15直径35上界见证体现窗口差异，但本轮未证明窗口不存在12点。§5明确无渐近内容，且无编码/Lean checker到FC的语义定理。公开模型评语错数成18项/四个12；固定TeX与PDF实际17项/三个12，与table一致，不能继承该错误指控。AIRR working paper/未同行评审；作者同会话Haiku子代理评语并非外部人工复核。",
+      "claim_state": "完整稿已取得",
+      "claimant": "Lluis Eriksson；声明Claude Sonnet5.5 agents生成代码/稿件，作者指导",
+      "claim_date": "2026-10-22",
+      "formal_status": "他人声称已形式化验证",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E422-CODE-AIRR-ARTIFACTS",
+      "url": "https://github.com/arr-research/arr-research.github.io/tree/433925f84af6bbdea47c5fc39aa8ab107e086488/papers/2026/10/0P/ARR-2026-0P0HZ24A6Z9A1A20",
+      "locator": "main.tex / supplement recursive tree / source zip; Green2737.lean covers and g37_k3_N1..N27",
+      "version": "release 433925f84af6bbdea47c5fc39aa8ab107e086488; Lean blob 4a3f74562b38f1730d549ed0ec0db99cd028a8dc",
+      "subquestions": [
+        "k=3小N见证与可复核性"
+      ],
+      "scope_match": "特例",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "review_status": "仅核关键步骤",
+      "note": "实际取固定源码与HTTP200 release zip（SHA256 8d78de232f18bcec1812e5990a729078b053a0c2e666640da80cdf2e29cfe72d）。完整树和zip都没有README列出的g37/g27目录、CP-SAT编码、DRUP、JSON见证；Python checker读这些缺失文件，因此没有声称作者整管线可本地复跑。Lean全文无直接sorry/axiom，covers以List.range N检查d=i+1、每d存在a且每j<k包含a+jd；所列theorem只证covers=true，不含最小性/下界/渐近。大例native_decide、部分小例decide +kernel；作者日志仅“exit 0”，无固定Lean工具链和完整运行轨迹；本轮Lean不可用，未编译。",
+      "formal_status": "已静态检查未复跑",
+      "claim_state": "公开声称",
+      "rerun": {
+        "commit": "433925f84af6bbdea47c5fc39aa8ab107e086488",
+        "theorem": "covers; g37_k3_N15; g37_k3_N27; finite witness endpoints",
+        "toolchain": "作者只称Lean4 core，未提供固定版本；本轮无Lean/lake",
+        "cache": "internal/p422_airr_Green2737.lean; p422_airr_README_supp.txt; p422_airr_zip_access.json; p422_airr_sources.zip",
+        "axioms": "本文件无直接sorry/axiom；未运行#print axioms，native_decide增加编译器信任；无FC语义桥"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E422-CODE-WITNESSES",
+      "url": "https://github.com/arr-research/arr-research.github.io/tree/433925f84af6bbdea47c5fc39aa8ab107e086488/papers/2026/10/0P/ARR-2026-0P0HZ24A6Z9A1A20",
+      "locator": "正文N15的12点、AppendixA N27的18点；本轮逐d整数检查",
+      "version": "v1 + local run 2026-11-27",
+      "subquestions": [
+        "k=3两例上界"
+      ],
+      "scope_match": "特例",
+      "role": "证书",
+      "publication": "代码仓库",
+      "review_status": "本轮独立数学核对",
+      "note": "独立脚本仅两个现成见证，未复用作者checker。N15集合{0,5,10,12,13,14,17,20,24,26,28,35}和N27集合{0,2,4,6,10,15,16,20,22,27,28,29,30,33,38,48,50,54}逐个d检查a,a+d,a+2d，均通过并输出每d的起点。只得到m(15,3)≤12、m(27,3)≤18；不证明最优性、其他表格值或任何渐近。",
+      "formal_status": "复跑仅覆盖部分",
+      "rerun": {
+        "commit": "433925f84af6bbdea47c5fc39aa8ab107e086488",
+        "command": "python internal/p422_small_check.py",
+        "log_url": "internal/p422_small_check.json",
+        "cache": "internal/p422_small_check.py",
+        "toolchain": "Python3.12.14标准库；独立整数遍历，无SAT/Lean"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "formal_evidence": "rerun_partial",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E422-CODE-TOMAR",
+      "url": "https://github.com/tejasvi/sum-difference-exponents/tree/9b39a721f25575058605ae71e6697f53fb161cfe",
+      "locator": "README Lean proofs; lean/EntropyBounds/GlueG/Erdos1097.lean; CL3B6SC/Final.lean and General.lean; Axioms.lean; toolchain/manifest",
+      "version": "9b39a721f25575058605ae71e6697f53fb161cfe (v4; annotated tag 416ea0ea75003b6c7c85b862d7c7a270bce1eaa4)",
+      "subquestions": [
+        "k=3下界改进声明",
+        "新restricted sum-difference指数C3b"
+      ],
+      "scope_match": "仅子问",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "review_status": "仅核关键步骤",
+      "note": "对应Hexagon2611.00469v1 16pp，实际读§1主定理/Remark1.5、§5验证和p15数据/AI声明；完整数学主链由主审另核。本支取并静态核精确端点ap_differences_pos_card_le_int，正整数差定义、倍增注入及set_ineq'的桥均匹配。C=4785864240814563464816432634036471899/2619096017836492522862695316182077572≈1.827296215267，若整链成立即m(N,3)≥N^(1/C)，且k≥3可沿单调性使用；不是k→∞趋近指数1、更不是固定k匹配上下界。Final/General/Erdos1097所读端点无直接sorry/axiom；Final依Rows/Ids及底层熵库，本轮未全读大规模依赖。README称三标准公理及leanchecker/nanoda/Lean4Lean通过，Axioms.lean只提供#print命令，并非本轮核验输出。",
+      "claim_state": "公开声称",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "Tejasvi Singh Tomar；生成式AI写代码、分析、起稿，作者负责",
+      "claim_date": "2026-11-15",
+      "rerun": {
+        "commit": "9b39a721f25575058605ae71e6697f53fb161cfe",
+        "theorem": "EntropyBounds.GlueG.Certs.CL3B6SC.ap_differences_pos_card_le_int; ap_differences_card_le; set_ineq'; entropy_ineq_general",
+        "toolchain": "Lean v4.35.0-rc3; mathlib c55e6e786f49471c72fbddbec5415808896aec1e",
+        "command": "未执行lake build或lake env lean Axioms.lean；无lean/lake",
+        "cache": "internal/p422_tomar/lean/; internal/p422_code_source_cache.json",
+        "axioms": "作者称propext, Classical.choice, Quot.sound；本轮未完成传递公理closure或独立内核回放"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E422-CODE-TOMAR-RERUN",
+      "url": "https://github.com/tejasvi/sum-difference-exponents/blob/9b39a721f25575058605ae71e6697f53fb161cfe/checker/check630.py",
+      "locator": "checker/check630.py full static read; certs/c3b_torsionfree.json exact identity rerun",
+      "version": "9b39a721f25575058605ae71e6697f53fb161cfe",
+      "subquestions": [
+        "k=3下界相关有理熵证书"
+      ],
+      "scope_match": "仅子问",
+      "role": "证书",
+      "publication": "代码仓库",
+      "review_status": "仅核关键步骤",
+      "note": "133575-byte证书SHA256 2f5536517aa1b928229bc88b4cf3fcdc19e09a591aa0dcaadb9bb4b0e24de614，21485-byte checker SHA256 a9fc801318ed263a6a75c877370e1753f6c7b8594536aa4fab8eea088dee6a97，均与README吻合。全文静态检查代码只读输入、用Fraction/标准库，无搜索程序导入；检查copy关系、Q线性closure、非负Shannon/lemma权重、lemma依赖无环和精确线性恒等式。实际45秒/1.5GiB限额运行6.763秒，returncode0，PASS，6vertices/rank7/43extraforms，返回上述精确C。此为独立环境重跑作者checker；没有独立实现所有熵语义规则、没有复跑第二checker或Lean内核，不能把Python通过改写成全部形式化独立核实。 具体数据：293 rows=252 sub+3 mono+3 CI+35 lemma，3个copy步骤、21个EL识别、72个内置lemma；lemma证明含1216 sub、431 eqlaw、89 CI、61 apply项。本证书无直接matus row，72个非Shannon lemma不是只按名字导入：verify_lemma逐个重建Shannon/CI/同分布等式及递归apply的有理系数，查变量合法性和无环后比对目标。closure也不是导入常量：程序重建copy关系，用Q精确消元并按差的注入规则闭合；EL限制为对应copy步骤的允许生成元与像，然后合并其闭合集。未覆盖的是这些规则的完整概率语义独立证明、所有生成lemma与文献公式的一一独立比较、第二checker、负控及Lean内核；Q closure的本次检查只用于整数/无挠目标，不能单独据此验证作者仅无2-torsion的更广扩展，后者需另外核Z[1/2]或形式化链。数据计数存p422_tomar_certificate_scope.json。",
+      "formal_status": "复跑仅覆盖部分",
+      "claim_state": "公开声称",
+      "rerun": {
+        "commit": "9b39a721f25575058605ae71e6697f53fb161cfe",
+        "theorem": "certificate c3b_torsionfree.json for Theorem1.1 / CL3B6SC",
+        "toolchain": "Python3.12.14标准库fractions；__debug__启用；无额外依赖",
+        "command": "python internal/p422_tomar_run.py; child python checker/check630.py certs/c3b_torsionfree.json",
+        "log_url": "internal/p422_tomar_run.json",
+        "cache": "internal/p422_tomar_run.log; internal/p422_tomar/checker/check630.py; internal/p422_tomar/certs/c3b_torsionfree.json",
+        "axioms": "Python checker的数学语义是信任层；本轮没有Lean公理输出"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "formal_evidence": "rerun_partial",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E422-CODE-ULAM",
+      "url": "https://www.ulam.ai/research/erdos1143-partial.pdf",
+      "locator": "9pp draft; Definitions; Theorem3; §5.3–8",
+      "version": "29 April 2026",
+      "subquestions": [
+        "相关AI路线的适用范围"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "项目报告",
+      "review_status": "已读未核关键步骤",
+      "note": "定义K_r(u)为含至少u个任意不同正差r-AP的最小基数；本题m(N,r)要求指定完整差集[1,N]，所以K_r(N)≤m(N,r)，不能随意等同数值。Theorem3声称K_r(u)≤G_α(u)≤rK_r(u)，r=floorα≥2，G为Erdos1143素数组的最坏值；随后的6/11、4/7及≈.59697都是有限固定指数或条件转移。§5.3/§6/§8仍明确算术AK指数趋1是待推进问题。只记录其related progress而非主问完整解，且该Apr稿引用的旧11/6不能排除本轮Nov新Tomar声明。",
+      "claim_state": "完整稿已取得",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E422-CODE-COVERAGE",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/CONTENTS.md",
+      "locator": "fixed overview.tex/CONTENTS.md catalog; GitHub/top20 and Web searches recorded above",
+      "version": "OpenAI 3344da59991ed94f9ba711217b29c1d760badfa6; FC ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8; checked 2026-11-27",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "代码仓库",
+      "review_status": "未读全文",
+      "note": "本轮OAI全目录字符串扫描仅定位几何Kakeya family074/079，未取得算术AK全题端点；未审这些邻题全部正文。mathdb精确查询未召回、宽查询top20是假阳性，非穷尽全站。Cairn/Benchify/Epoch搜索结果只到题面/索引层，未当作解。可读AIRR小值、ULAM转移及Tomar新指数分别记录；本支未取得一般匹配渐近或完整AK的证明，不将未命中写成不存在。来源缓存44条在p422_code_source_cache.json。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E422-DUP-SELF",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000422.text.md",
+      "locator": "题面、形式化、人话、原文摘录、边界；meta.acceptance.criteria与difficulty.note",
+      "version": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev e7e2074f7cc3dd3d; text blob eaa7d75c87847340a04e9b881ac82d90d8e22c2f; meta blob 4d83f0218f883a7d2df3058dace6e2f85c043292",
+      "subquestions": [
+        "无区间上界的定义与k=2稀疏尺指代"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "冻结文字规定自然数子集，起点不限，没有S⊆[0,N]。公差应明确1≤d≤N，k,N为正整数；“含k项AP”不是恰好不能延长成更长AP。原卡只问全家族的渐近规模，没有写Green37具体的k依赖猜想；其准确原文由原题路线核定。本支不把对所有固定k的N^{1−o(1)}当作猜想，这会与下述k=2的显式平方根构造冲突。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E422-DUP-READSET",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/tree/73290369a8dcc632e25e555aec525565ea6e08f8/problems",
+      "locator": "全2469条索引四组召回；自身和7候选，共16份冻结text/meta",
+      "version": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; verified 2026-11-27",
+      "subquestions": [
+        "库内重复与特例/强化/相似的范围"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "commit": "73290369a8dcc632e25e555aec525565ea6e08f8",
+        "cache": "〔私有材料定位已省略〕",
+        "command": "python internal/build_p422_duplicates.py"
+      },
+      "note": "逐候选实际阅读正文与元数据，16/16 Git blob SHA匹配、各card_rev匹配索引、当前task与包及repo一致。无严格同题。候选及版本：QX-P-000026 6b10a6b29bafea5f；QX-P-000419 fc10a8400740f5ef；QX-P-002358 4109c92b03d006f9；QX-P-002359 54695442b4f631b2；QX-P-001994 ce94070932e4310e；QX-P-001663 79259b3b29b1fb8f；QX-P-000023 19b42542a7fd4966。26通过provenance确认A-220；它的无界主公式与有界尺边界冲突需保留，不可据名称跳过范围核对。没有逐字读取全2469份正文；没有认证其他候选的旧数学状态。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "unconfirmed",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E422-DUP-K12",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000422.text.md",
+      "locator": "本轮对题面定义的独立推导：k=1及k=2；check_p422_boundaries.py",
+      "version": "card_rev e7e2074f7cc3dd3d; independent check 2026-11-27",
+      "subquestions": [
+        "k=1退化、k=2计数下界与平方根上界、自然数起点规范"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅某子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "设N≥1，F_k(N)使用自然数中任意有限S。k=1时一单点可同时见证所有d，空集不可行，所以F1(N)=1。k=2时条件精确为{1,…,N}⊆S−S；m个点最多产生C(m,2)个不同正差，故F2(N)≥ceil((1+sqrt(1+8N))/2)。上界独立构造：m=ceil(sqrt N)，q=ceil(N/m)，取S={0,…,m−1}∪{m,2m,…,qm}，两块不交且|S|=m+q≤2m。任取1≤d≤N，j=ceil(d/m)≤q、r=jm−d满足0≤r≤m−1，故d=jm−r来自S的两个点。这证明F2(N)=Theta(sqrt N)，不确定最优渐近常数。若N约定从1起，整体平移+1保留差和AP，所以0是否属于自然数不影响N≥1的极值。若另允许N=0而只要求d=1..N，则条件真空，F_k(0)=0；这与额外要求0∈A−A（强制A非空）的定义有边界差异。若称每个固定k都F_k(N)=N^{1−o(1)}，k=2即反例；原猜想中先选k再取N及k趋无穷的顺序必须按出处保留。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E422-DUP-MODELS",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000026.text.md",
+      "locator": "26题面F(N)与边界0,N必要；422无界定义；本轮直接构造及反例",
+      "version": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev 6b10a6b29bafea5f; text blob 18d2b19ba5841aca3d95aa0db2ade7576786921b; meta blob 84e7e5fdce21239a13ed1258642edf0fbeee55ca; independent check 2026-11-27",
+      "subquestions": [
+        "无界差基与固定长度稀疏尺的区别；允许模型之间的正确单向传递"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅某子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "令U(N)=F2(N)，R(N)=min{|S|:S⊆{0,…,N}, {1,…,N}⊆S−S}，则直接由可行域包含关系有U(N)≤R(N)。所以有界尺的上界可转成U的上界，无界差基的下界可转成R的下界；反方向不能单靠定义获得。平移可令minS=0，但不把其直径缩成N。N=4时S={0,2,5,6}的正差为{1,2,3,4,5,6}，4点又由C(3,2)<4知最优；它不含N=4且直径6，反驳“所有无界最优解都必须含0,N并位于[0,N]”。此例不反驳存在另一4点有界最优解，也不声称该N的U与R数值不同。R仍有平方根级显式构造：m=ceil(sqrt N)，q=floor(N/m)，取B={0,…,m−1}∪{m,2m,…,qm}∪{N}。d≤qm由jm−r表示；qm<d≤N时d=N−(N−d)，其中0≤N−d<m。故R≤m+q+1≤2ceil(sqrt N)+1，但相同数量级不等于相同最优常数。更不能把整个k家族限制到[0,N]：N≥1,k≥3时公差d=N的k-AP跨度(k−1)N>N，根本没有可行解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E422-DUP-FINITE",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000422.text.md",
+      "locator": "internal/check_p422_boundaries.py；p422_boundary_checks.json / .log",
+      "version": "independent Python standard-library enumeration 2026-11-27",
+      "subquestions": [
+        "小N的两模型精确最小值与无限搜索域的合法有限化"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅某子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "command": "python internal/check_p422_boundaries.py",
+        "toolchain": "Python standard library itertools/math/json; no external solver",
+        "cache": "〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material"
+      },
+      "note": "完整性证明：把m点S平移到minS=0。若相邻点某一间隙>N，把该间隙缩成N；任一需保留的差d≤N不可能跨越原间隙，因此全部所需差仍存在。逐间隙处理后maxS≤(m−1)N。这证明对每个候选m在[0,(m−1)N]中枚举，足以确定无界模型的精确最小值；并未擅加[0,N]限制。计数下界排除较小m，再逐集合搜索。N=1,…,10，两模型结果均为2,3,3,4,4,4,5,5,5,6；N=10无界5点层完整检查C(40,4)=91390组失败才升到6点。另逐N=1..100核了两种显式构造覆盖全部差；mod7及N4端点例亦通过。这些有限结果恰好相同，不证明U=R对所有N成立，不确定任何渐近常数，也不处理k≥3。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E422-DUP-MODULAR",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000419.text.md",
+      "locator": "419题面/形式化A+A=Z/qZ；本轮q=7直接枚举",
+      "version": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev fc10a8400740f5ef; text blob 8857a5bce84dc8b61a0575e7f78a62ba6fe92a74; meta blob fdaedae049034504792974a317074ec33abb2ff6; independent check 2026-11-27",
+      "subquestions": [
+        "和基/差基以及模覆盖/实际整数差的查重边界"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "取A={0,1,3}。模7时A−A={0,1,2,3,4,5,6}，A+A={0,1,2,3,4,6}却不含5；同样三个整数代表的实际正差只有1,2,3，不能覆盖1..6。因此“模q的差全覆盖”“模q的和全覆盖”“实际整数差全覆盖”不是同一条件。此例只分离直接定义，不证明不同极值问题之间不可能有任何转化定理；本轮没有取得足以把419与422严格等价的转换。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "unconfirmed",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E422-ALPHA-PAPER",
+      "url": "https://arxiv.org/pdf/2511.02864v3",
+      "locator": "p41，§6中的主题15 The arithmetic Kakeya conjecture，Problem6.30；Fig18与脚注6",
+      "version": "Georgiev–Gómez-Serrano–Tao–Wagner；v1 2025-11-03，v2 2025-12-15，最新v3 2025-12-22；81页；PDF SHA256 77b43844077c98c26dfc76ad391cadbbd53d48a1d290ddae575ff4d1bcdef9d2",
+      "subquestions": [
+        "固定三/四输入斜率的熵指数构造下界",
+        "有理输出斜率复杂度"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "仅核关键步骤",
+      "note": "已精读p41的全部本题段落并对照v1 HTML，不是把81页全部数学结果作本轮验证。定义C(R;s)是对所有有限支撑(X,Y)成立的H(π_s)/max_{r∈R}H(π_r)最优上控常数。作者报告AlphaEvolve将C({0,1,∞};−1)已知约1.77898的构造下界仅改进第8小数位（本段不提供精确新数），将C({0,1,2,∞};−1)下界从1.61226改进到至少1.668；这两项都是固定R的下界，不是任意R下inf C的上界。另声明对固定三输入{0,1,∞}和互素a,b、b>0、s=a/b非0,1，C=2−Theta(1/log(2+|a|+|b|))，引用Tao后续稿[282]；本支只核声明范围，不复证该后续定理。算术Kakeya主目标仍是允许有限R改变时把C压近1；不得把这些固定斜率结果或同文Problem6.1有限域结果当主题全解。数值记录的精确证书未由本支复验。",
+      "claim_state": "公开声称",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E422-ALPHA-REPO",
+      "url": "https://github.com/google-deepmind/alphaevolve_repository_of_problems/blob/8f447457957deac61e28bf1676746f0753b3b2f8/experiments/arithmetic_kakeya_conjecture/arithmetic_kakeya_conjecture.ipynb",
+      "locator": "主notebook 6个cells（code index1/2/4）；problem30.html中的colabURL；另简化notebook 11个cells",
+      "version": "固定仓库commit 8f447457957deac61e28bf1676746f0753b3b2f8，2026-07-11；主blob79cd16f5d50a48ecb2e6bc1e611c5de7822dfee7；简化blob7492284058a6a6bdcf39764fc4c5091b9cc8cbcf",
+      "subquestions": [
+        "AlphaEvolve公开实验的可核范围"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "代码仓库",
+      "review_status": "仅核关键步骤",
+      "note": "从论文真实链接进入作者仓库，以API固定主分支commit并取完整tree，再下载与本题直接相关的两本notebook和problem30.html。主本最后markdown重复三斜率微调/四斜率≥1.668；实验代码是联合概率矩阵的启发式优化，部分验证先强制X−Y在支撑上单射，从而H(X,Y)=H(X−Y)，此用法方向正确，但不同cell包含不同实验配置，不能当一条完整证明链。两本均无保存输出，也未在这些文件里提供支持1.668或第8小数位纪录的明确最终有理概率矩阵。Python ast.parse逐code cell仅静态检查：主本Verification cell(index1)第242行孤立“) -> tuple[...]”触发unmatched 右括号，其余两个code cells和简化本四cells语法通过；缺失函数开头使现主本不能原样整本执行。本轮未修补作者程序、未跑优化搜索或Lean，不据代码截段问题反驳纸面数值结果。静态报告internal/p422_alpha_repo/static_review.json及原文件完整留存。",
+      "claim_state": "公开声称",
+      "formal_status": "已静态检查未复跑",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E422-ALPHA-SCOPE",
+      "url": "https://arxiv.org/pdf/2511.02864v3",
+      "locator": "Problem6.30定义的本轮独立量词/方向核对",
+      "version": "2026-11-27；手工核对，不是新的原问题证明",
+      "subquestions": [
+        "固定斜率下界与全体斜率主猜想"
+      ],
+      "scope_match": "仅子问",
+      "role": "重述",
+      "publication": "项目报告",
+      "review_status": "本轮独立数学核对",
+      "note": "对固定输入R和目标s，任何一个合法有限联合分布且分母>0，都会迫使C(R;s)≥该熵比率；找到更大比率是在提高此固定R的必需指数下界。主猜想则量化∀ε>0∃有限R，使对所有分布的上控常数C(R;−1)≤1+ε。因此对一、两组特定R的下界升高，既不改进这个存在性上界，也不反驳主猜想；要否定主猜想需要对全部允许R证明同一正离1间隙。对取定斜率集的数值证书还需概率非负、总和1、投影合并及对数误差控制；浮点优化得分本身不能自动升级为精确数学证书。代码里若确实令X−Y支撑单射，则联合熵可作目标熵，但仍只针对该合法分布提供下界。",
+      "claim_state": "无声明",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E422-NEWRECORD-VERSION",
+      "url": "https://arxiv.org/abs/2611.19594",
+      "locator": "官方HTML citation元数据、submission history和ancillary links",
+      "version": "arXiv:2611.19594v1，2026-11-14 19:59:53 UTC；正文日期2026-10-27",
+      "subquestions": [
+        "新增公开原稿的身份、版本与访问层级"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅某子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "作者为Atrin Farnamfar；borowiecki.dev只是已读PDF的承载域名。官方abs通过普通urllib GET实际返回HTTP200，并列同题名、作者、arXiv编号和唯一v1历史，故此处不是依文件名推定登记。Web工具的DisabledError与实际网站可访问性分开记录。PDF SHA256=df6d0c20bab227919584ce069256c14791281616a8da3c6154e98c668fc09e44；官方HTML SHA256=bc5ede1a49d2c77f895714df20bc5aff86d1283e8415fb4f82249707db45bab7。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E422-NEWRECORD-UPPER",
+      "url": "https://borowiecki.dev/pdf/2611.19594",
+      "locator": "§1 Theorem1 (pp2–3)、Theorem2、§6 Corollaries12–13 (pp10–11)",
+      "version": "arXiv:2611.19594v1；实际取得14页PDF",
+      "subquestions": [
+        "C3b上界及固定k=3的新进展"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅某子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "Thm1给无2挠阿贝尔群上的熵不等式，其正权重之和C*=209357544569848128/114631769327023765=1.8263483657186588。本轮用Fraction核三权重确切相加，并核C*小于已取Tomar证书的1.8272962152674084。它是上界改进；AlphaEvolve的极端分布构造属于C3b下界，方向相反。Thm2另给任意阿贝尔群的较弱常数10304335425987192362/5641833174538280329。整数适用较强Thm1。作者报告的unchanged Tomar checker companion只有约1.8271149232，并不等于最强record常数；本轮代码支线实际执行了最强record.json的strict域审计，详见独立代码组件。本支不把作者自述的“independent checkers”当作第三方同行认可。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E422-NEWRECORD-MATH",
+      "url": "https://borowiecki.dev/pdf/2611.19594",
+      "locator": "Lemmas4/6/7/9；Propositions8/10/11；§5主证明与§6 Cor12",
+      "version": "v1；2026-11-27有限关键步复核",
+      "subquestions": [
+        "熵证明骨架与群适用条件"
+      ],
+      "role": "证书",
+      "publication": "原始档案",
+      "scope_match": "仅某子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "本支独立检查以下逻辑，未见缺口：(1)有限支撑下按给定读数的条件分布复制，可保持旧联合分布，并与整个旧前缀条件独立；因此不是只与单页独立。(2)去掉差单射限制时，可先取与D=X−Y独立的随机selector，再按每个d的原条件分布选一个见证对；固定selector后差单射，左侧H(D|selector)=H(D)，右侧用正权重和“条件熵不超过熵”，方向正确。(3)与条件读数共同的联合分布相等，足以搬运源页支持的函数；若某函数由条件读数确定，复制后的值相同。(4)在无2挠群中，清除2幂分母后由2^m f的已知值唯一确定f；这里需要乘2^m单射，不需要群可除或乘2满射。Q闭包本身不自动对有挠群成立，必须核其与Z[1/2]闭包在实际查询上的一致性。(5)把每个差保留一个见证对并均匀化，可将熵界转成投影基数界。本支未手展开全部证书行、辅助信息不等式库或逐项证明checker实现；代码支线已另执行最强record的strict检查并报告1647闭包、9复制步骤和72引理通过，数学核查范围与该计算范围分开。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E422-NEWRECORD-TRANSFER",
+      "url": "https://borowiecki.dev/pdf/2611.19594",
+      "locator": "§6 Cor13及本轮独立整数D3/F3转移；p422_newrecord_arithmetic.json",
+      "version": "v1 + independent derivation 2026-11-27",
+      "subquestions": [
+        "整数3AP方向数上界、F3及Fk的适用范围"
+      ],
+      "role": "证书",
+      "publication": "原始档案",
+      "scope_match": "仅某子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "独立转移完整如下。对有限S⊂Z，定义D3+(S)={d>0:∃a，a,a+d,a+2d∈S}。若此集为空结论平凡；否则为每个d选一段见证，并令E={(a,a+2d)}。两坐标投影都在S内；和投影在2·S={2s:s∈S}内（这是倍乘像，不是sumset S+S），故三投影大小均≤|S|；差投影为互异−2d，大小恰|D3+(S)|。Z无2挠，所以Thm1/Cor12给|D3+(S)|≤|S|^C*。若S见证原题F3(N)，则D3+(S)含1..N，N≤|S|^C*，因此F3(N)≥N^(114631769327023765/209357544569848128)=N^0.5475406657187798...。这比旧Tomar所导0.5472566470859017...及6/11更强。对k≥3，每段k-AP的前三项仍在S中，所以同一下界也给Fk，但指数不随k趋向1；不能因此解决Green37所需的k依赖猜想，不能得匹配渐近，也不能由本结论倒推C3b的最佳值。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E422-CODE-FARNAMFAR-SOURCE",
+      "url": "https://arxiv.org/src/2611.19594v1",
+      "locator": "arXiv v1 official source archive; SHA256SUMS; anc/CERTIFICATE_INDEX.md/README; certificates/record.json",
+      "version": "arXiv2611.19594v1; source SHA256 279dcf35eff027cd3a1509dfb4402edcee669517499d88b1634a54806ebad7f8",
+      "subquestions": [
+        "k=3下界更强新声明",
+        "C3b无2挠群纪录"
+      ],
+      "scope_match": "仅子问",
+      "role": "证书",
+      "publication": "原始档案",
+      "review_status": "仅核关键步骤",
+      "note": "实际HTTP200取得官方v1源包174119bytes，52个SHA256清单项目全部吻合；没有可归给新稿的GitHub提交，固定性用arXiv版本+完整源包/单文件hash。最强record的a,b,c分别80908638342740092、74518340847137328、53930565379970708，共同分母114631769327023765；C*=209357544569848128/114631769327023765≈1.8263483657186，无2挠群适用，整数包含在内。Theorem2的all-groups另一个证书C≈1.8264161855，未在本轮运行。未改Tomar check630可验的两个original-format companion仅约1.8271149232/1.8271176725，严格不可把其PASS换成最强纪录。本轮完整源包未见Lean文件，作者自身亦主张exact Python检查而非Lean完成；引用旧Tomar库不产生新纪录的形式化证明。",
+      "claim_state": "完整稿已取得",
+      "claimant": "Atrin Farnamfar；CASPAC/CASP，作者指挥Anthropic Claude与OpenAI Codex agents",
+      "claim_date": "2026-11-14",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E422-CODE-FARNAMFAR-STATIC",
+      "url": "https://arxiv.org/src/2611.19594v1",
+      "locator": "anc/verify_group.py；verify_group.py full; stackcheck.py full; ring_lattice.py full; default strict audit path",
+      "version": "arXiv2611.19594v1; verifier SHA256 928fa3b5781e83007de8b9b5f3e33798894c6128101215de7c3aa98048f5297f",
+      "subquestions": [
+        "最强纪录证书语义与检查层级"
+      ],
+      "scope_match": "仅子问",
+      "role": "证书",
+      "publication": "代码仓库",
+      "review_status": "仅核关键步骤",
+      "note": "此证据描述静态审读，实际单次运行另证据记录。verify_group先调用stackcheck.verify完整重建有理copy关系、closures、EL类、540行权重恒等式及72个辅助lemma，再用ring_lattice的整数gcd行运算/只逆2的局部化运算审领域；未调用搜索引擎或读取预置PASS结果。72lemma不是按名字导入：逐项检验变量/复制合法性、非负Shannon/apply权重、CI与EL恒等式、递归引用无环和有理系数相消（本record内部1216 sub/431 EL/89 CI/61 apply）。主540rows=519sub+9CI+12lemma；9copy、78cross forms、167EL。固定ambient form必须在当步glue closure且其tau差在prefix关系中，transported form须对应字面系数像；domain审补查其Z[1/2]条件。默认严格模式对每个主行、EL、辅助lemma应用、目标查询的ring/Q closure做相等比较，并核每copy prefix条件closure及两个关系空间包含方向。完整概率语义、lattice算法正确性没有由本轮重新形式化证明；第二实现/所有文献lemma对应、负控尚未复跑。",
+      "claim_state": "公开声称",
+      "formal_status": "已静态检查未复跑",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E422-CODE-FARNAMFAR-RERUN",
+      "url": "https://arxiv.org/src/2611.19594v1",
+      "locator": "本轮独立核对，非外部已发布证明；anc/certificates/record.json；strongest record.json; verify_group.py --invert 2, default strict; actual local full receipt",
+      "version": "arXiv2611.19594v1; record SHA256 12e2e356274bad4e044c1558908671cc7c543707b82450f83c22ee7a88046a70",
+      "subquestions": [
+        "k=3下界更强新声明",
+        "最强纪录exact/domain检查"
+      ],
+      "scope_match": "仅子问",
+      "role": "证书",
+      "publication": "原始档案",
+      "review_status": "仅核关键步骤",
+      "note": "本轮唯一限时数学运行实际通过：Python3.12.14标准库，非-O，CPU/墙钟各45s、1GiB限额；墙钟7.227836874s（程序内部7.164s），returncode0/无stderr。receipt明确constant=209357544569848128/114631769327023765、ring=Z[1/2]、audit_mode=strict closure equality、42vertices/rank71、distinct_queries=strict_queries=1647、closure_differences=all_query_closure_differences=0、exact_identity=PASS、lemmas_verified=72、所有9copy步骤PASS。未使用--per-row宽松选项。certificate与三个实际执行源码hash均保存日志：verify_group 928fa3...、stackcheck b4487614c90f9a7fbcbd89b4140c77d32966b045b109507e8deb320f96dad0d4、ring_lattice fc751baf6ee61e143e1595910aab9e6d8b3a80ee8803c62f7fe00a2fb503423e。该PASS是作者完整strict检查器在独立环境中的复跑；不是独立重写程序、不是Lean/其他内核回放，也不含第二extended-checker/companion/负控/全群Theorem2的复跑。结合原稿Cor13可推m(N,3)≥N^(114631769327023765/209357544569848128)，但不是一般k的匹配渐近或完整AK。",
+      "claim_state": "完整稿已取得",
+      "formal_status": "复跑仅覆盖部分",
+      "rerun": {
+        "commit": "不适用：官方arXiv2611.19594v1源包；SHA256 279dcf35eff027cd3a1509dfb4402edcee669517499d88b1634a54806ebad7f8",
+        "theorem": "Theorem1 C*=209357544569848128/114631769327023765; strongest record.json",
+        "toolchain": "Python3.12.14；标准库；__debug__启用；无Lean",
+        "command": "python internal/p422_newrecord_run.py; child python anc/verify_group.py anc/certificates/record.json --invert 2",
+        "log_url": "internal/p422_newrecord_run.json",
+        "cache": "internal/p422_newrecord_run.log; internal/p422_newrecord_source/; internal/p422_newrecord_hash_check.json; internal/p422_newrecord_certificate_scope.json",
+        "axioms": "没有Lean公理输出；信任Python整数/Fraction及checker所表达数学规则，本轮没有独立内核化证明"
+      },
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "formal_evidence": "rerun_partial",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "original_archive"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000026",
+      "other_card_rev": "6b10a6b29bafea5f",
+      "relation": "相关但不等价",
+      "reason": "meta.provenance.package_id明确为A-220，故确是422引用的同族卡。26冻结主公式只要求{0,…,N}⊆A−A，正文说整数刻度但没有显式A⊆[0,N]。按这个字面且N≥1，平移到自然数后其最小值恰等于422的k=2差基F2(N)；然而26问极限F(N)/√N的确切常数，而422问全k家族/Green37，不是严格同一个命题。并且26边界又声称0,N必要、可固定两端，混入长度恰N的bounded complete ruler模型；这项说明不能由无界主公式推出。本次保留“字面为k=2特殊对象；若按有界尺解释则对象也不同”两层，既不自动合并，也不把26当作无歧义有界题。",
+      "positions": {
+        "self": "冻结题面/形式化、人话、原文摘录、边界及meta.acceptance.criteria",
+        "other": "题面F(N)定义；形式化的极限常数；边界0,N必要；meta.acceptance.criteria与provenance.package_id=A-220"
+      },
+      "note": "正文problems/000/QX-P-000026.text.md；meta problems/000/QX-P-000026.meta.json；commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev 6b10a6b29bafea5f; text blob 18d2b19ba5841aca3d95aa0db2ade7576786921b; meta blob 84e7e5fdce21239a13ed1258642edf0fbeee55ca。不提合并；如未来另有严格等价证明，按较小ID QX-P-000026 负责主卡及二审合并建议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000419",
+      "other_card_rev": "fc10a8400740f5ef",
+      "relation": "同源不同问",
+      "reason": "同为Green清单，但419是Problem33：无穷多个q中，存在A⊆Z/qZ使A+A=Z/qZ且|A|=(√2+o(1))√q。它用有限循环群的加法和基、模q覆盖与无穷多q的量词；422用整数中每个实际公差1..N的k-AP，k=2是普通差覆盖。和/差以及模覆盖/整数差不能互换。小例A={0,1,3} mod7有A−A=Z/7Z但A+A遗漏5，其整代表的正差又只有1,2,3。标题“差异集”及边界“差基对偶”不足以证明同题；本支不审419的其他进展文字。",
+      "positions": {
+        "self": "冻结题面/形式化、人话、原文摘录、边界及meta.acceptance.criteria",
+        "other": "题面/形式化中的A+A=Z/qZ、无穷多q；meta.acceptance.criteria"
+      },
+      "note": "正文problems/000/QX-P-000419.text.md；meta problems/000/QX-P-000419.meta.json；commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev fc10a8400740f5ef; text blob 8857a5bce84dc8b61a0575e7f78a62ba6fe92a74; meta blob fdaedae049034504792974a317074ec33abb2ff6。不提合并；如未来另有严格等价证明，按较小ID QX-P-000419 负责主卡及二审合并建议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "duplicate_relation": "related"
+      }
+    },
+    {
+      "other_id": "QX-P-002358",
+      "other_card_rev": "4109c92b03d006f9",
+      "relation": "相关但不等价",
+      "reason": "2358冻结断言为每个n≥4及每个含各单位方向线段的紧K⊆R^n，下、上Minkowski维数都为n。422是无上界整数集合的有限基数极值和k依赖。存在理论关联而非仅名称类比：原题协作路线已读Green–Ruzsa2019 Thm1.6后Remark(2)，报告arithmetic Kakeya可推出Euclidean Besicovitch集的upper Minkowski满维，未给逆向，且更弱的k=N^η随动版本已足够。按该明确范围，只直接涉及2358的upper子结论，不能据此宣称下/上两项乃至422严格等价；本支未独立重证该转移，不把候选自身2026公开声明当成422已解。",
+      "positions": {
+        "self": "冻结题面/形式化、人话、原文摘录、边界及meta.acceptance.criteria",
+        "other": "题面n≥4、紧集、所有方向单位线段、lower/upper Minkowski等式；meta.acceptance.criteria"
+      },
+      "note": "正文problems/002/QX-P-002358.text.md；meta problems/002/QX-P-002358.meta.json；commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev 4109c92b03d006f9; text blob 95050a0370f2ccd43f6e60ac18047fcf1a12a73c; meta blob cfb4b2c693139c35f5644cd0b5749120fd3b44c3。不提合并；如未来另有严格等价证明，按较小ID QX-P-000422 负责主卡及二审合并建议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-002359",
+      "other_card_rev": "54695442b4f631b2",
+      "relation": "相关但不等价",
+      "reason": "2359冻结主问题是所有n≥2的Euclidean Kakeya集满Hausdorff维数，附局部平滑化和Lean声称核验目标。它与422的arithmetic Kakeya有方法/蕴含研究关系，但原题协作路线查到的Green–Ruzsa转移只写upper Minkowski结论，不是Hausdorff双向等价。不能把“全维Kakeya解决”标题或局部平滑声称不经数学转移直接作为422解答。本支只核冻结卡的定义及目标，未重新审其手稿、Lean或当前状态。",
+      "positions": {
+        "self": "冻结题面/形式化、人话、原文摘录、边界及meta.acceptance.criteria",
+        "other": "题面所有n≥2、Hausdorff满维；局部平滑声明与验证范围；meta.acceptance.criteria"
+      },
+      "note": "正文problems/002/QX-P-002359.text.md；meta problems/002/QX-P-002359.meta.json；commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev 54695442b4f631b2; text blob 9db0a402adb19d621b2f3b61ca2679e7e1069a01; meta blob 0967a21254e833c5154748cfc73f1634df3dbd0a。不提合并；如未来另有严格等价证明，按较小ID QX-P-000422 负责主卡及二审合并建议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001994",
+      "other_card_rev": "ce94070932e4310e",
+      "relation": "仅相似",
+      "reason": "1994冻结正文是圆环并/每个方向单位线段覆盖的面积或测度问题，且自身明确原包未写明具体面积目标，带圆形Kakeya与Marstrand备注。422要求每个整数公差的一段k-AP，最小化有限点集基数；几何圆环、面积/维数与整数组合对象不同。由于1994原问残缺，不能给其强弱版本作完整重建，但现有正文没有严格同题依据。",
+      "positions": {
+        "self": "冻结题面/形式化、人话、原文摘录、边界及meta.acceptance.criteria",
+        "other": "题面/人话圆环、方向及面积；其他记录的强弱版本；meta.acceptance.criteria"
+      },
+      "note": "正文problems/001/QX-P-001994.text.md；meta problems/001/QX-P-001994.meta.json；commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev ce94070932e4310e; text blob 29a825828e9745377e02e59cbf3099ced272ad24; meta blob 6e2af9d03f50d80e2da19cd86ad0c58b53b38125。不提合并；如未来另有严格等价证明，按较小ID QX-P-000422 负责主卡及二审合并建议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001663",
+      "other_card_rev": "79259b3b29b1fb8f",
+      "relation": "仅相似",
+      "reason": "1663要求每个倒数和发散的正整数集合都包含任意长AP，公差由存在量词自由选择，对象是一个无限集及其倒数和条件。422给定有限N,k，要为每个预先指定d=1..N找到一段AP并最小化点数；既不要求倒数和发散，也不是只问某个公差的AP存在。共享AP工具或量级估计不建立严格同题。",
+      "positions": {
+        "self": "冻结题面/形式化、人话、原文摘录、边界及meta.acceptance.criteria",
+        "other": "题面/人话中倒数和发散⇒任意长AP；meta.acceptance.criteria"
+      },
+      "note": "正文problems/001/QX-P-001663.text.md；meta problems/001/QX-P-001663.meta.json；commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev 79259b3b29b1fb8f; text blob 36cd1623181d22bbe13bbccb85a4244e712b8b76; meta blob 908218427e75c1f9a3cb8a1c1196b1eec75a05ea。不提合并；如未来另有严格等价证明，按较小ID QX-P-000422 负责主卡及二审合并建议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000023",
+      "other_card_rev": "19b42542a7fd4966",
+      "relation": "仅相似",
+      "reason": "23是Erdős160：在[N]上找最少颜色，使其中每一段4-AP都至少出现3种颜色。其全称量词遍历已经位于固定区间内的4-AP，优化的是颜色数；422的量词是对每个d存在一段AP，优化无界自然数域内选出的点数。全称染色限制与存在覆盖限制、目标量及允许集合都不同；不因4-AP可取k=4而认为是子问。",
+      "positions": {
+        "self": "冻结题面/形式化、人话、原文摘录、边界及meta.acceptance.criteria",
+        "other": "题面/形式化h(N)及所有4-AP的三色限制；meta.acceptance.criteria"
+      },
+      "note": "正文problems/000/QX-P-000023.text.md；meta problems/000/QX-P-000023.meta.json；commit 73290369a8dcc632e25e555aec525565ea6e08f8; card_rev 19b42542a7fd4966; text blob ce16facaca1e0af293aee6c6dbd64634a7de9f2d; meta blob c978d5e29ddb3cc6db0e8ac31196dd2619f190c5。不提合并；如未来另有严格等价证明，按较小ID QX-P-000023 负责主卡及二审合并建议。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补条件量词",
+      "field": "formal / acceptance",
+      "old": "仅问S_k(N)渐近或匹配上下界；形式式只写∀d≤N。",
+      "new": "保留原无区间限制的定义，明写k,N∈Z_{>0}，有限S⊂N，∀d∈{1,…,N}∃a_d使{a_d+jd:0≤j<k}⊂S；将主要猜想另列F_k(N)≥C_k N^(1−c_k)、c_k→0（常数依赖k）。",
+      "reason": "这是补足原Comments的验收目标与域，不是宣称现定义错误；不要改成每固定k都近线性。",
+      "small_case_check": "F1(N)=1，Fk(1)=k；F2(N)=Θ(sqrt N)。只写∀d≤N若域含负数/实数会变题，限定正整数消歧。",
+      "evidence_ids": [
+        "E422-ORIGIN-GREEN",
+        "E422-ORIGIN-GR",
+        "E422-ORIGIN-MATH"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版 / difficulty.note / k=2同族说明",
+      "old": "k=2即经典稀疏标尺；直接与池内A-220同题。",
+      "new": "k=2是无区间限制的整数差基：[1,N]⊂S−S。若稀疏尺卡额外要求刻度S⊂[0,N]，只可列相关变体，先核其正文定义再判重复。",
+      "reason": "不把长度N尺子的几何区间限制移植到原题。",
+      "small_case_check": "{0,1,4,6}覆盖差1..4而直径6；这只证可行域有别，不证最小基数一定有别。",
+      "evidence_ids": [
+        "E422-ORIGIN-MATH"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "proposer / first_published / sources",
+      "old": "Ben Green提出；2024 arXiv讲义；Lean贡献者列入提出者。",
+      "new": "整数AP版本追至Imre Z.Ruzsa, Sumsets, EMS2005 Conj4.2（原条款本轮未得，由其联署GR2017/2019直接回溯）；Green清单是重述。算术投影谱系由Katz–Tao至少2001预印本p3直接可核，正式2002；1999为更早部分界限。",
+      "reason": "区分原数学提出、后来的等价化/清单收录和形式化贡献；作者当前网页PDF不应无标识称arXiv2024原稿。",
+      "evidence_ids": [
+        "E422-ORIGIN-RUZSA2005",
+        "E422-ORIGIN-GR-V1",
+        "E422-ORIGIN-KT2001",
+        "E422-ORIGIN-KT1999"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果 / acceptance.partial",
+      "new": "加入k=2已知Theta(sqrt N)、经典k=3下界与GR等价定理；分别标明这些不解决一般幂指数趋1猜想。精确常数/固定k最优指数与主猜想另列子问。",
+      "reason": "避免要求把已知k=2粗数量级重新当新问题，也避免以特例当全解。",
+      "evidence_ids": [
+        "E422-ORIGIN-MATH",
+        "E422-ORIGIN-KT1999",
+        "E422-ORIGIN-GR"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "原文摘录 / informal_status.evidence",
+      "new": "原文引用定位为Green当前PDF p20 Problem37及Comments；池内卡号与sparse-ruler括注应标作策展注释。开放状态只记录本轮实际覆盖与缺口，不以清单/Lean标签做confirmed证明。",
+      "reason": "原文没有池内A-220括注；实际数学状态需合并另外三路线。",
+      "evidence_ids": [
+        "E422-ORIGIN-GREEN"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "已知结果与进展 / k=3",
+      "new": "补Tomar Hexagon2611.00469v1固定三项下界声明与exact C；注明本轮单证书实跑PASS、概率语义和Lean核验缺口。",
+      "reason": "改善经典6/11的子问可能进展，不能用完整和差的1.4208代替restricted-pair指数。",
+      "evidence_ids": [
+        "E422-ACA-TOMAR",
+        "E422-ACA-TOMAR-BRIDGE"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "相关进展的适用范围",
+      "new": "区分公差覆盖、终点覆盖、随机命中、density-Kakeya、固定k与k=N^η；所有条件推论保留其前提。",
+      "reason": "相近标题的新作不能据标题当作本题的证明或反例。",
+      "evidence_ids": [
+        "E422-ACA-SPARSE",
+        "E422-ACA-HASH",
+        "E422-ACA-ZAMIR",
+        "E422-ACA-RANDOM",
+        "E422-ACA-PZ"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述/边界",
+      "new": "明确A为有限自然数集；每个整数1≤d≤N可分别选择起点a_d，A无预定直径限制。固定k渐近和k→∞的AK下界分开。",
+      "reason": "FC底层和原文scope均要求正差；有限枚举窗口必须经完整压缩论证。",
+      "evidence_ids": [
+        "E422-CODE-FC",
+        "E422-CODE-AIRR"
+      ],
+      "small_case_check": "N=0不要求任何正差，最小空集；N≥1,k=1最小1；N=1,k≥1最小k。已手核≤s点可压至[0,N(s−1)]，不会直接假定[0,(k−1)N]。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "代码/公开AI/小例",
+      "new": "补Tomar v4的C3b有理证书及ap_differences_pos_card_le_int端点，注明Python复跑通过、Lean未复跑；补AIRR小值声明的有限范围、缺失下界材料与两例上界核验。",
+      "reason": "新的k=3下界声明比只列旧11/6更及时，但有限小例/单个固定指数均不闭合一般渐近问题。",
+      "evidence_ids": [
+        "E422-CODE-TOMAR",
+        "E422-CODE-TOMAR-RERUN",
+        "E422-CODE-AIRR-ARTIFACTS",
+        "E422-CODE-WITNESSES"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text.形式化/边界与约定",
+      "new": "明确k,N为正整数，1≤d≤N，起点可依赖d；S为自然数中的有限集合且无额外上界。含k项AP不排除继续延长。原题的具体c_k/极限量词由原文路线补全，不可改成每个固定k都near-linear。",
+      "reason": "避免把区间限制或错误极限顺序写进题面；k2已有直接平方根构造。",
+      "evidence_ids": [
+        "E422-DUP-SELF",
+        "E422-DUP-K12",
+        "E422-DUP-MODELS"
+      ],
+      "small_case_check": "N≥1时F1=1，F2=Theta(sqrt N)；N=0若允许则真空条件给空集；k≥3限制S⊆[0,N]导致无可行解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "card_text.k=2稀疏标尺类比 / card_metadata.difficulty.note",
+      "old": "k=2即池内A-220稀疏标尺常数。",
+      "new": "k=2是无长度上界的差基问题：每个1..N是某两点之差。它与固定尺长N的complete sparse ruler相关，但不能省略S⊆[0,N]与否。A-220对应26，该卡本身的主式与端点说明需分开读。",
+      "reason": "仅同属刻度/差覆盖不足以判同题；26即使按无界主式读，也只问k2的极限常数。",
+      "evidence_ids": [
+        "E422-DUP-READSET",
+        "E422-DUP-MODELS"
+      ],
+      "small_case_check": "N4的最优无界差基{0,2,5,6}不含N且跨度>N；不据此声称U(4)≠R(4)。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "card_text.边界基线",
+      "new": "可加入独立初等基线F1(N)=1及ceil((1+sqrt(1+8N))/2)≤F2(N)≤2ceil(sqrt N)，仅说明k2为平方根阶，不确定其最佳常数或k≥3渐近。",
+      "reason": "把已可自证的退化情形与全家族核心问题区分，避免把小参数验证冒充原问解决。",
+      "evidence_ids": [
+        "E422-DUP-K12",
+        "E422-DUP-FINITE"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "相关进展与AI声明",
+      "new": "加入AlphaEvolve 2511.02864v3 p41 Problem6.30的固定斜率熵指数构造下界及作者实验链接；明确不是Green37全解，也不是任意斜率AK γ上界改进。公开代码只做静态检查，数值证书待复验。",
+      "reason": "第三方概述“arithmetic Kakeya刷新纪录”遗漏量与方向，须回到原文按三/四输入斜率分别记。",
+      "evidence_ids": [
+        "E422-ALPHA-PAPER",
+        "E422-ALPHA-REPO",
+        "E422-ALPHA-SCOPE"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "card_text.已知结果与进展/相关公开证明",
+      "new": "记录Farnamfar arXiv2611.19594v1的C3b上界及整数F3转移，明确作者、官方版本、最强record证书与companion差别、关键数学核对和本轮代码复跑范围；不继续把Tomar称为当前检得最强上界。",
+      "reason": "该稿上界数值严格更小且整数属于适用群；不将固定k3进展升级为全k原猜想解决。",
+      "evidence_ids": [
+        "E422-NEWRECORD-VERSION",
+        "E422-NEWRECORD-UPPER",
+        "E422-NEWRECORD-MATH",
+        "E422-NEWRECORD-TRANSFER"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "最新k=3下界/公开AI证书",
+      "new": "在Tomar C≈1.8272962之后补Farnamfar arXiv2611.19594v1更强C*=209357544569848128/114631769327023765；其官方record证书在本轮strict exact/domain检查通过。保留完整数学/形式化独立验证边界。",
+      "reason": "不能把Tomar称为截至本轮最强已找到纪录；新纪录的原始证书已实际取得且与纸面常数一致，但仍仅固定k=3下界进展。",
+      "evidence_ids": [
+        "E422-CODE-FARNAMFAR-SOURCE",
+        "E422-CODE-FARNAMFAR-RERUN"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "novelty / informal_status / search_coverage",
+      "old": "沿用novelty.card_rev=2ca4e1c0506626d6及清单、FC open标签，当前卡rev=e7e2074f7cc3dd3d。",
+      "new": "当前版本记录部分进展、逐题粗查有缺口；精确Fk定义保留，补主猜想量词、历史出处、经典结果与两份2026 k=3新声明及实际复验层级。取消仅凭旧版标签推导confirmed的理由；任何数学结案或合并仍需二审。",
+      "reason": "旧内部查新rev不匹配，且原标签不能覆盖新的有限范围声明、代码语义和模型差别。",
+      "evidence_ids": [
+        "E422-ORIGIN-GREEN",
+        "E422-CODE-FC",
+        "E422-ACA-TOMAR",
+        "E422-NEWRECORD-VERSION",
+        "E422-NEWRECORD-UPPER",
+        "E422-NEWRECORD-MATH",
+        "E422-NEWRECORD-TRANSFER",
+        "E422-CODE-FARNAMFAR-SOURCE",
+        "E422-CODE-FARNAMFAR-STATIC",
+        "E422-CODE-FARNAMFAR-RERUN"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "duplicates / merge",
+      "new": "与冻结全库召回的7候选未确认严格同题；本题保持独立。A-220=QX-P-000026的k=2常数问及其无界/固定端点歧义单独记录。",
+      "reason": "同一问题族、特例、一个方向的条件推论均不足以直接合并。",
+      "evidence_ids": [
+        "E422-DUP-SELF",
+        "E422-DUP-READSET",
+        "E422-DUP-K12",
+        "E422-DUP-MODELS",
+        "E422-DUP-FINITE",
+        "E422-DUP-MODULAR"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {
+        "card_action": "no_change"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "EMS2005 Sumsets原章订阅墙；原条款只由作者联署2017/2019论文精确回溯。",
+      "next_step": "若要最终确立最早逐字题面，取得合法可读2005章节Conjecture4.2并定位页码；目前不要声称该章全文已审。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "只审GR pp2–9及正式对应陈述/桥接，未逐步复核全部五版本等价证明；正式与v1编号、熵量词不同。",
+      "next_step": "正式采用Conj1.1/1.3及Thm1.6，引用熵版必须保持∀ε∃slopes∀随机变量；若用于新全解，补审所实际依赖的全部转移链。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "原题出处支线没有承担完整2026新文献/撤稿扫描。",
+      "next_step": "与主审学术路线合并确定本题状态；任何新Euclidean某一维结果都需另证转移，不自动解决算术Kakeya。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "无界差基与有界长度N稀疏尺的名称可能混用，冻结卡同族注释不是严格等价证据。",
+      "next_step": "按候选自身量词/所在区间核对，保留边界歧义；不要仅凭k=2/sparse ruler标题自动合并。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Tomar新输入已核关键桥和单证书，未独立完成全部熵不等式概率语义或生成Lean传递依赖。",
+      "next_step": "二审将论文三copy配置、EL/closure及非Shannon递归证明逐项对齐到证书；如需形式化验收，在固定Lean/Mathlib版本复跑并导出AP主端点axioms。不要重复本轮已成功的单证书检查冒充新核验。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "新相关论文多数只核相关定理与转移；搜索范围不保证全数据库穷尽。",
+      "next_step": "若有后来声明，先对齐Fk的无界集合定义、固定k极限顺序及完整输入；对2609.02041等邻题，只有取得明确新桥时才升级范围。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮Tomar只复跑一个作者标准库有理证书checker；缺Lean/lake，Rows/Ids与Mathlib完整传递closure未审。",
+      "next_step": "后续可在固定v4工具链检查#print axioms并回放完整目标，或独立审各熵规则/复制构造；保留当前Python复跑层级，不声称已独立验证全稿。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "AIRR固定源码树和releasezip均缺g37模型/JSON/DRUP，作者exit0日志不足复核下界。",
+      "next_step": "若要采用精确N≤17表，取得缺失的CNF、DRUP、encoder和固定checker；尤其N11..17原稿本就无独立证书。本轮只采用两例可直接验证上界，不需要为本题全局结论重跑无界搜索。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "GitHub/top20和网页索引不是全站穷尽；OAI邻题仅目录范围排除，ULAM未独立审全稿。",
+      "next_step": "将查询覆盖边界保留；若未来出现同题完整声明，优先取固定正文和精确量词，不从几何Kakeya全解或有限小例倒推本题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "全索引四组召回及7候选全文，非全2469正文穷尽；26的模型说明有冲突。",
+      "next_step": "当前不合并。若未来拟把26作为k2主卡，先以其原出处明确有界/无界定义及目标；严格同题才按较小ID负责二审合并。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "本支仅从协作原题路线得知Green–Ruzsa的upper Minkowski单向转移，未独立读取/重证该段；几何Kakeya候选旧进展未在此认证。",
+      "next_step": "最终回执采用原题路线的正式出处与精确量词，不将upper Minkowski转移升级为lower Minkowski/Hausdorff双向等价，也不把几何Kakeya公开解决声称直接移作算术问题的解答。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮两个公开notebook未见最终记录矩阵或保存输出，主链接Verification cell还有原样语法阻碍。",
+      "next_step": "若要把1.668及第8小数位下界升级为本轮独立确证，定位作者实际最终联合分布/精确证书和修正版验证器，再用有理概率及对数区间验证；不要把示例优化代码等同精确证书。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "p41引用的Tao固定三输入/变化输出复杂度证明未在本轮完整审核；已另取得并检查Farnamfar的2026新纪录稿，不再把这份新稿列为未取得。",
+      "next_step": "如需升级Tao这一附属子问，直接核原文定义及完整证明；仍须区分固定R/变化R，不把其复杂度结果当完整AK解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本支仅核指定数学链；所有k的核心猜想未由固定指数解决。",
+      "next_step": "二审完整概率语义及checker实现，或运行独立extended checker/形式化链；保留本轮最强record的strict实跑事实和未复验部分，不混同较弱companion或全Green37结案。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "独立环境复跑的是作者一个strict exact/domain实现；并未独立重写或形式化验证全部概率、closure和lattice规则，未跑第二checker/负控。",
+      "next_step": "若需提升至全面独立验证层级，在固定v1数据上审核完整语义信任链，或复跑独立实现/导出形式化证明；保留当前源包SHA和完整运行receipt，勿再把较弱companion混入最强C*。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "e7e2074f7cc3dd3d",
+      "codes": {}
+    }
+  ]
+}

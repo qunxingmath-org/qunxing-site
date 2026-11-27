@@ -1,0 +1,2409 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000967",
+  "card_rev": "33778b44caa8e4e7",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "群生成集和幺半群生成集的精确定义",
+          "value": "statement_error",
+          "note": "这是抽象群问题，不是拓扑生成问题。令X^*=∪_(k≥0)X^k，其中X^0={1}。群生成条件是G=(X∪X^−1)^*，正词/幺半群生成条件是G=X^*，后者不能仅由前者假定。记WG(G)：∀X⊂G，若〈X〉_grp=G，则∃n<∞使G=(X∪X^−1∪{1})^n。记WM(G)：∀X⊂G，若X^*=G，则∃n<∞使G=(X∪{1})^n。21.16问∃G，WG(G)且¬WM(G)，即存在一个真正正词生成集使其所有元素各有有限正词表达，但这些最短长度没有统一上界。卡人话共用“设H由X生成”容易漏掉第二种生成要求，应补明；核心源问本身清楚。"
+        },
+        {
+          "subquestion": "量词与空字边界",
+          "value": "partial",
+          "note": "两种有限宽都为∀相应生成集X∃n_X∀g，而非∃n∀X∀g。反例要求某一个固定的正词生成集X满足∀n∃g，ℓ_X^+(g)>n；仅给一列X_j且其有限直径趋于∞不够。允许空字使ℓ(1)=0，X=∅可以生成平凡群，两种宽度均0；加入1不改变最短词长。用(X∪{1})^n表示长度≤n，避免把恰好n个字母引起的奇偶或单位元问题误当反例。"
+        },
+        {
+          "subquestion": "WM⇒WG及固定生成集的uniform inverse length桥",
+          "value": "partial",
+          "note": "WM⇒WG：若X群生成，Y=X∪X^−1正词生成G；Y的正词长度恰为X的群词长度。反向只在额外可核条件下成立。固定一个正词生成集X，设d=sup_g ℓ_X^±(g)<∞，以及M=sup_(x∈X)ℓ_X^+(x^−1)。若M有限，把一个最短群词中的每个逆字母换成相应正词，得ℓ_X^+(g)≤d·max(1,M)，故正宽有限；若正宽为B则M≤B。因此在WG前提下，对这个X，正宽有限当且仅当生成元的逆元具有统一正词长度界。X正词生成仅保证每个逆元长度各自有限，不能交换成sup有限。"
+        },
+        {
+          "subquestion": "合法固定生成集例揭示局部宽度不等于全局有限宽",
+          "value": "partial",
+          "note": "本轮手核：G=(Z,+)，X={1}∪{−m:m≥1}。它确实作为幺半群生成Z：负数本身在X，正k是k个1之和。X∪(−X)包含所有非零整数，所以相对X的群宽恰为1。但每个X字母≤1，要以r个字母之和得到正k必须r≥k；k个1达到此界，故ℓ_X^+(k)=k，正宽无限，且ℓ_X^+((−m)^−1)=m无统一界。这个例子不是21.16反例，因为Z对另一个群生成集{1}的群词长度为|k|、群宽无限，所以Z不满足WG。相反，仅用X={1}说负数无正词表达，是把不正词生成G的集合当成合法输入，也不能用于反驳WM。"
+        },
+        {
+          "subquestion": "原文(3)+(4)⇒WM的独立复核与候选的必要条件",
+          "value": "partial",
+          "note": "设G满足WG，并满足(3)：任何G=∪_i H_i的ω递增子群链都在有限阶段等于G。对任意正词生成集U，令V_i=(U∪{1})^i∩(U^−1∪{1})^i。V_i含1、逆闭、递增且并为G：任意g与g^−1各有有限U正词长度，取其最大值。于是H_i=〈V_i〉是递增子群链、并为G，(3)给某j的H_j=G；WG再给r使G=(V_j)^r，因为V_j逆闭；所以G⊂(U∪{1})^(jr)，WM成立。反过来若WG且有正宽无限的U，则这个构造的每个H_i都必须真，否则相同论证给有限正宽。因此任何本题正例都失败(3)，并给一条可数真子群链覆盖G。这里(3)是排除某些候选的充分附加条件，不是题目原有条件；不得将题中WG直接等同于通常含(3)+(4)的strongly bounded/Bergman强性质。"
+        },
+        {
+          "subquestion": "有限群和无限有限生成群边界；不能自动排除全部可数群",
+          "value": "partial",
+          "note": "有限群同时满足WG和WM。对任意正词生成集及任意非单位g，最短正词的各前缀积互不相同，否则删去两个相等前缀之间的循环可缩短，因此长度≤|G|−1。若G无限且作为抽象群有限生成，取有限生成集Y，长度≤n的群词只有有限多个，不能覆盖G，所以WG失败。对可数群，(3)等价有限生成：有限生成元必落进同一链成员；若可数且非fg，则枚举元素生成的有限生成真子群链覆盖G。然而这只说明可数非fg群失败(3)，不能推出其失败WG。原Bergman另列Question8就是询问可数无限WG群；本轮未独立裁定该邻问的2026状态，不以可数性排除主问所有可能候选。"
+        },
+        {
+          "subquestion": "对称生成集和有界指数排除范围",
+          "value": "partial",
+          "note": "若X=X^−1，则它的群词与正词最短长度相同；用X∪X^−1替换原X会把缺少的逆元人为赋为长度1，不能据此控制原X的正词宽度。若G有统一有限幂指数e≥2，即∀g,g^e=1，则任意生成元x满足x^−1=x^(e−1)。任意群生成集此时也正词生成，且ℓ_X^+≤(e−1)ℓ_X^±；故WG⇒WM，有界指数群不可能是主问正例。e=1是平凡群。同样，只要具体X的元素阶统一有界，桥接成立。若G仅为扭群但元素阶无统一界，每个逆元仍可各自写成正词，但上述方法没有统一界；不能据此判所有扭群均排除，也不能由元素阶无界反推最短逆元正词长度无界，因为其他生成元可提供更短表达。"
+        },
+        {
+          "subquestion": "原始出处与题卡术语修复的范围",
+          "value": "statement_error",
+          "note": "亲读原作者校样，题目来自Generating Infinite Symmetric Groups的Question9，正式刊发Bull.London Math.Soc.38(2006),429–440，正式DOI10.1112/S0024609305018308（学术路线核原刊）；该项核查所读校样的旧DOI10.1112/S0024609305005254不得用作正式书目。不是本卡所写Commun.Algebra2008 Q9/10。原Q9还问在WG且非(3)类别中有无满足WM的群；21.16只提不满足WM的一支。上述定义补足与条件性排除不构成主问全称否定；本轮没有构造出同时满足WG及¬WM的群。"
+        },
+        {
+          "subquestion": "已知排除类：群有限宽且不存在可数真子群升链覆盖",
+          "value": "partial",
+          "note": "对此附加条件类，Bergman证明幺半群也有限宽。给monoid生成集U，令Ui=(U∪{1})^i∩(U^(-1)∪{1})^i，则Ui逆闭且并为G；共尾性条件使某〈Uj〉=G；群有限宽给G=(Uj)^n⊆(U∪{1})^(jn)。本轮关键短证明核过，未把附加条件删除。"
+        },
+        {
+          "subquestion": "本题候选与strongly bounded条件的关系",
+          "value": "partial",
+          "note": "真正候选必须群有限宽但可被可数递增真子群链覆盖，故不可能strongly bounded。反之Cayley bounded加countable cofinality本身尚未提供monoid无限宽见证；不能把Khelif存在弱条件实例的公告当作本题全解。"
+        },
+        {
+          "subquestion": "对称群Sym(Ω)是否提供两种宽度分离例",
+          "value": "partial",
+          "note": "此行只否定这一候选类，不否定主存在问题：BergmanTheorem6已证明任意无限Ω的全对称群关于每个相应群/monoid生成集都有限宽。全体生成集之间不必共享一个统一界，不影响上述结论。"
+        },
+        {
+          "subquestion": "原始年份、期刊和Q9/Q10的同一性",
+          "value": "statement_error",
+          "note": "书目错误不改变核心数学提问：最迟2004固定v1的Q10已有本题分支；2005v2及2006BLMS为Q9；2019Q15同题。Commun.Algebra2008与Q10p437均不是已核本题书目，其中p437来自邻Q16引1999MPCPS。"
+        },
+        {
+          "subquestion": "可数无限且可嵌入紧群的群能否作本题候选",
+          "value": "partial",
+          "note": "不能：Khelif定理（作者稿Thm2.8／固定arXivv2 Thm2.10）给该类非Cayley bounded，已失去本题第一条件。可取稠密紧度量包络；枚举Γ、用Dini选un∈〈γ0,…,γn〉使γ_(n+1)un^(-1)→1，得到紧对称生成集U；若Γ=U^k则Γ紧，Baire与可数无限矛盾。此构造和生成性归纳已核。"
+        },
+        {
+          "subquestion": "无限可解-by-有限群的候选范围",
+          "value": "partial",
+          "note": "任意基数的无限solvable-by-finite群都非Cayley bounded（Cor2.9／固定v2 Cor2.11），不是仅可数类。证明用派生列取得无限virtually abelian商，再用阿贝尔群可数商和有限共轭交取得可数无限商；Pontryagin可取忠实紧群嵌入，以Thm2.8排除。依赖已有阿贝尔对偶定理，本轮核归约与范围，不据此解决21.16。"
+        },
+        {
+          "subquestion": "可数无限剩余有限群这一直接子类",
+          "value": "partial",
+          "note": "独立直接推论：剩余有限群的典范映射到所有有限商的乘积是单射，该乘积紧；因此任何可数无限剩余有限群落入Thm2.8，不能有本题所需群有限宽。此推论不能删掉可数假设，也不排除全部可数非剩余有限群。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "none_found",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000967.text.md"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "review": "key_steps_checked"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "核心存在问与21.16相合；本轮限定四路线没有取得可确认的全称不存在性证明或完整分离例。已核Bergman原稿：群每生成集有限宽加无可数真子群升链覆盖⇒幺半群每生成集有限宽；因此候选须失败该共尾性条件。另手核有限/无限fg、有界指数和固定集反例边界，并核原稿对可嵌紧群的可数无限群及无限solvable-by-finite类的排除，均不覆盖全部群。书目确有误配，但不据此将核心问题判错或已解；2004/2005/2006/2019/2026版本分别定位。",
+      "evidence_ids": [
+        "R0967-CARD",
+        "R0967-K50",
+        "a0967_v2",
+        "Q967-M-E2",
+        "a0967_lw_khelif",
+        "E967-C-BUDDEN",
+        "E967-C-TRIAGE"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "群生成集和幺半群生成集的精确定义",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "这是抽象群问题，不是拓扑生成问题。令X^*=∪_(k≥0)X^k，其中X^0={1}。群生成条件是G=(X∪X^−1)^*，正词/幺半群生成条件是G=X^*，后者不能仅由前者假定。记WG(G)：∀X⊂G，若〈X〉_grp=G，则∃n<∞使G=(X∪X^−1∪{1})^n。记WM(G)：∀X⊂G，若X^*=G，则∃n<∞使G=(X∪{1})^n。21.16问∃G，WG(G)且¬WM(G)，即存在一个真正正词生成集使其所有元素各有有限正词表达，但这些最短长度没有统一上界。卡人话共用“设H由X生成”容易漏掉第二种生成要求，应补明；核心源问本身清楚。",
+      "evidence_ids": [
+        "Q967-M-E1",
+        "Q967-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "量词与空字边界",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "两种有限宽都为∀相应生成集X∃n_X∀g，而非∃n∀X∀g。反例要求某一个固定的正词生成集X满足∀n∃g，ℓ_X^+(g)>n；仅给一列X_j且其有限直径趋于∞不够。允许空字使ℓ(1)=0，X=∅可以生成平凡群，两种宽度均0；加入1不改变最短词长。用(X∪{1})^n表示长度≤n，避免把恰好n个字母引起的奇偶或单位元问题误当反例。",
+      "evidence_ids": [
+        "Q967-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "WM⇒WG及固定生成集的uniform inverse length桥",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "WM⇒WG：若X群生成，Y=X∪X^−1正词生成G；Y的正词长度恰为X的群词长度。反向只在额外可核条件下成立。固定一个正词生成集X，设d=sup_g ℓ_X^±(g)<∞，以及M=sup_(x∈X)ℓ_X^+(x^−1)。若M有限，把一个最短群词中的每个逆字母换成相应正词，得ℓ_X^+(g)≤d·max(1,M)，故正宽有限；若正宽为B则M≤B。因此在WG前提下，对这个X，正宽有限当且仅当生成元的逆元具有统一正词长度界。X正词生成仅保证每个逆元长度各自有限，不能交换成sup有限。",
+      "evidence_ids": [
+        "Q967-M-E1",
+        "Q967-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "合法固定生成集例揭示局部宽度不等于全局有限宽",
+      "math_status": "仅特例",
+      "scope_note": "本轮手核：G=(Z,+)，X={1}∪{−m:m≥1}。它确实作为幺半群生成Z：负数本身在X，正k是k个1之和。X∪(−X)包含所有非零整数，所以相对X的群宽恰为1。但每个X字母≤1，要以r个字母之和得到正k必须r≥k；k个1达到此界，故ℓ_X^+(k)=k，正宽无限，且ℓ_X^+((−m)^−1)=m无统一界。这个例子不是21.16反例，因为Z对另一个群生成集{1}的群词长度为|k|、群宽无限，所以Z不满足WG。相反，仅用X={1}说负数无正词表达，是把不正词生成G的集合当成合法输入，也不能用于反驳WM。",
+      "evidence_ids": [
+        "Q967-M-E1"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "原文(3)+(4)⇒WM的独立复核与候选的必要条件",
+      "math_status": "条件性结果",
+      "scope_note": "设G满足WG，并满足(3)：任何G=∪_i H_i的ω递增子群链都在有限阶段等于G。对任意正词生成集U，令V_i=(U∪{1})^i∩(U^−1∪{1})^i。V_i含1、逆闭、递增且并为G：任意g与g^−1各有有限U正词长度，取其最大值。于是H_i=〈V_i〉是递增子群链、并为G，(3)给某j的H_j=G；WG再给r使G=(V_j)^r，因为V_j逆闭；所以G⊂(U∪{1})^(jr)，WM成立。反过来若WG且有正宽无限的U，则这个构造的每个H_i都必须真，否则相同论证给有限正宽。因此任何本题正例都失败(3)，并给一条可数真子群链覆盖G。这里(3)是排除某些候选的充分附加条件，不是题目原有条件；不得将题中WG直接等同于通常含(3)+(4)的strongly bounded/Bergman强性质。",
+      "evidence_ids": [
+        "Q967-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限群和无限有限生成群边界；不能自动排除全部可数群",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "有限群同时满足WG和WM。对任意正词生成集及任意非单位g，最短正词的各前缀积互不相同，否则删去两个相等前缀之间的循环可缩短，因此长度≤|G|−1。若G无限且作为抽象群有限生成，取有限生成集Y，长度≤n的群词只有有限多个，不能覆盖G，所以WG失败。对可数群，(3)等价有限生成：有限生成元必落进同一链成员；若可数且非fg，则枚举元素生成的有限生成真子群链覆盖G。然而这只说明可数非fg群失败(3)，不能推出其失败WG。原Bergman另列Question8就是询问可数无限WG群；本轮未独立裁定该邻问的2026状态，不以可数性排除主问所有可能候选。",
+      "evidence_ids": [
+        "Q967-M-E1",
+        "Q967-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "对称生成集和有界指数排除范围",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "若X=X^−1，则它的群词与正词最短长度相同；用X∪X^−1替换原X会把缺少的逆元人为赋为长度1，不能据此控制原X的正词宽度。若G有统一有限幂指数e≥2，即∀g,g^e=1，则任意生成元x满足x^−1=x^(e−1)。任意群生成集此时也正词生成，且ℓ_X^+≤(e−1)ℓ_X^±；故WG⇒WM，有界指数群不可能是主问正例。e=1是平凡群。同样，只要具体X的元素阶统一有界，桥接成立。若G仅为扭群但元素阶无统一界，每个逆元仍可各自写成正词，但上述方法没有统一界；不能据此判所有扭群均排除，也不能由元素阶无界反推最短逆元正词长度无界，因为其他生成元可提供更短表达。",
+      "evidence_ids": [
+        "Q967-M-E1",
+        "Q967-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "原始出处与题卡术语修复的范围",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "亲读原作者校样，题目来自Generating Infinite Symmetric Groups的Question9，正式刊发Bull.London Math.Soc.38(2006),429–440，正式DOI10.1112/S0024609305018308（学术路线核原刊）；该项核查所读校样的旧DOI10.1112/S0024609305005254不得用作正式书目。不是本卡所写Commun.Algebra2008 Q9/10。原Q9还问在WG且非(3)类别中有无满足WM的群；21.16只提不满足WM的一支。上述定义补足与条件性排除不构成主问全称否定；本轮没有构造出同时满足WG及¬WM的群。",
+      "evidence_ids": [
+        "Q967-M-E1",
+        "Q967-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "已知排除类：群有限宽且不存在可数真子群升链覆盖",
+      "math_status": "条件性结果",
+      "scope_note": "对此附加条件类，Bergman证明幺半群也有限宽。给monoid生成集U，令Ui=(U∪{1})^i∩(U^(-1)∪{1})^i，则Ui逆闭且并为G；共尾性条件使某〈Uj〉=G；群有限宽给G=(Uj)^n⊆(U∪{1})^(jn)。本轮关键短证明核过，未把附加条件删除。",
+      "evidence_ids": [
+        "a0967_v2",
+        "a0967_galley"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "本题候选与strongly bounded条件的关系",
+      "math_status": "条件性结果",
+      "scope_note": "真正候选必须群有限宽但可被可数递增真子群链覆盖，故不可能strongly bounded。反之Cayley bounded加countable cofinality本身尚未提供monoid无限宽见证；不能把Khelif存在弱条件实例的公告当作本题全解。",
+      "evidence_ids": [
+        "a0967_v2",
+        "a0967_cornulier"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "对称群Sym(Ω)是否提供两种宽度分离例",
+      "math_status": "仅特例",
+      "scope_note": "此行只否定这一候选类，不否定主存在问题：BergmanTheorem6已证明任意无限Ω的全对称群关于每个相应群/monoid生成集都有限宽。全体生成集之间不必共享一个统一界，不影响上述结论。",
+      "evidence_ids": [
+        "a0967_v2",
+        "a0967_galley"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "原始年份、期刊和Q9/Q10的同一性",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "书目错误不改变核心数学提问：最迟2004固定v1的Q10已有本题分支；2005v2及2006BLMS为Q9；2019Q15同题。Commun.Algebra2008与Q10p437均不是已核本题书目，其中p437来自邻Q16引1999MPCPS。",
+      "evidence_ids": [
+        "a0967_v1",
+        "a0967_journal",
+        "a0967_2019"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "可数无限且可嵌入紧群的群能否作本题候选",
+      "math_status": "条件性结果",
+      "scope_note": "不能：Khelif定理（作者稿Thm2.8／固定arXivv2 Thm2.10）给该类非Cayley bounded，已失去本题第一条件。可取稠密紧度量包络；枚举Γ、用Dini选un∈〈γ0,…,γn〉使γ_(n+1)un^(-1)→1，得到紧对称生成集U；若Γ=U^k则Γ紧，Baire与可数无限矛盾。此构造和生成性归纳已核。",
+      "evidence_ids": [
+        "a0967_lw_khelif"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "无限可解-by-有限群的候选范围",
+      "math_status": "条件性结果",
+      "scope_note": "任意基数的无限solvable-by-finite群都非Cayley bounded（Cor2.9／固定v2 Cor2.11），不是仅可数类。证明用派生列取得无限virtually abelian商，再用阿贝尔群可数商和有限共轭交取得可数无限商；Pontryagin可取忠实紧群嵌入，以Thm2.8排除。依赖已有阿贝尔对偶定理，本轮核归约与范围，不据此解决21.16。",
+      "evidence_ids": [
+        "a0967_lw_khelif"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "可数无限剩余有限群这一直接子类",
+      "math_status": "条件性结果",
+      "scope_note": "独立直接推论：剩余有限群的典范映射到所有有限商的乘积是单射，该乘积紧；因此任何可数无限剩余有限群落入Thm2.8，不能有本题所需群有限宽。此推论不能删掉可数假设，也不排除全部可数非剩余有限群。",
+      "evidence_ids": [
+        "a0967_lw_khelif"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "原包与固定GitHub正文/meta",
+      "query": "读取任务；fetch_file problems/000/QX-P-000967.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "当前33778b44caa8e4e7；textblob aec4d969747ddefa4d37aceaf8086363e0db8568；metablob173e1662095a7644f4162211e6a3f4c3e9fb4d。当前题面Commun.Algebra2008 Q9/10与人话/原文BLMS2006 Q9互相冲突；旧novelty 1acd19ea056585fd不算本轮回执，空legacy查询无独立证据。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000967.text.md",
+      "request_id": "QX-R3-11-000967-root-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Kourovka官方固定v50全文",
+      "query": "复用已取原始PDF，全文检索21.16并读取定义和完整条目",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "SHA256 b7027dd8e29cc5b187304f4bb0f3bddb30839089c44967f5fadaa4c0e5e60dc7。原题明确∀生成集∃有限界，不要求共用上界；群和幺半群生成各按其范畴。指向BLMS38(2006)429–440 Q9。未见此版条目解题标注只是编目观察。",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "21.16，印刷p181",
+      "request_id": "QX-R3-11-000967-root-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "Bergman \"finite width\" \"monoids\" \"Question 9\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中TheoremDB P3378及同题别名、Kourovka旧版索引、escholarship Bergman2006收录。TheoremDB的泛用research contributions文本不证明有解；另有21.16价格/体育等噪声按对象排除。原始全文随后取阅。",
+      "request_id": "QX-R3-11-000967-root-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"21.16\" \"Bergman\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中TheoremDB P3378及同题别名、Kourovka旧版索引、escholarship Bergman2006收录。TheoremDB的泛用research contributions文本不证明有解；另有21.16价格/体育等噪声按对象排除。原始全文随后取阅。",
+      "request_id": "QX-R3-11-000967-root-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1；首项recency365",
+      "query": "\"finite width\" \"monoid\" \"Bergman\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Bergman、Cornulier原稿、Tolstykh2004/2006无限维GL与相对自由群Aut有限宽结果。后两项只读返回摘要，不把群有限宽子类结果、现代strongly bounded定义或新抓取日期当本题新解。Cornulier作者原稿由学术路线全文复核。",
+      "request_id": "QX-R3-11-000967-root-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1；首项recency365",
+      "query": "\"Bergman\" \"Question 9\" monoid counterexample",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Bergman、Cornulier原稿、Tolstykh2004/2006无限维GL与相对自由群Aut有限宽结果。后两项只读返回摘要，不把群有限宽子类结果、现代strongly bounded定义或新抓取日期当本题新解。Cornulier作者原稿由学术路线全文复核。",
+      "request_id": "QX-R3-11-000967-root-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1；首项recency365",
+      "query": "\"Cayley bounded\" \"countable\" group",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Bergman、Cornulier原稿、Tolstykh2004/2006无限维GL与相对自由群Aut有限宽结果。后两项只读返回摘要，不把群有限宽子类结果、现代strongly bounded定义或新抓取日期当本题新解。Cornulier作者原稿由学术路线全文复核。",
+      "request_id": "QX-R3-11-000967-root-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web open DOI",
+      "query": "open https://doi.org/10.1515/jgth-2016-0022",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "返回Internal Error不可访问；随后取得作者原稿并补足下述定义与定理读取，未把DOI入口失败当文献不存在。",
+      "url": "https://doi.org/10.1515/jgth-2016-0022",
+      "request_id": "QX-R3-11-000967-root-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Le Maître–Wesolek作者PDF",
+      "query": "open https://flemaitre.perso.math.cnrs.fr/travaux/stronglyjustinfinite.pdf；find Theorem 2.8并读Definition2.4、Prop2.7、Thm2.8、Cor2.9及证明",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "主审已亲读原稿pp5–6：Thm2.8仅排可数无限且可抽象嵌入紧群的群；未要求子群闭，也不覆盖所有可数群。Cor2.9排所有无限solvable-by-finite。Thm2.8构造趋近1的差分生成元，若Cayley有限则群是有限次紧集乘积而紧，可数无限紧群矛盾；核定义为每个对称生成集各有限界。Cor2.9降至可数abelian-by-finite并嵌紧群，未把其有限商约化当任意群都能约化。只核这些必要限制，未重证全篇branch群分类。",
+      "url": "https://flemaitre.perso.math.cnrs.fr/travaux/stronglyjustinfinite.pdf",
+      "locator": "§2.2 pp5–6",
+      "request_id": "QX-R3-11-000967-root-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Bergman作者原始PDF及已取本地全文",
+      "query": "open Sym_Omega:1.lms.pdf；读取Theorem5/6和§3 (3)(4)、Question8、Q9前证明及Question9",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "最初web返回仅首页至Theorem6附近；随后本地已下载全文rg与sed直接读§3 pp5–7，不把一次截断结果冒充全文。Q9只需在(4)且非(3)类中问，因为作者已证(3)+(4)⇒monoid(4)。Question8明确单列可数无限(4)群；不能把strongly bounded等同(4)而排除全部可数无限群。所取是附proof delivery form校样，页首占位卷页/DOI不作正式元数据。",
+      "url": "https://math.berkeley.edu/~gbergman/papers/Sym_Omega:1.lms.pdf",
+      "locator": "§3 pp5–7；Q8/Q9；Q9前Ui交集证明",
+      "request_id": "QX-R3-11-000967-root-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003937〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中：QX-P-000967,QX-P-001541；随后完整读取4组候选双卡并比较正文定义、参数和验收，不凭宽度/幺半群/Bergman词汇合并。",
+      "result_count": 2,
+      "request_id": "QX-R3-11-000967-root-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003938〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中：QX-P-000578,QX-P-000954,QX-P-000955,QX-P-000967；随后完整读取4组候选双卡并比较正文定义、参数和验收，不凭宽度/幺半群/Bergman词汇合并。",
+      "result_count": 4,
+      "request_id": "QX-R3-11-000967-root-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/000/QX-P-000578.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；读取题面/人话/原文与meta验收",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "other_card_rev=29614e1be5f9cc19；textblobe23ebd3f7ac84385e624d1255c65bf9a93f84043；metablob06db3b697de11449c0cff5f5799bfb7b9b81c4c1。955首次合并输出meta中段截断，随后单独读取sources/novelty/acceptance；未把截断文字当已读。候选只用于本题查重。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000578.text.md",
+      "request_id": "QX-R3-11-000967-root-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/000/QX-P-000954.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；读取题面/人话/原文与meta验收",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "other_card_rev=a75acad61af0c4ef；textblob936e0409345ec1046795504dad5afe1245cd6346；metablobab2b00e67ece54681f1e11325d838cc08059aad5。955首次合并输出meta中段截断，随后单独读取sources/novelty/acceptance；未把截断文字当已读。候选只用于本题查重。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000954.text.md",
+      "request_id": "QX-R3-11-000967-root-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/000/QX-P-000955.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；读取题面/人话/原文与meta验收",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "other_card_rev=ac16b60403c28217；textblobb9404490f224a05adbafc41f066aa4fc1243f9d0；metablobfd6b9e83cd24903402aa998177f92bbb18e63d0f。955首次合并输出meta中段截断，随后单独读取sources/novelty/acceptance；未把截断文字当已读。候选只用于本题查重。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000955.text.md",
+      "request_id": "QX-R3-11-000967-root-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选双卡",
+      "query": "fetch_file problems/001/QX-P-001541.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；读取题面/人话/原文与meta验收",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "other_card_rev=f6e5cb122131b8dc；textblobcf6fb56f1512f86d02531550e74060d580a022b7；metablob74406a9e2e95490e6e7565420817c887dabd343d。955首次合并输出meta中段截断，随后单独读取sources/novelty/acceptance；未把截断文字当已读。候选只用于本题查重。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001541.text.md",
+      "request_id": "QX-R3-11-000967-root-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地原题包/固定Kourovka",
+      "query": "读取work_000967_sources/task.json及kourovka_v50.txt Problem21.16、Preface",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "21.16 p181；Preface p4",
+      "note": "本题rev33778b44caa8e4e7；内嵌novelty.card_rev=1acd19ea056585fd属旧记录。21.16明确BLMS38(2006)429–440 Q9。",
+      "request_id": "QX-R3-11-000967-academic-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "Bergman \"Generating infinite symmetric groups\" \"Question 9\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位作者原PDF、作者2019/2026问题清单和正式原刊元信息；不采用二手目录OPEN标签作数学证明。",
+      "request_id": "QX-R3-11-000967-academic-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"Bergman\" \"finite width\" \"monoids\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位作者原PDF、作者2019/2026问题清单和正式原刊元信息；不采用二手目录OPEN标签作数学证明。",
+      "request_id": "QX-R3-11-000967-academic-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web system1",
+      "query": "\"Some questions for possible submission to the next Kourovka Notebook\" Bergman",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位作者原PDF、作者2019/2026问题清单和正式原刊元信息；不采用二手目录OPEN标签作数学证明。",
+      "request_id": "QX-R3-11-000967-academic-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Bergman 作者主页",
+      "query": "open https://math.berkeley.edu/~gbergman/papers/Sym_Omega%3A1.lms.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.berkeley.edu/~gbergman/papers/Sym_Omega:1.lms.pdf",
+      "locator": "§3，校样内页5–7；Question9；Theorem6",
+      "note": "〔原始工具引用已私有留存〕。13页包括proof delivery form，正文12页；是galley而非最终卷页定稿，首页DOI和卷期不能当最终元信息。",
+      "request_id": "QX-R3-11-000967-academic-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Bergman 作者主页",
+      "query": "open https://math.berkeley.edu/~gbergman/papers/unpub/418.preKourovka.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.berkeley.edu/~gbergman/papers/unpub/418.preKourovka.pdf",
+      "locator": "2026更新稿Q15，p3",
+      "note": "〔原始工具引用已私有留存〕；文首TEXed2026-08-07；Q15已替换为21.16引用，故进一步查2019固定v1。",
+      "request_id": "QX-R3-11-000967-academic-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv 官方",
+      "query": "open https://arxiv.org/abs/1904.04298",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/1904.04298",
+      "locator": "Submission history",
+      "note": "〔原始工具引用已私有留存〕；v1=2019-04-08，当前v2=2026-08-07。作者主页目录称update2026-08-11，与arXiv版本日期分别记录。",
+      "request_id": "QX-R3-11-000967-academic-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Generating infinite symmetric groups\" arxiv",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中math/0401304、BLMS原刊及作者目录，未取得支持本题Commun.Algebra2008 Q9/10 p437的原文；后续2019参考文献定位到邻题误配。",
+      "request_id": "QX-R3-11-000967-academic-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"finite width\" \"monoids\" Bergman solution 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中math/0401304、BLMS原刊及作者目录，未取得支持本题Commun.Algebra2008 Q9/10 p437的原文；后续2019参考文献定位到邻题误配。",
+      "request_id": "QX-R3-11-000967-academic-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Bergman\" \"Communications in Algebra\" \"2008\" \"437\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中math/0401304、BLMS原刊及作者目录，未取得支持本题Commun.Algebra2008 Q9/10 p437的原文；后续2019参考文献定位到邻题误配。",
+      "request_id": "QX-R3-11-000967-academic-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv 官方",
+      "query": "open https://arxiv.org/abs/math/0401304",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/math/0401304",
+      "locator": "Submission history",
+      "note": "〔原始工具引用已私有留存〕；v1=2004-01-22，v2=2005-05-27，后者为当前arXiv版本。",
+      "request_id": "QX-R3-11-000967-academic-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv 官方/web",
+      "query": "open https://arxiv.org/pdf/1904.04298v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/1904.04298v1",
+      "note": "DisabledError，〔原始工具引用已私有留存〕；随后urllib已取得固定全文，缺口补足。",
+      "request_id": "QX-R3-11-000967-academic-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Cambridge 原刊",
+      "query": "open原刊GENERATING INFINITE SYMMETRIC GROUPS页面并find 429",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-london-mathematical-society/article/abs/generating-infinite-symmetric-groups/1CABB718D15D014610C65814AA1E8A69",
+      "locator": "Article information与Abstract",
+      "note": "〔原始工具引用已私有留存〕/〔原始工具引用已私有留存〕。实际读元信息：online2006-05-31，38(3),June2006,429–440，DOI10.1112/S0024609305018308。未取得付费出版定稿全文，全文采用作者校样和固定arXiv。",
+      "request_id": "QX-R3-11-000967-academic-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "作者原文/find",
+      "query": "查找Question9、条件(3)，并读取§3对应上下文；在2026问题清单find21.16",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.berkeley.edu/~gbergman/papers/Sym_Omega:1.lms.pdf",
+      "locator": "校样pp5–7：条件(3)/(4)、Question9前证明、Lemma10",
+      "note": "〔原始工具引用已私有留存〕–5。已核群有限宽与共尾性分别定义；Q9本有两个分支，本卡只取不满足幺半群有限宽的一支。",
+      "request_id": "QX-R3-11-000967-academic-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"group\" \"finite width\" \"monoid\" Bergman solution; recency=1095",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际P0定向检索。命中作者版本与bibliographic updates、题簿和二手题库；本次未取得同题完整新证明/反例/撤回声明。",
+      "request_id": "QX-R3-11-000967-academic-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Bergman\" \"Question 9\" monoid solved counterexample",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际P0定向检索。命中作者版本与bibliographic updates、题簿和二手题库；本次未取得同题完整新证明/反例/撤回声明。",
+      "request_id": "QX-R3-11-000967-academic-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"21.16\" \"Bergman\" proof solution",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际P0定向检索。命中作者版本与bibliographic updates、题簿和二手题库；本次未取得同题完整新证明/反例/撤回声明。",
+      "request_id": "QX-R3-11-000967-academic-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Generating infinite symmetric groups\" corrections afterthoughts",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际P0定向检索。命中作者版本与bibliographic updates、题簿和二手题库；本次未取得同题完整新证明/反例/撤回声明。",
+      "request_id": "QX-R3-11-000967-academic-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Bergman 作者主页",
+      "query": "open https://math.berkeley.edu/~gbergman/papers/index.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://math.berkeley.edu/~gbergman/papers/index.html",
+      "locator": "Generating infinite symmetric groups条目及links",
+      "note": "〔原始工具引用已私有留存〕；用于获取原文/updates和核出版史，作者其他2026论文题名不作为本题进展。",
+      "request_id": "QX-R3-11-000967-academic-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv 官方/web",
+      "query": "open https://arxiv.org/pdf/math/0401304v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/math/0401304v1",
+      "note": "DisabledError；随后urllib取得对应固定全文，保留失败记录但不留下最终全文未得的错误状态。",
+      "request_id": "QX-R3-11-000967-academic-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv 官方/web",
+      "query": "open https://arxiv.org/pdf/math/0401304v2",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/math/0401304v2",
+      "note": "DisabledError；随后urllib取得对应固定全文，保留失败记录但不留下最终全文未得的错误状态。",
+      "request_id": "QX-R3-11-000967-academic-021",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Bergman 作者主页",
+      "query": "open https://math.berkeley.edu/~gbergman/papers/updates/Sym_Omega%3A1.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://math.berkeley.edu/~gbergman/papers/updates/Sym_Omega:1.html",
+      "locator": "全文22行，Bibliographic updates",
+      "note": "〔原始工具引用已私有留存〕；更新Cornulier/Khelif等出版资料和追加参考文献，未见本题解答或撤回。本页不是全面解决状态数据库。",
+      "request_id": "QX-R3-11-000967-academic-022",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "作者原问题清单/find",
+      "query": "在418.preKourovka.pdf查找Commun.并读Q15/Q16",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.berkeley.edu/~gbergman/papers/unpub/418.preKourovka.pdf",
+      "locator": "Q15/Q16",
+      "note": "Commun.未命中；Q16另指群表示计数条件问题，不能串接到本题。2019固定v1参考文献随后核清。",
+      "request_id": "QX-R3-11-000967-academic-023",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv/作者主页；urllib与pdftotext",
+      "query": "并行下载math/0401304v1、math/0401304v2、1904.04298v1和作者Sym_Omega:1.lms.pdf，读取问题及引用段",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/math/0401304v1",
+      "locator": "v1 p5 Question10；v2 p5 Question9；2019v1 p4 Q15/Q16、pp5–6参考文献",
+      "note": "四稿下载均成功，bytes/hash见work_000967_sources/academic_download_log.json。2004v1和2005v2的正文排版日期分别2020-02-08/2018-09-30，边栏及官方history仍标固定提交版本日期；未调查重编译原因，不把排版日期当新提交。",
+      "request_id": "QX-R3-11-000967-academic-024",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "学术web system1",
+      "query": "\"Cayley bounded\" \"monoid\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "术语与最新声明补检，命中Cornulier一手定义、Maltcev等semigroup论文、可数Cayley bounded近邻。未从索引升级为本题已解，也不独立裁定原Q8可数情形的2026状态。",
+      "request_id": "QX-R3-11-000967-academic-025",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "学术web system1",
+      "query": "\"group\" \"monoid\" \"Bergman\" \"Question 9\" counterexample solution",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "术语与最新声明补检，命中Cornulier一手定义、Maltcev等semigroup论文、可数Cayley bounded近邻。未从索引升级为本题已解，也不独立裁定原Q8可数情形的2026状态。",
+      "request_id": "QX-R3-11-000967-academic-026",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "学术web system1",
+      "query": "\"finite width\" \"monoid\" \"2019\" Bergman",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "术语与最新声明补检，命中Cornulier一手定义、Maltcev等semigroup论文、可数Cayley bounded近邻。未从索引升级为本题已解，也不独立裁定原Q8可数情形的2026状态。",
+      "request_id": "QX-R3-11-000967-academic-027",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "学术web system1",
+      "query": "\"Cayley bounded\" \"countable\" groups",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "术语与最新声明补检，命中Cornulier一手定义、Maltcev等semigroup论文、可数Cayley bounded近邻。未从索引升级为本题已解，也不独立裁定原Q8可数情形的2026状态。",
+      "request_id": "QX-R3-11-000967-academic-028",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "学术web system2",
+      "query": "\"The Bergman property for semigroups\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "前者为Maltcev–Mitchell–Ruškuc JLMS80(2009)212–232的半群性质，后者命中2018/2023近邻；未取得这些稿的同题完整声明，停止展开无关文献史。",
+      "request_id": "QX-R3-11-000967-academic-029",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "学术web system2",
+      "query": "\"countably infinite\" \"Cayley bounded\" group",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "前者为Maltcev–Mitchell–Ruškuc JLMS80(2009)212–232的半群性质，后者命中2018/2023近邻；未取得这些稿的同题完整声明，停止展开无关文献史。",
+      "request_id": "QX-R3-11-000967-academic-030",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Cornulier 作者主页",
+      "query": "open https://www.normalesup.org/~cornulier/FHpasT3.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.normalesup.org/~cornulier/FHpasT3.pdf",
+      "locator": "Definition2.1、Definition2.3、Proposition2.4，pp1–2",
+      "note": "〔原始工具引用已私有留存〕，8页作者稿DateMarch11,2005；强有界等价Cayley bounded加cofinality≠ω。后正式刊Comm.Algebra34(2006)2337–2345由Bergmanupdates可核，不是本题误引的Commun.Algebra2008。",
+      "request_id": "QX-R3-11-000967-academic-031",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地原稿复读",
+      "query": "读取bergman2019v1.txt参考文献[6]/[7]，及bergman2005v2.txt Theorem6和Q9前完整短证明",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1904.04298v1",
+      "locator": "Q15 p4；refs[6]/[7] pp5–6；0401304v2 §3 p5",
+      "note": "Q15引BLMS2006 Q9；邻Q16的Question10,p437属于Math.Proc.CambridgePhilos.Soc.127(1999)425–439。有限宽+非ω共尾性⇒幺半群有限宽的短证明已手核。",
+      "request_id": "QX-R3-11-000967-academic-032",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"10.1515/jgth-2016-0022\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "确认DOI是Le Maître–Wesolek《On strongly just infinite profinite branch groups》，并非此前近邻Schneider等2018论文；继续取作者全文。",
+      "request_id": "QX-R3-11-000967-academic-033",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"On groups with countable cofinality and unbounded Cayley graphs\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "对照排除另一近邻：该题名是arXiv1811.12154，不是要求核验的DOI，不扩大查其问题史。",
+      "request_id": "QX-R3-11-000967-academic-034",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者主页原稿",
+      "query": "open https://flemaitre.perso.math.cnrs.fr/travaux/stronglyjustinfinite.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://flemaitre.perso.math.cnrs.fr/travaux/stronglyjustinfinite.pdf",
+      "locator": "§2.2 Definition2.4、Theorem2.8、Corollary2.9 pp5–6",
+      "note": "〔原始工具引用已私有留存〕；完整24页取得，实际通读上述定义和两条证明。两条都是候选类排除，不是本题全解。",
+      "request_id": "QX-R3-11-000967-academic-035",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "UCLouvain机构论文记录",
+      "query": "open https://research.dial.uclouvain.be/entities/publication/c83a3d94-9b14-4570-8b2a-d8f72f45eec9",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://research.dial.uclouvain.be/entities/publication/c83a3d94-9b14-4570-8b2a-d8f72f45eec9",
+      "locator": "Bibliographic details",
+      "note": "〔原始工具引用已私有留存〕；亲读作者、JGT20(1)(2017)1–32、DOI10.1515/jgth-2016-0022；该页明确无附件，全文另从作者站取得。",
+      "request_id": "QX-R3-11-000967-academic-036",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"On strongly just infinite profinite branch groups\" arxiv",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位arXiv1510.01689，后实际读取官方版本史并下载固定v2。",
+      "request_id": "QX-R3-11-000967-academic-037",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "open https://arxiv.org/abs/1510.01689",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/1510.01689",
+      "locator": "Submission history；Comments",
+      "note": "〔原始工具引用已私有留存〕；v1 2015-10-06，v2 2016-01-31；v2附typos/minor error corrected说明，不能不取正文就推定修订针对本题。",
+      "request_id": "QX-R3-11-000967-academic-038",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者原稿/find",
+      "query": "find Theorem2.8、Corollary2.9、Definition2.5，实际读§2.2 pp5–6完整相关段",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://flemaitre.perso.math.cnrs.fr/travaux/stronglyjustinfinite.pdf",
+      "locator": "Definition2.4；Theorem2.8及全证明；Corollary2.9及全证明",
+      "note": "〔原始工具引用已私有留存〕–3。Thm2.8仅可数无限且可嵌入紧群；Cor2.9任意基数无限solvable-by-finite。原文明确Khelif用Bergman property表示本稿Cayley bounded，不能混名。",
+      "request_id": "QX-R3-11-000967-academic-039",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者主页/arXiv；urllib",
+      "query": "下载作者stronglyjustinfinite.pdf和https://arxiv.org/pdf/1510.01689v2；pdftotext后比对定理编号、定义和参考文献",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/1510.01689v2",
+      "locator": "固定v2 Definition2.8/Theorem2.10 p6，Corollary2.11 p7；作者稿Thm2.8 p5/Cor2.9 p6",
+      "note": "作者稿573938bytes，SHA2566c038a835ac0451127f0b4f5b5ddd38772e3ef03244d560227a591cac8112a9a；固定v2 709360bytes，SHA2569e08fb72d7c7c4a424ce63a5c6c461056b53f7dcde18c7b38ed9e1fb7880291e。日志lemaitre_wesolek_download_log.json。两稿编号不同不得错引；v2序言Definition1.3的finite generating措辞与其正式Definition2.8不同，本轮按§2正确任意生成集定义审读。",
+      "request_id": "QX-R3-11-000967-academic-040",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地任务包与Kourovka v50",
+      "query": "完整读取work_000967_sources/task.json；rg并读取work_001159_sources/kourovka_v50.txt的21.16",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/1401.0300v50",
+      "locator": "21.16，印刷p181",
+      "note": "id=QX-P-000967，card_rev=33778b44caa8e4e7；核群/幺半群各自生成集及∀X∃n，未改原卡。",
+      "request_id": "QX-R3-11-000967-math-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Bergman作者原校样",
+      "query": "open https://math.berkeley.edu/~gbergman/papers/Sym_Omega:1.lms.pdf；读Theorem6、§3条件(3)/(4)、Question8及Question9前的monoid证明",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.berkeley.edu/~gbergman/papers/Sym_Omega:1.lms.pdf",
+      "locator": "校样正文pp4–7；Question9在校样正文p7",
+      "note": "原Q9在(4)且非(3)类别中分问monoid版本失败/成立；21.16取失败的一支。本轮独立核短桥接证明，未重新证明无限对称群的完整定理。",
+      "request_id": "QX-R3-11-000967-math-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "手工词长与生成集论证",
+      "query": "核WG/WM量词、M⇒G、uniform inverse length桥、(3)+(4)⇒WM、有限与无限fg边界、有界指数、对称集，以及Z上的合法固定生成集例",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "本片段math_results内嵌全部输入和手证",
+      "note": "本轮未运行有限群穷举、GAP或Lean；没有把可数非fg群未经证明排除，也未另行解决原Question8。",
+      "request_id": "QX-R3-11-000967-math-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search / google-deepmind/formal-conjectures",
+      "query": "\"Bergman\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "本次实际搜索返回1条 ErdosProblems/698.lean（结果固定于 ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8），摘录涉及二项/多项系数公因子，非群与幺半群宽。只读返回摘录，未展开无关源码。",
+      "result_count": 1,
+      "request_id": "Q967-C01",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search / google-deepmind/formal-conjectures",
+      "query": "\"CayleyBounded\" OR \"monoid width\" OR \"21.16\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "实际返回 results=[]。这是该次仓库定向搜索范围，不是完整 Lean 生态不存在定理的证明。",
+      "result_count": 0,
+      "request_id": "Q967-C02",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search / openai/math",
+      "query": "\"Bergman\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "topn=5返回5个分析中Bergman空间/度量/多项式同名摘录，结果固定于3344da59991ed94f9ba711217b29c1d760badfa6；未见本题主张。未下载或审这些无关论文。",
+      "result_count": 5,
+      "request_id": "Q967-C03",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub global code search",
+      "query": "\"21.16\" \"Bergman\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "搜索命中 Budden 自然语言题文及 JUrban/kour1 triage 日志；随后分别固定提交取全文。其他数字/人名同名结果不计为数学声明。",
+      "request_id": "Q967-C04",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST / maxvonhippel/budden-bench",
+      "query": "GET contents/problems/kourovka/problem_21.16?ref=66a10282fec151c6ca447e28cebf050e5a815fb8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整目录仅 problem.json，无 formalization.lean、证明或执行证书。",
+      "url": "https://api.github.com/repos/maxvonhippel/budden-bench/contents/problems/kourovka/problem_21.16?ref=66a10282fec151c6ca447e28cebf050e5a815fb8",
+      "result_count": 1,
+      "request_id": "Q967-C05",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed file / maxvonhippel/budden-bench",
+      "query": "fetch problems/kourovka/problem_21.16/problem.json @66a10282fec151c6ca447e28cebf050e5a815fb8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整JSON已读：逐生成集有界、不要求统一界，明确分别 group word / monoid word；引Bergman BLMS38(2006)Q9。自然语言记录不能称形式化定理或证明。",
+      "url": "https://github.com/maxvonhippel/budden-bench/blob/66a10282fec151c6ca447e28cebf050e5a815fb8/problems/kourovka/problem_21.16/problem.json",
+      "locator": "problem_number/problem_text",
+      "request_id": "Q967-C06",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed file / bespokelabsai/conjecture-bench",
+      "query": "fetch problems/extended-catalog/kourovka-notebook/kourovka-main-21-016.json @8d494791ace5894b860585d67ba8e69dbfed6376",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整文件是 pdf-text-entry；contains_placeholder=false 只描述转录文本。listed-unsolved 时间戳2026-07-03，不是2026-11-27验证结论；无可执行验证器。",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-21-016.json",
+      "locator": "statement/status_observation/provenance/review_flags",
+      "request_id": "Q967-C07",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed file / JUrban/kour1",
+      "query": "fetch research/triage-2026-09-10-late.md @dce7931e980c7db83100a07fbe084fc1dd655fdb",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全文已读；Other ideas not promoted to claims 中21.16与16.88条明确记录限制/排除思路。未提出21.16反例或等价证明；引Khelif结果仅作二手线索，未在本代码路线核其原刊。",
+      "url": "https://github.com/JUrban/kour1/blob/dce7931e980c7db83100a07fbe084fc1dd655fdb/research/triage-2026-09-10-late.md",
+      "locator": "Other ideas not promoted to claims, bullet 21.16 and 16.88",
+      "request_id": "Q967-C08",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Kourovka\" \"21.16\" proof solution",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365。命中 TheoremDB P3378 与目录，后续实际打开P3378；未在此次返回中取得完整解决稿。",
+      "request_id": "Q967-W01",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Bergman\" \"finite width\" \"monoids\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回原作者 Generating infinite symmetric groups 摘要及旧文线索；无限对称群作为群和幺半群均有有限宽是特例，不是要求的分离例。原始文献由学术路线复核。",
+      "request_id": "Q967-W02",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"finite width as groups\" \"monoids\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回同题目录/题文与早期出处线索；没有仅凭摘要确认完整解。",
+      "request_id": "Q967-W03",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Bergman\" \"monoid\" site:mathoverflow.net",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "该定向搜索未取得精确21.16解答；返回的一般Bergman/幺半群材料不作本题社区证成。仅覆盖实际返回结果，不代表MO全站穷尽。",
+      "request_id": "Q967-W04",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Bergman\" \"group\" \"monoid\" \"counterexample\" width",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回含monoid rings/semifirs以及范畴中积的旧反例材料，非每个群生成集宽与正词宽分离。仅索引/摘录筛除，不声称全文证明审核。",
+      "request_id": "Q967-W05",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"21.16\" \"proof\" \"monoid\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回 TheoremDB 精确题文及提交入口；提交按钮/通用要求不代表已有Lean证明或结果。实际内容页另行已读。",
+      "request_id": "Q967-W06",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"finite width\" \"monoids\" \"Lean\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "搜索结果含一般monoid库、Mathlib讨论/Metamath目录等非同题入口；未取得可审的21.16 Lean定理。",
+      "request_id": "Q967-W07",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka Notebook official repository",
+      "query": "open https://kourovkanotebookorg.wordpress.com/repository/ ; find 21.16 ; find Bergman",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "本次已读272行索引，精确find两词均无匹配；21.15等邻号不是21.16。目录有AI证明未经全体验证的说明。此为索引层有限覆盖，不把缺席当数学未解决证明。",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "locator": "272-line extracted page; exact finds",
+      "request_id": "Q967-W08",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka official AI compilation",
+      "query": "click official repository link53; open Results on problems from the Kourovka Notebook v4 (19 September 2026)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得92页PDF文本入口，阅读首页、声明与结果目录，未逐条审核45篇其他题证明；目录无21.16。作者自己将45项称 proposed answers、非正确新定理认证计数。",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "locator": "v4 title/§1/§2 pp1–4",
+      "request_id": "Q967-W09",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka official AI compilation PDF",
+      "query": "find \"21.16\"; find \"monoid width\"; find \"Bergman\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "前两词无匹配；Bergman返回§5.2 Lie-algebra prior work、§5.8自由群20.8/20.11及参考文献，范围不同。仅本PDF文本定位和相关摘录审核，不声称通读92页。",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "locator": "5557-line text; Bergman at pp74,77–78,80–81",
+      "request_id": "Q967-W10",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "TheoremDB public statement page",
+      "query": "open https://theoremdb.org/statements/P3378/",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际页面题文同题，0 records/0 attempts/0 Lean 〔私有材料定位已省略〕 references，未提供数学结果或Lean源。通用文案‘research contributions available’与计数不一致，按实际无记录内容处理；未加载的动态讨论不算全体评论已阅。",
+      "url": "https://theoremdb.org/statements/P3378/",
+      "locator": "statement/status/records/Lean verification; extracted lines71–167",
+      "request_id": "Q967-W11",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R0967-CARD",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000967.text.md",
+      "locator": "题面、human、原文21.16、已知进展、meta.sources/first_published/acceptance",
+      "version": "commit73290369a8dcc632e25e555aec525565ea6e08f8；card_rev33778b44caa8e4e7",
+      "subquestions": [
+        "主问题",
+        "题卡版本与引用"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "核心存在性与Kourovka一致，书目矛盾需修；human应显式注明群生成集与monoid生成集是两个不同域。当前仅做回执建议，不改源卡；不因引文笔误把主数学命题判成错误或已解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R0967-K50",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "21.16，印刷p181",
+      "version": "Kourovka21版 arXiv1401.0300v50，2026-11-02；SHA256 b7027dd8e29cc5b187304f4bb0f3bddb30839089c44967f5fadaa4c0e5e60dc7",
+      "subquestions": [
+        "主问题",
+        "完整量词"
+      ],
+      "role": "原始提出",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "逐生成集有限界可依赖集合；无有限生成/有限基数/拓扑限制。存在性正解须核全体group-generating sets的群宽，又给至少一个确实monoid-generating的正宽无界集合；反解须覆盖所有具有群有限宽的群，附加(3)的定理不足。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "a0967_notebook",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "Problem21.16 p181；Preface p4",
+      "version": "arXiv1401.0300v50，2026-11-02",
+      "subquestions": [
+        "本题原意与生成集量词",
+        "题簿符号的范围"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "原始档案",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "note": "群或幺半群的有限宽均对相应代数结构的每个生成集量化，允许界依赖生成集。21.16无额外cofinality假设，引用Bergman BLMS2006 Q9。前言♯为未确认AI拟解；∗是proper solution标记，不能统一翻译成AI确认解。无标记只记录本版本目录情况。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "a0967_v1",
+      "url": "https://arxiv.org/pdf/math/0401304v1",
+      "locator": "§3 p5 Question10第二部分；其前有限宽与monoid版短证明",
+      "version": "arXiv math/0401304v1，官方提交2004-01-22；本次取得固定PDF正文排版日期2020-02-08",
+      "subquestions": [
+        "目前最早可核提出",
+        "原Question9/10的版本变更"
+      ],
+      "scope_match": "仅某子问",
+      "role": "目前最早可核实出处",
+      "publication": "预印本",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "note": "固定v1已包含寻找(4)成立而monoid版不成立群的提问，位于更大Question10中。其Question9当时是可数无限群有限宽的不同问题。年代按官方归档提交史，内部排版日期另列，未声称已核重编译原因。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "earliest_source",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a0967_v2",
+      "url": "https://arxiv.org/pdf/math/0401304v2",
+      "locator": "§2 Theorem6 p3；§3条件(3)/(4)、Question9、Lemma10 pp4–5",
+      "version": "arXiv math/0401304v2，2005-05-27；本次固定PDF正文排版日期2018-09-30",
+      "subquestions": [
+        "原Q9两个分支",
+        "群有限宽加共尾性推出幺半群有限宽",
+        "对称群同时有限宽"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "note": "(3)为无可数递增真子群链覆盖，(4)为每个群生成集有限宽；作者已证明(3)+(4)⇒每个monoid生成集有限宽。因此本题候选必失败(3)。Q9在(4)且非(3)中分别问monoid版不成立/成立，本卡只前支。Theorem6给Sym(Ω)两种有限宽，作为排除类；本轮独立核Q9前短证明，不冒称重证所有moiety引理。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a0967_galley",
+      "url": "https://math.berkeley.edu/~gbergman/papers/Sym_Omega:1.lms.pdf",
+      "locator": "校样正文§3 pp5–7，Question9在正文p7（PDF第8页）；Theorem6",
+      "version": "BLMS1830作者galley；13页含proof delivery form；正式出版2006",
+      "subquestions": [
+        "2006正式论文引用与原问题编号"
+      ],
+      "scope_match": "仅某子问",
+      "role": "原始提出",
+      "publication": "作者主页",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "note": "正文同v2的Q9分支和条件区分。此文件是校样，页码1–12、卷期38(2)和首页DOI未最终更新；不得把这些当出版元信息。最终刊物为BLMS38(3)(2006)429–440、DOI10.1112/S0024609305018308，已由Cambridge原页面核对。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "original",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "a0967_journal",
+      "url": "https://www.cambridge.org/core/journals/bulletin-of-the-london-mathematical-society/article/abs/generating-infinite-symmetric-groups/1CABB718D15D014610C65814AA1E8A69",
+      "locator": "Article information；Abstract",
+      "version": "正式刊发online2006-05-31；38(3),June2006,pp429–440",
+      "subquestions": [
+        "准确出版书目"
+      ],
+      "scope_match": "同源不同问",
+      "role": "重述",
+      "publication": "正式刊发",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "原刊页亲读确认题名Generating Infinite Symmetric Groups、作者Bergman和DOI10.1112/S0024609305018308；出版定稿正文未得，数学原文从固定arXiv和作者校样读取。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0967_2019",
+      "url": "https://arxiv.org/pdf/1904.04298v1",
+      "locator": "Q15/Q16 p4；参考文献[6]/[7] pp5–6",
+      "version": "arXiv1904.04298v1，2019-04-08",
+      "subquestions": [
+        "2019重述同一性",
+        "2008Commun.Algebra/Q10p437误配"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "预印本",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "note": "Q15逐字定义每生成集有限宽并提出本题，明确引[7]BLMS2006 Q9。紧邻Q16的[6]Question10,p437是Infinite groups arising from partial presentations of finite groups, Math.Proc.CambridgePhilos.Soc.127(1999)425–439，关于关系数的无限性判据，不是本题；未发现支持Commun.Algebra2008的本题引用。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a0967_2026",
+      "url": "https://arxiv.org/abs/1904.04298",
+      "locator": "Submission history；作者当前PDF Q15 p3",
+      "version": "arXiv1904.04298v2，2026-08-07；作者主页目录update2026-08-11",
+      "subquestions": [
+        "2026作者版本与本题编号"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "预印本",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "note": "官方abs与当前作者全文已读，Q15已替换为Kourovka21.16交叉引用，不是新解答；不能继续把未固定的作者最新PDF称作2019原稿。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a0967_cornulier",
+      "url": "https://www.normalesup.org/~cornulier/FHpasT3.pdf",
+      "locator": "Definitions2.1/2.3、Proposition2.4，pp1–2",
+      "version": "作者8页稿Date2005-03-11；正式Comm.Algebra34(2006)2337–2345",
+      "subquestions": [
+        "Cayley bounded、strongly bounded与共尾性的区别"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "作者主页",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "note": "Cayley bounded定义就是群每生成集有限宽；strongly bounded定义每个等距作用轨道有界，Prop2.4为Cayley bounded且cofinality≠ω。本文只用此明确定义/范围，不用strong boundedness替代本题弱条件，也不据本轮未审的历史Q8裁定2026可数情形。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "a0967_updates",
+      "url": "https://math.berkeley.edu/~gbergman/papers/updates/Sym_Omega:1.html",
+      "locator": "Bibliographic updates全文",
+      "version": "2026-11-27实际访问的作者更新页",
+      "subquestions": [
+        "作者修订/勘误路线"
+      ],
+      "scope_match": "同源不同问",
+      "role": "重述",
+      "publication": "作者主页",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "页面只补出版信息与相关文献，本次未见21.16完整解答或撤回。作者页面和有限定向检索都不构成全网不存在解答的证明。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "a0967_lw_khelif",
+      "url": "https://flemaitre.perso.math.cnrs.fr/travaux/stronglyjustinfinite.pdf",
+      "locator": "Definition2.4、Proposition2.7、Theorem2.8（Khelif）pp5–6、Corollary2.9 p6；对应arXiv1510.01689v2 Definition2.8/Theorem2.10 p6、Corollary2.11 p7",
+      "version": "作者当前24页稿，2026-11-27下载SHA2566c038a835ac0451127f0b4f5b5ddd38772e3ef03244d560227a591cac8112a9a；另核固定arXivv2 2016-01-31；正式JGT20(1)(2017)1–32，DOI10.1515/jgth-2016-0022",
+      "subquestions": [
+        "可数无限可嵌入紧群的候选排除",
+        "无限solvable-by-finite候选排除",
+        "Khelif与本文Bergman术语差异"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "作者主页",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "note": "Le Maître–Wesolek重印获许可的Khelif证明，回指Khelif CRMath342(2006)377–380 Théorème10/Corollaire11。Thm2.8不要求子群闭，但必须可数无限并可嵌入紧群；Dini给趋于1的紧生成集，若Cayley bounded则群是其有限幂而紧，与可数无限矛盾。Cor2.9先取无限virtually abelian商，再取可数无限商、嵌入紧群；末步可明确选择Pontryagin给的忠实ψ保证所写嵌入，未见影响排除结论的缺口。不能扩大为所有可数群。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q967-M-E1",
+      "url": "https://arxiv.org/html/1401.0300v50",
+      "locator": "Kourovka21.16，印刷p181",
+      "version": "arXiv1401.0300v50，2026-11-02",
+      "subquestions": [
+        "有限宽的量词",
+        "原题所指生成集与存在性"
+      ],
+      "scope_match": "原题等价",
+      "role": "原始提出",
+      "publication": "原始档案",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "定义分别对group-generating与monoid-generating集合量化；明确不同生成集无需统一上界。本轮以实际原文恢复定义，不根据旧open标签替代研究结论。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q967-M-E2",
+      "url": "https://math.berkeley.edu/~gbergman/papers/Sym_Omega:1.lms.pdf",
+      "locator": "Generating Infinite Symmetric Groups，Theorem6、§3 (3)/(4)、Question8/9及Q9前短证",
+      "version": "作者发表校样；正式刊发Bull.London Math.Soc.38(2006),429–440，正式DOI10.1112/S0024609305018308（由学术路线核原刊）。校样所印10.1112/S0024609305005254为旧字段，不作为正式元数据",
+      "subquestions": [
+        "(3)+(4)推出monoid有限宽",
+        "与强有界性质的区别",
+        "可数与有限生成边界",
+        "原问题出处"
+      ],
+      "scope_match": "原题等价",
+      "role": "原始提出",
+      "publication": "作者主页",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "亲读并独立核Q9前的对称交集U_i证明。条件(4)才是本卡group有限宽，条件(3)是不能由ω真子群递增链覆盖；不能擅自把二者合取加进题面。作者另列Question8询问可数无限(4)群，本轮不据旧问题状态裁定2026现状。无限Sym(Ω)同时满足两种有限宽为文献定理，本轮未完整重证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E967-C-BUDDEN",
+      "url": "https://github.com/maxvonhippel/budden-bench/blob/66a10282fec151c6ca447e28cebf050e5a815fb8/problems/kourovka/problem_21.16/problem.json",
+      "locator": "problem_21.16/problem.json 全文及其单文件目录",
+      "version": "commit66a10282fec151c6ca447e28cebf050e5a815fb8；本次2026-11-27读取；Git blob9f66d762f8b8dc41238eac9a14adf910b85076c7",
+      "subquestions": [
+        "Kourovka21.16 精确题文、生成模式与量词"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "此目录仅自然语言problem.json，不能将‘题目收录’报为已有形式化题面。未取得主定理定义、sorry/axiom列表或可编译证明，故不报告任何内核复跑。题文明确对每个生成集分别允许有限界，群字可逆，幺半群字正向；并引2006 BLMS38 pp429–440 Question9。 本次完整取回文件字节数=638，SHA256=f6d481f6249c02942d18e8228c28e3c0fd80229525ecafb8f4dc49ca393402cd；Git blob SHA1与服务返回一致。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E967-C-CB",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-21-016.json",
+      "locator": "statement/status_observation/provenance/review_flags 全部字段",
+      "version": "commit8d494791ace5894b860585d67ba8e69dbfed6376；Git blob7e03a4584f2ca3dcbf0f4ad60a8f678aa35a75ef；status as_of2026-07-03",
+      "subquestions": [
+        "精确21.16题面与基准状态边界"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "pdf-text-entry而非Lean/SAT/可执行certificate；contains_placeholder=false仅表示转录文本无占位，不能作为证明无sorry证据。listed-unsolved只观察2026-07-03版，且review_flags要求exact-statement-and-polarity与current-status复核。本次未把旧快照升级当前数学结论。记录内statement.sha256=300baecb95b320c731ab6646ec98e4a1e8bc3e2b925cad87fac56223e12ac859，另对取回文件字节哈希见manifest。 本次完整取回文件字节数=1529，SHA256=22c3d09a303b5aa1d5c244fbee3b193b64a779ffa11669e7ede8fd233793436f；Git blob SHA1与服务返回一致。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E967-C-TRIAGE",
+      "url": "https://github.com/JUrban/kour1/blob/dce7931e980c7db83100a07fbe084fc1dd655fdb/research/triage-2026-09-10-late.md",
+      "locator": "全文；Other ideas not promoted to claims 下21.16/16.88条",
+      "version": "commitdce7931e980c7db83100a07fbe084fc1dd655fdb；文内2026-09-10；Git blob9bf6fe8032e85f04a6a406f6ee7e94e026f57b03",
+      "subquestions": [
+        "公开AI研究是否给出21.16完整解；术语与适用范围"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "JUrban/kour1 research log",
+      "claim_date": "2026-09-10",
+      "note": "日志开头明说保存被排除或受限的思路而非新结果。21.16段提醒per-generating-set bounds与任意exhaustive subsets的更强Bergman性质须分开，单凭可数性不能转移。其所引Khelif/Thm2.8/Cor2.9只在本路线登记为原刊线索，不冒认已核原文；该条不含分离群构造或不存在性证明，也无形式化代码。 本次完整取回文件字节数=3885，SHA256=83d5f407330644ebd1a9622152580ebae2ea1628bc90bb1896e834991ebaebc7；Git blob SHA1与服务返回一致。 即使原刊确认日志所述排除，可数无限子群可嵌入紧群的情形也不能覆盖所有可数群，更不能单凭可数性解决21.16。 合并复核补记：该日志指向的Le Maître–Wesolek作者原稿已由学术路线和主审直接取得并读取Thm2.8/Cor2.9，核得只是若干子类排除；日志本身仍无新解声明，原文证据与日志分开登记。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E967-C-AIINDEX",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "locator": "v4首页、§1–2目录及21.16/monoid width/Bergman文本定位；同时实际查看官方Repository",
+      "version": "Version4—19September2026；本次2026-11-27访问官方链接",
+      "subquestions": [
+        "官方公开AI拟解覆盖是否含当前21.16"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "尚未确认",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检到形式化",
+      "note": "官方272行目录精确21.16与Bergman查无；92页v4的21.16/monoid width无匹配。Bergman命中是Lie代数或其他自由群问题，不能迁移。本次只审核目录和命中范围，不声称逐条复核其他候选证明。此缺席仅限已看版本，不能证明所有公开AI从未研究本题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E967-C-TDB",
+      "url": "https://theoremdb.org/statements/P3378/",
+      "locator": "题文、Status、Packet records、Lean verification、References",
+      "version": "2026-11-27实际访问；页面称Saved packet date unavailable；非固定历史快照",
+      "subquestions": [
+        "社区公开记录与Lean证明有无可审实物"
+      ],
+      "role": "重述",
+      "publication": "二手索引",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "题文匹配但实页为0 records/0 attempts/0 Lean 〔私有材料定位已省略〕 references；通用‘Submit a Lean proof’入口和空Lean栏不等于已有证明。平台Open仅索引状态，不独立支持截至今日数学未解。页面存在笼统research available文案与0计数不一致；未加载的动态评论不声称全部审阅。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "secondary_index"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000578",
+      "other_card_rev": "29614e1be5f9cc19",
+      "relation": "待核",
+      "reason": "578的有限宽是pro-p下中心列各因子阶有统一p幂上界；967的有限宽是抽象群对每个群生成集的词长度有界。578限定HJI pro-p并要求分类，967在所有群中比较群/幺半群生成的存在性，定义和验收不同。",
+      "positions": {
+        "self": "QX-P-000967.text.md题面、human宽度定义、原文21.16与meta.acceptance",
+        "other": "QX-P-000578.text.md 题面、human对|γ_i/γ_(i+1)|≤p^d的定义、原文14.57与meta.acceptance分类"
+      },
+      "note": "pair_id=QX-P-000578__QX-P-000967；pair_owner=QX-P-000578。本题编号较大，仅回写已读的定义/验收差异索引，正式pair裁定由较小编号负责；本轮不合并、不重查该题数学状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-000954",
+      "other_card_rev": "a75acad61af0c4ef",
+      "relation": "待核",
+      "reason": "954问有限表示双曲单关系群中给定有限子幺半群的隶属算法是否不可判定；967问任意抽象群对全部生成集的有限词长度性质。有限子幺半群隶属算法不要求这些子集生成整个群，也不等于有限宽；本轮没有任何同题等价桥。",
+      "positions": {
+        "self": "QX-P-000967.text.md题面、human宽度定义、原文21.16与meta.acceptance",
+        "other": "QX-P-000954.text.md 题面、原文20.68和meta.acceptance构造双曲单关系不可判定例"
+      },
+      "note": "pair_id=QX-P-000954__QX-P-000967；pair_owner=QX-P-000954。本题编号较大，仅回写已读的定义/验收差异索引，正式pair裁定由较小编号负责；本轮不合并、不重查该题数学状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-000955",
+      "other_card_rev": "ac16b60403c28217",
+      "relation": "待核",
+      "reason": "955限定带挠单关系群，问每个有限子幺半群的隶属算法可判定性；967量化所有群生成集，并要求至少一个正词生成全群但正词长度无界的集合。带挠不等于bounded exponent，且算法任务和宽度存在性不是同一验收。",
+      "positions": {
+        "self": "QX-P-000967.text.md题面、human宽度定义、原文21.16与meta.acceptance",
+        "other": "QX-P-000955.text.md 题面、原文20.69和meta.acceptance全称可判定/反例"
+      },
+      "note": "pair_id=QX-P-000955__QX-P-000967；pair_owner=QX-P-000955。本题编号较大，仅回写已读的定义/验收差异索引，正式pair裁定由较小编号负责；本轮不合并、不重查该题数学状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-001541",
+      "other_card_rev": "f6e5cb122131b8dc",
+      "relation": "仅相似",
+      "reason": "1541量化n组有限非空子集，问唯一n重乘积性质是否全由二重唯一乘积推出；967量化群/幺半群的生成集并比较词长度有界。仅同作者Bergman和群乘积词汇，没有同一参数、命题或验收。",
+      "positions": {
+        "self": "QX-P-000967.text.md题面与21.16定义；meta.acceptance",
+        "other": "QX-P-001541.text.md20.12原文、u.-n-p.定义、meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000967__QX-P-001541；pair_owner=QX-P-000967。已读双卡，排除严格同题；不代审1541状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "修正人话版",
+      "field": "人话版 / 两种生成集及长度量词",
+      "new": "群有限宽是：对每个满足⟨X⟩grp=G的X，存在依赖X的n，使每个g可由X∪X⁻¹中至多n个字母表示。幺半群无限宽是：存在满足⟨Y⟩mon=G的Y，且对每个m都存在g，其用Y正字母的最短长度大于m。单位元允许空字。",
+      "reason": "不能给同一个仅群生成的X因某些元素完全不可正表示，就宣称monoid宽无穷；也不能把一个X群宽有限当作对全部X成立。",
+      "small_case_check": "Z对X={1}∪{−m:m≥1}群宽1、正宽无限，但Z对Y={1}群宽无限，因此不解本题。详细自含核算见数学证据。",
+      "evidence_ids": [
+        "R0967-K50"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "有限宽／Bergman术语与可数边界",
+      "old": "容易将有限宽直接当成含不可数cofinality的强Bergman性质。",
+      "new": "本题只用原条件(4)。另外列出已核(3)+(4)⇒WM，说明候选必可由ω真子群链覆盖；不把(3)加入题面，不未经证明排除全部可数非fg群。",
+      "reason": "添加(3)会把原题改成已被原文短证排除的不同命题。",
+      "evidence_ids": [
+        "Q967-M-E2"
+      ],
+      "small_case_check": "无限fg群因有限字母的有限球均有限而不能满足WG；可数非fg仅由枚举链得非(3)，尚不能由此得非WG。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "acceptance／独立验证建议",
+      "old": "小群宽计算实验。",
+      "new": "正例须给G对所有群生成集的有界性证明，再给某个固定正词生成集U与正词长度无界的证明；可用uniform inverse length桥定位关键。有限群全部被手证排除，有限计算不能验收全称生成集性质。",
+      "reason": "保留原验收目标并补足证书必须涵盖的量词，不把有限样本或固定生成集对比当整题反例。",
+      "evidence_ids": [
+        "Q967-M-E1",
+        "Q967-M-E2"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "first_published / sources",
+      "old": "2026年辑；Bergman2008原始",
+      "new": "目前最早亲读固定稿：arXiv math/0401304v1，提交2004-01-22，§3p5 Q10的相关分支；v2 2005-05-27改Q9；正式BLMS38(3)(2006)429–440，DOI10.1112/S0024609305018308。Kourovka21.16只是2026收录。",
+      "reason": "将最初提问、预印本版本、正式出版、题簿收录分开。内部排版日期与归档日期的差异已保留，未将排版日期当新版本。",
+      "evidence_ids": [
+        "a0967_v1",
+        "a0967_v2",
+        "a0967_journal"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "题面纠错",
+      "field": "题面括注 / 相关进展与声称解决 / 开放状态证据",
+      "old": "Bergman Commun.Algebra2008 Q9/10(p437)",
+      "new": "Bergman, Generating Infinite Symmetric Groups, BLMS38(2006)429–440, Question9；若引2004v1则写Question10相关分支。删除p437与Commun.Algebra2008的串接。",
+      "reason": "2019Q15引BLMSQ9，邻Q16才引1999另一论文Q10p437；不同版本中Q9/Q10也不能不注明版本混写。",
+      "evidence_ids": [
+        "a0967_2019",
+        "a0967_galley",
+        "a0967_journal"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展",
+      "old": "仅题簿无标记/OPEN",
+      "new": "补已核必要限制：任何候选必须不满足无可数真子群链覆盖条件；strongly bounded及全对称群均不能给反例。条件证明来自Bergman2004/2005/2006原稿，而非近期全解。",
+      "reason": "展示真实已知排除范围，同时保留主问题未由本轮证成/反驳。",
+      "evidence_ids": [
+        "a0967_v2",
+        "a0967_cornulier"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "术语 / keywords",
+      "old": "有限宽、Bergman property、strongly bounded可能无区分",
+      "new": "需要统一时将本题群性质称Cayley bounded，并附原定义；Bergman property在不同文献的用法须逐源读定义。strongly bounded需额外共尾性条件，不能自动等同。",
+      "reason": "不同强度的有界性结论会直接改变本题的候选范围。",
+      "evidence_ids": [
+        "a0967_v2",
+        "a0967_cornulier"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "已知结果 / 开放状态证据 / novelty",
+      "old": "无♯(AI拟解)/∗(AI确认解)⇒OPEN；novelty绑定1acd19ea056585fd",
+      "new": "♯依v50前言为未确认AI拟解；∗是认可解答标记，不专指AI。记录21.16本版无新增解答段，但主状态依据本轮实际限定检索和复核；当前回执绑定33778b44caa8e4e7，旧rev仅留历史。",
+      "reason": "目录符号不能证明全网开放，旧卡查新记录也不能替代当前版回执。",
+      "evidence_ids": [
+        "a0967_notebook"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "2019重述",
+      "old": "2019 questions for next Kourovka复述（未定版本）",
+      "new": "2019固定v1 p4 Q15给完整同题重述；2026-08-07 arXivv2以及当前作者稿将Q15替换为Kourovka21.16交叉引用。",
+      "reason": "避免打开动态作者文件却称已阅2019原文。",
+      "evidence_ids": [
+        "a0967_2019",
+        "a0967_2026"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "术语说明/公开AI工作",
+      "new": "若使用Bergman property名称，必须给出采用的具体定义；本题每个生成集有有限宽，不擅自加入任意exhaustive subsets的有界条件或强不可数共尾性。公开AI日志仅提供被排除/受限的尝试，不作已解或新进展证明。",
+      "reason": "同名性质在文献中有强弱约定；固定AI日志对此作了明确范围提醒且没有21.16结果声明。",
+      "evidence_ids": [
+        "E967-C-TRIAGE"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展 / 边界",
+      "old": "未记录Khelif定理的真实排除范围",
+      "new": "补Khelif两条已知排除：可数无限且可嵌入紧群者（故特别包括可数无限剩余有限群），以及任意基数无限solvable-by-finite群，都不Cayley bounded。引用LW作者稿Thm2.8/Cor2.9，若用arXiv1510.01689v2则编号2.10/2.11。",
+      "reason": "此处已有原稿和关键证明核验，超出只依AI日志的线索层；但并非所有可数群定理，更不是21.16的全解。",
+      "evidence_ids": [
+        "a0967_lw_khelif"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "库内查重",
+      "reason": "578、954、955均小于本题，依分工只给双卡实读差异与pair索引，未越权作正式pair合并判定。",
+      "next_step": "较小编号对应回执汇总时核这三个pair；本轮无严格同题合并建议，1541已由本题完成仅相似判定。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮题号、monoid/group有限宽、Cayley bounded、完整解/反例、作者更新和近期检索有界，未取得覆盖主存在问的完整新稿。",
+      "next_step": "若未来出现候选G和monoid生成集Y，先分别验证G对所有群生成集有限宽、Y确实正生成G、且Y的正字长无界；勿以单一集合或附加cofinality条件替代验收。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "出版元信息已由原刊核定，正文亲读固定arXiv和作者校样；未取得最终出版排版。arXiv固定PDF内部排版日期晚于提交史。",
+      "next_step": "如需逐字出版定稿比对或解释内部排版日期，可再核最终PDF/原TeX；本轮数学题式和版本编号已经由多份一手稿交叉确认，不为此延后交接。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Khelif对可数可嵌入紧群及所有无限solvable-by-finite的排除已由LW原稿核实；原Q8关于所有可数Cayley bounded群及一般半群理论仍未独立作完整当前状态审查。",
+      "next_step": "保留已核具体排除类，不把可嵌入紧群的假设删除；只有新的明确同题声明需要这些更广问题时才继续跟进，不为本题展开整个Q8历史。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮核得原问、条件性排除和定义边界，未给WG∧¬WM完整例或其不可能性证明。",
+      "next_step": "对新完整声明逐项查其WG是否真为所有抽象群生成集、U是否正词生成G、正宽无界是否针对同一个固定U；不能通过擅加(3)或只比较一个X闭合主问。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "原稿Question8是邻问，可数非fg边界与本题相关但本轮未对其当前研究作独立全面查新。",
+      "next_step": "若有结论依赖“所有可数无限群均非WG”或一个可数WG新构造，应另取得相应一手证明后使用；当前不作该断言，也不以旧Question8在列当2026未解证据。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本次有限仓库/官方AI/社区定向检索未取得精确21.16证明代码或完整解答；因无可执行目标，未作Lean/GAP运行或有限群扫描，亦不能列可检主定理、axioms依赖。索引旧状态与0记录均不证明全网无结果。",
+      "next_step": "仅在后续出现指向明确的21.16完整声明时，取得固定版本，先核见证集合确实monoid-generates整个群，再核所有group-generating集合的界以及非统一界量词；取得形式化目标后才检查定理类型、sorry/axioms/依赖并区分静态审与实际复跑。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "33778b44caa8e4e7",
+      "codes": {}
+    }
+  ]
+}

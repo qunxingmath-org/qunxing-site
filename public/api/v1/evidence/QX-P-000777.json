@@ -1,0 +1,921 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000777",
+  "card_rev": "2fa74ff215315134",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-03"
+      ],
+      "parts": [
+        {
+          "subquestion": "素数解的必要条件：P与Q不交且|P∪Q|≥59",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；仅此必要条件。对每个p∈P，p进赋值v_p(Σ_P1/p)=-1，故P∩Q为空；两正数乘积1由AM-GM得和≥2，而前58个素数倒数和<2。本轮独立核对论证并用Fraction精确算术验证58/59阈值；不证明不存在任意更大解。"
+        },
+        {
+          "subquestion": "排除59素数支持集，得到|P∪Q|≥60",
+          "value": "claimed_proof",
+          "note": "Bonfioli给出49,961个可容许59素数支持集的有限排除及Lean声明。本轮读取当前固定commit的Sixty.lean定理、dfs_run与计算桥，未构建依赖、未运行枚举或#print axioms。只能登记针对该子结论的完整证明声明，不能升级主问题。"
+        },
+        {
+          "subquestion": "候选解的双侧素数乘积下界",
+          "value": "claimed_proof",
+          "note": "Closed.lean的已读定理实际写D_P²≥4·10^112，因而D_P≥2·10^56；对称得另一侧。论文另给更强min(D_P,D_Q)>3.50·10^57。本轮未核完强界推导；Sixty.lean的主定理仅给基数≥60，不输出此强乘积界，不能合并标为全部形式化。"
+        },
+        {
+          "subquestion": "放宽为组内两两互素且允许1的变体",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；仅变体存在例：P={1,5},Q={2,3}给(6/5)(5/6)=1，本轮用Fraction复算。1非素数，所以该例不能反驳本题；本轮没有核得禁止1的互素变体完整解。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/ErdosProblems/307.lean"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "仍是两个有限素数集的存在性/不存在性决策，未取得完整存在例或不存在证明。Bonfioli稿和formal-conjectures中的solved只修饰障碍界子命题；主条目仍open且为sorry。卡的验收对象允许证明不存在或给显式解，与原中性问题的决策任务一致。",
+      "evidence_ids": [
+        "777-barbeau77",
+        "777-bonfioli",
+        "777-fc"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "素数解的必要条件：P与Q不交且|P∪Q|≥59",
+      "math_status": "原题已证明",
+      "scope_note": "仅此必要条件。对每个p∈P，p进赋值v_p(Σ_P1/p)=-1，故P∩Q为空；两正数乘积1由AM-GM得和≥2，而前58个素数倒数和<2。本轮独立核对论证并用Fraction精确算术验证58/59阈值；不证明不存在任意更大解。",
+      "evidence_ids": [
+        "777-mo"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "排除59素数支持集，得到|P∪Q|≥60",
+      "math_status": "完整证明声明",
+      "scope_note": "Bonfioli给出49,961个可容许59素数支持集的有限排除及Lean声明。本轮读取当前固定commit的Sixty.lean定理、dfs_run与计算桥，未构建依赖、未运行枚举或#print axioms。只能登记针对该子结论的完整证明声明，不能升级主问题。",
+      "evidence_ids": [
+        "777-bonfioli",
+        "777-sixty",
+        "777-fc-barriers"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "候选解的双侧素数乘积下界",
+      "math_status": "完整证明声明",
+      "scope_note": "Closed.lean的已读定理实际写D_P²≥4·10^112，因而D_P≥2·10^56；对称得另一侧。论文另给更强min(D_P,D_Q)>3.50·10^57。本轮未核完强界推导；Sixty.lean的主定理仅给基数≥60，不输出此强乘积界，不能合并标为全部形式化。",
+      "evidence_ids": [
+        "777-closed",
+        "777-bonfioli"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "放宽为组内两两互素且允许1的变体",
+      "math_status": "原题已证明",
+      "scope_note": "仅变体存在例：P={1,5},Q={2,3}给(6/5)(5/6)=1，本轮用Fraction复算。1非素数，所以该例不能反驳本题；本轮没有核得禁止1的互素变体完整解。",
+      "evidence_ids": [
+        "777-fc-coprime"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "math_status": "proved"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-03-777-r01",
+      "route": "原题与出处",
+      "site": "Web open / erdosproblems.com",
+      "query": "open https://www.erdosproblems.com/307",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://www.erdosproblems.com/307",
+      "note": "直接open两次均返回restricted URL；另一次不带www返回不可达。搜索返回的缓存只作索引，不据此声称已实时读主站/评论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r02",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Erdos\" \"307\" primes solved 2026; recency=730",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "发现Bonfioli仓库及formal-conjectures障碍界入口，随后另读固定版本。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r03",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Erdős\" \"307\" \"Lean\"; recency=730",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检索命中307.lean及ElVec1o/erdos307；研究solved标签属于barrier，后续实际代码读取单列。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r04",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / Web open",
+      "query": "open https://github.com/ElVec1o/erdos307/blob/main/README.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/ElVec1o/erdos307/blob/main/README.md",
+      "locator": "The problem; What the paper establishes; Building",
+      "note": "网页当轮显示v1.76.2/2026-10-18，搜索缓存仍v1.75.0；采用后续固定commit。README明确本稿未解存在性。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r05",
+      "route": "原题与出处",
+      "site": "Web open / erdosproblems.com",
+      "query": "open https://www.erdosproblems.com/forum/thread/307; open https://erdosproblems.com/307",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://www.erdosproblems.com/forum/thread/307",
+      "note": "评论入口返回restricted URL；主站另域不可达，不采用其他站转述的撤回帖作为本轮已核事件。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r06",
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Erdős\" \"307\" Barbeau \"1976\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检索到Barbeau1976/1977及1977 Eureka线索，1976最初题目未取得全文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r07",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"On the equation\" \"Bonfioli\" \"307\" 2026; recency=730",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中作者仓库及二手claim页；二手页只作为线索，状态以原稿和代码为准。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r08",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/ElVec1o/erdos307/git/ref/heads/main",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/ElVec1o/erdos307/git/ref/heads/main",
+      "note": "实际返回main=36c3b7979a77e003fcf47016e41f2f7133495415；本轮固定此commit，不把动态main当可复现版本。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r09",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Erdős 307\" proof counterexample Bonfioli; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检索命中必要条件稿，无独立完整解决入口；不是无论文或问题仍开放的完备证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r10",
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Erdos\" \"307\" \"Barbeau\" \"pdf\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "取得MO2019及1977作者PDF线索。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r11",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/ElVec1o/erdos307/git/trees/36c3b7979a77e003fcf47016e41f2f7133495415?recursive=1",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/ElVec1o/erdos307/git/trees/36c3b7979a77e003fcf47016e41f2f7133495415?recursive=1",
+      "note": "取得未截断目录树，定位core稿、Closed.lean、Sixty.lean及依赖锁。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r12",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub raw / connector",
+      "query": "GET https://github.com/ElVec1o/erdos307/blob/36c3b7979a77e003fcf47016e41f2f7133495415/lean/Erdos307/Closed.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/ElVec1o/erdos307/blob/36c3b7979a77e003fcf47016e41f2f7133495415/lean/Erdos307/Closed.lean",
+      "locator": "card_ge_59; erdos307_barrier_closed",
+      "note": "实际请求raw.githubusercontent.com同commit路径；保存全文并静态读目标定理，非编译。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r13",
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "Barbeau 1977 \"Expressing one\" \"Crux\" pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "CMS档案和卷末目录确认作者与页码；随后阅原始PDF。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r14",
+      "route": "学术",
+      "site": "Web system1",
+      "query": "Kovic \"arithmetic derivative\" 2012 12.3.8",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "找到JIS正式刊发页和PDF。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r15",
+      "route": "代码、公开 AI 和社区",
+      "site": "MathOverflow / Web open",
+      "query": "open https://mathoverflow.net/questions/320838/product-of-sum-of-reciprocals-of-prime-numbers",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://mathoverflow.net/questions/320838/product-of-sum-of-reciprocals-of-prime-numbers",
+      "locator": "Robert Israel 2019-01-14 comment; Julian Rosen 2019-01-15 comment; Woett answer 2019-08-19",
+      "note": "读取原帖；复核不交性及≥59必要条件；答案导向Barbeau/ErGr原文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r16",
+      "route": "学术",
+      "site": "GitHub raw / connector",
+      "query": "GET https://github.com/ElVec1o/erdos307/blob/36c3b7979a77e003fcf47016e41f2f7133495415/paper/erdos307-core.tex",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/ElVec1o/erdos307/blob/36c3b7979a77e003fcf47016e41f2f7133495415/paper/erdos307-core.tex",
+      "locator": "§The barrier; lem:59, thm:barrier, prop:close59; Kovič(2012)源审计段",
+      "note": "已取得完整TeX并读所列相关段落，未审完全文所有证明。版本页标1.76.2/2026-10-18，结果是必要条件。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r17",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub raw / connector",
+      "query": "GET https://github.com/ElVec1o/erdos307/blob/36c3b7979a77e003fcf47016e41f2f7133495415/lean/Erdos307/Sixty.lean; GET lean/lean-toolchain; GET lean/lake-manifest.json",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/ElVec1o/erdos307/blob/36c3b7979a77e003fcf47016e41f2f7133495415/lean/Erdos307/Sixty.lean",
+      "locator": "dfsA_run; dfs_run; theorem erdos307_sixty (L588)",
+      "note": "已读固定源码相关段落。Lean4.30.0；mathlib c5ea00351c28e24afc9f0f84379aa41082b1188f；未执行lake build。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r18",
+      "route": "原题与出处",
+      "site": "Canadian Mathematical Society / Web open+screenshot",
+      "query": "open https://cms.math.ca/wp-content/uploads/crux-pdfs/Crux_v3n07_Aug.pdf; screenshot pageno=2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://cms.math.ca/wp-content/uploads/crux-pdfs/Crux_v3n07_Aug.pdf",
+      "locator": "印刷p178（PDF第3页），乘积表示式及紧接的未决说明",
+      "note": "本轮亲阅作者原文并以扫描页核公式；文章问是否存在，无否定证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r19",
+      "route": "学术",
+      "site": "Journal of Integer Sequences / Web open+click",
+      "query": "open https://cs.uwaterloo.ca/journals/JIS/VOL15/Kovic/kovic4.html; click pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://cs.uwaterloo.ca/journals/JIS/VOL15/Kovic/kovic4.pdf",
+      "locator": "§3.2; Proposition18,印刷pp8–9",
+      "note": "已取得正式PDF并定位Prop18。其不等式推理与Bonfioli指出的问题一致；本轮小例只验证该蕴含错误，未证明命题本身为假。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r20",
+      "route": "原题与出处",
+      "site": "UCSD author archive / Web open",
+      "query": "open http://www.math.ucsd.edu/~ronspubs/80_11_number_theory.pdf",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf",
+      "locator": "书本pp38线索未实际核读",
+      "note": "PDF入口可达但仅返回1行URL，没有读取目标页；不作为已阅书本原文证据。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r21",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub raw / connector",
+      "query": "GET https://raw.githubusercontent.com/google-deepmind/formal-conjectures/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/ErdosProblems/307.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/ErdosProblems/307.lean",
+      "locator": "erdos_307; variants.coprime; barrier; barrier_sixty",
+      "note": "主题和障碍界在此文件均有sorry；障碍界另链作者仓库。当前上游保留旧commit及native_decide说明，不能用新README覆盖其版本。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-777-r22",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub raw / connector",
+      "query": "GET https://github.com/ElVec1o/erdos307/blob/36c3b7979a77e003fcf47016e41f2f7133495415/README.md",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/ElVec1o/erdos307/blob/36c3b7979a77e003fcf47016e41f2f7133495415/README.md",
+      "locator": "版本1.76.2; Building; What the paper establishes",
+      "note": "固定作者声明：当前版称无native_decide且仅三条逻辑公理；本轮未独立复跑。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-dedup-index-001",
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "(Erd.s|埃尔德什|Erdős|Erdos).{0,15}307|素数.*倒数|prime.*reciprocal|reciprocal.*prime",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "shared_with": [
+        "QX-P-000441",
+        "QX-P-000861",
+        "QX-P-000886",
+        "QX-P-000629"
+      ],
+      "match_reason": "本题按术语/题号筛候选，实际命中含自身：QX-P-000777",
+      "note": "同一Python索引请求含五题各自regex；只作为候选生成。排除自身后的计数不是全文查重结论；未全库逐字检查，未命中不表示不重复。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-fixed-tree-001",
+      "route": "库内查重",
+      "site": "GitHub固定提交树与本包原卡",
+      "query": "GET https://api.github.com/repos/qunxingmath-org/qunxing-data/git/trees/73290369a8dcc632e25e555aec525565ea6e08f8?recursive=1; compute Git blob SHA-1 of supplied card_text",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "shared_with": [
+        "QX-P-000441",
+        "QX-P-000861",
+        "QX-P-000886",
+        "QX-P-000629"
+      ],
+      "match_reason": "QX-P-000777本包正文的Git blob与该提交的problems/000/QX-P-000777.text.md一致；card_rev与包内索引相同。",
+      "note": "此为本卡版本/正文锚定，不是全库无重复证明。精确SHA和逐文件校验记录见复现包。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-dedup-777-expanded",
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "307|算术导数|arithmetic.derivative|reciprocal.*product|prime.*reciprocal|素数.*倒数",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "排除本题后0候选；实际按title/title_en/aliases查。这里只扫索引，不能宣布全库无重复。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "no_hits"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "777-barbeau77",
+      "url": "https://cms.math.ca/wp-content/uploads/crux-pdfs/Crux_v3n07_Aug.pdf",
+      "locator": "E. J. Barbeau, Expressing One as a Sum of Distinct Reciprocals, p178（PDF第3页）",
+      "version": "Eureka 3(7), 1977年8–9月, pp178–181",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "review_status": "本轮独立数学核对",
+      "claim_state": "无声明",
+      "note": "作者讨论算术导数非平凡二循环并直接写素数倒数和乘积式，未决。1976/77 J.Recreational Math.9 p30为更早线索但本轮未取得原文。现卡acceptance允许两种答案，决策问题等价。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "777-mo",
+      "url": "https://mathoverflow.net/questions/320838/product-of-sum-of-reciprocals-of-prime-numbers",
+      "locator": "Robert Israel 2019-01-14 18:22；Julian Rosen 2019-01-15 02:39评论",
+      "version": "2019原帖，本轮2026-11-26读取",
+      "subquestions": [
+        "素数解的必要条件：P与Q不交且|P∪Q|≥59"
+      ],
+      "role": "进展",
+      "publication": "社区帖子",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "claim_state": "无声明",
+      "note": "本轮复核p进赋值、AM-GM及精确倒数和：S58=1.998740043147…<2<S59=2.002350151450…。故单靠显示的质量条件只能得≥59；≥60需要额外论证。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "777-bonfioli",
+      "url": "https://github.com/ElVec1o/erdos307/blob/36c3b7979a77e003fcf47016e41f2f7133495415/paper/erdos307-core.tex",
+      "locator": "§The barrier：lem:59、thm:barrier、prop:close59；源审计Kovič段",
+      "version": "Version1.76.2，2026-10-18；commit 36c3b7979a77e003fcf47016e41f2f7133495415",
+      "subquestions": [
+        "主问题",
+        "排除59素数支持集，得到|P∪Q|≥60",
+        "候选解的双侧素数乘积下界"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "review_status": "已读未核关键步骤",
+      "claim_state": "完整稿已取得",
+      "claimant": "Vico Bonfioli",
+      "claim_date": "2026-10-18",
+      "note": "已取得完整TeX并读相关结果和证明段；作者承认AI协助，未见同行评审。本轮未复核49,961支持枚举。当前稿声明主问题未解决。更强乘积界不能并入Sixty.lean的基数定理。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "777-closed",
+      "url": "https://github.com/ElVec1o/erdos307/blob/36c3b7979a77e003fcf47016e41f2f7133495415/lean/Erdos307/Closed.lean",
+      "locator": "card_ge_59；erdos307_barrier_closed",
+      "version": "commit 36c3b7979a77e003fcf47016e41f2f7133495415",
+      "subquestions": [
+        "素数解的必要条件：P与Q不交且|P∪Q|≥59",
+        "候选解的双侧素数乘积下界"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claim_state": "公开声称",
+      "claimant": "Vico Bonfioli",
+      "note": "本轮静态读已取得源码；定理给D_P²≥4·10^112，即D_P≥2·10^56。README的完整依赖/公理声明未本轮复跑，不填rerun通过。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "777-sixty",
+      "url": "https://github.com/ElVec1o/erdos307/blob/36c3b7979a77e003fcf47016e41f2f7133495415/lean/Erdos307/Sixty.lean",
+      "locator": "dfsA_run/dfs_run；theorem erdos307_sixty, L588起",
+      "version": "commit 36c3b7979a77e003fcf47016e41f2f7133495415",
+      "subquestions": [
+        "排除59素数支持集，得到|P∪Q|≥60"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claim_state": "公开声称",
+      "claimant": "Vico Bonfioli",
+      "note": "当前文件注释及代码显示从旧native_decide版改为kernel decide；Lean4.30.0、mathlib c5ea00351c28e24afc9f0f84379aa41082b1188f。本轮未lake build、未执行#print axioms、未独立审完依赖闭包。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "777-fc",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/ErdosProblems/307.lean",
+      "locator": "erdos_307，research open/存在式/by sorry",
+      "version": "commit 9097e2f90e66d2f6244209cb1c07f7120d17ec53",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "claim_state": "无声明",
+      "note": "仅此主问题表述：research open，存在式，by sorry。这里是题面骨架，不是证明；与本卡允许证明或给反例的决策任务相同。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "777-kovic",
+      "url": "https://cs.uwaterloo.ca/journals/JIS/VOL15/Kovic/kovic4.pdf",
+      "locator": "§3.2 Proposition18，印刷pp8–9，proof中Hence一步",
+      "version": "JIS15(2012),12.3.8，2012-03-25刊发",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "review_status": "核对发现漏洞",
+      "claim_state": "关键步骤受质疑",
+      "note": "本轮对照正式原PDF发现其由四个区间不等式推出p1·qs<rs和q1·pr<rs的步骤不成立；正确可推出p1q1<rs<prqs。局部算术反模型只否定该推理，非二循环、非Prop18结论的反例；未发现正式勘误/撤稿通知。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "claim_state": "step_disputed",
+        "claim_review": "gap_found",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "777-fc-barriers",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/ErdosProblems/307.lean",
+      "locator": "erdos_307.barrier；erdos_307.barrier_sixty",
+      "version": "commit 9097e2f90e66d2f6244209cb1c07f7120d17ec53",
+      "subquestions": [
+        "排除59素数支持集，得到|P∪Q|≥60",
+        "候选解的双侧素数乘积下界"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "claim_state": "无声明",
+      "note": "这两个子条目标research solved，但此文件仍用sorry；只外链作者旧版完整证明。barrier指向76d242b024102f32d8411c714be4ad140a8b7c4b；sixty指向080164a8db2eeb20f65c362894ec93f12448609a，旧注释仍说native_decide。当前作者版另列，不拼接信任声明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "777-fc-coprime",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/ErdosProblems/307.lean",
+      "locator": "erdos_307.variants.coprime，P={1,5},Q={2,3}及norm_num +decide",
+      "version": "commit 9097e2f90e66d2f6244209cb1c07f7120d17ec53",
+      "subquestions": [
+        "放宽为组内两两互素且允许1的变体"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claim_state": "无声明",
+      "note": "此允许1的互素变体有具体Lean证明体；本轮静态读并另用Fraction复算，未Lean编译。1非素数，所以不是原题反例。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    }
+  ],
+  "duplicates": [],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "proposer/first_published/sources",
+      "old": "提问者见CB题述；first_published为CB策展快照2026-07-23",
+      "new": "E. J. Barbeau；1976/77 J.Recreational Math.9 p30为待取得原文的最早线索；本轮最早亲阅出处为Eureka3(7)(1977),p178。",
+      "reason": "策展快照不是首发日期，应区分原始提出与本轮最早可核实原文。",
+      "evidence_ids": [
+        "777-barbeau77",
+        "777-mo"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "title/题面（可选的忠实表述修订）",
+      "old": "不存在两个有限素数集P,Q使(Σ1/p)(Σ1/q)=1。",
+      "new": "是否存在两个有限素数集P,Q，使(Σ_{p∈P}1/p)(Σ_{q∈Q}1/q)=1？给出显式解，或证明不存在。",
+      "reason": "1977作者原文和Erdős页面为存在性问句。现卡acceptance本来允许两种答案，所以不据此判主问题题面错误；如修改题面/定义或验收措辞，按规则换card_rev重查，不把否定候选命题写成已知事实。",
+      "evidence_ids": [
+        "777-barbeau77",
+        "777-fc"
+      ],
+      "small_case_check": "P或Q为空时乘积0；P=Q={2}时1/4；P={1,5},Q={2,3}乘积1但1非素数，不能作为原问题解。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展/相关进展与声称解决",
+      "old": "P∩Q=∅且|P∪Q|≥60；来源仅erdosproblems.com抓取。",
+      "new": "不交性及≥59的初等必要条件本轮独立核对；≥60来自Bonfioli排除59支持集的稿件及Lean声明，未本轮复跑。当前固定commit与上游旧commit分别记载。",
+      "reason": "前59个素数倒数和已经大于2，不能由质量不等式直接推出≥60。题库应补证明归属、验证级别和版本。",
+      "evidence_ids": [
+        "777-mo",
+        "777-bonfioli",
+        "777-sixty"
+      ],
+      "small_case_check": "Fraction精算S58=1.998740043147…，S59=2.002350151450…；只通过求和阈值得≥59。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "形式化状态与乘积下界",
+      "old": "formal_status=none；未列Bonfioli障碍界。",
+      "new": "主问题未形式化证明；必要条件有作者Lean验证声明。Closed.lean给2·10^56级别的乘积下界，论文强界>3.50·10^57未由Sixty.lean的主定理输出。",
+      "reason": "不得把solved子标签扩散至主问题，也不得把强数值界和较弱形式化定理混用。",
+      "evidence_ids": [
+        "777-closed",
+        "777-sixty",
+        "777-fc"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "文献复核说明",
+      "old": "未记录Kovič2012 Proposition18证明问题。",
+      "new": "将该命题证明的混向相乘问题列为局部已核漏洞；其结论真假和后续修复另核，不标成整篇已撤回或命题已反驳。",
+      "reason": "本轮对照原PDF并运行精确反模型检查。",
+      "evidence_ids": [
+        "777-kovic",
+        "777-bonfioli"
+      ],
+      "small_case_check": "取P=[2,5,13,37,53,73,79,89,97,101]、Q=[3,7,19,31,43,59,67,71,83,103]，r=s=10，四输入不等式都真，但p1qs=206>100、q1pr=303>100；此P,Q倒数和乘积不是1。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "1976/77 J.Recreational Math.9 p30未取得；ErGr1980扫描本目标p38未阅；主站实时正文/评论访问失败。",
+      "next_step": "取得1976原问题或核ErGr1980 p38；恢复主站评论访问后核2025撤回帖，避免将二手转述记为已核撤回。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Bonfioli仅相关结果/证明段已读，49,961支持集排除及强乘积界未独立复核；Kovič只核局部推理。",
+      "next_step": "二审逐步核prop:close59的枚举完备性与平方判据，单独审核强乘积界；有正式勘误时单独记录。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "未独立构建Lean，旧上游指针含native_decide描述，当前作者版已修改计算桥；本轮仅静态读取部分文件。",
+      "next_step": "固定作者commit 36c3b7979a77e003fcf47016e41f2f7133495415及Lean4.30.0/mathlib锁，运行lake exe cache get、lake build与lake env lean Check.lean，保留完整日志、逐定理#print axioms；另固定上游旧commit对照，不能把两版信任声明拼接。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "未查询MathSciNet/zbMATH等专业全文引文链；检索无命中不等于问题确定开放。",
+      "next_step": "补专业引文数据库与同主题算术导数文献，保留本轮部分进展/未发现主问题确证的限定。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "本轮按简索引筛选并对最相关候选读取指定提交全文；未进行全库全文/语义等价检索。",
+      "next_step": "保持已记录关系和版本；对外部负责人对按同一pair_id转交，不重复判断；以后如有新候选必须先核双方card_rev及正文，只有严格同题经二审才可合并。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "2fa74ff215315134",
+      "codes": {}
+    }
+  ]
+}
