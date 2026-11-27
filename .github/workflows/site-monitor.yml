@@ -73,3 +73,24 @@ jobs:
           [ "$c" = "404" ] || err "不存在的页面返回 $c，不是 404。"
 
           exit "$fail"
+
+      - name: Public evidence data
+        run: |
+          python3 - <<'PY'
+          import json
+          from urllib.request import urlopen
+
+          site = "https://www.qunxingmath.org/api/v1/"
+          documents = {}
+          for name in ("index.json", "evidence.json", "vocab.json"):
+              with urlopen(site + name, timeout=20) as response:
+                  documents[name] = json.load(response)
+          index, evidence, vocab = (documents[name] for name in ("index.json", "evidence.json", "vocab.json"))
+          assert index["schema"] == "qunxing.site-api/1"
+          assert evidence["schema"] == "qunxing.site-evidence/1"
+          assert vocab["schema"] == "qunxing.vocab/1"
+          assert index["source"] == evidence["source"], "API and evidence use different snapshots"
+          assert evidence["count"] == len(evidence["items"]), "Evidence count differs from its index"
+          print("source.commit=" + index["source"]["commit"])
+          print("evidence.count=" + str(evidence["count"]))
+          PY
