@@ -1,0 +1,1649 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000752",
+  "card_rev": "2d366afeb45dfa91",
+  "summary": {
+    "math_status": {
+      "value": "no_evidence_in_scope",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-02"
+      ],
+      "parts": [
+        {
+          "subquestion": "全部正整数最终到1",
+          "value": "no_evidence_in_scope",
+          "note": "量词∀n∈Z>0∃k∈Z≥0；k依赖n，无统一上界要求。J(n)偶为isqrt(n)、奇为isqrt(n³)，正整数轨道不入0，J(1)=1且k=0即满足。当前/旧FC均sorry，公开平台仅同源待证题面；本轮未取得无条件P全证明或永不到1的反例证明。有限前缀未到1、大峰值、超时、溢出不证¬P。"
+        },
+        {
+          "subquestion": "无大于1的有限圈",
+          "value": "no_evidence_in_scope",
+          "note": "这是P的必要结论；本轮未取得所有周期长度均排除的确证。独立核P⇔(Q且每条正整数轨道有界)：有界轨道最终周期，Q使其周期只能{1}；非重复轨道在此离散域会趋于+∞。未声称已找到J的逃逸轨道或证明J的Q真P假。有限非平凡圈列表提供¬P的充分有限证书，但CB finite=true不保证它穷尽¬P。Cochin周期长度下界原稿未取到，旧2356卡数字不入本轮确证。"
+        },
+        {
+          "subquestion": "有限计算验证范围",
+          "value": "partial",
+          "note": "原书作者自报1<n<200；MathWorld作者页具体报告至少至10^6（Weisstein个人通信2006-01-23）。这些作者报告本轮已读，但并未重新运行全部计算或取得原始证书，也不声称10^6是最新最大范围。7110200仅转载线索且Smith原档案404；2026PaperC缓存自报至3.5e8、转引PaperA，但原文/代码/日志未取得，不能提升为本轮确认的计算界。全部有限范围都不推出P或全Q。"
+        },
+        {
+          "subquestion": "本轮精确小例与初等边界",
+          "value": "partial",
+          "note": "实际以任意精度整数isqrt核起点1..12及每步平方夹逼，全部至多7步到1，峰值140。完整轨道（含初值至首次1）为 1:1；2:2,1；3:3,5,11,36,6,2,1；4:4,2,1；5:5,11,36,6,2,1；6:6,2,1；7:7,18,4,2,1；8:8,2,1；9:9,27,140,11,36,6,2,1；10:10,3,5,11,36,6,2,1；11:11,36,6,2,1；12:12,3,5,11,36,6,2,1。0固定但不在定义域。独立核正整数固定点仅1，>1圈必须含奇偶、最小点奇最大点偶，且无2圈：odd a→even b时b<a²，isqrt(b)<a。只是题面边界和小范围证书，不主张新研究成果，不认证任意周期或全部起点。"
+        },
+        {
+          "subquestion": "公开条件归约及部分形式化声明",
+          "value": "claimed_resolution",
+          "note": "该标签仅指作者声称的部分定理/条件归约完整论证，绝非P或Q全解声明。PaperC缓存说非空逆像闭集有对数质量下界，P等价某固定已验证目标上的定量almost-all进入条件；所需速率、CylinderBound或pressure估计未证。37/50路线依赖PaperB未独立审定理，5/8 baseline作者称kernel-checked；本轮仅缓存，完整稿/Lean/环境均未取得，未静态核代码或复跑。现不能判断这些候选证明有效性，亦不因404判撤回。"
+        },
+        {
+          "subquestion": "随机游走模型与改动地图",
+          "value": "partial",
+          "note": "仅指Prasad2025独立随机游走模型中的结论及数值拟合，非本题确定J的无条件定理。把整个J轨道近似为i.i.d.随机游走是文中关键未证假设；Theorem1证明对象是该随机过程。floor/round版及改变指数的juggler-like地图须分开，所示其他参数循环不反驳原J。未本轮独立核随机模型全部证明。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "claimed_verified",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md"
+      ],
+      "note": "只覆盖：有附加假设"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "指完整主猜想P的证明或反例未取得确证，不表示没有有限数据或部分声明。现正式规则与Pickover原题相符；P=∀n>0∃k≥0,J^k(n)=1，Q=无全部顶点>1的非空有限圈。752正文为P∧Q，因P⇒Q与P等价，并非仅Q变体。已核历史正文、具体有限计算报告与小边界；2026新部分/条件稿只得缓存，未升级已验证研究结论。旧PARTIAL仅来自open标签的依据应撤销。根按固定双卡全文核752与2356严格同题，建议接收端二审，不自动合并或计2356完成。",
+      "evidence_ids": [
+        "E752-A1",
+        "E752-A2",
+        "E752-C1",
+        "E752-C2",
+        "E752-C3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "全部正整数最终到1",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "量词∀n∈Z>0∃k∈Z≥0；k依赖n，无统一上界要求。J(n)偶为isqrt(n)、奇为isqrt(n³)，正整数轨道不入0，J(1)=1且k=0即满足。当前/旧FC均sorry，公开平台仅同源待证题面；本轮未取得无条件P全证明或永不到1的反例证明。有限前缀未到1、大峰值、超时、溢出不证¬P。",
+      "evidence_ids": [
+        "E752-A1",
+        "E752-C1",
+        "E752-C2",
+        "E752-C3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "无大于1的有限圈",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "这是P的必要结论；本轮未取得所有周期长度均排除的确证。独立核P⇔(Q且每条正整数轨道有界)：有界轨道最终周期，Q使其周期只能{1}；非重复轨道在此离散域会趋于+∞。未声称已找到J的逃逸轨道或证明J的Q真P假。有限非平凡圈列表提供¬P的充分有限证书，但CB finite=true不保证它穷尽¬P。Cochin周期长度下界原稿未取到，旧2356卡数字不入本轮确证。",
+      "evidence_ids": [
+        "E752-A1",
+        "E752-C1",
+        "E752-C3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "有限计算验证范围",
+      "math_status": "仅特例",
+      "scope_note": "原书作者自报1<n<200；MathWorld作者页具体报告至少至10^6（Weisstein个人通信2006-01-23）。这些作者报告本轮已读，但并未重新运行全部计算或取得原始证书，也不声称10^6是最新最大范围。7110200仅转载线索且Smith原档案404；2026PaperC缓存自报至3.5e8、转引PaperA，但原文/代码/日志未取得，不能提升为本轮确认的计算界。全部有限范围都不推出P或全Q。",
+      "evidence_ids": [
+        "E752-A1",
+        "E752-A2",
+        "E752-C3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "本轮精确小例与初等边界",
+      "math_status": "仅特例",
+      "scope_note": "实际以任意精度整数isqrt核起点1..12及每步平方夹逼，全部至多7步到1，峰值140。完整轨道（含初值至首次1）为 1:1；2:2,1；3:3,5,11,36,6,2,1；4:4,2,1；5:5,11,36,6,2,1；6:6,2,1；7:7,18,4,2,1；8:8,2,1；9:9,27,140,11,36,6,2,1；10:10,3,5,11,36,6,2,1；11:11,36,6,2,1；12:12,3,5,11,36,6,2,1。0固定但不在定义域。独立核正整数固定点仅1，>1圈必须含奇偶、最小点奇最大点偶，且无2圈：odd a→even b时b<a²，isqrt(b)<a。只是题面边界和小范围证书，不主张新研究成果，不认证任意周期或全部起点。",
+      "evidence_ids": [
+        "E752-A1",
+        "E752-C2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "公开条件归约及部分形式化声明",
+      "math_status": "完整证明/反例声明待核",
+      "scope_note": "该标签仅指作者声称的部分定理/条件归约完整论证，绝非P或Q全解声明。PaperC缓存说非空逆像闭集有对数质量下界，P等价某固定已验证目标上的定量almost-all进入条件；所需速率、CylinderBound或pressure估计未证。37/50路线依赖PaperB未独立审定理，5/8 baseline作者称kernel-checked；本轮仅缓存，完整稿/Lean/环境均未取得，未静态核代码或复跑。现不能判断这些候选证明有效性，亦不因404判撤回。",
+      "evidence_ids": [
+        "E752-C3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "随机游走模型与改动地图",
+      "math_status": "条件性结果",
+      "scope_note": "仅指Prasad2025独立随机游走模型中的结论及数值拟合，非本题确定J的无条件定理。把整个J轨道近似为i.i.d.随机游走是文中关键未证假设；Theorem1证明对象是该随机过程。floor/round版及改变指数的juggler-like地图须分开，所示其他参数循环不反驳原J。未本轮独立核随机模型全部证明。",
+      "evidence_ids": [
+        "E752-A3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "库内查重",
+      "site": "固定2469条全库查重简索引",
+      "query": "title,title_en,aliases 正则 Juggler|杂耍",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 2,
+      "note": "本卡及QX-P-002356；随后实际取2356的固定meta和完整text核对，不止按相同标题判重。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定2469条全库查重简索引",
+      "query": "title,title_en,aliases 正则 Collatz|科拉茨|角谷|冰雹",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 3,
+      "note": "1653 Collatz本体、1925 primorial递推、2130 ax+1发散映射是不同规则的背景题；没有据族名合并，也未做这些卡的查新。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定2469条全库查重简索引",
+      "query": "title,title_en,aliases 正则 迭代.*(到.?1|循环)|eventual.*cycle|reach.*1",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 3,
+      "note": "本卡、2356及Collatz本体1653；进一步支持取2356作精确双卡比较，而不是所有到1迭代都同题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定提交全文",
+      "query": "fetch qunxingmath-org/qunxing-data@73290369a8dcc632e25e555aec525565ea6e08f8 problems/002/QX-P-002356.meta.json 和 .text.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002356.text.md",
+      "locator": "rev2f3e8badecc6531a；题面、原文摘录、边界与约定及metadata acceptance",
+      "note": "完整两文件实际取得并读取。meta blobd038e33b6ca5dc8986c7b0173454a1a6f16e0157，text blobb29a480091d5c35b04eda5cc619af9d01faaee56。2356采用相同floor映射与正整数域，主式∀n≥1∃m J^m(n)=1。752完整主式另加无非平凡圈是其推论，故整体严格等价；root与proof路线独立核逻辑。2356既有Cochin DOI/周期下界只用作检索线索，未经新读原稿不当已确证进展，更不替代752回执或计入本包数量。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "Juggler sequence Pickover original 1990 conjecture verified integers",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位Smith软件说明、OEIS、MathWorld及原书线索；随后读原文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"juggler\" \"sequence\" \"conjecture\" proof; recency=1095",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中2026 btlab Paper C候选，后见检索缓存长摘录；public另核仓库。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"juggler sequences\" cycles computation bound; recency=1095",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位计算记录及相关juggler-like研究；不是穷尽性无解检索。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Juggler\" \"7110200\" Smith",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "Wikipedia等摘要称验证至7110200；没有仅凭转载将此升为本轮验证结果，后追原记录入口。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Estimates of the maximum excursion constant and stopping constant of juggler-like sequences\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位作者上传2025 Prasad原稿，后读其完整可访问正文相关节。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "Pickover \"Juggler\" \"1990\" Algorithm",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位作者书目及1990篇题名；1991原书随后实际读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Lower Bounds for Cycle Lengths in the Juggler Map\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "直接期望Cochin原稿；结果主要为Paper C缓存引用，不能等同Paper A全文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"The Juggler Map and the 3n\" Cochin",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "取得Paper C检索缓存长摘录，包含定量归约和限制；目标companion原稿未取得。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"7110200\" \"juggler\" verification Smith",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未取到支撑此精确阈值的可读原始日志，保留为检索线索。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "site:zenodo.org \"22676453\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未命中该原记录，只返回Zenodo帮助页等异题内容；不据此判定记录不存在。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "site:zenodo.org \"23772245\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未命中该原记录；root从相关卡提出此较新版本线索，未当本轮原文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Lower Bounds for Cycle Lengths\" \"Juggler\" \"25781\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未取得该条件周期下界的原文；不能抄相关卡数字当已核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Lower Bounds for Cycle Lengths in the Juggler Map\" Cochin \"Theorem\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "再次返回Paper C缓存；未取得Paper A完整定理证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"juggler_finite_dynamics_note.md\" \"350\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回Paper C摘要/引言自述所有起点至3.5e8已核并引用Paper A；仅作者间接报告，没有读取具体运行日志或证书。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"The Juggler Map and the 3n\" \"0.10.0\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未取该版本正文或元数据；版本编号只作为root给出的待核候选，不升级确证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system1",
+      "query": "\"Juggler geometry and earthworm algebra\" Pickover 1990 pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位作者书目和Scribd的1991原书全文，实际原书读取另列。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原作者软件文档",
+      "query": "open https://www.geocities.ws/hjsmithh/Juggler/JugglerC.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "成功读12页JugglerC文档的开头历史、规则与软件说明；记C#4.1.2.34574、1981–2008版权，给Pickover原书及Algorithm1990年11月来源。未下载/构建其程序。",
+      "url": "https://www.geocities.ws/hjsmithh/Juggler/JugglerC.pdf",
+      "locator": "p1定义及历史；pp2–12软件说明，〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "原作者软件文档",
+      "query": "find \"711\", \"isqrt\", \"2008\" in JugglerC.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "前两词无命中，2008找到软件版本/示例日志。软件文档包含很大数和计算中止提示，未据此核全体7110200以下终止。",
+      "url": "https://www.geocities.ws/hjsmithh/Juggler/JugglerC.pdf",
+      "locator": "〔原始工具引用已私有留存〕/6/7",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "OEIS旧信件入口",
+      "query": "open https://oeis.org/A007402/a007402.pdf",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "note": "403；此最初搜索命中的1994信件扫描未取得，后改读A007320提供的1992信件入口。",
+      "url": "https://oeis.org/A007402/a007402.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "OEIS原条目",
+      "query": "open https://oeis.org/A094683",
+      "date": "2026-11-27",
+      "outcome": "权限",
+      "note": "403；随后/internal成功，并非此普通URL全文可读。",
+      "url": "https://oeis.org/A094683",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "OEIS原条目",
+      "query": "open https://oeis.org/A007320/internal",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读到steps-to-1定义、1991原书p232书目、1992给Sloane信件链接和isqrt(n³)等价代码；页面仍述一般问句未知，不能以此标签独证最新状态。例句“trajectory of1 is3,...”有明显文字错误，未继承为数学事实。",
+      "url": "https://oeis.org/A007320/internal",
+      "locator": "记录#43，2026-06-28；〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者MathWorld条目",
+      "query": "open https://mathworld.wolfram.com/JugglerSequence.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读完整条目定义、例轨道及明确有限验证报告：至少10^6，署E.W.Weisstein个人通信2006-01-23。本轮未取得或重跑该百万范围证书；不称这是目前最大已知范围。",
+      "url": "https://mathworld.wolfram.com/JugglerSequence.html",
+      "locator": "正文L15–23、参考书目L43；〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Pickover作者主页",
+      "query": "open https://sprott.physics.wisc.edu/pickover/pubb.html; find \"Juggler\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "作者自己书目item223给准确1990篇名Juggler geometry and earthworm algebra，Algorithm Nov1(7):11–13。原刊页未取得；item217另有1989 n^(3/2) problem提交稿但未读且是否同题未确认，不能据相似词提前起源年份。",
+      "url": "https://sprott.physics.wisc.edu/pickover/pubb.html",
+      "locator": "item223，lines336–340；〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Smith作者记录页",
+      "query": "open https://www.geocities.ws/hjsmithh/Juggler/JuggWhat.html",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "初次显示不可访问；后从实际index点击确报404。",
+      "url": "https://www.geocities.ws/hjsmithh/Juggler/JuggWhat.html",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "OEIS原信件扫描",
+      "query": "open https://oeis.org/A007320/a007320.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "2页PDF成功返回但Total lines=0；没有取得可审查文字，也未视觉查看，不记信件内容已读。",
+      "url": "https://oeis.org/A007320/a007320.pdf",
+      "locator": "1992信件入口，〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者上传预印本",
+      "query": "open https://www.researchgate.net/publication/387868199_ESTIMATES_OF_THE_MAXIMUM_EXCURSION_CONSTANT_AND_STOPPING_CONSTANT_OF_JUGGLER-LIKE_SEQUENCES",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "成功取得作者上传全文可访问文本（约1230行），读abstract、§1、§2模型关键假设及§3不同参数循环；作者V.Prasad、M.A.Prasad，2025-01-09上传，DOI10.13140/RG.2.2.14110.04168，Received/Accepted/Published空白，不当正式发表。",
+      "url": "https://www.researchgate.net/publication/387868199_ESTIMATES_OF_THE_MAXIMUM_EXCURSION_CONSTANT_AND_STOPPING_CONSTANT_OF_JUGGLER-LIKE_SEQUENCES",
+      "locator": "§1–3，〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "OEIS原条目",
+      "query": "open https://oeis.org/A094683/internal",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取#84 2026-10-13版本：精确floor map及PARI sqrtint(n³)；新增两份Cochin Zenodo候选只作为链接线索，未据评论的2-adic“conjugates”字样宣布动力系统等价或猜想已解。",
+      "url": "https://oeis.org/A094683/internal",
+      "locator": "定义、links、PARI；〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者上传预印本",
+      "query": "find \"7110201\", \"million\", \"cycle\", \"random\"; open lines85 in Prasad2025",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "7110201无匹配；million只平台广告。§1明确primary floor/modified round两图不同；§2把全轨道视为随机游走列为关键未证假设，Theorem1针对independent random walks。§3所示{7,3}/{9,4}循环属改动指数后的地图，不是Juggler原图反例。",
+      "url": "https://www.researchgate.net/publication/387868199_ESTIMATES_OF_THE_MAXIMUM_EXCURSION_CONSTANT_AND_STOPPING_CONSTANT_OF_JUGGLER-LIKE_SEQUENCES",
+      "locator": "§1定义eq1/2；§2 lines217–230与Theorem1；§3.1–3.2；〔原始工具引用已私有留存〕/8、〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web原稿/档案入口",
+      "query": "open https://doi.org/10.5281/zenodo.22676453",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具均返回not accessible，未取得正文或可核元数据；保留具体失败，不把旧题卡引用当读取成功。",
+      "url": "https://doi.org/10.5281/zenodo.22676453",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web原稿/档案入口",
+      "query": "open https://doi.org/10.5281/zenodo.22905649",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具均返回not accessible，未取得正文或可核元数据；保留具体失败，不把旧题卡引用当读取成功。",
+      "url": "https://doi.org/10.5281/zenodo.22905649",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web原稿/档案入口",
+      "query": "open https://www.oocities.org/hjsmithh/Juggler/JuggWhat.html",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具均返回not accessible，未取得正文或可核元数据；保留具体失败，不把旧题卡引用当读取成功。",
+      "url": "https://www.oocities.org/hjsmithh/Juggler/JuggWhat.html",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web原稿/档案入口",
+      "query": "open https://web.archive.org/web/20171111172551/http://www.reocities.com/hjsmithh/Juggler/JuggWhat.html",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具均返回not accessible，未取得正文或可核元数据；保留具体失败，不把旧题卡引用当读取成功。",
+      "url": "https://web.archive.org/web/20171111172551/http://www.reocities.com/hjsmithh/Juggler/JuggWhat.html",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web原稿/档案入口",
+      "query": "open https://zenodo.org/records/22676453",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具均返回not accessible，未取得正文或可核元数据；保留具体失败，不把旧题卡引用当读取成功。",
+      "url": "https://zenodo.org/records/22676453",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web原稿/档案入口",
+      "query": "open https://zenodo.org/records/22905649",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具均返回not accessible，未取得正文或可核元数据；保留具体失败，不把旧题卡引用当读取成功。",
+      "url": "https://zenodo.org/records/22905649",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web原稿/档案入口",
+      "query": "open https://zenodo.org/records/23772245",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具均返回not accessible，未取得正文或可核元数据；保留具体失败，不把旧题卡引用当读取成功。",
+      "url": "https://zenodo.org/records/23772245",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web原稿/档案入口",
+      "query": "open https://zenodo.org/api/records/22676453",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具均返回not accessible，未取得正文或可核元数据；保留具体失败，不把旧题卡引用当读取成功。",
+      "url": "https://zenodo.org/api/records/22676453",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web原稿/档案入口",
+      "query": "open https://zenodo.org/api/records/23772245",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具均返回not accessible，未取得正文或可核元数据；保留具体失败，不把旧题卡引用当读取成功。",
+      "url": "https://zenodo.org/api/records/23772245",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web原稿/档案入口",
+      "query": "open https://zenodo.org/records/22865237",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具均返回not accessible，未取得正文或可核元数据；保留具体失败，不把旧题卡引用当读取成功。",
+      "url": "https://zenodo.org/records/22865237",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "作者仓库的搜索缓存",
+      "query": "read search excerpts for https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检索返回长摘要/引言/版本/参考文献段，署PaperC v1.3.0、2026-09-24。作者明确未证明全部终止、排除全部圈或无界轨道；声称逆像闭集对数质量下界及带未证rate的定量归约，5/8 baseline与37/50依赖另文分层。自述3.5e8有限验证只是转引PaperA。未取得该完整稿或固定commit；不报正文全文/证明/Lean已核。",
+      "url": "https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md",
+      "locator": "〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕；缓存显示4727行但本轮只收到摘录",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Smith作者下载页",
+      "query": "open https://www.geocities.ws/hjsmithh/download.html; find \"JugglerW & JugglerC\", \"JuggWhat\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读Juggler软件小节，floor规则及1990/1991历史与PDF一致，提供实际index链接；JuggWhat精确字符串无匹配。只读网页，没有下载执行源程序。",
+      "url": "https://www.geocities.ws/hjsmithh/download.html",
+      "locator": "lines247–282，〔原始工具引用已私有留存〕/4",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Smith作者档案index",
+      "query": "click download.html link92 Return to Juggler Numbers",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "取得实际index，lastmodified2008-09-15；列原信件、程序、x0=7110201压缩大数页面链接。索引存在不表示7110201终止或相关数据已读。",
+      "url": "https://www.geocities.ws/hjsmithh/Juggler/index.html",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Smith作者档案",
+      "query": "click Juggler/index.html link0",
+      "date": "2026-11-27",
+      "outcome": "档案或版本缺失",
+      "note": "原index点击实际返回404，未读原记录/信件或X90。",
+      "url": "https://www.geocities.ws/hjsmithh/Juggler/JuggWhat.html",
+      "locator": "What is a Juggler Number?",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Smith作者档案",
+      "query": "click Juggler/index.html link1",
+      "date": "2026-11-27",
+      "outcome": "档案或版本缺失",
+      "note": "原index点击实际返回404，未读原记录/信件或X90。",
+      "url": "https://www.geocities.ws/hjsmithh/Juggler/Juggle1L.html",
+      "locator": "Juggler Letter1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Smith作者档案",
+      "query": "click Juggler/index.html link18",
+      "date": "2026-11-27",
+      "outcome": "档案或版本缺失",
+      "note": "原index点击实际返回404，未读原记录/信件或X90。",
+      "url": "https://www.geocities.ws/hjsmithh/Juggler/X_90_1Pg.html",
+      "locator": "x0=7110201, X(90) condensed",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Pickover原书的公开转存正文",
+      "query": "open https://www.scribd.com/document/718969382/Clifford-a-Pickover-Computers-and-the-Imagination-Visual-Adventures-Beyond-the-Edge-Sutton-Publishing-1991",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "成功取得455页书的可访问文本，版权页实际写英国Alan Sutton1991、ISBN0-86299-999-5。书为一手原文，宿主为第三方上传；不以平台AI-enhanced title当版本依据。未下载整书、未做图像视觉核查。",
+      "url": "https://www.scribd.com/document/718969382/Clifford-a-Pickover-Computers-and-the-Imagination-Visual-Adventures-Beyond-the-Edge-Sutton-Publishing-1991",
+      "locator": "版权页lines41–68；〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Pickover原书的公开转存正文",
+      "query": "find \"40 The Juggler\", \"postulate\" in Pickover1991",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际读ch40pp231–236：eq40.1为floor-map，正文全正整数到1猜想，作者自报1<n<200测试；§40.1把round另列新问题；§40.2ref8引用1990Algorithm。postulate一词无命中但不影响已读猜想文字。附录记录BASIC浮点36^(1/2)截断会错成5；本轮使用exact isqrt，未继承浮点记录为证书。",
+      "url": "https://www.scribd.com/document/718969382/Clifford-a-Pickover-Computers-and-the-Imagination-Visual-Adventures-Beyond-the-Edge-Sutton-Publishing-1991",
+      "locator": "lines5952–6172与相关附录；〔原始工具引用已私有留存〕/5",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_commit repo_full_name=\"google-deepmind/formal-conjectures\"; commit_sha=\"main\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际固定当前HEAD ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8（2026-11-26T15:20:47Z）。HEAD变更本身涉及其他题，不当作Juggler证明。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/commit/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file repository_full_name=\"google-deepmind/formal-conjectures\"; ref=\"7a41db3d761324599812d6ca6cb6a9f311046dc7\"; path=\"FormalConjectures/Wikipedia/JugglerConjecture.lean\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取旧源全文；精确实幂floor定义、∀n>0∃m到1目标及一个sorry；36单例另有证明体。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/FormalConjectures/Wikipedia/JugglerConjecture.lean",
+      "locator": "blob 585974e4ca9cc1cd0d32e9c3e0c431e765ef0957",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_commit repo_full_name=\"bespokelabsai/conjecture-bench\"; commit_sha=\"main\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际固定CB当前HEAD 8d494791ace5894b860585d67ba8e69dbfed6376（2026-10-25T09:20:54Z），随后按SHA取cb-0217。",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/commit/8d494791ace5894b860585d67ba8e69dbfed6376",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file repository_full_name=\"google-deepmind/formal-conjectures\"; ref=\"ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8\"; path=\"FormalConjectures/Wikipedia/JugglerConjecture.lean\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取当前全文；namespace以后的数学正文与旧版完全相同，仅模块/导入/公开section改变。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Wikipedia/JugglerConjecture.lean",
+      "locator": "blob 08937f59e710333a242121821d11c425b7090e53",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file repository_full_name=\"google-deepmind/formal-conjectures\"; ref=\"7a41db3d761324599812d6ca6cb6a9f311046dc7\"; path=\"lean-toolchain\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际旧锁leanprover/lean4:v4.27.0。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/lean-toolchain",
+      "locator": "blob 2bb276aae9b280aaa44fa3c21d2be1d4bc0c9862",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file repository_full_name=\"google-deepmind/formal-conjectures\"; ref=\"7a41db3d761324599812d6ca6cb6a9f311046dc7\"; path=\"lake-manifest.json\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际旧mathlib锁a3a10db0e9d66acbebf76c5e6a135066525ac900。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/lake-manifest.json",
+      "locator": "blob 13a1771e215c0200be3db3d1d6881017a1f5d179",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "search query=\"Juggler\"; repository_name=[\"openai/math\"]; topn=8",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "只返回2个引用McNulty《A juggler's dozen of easy problems》的格论参考文献片段；不是整数Juggler迭代。未取得同题代码或证明。",
+      "result_count": 2,
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_commit repo_full_name=\"sneakyweasel/btlab\"; commit_sha=\"main\"",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "GitHub API404，未取得可固定的提交；不能推断仓库撤回、私有或删除的具体原因。",
+      "url": "https://github.com/sneakyweasel/btlab",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "system1_search_query q=\"\\\"Juggler conjecture\\\" \\\"proof\\\" \\\"AI\\\"\"; recency=365; q=\"\\\"Juggler\\\" \\\"conjecture\\\" \\\"Lean\\\"\"; recency=365",
+      "date": "2026-11-27",
+      "outcome": "命中但同一性待定",
+      "note": "本批命中ProofXiv、Prove Together及btlab缓存；同时有杂技/Graham同词新闻。对同题平台随后实际打开，btlab只得缓存摘录。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file repository_full_name=\"bespokelabsai/conjecture-bench\"; ref=\"8d494791ace5894b860585d67ba8e69dbfed6376\"; path=\"problems/conjectures/cb-0217.json\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全文确认statement为∀正整数最终到1；counterexample.finite=true且描述为全部>1的互异顶点有限圈；status_observation=open/as_of2026-07-24只是策展记录。",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0217.json",
+      "locator": "blob 4ce32c25f4f592c2bf3b51e1a78fffb3d3576446",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file repository_full_name=\"google-deepmind/formal-conjectures\"; ref=\"ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8\"; path=\"lean-toolchain\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际当前锁leanprover/lean4:v4.33.1；与旧版不同。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lean-toolchain",
+      "locator": "blob a8afa7d1b02d96f0671eba854a8dc4b416beb473",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch_file repository_full_name=\"google-deepmind/formal-conjectures\"; ref=\"ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8\"; path=\"lake-manifest.json\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际当前mathlib锁0df444a360eaa60ab8c11dca51a86af692955474；与旧版不同。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lake-manifest.json",
+      "locator": "blob fae5d498d3f9dc3f6d1efd7c2adc03dd5bb6c8d6",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "open https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "原页404，未读原文全文。搜索缓存不能当实际原页或固定代码。",
+      "url": "https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "open https://proofxiv.org/problems/juggler-conjecture-juggler-conjecture",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整82行：源FC的∀n>0到1目标仍sorry，papers/attempts/discussion/literature events各0；open标签来自FC。页眉说literature-confirmed，正文又说not yet checked，不能当独立查新证明。",
+      "url": "https://proofxiv.org/problems/juggler-conjecture-juggler-conjecture",
+      "locator": "14、24–37、38–61行",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "open https://provetogether.ai/problems/252",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整54行：目标复述、源快照与声称环境，公共lemmas/discussion均无记录；页面强调接受target不等于证明。",
+      "url": "https://provetogether.ai/problems/252",
+      "locator": "13–25、28–45行",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch url=\"https://api.github.com/repos/sneakyweasel/btlab\"",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "仓库元数据同样404，未取到default_branch/commit等。",
+      "url": "https://api.github.com/repos/sneakyweasel/btlab",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector",
+      "query": "fetch url=\"https://raw.githubusercontent.com/sneakyweasel/btlab/main/docs/theory/juggler_fate_almost_all_note.md\"",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "raw备选同样404，未取得文档正文或源码。",
+      "url": "https://raw.githubusercontent.com/sneakyweasel/btlab/main/docs/theory/juggler_fate_almost_all_note.md",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "system2_search_query q=\"\\\"juggler_fate_almost_all_note.md\\\" \\\"commit\\\"\"; q=\"\\\"Juggler\\\" \\\"proof\\\" \\\"conjecture\\\" \\\"counterexample\\\"\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "本批返回较长btlab搜索缓存摘录：version1.3.0/2026-09-24、条件归约、局部勘误和AI披露；没有固定commit。其他命中多为杂技siteswap或不同猜想。长缓存摘录仍不是原文已取得。",
+      "url": "https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地原题完整文件",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000584〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "独立边界代理实际完整读取正式题面、人话、acceptance及rev；不是仅按标题“无圈变体”重解释为Q-only。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：数学边界核对",
+      "site": "本轮精确整数计算",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000585〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际用Python任意精度int与math.isqrt计算起点1..12并逐步验证q²≤radicand<(q+1)²；radicand为偶n或奇n³。100步保护上限未触发，12条均最多7步到1、最大峰值140。不声称大范围穷举或主猜想验证。",
+      "url": "https://www.scribd.com/document/718969382/Clifford-a-Pickover-Computers-and-the-Imagination-Visual-Adventures-Beyond-the-Edge-Sutton-Publishing-1991",
+      "locator": "752_proof_audit.json、752_small_orbits.json；本回执小例行嵌入全部12条轨道",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：数学边界核对",
+      "site": "本轮映射差异计算",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000586〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "public实际计算：3→5而误图3→3，5→11而误图5→10，7→18而误图7→14；36两者都为6。该检查只排除映射误写，没有发现真正Juggler非平凡圈。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Wikipedia/JugglerConjecture.lean",
+      "locator": "752_public_audit.json local_sanity_check",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：数学边界核对",
+      "site": "本轮独立逻辑推导",
+      "query": "P⇒Q；P⇔(Q且所有正整数轨道有界)；无重复正整数轨道趋于+∞",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "圈点的轨道留在圈内，故P排除>1圈。每个有界轨道由鸽巢原理最终周期；若无重复，对每个有限阈值仅访问有限次，遂趋于+∞。因此单独Q还需排除逃逸；未证明本J实际有Q真P假的情形。",
+      "url": "https://www.scribd.com/document/718969382/Clifford-a-Pickover-Computers-and-the-Imagination-Visual-Adventures-Beyond-the-Edge-Sutton-Publishing-1991",
+      "locator": "752_proof_audit.json logical_proofs",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：数学边界核对",
+      "site": "本轮初等循环边界",
+      "query": "even n>1严格下降；odd n>1严格上升；固定点仅1；排除长度2周期",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "任一>1圈最小点必奇、最大点必偶。若2圈为odd a→even b→a，则b=floor(a^(3/2))<a²，故isqrt(b)<a矛盾。只核1/2周期及奇偶必要条件，不称所有长度无圈或新研究成果。",
+      "url": "https://www.scribd.com/document/718969382/Clifford-a-Pickover-Computers-and-the-Imagination-Visual-Adventures-Beyond-the-Edge-Sutton-Publishing-1991",
+      "locator": "752_proof_audit.json elementary_boundaries",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E752-A1",
+      "url": "https://www.scribd.com/document/718969382/Clifford-a-Pickover-Computers-and-the-Imagination-Visual-Adventures-Beyond-the-Edge-Sutton-Publishing-1991",
+      "locator": "版权页；Chapter40 The Juggler Sequence pp231–236，eq40.1、全起点猜想、§40.1/40.2",
+      "version": "Clifford A.Pickover，Computers and the Imagination，Alan Sutton英国1991版，ISBN0-86299-999-5；读取公开转存的原书文本",
+      "subquestions": [
+        "主问题",
+        "全部正整数最终到1",
+        "无大于1的有限圈",
+        "本轮精确小例与初等边界",
+        "有限计算验证范围"
+      ],
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "note": "实际原书明确J(n)=floor sqrt(n)（偶）或floor(n^(3/2))（奇），对任意正整数猜想有限步到1；1为固定点。书中考虑循环但未把无圈当足够终止条件，round另列不同问题。作者仅自报1<n<200测试，未提升成无穷证明。此为本轮最早实际读到问题正文；原书ref8及作者官网item223另确认1990 Algorithm Nov1(7):11–13早期论文书目，但未读其页，故最早历史来源与已读正文分层。",
+      "formal_status": "仅有形式化题面或骨架",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E752-A2",
+      "url": "https://mathworld.wolfram.com/JugglerSequence.html",
+      "locator": "定义eq1及有限计算报告；参考书目",
+      "version": "Eric W.Weisstein，MathWorld Juggler Sequence；所引个人通信2006-01-23；本轮2026-11-27访问",
+      "subquestions": [
+        "主问题",
+        "全部正整数最终到1",
+        "有限计算验证范围"
+      ],
+      "role": "进展",
+      "publication": "作者主页",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "作者条目报告所有正整数起点至少至10^6达到1；是具体有限范围，不是CB open标签。页面实际已读，但原始运行日志、数据和验证器未取得/重跑；不称本轮独立验证百万输入，也不称该范围目前最大。Wikipedia7110200只为本轮搜索线索，Smith相关档案404；2026较新3.5e8报告另属未取完整稿的Cochin声明，须各自分层。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E752-A3",
+      "url": "https://www.researchgate.net/publication/387868199_ESTIMATES_OF_THE_MAXIMUM_EXCURSION_CONSTANT_AND_STOPPING_CONSTANT_OF_JUGGLER-LIKE_SEQUENCES",
+      "locator": "§1 eq1/2；§2关键假设与Theorem1；§3.1/3.2不同参数循环",
+      "version": "Vikram Prasad、M.A.Prasad，Estimates of the maximum excursion constant and stopping constant of juggler-like sequences，作者上传2025-01-09，DOI10.13140/RG.2.2.14110.04168",
+      "subquestions": [
+        "随机游走模型与改动地图"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "已读作者全文相关节：随机游走估计最大偏离/停止时间参数，明示把全轨道当独立随机游走是关键假设；Theorem1为随机模型定理，未建立确定Juggler map的普遍终止或无圈。原floor与modified round两图分开，文中{7,3}/{9,4}等循环对应改变指数的juggler-like地图，不是本卡反例。Received/Accepted/Published栏为空，不能当正式发表；其历史书目年份有冲突，起源按实际原书/作者书目核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0217.json",
+      "locator": "statement；counterexample；status_observation；provenance；equivalence_group",
+      "version": "8d494791ace5894b860585d67ba8e69dbfed6376; blob 4ce32c25f4f592c2bf3b51e1a78fffb3d3576446",
+      "subquestions": [
+        "主问题",
+        "全部正整数最终到1",
+        "无大于1的有限圈"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "实际按固定commit读完整cb-0217.json；statement为∀正整数最终到1，标题nontrivial-cycle variant与counterexample.finite=true只说明筛选的有限圈反例证书。有限圈可否定P，但未证明¬P必有有限圈。status_observation=open/as_of2026-07-24是策展观察，不能据此推出partially_solved或把该日期当数学起源。equivalence_group只是标签，本轮P∧Q↔P另有逻辑证明。",
+      "evidence_id": "E752-C1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Wikipedia/JugglerConjecture.lean",
+      "locator": "jugglerStep定义；juggler_conjecture；jugglerStep_36",
+      "version": "当前ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/blob08937f59e710333a242121821d11c425b7090e53；旧7a41db3d761324599812d6ca6cb6a9f311046dc7/blob585974e4ca9cc1cd0d32e9c3e0c431e765ef0957",
+      "subquestions": [
+        "主问题",
+        "全部正整数最终到1",
+        "本轮精确小例与初等边界"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "两份完整源已读：旧52行、当前55行，整体文件非相同，但namespace数学正文完全一致。jugglerStep为实平方根/3/2幂的Nat.floor；juggler_conjecture量词∀n:Nat,n>0,∃m:Nat,jugglerStep^[m] n=1，仍一处sorry；m允许0。36→6单例有unfold/norm_num证明体，仅静态读，不能称全称证明。旧导入FormalConjectures.Util.ProblemImports，实际锁Lean4.27.0/mathliba3a10db0e9d66acbebf76c5e6a135066525ac900；当前导入FormalConjecturesUtil，实际锁Lean4.33.1/mathlib0df444a360eaa60ab8c11dca51a86af692955474；两版环境文件均分别读取。未运行Lean/lake或#print axioms、未核传递依赖闭包。数学上与exact isqrt(n³)一致，未将代码替成n*isqrt(n)。",
+      "evidence_id": "E752-C2",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "url": "https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md",
+      "locator": "搜索缓存：Theorem3、Theorem4、Corollary8.4、Acknowledgments and use of AI、Availability and version",
+      "version": "缓存自称Paper C v1.3.0/2026-09-24；未固定commit，原页和repo/raw均404",
+      "subquestions": [
+        "公开条件归约及部分形式化声明",
+        "有限计算验证范围",
+        "主问题",
+        "全部正整数最终到1",
+        "无大于1的有限圈"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "他人声称已形式化验证",
+      "note": "只有搜索缓存的长摘要/引言/版本/局部勘误段；原页、raw、GitHub元数据和main均404，Zenodo多个DOI/records/API亦不可访问，未取得完整稿、固定commit或实际Lean源。缓存自称Paper C v1.3.0、2026-09-24、未refereed，明确没有证明无条件全终止、排除全部圈或所有无界轨道。声称非空逆像闭集对数质量下界指数37/50（依赖Paper B6.3，作者自称该书面证明未独立审），另5/8及threshold3/8声称已kernel-check；把P等价/归约到固定已验证目标[1,N0]的定量almost-all进入条件，要求e>13/50等rate，rate及CylinderBound/pressure输入均未在此建立。缓存披露LLM辅助和局部erratum，不等于本轮独立核验，也不因404推断撤回。3.5e8验证仅此缓存转引PaperA的作者报告；没有数据/日志/证书，不能当本轮已验证范围或据此给精确周期下界。多个缓存摘录属同一来源，不计独立确证。",
+      "evidence_id": "E752-C3",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-002356",
+      "other_card_rev": "2f3e8badecc6531a",
+      "relation": "严格同题",
+      "reason": "双方实际全文使用相同正整数域及同一floor Juggler映射。令P为∀n≥1∃m J^m(n)=1，Q为无全部顶点>1的有限有向圈。2356主式=P；752题面/形式化/acceptance的完整主目标=P∧Q。由于J(1)=1，若存在>1圈，则任取圈点永远留圈、不能到1，故P⇒Q，从而P∧Q↔P。752标题中的“无圈变体”没有改变正文全收敛命题，不应只凭标题误判为Q-only的较弱独立题。",
+      "positions": {
+        "self": "任务.jsonl list_row131，rev2d366afeb45dfa91；题面、形式化、acceptance.criteria，明确所有正整数最终到1且无非平凡圈。",
+        "other": "固定commit73290369a8dcc632e25e555aec525565ea6e08f8，problems/002/QX-P-002356.meta.json/.text.md，rev2f3e8badecc6531a；题面J分段式与∀n≥1∃m公式、边界0排除/1固定及acceptance。"
+      },
+      "note": "本题752编号较小，负责登记这对。仅提出接收端合并复核建议，不自动改卡/删卡/redirect，不以2356旧查新元数据代替本题新回执。若接收端真要把752改成Q-only，应视为实质改题并生成新card_rev，不能沿用本次严格同题判定。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "duplicate_relation": "same"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "修正人话版",
+      "field": "title、title_en、人话版",
+      "old": "标题“无非平凡圈变体”但正文要求所有正起点到1且无圈；人话称原输入已部分解决。",
+      "new": "说明当前完整主目标就是Juggler全收敛猜想P，且P蕴含Q；可把标题澄清为全收敛及其无圈后果，删除无具体成果支撑的“原始输入已部分解决”。若真要保留独立Q-only条目，须明确改正式题面/验收并生成新card_rev。",
+      "reason": "不能仅凭题名/CB slug把现强正文改读为较弱目标。当前回执保持原rev，不自动改卡。",
+      "evidence_ids": [
+        "E752-A1",
+        "E752-C1"
+      ],
+      "small_case_check": "一般逻辑例G(1)=1、G(n)=n+1(n≥2)有Q却无P，只说明漏掉有界性的逻辑风险，绝不是Juggler反例。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述、acceptance.criteria、counterexample/checkability说明",
+      "old": "给一个反例起点或非平凡循环；CB有限=true容易误读为所有反例皆有限证书。",
+      "new": "明确P的否定为∃n>0∀k≥0:J^k(n)≠1。若给有限圈，提供非空、两两不同且>1的顶点，并逐边精确验证J(ci)=c(i+1 mod L)。若只给起点，须附永不达1的证明；有限未终止前缀/资源上限不合格。finite=true仅是可接受的一类充分反例证书，不是全部¬P的完备刻画。",
+      "reason": "无圈单独仍未排除逃逸；k依赖n而不要求统一步数，n=0明确排除，n=1允许k=0。本回执锚定原rev；接收端对定义、量词或验收口径实施实质修改时须生成新card_rev，尤其不能把缩成Q-only的新版沿用本次对P的核查。",
+      "evidence_ids": [
+        "E752-A1",
+        "E752-C1",
+        "E752-C2"
+      ],
+      "small_case_check": "0→0不反驳正整数题；1→1满足k=0。若周期含1只能是{1}，所以非平凡证书需全项>1。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "精确计算规则、独立验证建议",
+      "old": "偶floor sqrt、奇floor n^(3/2)，仅建议数值迭代。",
+      "new": "计算实现使用任意精度整数isqrt(n)或isqrt(n³)，每步输出q可检q²≤radicand<(q+1)²；不得把奇分支写n*isqrt(n)，也不以浮点n**1.5或整数溢出产生的伪圈验收。",
+      "reason": "等价精确实现澄清原定义，不改数学映射。",
+      "evidence_ids": [
+        "E752-A1",
+        "E752-C2"
+      ],
+      "small_case_check": "n=3原规则得5，误写n*isqrt(n)得3并伪造固定点；n=5分别11/10，n=7分别18/14。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "proposer、first_published、sources、原文摘录",
+      "old": "以2026-07-24 CB策展快照作first_published，proposer未指明，只有策展重述。",
+      "new": "指向Pickover及已实际读到的1991原书ch40pp231–236；较早1990 Algorithm Nov1(7):11–13篇名由作者官网/原书书目核得，原刊正文尚未取，需注明层级。2026CB日期保留为策展观察日期，不作原猜想年份。",
+      "reason": "原问比策展早；正文主P已由原书确认，1990尚只书目、1989相似投稿未核同题，不能冒称读过。",
+      "evidence_ids": [
+        "E752-A1",
+        "E752-C1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "informal_status、novelty、已知结果与进展",
+      "old": "PARTIAL/partially_solved来自CBopen及arXiv物理同词；无具体成果。",
+      "new": "主P和全Q写本轮未取得完整确证；有限计算作者报告、本轮1..12精确样例、初等1/2圈排除、随机模型结果、2026待核部分/条件声明分别注明范围与验证级别。不能由open标签推出部分解决，不能由转载数字替代计算证书。",
+      "reason": "修正旧状态依据并保留本轮实际发现，不抹掉访问受限的候选，也不将它升级为已验证定理。",
+      "evidence_ids": [
+        "E752-A1",
+        "E752-A2",
+        "E752-A3",
+        "E752-C1",
+        "E752-C3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "ai_claims、formal_status、代码公开路线",
+      "old": "formal=none、AI声明空；未单查。",
+      "new": "记录旧/当前FC完整定义及same math body、目标sorry和两套不同环境；主题只形式化题面。PaperC缓存披露AI辅助并声称部分kernel检查/局部勘误，但原件与代码未取，只公开声明待核。ProofXiv/ProveTogether同源空目标不是解；没有本轮独立Lean构建或公理审核通过。",
+      "reason": "目录状态、作者自述、实际代码读取和独立执行是不同层级；404不能自行解释为撤回。",
+      "evidence_ids": [
+        "E752-C2",
+        "E752-C3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议主卡",
+      "field": "duplicates、title、family/redirect建议",
+      "old": "本卡possible_duplicates为空且以无圈变体独立列题。",
+      "new": "建议接收端二审752与2356的严格同题关系并选择主卡/合并来源；当前不自动删卡或redirect。752编号较小，已负责登记完整双卡版本比较。若保留一个真正Q-only弱化问题，须另明确新版数学范围。",
+      "reason": "root取得固定2356完整meta/text，双方同map、正整数域；2356=P、752=P∧Q，独立逻辑P⇒Q给等价。2356旧查新不能代替本题回执，也不因此新增本包完成题数。",
+      "evidence_ids": [
+        "E752-A1",
+        "E752-C1"
+      ],
+      "small_case_check": "并列Q是P的冗余结论；若删去P留下Q，命题范围即改变且逃逸仍待排除。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {
+        "card_action": "suggest_main"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "reason": "无条件全P或全Q未取得完整解决稿；现新候选多为条件或模型层面。",
+      "next_step": "未来主声明需核所有正整数、精确floor映射及∀n∃k有限命中；有限圈可作为充分反例，但裸起点/有限前缀不够。无圈证明还需有界/无逃逸论证才能闭合P。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Cochin PaperA/B/C及companion原件多路不可访问；仅PaperC缓存，未取得具体周期下界/3.5e8报告的底层证明和计算。",
+      "next_step": "补固定版本完整稿、PaperB依赖和局部erratum/修订关系；验证声明中的定量速率与假设。相关2356旧卡数字只作线索，本轮不登记为原文核过。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "btlab main/repo/raw均404；无commit、源码、环境或公理输出，作者缓存称kernel检查不足以独立验证。",
+      "next_step": "如恢复或取得合法归档，固定源版本、核定义/实际定理/依赖和占位，再构建/审公理。当前不声称已静态检查其Lean，不把404当撤回或错误证据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "百万范围为已读作者报告而未复跑；7110200底层档案缺失，更大3.5e8只未取证声明。",
+      "next_step": "若深度验收有限界，取得exact整数实现、完整起点区间覆盖、日志及可复验数据/哈希；与本轮仅1..12精确检查分开，并避免宣称某范围为最新最大。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "1990Algorithm原刊页未取得，1989相似投稿同一性不明；1991原书正文已从公开转存读取。",
+      "next_step": "进一步考证最早年月时取1990Nov1(7)pp11–13原页；保留1991已读正文与更早书目线索区别，不再用策展日期作起源。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "严格同题提案涉及当前752与2356固定版本，尚未由接收端合并二审。",
+      "next_step": "接收端复核P∧Q↔P及两卡域/映射/量词后选主卡；不自动改原rev、删除或redirect。若改成Q-only，生成新版并重审关系。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "2d366afeb45dfa91",
+      "codes": {}
+    }
+  ]
+}

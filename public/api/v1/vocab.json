@@ -1,0 +1,1077 @@
+{
+  "schema": "qunxing.vocab/1",
+  "version": "2026-11-26",
+  "note": "群星的状态和分类取值表。加状态、改名、补中文写法都只改这个文件，然后运行 evidence.py sync 重算全部证据文件。用法见 contracts/evidence/README.md。",
+  "dimensions": {
+    "math_status": {
+      "zh": "数学结论",
+      "en": "Mathematical status",
+      "from": "math_results",
+      "fields": [
+        "math_status",
+        "conclusion",
+        "status",
+        "verdict",
+        "result"
+      ],
+      "unknown": "quarantine",
+      "default": "not_assessed",
+      "main_subquestion": [
+        "主问题",
+        "原题",
+        "主命题",
+        "全题",
+        "整题",
+        "main"
+      ],
+      "from_card": {
+        "field": "novelty.result",
+        "as_of_field": "novelty.last_checked_at",
+        "default": "not_assessed",
+        "map": {
+          "not_found_in_scope": "no_evidence_in_scope",
+          "partial_result": "partial",
+          "claimed_solution": "claimed_proof",
+          "known_result": "claimed_proof",
+          "inconclusive": "undeterminable"
+        }
+      },
+      "values": [
+        {
+          "code": "not_assessed",
+          "zh": "未评估",
+          "en": "Not assessed",
+          "color": "gray",
+          "rank": 0,
+          "aliases": [
+            "未作判断"
+          ]
+        },
+        {
+          "code": "no_evidence_in_scope",
+          "zh": "本次范围未发现确证",
+          "en": "No resolution found in the searched scope",
+          "color": "gray",
+          "rank": 10,
+          "note": "做过实际检索，在记录的渠道和日期内没找到解决；不等于确认开放",
+          "aliases": [
+            "暂未找到可验证结果"
+          ]
+        },
+        {
+          "code": "partial",
+          "zh": "有部分进展",
+          "en": "Partial results",
+          "color": "blue",
+          "rank": 30,
+          "aliases": [
+            "仅特例",
+            "条件性结果",
+            "实质进展",
+            "仅特例/条件性结果/实质进展",
+            "部分进展"
+          ]
+        },
+        {
+          "code": "claimed_proof",
+          "zh": "有人声称已证明",
+          "en": "Proof claimed",
+          "color": "yellow",
+          "rank": 45,
+          "aliases": [
+            "完整证明声明"
+          ],
+          "claim": true
+        },
+        {
+          "code": "claimed_counterexample",
+          "zh": "有人声称已推翻",
+          "en": "Counterexample claimed",
+          "color": "yellow",
+          "rank": 40,
+          "aliases": [
+            "完整反例声明"
+          ],
+          "claim": true
+        },
+        {
+          "code": "proved",
+          "zh": "原题已证明",
+          "en": "Proved",
+          "color": "green",
+          "rank": 65,
+          "closed": true,
+          "pending_as": "claimed_proof",
+          "aliases": [
+            "原题已证"
+          ]
+        },
+        {
+          "code": "disproved",
+          "zh": "原题已推翻",
+          "en": "Disproved",
+          "color": "green",
+          "rank": 60,
+          "closed": true,
+          "pending_as": "claimed_counterexample",
+          "aliases": [
+            "原题已反驳"
+          ]
+        },
+        {
+          "code": "independent",
+          "zh": "已知独立于公理",
+          "en": "Independent of the axioms",
+          "color": "green",
+          "rank": 55,
+          "closed": true,
+          "pending_as": "undeterminable",
+          "aliases": [
+            "已知独立性"
+          ]
+        },
+        {
+          "code": "undecidable",
+          "zh": "已知算法不可判定",
+          "en": "Algorithmically undecidable",
+          "color": "green",
+          "rank": 50,
+          "closed": true,
+          "pending_as": "undeterminable",
+          "aliases": [
+            "已知算法不可判定性"
+          ]
+        },
+        {
+          "code": "conflicting",
+          "zh": "来源互相矛盾",
+          "en": "Sources conflict",
+          "color": "red",
+          "rank": 90,
+          "aliases": [
+            "有冲突"
+          ]
+        },
+        {
+          "code": "undeterminable",
+          "zh": "现有材料无法判定",
+          "en": "Undetermined from available sources",
+          "color": "gray",
+          "rank": 20,
+          "aliases": [
+            "无法判定"
+          ]
+        },
+        {
+          "code": "claimed_resolution",
+          "zh": "有人声称已解决",
+          "en": "Resolution claimed",
+          "color": "yellow",
+          "rank": 46,
+          "claim": true,
+          "aliases": [
+            "完整证明/反例声明待核",
+            "完整证明或反例声明待核",
+            "完整声明待核"
+          ],
+          "note": "来源声称完整证明或反例，回传没分清是哪一种"
+        },
+        {
+          "code": "statement_error",
+          "zh": "题面有误",
+          "en": "Statement error found",
+          "color": "red",
+          "rank": 85,
+          "statement_problem": true,
+          "aliases": [
+            "题面错误或缺条件",
+            "题面错误"
+          ],
+          "note": "查新发现题面和原文不符或缺条件，要走题卡修订"
+        },
+        {
+          "code": "main_pending",
+          "zh": "主问题状态待定",
+          "en": "Main question pending",
+          "color": "gray",
+          "rank": 25,
+          "note": "只由子问推出：某个子问已证、已反驳或有完整声明，主问题要复核"
+        }
+      ],
+      "subquestion_fields": [
+        "subquestion",
+        "subproblem",
+        "subquestion_id"
+      ],
+      "main_patterns": [
+        "原题",
+        "主判断",
+        "主问题",
+        "^main$"
+      ],
+      "rules": {
+        "derive_pending": "main_pending",
+        "derive_statement": "statement_error"
+      },
+      "note": "标签挂在子问上。没有单独的主问题结论时，按子问保守推出：有题面问题就是 statement_error；有已证、已反驳或完整声明就是 main_pending（不进抽样框，待复核）；否则取部分进展或未发现确证"
+    },
+    "formal_evidence": {
+      "zh": "形式化",
+      "en": "Formal verification",
+      "from": "evidence",
+      "fields": [
+        "formal_status"
+      ],
+      "unknown": "ignore",
+      "default": "not_searched",
+      "rules": {
+        "pass_without_record": "claimed_verified",
+        "pass_partial_scope": "rerun_partial",
+        "formal_route_no_hits": "none_found"
+      },
+      "from_card": {
+        "field": "formal_status.value",
+        "as_of_field": "formal_status.as_of",
+        "default": "not_searched",
+        "ai_claim_lean_checked": "claimed_verified",
+        "map": {
+          "none": "not_searched",
+          "statement": "statement_only",
+          "proof": "claimed_verified"
+        }
+      },
+      "values": [
+        {
+          "code": "not_searched",
+          "zh": "未检索形式化",
+          "en": "Not searched",
+          "color": "gray",
+          "rank": 0,
+          "aliases": [
+            "未检索"
+          ]
+        },
+        {
+          "code": "none_found",
+          "zh": "未检到形式化",
+          "en": "None found",
+          "color": "gray",
+          "rank": 10
+        },
+        {
+          "code": "statement_only",
+          "zh": "只有形式化题面",
+          "en": "Formal statement only",
+          "color": "blue",
+          "rank": 20,
+          "aliases": [
+            "仅有形式化题面或骨架"
+          ],
+          "keywords": [
+            "有sorry",
+            "有 sorry",
+            "占位",
+            "额外公理",
+            "仅形式化题面",
+            "陈述代码",
+            "陈述模板"
+          ]
+        },
+        {
+          "code": "claimed_verified",
+          "zh": "他人声称已形式化验证",
+          "en": "Formal verification claimed by others",
+          "color": "yellow",
+          "rank": 30,
+          "note": "作者、团队、项目报告、原项目 CI 的自报都算这一级",
+          "keywords": [
+            "他人声称已形式化",
+            "他人声称计算验证",
+            "作者称 Lean",
+            "作者称Lean"
+          ]
+        },
+        {
+          "code": "code_unchecked",
+          "zh": "已拿到代码，未检查",
+          "en": "Code obtained, not checked",
+          "color": "yellow",
+          "rank": 40,
+          "aliases": [
+            "已取得代码未检查",
+            "已取得代码未重跑"
+          ],
+          "keywords": [
+            "已取得代码未重跑",
+            "他人代码命中"
+          ]
+        },
+        {
+          "code": "static_checked",
+          "zh": "已静态检查，未复跑",
+          "en": "Statically checked, not rerun",
+          "color": "yellow",
+          "rank": 50,
+          "aliases": [
+            "已静态检查未复跑"
+          ],
+          "keywords": [
+            "已核主定理",
+            "已核端点",
+            "已核这些定义",
+            "已核定理对应",
+            "已核目标"
+          ]
+        },
+        {
+          "code": "rerun_blocked",
+          "zh": "复跑受阻",
+          "en": "Rerun blocked",
+          "color": "yellow",
+          "rank": 60,
+          "aliases": [
+            "复跑遇阻"
+          ]
+        },
+        {
+          "code": "rerun_partial",
+          "zh": "复跑只覆盖一部分",
+          "en": "Rerun covers part only",
+          "color": "blue",
+          "rank": 70,
+          "aliases": [
+            "复跑仅覆盖部分"
+          ]
+        },
+        {
+          "code": "rerun_failed",
+          "zh": "复跑失败",
+          "en": "Rerun failed",
+          "color": "red",
+          "rank": 80
+        },
+        {
+          "code": "third_party_rerun_pass",
+          "zh": "第三方独立复跑通过",
+          "en": "Independent rerun passed",
+          "color": "green",
+          "rank": 90,
+          "pass": true,
+          "aliases": [
+            "本轮独立复跑通过"
+          ],
+          "note": "要有固定 commit、命令和日志，否则按 claimed_verified 记"
+        },
+        {
+          "code": "qunxing_rerun_pass",
+          "zh": "群星独立复跑通过",
+          "en": "Qunxing rerun passed",
+          "color": "green",
+          "rank": 100,
+          "pass": true
+        }
+      ],
+      "match": "contains",
+      "note": "认不出的写法不隔离，只记进\"不认识的取值\"；形式化这一类只用于显示，不影响抽样框"
+    },
+    "search_coverage": {
+      "zh": "查新覆盖",
+      "en": "Search coverage",
+      "from": "row",
+      "fields": [
+        "search_summary"
+      ],
+      "unknown": "quarantine",
+      "default": "not_started",
+      "rules": {
+        "missing_core_routes": "coarse_gaps",
+        "legacy": "legacy_reference"
+      },
+      "values": [
+        {
+          "code": "not_started",
+          "zh": "未启动",
+          "en": "Not started",
+          "color": "gray",
+          "rank": 10
+        },
+        {
+          "code": "batch_screen",
+          "zh": "只做了批量筛选",
+          "en": "Batch screening only",
+          "color": "gray",
+          "rank": 20,
+          "aliases": [
+            "仅批量筛选"
+          ]
+        },
+        {
+          "code": "targeted",
+          "zh": "定向核查",
+          "en": "Targeted check",
+          "color": "blue",
+          "rank": 30,
+          "aliases": [
+            "当前版定向核查"
+          ]
+        },
+        {
+          "code": "coarse_gaps",
+          "zh": "逐题粗查，有缺口",
+          "en": "Per-problem search, with gaps",
+          "color": "blue",
+          "rank": 40,
+          "aliases": [
+            "逐题粗查有缺口"
+          ],
+          "keywords": [
+            "逐题",
+            "初查",
+            "五路",
+            "实际执行",
+            "实际完成",
+            "已执行原出处",
+            "已完成原题",
+            "已核原始出处",
+            "原始出处已实际打开",
+            "已完整读取"
+          ]
+        },
+        {
+          "code": "coarse_complete",
+          "zh": "逐题粗查达标",
+          "en": "Per-problem search complete",
+          "color": "green",
+          "rank": 50,
+          "needs_core_routes": true
+        },
+        {
+          "code": "deep_complete",
+          "zh": "逐题深查达标",
+          "en": "In-depth search complete",
+          "color": "green",
+          "rank": 60,
+          "needs_core_routes": true
+        },
+        {
+          "code": "legacy_reference",
+          "zh": "旧版记录，仅供参考",
+          "en": "Earlier records, reference only",
+          "color": "gray",
+          "rank": 0,
+          "aliases": [
+            "旧版记录不可迁移",
+            "旧版仅供参考"
+          ]
+        }
+      ],
+      "match": "contains"
+    },
+    "claim_state": {
+      "zh": "声明",
+      "en": "Claim",
+      "from": "evidence",
+      "fields": [
+        "claim_state"
+      ],
+      "unknown": "quarantine",
+      "values": [
+        {
+          "code": "none",
+          "zh": "无声明",
+          "en": "No claim",
+          "color": "gray",
+          "rank": -10,
+          "not_a_claim": true
+        },
+        {
+          "code": "public_claim",
+          "zh": "公开声称",
+          "en": "Publicly claimed",
+          "color": "yellow",
+          "rank": 30
+        },
+        {
+          "code": "full_manuscript",
+          "zh": "已取得完整稿",
+          "en": "Full manuscript available",
+          "color": "yellow",
+          "rank": 40,
+          "aliases": [
+            "完整稿已取得"
+          ]
+        },
+        {
+          "code": "revised",
+          "zh": "有修订",
+          "en": "Revised",
+          "color": "yellow",
+          "rank": 40
+        },
+        {
+          "code": "partially_retracted",
+          "zh": "部分撤回",
+          "en": "Partially retracted",
+          "color": "red",
+          "rank": 20
+        },
+        {
+          "code": "fully_retracted",
+          "zh": "完全撤回",
+          "en": "Fully retracted",
+          "color": "red",
+          "rank": 0,
+          "note": "撤回证明不等于原题已被推翻"
+        },
+        {
+          "code": "step_disputed",
+          "zh": "关键步骤受质疑",
+          "en": "Key step disputed",
+          "color": "red",
+          "rank": 10
+        }
+      ]
+    },
+    "claim_review": {
+      "zh": "声明的复核",
+      "en": "Review of the claim",
+      "from": "evidence",
+      "fields": [
+        "review_status"
+      ],
+      "unknown": "quarantine",
+      "default": "not_read",
+      "values": [
+        {
+          "code": "not_read",
+          "zh": "未读全文",
+          "en": "Not read in full",
+          "color": "gray",
+          "rank": 10
+        },
+        {
+          "code": "read_unchecked",
+          "zh": "已读，未核关键步骤",
+          "en": "Read, key steps not checked",
+          "color": "gray",
+          "rank": 20,
+          "aliases": [
+            "已读未核关键步骤"
+          ]
+        },
+        {
+          "code": "key_steps_checked",
+          "zh": "核过关键步骤",
+          "en": "Key steps checked",
+          "color": "blue",
+          "rank": 30,
+          "aliases": [
+            "仅核关键步骤"
+          ]
+        },
+        {
+          "code": "independent_check",
+          "zh": "群星本轮独立数学核对",
+          "en": "Checked independently by Qunxing",
+          "color": "green",
+          "rank": 50,
+          "aliases": [
+            "本轮独立数学核对"
+          ]
+        },
+        {
+          "code": "independent_review_exists",
+          "zh": "已有独立数学复核",
+          "en": "Independent review exists",
+          "color": "green",
+          "rank": 40
+        },
+        {
+          "code": "gap_found",
+          "zh": "核对发现漏洞",
+          "en": "Gap found",
+          "color": "red",
+          "rank": 0,
+          "demotes_claim": true
+        }
+      ]
+    },
+    "scope_match": {
+      "zh": "和题面的对应",
+      "en": "Match with the problem",
+      "from": "evidence",
+      "fields": [
+        "scope_match"
+      ],
+      "unknown": "unconfirmed",
+      "item_default": "unconfirmed",
+      "values": [
+        {
+          "code": "equivalent",
+          "zh": "原题等价",
+          "en": "Equivalent",
+          "full": true
+        },
+        {
+          "code": "implies",
+          "zh": "严格蕴含",
+          "en": "Strictly implies",
+          "full": true
+        },
+        {
+          "code": "subquestion",
+          "zh": "仅某子问",
+          "en": "One sub-question only",
+          "aliases": [
+            "仅子问"
+          ]
+        },
+        {
+          "code": "special_case",
+          "zh": "特例",
+          "en": "Special case"
+        },
+        {
+          "code": "extra_assumptions",
+          "zh": "有附加假设",
+          "en": "Extra assumptions"
+        },
+        {
+          "code": "related",
+          "zh": "同源不同问",
+          "en": "Related, different question"
+        },
+        {
+          "code": "unconfirmed",
+          "zh": "尚未确认",
+          "en": "Not confirmed"
+        }
+      ]
+    },
+    "route": {
+      "zh": "检索路线",
+      "en": "Search route",
+      "from": "queries",
+      "fields": [
+        "route",
+        "channel"
+      ],
+      "unknown": "ignore",
+      "match": "contains",
+      "values": [
+        {
+          "code": "origin",
+          "zh": "原题与出处",
+          "en": "Origin and sources",
+          "core": true,
+          "keywords": [
+            "原题",
+            "出处",
+            "原文",
+            "原稿"
+          ]
+        },
+        {
+          "code": "academic",
+          "zh": "学术",
+          "en": "Academic literature",
+          "core": true,
+          "keywords": [
+            "学术"
+          ]
+        },
+        {
+          "code": "code_ai_community",
+          "zh": "代码、公开 AI 和社区",
+          "en": "Code, public AI and community",
+          "core": true,
+          "formal_search": true,
+          "keywords": [
+            "代码",
+            "社区",
+            "AI"
+          ]
+        },
+        {
+          "code": "internal_dedup",
+          "zh": "库内查重",
+          "en": "Duplicate check in the bank",
+          "core": true,
+          "keywords": [
+            "查重"
+          ]
+        }
+      ]
+    },
+    "query_outcome": {
+      "zh": "检索结果",
+      "en": "Query outcome",
+      "from": "queries",
+      "fields": [
+        "outcome",
+        "result_status",
+        "result"
+      ],
+      "unknown": "ignore",
+      "note": "record 为 false 的不算真实检索记录；认不出的也不算",
+      "values": [
+        {
+          "code": "not_run",
+          "zh": "未执行",
+          "en": "Not run",
+          "record": false
+        },
+        {
+          "code": "not_applicable",
+          "zh": "不适用",
+          "en": "Not applicable",
+          "record": false
+        },
+        {
+          "code": "no_hits",
+          "zh": "执行无命中",
+          "en": "Run, no hits"
+        },
+        {
+          "code": "excluded",
+          "zh": "命中已排除",
+          "en": "Hits ruled out"
+        },
+        {
+          "code": "title_only",
+          "zh": "仅标题/索引或摘要",
+          "en": "Title, index or abstract only",
+          "aliases": [
+            "仅标题、索引或摘要",
+            "仅标题",
+            "仅摘要"
+          ]
+        },
+        {
+          "code": "same_problem",
+          "zh": "原文已阅且同题",
+          "en": "Read in full, same problem"
+        },
+        {
+          "code": "different_scope",
+          "zh": "原文已阅但范围不同",
+          "en": "Read in full, different scope"
+        },
+        {
+          "code": "identity_pending",
+          "zh": "命中但同一性待定",
+          "en": "Hit, identity unconfirmed"
+        },
+        {
+          "code": "no_full_text",
+          "zh": "全文不可访问",
+          "en": "Full text unavailable"
+        },
+        {
+          "code": "blocked",
+          "zh": "限流或权限",
+          "en": "Rate-limited or no access",
+          "record": false,
+          "aliases": [
+            "限流",
+            "权限"
+          ]
+        },
+        {
+          "code": "tool_failed",
+          "zh": "工具失败",
+          "en": "Tool failed",
+          "record": false
+        },
+        {
+          "code": "archive_missing",
+          "zh": "档案或版本缺失",
+          "en": "Archive or version missing"
+        }
+      ]
+    },
+    "role": {
+      "zh": "证据角色",
+      "en": "Role of the source",
+      "from": "evidence",
+      "fields": [
+        "role"
+      ],
+      "unknown": "ignore",
+      "values": [
+        {
+          "code": "original",
+          "zh": "原始提出",
+          "en": "Original statement"
+        },
+        {
+          "code": "earliest_source",
+          "zh": "目前最早可核实出处",
+          "en": "Earliest verifiable source",
+          "aliases": [
+            "最早可核实出处"
+          ]
+        },
+        {
+          "code": "restatement",
+          "zh": "重述",
+          "en": "Restatement"
+        },
+        {
+          "code": "progress",
+          "zh": "进展",
+          "en": "Progress"
+        },
+        {
+          "code": "full_proof",
+          "zh": "完整证明",
+          "en": "Full proof"
+        },
+        {
+          "code": "counterexample",
+          "zh": "反例",
+          "en": "Counterexample"
+        },
+        {
+          "code": "retraction",
+          "zh": "撤回/勘误",
+          "en": "Retraction or erratum",
+          "aliases": [
+            "撤回",
+            "勘误"
+          ]
+        },
+        {
+          "code": "formalization",
+          "zh": "形式化",
+          "en": "Formalization",
+          "formal": true
+        },
+        {
+          "code": "certificate",
+          "zh": "证书",
+          "en": "Certificate",
+          "formal": true
+        }
+      ]
+    },
+    "publication": {
+      "zh": "载体",
+      "en": "Publication",
+      "from": "evidence",
+      "fields": [
+        "publication"
+      ],
+      "unknown": "ignore",
+      "values": [
+        {
+          "code": "original_archive",
+          "zh": "原始档案",
+          "en": "Original archive"
+        },
+        {
+          "code": "journal",
+          "zh": "正式刊发",
+          "en": "Published"
+        },
+        {
+          "code": "preprint",
+          "zh": "预印本",
+          "en": "Preprint"
+        },
+        {
+          "code": "author_page",
+          "zh": "作者主页/个人索引",
+          "en": "Author page or personal index",
+          "aliases": [
+            "作者主页",
+            "个人索引"
+          ]
+        },
+        {
+          "code": "project_report",
+          "zh": "项目报告",
+          "en": "Project report"
+        },
+        {
+          "code": "community_post",
+          "zh": "社区帖子",
+          "en": "Community post"
+        },
+        {
+          "code": "code_repo",
+          "zh": "代码仓库或 PR",
+          "en": "Code repository or PR",
+          "aliases": [
+            "代码仓库",
+            "PR"
+          ]
+        },
+        {
+          "code": "secondary_index",
+          "zh": "二手索引",
+          "en": "Secondary index"
+        }
+      ]
+    },
+    "duplicate_relation": {
+      "zh": "查重关系",
+      "en": "Duplicate relation",
+      "from": "duplicates",
+      "fields": [
+        "relation",
+        "type"
+      ],
+      "unknown": "ignore",
+      "values": [
+        {
+          "code": "same",
+          "zh": "严格同题",
+          "en": "Same problem",
+          "aliases": [
+            "同题"
+          ]
+        },
+        {
+          "code": "same_intent_incomplete",
+          "zh": "同意图但残缺",
+          "en": "Same intent, incomplete"
+        },
+        {
+          "code": "main_and_verify",
+          "zh": "主卡/验证卡",
+          "en": "Main card and verification card"
+        },
+        {
+          "code": "special_case",
+          "zh": "特例",
+          "en": "Special case",
+          "aliases": [
+            "特例/强化"
+          ]
+        },
+        {
+          "code": "stronger_or_weaker",
+          "zh": "强化或弱化",
+          "en": "Stronger or weaker",
+          "aliases": [
+            "强化",
+            "弱化"
+          ]
+        },
+        {
+          "code": "related",
+          "zh": "同源不同问",
+          "en": "Related, different question"
+        },
+        {
+          "code": "similar",
+          "zh": "仅相似",
+          "en": "Similar only",
+          "aliases": [
+            "相关但不等价"
+          ]
+        },
+        {
+          "code": "pending",
+          "zh": "待核",
+          "en": "To be checked",
+          "aliases": [
+            "待定"
+          ]
+        }
+      ]
+    },
+    "card_action": {
+      "zh": "题卡改动建议",
+      "en": "Suggested card change",
+      "from": "card_actions",
+      "fields": [
+        "action",
+        "type",
+        "kind",
+        "text",
+        "suggestion"
+      ],
+      "unknown": "ignore",
+      "values": [
+        {
+          "code": "fix_statement",
+          "zh": "题面纠错",
+          "en": "Fix the statement",
+          "keywords": [
+            "修正题面",
+            "重写题面",
+            "修订题面",
+            "修正题卡文本",
+            "题面纠错"
+          ]
+        },
+        {
+          "code": "add_quantifiers",
+          "zh": "补条件量词",
+          "en": "Add conditions or quantifiers",
+          "aliases": [
+            "补量词"
+          ]
+        },
+        {
+          "code": "fix_formula",
+          "zh": "修复公式",
+          "en": "Fix a formula"
+        },
+        {
+          "code": "add_source",
+          "zh": "补最早出处",
+          "en": "Add the earliest source"
+        },
+        {
+          "code": "add_progress",
+          "zh": "补进展/声明",
+          "en": "Add progress or claims",
+          "aliases": [
+            "补进展",
+            "补声明"
+          ]
+        },
+        {
+          "code": "adjust_status",
+          "zh": "调整数学状态",
+          "en": "Adjust the status"
+        },
+        {
+          "code": "suggest_main",
+          "zh": "建议主卡",
+          "en": "Suggest a main card"
+        },
+        {
+          "code": "link_verify",
+          "zh": "关联验证卡",
+          "en": "Link a verification card"
+        },
+        {
+          "code": "fix_plain_text",
+          "zh": "修正人话版",
+          "en": "Fix the plain-language version"
+        },
+        {
+          "code": "suggest_revision",
+          "zh": "建议修订",
+          "en": "Revision suggested",
+          "keywords": [
+            "建议修订",
+            "修卡建议"
+          ]
+        },
+        {
+          "code": "no_change",
+          "zh": "暂不改卡",
+          "en": "No change for now",
+          "no_change": true
+        }
+      ],
+      "match": "contains"
+    }
+  },
+  "facets": {}
+}

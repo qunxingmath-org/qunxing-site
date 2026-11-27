@@ -1,0 +1,978 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000220",
+  "card_rev": "e9c4a80ed88ecc87",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-12"
+      ],
+      "parts": [
+        {
+          "subquestion": "Q2：正确边数条件下的全参数极小化",
+          "value": "partial",
+          "note": "正确Q2为整数1≤k≤n/2且e(G)≥k(n−k)时s(G)≥Σ_{j=2}^k1/(2j)，不同圈长只计一次。2026预印本给充分大k的精确极值结果，未取得覆盖其余所有k和每个任意n的完整解。k=1下界为空和、显然成立，因此不能笼统宣称每个小k均开放；未给显式统一k0时也不能把剩余问题说成有限张小图枚举。"
+        },
+        {
+          "subquestion": "Q1：圈长倒数和的最优渐近下界",
+          "value": "claimed_proof",
+          "note": "提议\"原题已证明\"，待二审；Liu–Montgomery Cor1.2为已发表工作的接受稿结论：平均度d下s≥(1/2−o_d(1))log d。e=kn时应代d=2k；此处仅闭合Q1，不闭合精确Q2。本轮核过定义及适用量词，未逐行重证原42页证明。"
+        },
+        {
+          "subquestion": "Q2：充分大k的精确极值与附条件唯一性",
+          "value": "partial",
+          "note": "2609.26401v1覆盖充分大整数k与全部n≥2k；下界在e>(k−1)(n−k+1)成立，唯一等号必须再有e≥k(n−k)。未独立审核全部原证明，不将其当所有k的完整解决，也不把定理转移到现卡错误的kn边参数域。"
+        },
+        {
+          "subquestion": "代码题面：同阶同实际边数的完全二部图比较",
+          "value": "not_assessed",
+          "note": "固定Lean文件给出比较命题的类型，但三个定理体均sorry。Q2只比较同顶点数、同实际边数的完全二部图，不强令其部大小等于e/n，也未断言唯一性。本轮只做类型和量词静态核对，没有Lean构建或#print axioms通过记录；平台无尝试及骨架不能替代数学结论。"
+        },
+        {
+          "subquestion": "有限计算声明：n不超过10",
+          "value": "not_assessed",
+          "note": "分别记录两类他人报告：Lemma Park 的n≤10模拟退火明确非穷尽；Erdős Problem a Day 声称在4≤n≤10、2≤d≤floor(n/2)的16个切片穷举并推广至e≥d(n−d)，自标PARTIAL。本轮未取得固定检查器/完整输入证书或复跑，未把有限计算升级为已核证明；即使该有限声明成立，也不覆盖每个固定小d的任意n。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "statement_only",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/ErdosProblems/65.lean"
+      ],
+      "note": "只覆盖：仅子问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面有误",
+      "scope_note": "现卡Q2与acceptance要求在n顶点、恰有kn条边的图中由K_{k,n-k}达到最小，但该图只有k(n-k)=kn-k²条边（k≥1），不属比较类。2026进展还把唯一性错误地扩展到仅e>(k−1)(n−k+1)的类。应分开Q1密度参数与Q2部大小参数，补n≥2k以及唯一性额外边数条件；更改题面、参数和验收需新card_rev。数学原问分项登记，不将纠错等同于反驳原猜想。",
+      "evidence_ids": [
+        "E220-ORIGINAL-RESTATEMENT"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "Q2：正确边数条件下的全参数极小化",
+      "math_status": "有部分进展",
+      "scope_note": "正确Q2为整数1≤k≤n/2且e(G)≥k(n−k)时s(G)≥Σ_{j=2}^k1/(2j)，不同圈长只计一次。2026预印本给充分大k的精确极值结果，未取得覆盖其余所有k和每个任意n的完整解。k=1下界为空和、显然成立，因此不能笼统宣称每个小k均开放；未给显式统一k0时也不能把剩余问题说成有限张小图枚举。",
+      "evidence_ids": [
+        "E220-ORIGINAL-RESTATEMENT",
+        "E220-A-MMPS26"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Q1：圈长倒数和的最优渐近下界",
+      "math_status": "原题已证明",
+      "scope_note": "Liu–Montgomery Cor1.2为已发表工作的接受稿结论：平均度d下s≥(1/2−o_d(1))log d。e=kn时应代d=2k；此处仅闭合Q1，不闭合精确Q2。本轮核过定义及适用量词，未逐行重证原42页证明。",
+      "evidence_ids": [
+        "E220-A-LM22",
+        "E220-A-LM-PUB"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "math_status": "proved"
+      }
+    },
+    {
+      "subquestion": "Q2：充分大k的精确极值与附条件唯一性",
+      "math_status": "部分进展",
+      "scope_note": "2609.26401v1覆盖充分大整数k与全部n≥2k；下界在e>(k−1)(n−k+1)成立，唯一等号必须再有e≥k(n−k)。未独立审核全部原证明，不将其当所有k的完整解决，也不把定理转移到现卡错误的kn边参数域。",
+      "evidence_ids": [
+        "E220-A-MMPS26"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "代码题面：同阶同实际边数的完全二部图比较",
+      "math_status": "未作判断",
+      "scope_note": "固定Lean文件给出比较命题的类型，但三个定理体均sorry。Q2只比较同顶点数、同实际边数的完全二部图，不强令其部大小等于e/n，也未断言唯一性。本轮只做类型和量词静态核对，没有Lean构建或#print axioms通过记录；平台无尝试及骨架不能替代数学结论。",
+      "evidence_ids": [
+        "QX-R3-12-220-E-CODE01",
+        "QX-R3-12-220-E-CODE02"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    },
+    {
+      "subquestion": "有限计算声明：n不超过10",
+      "math_status": "未作判断",
+      "scope_note": "分别记录两类他人报告：Lemma Park 的n≤10模拟退火明确非穷尽；Erdős Problem a Day 声称在4≤n≤10、2≤d≤floor(n/2)的16个切片穷举并推广至e≥d(n−d)，自标PARTIAL。本轮未取得固定检查器/完整输入证书或复跑，未把有限计算升级为已核证明；即使该有限声明成立，也不覆盖每个固定小d的任意n。",
+      "evidence_ids": [
+        "QX-R3-12-220-E-CODE03",
+        "QX-R3-12-220-E-CODE04"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-12-220-O01",
+      "route": "原题与出处",
+      "site": "system1",
+      "query": "site:erdosproblems.com/65 \"cycle\" \"minimise\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.erdosproblems.com/65",
+      "note": "搜索索引提供旧题面及历史进展；其中maximised字样与2026原稿方向不一致，不据索引采纳最大化说法。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-O02",
+      "route": "原题与出处",
+      "site": "system1",
+      "query": "\"Minimising the harmonic sum of cycle lengths\" \"2609.26401\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/2609.26401",
+      "note": "定位官方摘要，随后核v1正文。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-O03",
+      "route": "原题与出处",
+      "site": "Erdős Problems / open",
+      "query": "open https://www.erdosproblems.com/65",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://www.erdosproblems.com/65",
+      "note": "返回403；当日live正文与全部评论未核，不把旧索引状态当日确认。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-O04",
+      "route": "原题与出处",
+      "site": "arXiv / open",
+      "query": "open https://arxiv.org/html/2609.26401v1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2609.26401v1",
+      "note": "核Conjecture1.1、Theorem1.2与Introduction；对应纠正后的Q2，非现卡kn边加指定部大小的错误验收。原始1981纸本未在本轮直接核取，2026作者文献重述不得冒称已阅1981原页。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-O05",
+      "route": "原题与出处",
+      "site": "arXiv / click",
+      "query": "click reference [5] from Conjecture1.1 in 2609.26401v1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/html/2609.26401v1",
+      "note": "工具输出被截断，未据此声明取得1981原稿；可用证据仍为已核的2026正文。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-O06",
+      "route": "原题与出处",
+      "site": "arXiv / open",
+      "query": "reopen https://arxiv.org/html/2609.26401v1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2609.26401v1",
+      "note": "最终交叉核对：Conj1.1的e≥k(n−k)及1≤k≤n/2，Theorem1.2的大k、n≥2k、较弱严格边数与额外唯一性密度；未独立审查全部长证明。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX220-A01",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2609.26401",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2609.26401",
+      "locator": "Abstract; Submission history",
+      "note": "tool_ref=〔原始工具引用已私有留存〕；当前记录仅列 v1，2026-09-22。摘要已将下界弱阈值与唯一等号所需较强阈值分开；随后读正文。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX220-A02",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "click 〔原始工具引用已私有留存〕 link 10 (HTML) 〔私有记录编号：PR-004028〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2609.26401v1",
+      "locator": "§1 定义(1)、Conjecture1.1、Theorem1.2、阈值最优性说明；§2.1",
+      "note": "tool_ref=〔原始工具引用已私有留存〕；全文页面可达；实际阅读相关声明、参数约定和证明提纲，未逐行审核 §§3–6 及附录证明。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX220-A02",
+      "route": "学术",
+      "site": "web engine1",
+      "query": "\"2609.26401\" correction OR erratum OR withdrawn OR revised; recency=180",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/2609.26401",
+      "locator": "撤回/修订/勘误检索",
+      "note": "tool_refs=〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕；未命中作者发行的对应撤回/勘误。第三方整理页自述其更正是 compilation-supplied、非作者勘误；未将之作原稿撤回证据。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX220-A02",
+      "route": "学术",
+      "site": "web engine1",
+      "query": "Liu Montgomery 10.1090/jams/1018 cycle lengths harmonic sum",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.ibs.re.kr/ecopro/hongliu/publications/",
+      "locator": "作者与机构书目入口",
+      "note": "tool_refs=〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕；定位 JAMS36(2023),1191–1234 与 arXiv:2010.15802。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX220-A03",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/2010.15802",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2010.15802",
+      "locator": "Submission history; Comments",
+      "note": "tool_ref=〔原始工具引用已私有留存〕；v1=2020-10-29，v2=2022-09-19；v2标为接受发表版本、42页。摘要重点奇圈/染色数，不据摘要代替所需平均度结论。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX220-A03",
+      "route": "学术",
+      "site": "AMS DOI",
+      "query": "open https://doi.org/10.1090/jams/1018",
+      "date": "2026-11-26",
+      "outcome": "权限",
+      "url": "https://doi.org/10.1090/jams/1018",
+      "locator": "正式刊版入口",
+      "note": "tool_ref=〔原始工具引用已私有留存〕；HTTP403；本轮转读作者固定 arXiv v2，不声称已读 AMS 排版版。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX220-A04",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "click 〔原始工具引用已私有留存〕 link 9 (HTML) 〔私有记录编号：PR-004029〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2010.15802v2",
+      "locator": "§1.1 Theorem1.1、Corollary1.2；平均度与对数约定",
+      "note": "tool_ref=〔原始工具引用已私有留存〕；明确平均度 d 条件下所有不同圈长的倒数和 ≥(1/2−o_d(1))log d；log为自然对数。未将奇圈/染色数的另一结论当作本题平均度结果。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX220-A04",
+      "route": "学术",
+      "site": "web engine2",
+      "query": "\"Minimising the harmonic sum of cycle lengths\" \"small\" OR \"erratum\" OR \"correction\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/2609.26401",
+      "locator": "小参数、勘误、完成声明定向检索",
+      "note": "tool_ref=〔原始工具引用已私有留存〕；返回第三方题目整理及不相干条目；未取得小 k 全部完成的 primary 稿或作者勘误。第三方自己说明某证明链缺口是其局部重构限制，不是对 JAMS 已发表定理的反驳；本轮不转述为论文漏洞。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX220-A04",
+      "route": "学术",
+      "site": "web engine2",
+      "query": "\"2609.26401\" \"2026\" \"proof\" \"small k\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/2609.26401",
+      "locator": "后续完成声明检索",
+      "note": "tool_refs=〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕；未检获覆盖所有小 k 的新 primary 完成稿。本轮检索范围有限，不把未检获说成逐个小 k 均已证开放。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX220-A05",
+      "route": "学术",
+      "site": "Hong Liu 作者主页（IBS）",
+      "query": "open https://www.ibs.re.kr/ecopro/hongliu/publications/",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.ibs.re.kr/ecopro/hongliu/publications/",
+      "locator": "2023 年第50项",
+      "note": "tool_ref=〔原始工具引用已私有留存〕；亲读作者书目，确认 A solution to Erdős and Hajnal’s odd cycle problem，JAMS36(2023),1191–1234，DOI10.1090/jams/1018。仅核刊发元数据。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-DEDUP-I01",
+      "route": "库内查重",
+      "site": "包内全库查重简索引",
+      "query": "(?:Erd.?s|Erdős).{0,9}(?:P|#)?65(?:[^0-9]|$)|cycle.?length|cycle lengths|环长|harmonic|调和|倒数",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "QX-R3-12/全库查重简索引.jsonl",
+      "locator": "全库简索引；QX-P-000220 与若干词面命中",
+      "note": "包内固定简索引共 2469 条；SHA-256 f8cb9c4e9e263756a5078cdbb6094c065ecd704586a97e171cebb5e695476701。仅对 id/card_rev/title/title_en/aliases/path/url 扫描，不是全库逐卡正文核验。 正中本卡；另有 P165 前缀、群论 cyclic length、harmonic divisor 等词面命中，未形成合理同题候选。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-CODE-G01",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / google-deepmind/formal-conjectures",
+      "query": "github_fetch GET https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "locator": "sha 与 commit.committer.date",
+      "note": "本轮实际请求所得 main commit 9097e2f90e66d2f6244209cb1c07f7120d17ec53，提交时间 2026-11-24T14:16:43Z；随后按此提交取 65.lean，未把前题查询算作本题证据。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-CODE-S01",
+      "route": "代码、公开 AI 和社区",
+      "site": "搜索引擎 system1",
+      "query": "\"Erdos65.erdos_65\" proof",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://trough.jackmccarthy.org/roadmap/formal-conjectures/erdos-problems/1-99/part-03/index.html",
+      "locator": "〔原始工具引用已私有留存〕；Erdos65 3 个声明",
+      "note": "recency=365。命中旧提交 5258ab9a 的索引；该索引明确标注 statements without proofs。本轮另取固定较新原源码确认，不以索引当证明。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-CODE-S02",
+      "route": "代码、公开 AI 和社区",
+      "site": "搜索引擎 system1",
+      "query": "\"Erdős\" \"65\" \"harmonic\" \"cycle\" solution",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://erdosproblems.ai/wiki/problems/extremal_graph_theory/E0065/claims",
+      "locator": "〔原始工具引用已私有留存〕；2026 预印本的二手 claim 索引",
+      "note": "recency=365。命中 Liu–Montgomery 及 2026 大参数进展的二手摘要；原论文和等号范围由本题学术路线独立核验，不把此索引的 unique 等措辞升级为证明。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-CODE-S03",
+      "route": "代码、公开 AI 和社区",
+      "site": "搜索引擎 system1",
+      "query": "site:erdosproblems.com/forum/thread/65",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.erdosproblems.com/forum/thread/65",
+      "locator": "〔原始工具引用已私有留存〕；讨论串搜索索引",
+      "note": "本路线仅阅搜索索引，未读讨论串完整评论。未把其中未来工作简介或maximised/minimised字样当定理；Bloom题页当日直接访问受限，已在原题路线单列。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-CODE-G02",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / google-deepmind/formal-conjectures",
+      "query": "github_fetch_file repository_full_name=google-deepmind/formal-conjectures ref=9097e2f90e66d2f6244209cb1c07f7120d17ec53 path=FormalConjectures/ErdosProblems/65.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/ErdosProblems/65.lean",
+      "locator": "L37–90；parts.i L50–57、parts.ii L65–76、variants.liu_montgomery L83–90",
+      "note": "全文实际取得并逐条静态核对。三个 theorem 均以 sorry 结束；Q1 的 solved 标签是数学文献状态，不是该文件已有 Lean 证明。Q2 比较同 n、同实际边数的完全二部图，未把边密度 k 直接作为部大小，未断言唯一性。本轮未运行 Lean。blob SHA 478affdbc1d22e40bc493d35ddf46beaae44ee62。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-CODE-O01",
+      "route": "代码、公开 AI 和社区",
+      "site": "Conjectures.io",
+      "query": "open https://conjectures.io/problems/erdos65-erdos-65-parts-ii",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://conjectures.io/problems/erdos65-erdos-65-parts-ii",
+      "locator": "〔原始工具引用已私有留存〕 L46–104、L130–138",
+      "note": "实际页面显示 no attempts；Challenge.target 含 sorry。固定 task id=fc-v2-parts-ii-169fc11042da5eb778782dc0-formalized；type SHA-256 fc453ffa060cb914f7109b59f6354da3842cbad2e6ac352c3861b16155b70546。页面提示 audit patch 可能与 upstream 不同，故只以实际展示类型作范围对照。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-CODE-O02",
+      "route": "代码、公开 AI 和社区",
+      "site": "Lemma Park",
+      "query": "open https://lemmapark.com/programs/erdos-open/challenges/Lemma.erdos_65.parts.ii",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://lemmapark.com/programs/erdos-open/challenges/Lemma.erdos_65.parts.ii",
+      "locator": "〔原始工具引用已私有留存〕 L3–33；T75 / U51",
+      "note": "实际页面 Open，1 次尝试标 dead end。作者称对 n≤10 的固定 ab 边图作模拟退火，明确非穷尽；本轮未取得/运行此 C 搜索程序，也未核其正文附带结构性论证。该有限搜索未找到反例，不能证明全 n 问题。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-DEDUP-I02",
+      "route": "库内查重",
+      "site": "包内全库查重简索引",
+      "query": "圈|cycle|cycl|二部|bipart|Erd.?s.{0,9}(?:P|#)?57(?:[^0-9]|$)",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "QX-R3-12/全库查重简索引.jsonl",
+      "locator": "图的圈/二部图及 cyclic 词面命中标题列表",
+      "note": "包内固定简索引共 2469 条；SHA-256 f8cb9c4e9e263756a5078cdbb6094c065ecd704586a97e171cebb5e695476701。仅对 id/card_rev/title/title_en/aliases/path/url 扫描，不是全库逐卡正文核验。 标题层面命中 EP64、圈覆盖、Hamilton 圈、交叉数等不同目标；没有第二个 reciprocal cycle-length minimization 标题/别名。未据标题为任何题对下正式同题/非同题结论。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-CODE-S04",
+      "route": "代码、公开 AI 和社区",
+      "site": "搜索引擎 system1",
+      "query": "\"Erdos65.erdos_65.parts.ii\" (proof OR solved OR \"sorry\" OR \"counterexample\")",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://conjectures.io/problems/erdos65-erdos-65-parts-ii",
+      "locator": "〔原始工具引用已私有留存〕–3",
+      "note": "recency=60。返回既核平台、Trough 与 AI wiki；搜索摘要未新增完整证明或无 sorry 的提交。未把其他 Erdős 题的 Lean proof 索引文字混入 #65。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-CODE-S05",
+      "route": "代码、公开 AI 和社区",
+      "site": "搜索引擎 system1",
+      "query": "\"Erdős 65\" (\"AI\" OR \"Lean\" OR \"solution\")",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.erdosproblemaday.com/report/65",
+      "locator": "〔原始工具引用已私有留存〕；同时有泛化平台介绍",
+      "note": "recency=60。新增命中 a-day 的有限计算 PARTIAL 报告；随后实际打开报告核范围。泛化 erdoslive 平台说明不是本题证明，不列为解题证据。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-DEDUP-I03",
+      "route": "库内查重",
+      "site": "包内全库查重简索引",
+      "query": "(?:Erd.?s|EP).{0,8}(?:P|#)?57(?:[^0-9]|$)|(?:cycle|圈|环).{0,10}(?:length|长)|Gy.rf.s|Montgomery|倒数和|reciprocals",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "QX-R3-12/全库查重简索引.jsonl",
+      "locator": "全库 2469 条 id/card_rev/title/title_en/aliases/path/url；10 条词面命中",
+      "result_count": 10,
+      "note": "包内固定简索引共 2469 条；SHA-256 f8cb9c4e9e263756a5078cdbb6094c065ecd704586a97e171cebb5e695476701。仅对 id/card_rev/title/title_en/aliases/path/url 扫描，不是全库逐卡正文核验。 命中 000089/000196/000220/000777/001149/001367/001378/001643/001769/002502；除本卡外未形成应取正文的合理重复候选，duplicates=[]。这不宣称已排除所有潜在重复。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-12-220-CODE-O03",
+      "route": "代码、公开 AI 和社区",
+      "site": "Erdős Problem a Day",
+      "query": "open https://www.erdosproblemaday.com/report/65",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.erdosproblemaday.com/report/65",
+      "locator": "〔原始工具引用已私有留存〕 L8–22、L49–66、L67–114",
+      "note": "实际读完整工作报告。报告日期 2026-07-27，自标 PARTIAL；声称 4≤n≤10、2≤d≤floor(n/2) 共 16 个切片的精确计算，再由删边单调性推广到 e≥d(n−d)。本轮未取得或运行其所列 runs/erdos65_wave7d_reverify.py；作者报告、独立数学核对与本轮运行严格区分。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E220-ORIGINAL-RESTATEMENT",
+      "url": "https://arxiv.org/html/2609.26401v1",
+      "locator": "Introduction，Conjecture1.1、Theorem1.2及其后边数门槛说明",
+      "version": "arXiv:2609.26401v1，2026-09-22；本轮2026-11-26读取",
+      "subquestions": [
+        "主问题",
+        "Q2：正确边数条件下的全参数极小化"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "review_status": "本轮独立数学核对",
+      "note": "已独立核对五维题意、边数代数和指定小例；此review_status仅指题面/范围核对，不表示已复核2026全部定理证明。公式：s按不同简单圈长求和；定义：有限简单图；量词：Q1密度趋大与Q2整数部大小须分开；参数域：1≤k≤n/2；验收对象：Q2的e≥k(n−k)极值。1981原出处由本文引用，原页待取。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E220-A-MMPS26",
+      "url": "https://arxiv.org/html/2609.26401v1",
+      "locator": "§1：Conjecture1.1、Theorem1.2及其后阈值例；§2.1最小反例的两类定义",
+      "version": "arXiv:2609.26401v1，2026-09-22；当前提交历史只列v1",
+      "subquestions": [
+        "Q2：充分大k的精确极值与附条件唯一性"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Aleksa Milojević; Richard Montgomery; Alexey Pokrovskiy; Benny Sudakov",
+      "claim_date": "2026-09-22",
+      "note": "Conj1.1的域为整数1≤k≤n/2，固定n、e(G)≥k(n−k)。Thm1.2对充分大整数k、所有n≥2k：e(G)>(k−1)(n−k+1) ⇒ s(G)≥Σ_{ℓ=2}^k1/(2ℓ)；唯一等号另附e(G)≥k(n−k)。这是大k下的精确极值定理，不是只给(1+o(1))近似。本文使用未显式量化的参数层级，不给可枚举的数值k0。只核声明、定义、量词及提纲，未独立审核长证明。弱阈值处的唯一性不能沿用。tool_refs=〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E220-A-LM22",
+      "url": "https://arxiv.org/html/2010.15802v2",
+      "locator": "§1.1 Average degree and even cycle lengths；Theorem1.1、Corollary1.2",
+      "version": "arXiv:2010.15802v2，2022-09-19（接受发表稿）；v1为2020-10-29；正式刊发元数据为JAMS36(2023),1191–1234",
+      "subquestions": [
+        "Q1：圈长倒数和的最优渐近下界"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "Hong Liu; Richard Montgomery",
+      "claim_date": "2022-09-19",
+      "note": "Cor1.2针对所有不同圈长C(G)，给s(G)≥(1/2−o_d(1))log d，d为平均度，log为自然对数。现卡e(G)=kn时d=2k，从而得到同首项(1/2−o_k(1))log k，不能把此平均度参数直接当Q2二部类大小。Theorem1.1提供偶数长度区间，是Cor1.2来源；未独立核其完整42页证明，也未运行形式化。AMS DOI入口403，未假称读过正式排版版。tool_refs=〔原始工具引用已私有留存〕, 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E220-A-LM-PUB",
+      "url": "https://www.ibs.re.kr/ecopro/hongliu/publications/",
+      "locator": "2023年第50项 A solution to Erdős and Hajnal’s odd cycle problem",
+      "version": "作者书目，访问2026-11-26；记录JAMS36(2023),1191–1234，DOI10.1090/jams/1018",
+      "subquestions": [
+        "Q1：圈长倒数和的最优渐近下界"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "仅用于核实2023正式刊发元数据；2020是预印本首版年份。原定理内容以已阅arXiv v2为证，不用书目页冒充论文证明。tool_ref=〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "QX-R3-12-220-E-CODE01",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/ErdosProblems/65.lean",
+      "locator": "FormalConjectures/ErdosProblems/65.lean L37–90；尤其 L50–57、L65–76、L83–90",
+      "version": "commit 9097e2f90e66d2f6244209cb1c07f7120d17ec53（2026-11-24T14:16:43Z）；blob 478affdbc1d22e40bc493d35ddf46beaae44ee62；本轮 2026-11-26 读取",
+      "subquestions": [
+        "Q1：圈长倒数和的最优渐近下界",
+        "代码题面：同阶同实际边数的完全二部图比较"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "仅有形式化题面或骨架",
+      "claimant": "Formal Conjectures Authors",
+      "rerun": {
+        "commit": "9097e2f90e66d2f6244209cb1c07f7120d17ec53",
+        "theorem": "Erdos65.erdos_65.parts.i; Erdos65.erdos_65.parts.ii; Erdos65.erdos_65.variants.liu_montgomery"
+      },
+      "note": "本轮独立核对仅限类型/量词，不是验证其数学证明。Q1 和尖锐常数均为 ∀ᶠ k:ℝ in atTop；Q2 为 k>0,n>0，先令 e(G)=kn，再只比较 |A|+|B|=n、|A||B|=kn 的 K_{A,B}。不能据此令 |A|=k，也不包含不存在完整二部比较图时的极小图存在性或唯一性。三个 proof body 均为 sorry（L57/L76/L90）；未运行 Lean，未取得内核无 sorry 证明。源码已落地 〔私有材料定位已省略〕。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-R3-12-220-E-CODE02",
+      "url": "https://conjectures.io/problems/erdos65-erdos-65-parts-ii",
+      "locator": "〔原始工具引用已私有留存〕 L46–104、L130–138：status、Challenge、type、task identifiers",
+      "version": "2026-11-26 实际页；task fc-v2-parts-ii-169fc11042da5eb778782dc0-formalized；type SHA-256 fc453ffa060cb914f7109b59f6354da3842cbad2e6ac352c3861b16155b70546；commitment SHA-256 054d1a5e7aad1cbec49a0544df7402c3795adbf4f9b94679158ec720cdc84e1a",
+      "subquestions": [
+        "代码题面：同阶同实际边数的完全二部图比较"
+      ],
+      "role": "形式化",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "仅有形式化题面或骨架",
+      "claimant": "Conjectures.io",
+      "note": "页面实际展示 no attempts，目标仍以 sorry 为证明占位。其类型与本轮读到的 upstream parts.ii 在比较对象与量词上相符；平台另提醒 audit patch 可能改 upstream，因此记录其独立 type hash，不以平台名称或赏金暗示已有证明。未提交任务，未运行 Lean。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "QX-R3-12-220-E-CODE03",
+      "url": "https://lemmapark.com/programs/erdos-open/challenges/Lemma.erdos_65.parts.ii",
+      "locator": "〔原始工具引用已私有留存〕 L3–33；T75 / dead end U51",
+      "version": "2026-11-26 实际页；显示 Open、1 attempt；报告编号 U51",
+      "subquestions": [
+        "有限计算声明：n不超过10"
+      ],
+      "role": "进展",
+      "publication": "社区帖子",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "claimant": "Lemma Park / rgbrgb",
+      "note": "作者称 n≤10、2≤a≤b、a+b=n、e(G)=ab 的 C 模拟退火未找到优于 K_{a,b} 的图，并明确非穷尽、dead end。此处只记录作者搜索声明；未取得其程序和运行日志，也未复跑。所谓 statement faithful 与附带小参数结构论证均为帖子作者意见，不能当本轮全证明。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "QX-R3-12-220-E-CODE04",
+      "url": "https://www.erdosproblemaday.com/report/65",
+      "locator": "〔原始工具引用已私有留存〕 L8–22、L60–66、L67–114；§3 表格与复现命令",
+      "version": "工作报告 wave 7d，作者研究日期 2026-07-27 UTC；2026-11-26 实际读取，无固定提交号可见",
+      "subquestions": [
+        "有限计算声明：n不超过10"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "claimant": "Erdős Problem a Day / Patrick White with Claude",
+      "claim_date": "2026-07-27",
+      "note": "自标 PARTIAL 的 AI 工作报告称穷举 16 个 exact edge 切片、共 3,887,669 个非同构图，并报告 K_{d,n−d} 为唯一最小（2≤d≤floor(n/2)，n≤10）；再用删边和添边产生三角形的条件论证扩至至少 d(n−d) 边。页面提供 Python 命令与作者环境信息，但本轮未取得固定版本 checker、实际 graph6 输入流或重跑结果。该有限计算即使正确，也不补齐固定小 d 的所有 n；其阈值不是本卡所写的 (k−1)(n−k+1)。不据此认可本卡唯一等号宣传或宣布主问解决。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [],
+  "card_actions": [
+    {
+      "action": "题面纠错",
+      "field": "card_text.题面、形式化表述、人话版、边界与约定；card_metadata.acceptance.criteria",
+      "old": "n点kn边；Q2由K_{k,n−k}最小化；验收在所有n顶点、kn边的图中证明该图最优。",
+      "new": "将Q1与Q2分开。Q1用密度ρ=e/n（平均度2ρ），问ρ趋大时s(G)的渐近下界。Q2用整数k，1≤k≤n/2，问所有n顶点且e(G)≥k(n−k)的有限简单图是否s(G)≥Σ_{j=2}^k1/(2j)，候选K_{k,n−k}达到此值。验收应证明完整量词范围，或给出满足正确边数门槛且s低于候选的反例；仅非唯一性反例不推翻最小值命题。",
+      "reason": "五维对照：公式s与不同圈长计数保留；定义补有限简单图；量词分别为渐近Q1及全整数参数Q2；参数域补1≤k≤n/2；验收从不含候选的kn类改为原猜想k(n−k)类。变更定义/参数/验收须生成新card_rev，当前回执仍绑定原版本。",
+      "small_case_check": "本轮对指定图精确枚举简单圈长度，未穷举所有图：k=2,3,4时，n=2k+1的K_{k,k+1}删一边分别有5,11,19条边，圈长集分别{4}、{4,6}、{4,6,8}，倒数和1/4、5/12、13/24。一般证明：删边的大侧端点去掉后仍含K_{k,k}，二分性及小侧大小又给出圈长恰为4,6,…,2k；边数k(k+1)-1=(k-1)(k+2)+1，超过较弱严格门槛，却少于k(n-k)。所以任意大k都有非完全二部图取同一和，反驳的仅是现卡遗漏附加条件的唯一性表述，不反驳原论文。另n=5,k=2时现卡kn=10，而K_{2,3}只有6边，根本不在比较类。k=1,n=4时P4和K1,3均3边、无圈、和为0，说明最小值成立而唯一性不能延伸到所有k；C5在k=2,n=5时5>4边且和1/5<1/4，但未达原猜想6边，亦不在充分大k定理的保证范围。这些范围和一般反例族已另经独立静态数学核对；无Lean复跑。",
+      "evidence_ids": [
+        "E220-ORIGINAL-RESTATEMENT"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "card_action": "fix_statement"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text.已知结果与进展、相关进展与声称解决、difficulty.note",
+      "old": "Q2渐近；e(G)>(k−1)(n−k+1)即K_{k,n−k}唯一取等；小k有限情形开放。",
+      "new": "2026 v1 Theorem1.2：k充分大且n≥2k时，e(G)>(k−1)(n−k+1)蕴含精确谐和下界；若另有e(G)≥k(n−k)，等号当且仅当G≅K_{k,n−k}。这是大k精确极值定理，不只渐近首项。剩余固定小k仍涉及任意n；不声称每个小k都未解，也不把少量有限图验证当全小k结案。",
+      "reason": "原稿将下界与唯一性使用不同边数条件。补n≥2k及唯一性条件会改变现卡错误陈述，须随题面一并修订；后续补进展需注明预印本版本与核验深度。",
+      "small_case_check": "本轮对指定图精确枚举简单圈长度，未穷举所有图：k=2,3,4时，n=2k+1的K_{k,k+1}删一边分别有5,11,19条边，圈长集分别{4}、{4,6}、{4,6,8}，倒数和1/4、5/12、13/24。一般证明：删边的大侧端点去掉后仍含K_{k,k}，二分性及小侧大小又给出圈长恰为4,6,…,2k；边数k(k+1)-1=(k-1)(k+2)+1，超过较弱严格门槛，却少于k(n-k)。所以任意大k都有非完全二部图取同一和，反驳的仅是现卡遗漏附加条件的唯一性表述，不反驳原论文。另n=5,k=2时现卡kn=10，而K_{2,3}只有6边，根本不在比较类。k=1,n=4时P4和K1,3均3边、无圈、和为0，说明最小值成立而唯一性不能延伸到所有k；C5在k=2,n=5时5>4边且和1/5<1/4，但未达原猜想6边，亦不在充分大k定理的保证范围。这些范围和一般反例族已另经独立静态数学核对；无Lean复跑。",
+      "evidence_ids": [
+        "E220-ORIGINAL-RESTATEMENT"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "sources；card_text.已知结果与进展",
+      "old": "Liu–Montgomery2020最优常数；缺具体版本与平均度换元。",
+      "new": "标清arXiv2010.15802首版2020、v2接受稿2022-09-19、JAMS36(2023)1191–1234。Cor1.2以平均度d表述；现卡Q1密度ρ=e/n须代d=2ρ。此已发表渐近结果只闭合Q1。2026v1的大k精确结果另项、附条件引用。",
+      "reason": "年份、参数与子问范围分开，避免把已有Q1结果或大k部分范围视作主卡全部解决。",
+      "evidence_ids": [
+        "E220-A-LM22",
+        "E220-A-LM-PUB",
+        "E220-A-MMPS26"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "card_text.形式化、相关进展与声称解决",
+      "old": "形式化陈述Yes；未记录具体证明体与公开计算核验层级。",
+      "new": "固定formal-conjectures65.lean三项均sorry；Conjectures.io也只有题面。另列Lemma Park非穷尽有限搜索与a-day有限穷举作者声明，标注本轮均未复跑；不得写成独立形式化通过或全域解决。",
+      "reason": "将形式化题面、作者计算声明与本轮独立运行严格分开。",
+      "evidence_ids": [
+        "QX-R3-12-220-E-CODE01",
+        "QX-R3-12-220-E-CODE02",
+        "QX-R3-12-220-E-CODE03",
+        "QX-R3-12-220-E-CODE04"
+      ],
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "Q2题面及验收需要新版本；1981原页与当日Bloom live未直接取得。",
+      "next_step": "维护方二审五维对照及小例后改题卡生成新card_rev，再重查受影响的出处、学术与代码；如需最早出处认定，取得1981原文页码核对，不能只靠2026重述。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2026预印本的全文页面可达，但本轮只核Conj1.1、Thm1.2、阈值说明和§2.1提纲，未完成长证明独立二审。",
+      "next_step": "若要提升到本轮独立证明复核，按固定v1逐项审核§§3–6及附录，并分别验证精确下界和唯一等号的论证；当前仅按原稿覆盖范围登记部分进展。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "充分大k定理不覆盖全部参数；本轮受限查询未找到全小k完成稿，也没有得到显式k0或各k的现状清单。",
+      "next_step": "修订后若要继续处理未覆盖参数，先逐个区分原固定边数猜想与更强阈值变式，列明已知平凡情形；不要用有限n枚举或单句“小k开放”代替对任意n的证明。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "Erdős Problem a Day 的有限计算为作者报告；本轮实际阅读的是报告页，未取得固定版 checker 和完整输入/输出证书，也未重跑。",
+      "next_step": "若要把 n≤10 的计算特例升级为独立验证，先取得 runs/erdos65_wave7d_reverify.py 的固定提交、完整枚举输入摘要及输出日志，再核枚举完备性和精确圈长算法并独立重跑；本轮仍标公开声称，且不得外推到所有 n。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "本轮完成固定全库简索引的名称/关键词/别名扫描，未形成合理同题候选；尚未执行全库每张题卡正文的盲读比较。",
+      "next_step": "保持 duplicates=[] 且不声称已穷尽全库重复；以后如新增合理候选，按固定 commit 73290369a8dcc632e25e555aec525565ea6e08f8 先核两卡 card_rev，再逐段读正文；按较小编号负责的题对去重规则处理。",
+      "batch_id": "QX-R3-12",
+      "card_rev": "e9c4a80ed88ecc87",
+      "codes": {}
+    }
+  ]
+}

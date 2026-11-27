@@ -1,0 +1,2745 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000893",
+  "card_rev": "a7d25eceade40fa1",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-03"
+      ],
+      "parts": [
+        {
+          "subquestion": "二次上界与平面边界",
+          "value": "partial",
+          "note": "沿原文证明的二项式计数给mon-cr≤k(2k−1)，k=cr≥0；严格<2k²限k≥1。k=0时mon-cr=0，平面图不产生线性问反例，比值0/0不应写作普通数。为既知上界的边界核对，不是新闭合。"
+        },
+        {
+          "subquestion": "cr≤1及有界交叉数子类",
+          "value": "partial",
+          "note": "由cr≤mon-cr和计数上界，cr=1时mon-cr=1；cr=0时二者0。对固定K≥1，cr≤K的子类有线性常数2K−1，因此任何mon-cr/cr→∞的见证序列必须cr→∞。这不提供独立于K的全图常数。"
+        },
+        {
+          "subquestion": "全局常数的必要下界",
+          "value": "partial",
+          "note": "依赖Pach–Tóth Thm2的cr无界族，若全局常数存在则C≥7/6；未证明7/6充分或比值无界。未将fixed-cr的rectilinear反例族挪为mon-cr反例。"
+        },
+        {
+          "subquestion": "固定次序变体与自由参数的区别",
+          "value": "partial",
+          "note": "5顶点轮图自由位置时cr=mon-cr=0，但指定a<c<h<b<d的互异x次序后无法单调无交叉。解析证书只说明预给次序改变定义；不反驳原题，也不把此固定变体的精确最优值声称为1。"
+        },
+        {
+          "subquestion": "题卡固定顶点横坐标表述",
+          "value": "statement_error",
+          "note": "此项限人话/定义表述：如果“先固定”被理解为任意输入给定横坐标顺序，就把自由优化问题换成mon-cr_≼。原标题和原验收式本身与报告一致，不据本条反驳原研究命题。"
+        },
+        {
+          "subquestion": "2025/2026稠密图近似后续命中",
+          "value": "partial",
+          "note": "普通交叉数算法与连续模型属相关方法进展，未提供全体图上单调与普通cr的常数因子比较；作为范围不同命中记录。"
+        },
+        {
+          "subquestion": "邻近交叉数比较不能替换原问题",
+          "value": "no_evidence_in_scope",
+          "note": "2025 Solé Pi论文的普通pcr比较、点集选点直线画法与mon-cr/mon-pcr相关上界均有不同右侧或额外参数，未给本题mon-cr≤绝对C·普通cr。其§5归引的指数与DS21有差异，原章Thm2已核为4/3次幂，单列归引差异；不依赖有争议的数式。该范围排除只针对已核具体来源，不是全局无新解证明。"
+        },
+        {
+          "subquestion": "Valtr2005原章的单调pair-crossing界与转述差异",
+          "value": "partial",
+          "note": "可核原式为mon-cr(G)≤4(mon-pcr(G))^(4/3)。根代理已核的Solé Pi2025 §5线性转述与该原章陈述不一致；本轮只排除将线性式作为Valtr2005已证定理的直接归引，不证明线性界本身为假，也不解决mon-cr≤Ccr的主问题。主问题仍按原组件保留部分进展。"
+        },
+        {
+          "subquestion": "公开AI/代码命中与原量词的对应",
+          "value": "no_evidence_in_scope",
+          "note": "Albertson文件中的mono是普通交叉数对取子图的单调性；OpenAI两文件限完全图/完全二部图的普通交叉数；NumPSLA补丁限有限点型完全图统计。均没有提供原题自由次序下对任意有限简单图的绝对常数证明或无界比图族。只核已列文件和版本，未替这些候选证明做依赖审计或复跑。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/CompleteCrossing/Main.lean"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "evidence_ids": [
+        "0893-SA-01",
+        "0893-SA-02",
+        "0893-SA-03",
+        "E0893-MATH-DEFINITION",
+        "E0893-MATH-QUADRATIC",
+        "E0893-MATH-LOWER"
+      ],
+      "scope_note": "按原报告自由选择顶点位置/左右顺序的标准mon-cr问题核对：二次上界及7/6渐近分离已有原稿，本次学术范围未发现可验收的统一线性常数证明或无界比图族。题卡人话“先固定横坐标”须澄清，固定序模型反例不可算原问题反例。 已有有效回执只表示本轮有可追溯交付，不表示主问题已解决或所有技术缺口已补齐。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "二次上界与平面边界",
+      "math_status": "部分进展",
+      "scope_note": "沿原文证明的二项式计数给mon-cr≤k(2k−1)，k=cr≥0；严格<2k²限k≥1。k=0时mon-cr=0，平面图不产生线性问反例，比值0/0不应写作普通数。为既知上界的边界核对，不是新闭合。",
+      "evidence_ids": [
+        "E0893-MATH-QUADRATIC"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "cr≤1及有界交叉数子类",
+      "math_status": "仅特例",
+      "scope_note": "由cr≤mon-cr和计数上界，cr=1时mon-cr=1；cr=0时二者0。对固定K≥1，cr≤K的子类有线性常数2K−1，因此任何mon-cr/cr→∞的见证序列必须cr→∞。这不提供独立于K的全图常数。",
+      "evidence_ids": [
+        "E0893-MATH-QUADRATIC"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "全局常数的必要下界",
+      "math_status": "条件性结果",
+      "scope_note": "依赖Pach–Tóth Thm2的cr无界族，若全局常数存在则C≥7/6；未证明7/6充分或比值无界。未将fixed-cr的rectilinear反例族挪为mon-cr反例。",
+      "evidence_ids": [
+        "E0893-MATH-LOWER",
+        "E0893-MATH-QUADRATIC"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "固定次序变体与自由参数的区别",
+      "math_status": "仅特例",
+      "scope_note": "5顶点轮图自由位置时cr=mon-cr=0，但指定a<c<h<b<d的互异x次序后无法单调无交叉。解析证书只说明预给次序改变定义；不反驳原题，也不把此固定变体的精确最优值声称为1。",
+      "evidence_ids": [
+        "E0893-MATH-FIXED-ORDER",
+        "E0893-MATH-DEFINITION"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "题卡固定顶点横坐标表述",
+      "math_status": "题面有误",
+      "evidence_ids": [
+        "0893-SA-01",
+        "0893-SA-04"
+      ],
+      "scope_note": "此项限人话/定义表述：如果“先固定”被理解为任意输入给定横坐标顺序，就把自由优化问题换成mon-cr_≼。原标题和原验收式本身与报告一致，不据本条反驳原研究命题。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "2025/2026稠密图近似后续命中",
+      "math_status": "仅特例",
+      "evidence_ids": [
+        "0893-SA-05"
+      ],
+      "scope_note": "普通交叉数算法与连续模型属相关方法进展，未提供全体图上单调与普通cr的常数因子比较；作为范围不同命中记录。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "邻近交叉数比较不能替换原问题",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "2025 Solé Pi论文的普通pcr比较、点集选点直线画法与mon-cr/mon-pcr相关上界均有不同右侧或额外参数，未给本题mon-cr≤绝对C·普通cr。其§5归引的指数与DS21有差异，原章Thm2已核为4/3次幂，单列归引差异；不依赖有争议的数式。该范围排除只针对已核具体来源，不是全局无新解证明。",
+      "evidence_ids": [
+        "E0893-ROOT-NEARBY",
+        "0893-SA-VALTR-2005",
+        "0893-SA-04"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "Valtr2005原章的单调pair-crossing界与转述差异",
+      "math_status": "部分进展",
+      "scope_note": "可核原式为mon-cr(G)≤4(mon-pcr(G))^(4/3)。根代理已核的Solé Pi2025 §5线性转述与该原章陈述不一致；本轮只排除将线性式作为Valtr2005已证定理的直接归引，不证明线性界本身为假，也不解决mon-cr≤Ccr的主问题。主问题仍按原组件保留部分进展。",
+      "evidence_ids": [
+        "0893-SA-VALTR-2005"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "公开AI/代码命中与原量词的对应",
+      "math_status": "本次范围未发现确证",
+      "evidence_ids": [
+        "e893-code-albertson",
+        "e893-ai-openai-range",
+        "e893-code-numpsla"
+      ],
+      "scope_note": "Albertson文件中的mono是普通交叉数对取子图的单调性；OpenAI两文件限完全图/完全二部图的普通交叉数；NumPSLA补丁限有限点型完全图统计。均没有提供原题自由次序下对任意有限简单图的绝对常数证明或无界比图族。只核已列文件和版本，未替这些候选证明做依赖审计或复跑。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "0893-SA-W1-1",
+      "route": "原题与出处",
+      "site": "open",
+      "query": "open https://doi.org/10.4171/OWR/2026/1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "原DOI入口不可访问，后续由MFO官方档案取到报告，不据失败当原题不存在。",
+      "url": "https://doi.org/10.4171/OWR/2026/1",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0893-SA-W1-2",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "\"monotone crossing number\" Pach Tóth 2011",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位Pach–Tóth作者全文、GD2011/2012章节及固定序的相邻变体；将逐一核原定义。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-SA-W1-3",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "\"mon-cr\" \"2026\" crossing",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365天。system1 recency365，命中题包来源HF提取条目和既有交叉数变体；HF只作定位，不作研究已解决/仍开放的独立证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-SA-W2-1",
+      "route": "原题与出处",
+      "site": "system1_search_query",
+      "query": "\"10.4171/OWR/2026/1\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位MFO官方记录4435及76页报告PDF，核相应DOI。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-SA-W2-2",
+      "route": "原题与出处",
+      "site": "system1_search_query",
+      "query": "\"Combinatorics\" \"2026\" \"Oberwolfach\" monotone",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位官方会期2026-01-04至09及报告；不把会期当刊发日期。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-SA-W2-3",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "\"monotone crossing number\" \"linear\" \"2026\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365天。system1 recency365，定位2025上线/2026卷期的Solé-Pi普通交叉数近似文及2026第9版DS21；尚未发现同题全解。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-SA-W2-4",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "作者站11页稿；读定义、Thm1–2、Thm1由Thm2.2推出的证明及§4，未逐项重证v-spinal构造/下界图族。顶点位置和顺序自由。",
+      "url": "https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0893-SA-W2-5",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://link.springer.com/chapter/10.1007/978-3-642-25878-7_27",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "Springer正式章节只提供摘要及书目；订阅全文未读。官方引文年份2012，会议名称GD2011，页278–289。",
+      "url": "https://link.springer.com/chapter/10.1007/978-3-642-25878-7_27",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-SA-W3-1",
+      "route": "原题与出处",
+      "site": "open",
+      "query": "open https://publications.mfo.de/bitstream/handle/mfo/4435/OWR_2026_01.pdf?isAllowed=y&sequence=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "MFO报告全文可取；定点读Problem Session中Pach小节Definition2印刷p69及Question3 p70。不是通读报告中其他题。",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/4435/OWR_2026_01.pdf?isAllowed=y&sequence=1",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0893-SA-W3-2",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://doi.org/10.1007/s00454-025-00783-w",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "DOI跳转到Springer非article路径失败；后续正式/article/入口全文可读。",
+      "url": "https://doi.org/10.1007/s00454-025-00783-w",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0893-SA-W3-3",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://www.combinatorics.org/ojs/index.php/eljc/article/download/DS21/pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得DS21第9版，2026-07-17；只读封面及pp78–80定义/关系、参考文献665，未声称通读177页。",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/DS21/pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0893-SA-W3-4",
+      "route": "学术",
+      "site": "find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=Published 〔私有记录编号：PR-001444〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "在章节页find Published无匹配；后来由2012官方citation核年份，未虚构具体章刊发日。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "0893-SA-W4-1",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://link.springer.com/article/10.1007/s00454-025-00783-w",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "Springer正式全文可读；后续核摘要、Thm1.2与§5。结果为普通cr的加性误差近似与graphon，不是mon-cr/cr统一常数。",
+      "url": "https://link.springer.com/article/10.1007/s00454-025-00783-w",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0893-SA-W4-2",
+      "route": "原题与出处",
+      "site": "find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=Question 3. 〔私有记录编号：PR-001445〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "定点Question3：绝对常数C控制所有图；上下文Definition2没有给定顶点顺序条件。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0893-SA-W4-3",
+      "route": "学术",
+      "site": "find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=2012 〔私有记录编号：PR-001446〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核©2012及正式章节引用年份；保留GD2011为会议名称。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-SA-W4-4",
+      "route": "学术",
+      "site": "find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=Monotone crossing numbers 〔私有记录编号：PR-001447〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "DS21明确区分自由mon-cr与带预序mon-cr_≼；只用于定义/范围核对，二次界的数学主证据仍为Pach–Tóth原稿。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0893-SA-W5-1",
+      "route": "学术",
+      "site": "find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=monotone 〔私有记录编号：PR-001448〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "Solé-Pi §5及注10提单调交叉密度，但明确未得其他变体的相应定理；排除作为原问全解。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0893-SA-W5-2",
+      "route": "学术",
+      "site": "find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=arxiv 〔私有记录编号：PR-001449〕",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "find arxiv仅返回参考文献中的其他文章链接，非同题新证明或本论文版本链。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "0893-SA-W5-3",
+      "route": "学术",
+      "site": "find",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=Published 〔私有记录编号：PR-001450〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "正式元数据：received2025-01-10、revised09-17、accepted09-24、online/VoR10-21；卷76pp896–930，期日2026-09。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0893-SA-W5-4",
+      "route": "学术",
+      "site": "open",
+      "query": "open 〔原始工具引用已私有留存〕 line=177 〔私有记录编号：PR-001451〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "正式出版社Cite this paper字段为Pach–Tóth(2012)，GD2011，LNCS7034，278–289，DOI_27。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-SA-W5-5",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "\"Monotone crossing number\" \"2012\" \"18\" \"33\" Pach Toth",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "作者书目和DS21回溯Moscow2012期刊版，但页码有18–33/216–231两种口径；未取得该版原刊，不自行合并页码。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-SA-W6-1",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://www.cs.bme.hu/~geza/pub.html",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "Tóth作者书目页面工具超时；独立HTTP随后503，搜索索引可见，未读直接页面全文。",
+      "url": "https://www.cs.bme.hu/~geza/pub.html",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0893-SA-W6-2",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://gd2011.win.tue.nl/program.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "官方GD2011日程可读，确认2011年9月会议身份；会议摘要同定义/二次界，不把会议年混成出版社章节年。",
+      "url": "https://gd2011.win.tue.nl/program.html",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0893-SA-W6-3",
+      "route": "原题与出处",
+      "site": "open",
+      "query": "open https://publications.mfo.de/handle/mfo/4435?show=full",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "MFO官方完整元数据确认报告2026、会期一月、档案入库/可用2026-07-22、作者组织者。",
+      "url": "https://publications.mfo.de/handle/mfo/4435?show=full",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0893-SA-W6-4",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "\"monotone crossing number\" \"constant\" \"proof\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365天。system1 recency365；未找到单调vs普通cr的全图线性界证明或无界比图族；返回HF重述和旧来源，不据无命中保证全球开放。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-SA-W6-5",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "\"Monotone crossing number\" \"correction\" Pach Toth",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730天。system1 recency730；未取得Pach–Tóth本结果正式勘误/撤回或原问题全解；近名单调完全图问题与其他交叉数变体不能代替本题。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-SA-W7-1",
+      "route": "学术",
+      "site": "open",
+      "query": "open 〔原始工具引用已私有留存〕 line=29 〔私有记录编号：PR-001452〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "读Solé-Pi摘要、有限简单无向图定义及Thm1.2：cr(G)+O(n^4/(loglog n)^δ)普通画法；无单调保证。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0893-SA-W7-2",
+      "route": "学术",
+      "site": "open",
+      "query": "open 〔原始工具引用已私有留存〕 line=680 〔私有记录编号：PR-001453〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "读§5 Open Problems，尤其monotone graphon变体与注10：作者明确不知道同类比较定理能否推广；不宣称新统一常数。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0893-SA-W8-1",
+      "route": "原题与出处",
+      "site": "open",
+      "query": "open https://ems.press/doi/10.4171/owr/2026/1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "Crossref给出的EMS正式URL仍不可访问；已由MFO正文和官方Crossref元数据独立恢复原题与刊发日。",
+      "url": "https://ems.press/doi/10.4171/owr/2026/1",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0893-SA-W8-2",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "\"Monotone crossing number\" \"Moscow\" \"2012\" journal",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "system2核Moscow2012版本；原出版社URSS期目录与作者书目可定位2(3)，正文未取。主结果引用已取得作者稿+Springer章节元数据，不凭书目声称期刊版全文核对。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "publications.mfo.de HTTP GET",
+      "query": "GET https://publications.mfo.de/bitstream/handle/mfo/4435/OWR_2026_01.pdf?isAllowed=y&sequence=1",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/4435/OWR_2026_01.pdf?isAllowed=y&sequence=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得官方76页PDF并转文本，定点核pp69–70（PDF页65–66）Pach问题，不研究报告中下一道题。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "math.nyu.edu HTTP GET",
+      "query": "GET https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "url": "https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得作者网站11页稿，读定义、Thm1–2、Thm1的计数归约、§4；未逐步重证Thm2.2。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "www.combinatorics.org HTTP GET",
+      "query": "GET https://www.combinatorics.org/ojs/index.php/eljc/article/download/DS21/pdf",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/DS21/pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得官方177页第9版PDF，只核本题定义/关系段pp78–80及版本页、指定参考文献。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "api.crossref.org HTTP GET",
+      "query": "GET https://api.crossref.org/works/10.4171/OWR/2026/1",
+      "url": "https://api.crossref.org/works/10.4171/OWR/2026/1",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "Crossref官方注册元数据核正式published=2026-07-21，卷23期1，页5–79；不混为一月会议日期或七月22日档案入库日。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "www.cs.bme.hu HTTP GET",
+      "query": "GET https://www.cs.bme.hu/~geza/pub.html",
+      "url": "https://www.cs.bme.hu/~geza/pub.html",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "HTTP503，未取得直接作者书目HTML；不把搜索索引当该页正文已阅。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C01",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\": \"\\\"monotone\\\" \\\"crossing\\\"\", \"repository_name\": [\"google-deepmind/formal-conjectures\", \"tadamcz/autoformalization-results\"], \"topn\": 20}",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "只返回tadamcz的Albertson条目和备选；monotone指crossingNumber_mono的对子图单调性，不是每条边x单调的画法。后续完整取得chosen条目核对；并非同题证明命中。",
+      "result_count": 2,
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C02",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\": \"\\\"monotone crossing number\\\"\", \"topn\": 15}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回8条，主要为Pach–Tóth书目、论文LaTeX副本和研究资料索引；未发现由这些片段提供的主问题算法或完整证明。global topn=15是有限检索。",
+      "result_count": 8,
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C03",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch system2",
+      "query": "\"monotone crossing number\" Lean AI proof code",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批命中OpenAI family165的二手索引、原作者单调交叉数论文、完整图特例和无关mon CR噪声。对AI线索改取官方openai/math固定源码，不以索引的solved/Lean标签下结论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C04",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch system2",
+      "query": "\"monotone crossing number\" \"constant\" MathOverflow",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批命中OpenAI family165的二手索引、原作者单调交叉数论文、完整图特例和无关mon CR噪声。对AI线索改取官方openai/math固定源码，不以索引的solved/Lean标签下结论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C05",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch system2",
+      "query": "\"mon-cr\" \"cr\" github",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批命中OpenAI family165的二手索引、原作者单调交叉数论文、完整图特例和无关mon CR噪声。对AI线索改取官方openai/math固定源码，不以索引的solved/Lean标签下结论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-D01",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/000/QX-P-000893.meta.json\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整读取本卡893与候选1712的meta/正文，核固定版本及题面、acceptance；未重新查候选自身的开放状态。 Git blob SHA1=8ba10a9bace71dae9b703c5c3c6280a8f5f6e1af，本轮按取得的原始UTF-8字节验同。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000893.meta.json",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-D02",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/000/QX-P-000893.text.md\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整读取本卡893与候选1712的meta/正文，核固定版本及题面、acceptance；未重新查候选自身的开放状态。 Git blob SHA1=afc4b1f334c1f4457228ffcdaa44408b275ab6d7，本轮按取得的原始UTF-8字节验同。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000893.text.md",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-D03",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/001/QX-P-001712.meta.json\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整读取本卡893与候选1712的meta/正文，核固定版本及题面、acceptance；未重新查候选自身的开放状态。 Git blob SHA1=934d2f98e18bba112a3b34e8081509ded345b223，本轮按取得的原始UTF-8字节验同。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001712.meta.json",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-D04",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\": \"qunxingmath-org/qunxing-data\", \"path\": \"problems/001/QX-P-001712.text.md\", \"ref\": \"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整读取本卡893与候选1712的meta/正文，核固定版本及题面、acceptance；未重新查候选自身的开放状态。 Git blob SHA1=cc2622b05d41cb7c9459cc2dead8b5878a2baec1，本轮按取得的原始UTF-8字节验同。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001712.text.md",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C06",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\": \"\\\"monotoneCrossingNumber\\\"\", \"repository_name\": [\"google-deepmind/formal-conjectures\", \"tadamcz/autoformalization-results\", \"leanprover-community/mathlib4\"], \"topn\": 10}",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "三个实际指定仓库内精确标识符monotoneCrossingNumber无命中，仅限该词/默认分支索引。",
+      "result_count": 0,
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C07",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\": \"\\\"mon-cr\\\"\", \"repository_name\": [\"google-deepmind/formal-conjectures\", \"tadamcz/autoformalization-results\", \"openai/math\"], \"topn\": 10}",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "FC、tadamcz和OpenAI三个指定仓库内mon-cr精确词无命中，仅限该词/默认分支索引。",
+      "result_count": 0,
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C08",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\": \"\\\"monotone\\\" \\\"crossing\\\"\", \"repository_name\": \"openai/math\", \"topn\": 10}",
+      "date": "2026-11-27",
+      "outcome": "限流",
+      "note": "openai/math关键词请求HTTP429，retry_after约618秒；未等待重试刷请求，保留限流。随后取得固定overview、README、formalization.yaml及两份真实主Lean文件定点核范围。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C09",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search_commits",
+      "query": "{\"query\": \"\", \"repository_full_name\": \"openai/math\", \"topn\": 1}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "观察到当前最新提交3344da59991ed94f9ba711217b29c1d760badfa6，2026-11-25T00:18:47Z；提交题为Add November24 mathematics manuscripts and Lean formalizations。以下OpenAI文件固定此提交。",
+      "result_count": 1,
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C10",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\": \"tadamcz/autoformalization-results\", \"path\": \"data/entries/wp-albertson-conjecture.json\", \"ref\": \"2f3747e0233049f1695dbd725e42e1b19a6ec3ff\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整JSON及149行内嵌Lean已读：Drawing无x单调限制；crossingNumber_mono是H≤G时普通交叉数不增；albertson_conjecture比较cr(G)与同色数完全图，主槽by sorry。metadata compiled=true/clean=true且sorry_lines=[144]，只属作者骨架编译报告。 Git blob SHA1=5a834efac28f211304c115c984d21b7ed0e3c3ce，本轮按取得的原始UTF-8字节验同。",
+      "url": "https://github.com/tadamcz/autoformalization-results/blob/2f3747e0233049f1695dbd725e42e1b19a6ec3ff/data/entries/wp-albertson-conjecture.json",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C11",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch system1",
+      "query": "{\"q\": \"\\\"monotone crossing number\\\" site:mathoverflow.net OR site:math.stackexchange.com\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "精确题词/社区域名与近期proof/solved定向检索；返回原论文、综述、HF原题编目及family165索引。未检到同题社区完整解决声明；这是本次有界检索结果，不是全球无人证明的断言。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C12",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch system1",
+      "query": "{\"q\": \"\\\"monotone crossing\\\" \\\"proof\\\" Lean github\", \"recency\": 365}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "精确题词/社区域名与近期proof/solved定向检索；返回原论文、综述、HF原题编目及family165索引。未检到同题社区完整解决声明；这是本次有界检索结果，不是全球无人证明的断言。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C13",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch system1",
+      "query": "{\"q\": \"\\\"monotone crossing number\\\" \\\"constant\\\" \\\"solved\\\"\", \"recency\": 730}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "精确题词/社区域名与近期proof/solved定向检索；返回原论文、综述、HF原题编目及family165索引。未检到同题社区完整解决声明；这是本次有界检索结果，不是全球无人证明的断言。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C14",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\": \"openai/math\", \"path\": \"overview.tex\", \"ref\": \"3344da59991ed94f9ba711217b29c1d760badfa6\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整overview.tex取得，全文关键词扫描monotone crossing、mon-cr、monotone.*crossing均0；普通crossing number相关family165为Kn/Km,n公式。读取该entry及上下文，不宣称逐篇审730篇论文。 Git blob SHA1=1a56184b1f28a8750722dc2dd6306af8424da0b6，本轮按取得的原始UTF-8字节验同。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/overview.tex",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C15",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\": \"openai/math\", \"path\": \"README.md\", \"ref\": \"3344da59991ed94f9ba711217b29c1d760badfa6\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整README；官方自述730稿/375族与验证层级不一，提供lean/formalization.yaml真入口；本题只追相关family165范围。 Git blob SHA1=9dc39b832c0b6d9416c18a9c8d396bcda80ce351，本轮按取得的原始UTF-8字节验同。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/README.md",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C16",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch system2",
+      "query": "{\"q\": \"\\\"monotone\\\" \\\"crossing\\\" constant\", \"domains\": [\"mathoverflow.net\", \"math.stackexchange.com\"]}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "社区检索多为单调函数相交的噪声；较近MO426374关于grounded曲线相交表示，另命中NumPSLA实验工具。二者随后读原页面/代码，未把伪直线或完全图计数当任意G的mon-cr最优化。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C17",
+      "route": "代码、公开 AI 和社区",
+      "site": "WebSearch system2",
+      "query": "{\"q\": \"\\\"monotone crossing number\\\" algorithm code SAT github\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "社区检索多为单调函数相交的噪声；较近MO426374关于grounded曲线相交表示，另命中NumPSLA实验工具。二者随后读原页面/代码，未把伪直线或完全图计数当任意G的mon-cr最优化。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C18",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\": \"openai/math\", \"path\": \"lean/formalization.yaml\", \"ref\": \"3344da59991ed94f9ba711217b29c1d760badfa6\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整formalization.yaml取得并检索；monotone crossing、mon-cr、monotoneCrossing均0。条目实际指向CompleteCrossing.Main.complete_graph_crossing_number与Crossing.Main.mainTarget_proof，随后读全主文件；目录登记不是本轮复跑。 Git blob SHA1=94045f5f34d8f2bdf8da17fca9a06632170efa14，本轮按取得的原始UTF-8字节验同。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/formalization.yaml",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C19",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://mathoverflow.net/questions/426374/representation-of-x-non-monotone-curves-with-one-intersection-each-by-x-mono",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整可见题面、1答及评论已读。问从y轴出发、每对至多交一次的曲线族是否能用x单调曲线保持相交边对；不是给定图的普通/单调交叉数比。答复于2022-07-11编辑自注incorrect，因为outerstring/double-outerstring定义不同；不搬作本题反例，也不标正式论文撤回。",
+      "url": "https://mathoverflow.net/questions/426374/representation-of-x-non-monotone-curves-with-one-intersection-each-by-x-mono",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C20",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "https://github.com/guenterrote/NumPSLA",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "读取作者README全部可见正文，识别真实crossing-number-plus-halving-lines.ch文件；项目枚举伪直线配置和抽象点序型，统计相应完全图交叉数，非一般图mon-cr求解器。",
+      "url": "https://github.com/guenterrote/NumPSLA",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C21",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search_commits",
+      "query": "{\"query\": \"\", \"repository_full_name\": \"guenterrote/NumPSLA\", \"topn\": 1}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "当前观察提交d8ef38eba358574a724bbb7ae8ffe39b16a1f506，2026-11-18T12:45:01Z；以下工具文件固定此提交。",
+      "result_count": 1,
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C22",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\": \"openai/math\", \"path\": \"lean/OAI/Combinatorics/CompleteCrossing/Main.lean\", \"ref\": \"3344da59991ed94f9ba711217b29c1d760badfa6\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整Main.lean：complete_graph_crossing_number(n)(3≤n)只得ordinaryCrossingNumber(completeGraph n)=hill n；下界量化该完全图的AdmissibleDrawing，上界存在该族画法。主文件本身无sorry/axiom/admit，但6个导入模块未取全审、未跑Lean；只核结论范围。 Git blob SHA1=bbb76af01755a1712567b4d96e46c05b0c60fbb3，本轮按取得的原始UTF-8字节验同。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/CompleteCrossing/Main.lean",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C23",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\": \"openai/math\", \"path\": \"lean/OAI/Combinatorics/Crossing/Main.lean\", \"ref\": \"3344da59991ed94f9ba711217b29c1d760badfa6\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整Main.lean：ordinary_crossing_number_eq(m n)(0<m)(0<n)，及该完全二部族取到axisPairs m*axisPairs n的画法。MainTarget、AdmissibleDrawing等定义和下界在导入依赖，未审全；没有任意图G的mon-cr/cr常数界。 Git blob SHA1=778413f96c7ed0f659a9067dcedc4c1cd2806e31，本轮按取得的原始UTF-8字节验同。",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/Crossing/Main.lean",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C24",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\": \"guenterrote/NumPSLA\", \"path\": \"README.md\", \"ref\": \"d8ef38eba358574a724bbb7ae8ffe39b16a1f506\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整README已取得并与网页比读：基础枚举3≤伪直线条数≤15，对应AOT点数多1；交叉扩展统计完全图与halving线，声称已有13点表。未取这些输出表验证数值。 Git blob SHA1=c75ff093b206c604a6cc2c231a03a6ecf4f053f8，本轮按取得的原始UTF-8字节验同。",
+      "url": "https://github.com/guenterrote/NumPSLA/blob/d8ef38eba358574a724bbb7ae8ffe39b16a1f506/README.md",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C25",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "{\"repository_full_name\": \"guenterrote/NumPSLA\", \"path\": \"crossing-number-plus-halving-lines.ch\", \"ref\": \"d8ef38eba358574a724bbb7ae8ffe39b16a1f506\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整CWEB change-file已读；MAXN从15改12（最多13个AOT点）；count_crossings按wiring各层交换数算完全图的交叉统计。主枚举NumPSLA.w、readDataBase.w和非可实现排除数据未取，未编译或运行。不是已完成的一般mon-cr最小值计算。 Git blob SHA1=b433829aa19c9d48e7ab0d2ec9d3f55800600144，本轮按取得的原始UTF-8字节验同。",
+      "url": "https://github.com/guenterrote/NumPSLA/blob/d8ef38eba358574a724bbb7ae8ffe39b16a1f506/crossing-number-plus-halving-lines.ch",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C26",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open author PDF",
+      "query": "https://cims.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得作者11页PDF的文本；本分工定点阅读pp1–2定义和约定：简单图、竖线与每边至多交一点，mon-cr在全部单调画法中取最小，顶点位置未预设。未在此代码分工独立核全部上下界证明；学术/数学主分工另核。",
+      "url": "https://cims.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-D05",
+      "route": "库内查重",
+      "site": "包内全库查重简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-001454〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "仅词面命中873：结图Reidemeister降交叉，不是图的x单调画法；只作标题初筛排除。",
+      "result_count": 1,
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-D06",
+      "route": "库内查重",
+      "site": "包内全库查重简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-001455〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中270/509/862/873/1225/1688/1699/1711/1712。最相关“变体相等性”1712进入固定全文核对；其他为完全图/二部图/特定图族/结或点集问题，未取其全文，不宣称穷尽全部语义关系。",
+      "result_count": 9,
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-D07",
+      "route": "库内查重",
+      "site": "包内全库查重简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-001456〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "十项主要为染色博弈、级数、嵌入、Lagrangian/DeGiorgi等同词噪声；本题索引title用mon-cr缩写，故另补缩写查询。",
+      "result_count": 10,
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-D08",
+      "route": "库内查重",
+      "site": "包内全库查重简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-001457〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中本卡893@a7d25eceade40fa1，无第二条同表达候选。",
+      "result_count": 1,
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-D09",
+      "route": "库内查重",
+      "site": "包内全库查重简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-001458〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同源OWR号还命中885/894/895，标题分别poset、Hamilton、边染色，非同题。",
+      "result_count": 4,
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-C27",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地静态版本与环境核查",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-001459〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "12个Git blob SHA全验同；本卡meta/text与task一致。PATH无lean/lake，未安装、未编译。官方两个主文件不含占位，不等于依赖闭包或主结论被本轮形式验证。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-MATH-01",
+      "route": "学术",
+      "site": "Pach作者主页 / web open",
+      "query": "open https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "locator": "pp1–4：图/画法/mon-cr定义、Theorems1–2与Thm1的二项式证明",
+      "note": "取得11页作者稿；亲读自由顶点位置定义、每竖线至多一点、cr≤mon-cr≤lin-cr及Thm1关键计数。不将作者稿严格<的0边界照抄成0<0。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-MATH-02",
+      "route": "学术",
+      "site": "Pach作者主页 / web find",
+      "query": "find Theorem 1. in https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "locator": "Thm1 p2、Def2.1/Thm2.2 pp3–4及Proof of Thm1",
+      "note": "定点核未交叉边组成G0、其余q条边满足q≤2cr、每对补回单调边至多一次交叉；推出binom(q,2)而不是从图形估计最优值。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-MATH-03",
+      "route": "学术",
+      "site": "Pach作者主页 / web find",
+      "query": "find Claim 3.2. in https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "locator": "§3，Claims3.1–3.4，pp6–9",
+      "note": "核Thm2构造及红束数值排除的适用边界；10k>7k+6仅由k≥3保证，不认证作者稿对k=1,2的所有精确族公式。渐近存在族与全局C必要下界不依赖这两个小参数。未独立重证整个下界构造。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-MATH-04",
+      "route": "原题与出处",
+      "site": "DOI / web open",
+      "query": "open https://doi.org/10.4171/OWR/2026/1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://doi.org/10.4171/OWR/2026/1",
+      "note": "网页工具返回not accessible；随即用机构公开PDF及已下载原文件核目标段，未把DOI访问失败当全文不可得。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-MATH-05",
+      "route": "原题与出处",
+      "site": "本地已下载原始PDF文本",
+      "query": "read 〔私有材料定位已省略〕 around Definition2/Question3; read 〔私有材料定位已省略〕 pp1–4 〔私有记录编号：PR-001460〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/4435/OWR_2026_01.pdf?isAllowed=y&sequence=1",
+      "locator": "OWR印刷pp69–70；Pach–Tóth作者稿pp1–4",
+      "note": "核OWR自由画法定义、每竖线至多一次及Question3原式；与作者定义一致。此为复用本轮来源分工已下载文件后的实际读取，不冒称本代理另行下载。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-MATH-06",
+      "route": "原题与出处",
+      "site": "Oberwolfach机构库 / web open",
+      "query": "open https://publications.mfo.de/bitstream/handle/mfo/4435/OWR_2026_01.pdf?isAllowed=y&sequence=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/4435/OWR_2026_01.pdf?isAllowed=y&sequence=1",
+      "locator": "报告封面与Problem Session",
+      "note": "机构公开76页PDF可读，报告号1/2026、DOI及2026-01-04至01-09工作坊；不能据工作坊日期推定此数学问题首次提出。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-03-000893-MATH-07",
+      "route": "原题与出处",
+      "site": "Oberwolfach机构库 / web find",
+      "query": "find mon-cr in OWR_2026_01.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/4435/OWR_2026_01.pdf?isAllowed=y&sequence=1",
+      "locator": "印刷p69 Definition2；印刷p70 Question3，János Pach名下",
+      "note": "再核Def2按所有画法取最小值，唯一附加限制为每边x-monotone；无预给顶点横坐标、次序或层数输入。Question3正是存在绝对C的线性界。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-01",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"monotone crossing number\" \"constant\" proof; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中Pach–Tóth作者稿、Solé Pi近邻论文及HF登记；检索日期不是论文出版日期，HF只作追溯线索。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-02",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"mon-cr\" \"cr\" \"2026\"; recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中OWR题目登记、2025/2026近邻论文、旧综述及固定层次画法文献；后者对象与原题不自动相同。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-03",
+      "route": "学术",
+      "site": "Pach作者主页 / web open",
+      "query": "open https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "locator": "作者稿pp1–4，定义、Thm1–2、Thm2.2与Thm1归约",
+      "note": "亲读简单无环图约定、自由单调画法定义、最多2cr条被交叉边及binom(m,2)归约。与数学组件独立核对，未通审所有归纳几何分支。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-04",
+      "route": "原题与出处",
+      "site": "MFO官方报告 / web open",
+      "query": "open https://publications.mfo.de/bitstream/handle/mfo/4435/OWR_2026_01.pdf?isAllowed=y&sequence=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/4435/OWR_2026_01.pdf?isAllowed=y&sequence=1",
+      "locator": "封面会期与Problem Session（后续find定位Definition2/Question3）",
+      "note": "报告76PDF页，数学问题在印刷p69–70；没有声称通读全部76页。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-05",
+      "route": "学术",
+      "site": "Springer正式文章 / web open",
+      "query": "open https://link.springer.com/article/10.1007/s00454-024-00708-z",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00454-024-00708-z",
+      "locator": "title、Abstract、Theorems1.1/1.6、§5与版本元数据",
+      "note": "Oriol Solé Pi，2025-01-22刊发，卷73pp310–326；DOI中的2024不能当刊发日。正文可达，定点读定义和主结果范围，未核全篇证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-06",
+      "route": "原题与出处",
+      "site": "MFO官方报告 / web find",
+      "query": "find \"Question 3.\" in OWR_2026_01.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/4435/OWR_2026_01.pdf?isAllowed=y&sequence=1",
+      "locator": "印刷p69–70，János Pach小节Definition2与Question3",
+      "note": "Definition2每竖线与每边最多交一点；Question3量词为绝对C、所有G。未给定顶点横坐标或顺序。小节第一问题才说明jointly with Erdős，不能将该署名自动移给第二问题。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-07",
+      "route": "学术",
+      "site": "Pach作者稿 / web find",
+      "query": "find \"3 Proof of Theorem 2\" in moncrossing030111.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "locator": "§3构造G_k、Claims3.1/3.4；同时返回§2上界归约",
+      "note": "读到其用彼此不同内部顶点的长2路径替换带色边，最终简单图族cr=6k+6、mon-cr=7k+6。这里只核构造目标和结果定位，未冒称已独立通审所有图形拓扑论证。 后续数学核对发现红束10k>7k+6的直接矛盾需要k≥3，故本轮不认证所有小k的精确公式；可取k→∞的足够大子族支持渐近下界。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-08",
+      "route": "学术",
+      "site": "Springer正式文章 / web find",
+      "query": "find \"monotone crossing number\" in 10.1007/s00454-024-00708-z",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00454-024-00708-z",
+      "locator": "§5最后若干段与Footnote6",
+      "note": "此文§5印刷为mon-cr≤4mon-pcr，右侧是单调成对交叉数，不能读成普通cr。收尾与DS21第9版p79所引Valtr的4/3次幂发现数式差异，已转为来源核对；这条查询只记录实际页面所写，不背书该线性式。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-09",
+      "route": "学术",
+      "site": "Springer正式文章 / web find",
+      "query": "find \"Theorem 1.6\" in 10.1007/s00454-024-00708-z",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00454-024-00708-z",
+      "locator": "Thm1.6、§4证明入口",
+      "note": "该定理在≥n^C个预给一般位置点中选择顶点、直线画法，界O(log n·(pcr+Σd_i²))；不是所有图的mon-cr≤绝对C·cr。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-10",
+      "route": "学术",
+      "site": "Springer正式文章 / web find",
+      "query": "find \"Valtr\" in 10.1007/s00454-024-00708-z",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00454-024-00708-z",
+      "locator": "§5及References28",
+      "note": "正式文献引用Valtr2005 On the pair-crossing number，pp569–575；本轮未取Valtr原章证明，不把此处重述当完整独立核验。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-11",
+      "route": "原题与出处",
+      "site": "Pach作者稿 / web open",
+      "query": "open moncrossing030111.pdf at returned line466 (Concluding remarks and references)",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "locator": "§3末段、§4与References",
+      "note": "读补充odd-crossing与mon-pair-crossing比较及引用。此篇当前读取段没有明确证明本题首次提出年代，故仅以OWR2026作为可核重述出处，不把报告日期宣称历史首次。§3 red-bundle矛盾10k>7k+6须k≥3，保留小k验证范围限制。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-12",
+      "route": "学术",
+      "site": "Springer正式文章 / web open",
+      "query": "reopen 〔原始工具引用已私有留存〕 and 〔原始工具引用已私有留存〕 (same DOI HTML) 〔私有记录编号：PR-001461〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00454-024-00708-z",
+      "locator": "§5、published/version of record",
+      "note": "收尾核对两次原有页面引用，同一正式HTML可达。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-13",
+      "route": "学术",
+      "site": "Springer正式文章 / web find",
+      "query": "find Valtr in DOI HTML",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00454-024-00708-z",
+      "locator": "§5及References28",
+      "note": "HTML确实把归引写作mon-cr≤4mon-pcr，未显示4/3指数；已与DS21同源引用发现差异，不作为已核定理。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-14",
+      "route": "学术",
+      "site": "Springer正式文章 / web find",
+      "query": "find mon- in DOI HTML",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00454-024-00708-z",
+      "locator": "§5段落、Footnote6",
+      "note": "独立定位同一归引段，右侧mon-pcr不是普通cr。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-15",
+      "route": "学术",
+      "site": "已取得DS21第9版 / 本地正文读取",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-001462〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/view/DS21",
+      "locator": "印刷p79 Relationships、参考文献[817]",
+      "note": "原文写mon-cr≤4 mon-pcr^(4/3)并引Valtr2005，和2025HTML的归引数式不同。只读定位段，不把整篇综述全审。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-16",
+      "route": "学术",
+      "site": "Springer正式PDF / web click",
+      "query": "click Download PDF link 9 from DOI HTML",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/content/pdf/10.1007/s00454-024-00708-z.pdf",
+      "locator": "17页PDF元数据、§5",
+      "note": "正式PDF可达；后续定点定位p324，未声称通审17页。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-17",
+      "route": "学术",
+      "site": "Springer正式PDF / web find",
+      "query": "find Valtr [28] in official PDF",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/content/pdf/10.1007/s00454-024-00708-z.pdf",
+      "locator": "印刷p324，PDF页索引14，正文行886–889",
+      "note": "PDF正文也写mon-cr≤4mon-pcr，不只是HTML提取变化；本题只据其右侧参数排除范围，不用该式给本题常数。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-18",
+      "route": "学术",
+      "site": "SLMath/MSRI原章 / web",
+      "query": "open https://library.slmath.org/books/Book52/files/31valtr.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://library.slmath.org/books/Book52/files/31valtr.pdf",
+      "locator": "原章摘要、p570定义及Theorem2",
+      "note": "机构托管原章可达；明确f^mon(k)≤4k^(4/3)，k为单调pair-crossing number。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-19",
+      "route": "学术",
+      "site": "SLMath/MSRI原章 / web",
+      "query": "find Theorem 2. in 31valtr.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://library.slmath.org/books/Book52/files/31valtr.pdf",
+      "locator": "p570、§3 pp573–574",
+      "note": "原定义中f^mon对pair-cr^mon=k的图取最大，所得右侧不是普通cr。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QXR303-0893-ROOT-20",
+      "route": "学术",
+      "site": "SLMath/MSRI原章 / web",
+      "query": "find 4/3 in 31valtr.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://library.slmath.org/books/Book52/files/31valtr.pdf",
+      "locator": "摘要、Thm2、§3末计数",
+      "note": "读到t=k^(1/3)与k(2t−1)+binom(floor(2k/t),2)≤4k^(4/3)。根只独立核对象、原式和末端数值归约，未重证lens/slings重画全部几何正确性。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-1",
+      "route": "学术",
+      "site": "system1_search_query",
+      "query": "Pavel Valtr \"On the Pair-Crossing Number\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中MSRI原章PDF、作者书目及Cambridge正式章入口；随后定点读取。",
+      "url": "https://library2.msri.org/books/Book52/files/31valtr.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-2",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://library2.msri.org/books/Book52/files/31valtr.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "第一次直开TimeoutError；不是原文不存在。",
+      "url": "https://library2.msri.org/books/Book52/files/31valtr.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-3",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://www.cambridge.org/core/books/abs/combinatorial-and-computational-geometry/on-the-paircrossing-number/31A94843ECB39D0B5466BC712CE10064",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "读出版信息和导论摘要；2005为印刷年，2025-06-27为新版网页在线日。该入口未取得章全文。",
+      "url": "https://www.cambridge.org/core/books/abs/combinatorial-and-computational-geometry/on-the-paircrossing-number/31A94843ECB39D0B5466BC712CE10064",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-4",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://uat-library.msri.org/books/Book52/contents.html",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "官方目录镜像超时。",
+      "url": "https://uat-library.msri.org/books/Book52/contents.html",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-5",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://kam.mff.cuni.cz/~valtr/publications.html",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "作者书目第48项确认2005、MSRI52、569–575；无该文下载链接。",
+      "url": "https://kam.mff.cuni.cz/~valtr/publications.html",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-6",
+      "route": "学术",
+      "site": "Python urllib.request",
+      "query": "GET https://library2.msri.org/books/Book52/files/31valtr.pdf; timeout=25",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "实际HTTP503；日志valtr_download.json。",
+      "url": "https://library2.msri.org/books/Book52/files/31valtr.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-7",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "site:library2.msri.org/books/Book52/files/31valtr.pdf \"monotone\" \"Theorem\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批返回原章p570的定义和Theorem2片段，明确4/3；之后取得完整章。",
+      "url": "https://library2.msri.org/books/Book52/files/31valtr.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-8",
+      "route": "学术",
+      "site": "system2_search_query",
+      "query": "\"31valtr.pdf\" \"4/3\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "与上一查询合并返回，包含原章片段及无关命中；本记录不将合并命中精确归属此单个词组。",
+      "url": "https://library2.msri.org/books/Book52/files/31valtr.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-9",
+      "route": "学术",
+      "site": "open",
+      "query": "open 〔原始工具引用已私有留存〕 (MSRI indexed original PDF) 〔私有记录编号：PR-001463〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "成功取得原章287行正文，阅读摘要、p570定义/Thm2及§3 pp573–574；邻近对象为monotone pair-crossing。",
+      "url": "https://library2.msri.org/books/Book52/files/31valtr.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-10",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://library.slmath.org/books/Book52/files/31valtr.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "SLMath机构镜像成功，8页PDF；此后本地完整下载与原页视觉核对。",
+      "url": "https://library.slmath.org/books/Book52/files/31valtr.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-11",
+      "route": "学术",
+      "site": "open",
+      "query": "open https://www.msri.org/communications/books/Book52/files/31valtr.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "历史机构URL不可访问。",
+      "url": "https://www.msri.org/communications/books/Book52/files/31valtr.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-12",
+      "route": "学术",
+      "site": "screenshot",
+      "query": "screenshot 〔原始工具引用已私有留存〕 pageno=1 (printed p570) 〔私有记录编号：PR-001464〕",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "工具仅返回ImageDisplayed文本占位而无图像内容；不以此声称视觉核对，后续本地渲染成功。",
+      "url": "https://library.slmath.org/books/Book52/files/31valtr.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-13",
+      "route": "学术",
+      "site": "screenshot",
+      "query": "screenshot 〔原始工具引用已私有留存〕 pageno=5 (printed p574) 〔私有记录编号：PR-001465〕",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "仅文本占位；已读这一页正文计数，但未从该次截图看到像素。",
+      "url": "https://library.slmath.org/books/Book52/files/31valtr.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-14",
+      "route": "学术",
+      "site": "Python urllib.request + pdftotext",
+      "query": "GET https://library.slmath.org/books/Book52/files/31valtr.pdf; timeout=20; pdftotext -layout",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "HTTP200，144934字节，完整PDF已保存；SHA256=93ad79f23d43bb2f008616ff00fc1dbe6d759cdb3f0cff25c2826ffddda5850d。",
+      "url": "https://library.slmath.org/books/Book52/files/31valtr.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-15",
+      "route": "学术",
+      "site": "本地原PDF视觉及文本核对",
+      "query": "pdftoppm -f 2 -l 2 -scale-to 1400 -png -singlefile Valtr2005_original.pdf Valtr2005_p570; view_image Valtr2005_p570.png; read §3 in Valtr2005_original.txt",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际看到p570原页，Theorem2右侧4k的上标4/3清楚；本地正文另核§3的参数和末计数。未重证几何重画步骤。",
+      "url": "https://library.slmath.org/books/Book52/files/31valtr.pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0893-VALTR-16",
+      "route": "学术",
+      "site": "本地既有来源文本",
+      "query": "read Schaefer_DS21.txt around monotone crossing relationships, printed p79",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "既有综述文本记录mon-cr≤4mon-pcr^(4/3)，与此次原章吻合；原章作为判定该归引的主证据。",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/DS21/pdf",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "0893-SA-01",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/4435/OWR_2026_01.pdf?isAllowed=y&sequence=1",
+      "locator": "Combinatorics, Oberwolfach Reports23(2026),no.1,pp5–79；Problem Session（Nati Linial主持）中János Pach小节：Definition2印刷p69/PDF第65页；Question3印刷p70/PDF第66页",
+      "version": "DOI10.4171/OWR/2026/1；会议2026-01-04至09；正式刊发2026-07-21（Crossref），MFO档案可用2026-07-22",
+      "subquestions": [
+        "主问题",
+        "自由顶点位置/顺序的原定义",
+        "报告提出者及日期"
+      ],
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "claimant": "János Pach（报告该小节署名）",
+      "claim_date": "2026-07-21",
+      "note": "按全部平面画法取最少交叉，单调版仅增加每条竖线与每边至多一个交点的限制；未要求外部给定顶点横坐标或序。Question3确问所有图的统一常数C。题包指定出处确证；未宣称2026是此研究问题在历史上的第一次口头提出。全文已取得，仅阅读本题及必要上下文。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "0893-SA-02",
+      "url": "https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "locator": "János Pach and Géza Tóth, Monotone crossing number；作者版pp1–2定义、Theorems1–2；pp3–4 Theorem1 proof(using Theorem2.2)；§4",
+      "version": "作者网站11页稿，文件名moncrossing030111.pdf（稿内未印明确版本日期，不由文件名推断）；对应GD2011会议/2012正式章节",
+      "subquestions": [
+        "主问题",
+        "二次上界",
+        "可分离下界",
+        "顶点顺序自由及平面边界"
+      ],
+      "role": "进展",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "对无自环无重边图定义自由单调画法。Thm1印作mon-cr<2cr²；其证明实际给≤binom(2cr,2)，对cr=0应写0而不能照抄严格0<0。本轮核从v-spinal Thm2.2到该界的计数归约，未独立重证Thm2.2和下界图族。Thm2给无限族且cr无界、mon-cr≥(7/6)cr−6，仅说明常数若存在须≥7/6，不是无界比反例。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "0893-SA-03",
+      "url": "https://link.springer.com/chapter/10.1007/978-3-642-25878-7_27",
+      "locator": "Pach–Tóth, Monotone Crossing Number, Graph Drawing(GD2011), LNCS7034, pp278–289；Abstract及Cite this paper字段",
+      "version": "正式章节引文年份2012，©2012；会议名称GD2011；DOI10.1007/978-3-642-25878-7_27",
+      "subquestions": [
+        "Pach–Tóth上界的年份/版本与来源"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "出版社摘要确认二次上界2cr²，正式citation为2012；章节订阅全文未取得，数学阅读依据为0893-SA-02作者全文。官方GD2011日程支持2011会议身份。Moscow2012期刊版的18–33/216–231书目差异未由原刊页码解决，不强行写成同一分页。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "0893-SA-04",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/DS21/pdf",
+      "locator": "Marcus Schaefer, The Graph Crossing Number and its Variants: A Survey；第9版pp78–80 Monotone crossing numbers定义/关系及参考文献[665]",
+      "version": "Ninth Edition:2026-07-17；Electronic Journal of Combinatorics(2026)#DS21，177页",
+      "subquestions": [
+        "自由单调与给定预序单调的定义区分",
+        "截至2026年7月的学术整理"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "作者明确区分mon-cr与要求横坐标顺序扩张既定预序的mon-cr_≼；本轮只读该定义、关系条目及版本，不把177页全篇说成已读。条目仍列Pach–Tóth二次上界与7/6下界；只作有日期的范围/术语交叉核对，不以该综述缺少全解推出当日全球开放。数学上界主源为0893-SA-02。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "0893-SA-05",
+      "url": "https://link.springer.com/article/10.1007/s00454-025-00783-w",
+      "locator": "Oriol Solé-Pi, An Algorithm for Estimating the Crossing Number of Dense Graphs, and Continuous Analogs of the Crossing and Rectilinear Crossing Numbers；摘要、Theorem1.2、§5 Open Problems、注10",
+      "version": "online/VoR2025-10-21；received2025-01-10，revised2025-09-17，accepted2025-09-24；Discrete Comput.Geom.76(2026),896–930，issue2026-09",
+      "subquestions": [
+        "近期稠密图近似和graphon结果是否给全图线性比较"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "正式HTML全文可访问，本轮只读上述关键段。Thm1.2对普通cr给加性O(n^4/(loglog n)^δ)近似及普通画法，并不保证单调。§5提单调graphon变体且明说相应定理推广未知；不能把该近期成果当mon-cr≤Ccr的证明，也不能用稠密图加性误差处理所有稀疏/小cr图。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "e893-code-albertson",
+      "url": "https://github.com/tadamcz/autoformalization-results/blob/2f3747e0233049f1695dbd725e42e1b19a6ec3ff/data/entries/wp-albertson-conjecture.json",
+      "locator": "完整JSON lean/checks/fc/reviewer_notes；内嵌Lean 53–83 Drawing/crossingNumber，109–129 crossingNumber_mono，139–144 albertson_conjecture",
+      "version": "commit 2f3747e0233049f1695dbd725e42e1b19a6ec3ff; blob 5a834efac28f211304c115c984d21b7ed0e3c3ce; retrieved 2026-11-27",
+      "subquestions": [
+        "形式化词面命中的范围排除"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "claimant": "tadamcz/autoformalization-results",
+      "rerun": {
+        "commit": "2f3747e0233049f1695dbd725e42e1b19a6ec3ff",
+        "theorem": "AlbertsonConjecture.crossingNumber_mono; AlbertsonConjecture.albertson_conjecture",
+        "toolchain": "metadata: leanprover/lean4:v4.27.0; mathlib a3a10db0e9d66acbebf76c5e6a135066525ac900; FC base9cbe1d3c12998c786b7c2cd99ce28a21b6631f66",
+        "command": "NOT RUN; JSON author checks.compiled=true",
+        "axioms": "主研究槽sorry；本轮未执行#print axioms，未审依赖闭包。"
+      },
+      "note": "取得完整条目和149行Lean。Drawing允许连续简单弧而无x单调要求，crossingNumber_mono是删边/对子图H≤G的普通交叉数不增。主研究槽是Albertson色数比较cr(K_chi)≤cr(G)，明确by sorry，metadata也列sorry_lines=[144]。compiled/clean只能说明作者报告该骨架编译，不是mon-cr≤Ccr的证明，也不将本条与群星本题视为同题。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "e893-ai-openai-range",
+      "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/lean/OAI/Combinatorics/CompleteCrossing/Main.lean",
+      "locator": "overview.tex family165；lean/formalization.yaml CompleteCrossing/BipartiteCrossing条目；两个Main.lean全部，尤其complete_graph_crossing_number与ordinary_crossing_number_eq",
+      "version": "commit 3344da59991ed94f9ba711217b29c1d760badfa6 (2026-11-25T00:18:47Z); CompleteMain blob bbb76af01755a1712567b4d96e46c05b0c60fbb3; BipartiteMain blob 778413f96c7ed0f659a9067dcedc4c1cd2806e31",
+      "subquestions": [
+        "公开AI完整声明的图族与量词范围"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "OpenAI math repository (family165)",
+      "claim_date": "manuscript titles dated2026-09-23; fixed repository snapshot2026-11-25",
+      "rerun": {
+        "commit": "3344da59991ed94f9ba711217b29c1d760badfa6",
+        "theorem": "OAI.Paper170.complete_graph_crossing_number; OAI.Zarankiewicz.mainTarget_proof/ordinary_crossing_number_eq",
+        "command": "NOT RUN; only whole main files and catalogues read",
+        "axioms": "两主文件无sorry/axiom/admit字样；全部导入定义与证明未审，未运行#print axioms。"
+      },
+      "note": "从二手索引追到官方仓库。完整图主出口量化n≥3，结论ordinaryCrossingNumber(completeGraph n)=hill n；完整二部图主出口量化m,n>0，结论ordinaryCrossingNumber m n=axisPairs m*axisPairs n。普通画法量词只在这些固定图族内，不能变成任意图G的单调/普通交叉数常数比较。已读完整README、两主文件及相关目录条目，全文检索overview/formalization中monotone crossing、mon-cr等为0；未逐篇审730稿，未核底层AdmissibleDrawing/下界依赖，也未认证family165自身主证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "e893-code-numpsla",
+      "url": "https://github.com/guenterrote/NumPSLA/blob/d8ef38eba358574a724bbb7ae8ffe39b16a1f506/crossing-number-plus-halving-lines.ch",
+      "locator": "README main enumeration/utility programs/Determining the crossing number；change-file MAXN、count_crossings、crossing_formula",
+      "version": "commit d8ef38eba358574a724bbb7ae8ffe39b16a1f506 (2026-11-18T12:45:01Z); README blob c75ff093b206c604a6cc2c231a03a6ecf4f053f8; change-file blob b433829aa19c9d48e7ab0d2ec9d3f55800600144",
+      "subquestions": [
+        "有限配置程序的适用范围"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "claimant": "Günter Rote / NumPSLA",
+      "rerun": {
+        "commit": "d8ef38eba358574a724bbb7ae8ffe39b16a1f506",
+        "theorem": "count_crossings(n) (ordinary C/CWEB routine)",
+        "toolchain": "CWEB ctangle/cweave plus C compiler; precise tool versions not locked in read README",
+        "command": "NOT RUN; README advertises ctangle NumPSLA.w crossing-number-plus-halving-lines.ch -o count-crossing.c",
+        "axioms": "普通枚举程序，不是证明助理定理；未取得主CWEB/全部数据和输出证书。"
+      },
+      "note": "这是伪直线配置/抽象点序型工具。交叉补丁把MAXN限制为12条伪直线（对应最多13点），按wiring各层交换数统计该序型的完全图交叉及halving线；未对任意输入图、任意x单调弧画法与自由顶点次序求全局mon-cr。不能将其有限点型枚举或未实现某图的结果当本题上下界证书。本轮读完整README和补丁，未读主枚举全程序、未运行、未核作者13点结果表。 分类说明：本项为普通C/CWEB程序的静态阅读，未运行，未填写证明助手专用的formal_status；保留原版本、定位、适用范围和未复跑说明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "e893-community-curves",
+      "url": "https://mathoverflow.net/questions/426374/representation-of-x-non-monotone-curves-with-one-intersection-each-by-x-mono",
+      "locator": "question conditions1–3；唯一答复开头incorrect修订；Jan Kyncl评论解释定义差异",
+      "version": "question2022-07-10; answer edited2022-07-11; current visible page read2026-11-27",
+      "subquestions": [
+        "社区曲线表示候选的范围排除"
+      ],
+      "role": "重述",
+      "publication": "社区帖子",
+      "scope_match": "同源不同问",
+      "claim_state": "有修订",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "问题是grounded曲线族保持相交边对的表示，要求每对至多相交一次；不是给定图G最优交叉数比。唯一答复尝试套outerstring/double-outerstring，随后自己声明不正确，评论指出端点及相交次数定义不同。只据此排除把该答复当本题反例，不称相关论文撤回或社区已解决本题；本轮只读可见完整正文/评论，未取全部API修订史。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "e893-definition-pach",
+      "url": "https://cims.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "locator": "author PDF pp1–2: drawing conventions and monotone crossing number definition",
+      "version": "公开作者稿moncrossing030111.pdf，11页；未核版本历史；读取2026-11-27",
+      "subquestions": [
+        "自由顶点次序与单调画法定义"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "此证据只使用定义段：简单图的画法中每边为简单连续弧，x单调指每条竖线与边至多交一点；mon-cr在所有这类画法中最小化，并不预先给定顶点左右次序。旋转坐标可统一方向称呼，但不可把限制扩为指定次序或把弱非减参数曲线中的竖直段混作严格定义。本代码分工没有独立审本文全部上下界证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "e893-cardpair",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000893.text.md",
+      "locator": "893 meta card_rev/acceptance与正文题面/人话；1712 meta card_rev/keywords/acceptance与全部正文",
+      "version": "commit 73290369a8dcc632e25e555aec525565ea6e08f8; self893@a7d25eceade40fa1; other1712@f61f53e23f2d96ec",
+      "subquestions": [
+        "当前题面边界",
+        "库内候选比较"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "四份meta/text全文按固定commit取得，版本与索引/任务吻合。893求mon-cr/cr的普适有限常数；1712围绕pair、odd、independent等交叉数与cr相等，而且自身注明剩余子问集需核原文。不能凭“交叉数变体”主题认严格同题；1712现有数学状态不搬入本题。893旧novelty.card_rev=59c2c06646ec01de，未把旧记录迁移为本轮证据。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E0893-MATH-DEFINITION",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/4435/OWR_2026_01.pdf?isAllowed=y&sequence=1",
+      "locator": "Problem Session，János Pach名下Definition2（印刷p69）、Question3（印刷p70）；与作者稿pp1–2定义交叉核",
+      "version": "Oberwolfach Report1/2026 Combinatorics，DOI10.4171/OWR/2026/1；机构76页PDF；本轮2026-11-27读取；SHA256 b8918c905d2e4142770b57e665a7a14d6e06f201902c507dde31dea15677c923",
+      "subquestions": [
+        "主问题",
+        "单调画法定义与自由位置量词"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "OWR Problem Session中Pach名下Definition2在所有平面画法上取最少交叉点数，只对每边增加x-monotone要求；Question3为∃绝对常数C，∀G，mon-cr(G)≤C·cr(G)。没有预先给定顶点横坐标、顶点的左右次序或层数作为输入。Pach–Tóth作者稿开头工作于无圈无重边的有限图语境，边为连接端点且不经过其他顶点的简单弧；计数的是边的内部交叉点，不是仅计交叉边对，也不是把共端点算作交叉。每条边与每条竖直直线至多有一个公共点，故沿从左端到右端的参数化x严格增加；竖直线段不允许，边的两端也不能有相同x。人话“只增不减”若允许竖直停留段就弱于该定义。全体非相邻顶点是否同x不是定义另行规定的输入；本轮固定顺序小例全部x互异，没有利用等层退化。整体旋转90度给x单调画法与y单调画法的保持交叉数双射，所以自由放置时更换统一坐标轴不改变参数，不能只因“竖直/横向”用语宣布主问题不同或已反驳；宜统一写“关于x单调，即每条竖线至多交一点”。固定不同x数值与固定严格左右次序（y自由）在同一次序内可由严格递增分段线性横坐标变换互换，但预给次序仍是附加输入，不是原自由优化参数。只修解释性话语不等于原问被反驳；如维护方实际变更正式定义/验收须另按包规换card_rev。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E0893-MATH-QUADRATIC",
+      "url": "https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "locator": "Theorem1、Definition2.1、Theorem2.2及Proof of Theorem1，pp2–4；本note中的直接推论",
+      "version": "作者主页11页PDF moncrossing030111.pdf；本轮2026-11-27实际读取；SHA256 60be38231152bac078b8197238e14e477a5bb7b95e6a33bbd96a7d42386e6bf9",
+      "subquestions": [
+        "主问题",
+        "二次上界与平面边界",
+        "cr≤1及有界交叉数子类"
+      ],
+      "role": "进展",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "设k=cr(G)，取达到k的普通画法D。令G0保留所有顶点及未被任何边交叉的边，其余q条边各至少参与一次交叉，故q≤2k。引用作者稿Thm2.2将G0同胚重画为v-spinal单调平面画法；每条删去边的两端在同一对应面边界，可在面内补回单调弧，从而不交G0。选择使总交叉最少的补弧；若两补弧交叉两次，可在按x次序相邻的两交点间交换弧段并微扰，保持单调和面内性、减少两次交叉，矛盾。因此任意一对补弧至多交一次，总交叉≤binom(q,2)≤binom(2k,2)=k(2k−1)。这是原证明中已有计数的直接展开，不是新的研究上界。k=0时取binom(0,2)=0，或直接由Thm2.2得平面图有单调平面画法；空图另取空画法也为0。故cr=0⇒mon-cr=0。作者稿Thm1字面写所有图mon-cr<2cr²，严格<只可用于k≥1；不把k=0的0<0伪称正确，也不据此否定二次上界或线性开放问。所有画法包含单调画法，所以k≤mon-cr；k=1时由上界得mon-cr=1。对任意固定整数K≥1、cr(G)≤K，有mon-cr(G)≤(2K−1)cr(G)，包括k=0。因此比值趋∞的见证族必须满足cr>0且cr→∞；有界cr族不能反驳原线性问。平面图比值0/0不定义，但原不等式在该类为0≤0。以上独立核的是计数、0/1边界及直接推论，v-spinal构造作为原文定理输入，未声称独立重证整篇。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E0893-MATH-LOWER",
+      "url": "https://math.nyu.edu/~pach/publications/moncrossing030111.pdf",
+      "locator": "Theorem2（p2）、§3 Claims3.1–3.4（pp6–9）；§1参数比较",
+      "version": "作者主页11页PDF moncrossing030111.pdf；本轮2026-11-27实际读取；SHA256 60be38231152bac078b8197238e14e477a5bb7b95e6a33bbd96a7d42386e6bf9",
+      "subquestions": [
+        "主问题",
+        "全局常数的必要下界"
+      ],
+      "role": "进展",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "作者稿Thm2陈述有cr任意大的图族满足mon-cr(G)≥(7/6)cr(G)−6。引用该定理后，本轮直接推论：若全局线性常数C存在，则对这族的正交叉数k有C≥mon-cr/k≥7/6−6/k；令k→∞得C≥7/6。这只排除太小的全局常数，不能证明C=7/6足够，也不能推出比值无界。§3作者以重复的长度2路径保持简单图，写cr(G_k)=6k+6及mon-cr(G_k)=7k+6的构造；本轮不认证全部正整数k的精确公式。阅读边界：Claim3.2用红束至少10k次交叉与mon-cr上界7k+6矛盾，这个直接数值步骤在k≥3成立，k=1,2不由该句得出。只用任意大k的渐近族不受这两个小参数影响；未通审/重证所有局部重画。另cr≤mon-cr≤lin-cr的方向说明：rectilinear crossing number在固定cr=4时可无界这一不同参数的现象不能传递为mon-cr无界；本轮已核二次计数甚至给cr=4时mon-cr≤28。这里只核不等式逻辑，不重证Bienstock–Dean的直线交叉数构造。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E0893-MATH-FIXED-ORDER",
+      "url": "https://www.qunxingmath.org/p/QX-P-000893/",
+      "locator": "本轮解析证书：5顶点轮图的自由平面坐标与固定不同x次序的Jordan/bimodal阻碍；完整证明在note",
+      "version": "QX-R3-03 / QX-P-000893@a7d25eceade40fa1；本轮独立核对2026-11-27",
+      "subquestions": [
+        "固定次序变体与自由参数的区别"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "本轮完整解析小例，用来区分固定次序变体，不是原线性问反例。图W的顶点为a,b,c,d,h，边为轮缘四圈ab,bc,cd,da及四辐条ha,hb,hc,hd。自由位置构造：h=(0,0)，a=(−3,−2)，b=(2,−3)，c=(3,2)，d=(−2,3)，所有边画直线段。轮缘是严格凸四边形（相邻边向量叉积均26），h是两条对角线公共中点，故在其内部；四条辐条把它分成四个三角形，边内部没有交叉。五个x坐标−3,2,3,−2,0互异，所以每条线段严格x单调；交叉数非负给cr(W)=mon-cr(W)=0，这是达到最优的完整上、下界。现在另外给定严格次序x(a)<x(c)<x(h)<x(b)<x(d)，例如0<1<2<3<4，所有y坐标及弯曲边仍可自由选择。假设存在该次序下无交叉的单调画法。轮缘四圈是Jordan曲线；h在其一侧，四条辐条都须留在同一侧且彼此内部不交。因此围绕h的辐条循环次序只能沿轮缘a,b,c,d或其整体逆序（可由圆盘内不交辐条端点次序或Jordan分离直接得到）。但单调性迫ha,hc从h向左半平面离开，hb,hd向右半平面离开；两条向左边在局部循环次序中须连续，两条向右边也须连续。a,b,c,d使左右交替，矛盾。故这个预给次序下的单调交叉最小值至少1；画任意一般位置直线图可知可行画法存在，未声称此固定次序的精确最小值为1。这个区别使用5个互异x，未固定y、未压成两层，也未允许相等x来制造不可行竖边。结论只是否定“先由外部固定次序”与原自由mon-cr的等同。证明用平面拓扑和显式坐标，未运行启发式布局、有限图枚举、数值脚本或证明助手。卡URL仅标识被审核对象，不声称该网页已有此证明。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E0893-ROOT-NEARBY",
+      "url": "https://link.springer.com/article/10.1007/s00454-024-00708-z",
+      "locator": "Oriol Solé Pi, Pair Crossing Number, Cutwidth, and Good Drawings on Arbitrary Point Sets；Theorems1.1/1.6、§5、Footnote6、References28",
+      "version": "Discrete & Computational Geometry73,310–326(2025)；published/version of record2025-01-22；DOI10.1007/s00454-024-00708-z；read2026-11-27",
+      "subquestions": [
+        "邻近交叉数比较不能替换原问题"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "正文可达，定点读定义与定理范围，未通审所有证明。Thm1.1比较普通cr和普通pcr，Thm1.6是在足够大预给点集上选点的直线画法，界含log n与Σd_i²。§5归引Valtr2005的mon-cr/mon-pcr上界，右侧mon-pcr是在单调画法中最小化交叉边对数，不是普通cr。其HTML和印刷p324 PDF写成mon-cr≤4mon-pcr；DS21第9版p79同引Valtr则带4/3指数，本轮已直接取得并核Valtr原章Thm2确实带4/3次幂，故2025此处归引与原章不一致；这不等于线性式本身已被反驳，也不影响该2025文其他独立定理。不能把此处的常数4直接作为已核历史定理或本题全局线性比较。原章补核另列证据；本项不声称独立证明任何历史不等式。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "0893-SA-VALTR-2005",
+      "url": "https://library.slmath.org/books/Book52/files/31valtr.pdf",
+      "locator": "Pavel Valtr, On the Pair-Crossing Number, MSRI Publications52(2005),pp569–575；摘要p569；定义和Theorem2 p570；§3 Monotone Drawings pp573–574；本地渲染p570核上标。",
+      "version": "2005印刷原章；SLMath机构镜像PDF 8页，SHA25693ad79f23d43bb2f008616ff00fc1dbe6d759cdb3f0cff25c2826ffddda5850d；2026-11-27取得。",
+      "subquestions": [
+        "Valtr单调pair-crossing上界的指数和对象",
+        "2025转述与原章差异"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Pavel Valtr",
+      "claim_date": "2005",
+      "note": "原章定义f^mon(k)=max{cr^mon(G):pair-cr^mon(G)=k}；Theorem2为f^mon(k)≤4k^(4/3)。p570原页上标已视觉确认，非文本提取遗漏。§3取t=k^(1/3)，末计数为k(2t−1)+binom(floor(2k/t),2)≤4k^(4/3)。这是mon-cr相对mon-pcr的界，不能把右端换成普通cr。已读关键段，未独立重证透镜/重画引理及全章。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001712",
+      "other_card_rev": "f61f53e23f2d96ec",
+      "relation": "待核",
+      "reason": "就已读正文，1712问pair/odd/independent交叉数与cr相等，893问自由顶点次序下mon-cr与cr有无绝对常数比例。不是严格同题；但1712的剩余变体集合本身未明确，最终关系须先补全该卡目标。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000893.text.md；题面/人话版；同名meta card_rev/acceptance.criteria",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001712.text.md；题面pair vs cr等剩余子问、人话/查新备注；同名meta card_rev/keywords/acceptance.criteria"
+      },
+      "note": "pair_key=QX-P-000893|QX-P-001712；四份原卡全文与Git blob均已核。较小编号893在本包，本次因1712断言边界残缺保留待核，不建议合并；873等较低编号仅词面初筛，不认作已核全文的同题候选。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "修正人话版",
+      "field": "card_text.人话版及单调方向释义",
+      "old": "画法要先固定顶点的横坐标；从左往右走时横坐标只增不减。",
+      "new": "顶点位置及左右次序都可自由选择；在所有每条边关于x严格单调的画法中最小化交叉点数。关于x单调指任意竖线与一条边至多交一点，故不允许竖直边段。可先为某个候选画法选择坐标，但不能将外部预给的横坐标或次序固定成原题输入。统一旋转坐标轴得到等价参数。",
+      "reason": "原OWR定义无固定顶点位置输入；原话可能误导为固定次序/层次变体。旋转x/y本身不改变自由参数，不据此将主问题记为已反驳或整体题面有误。",
+      "evidence_ids": [
+        "E0893-MATH-DEFINITION",
+        "E0893-MATH-FIXED-ORDER",
+        "0893-SA-01",
+        "0893-SA-04",
+        "e893-definition-pach",
+        "e893-cardpair"
+      ],
+      "small_case_check": "轮图自由坐标给0交叉，但固定互异次序a<c<h<b<d时轮转左右交替与单调的左右各连续冲突；5个x互异、y自由，不混两层或相等x。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "card_text.已知结果与进展/边界与约定",
+      "old": "二次型上界；独立验证：小图交叉数比较独立脚本。",
+      "new": "记k=cr(G)。原作者稿证明给mon-cr(G)≤binom(2k,2)=k(2k−1)，包含k=0；写严格<2k²时须注明k≥1。cr=0或1时mon-cr=cr。固定cr≤K子类有常数2K−1，不能推出全局常数。已知cr无界族给mon-cr≥(7/6)cr−6，只说明若全局C存在则C≥7/6。",
+      "reason": "有限小图或启发式画法通常只给上界，须有独立下界才可认最优；此处解析计数足以验证0/1边界和给出安全搜索范围。",
+      "evidence_ids": [
+        "E0893-MATH-QUADRATIC",
+        "E0893-MATH-LOWER"
+      ],
+      "small_case_check": "k=0给0≤0；k=1给1≤mon-cr≤1。平面星图K1,n两值均0，不能用其0/0比值评估全局常数。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "card_text.边界与约定/acceptance.criteria的比值表述; 形式化表述",
+      "old": "构造一列图使mon-cr(G)/cr(G)趋于无穷。 形式化表述仅写“如上”。",
+      "new": "主不等式包括平面图；若用比值反例族表述，要求各图cr(G)>0，并实际证明最优mon-cr/cr趋∞。现有二次界迫该族cr→∞。工作对象沿原文为有限简单图；固定位置、固定次序、固定层数、交叉边对计数与rectilinear参数须另题区分。若维护方实际改变正式定义/验收，另按包规生成新card_rev，本回执不改题卡。 补完整形式化文本：普通画法取一般位置、按交点而非交叉边对计数；存在绝对C>0，使每个有限简单无向图G均满足mon-cr(G)≤C·cr(G)，且顶点位置及左右次序在mon-cr最小化中可自由选择。",
+      "reason": "0/0无定义、最优值与某次画法交叉数不能混用；不能借不同参数的反例完成本题验收。",
+      "evidence_ids": [
+        "E0893-MATH-DEFINITION",
+        "E0893-MATH-QUADRATIC",
+        "E0893-MATH-FIXED-ORDER",
+        "0893-SA-01",
+        "0893-SA-02"
+      ],
+      "small_case_check": "自由轮图和平面星图均0；固定轮图次序的正交叉下界只属于变体；没有将竖直边或环的不可行性当原有限简单图问题反例。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "proposer; first_published; sources; 原文摘录",
+      "old": "proposer=OWR2026/1报告；来源无URL/DOI；无具体页码",
+      "new": "补题包指定主源为János Pach在Problem Session提出的Question3；Definition2 p69、Question3 p70；报告DOI10.4171/OWR/2026/1及MFO官方PDF。区分会期2026-01-04至09、正式刊发2026-07-21与档案入库2026-07-22。",
+      "reason": "已直接核原报告和官方Crossref；主持人Nati Linial及三名组织者不是本小节问题署名。此为当前可核题包出处，不宣称问题历史上首次提出必在2026。",
+      "evidence_ids": [
+        "0893-SA-01"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展",
+      "old": "Pach–Tóth（2011章节版）：二次型上界",
+      "new": "Pach–Tóth，GD2011会议，Springer正式章节2012，LNCS7034，278–289，DOI 10.1007/978-3-642-25878-7_27。记k=cr(G)，由作者稿计数得mon-cr≤binom(2k,2)=k(2k−1)，含k=0；严格<2k²限k≥1。无限族给mon-cr≥(7/6)cr−6，故若全局C存在则C≥7/6。",
+      "reason": "会议年份与正式书目年份不同；需要准确常数及适用范围，不能只写模糊二次型界。",
+      "evidence_ids": [
+        "0893-SA-02",
+        "0893-SA-03"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "informal_status; 开放状态证据; novelty",
+      "old": "open confirmed仅HF triage/无链接文献，旧novelty.card_rev与本卡不同",
+      "new": "用已直接读过的OWR2026 Question3作为有日期的原问证据，并列2026-11-27实际查询范围及未发现完整确证的结论。原稿、二次界、最新范围不同论文分别记录，不能用HF或综述的缺省条目保证当日全球开放。",
+      "reason": "恢复来源层次与时效；本轮没有获得完整解决声明。",
+      "evidence_ids": [
+        "0893-SA-01",
+        "0893-SA-02",
+        "0893-SA-04",
+        "0893-SA-05"
+      ],
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "原标题; 原问题验收方向; card_rev",
+      "old": "证明统一C或给mon-cr/cr无界图族",
+      "new": "保留原报告问题的研究目标。仅解释性措辞/书目修订不强制改研究命题card_rev；若实际将自由序改为给定序，必须另立/修订命题版本，不作为原卡解决。 对正式定义、条件量词或验收标准的实质修改均须由维护方生成新card_rev并重新核版本；本回执仅提交建议，不改题卡。",
+      "reason": "原式本身匹配报告，错误定义/相邻变体不能偷换验收。",
+      "evidence_ids": [
+        "0893-SA-01",
+        "0893-SA-04"
+      ],
+      "small_case_check": "给定序有障碍的图只反驳给定序版本；需对所有允许重排的单调画法给下界，才能验收原问题的反例图族。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {
+        "card_action": "no_change"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "reason": "本轮核了Pach–Tóth原稿定义、主定理及二次界计数归约，未重证v-spinal Thm2.2全部递归细节、未逐图独立核下界构造。",
+      "next_step": "若需把来源阅读升级为独立证明复核，按作者稿§2–3逐步重建递归画法及权重替换为简单图的下界证明；目前保持已发表进展，不称本轮重证。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "Springer正式章只读摘要/元数据，Moscow2012版未取原刊，作者/索引有18–33与216–231两种页码。",
+      "next_step": "若采用期刊版作为主书目，先取2012卷2期3原刊核分页和定理编号；当前用已核的Springer2012章节页码及作者全文，不以索引差异判数学冲突。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "截至本次实际检索未得到全图线性比较的完整新证明/反例或正式勘误；检索无命中不能排除未索引材料。",
+      "next_step": "未来若出现候选解，只按自由顶点顺序、所有有限图、无额外密度/度数限制及可独立核查的无界图族检查；把完全图、固定序、普通cr算法或graphon特例分开。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "对FC/tadamcz/OpenAI的关键词检索有界，其中OpenAI一条请求限流；本题同等量词的完整形式化代码未找到。相关OpenAI两主文件只核图族，依赖未审且未运行。",
+      "next_step": "保留真实限流/无命中范围；若出现声称解决任意G的代码，再检查∃绝对C∀有限G、自由顶点次序、严格x单调弧、实际交叉点计数、全部导入依赖及sorry/axioms，并固定环境独立复跑。不要以family165目录或编译标签自动关闭本题。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "NumPSLA只读README与完全图统计补丁，未取或运行核心枚举和数据；MO近似帖属于不同曲线表示且答复自承定义错。",
+      "next_step": "若将有限实验作为本题证据，需另给覆盖所有顶点次序和全部允许画法的正确性/下界证书。固定次序、点型、伪直线族内的无解或高交叉数不能反驳自由最小化问题；目前不需为已排除范围的相邻工具大规模复跑。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "候选1712正文未明确“剩余子问”全集，虽固定版本和全文可读，当前不够支持严格同题。",
+      "next_step": "待责任方补清1712实际变体与量词后，再核pair_key=QX-P-000893|QX-P-001712；当前保留待核、不合并。其余标题初筛结果不等于全部语义关系已穷尽。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮只独立核Thm1计数链和直接边界推论；Thm2完整构造是文献输入，作者稿Claim3.2直接红束数值排除对k=1,2并未给出矛盾。",
+      "next_step": "保持Thm2渐近存在族和C≥7/6的适用范围，不认证所有小k精确公式。如后续要用k=1,2或提升全文独立核验等级，再对照正式版并核具体局部重画；不因两个小参数的文字边界否定已用的大k渐近结论。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本次定点读取仅核原章定义、主定理指数与末计数；未独立复核§3几何证明全部细节，也未追踪作者对2025转述的勘误。",
+      "next_step": "现回执按原章4/3记载并保留转述差异即可；以后若要采用更强线性式，应取得其独立正确出处或证明。无需将此差异当主问题反例。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "本轮提交定义、人话、书目及验收边界建议，没有执行题卡修改，也没有完成指定第二复核人的结案审核。",
+      "next_step": "维护方区分纯说明/引文修订和实际命题或验收变更；后者更新card_rev后另核对应证据。所有子问证书保持已写范围，不据相邻定义的小例关闭主问题。",
+      "batch_id": "QX-R3-03",
+      "card_rev": "a7d25eceade40fa1",
+      "codes": {}
+    }
+  ]
+}

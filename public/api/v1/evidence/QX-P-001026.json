@@ -1,0 +1,1887 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001026",
+  "card_rev": "d0da77c40b351917",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-05"
+      ],
+      "parts": [
+        {
+          "subquestion": "一维Green90基准与量词",
+          "value": "claimed_proof",
+          "note": "一维K=o(log p)确实是原文Thm1.2的公开完整充要定理，完整v1已取并核上下界关键链条；此状态限于本轮未逐行重审整篇的审查等级，不是否认原文定理。准确量词为给定K(p)>0，存在近半密度A_p，并对全部整数1≤|a|≤K、|b|≤K、p∤a统一最大误差o(p)。不是任意A、不是任意预定ε_p，也不是Fp^k全矩阵结论。作者AI披露、VibeMath/ProbXiv转载和LaTeX摘录分别记录，均未当作独立形式化复跑。"
+        },
+        {
+          "subquestion": "明确全坐标盒纯平移分支",
+          "value": "partial",
+          "note": "只有在S明确为全部逐坐标|b_i|≤K的纯平移盒时，存在近半密度A_p且盒内最大误差o(p^k) iff K=o(p)；对任意正维数序列k(p)成立。本轮完整核slab充分性和有界步拆分+全平移平均式必要性，并将证明嵌入证据。它不覆盖另定义的有限方向、不同范数、标量缩放或矩阵仿射；未据此替换正式主问。小例是真实精确执行，不是由有限数值外推该渐近命题。"
+        },
+        {
+          "subquestion": "二维全小矩阵分支的扩展图障碍",
+          "value": "partial",
+          "note": "明确k=2、小矩阵为所有整数逐项|M_ij|≤K、|b_i|≤K且模p可逆的映射时，K≥1含系数1的8步平移/剪切图。既有统一谱隙加本轮两个AI分工分别核对给liminf max_g|A△gA|/p²≥λ/16>0，对半密度A排除同时o(p²)。仅此分支，未泛化所有k或限制子群。另取得AFP系数2 MGG固定源码并静态核范围；该图不同，5√2/8不套给前图，且未构建Isabelle或形式化对称差桥接。"
+        },
+        {
+          "subquestion": "版本、后续进展及撤回勘误",
+          "value": "no_evidence_in_scope",
+          "note": "本轮定向检索未取得2026 Ma–Tang–Xu一维稿的后续同题反驳/撤回/勘误或定义明确的高维原始题文；这是有限范围阴性，不是全域开放性认证。Xu主页自报Submitted。另核Lee笔记v3因解释性内容与前人论证相近而撤下，v4于2024恢复，不能传播为当前谱隙结论已被推翻。原Green题集2025版未标Solved亦不能抵触2026解稿。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/isabelle-prover/mirror-afp-devel/blob/02fd3c6b5326d1c53704c52c09cabb3fd2a772f5/thys/Expander_Graphs/Expander_Graphs_MGG.thy"
+      ],
+      "note": "只覆盖：有附加假设"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面有误",
+      "scope_note": "本卡的Fp^k推广没有定义“小”变换族、系数/矩阵范数、维数与误差量词，仿射超平面也不是变换；尚没有唯一K(k,p)命题可验收。Green原题和Ma–Tang–Xu定理仅一维。明确的全坐标盒纯平移版本有K=o(p)，而二维逐项系数界的全可逆矩阵版本在K≥1即有扩展图障碍，因此不能将所有推广笼统称作无已知结果。本回执保留当前任务题面/版本，只提出修订，不擅自选其中一个分支替代主问或关闭整题。",
+      "evidence_ids": [
+        "1026-R-MTX",
+        "1026-S-GREEN90",
+        "1026-D-original",
+        "1026-D-small",
+        "1026-D-box-translations",
+        "1026-R-EXPANDER"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "一维Green90基准与量词",
+      "math_status": "完整证明声明",
+      "scope_note": "一维K=o(log p)确实是原文Thm1.2的公开完整充要定理，完整v1已取并核上下界关键链条；此状态限于本轮未逐行重审整篇的审查等级，不是否认原文定理。准确量词为给定K(p)>0，存在近半密度A_p，并对全部整数1≤|a|≤K、|b|≤K、p∤a统一最大误差o(p)。不是任意A、不是任意预定ε_p，也不是Fp^k全矩阵结论。作者AI披露、VibeMath/ProbXiv转载和LaTeX摘录分别记录，均未当作独立形式化复跑。",
+      "evidence_ids": [
+        "1026-R-MTX",
+        "1026-R-AI",
+        "1026-D-original",
+        "1026-S-GREEN90",
+        "1026-CODE-AI",
+        "1026-CODE-VIBE",
+        "1026-CODE-MO",
+        "1026-CODE-TEX"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "明确全坐标盒纯平移分支",
+      "math_status": "条件性结果",
+      "scope_note": "只有在S明确为全部逐坐标|b_i|≤K的纯平移盒时，存在近半密度A_p且盒内最大误差o(p^k) iff K=o(p)；对任意正维数序列k(p)成立。本轮完整核slab充分性和有界步拆分+全平移平均式必要性，并将证明嵌入证据。它不覆盖另定义的有限方向、不同范数、标量缩放或矩阵仿射；未据此替换正式主问。小例是真实精确执行，不是由有限数值外推该渐近命题。",
+      "evidence_ids": [
+        "1026-D-box-translations",
+        "1026-D-small"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "二维全小矩阵分支的扩展图障碍",
+      "math_status": "条件性结果",
+      "scope_note": "明确k=2、小矩阵为所有整数逐项|M_ij|≤K、|b_i|≤K且模p可逆的映射时，K≥1含系数1的8步平移/剪切图。既有统一谱隙加本轮两个AI分工分别核对给liminf max_g|A△gA|/p²≥λ/16>0，对半密度A排除同时o(p²)。仅此分支，未泛化所有k或限制子群。另取得AFP系数2 MGG固定源码并静态核范围；该图不同，5√2/8不套给前图，且未构建Isabelle或形式化对称差桥接。",
+      "evidence_ids": [
+        "1026-R-EXPANDER",
+        "1026-R-LEE-VERSION",
+        "1026-CODE-AFP"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "版本、后续进展及撤回勘误",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "本轮定向检索未取得2026 Ma–Tang–Xu一维稿的后续同题反驳/撤回/勘误或定义明确的高维原始题文；这是有限范围阴性，不是全域开放性认证。Xu主页自报Submitted。另核Lee笔记v3因解释性内容与前人论证相近而撤下，v4于2024恢复，不能传播为当前谱隙结论已被推翻。原Green题集2025版未标Solved亦不能抵触2026解稿。",
+      "evidence_ids": [
+        "1026-S-GREEN90",
+        "1026-S-XU-STATUS",
+        "1026-R-LEE-VERSION",
+        "1026-R-MTX"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "固定任务清单与历史记录",
+      "query": "逐字段读任务.jsonl QX-P-001026 / d0da77c40b351917、card_text、novelty及prior_evidence",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "locator": "包内list_row413、original_queue_rank739；顺序第13题",
+      "note": "当前prior_evidence虽同rev但为空legacy；旧novelty.card_rev=a8c0805e2bda5f40不等于当前版本，不迁移旧basic/pass/open。固定仓库73290369a8dcc632e25e555aec525565ea6e08f8。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv abstract",
+      "query": "open https://arxiv.org/abs/2605.13454",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/abs/2605.13454",
+      "locator": "摘要、作者、Submission history",
+      "note": "仅v1，2026-05-13 12:48:56 UTC，14页，Jie Ma、Quanyu Tang、Max Wenqiang Xu；本轮所见无journal reference。摘要确实声明一维K=o(log p)，不是伪引；不覆盖未定义的Fp^k主问。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv HTML",
+      "query": "open https://arxiv.org/html/2605.13454v1；再分段open原文的定理、§2、§3及引用",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2605.13454v1",
+      "locator": "Problem1.1、Theorem1.2、Remark1.3、AI disclosure；§2、§3.1–3.3及Refs",
+      "note": "实际阅读定理和上下界证明的关键步骤、参数与浓缩段；不声称逐行认证整稿。包括turn332430189view1、〔原始工具引用已私有留存〕/1/2、〔原始工具引用已私有留存〕/2。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv PDF公开HTTP与本地阅读",
+      "query": "GET https://arxiv.org/pdf/2605.13454v1；pdftotext -layout；pdftoppm第1、2页；view_image",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2605.13454v1",
+      "locator": "PDF pp1–2视觉核；正文关键证明段文本；root_fetch_log.json",
+      "note": "HTTP200；520530bytes；SHA256=21a125dcae71aea4c8aef0bf8fbc50a704406534214de23a5929381a7c287edd。取得完整14页文件，实际视觉核p1–2。p1脚注1印成a≠0，而其下所述单点像障碍应为a=0；主定理正确排除p整除a，不以脚注笔误否定定理。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system2",
+      "query": "Gabber Galil expander 8 5 sqrt 2 affine maps x 2y pdf\nMargulis Gabber Galil graphs affine transformations spectral bound original paper",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "两条实际检索；命中HLW综述、Dvir讲义、Lee作者PDF及arXiv1301.6296、AFP条目。这里只记录发现线索；后续实际阅读见独立记录。没有用非原始百科转述代替证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"On expanders from the action of GL(2,Z)\" Gabber Galil",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际学术核源查询，取得经典图文献线索。1981原始期刊全文未由root取得；本轮使用已取的作者原稿和讲义进行范围及推论核验，不冒称读过1981原稿。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv abstract",
+      "query": "open https://arxiv.org/abs/1301.6296",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/abs/1301.6296",
+      "locator": "版本史与当前v4 comments",
+      "note": "v1 2013-01-26、v2 2013-01-30、v3 2013-02-07曾撤下、v4 2024-01-15恢复；当前说明为未刊解释性笔记。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "James R. Lee作者PDF",
+      "query": "open https://homes.cs.washington.edu/~jrl/papers/pdf/margulis.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://homes.cs.washington.edu/~jrl/papers/pdf/margulis.pdf",
+      "locator": "pp1–2八个仿射邻接步与总述",
+      "note": "15页全文可达，实际读开头；固定arXiv v4副本和§2核读另记。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Princeton Dvir PDF / web通道",
+      "query": "open https://www.cs.princeton.edu/~zdvir/expanders/Gaber-Galil-notes.pdf",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://www.cs.princeton.edu/~zdvir/expanders/Gaber-Galil-notes.pdf",
+      "note": "web通道返回403（〔原始工具引用已私有留存〕）；后续普通HTTP成功，不能把本条失败写成不存在文献或宣称所有访问都失败。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv历史v3",
+      "query": "open https://arxiv.org/abs/1301.6296v3",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/abs/1301.6296v3",
+      "locator": "v3 withdrawal comments",
+      "note": "实际读撤下理由：解释性笔记与Berger/Shalom的已有论证十分相近，拟另行重发；不是本轮取得数学反驳。当前v4已恢复，不把旧v3撤下状态传播为当前结果失效。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv v4 HTML",
+      "query": "open https://arxiv.org/html/1301.6296v4",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/1301.6296v4",
+      "locator": "§1与§2到Lemma2.4附近",
+      "note": "实际读当前版本的图定义与关键链条，后续完整§2在固定PDF读；未审计§3–4一般化。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "公开HTTP固定PDF与本地核读",
+      "query": "GET https://arxiv.org/pdf/1301.6296v4；pdftotext -layout；pdftoppm关键页；view_image",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/1301.6296v4",
+      "locator": "印pp1–7，实际文本读§2证明；视觉核p4 Lemma2.2、Theorem2.3；未视觉读已生成但未输出的其他图片",
+      "note": "HTTP200，183709bytes，SHA256=8305e48090964f372bfb1bd771daeab092cc088bca731ec83e5cb334c059f9a9；root_expander_fetch_log.json。实际审读范围限本条locator，完整文件取得不等于全篇证明逐行独立认证。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "公开HTTP固定PDF与本地核读",
+      "query": "GET https://www.cs.princeton.edu/~zdvir/expanders/Gaber-Galil-notes.pdf；pdftotext -layout；pdftoppm关键页；view_image",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://www.cs.princeton.edu/~zdvir/expanders/Gaber-Galil-notes.pdf",
+      "locator": "印p1图的8步、邻接算子与Theorem1.1；实际文本及视觉核；未通审后续证明",
+      "note": "HTTP200，184913bytes，SHA256=f8bb2f8a4d6ec94de177668f837d54b21d9067143a7ec793868297839b230e06；root_expander_fetch_log.json。实际审读范围限本条locator，完整文件取得不等于全篇证明逐行独立认证。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本轮独立数学推导",
+      "query": "对8步仿射扩展图取f=1_A−|A|/p²，将谱隙换算为对称差下界；核S全部包含于二维逐元素系数界K≥1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "本回执1026-R-EXPANDER.note含完整推导",
+      "note": "纯数学推导，无数值阈值试验、无Lean/Isabelle构建；另由第二个AI分工独立核归一化和量词。仅为题卡未指定的小矩阵定义提供条件分支，不给未定义主问强行选版本。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-001026-S01",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Green\" \"Problem 90\" affine\n\"2605.13454\" correction proof counterexample [recency=365]\n\"almost affine\" \"invariance\" Ma Tang Xu [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "三条实际查询。命中原预印本摘要、作者主页以及若干AI/论文聚合页；原摘要确实声称一维阈值K=o(log p)，不能预判此数值系题卡错归。ResearchGate检索缓存显示Theorem 1.2，但没有在本分工把缓存转录当全文审读。未见独立的后续同题全解、反例或勘误命中。refs turn609544717academia8、〔原始工具引用已私有留存〕–7。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-001026-S02",
+      "route": "学术",
+      "site": "web system1",
+      "query": "Ben Green 100 open problems problem 90 almost invariant pdf\n\"Green\" \"90\" \"affine\" site:maths.ox.ac.uk\n\"2605.13454\" \"withdrawn\" OR \"erratum\" OR \"correction\" OR \"counterexample\" [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "三条实际查询。找到Green本人Oxford PDF及其Problem 90正文缓存；其他结果主要为原预印本与转述。没有可辨识的后续撤回/勘误/反例原稿命中。负向检索不等于证明不存在。refs 〔原始工具引用已私有留存〕、turn796569584academia8、〔原始工具引用已私有留存〕–6/9。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-001026-S03",
+      "route": "学术",
+      "site": "作者主页",
+      "query": "open https://maxwenqiangxu.github.io/research.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际读作者科研列表L52–53：与Jie Ma、Quanyu Tang合著的一维论文仍列Submitted。仅支持作者所报投稿状态，不是同行评审认证，也未出现同题高维扩展条目。ref 〔原始工具引用已私有留存〕。",
+      "url": "https://maxwenqiangxu.github.io/research.html",
+      "locator": "当前科研列表第12项，L52–53",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-001026-S04",
+      "route": "原题与出处",
+      "site": "Ben Green / Oxford",
+      "query": "open https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际打开62页PDF；工具最初显示前部，读到p1题集自述2018起流传、前身2013学生稿，p2脚注最近更新December 2025。该历史说明不能确定第90题首次出现年份，也不能把2025版未标Solved当作2026仍开放证据。ref 〔原始工具引用已私有留存〕。",
+      "url": "https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "locator": "印p1–2；PDF pageno0–1",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-001026-S05",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"almost affine invariance\" \"higher\" OR \"dimension\" OR \"multivariable\" [recency=365]\n\"Green\" \"Problem 90\" \"counterexample\" OR \"erratum\" OR \"withdrawn\" OR \"correction\" [recency=365]\n\"almost affine\" \"F_p^k\" OR \"F_p^d\" OR \"several variables\" [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "三条实际查询。返回原一维论文摘要聚合/AI摘要、其他问题列表等；没有获得明确给出本卡Fp^k变换族及阈值的原始提问或后续解稿。聚合页出现random-looking措辞及误写b下界，不采作数学证据。refs 〔原始工具引用已私有留存〕–6。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-001026-S06",
+      "route": "原题与出处",
+      "site": "Ben Green / Oxford",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=\"Problem 90.\"; screenshot pageno=41; screenshot pageno=1 〔私有记录编号：PR-002293〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "定位并读Problem 90及Comments：Z/pZ、密度1/2、标量仿射ax+b、|a|,|b|≤K、对称差o(p)；未定义Fp^k。评论署Eberhard、Mrazović和Green的未刊讨论。原文字面未排除a=0。refs 〔原始工具引用已私有留存〕 L2230–2239；截图refs 〔原始工具引用已私有留存〕/2。随后用本地PDF渲染再作视觉核对。",
+      "url": "https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "locator": "印p42，Problem 90与Comments；印p2版本脚注",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-001026-S07",
+      "route": "学术",
+      "site": "web system1",
+      "query": "Gabber Galil 1981 explicit constructions linear sized superconcentrators eigenvalue 5 sqrt 2 affine graph pdf\n\"Almost Affine Invariance\" \"higher-dimensional\" OR \"generalization\" OR \"several variables\" [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "两条实际查询。首条是针对全矩阵解释的必要范围风险，找到1981原论文入口和2006研究综述中的扩展图定理线索；第二条仍只命中原2026一维论文及转述，未定位同题高维原始提问。扩展图分支随后交根代理独立取原始研究论文，不在本贡献给矩阵分支结案。refs 〔原始工具引用已私有留存〕–5/7、turn549129453academia6。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-001026-S08",
+      "route": "学术",
+      "site": "CORE / Gabber–Galil原论文入口",
+      "query": "open https://core.ac.uk/download/pdf/82074011.pdf",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "note": "实际返回403 Forbidden，ref 〔原始工具引用已私有留存〕。不得说本分工已读1981原稿或核其证明；只保留失败日志。",
+      "url": "https://core.ac.uk/download/pdf/82074011.pdf",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-001026-S09",
+      "route": "学术",
+      "site": "University of Maryland托管研究综述",
+      "query": "open https://www.terpconnect.umd.edu/~abarg/CQC/expander_survey.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "123页PDF可达，ref 〔原始工具引用已私有留存〕。实际只读开头元数据、目录和背景，另看搜索缓存中的Construction 8.1/Theorem 8.2；未审读或独立复核该定理证明，不据此升级主问或矩阵分支状态。根代理已接手同一范围风险，故停止此支的继续检索。",
+      "url": "https://www.terpconnect.umd.edu/~abarg/CQC/expander_survey.pdf",
+      "locator": "印p439–443，工具所示开头；定理仅搜索缓存线索",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-001026-S10",
+      "route": "原题与出处",
+      "site": "Oxford PDF / 本地固定副本",
+      "query": "urllib.request.urlopen(Request(\"https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf\", headers={\"User-Agent\":\"Mozilla/5.0\"}), timeout=30)\npdftotext -layout -f 1 -l 1 〔私有材料定位已省略〕 -\npdftotext -layout -f 2 -l 2 〔私有材料定位已省略〕 -\npdftotext -layout -f 42 -l 42 〔私有材料定位已省略〕 -\npdftoppm -f 42 -l 42 -singlefile -scale-to 1400 -png 〔私有材料定位已省略〕 〔私有材料定位已省略〕\nview_image 〔私有材料定位已省略〕 〔私有记录编号：PR-002294〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际HTTP200，839479字节，SHA256 e06971245914947f152550dee59bbb29fe0e798f0c51b2bc2557f824c2f9a44a。分别抽取第1、2、42页，核版本脚注与Problem 90，且实际视觉读第42页。文件、日志和渲染图在〔私有材料定位已省略〕。没有审读其余题目或把Comments中的未刊估计当本轮独立证明。",
+      "url": "https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "locator": "印p1、2、42；scholar_green_fetch_log.json与scholar_green_p42.png",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N01",
+      "route": "库内查重",
+      "site": "包内固定全库简索引",
+      "query": "扫描2469条 title/title_en/aliases；关键词 affine; green problem 90; green’s problem 90; green's problem 90; 2605.13454; 仿射; 几乎不变; almost invariant; amenab",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "QX-R3-05_source/全库查重简索引.jsonl；1026_sources/code_duplicate_scan.json",
+      "result_count": 26,
+      "note": "一次有限定向扫描返回26条（含本题）；其余多为仿射流形/可均群等词面命中。只选择最接近的整数集仿射副本问题000767作全文对照；其他命中未取全文。标题筛查不能推出全库无重复。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N02",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "\"Green\" \"90\" \"Lean\" affine invariance",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "与下两条同批返回索引；大量无关 Lean/Green 词面命中，未确认对应Green90的Lean证明。不能把作者名下其他论文的Lean说明归给本题。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N03",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "\"2605.13454\" code OR github OR formalization",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "合并检索结果给出原论文及AI目录入口；索引中的普通计算机代码文章无关。本轮后续读取具体VibeMath记录，不依据索引闭合主问题。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N04",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "\"Almost Affine Invariance\" AI proof",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中ProbXiv、VibeMathed转述及AI摘要页面；均指向一维Ma–Tang–Xu论文，后续读取相关公开记录。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N05",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "query=2605.13454; topn=10",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 10,
+      "note": "返回10条含VibeMath、论文摘录、作者主页、arXiv列表和统计目录的索引；只对VibeMath与容易误称形式化的TeX摘录取固定全文。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N06",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "query=90; repository_name=google-deepmind/formal-conjectures; topn=10",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "result_count": 10,
+      "note": "返回10条，含Erdős90单位距离题和数值90等，未出现Green90；这是有限索引结果，不是全仓不存在证明。返回URL快照9097e2f90e66d2f6244209cb1c07f7120d17ec53。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N07",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "query=almost affine invariant; topn=10",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "result_count": 10,
+      "note": "返回10条宽泛词面命中（机器学习等），无与本题对应的数学证明文件；未取这些无关全文。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N08",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1",
+      "query": "\"Green Problem 90\" Lean OR formalized OR \"AI\" OR ChatGPT; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中ProbXiv、作者AI披露转述及BuddenBench旧题面索引。BuddenBench的cannot_formalize是该数据集对开放式任务的标签，不是数学上不能形式化的结论；未把该索引当证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N09",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1",
+      "query": "\"Green\" \"90\" \"affine\" site:botnet.com; recency=365",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "该有限查询只显示无关Type-II码仿射不变性等内容，未命中同题公开证明；不能推广为整个Botnet无相关记录。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N10",
+      "route": "代码、公开 AI 和社区",
+      "site": "MathOverflow",
+      "query": "open https://mathoverflow.net/questions/91657",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://mathoverflow.net/questions/91657",
+      "note": "工具返回Internal Error / URL not accessible。后续改用论文实际/q/仍失败，再经精确题名定位带slug地址才取得正文；保留本次失败事实。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N11",
+      "route": "代码、公开 AI 和社区",
+      "site": "MathOverflow",
+      "query": "open https://mathoverflow.net/questions/91675",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://mathoverflow.net/questions/91675",
+      "note": "工具返回Internal Error / URL not accessible。91675实际是91657问题下的Tao回答；不能由此失败推断帖子不存在。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N12",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "query=affine; repository_name=google-deepmind/formal-conjectures; topn=10",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "result_count": 10,
+      "note": "10条索引包括Green24仿射副本计数及几何题，未对应Green90；返回固定快照f743e2f2fdf4331b0f64b6a080fde80458815edc，后续据实际目录定位核验。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N13",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "query=Green90; topn=10",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "result_count": 10,
+      "note": "10条均为色彩常量/其他词面命中；此拼写查询没有本题证明命中，不作为完整形式化路线不存在的证据。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N14",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "cyanseek/VibeMath public/api/v1/handoffs/green-open-problem-90.json @ b97b11de6be385c3c7b10aeca8863bf244b96611",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/cyanseek/VibeMath/blob/b97b11de6be385c3c7b10aeca8863bf244b96611/public/api/v1/handoffs/green-open-problem-90.json",
+      "locator": "canonical_statement; attempts; verifications; uncertainties",
+      "note": "完整JSON已取，Git blob fb361dd2b389ed73716c7af1d84ffcb51723bc8a。它转载一维解决声明，明确unreviewed/unknown，artifacts=[]、prompt_public=null；不是多维主问或形式化验证。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N15",
+      "route": "代码、公开 AI 和社区",
+      "site": "ProbXiv",
+      "query": "open https://probxiv.com/problems/green-open-problem-90",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://probxiv.com/problems/green-open-problem-90",
+      "locator": "Statement / Record / Comments",
+      "note": "公开页面正文已读，2026-08-17导入的一维结果记录；明确无人对其进行复核，AI署名来自导入信息。没有可复跑代码入口。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N16",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "site:mathoverflow.net/questions/91657",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "返回MO首页/其他帖子等宽泛结果，未定位目标题；后续采用精确题名system1成功。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N17",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "site:mathoverflow.net/questions/91675",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "同批返回MO首页/Meta等无关结果，未定位Tao回答；不能当原帖正文已读。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N18",
+      "route": "库内查重",
+      "site": "包内任务清单",
+      "query": "在QX-R3-05_source/任务.jsonl中精确检索QX-P-000767",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "locator": "QX-R3-05_source/任务.jsonl",
+      "note": "实际100题成员检查结果[]，较小编号000767不在本包；该pair关系保留待核，由较小卡负责人处理。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N19",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地原作者v1全文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002295〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/abs/2605.13454v1",
+      "locator": "p.3 AI Disclosure；末页参考文献[5]、[8]",
+      "note": "使用root已取得的原作者完整PDF转文本，实际读取p.3 AI Disclosure及参考文献[5][8]定位。披露只说明ChatGPT5.4参与q-adic思路/旧amenability论证，并记录早期AI稿错误和前人来源；不等于当前论文已发现错误，也不等于形式化。此次文本检索没有给出代码仓库入口。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N20",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub contents API",
+      "query": "GET FormalConjectures/GreensOpenProblems @ f743e2f2fdf4331b0f64b6a080fde80458815edc",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/contents/FormalConjectures/GreensOpenProblems?ref=f743e2f2fdf4331b0f64b6a080fde80458815edc",
+      "locator": "完整目录列表，78项；目标文件名未列出",
+      "result_count": 0,
+      "note": "完整目录78个条目，未列90.lean；只限制该固定目录，不断言其他路径/仓库没有证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N21",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/001/QX-P-001026.meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001026.meta.json",
+      "locator": "全文；id/card_rev/acceptance/provenance",
+      "note": "meta.json完整取得，Git blob 7d5317cec9129f5bc2f9927d709404d4d1253a7b。rev d0da77c40b351917与当前任务相符；旧novelty.card_rev=a8c0805e2bda5f40不继承为本轮覆盖。 ",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N22",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/001/QX-P-001026.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001026.text.md",
+      "locator": "全文；题面/形式化表述/人话版/原文摘录/边界与约定",
+      "note": "text.md完整取得，Git blob c523ed9ffae72d7f500c9c0682338e1b1119c7a8。rev d0da77c40b351917与当前任务相符；旧novelty.card_rev=a8c0805e2bda5f40不继承为本轮覆盖。 ",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N23",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/000/QX-P-000767.meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000767.meta.json",
+      "locator": "全文；id/card_rev/acceptance/provenance",
+      "note": "meta.json完整取得，Git blob 91764b12f78d466c093fdbb0d972dd1892b9459e。rev 9b8c5ff75383de79与索引相符；整数集三点仿射副本计数，不是有限域几乎不变阈值。 ",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N24",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/000/QX-P-000767.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000767.text.md",
+      "locator": "全文；题面/形式化表述/人话版/原文摘录/边界与约定",
+      "note": "text.md完整取得，Git blob 75e0eae2487aed0316f017d85edef30dc09fa3dd。rev 9b8c5ff75383de79与索引相符；整数集三点仿射副本计数，不是有限域几乎不变阈值。 ",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N25",
+      "route": "代码、公开 AI 和社区",
+      "site": "AFP browser",
+      "query": "open https://isa-afp.org/browser_info/current/AFP/Expander_Graphs/Expander_Graphs_MGG.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://isa-afp.org/browser_info/current/AFP/Expander_Graphs/Expander_Graphs_MGG.html",
+      "locator": "mgg_graph_step / mgg_graph / margulis_gaber_galil",
+      "note": "官方current可达，读MGG图定义和locale。它是系数2、8个带标号仿射步的(Z/mZ)^2图，不是Ma–Tang–Xu或未定义的F_p^k阈值；随后取固定镜像源码。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N26",
+      "route": "代码、公开 AI 和社区",
+      "site": "MathOverflow",
+      "query": "open https://mathoverflow.net/q/91657",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://mathoverflow.net/q/91657",
+      "note": "按论文实际参考URL尝试，仍返回Internal Error；后续带slug地址成功。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N27",
+      "route": "代码、公开 AI 和社区",
+      "site": "MathOverflow",
+      "query": "open https://mathoverflow.net/q/91675",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://mathoverflow.net/q/91675",
+      "note": "按论文实际回答URL尝试，仍返回Internal Error；后续从母问题正文读取Tao回答。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N28",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1",
+      "query": "\"Is it known\" \"relative expander\" Manners Tao",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "索引返回91657规范带slug问题地址和91675回答地址，含大段正文；该步骤仍标索引，后续直接open取得全文。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N29",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub commits API",
+      "query": "GET https://api.github.com/repos/google-deepmind/formal-conjectures/commits/HEAD",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/commits/HEAD",
+      "locator": "sha / commit.committer.date",
+      "note": "实际HEAD为5bd8bfb9def462c19a87d2d275af3db3341dc727，commit时间2026-11-26T13:20:16Z。与先前检索URL快照不同，后续直接固定此HEAD目录，不把索引快照当实时HEAD。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N30",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "AlexenderSokolov/cross-theory-formal-database editable-corpus/items/200506_author_proof.tex @ 3b9207c03d9dc146f393f68bcb683bbc4583979a",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/AlexenderSokolov/cross-theory-formal-database/blob/3b9207c03d9dc146f393f68bcb683bbc4583979a/editable-corpus/items/200506_author_proof.tex",
+      "locator": "Editorial scope; eq:L-choice; lem:Folner; proof环境",
+      "note": "完整TeX文件取得，blob65ea84771ef34eff75f5c14401fca7e147068de0；只编辑收录原论文lem:Folner及其71行证明，列明其他段落未收录。它不是Lean/Isabelle源码，也没有新定理或独立验证声明；未编译TeX、未逐行审核复制忠实性。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N31",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "query=2605.13454; repository_name=[openai/math,google-deepmind/formal-conjectures,the-omega-institute/trureturing]; topn=10",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "实际返回results=[]；只限这三个仓库的该精确arXiv号查询，没有据此否定其他命名/其他仓库形式化。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N32",
+      "route": "代码、公开 AI 和社区",
+      "site": "AFP entry",
+      "query": "open https://isa-afp.org/entries/Expander_Graphs.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://isa-afp.org/entries/Expander_Graphs.html",
+      "locator": "日期/Abstract/Session Expander_Graphs",
+      "note": "正式条目作者Emin Karayel，初始日期2023-03-03；声明形式化扩展图及MGG基础构造。条目列出2025相关发表。未把归档声明当本轮独立运行日志。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N33",
+      "route": "代码、公开 AI 和社区",
+      "site": "AFP browser",
+      "query": "open Expander_Graphs_MGG.html at lineno=1150",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://isa-afp.org/browser_info/current/AFP/Expander_Graphs/Expander_Graphs_MGG.html",
+      "locator": "网页行1108–1224附近",
+      "note": "读hoory_8_3及mgg_numerical_radius_aux到MGG_bound/末尾定理开头；因返回窗口截到proof开头，随后另一次读取末尾闭合。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N34",
+      "route": "代码、公开 AI 和社区",
+      "site": "MathOverflow",
+      "query": "open https://mathoverflow.net/questions/91657/is-it-known-that-f-p-times-ltimes-f-p-f-p-is-not-a-relative-expander-fa",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://mathoverflow.net/questions/91657/is-it-known-that-f-p-times-ltimes-f-p-f-p-is-not-a-relative-expander-fa",
+      "locator": "Manners问题；Tao回答91675；2012-03-19/20",
+      "note": "规范slug页成功，问题与Tao回答正文可读。主题是一维、族大小一致有界的仿射动作；不等同半密度下随p增长的K最优阈值或矩阵仿射群推广。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N35",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub contents API",
+      "query": "GET FormalConjectures/GreensOpenProblems @ 5bd8bfb9def462c19a87d2d275af3db3341dc727",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/contents/FormalConjectures/GreensOpenProblems?ref=5bd8bfb9def462c19a87d2d275af3db3341dc727",
+      "locator": "完整目录列表78项",
+      "result_count": 0,
+      "note": "固定实际HEAD完整目录再次为78条，未列90.lean；两个目录快照分别保存，不合并为同一次查询。未取无关Green24/其他编号Lean源码。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N36",
+      "route": "代码、公开 AI 和社区",
+      "site": "AFP browser",
+      "query": "open Expander_Graphs_MGG.html at lineno=1220",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://isa-afp.org/browser_info/current/AFP/Expander_Graphs/Expander_Graphs_MGG.html",
+      "locator": "MGG_bound；mgg_numerical_radius；结尾qed/end",
+      "note": "实际返回至网页最后行1234，mgg_numerical_radius以qed闭合；仍仅静态文本，非本轮Isabelle构建。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N37",
+      "route": "代码、公开 AI 和社区",
+      "site": "MathOverflow",
+      "query": "open规范91657页面 at lineno=110",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://mathoverflow.net/questions/91657/is-it-known-that-f-p-times-ltimes-f-p-f-p-is-not-a-relative-expander-fa",
+      "locator": "Tao回答；Manners后续评论",
+      "note": "补读至Tao回答和全部可见末尾评论；Tao回答2012-03-20 00:35、00:40编辑。只核问题/回答的范围与出处，未独立重证整个amenability论证。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N38",
+      "route": "代码、公开 AI 和社区",
+      "site": "AFP browser",
+      "query": "open https://isa-afp.org/browser_info/current/AFP/Expander_Graphs/index.html",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://isa-afp.org/browser_info/current/AFP/Expander_Graphs/index.html",
+      "note": "尝试会话页面查发行版本，工具返回Internal Error；因此未把具体Isabelle发行版写为已锁定。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N39",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "query=Expander_Graphs_MGG; repository_name=isabelle-prover/mirror-afp-devel; topn=5",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 5,
+      "note": "返回5条，定位MGG.thy和ROOT实际路径；固定检索所给02fd3c6b5326d1c53704c52c09cabb3fd2a772f5，后续取所需三文件全文。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N40",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "isabelle-prover/mirror-afp-devel thys/Expander_Graphs/Expander_Graphs_MGG.thy @ 02fd3c6b5326d1c53704c52c09cabb3fd2a772f5",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/isabelle-prover/mirror-afp-devel/blob/02fd3c6b5326d1c53704c52c09cabb3fd2a772f5/thys/Expander_Graphs/Expander_Graphs_MGG.thy",
+      "locator": "thys/Expander_Graphs/Expander_Graphs_MGG.thy",
+      "note": "完整文件1260行；静态重点核系数2的八步定义、m>0 locale、度8以及结尾mgg_numerical_radius。与root所用系数1的Lee/Dvir八步版本分列，不能当同一图的相同源码。 Git blob f2e25740a67548e48543610752920511ea42916f.",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N41",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "isabelle-prover/mirror-afp-devel thys/Expander_Graphs/Expander_Graphs_Definition.thy @ 02fd3c6b5326d1c53704c52c09cabb3fd2a772f5",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/isabelle-prover/mirror-afp-devel/blob/02fd3c6b5326d1c53704c52c09cabb3fd2a772f5/thys/Expander_Graphs/Expander_Graphs_Definition.thy",
+      "locator": "thys/Expander_Graphs/Expander_Graphs_Definition.thy",
+      "note": "完整文件1049行已取，仅定向核g_inner/g_norm、g_step归一化、Λ_test及Λ_a定义/expander_intro接口；未逐行检查全部中间证明及传递依赖。 Git blob 77b0150f2d0c6a961b70beb94c66d65cf73166ef.",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N42",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "isabelle-prover/mirror-afp-devel thys/Expander_Graphs/ROOT @ 02fd3c6b5326d1c53704c52c09cabb3fd2a772f5",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/isabelle-prover/mirror-afp-devel/blob/02fd3c6b5326d1c53704c52c09cabb3fd2a772f5/thys/Expander_Graphs/ROOT",
+      "locator": "thys/Expander_Graphs/ROOT",
+      "note": "完整28行会话定义已读，基于HOL-Probability并列出AFP依赖；没有在本轮锁定具体Isabelle发行版或构建会话。 Git blob 6830debc7c4c346855dbb6684c54b65f51ac4b56.",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-N43",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地标准库静态审计",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002296〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔私有材料定位已省略〕；〔私有材料定位已省略〕",
+      "note": "实际exit0；核验9个Git文件的Git blob SHA、SHA256、字节数及双方rev；记录两次FC目录、VibeMath原始验证标签和AFP源码标记计数。MGG/Definition字面sorry/oops/axiomatization/oracle均0。此脚本不运行Isabelle/Lean，也不是数学正确性或传递依赖的证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-D00",
+      "route": "原题与出处",
+      "site": "本包固定题卡",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002257〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "核QX-P-001026 revd0da77c40b351917；主问未定义小仿射族、k与epsilon的量词，且混用仿射超平面/变换/群。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-D01",
+      "route": "原题与出处",
+      "site": "arXiv原作者HTML",
+      "query": "open https://arxiv.org/html/2605.13454",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2605.13454",
+      "locator": "Problem1.1、Theorem1.2及Eq1、Remark1.3、Notation",
+      "note": "实际读v1（2026-05-13）。K=o(logp)确是原述；严格限定为存在A_p、近半密度、对整数小仿射映射uniform max、p∤a。仅一维基准，不是已定稿的F_p^k主问。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-D01",
+      "route": "原题与出处",
+      "site": "arXiv abs与版本历史",
+      "query": "open https://arxiv.org/abs/2605.13454",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2605.13454",
+      "locator": "摘要、作者、Submission history",
+      "note": "同次请求核作者Ma/Tang/Xu及v1日期；未将abs摘要充作完整证明复核。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1026-D02",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地Python3标准库精确有限集合核验",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002297〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "实际exit0。只用p5、p7和p3取整例，精确比较translation/scalar/diagonal/matrix、自同构条件、全平移平均式及盒向量拆分；无随机p101统计，不把有限值外推asymptotic。未重复根代理expander来源或检查。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "1026-R-MTX",
+      "url": "https://arxiv.org/abs/2605.13454v1",
+      "locator": "PDF pp1–2 Problem1.1、Theorem1.2、Remark1.3；§2上界、§3下界；Prop3.1脚注2",
+      "version": "arXiv2605.13454v1，2026-05-13；14页；PDF SHA256=21a125dcae71aea4c8aef0bf8fbc50a704406534214de23a5929381a7c287edd",
+      "subquestions": [
+        "主问题",
+        "一维Green90基准与量词",
+        "版本、后续进展及撤回勘误"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "完整稿给出一维充要结论：对正整数K(p)，存在A_p⊂Fp，|A_p|=(1/2+o(1))p，并有max_{a,b∈Z,1≤|a|≤K,|b|≤K,p∤a}|A_p△(aA_p+b)|/p→0，当且仅当K=o(log p)。是存在集合族及uniform max，不是任意半密度集，也不是固定ε试验。已核上界的Fourier集中、素数q进赋值尾质量与Chebyshev求和链条；下界的有限仿射近Følner集、±配对随机多数、坏点界和有界差浓缩、参数p^{o(1)}条件。作者省略的标准Dirichlet核估计等未逐行重推，故本回执保守记完整证明声明及关键步骤核对，不声称整稿的证明助手认证。取整可通过o(p)点修改实现；对双射φ有|B△φB|≤|A△φA|+2|A△B|。Remark1.3未给固定误差下的最优阈值常数。全文未提出本卡一般Fp^k问题。p1脚注1误印a≠0，所述单点像障碍对应a=0；主定理的p∤a条件正确，不能照脚注误字反转可逆条件。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "1026-R-AI",
+      "url": "https://arxiv.org/html/2605.13454v1",
+      "locator": "§1 Artificial intelligence disclosure；References的Manners/Tao社区链接",
+      "version": "arXiv2605.13454v1，2026-05-13；本轮实际读原始披露",
+      "subquestions": [
+        "一维Green90基准与量词"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Jie Ma、Quanyu Tang、Max Wenqiang Xu",
+      "note": "作者披露曾向ChatGPT5.4求助，q进赋值方向受到启发；同时指出AI草稿有逻辑错误和缺口，amenability思路亦与早期未刊工作和Manners/Tao讨论相关。这是论文作者关于写作与思路的报告，不是模型独立解决、发布可复现证明代码或完成形式化的声明。实际可见公共转述、空artifact与固定形式化索引另记，不能由AI参与推导出已内核复跑。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "1026-R-EXPANDER",
+      "url": "https://www.cs.princeton.edu/~zdvir/expanders/Gaber-Galil-notes.pdf",
+      "locator": "Dvir讲义p1定义S及Theorem1.1；Lee arXiv1301.6296v4 pp1、3–7 Lemma2.2/Theorem2.3/Lemma2.4及Fourier论证",
+      "version": "Dvir未标日期PDF，本轮SHA256=f8bb2f8a4d6ec94de177668f837d54b21d9067143a7ec793868297839b230e06；Lee v4 2024-01-15，SHA256=8305e48090964f372bfb1bd771daeab092cc088bca731ec83e5cb334c059f9a9",
+      "subquestions": [
+        "主问题",
+        "二维全小矩阵分支的扩展图障碍"
+      ],
+      "role": "完整证明",
+      "publication": "作者主页",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "条件分支明确取k=2，S_K包含所有由整数矩阵逐元素|M_ij|≤K、平移分量|b_i|≤K且det(M)≠0 mod p定义的φ(x)=Mx+b。K≥1已包含S={(x±1,y),(x,y±1),(x±y,y),(x,y±x)}八步。Dvir p1给M=Σ_{g∈S}M_g，对零均值f有<f,Mf>≤(8−λ)||f||²，λ>0不随p；Lee §2证明同类系数1八步图的统一扩展性。本轮读Lee pp1–7的格点Cheeger、有限网格到环面、Fourier回到非零格点链条；未审计其一般化章节。独立桥接证明：设N=p²、α=|A|/N、f=1_A−α，则||f||²=α(1−α)N。每g为双射，||f−f∘g||²=|A△g^{-1}A|=|A△gA|，故Σ_g差=16||f||²−2<f,Mf>≥2λ α(1−α)N，max_g差/N≥(λ/4)α(1−α)，因而liminf max_g差/N≥λ/16>0。因此此明确分支即使K=1也不容许半密度同时o(N)误差。这是既有谱隙定理的本轮独立推论，非所有高维解释的统一解，也未泛化增长维数。未给系数1图套用系数2MGG的5√2数值；AFP支另记。Lee正文图行和个别式子有排印不一致，使用其首页和Dvir的明确可逆八步定义；未把排印问题记作定理被反驳。完整来源https://arxiv.org/abs/1301.6296v4。 第二个AI分工本轮独立读Dvir pp1–2核公式，PASS：λ为对n和f统一的谱隙；八步按带重数的生成步计，小模数逆元重合不删步数；对称差方向g与g^{-1}同基数。此处的独立数学核对不等于证明助手复跑。 回执v02更正记录：本轮复核由两个AI分工分别执行；v01中“两人”措辞不准确，现明确主体。本轮未进行人工同行评审或证明助手构建；数学陈述与其余证据不变，旧版保留。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "full_proof",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "1026-R-LEE-VERSION",
+      "url": "https://arxiv.org/abs/1301.6296v3",
+      "locator": "v3撤下说明与当前v4版本史/说明对照",
+      "version": "v3 2013-02-07撤下；v4 2024-01-15恢复；2026-11-26实际核两页",
+      "subquestions": [
+        "版本、后续进展及撤回勘误",
+        "二维全小矩阵分支的扩展图障碍"
+      ],
+      "role": "撤回/勘误",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "有修订",
+      "review_status": "本轮独立数学核对",
+      "note": "v3的撤下是解释性内容与既有Berger/Shalom论证接近的归属/发布安排说明；当前v4明确恢复供可靠引用。本轮未取得对此八步图数学结论的反驳，也不能将v3状态写成2024当前稿仍完全撤回。此笔记版本史与2026 Ma–Tang–Xu论文相互独立。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "claim_state": "revised",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "1026-S-GREEN90",
+      "url": "https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "locator": "《100 open problems》印p42，Problem 90及Comments；印p1题集沿革、p2脚注版本日期",
+      "version": "作者PDF自标最近更新December 2025；2026-11-26实际下载200，62页；SHA256 e06971245914947f152550dee59bbb29fe0e798f0c51b2bc2557f824c2f9a44a",
+      "subquestions": [
+        "主问题",
+        "一维Green90基准与量词",
+        "版本、后续进展及撤回勘误"
+      ],
+      "role": "最早可核实出处",
+      "publication": "作者主页",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Ben Green；Comments同时署Eberhard、Mrazović与Green的未刊讨论",
+      "note": "本轮实际读第1、2、42页并视觉核第42页，未通读整个62页题集。第90题仅一维Z/pZ上密度1/2集在整数系数ax+b下的几乎不变性，未给Fp^k、矩阵范数、超平面或高维阈值。原文字面未排除a=0，属于需与2026论文修正条件区分的原题缺口。Comments所记K可缓慢趋无穷及K不能大到p^(1/100)为作者对未刊工作的说明，本轮没有获得或复核该未刊证明。题集2018流传/2013前身的自述不是第90题的确定首次日期；本次最早可直接核验的具体原题文本为此作者版本。2025未标Solved不能否定2026解稿。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "earliest_source",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "1026-S-XU-STATUS",
+      "url": "https://maxwenqiangxu.github.io/research.html",
+      "locator": "科研列表第12项，L52–53，Almost Affine Invariance Over Prime Fields: Green Problem 90",
+      "version": "2026-11-26实际读取动态作者主页；页面未给此条单独更新时间，未取得固定历史快照",
+      "subquestions": [
+        "版本、后续进展及撤回勘误"
+      ],
+      "role": "重述",
+      "publication": "作者主页",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "claimant": "Max Wenqiang Xu",
+      "note": "页面正文已读，但本证据不是论文全文：作者将与Jie Ma、Quanyu Tang合著的一维论文列为Submitted。只能支持该页面当前所报投稿状态；不能据此认定已正式刊发、同行评审通过、无勘误或高维题已解。没有从主页得到Fp^k原始提问的定义。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "1026-CODE-AI",
+      "url": "https://arxiv.org/abs/2605.13454v1",
+      "locator": "p.3 AI Disclosure；Lemma2.4与旧版Lemma3.3的作者归因；参考文献[5][8]",
+      "version": "arXiv:2605.13454v1，2026-05-13；本轮使用root已取得原作者PDF并定向读披露段",
+      "subquestions": [
+        "一维Green90基准与量词"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Jie Ma、Quanyu Tang、Max Wenqiang Xu",
+      "claim_date": "2026-05-13",
+      "note": "作者披露ChatGPT5.4参与q-adic估计思路及旧amenability草案，并明确早期AI输出有逻辑错误/缺口且相关思想有前人来源。此为人机合作来源披露，不是形式化或独立复跑；不能把对旧稿的说明转成对现稿的漏洞判定。所指主结果是一维，未涉及题卡尚未定义的小矩阵/多方向变换族。代码路线只检查该披露与软件入口，不替代本轮对原证明的学术核验。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "1026-CODE-VIBE",
+      "url": "https://github.com/cyanseek/VibeMath/blob/b97b11de6be385c3c7b10aeca8863bf244b96611/public/api/v1/handoffs/green-open-problem-90.json",
+      "locator": "canonical_statement；attempts[0]；verifications[0]；uncertainties",
+      "version": "commit b97b11de6be385c3c7b10aeca8863bf244b96611；blob fb361dd2b389ed73716c7af1d84ffcb51723bc8a；generated_at 2026-09-12T06:41:37.722Z",
+      "subquestions": [
+        "一维Green90基准与量词"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "claimant": "VibeMath（导入VibeMathed声明）",
+      "claim_date": "2026-09-12",
+      "note": "完整JSON只转载一维Ma–Tang–Xu的解决标签及作者AI披露；它自列verification.level=unreviewed、mathematical_correctness=unknown、statement_fidelity=unaudited、artifacts=[]、prompt_public=null、independence=unknown。ProbXiv同名正文2026-08-17导入记录也明确无人复核。未取得可复跑证明附件，未独立复跑，不能当多维主问证明或形式化验证。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "1026-CODE-MO",
+      "url": "https://mathoverflow.net/questions/91657/is-it-known-that-f-p-times-ltimes-f-p-f-p-is-not-a-relative-expander-fa/91675",
+      "locator": "Manners问题91657与Tao回答91675；Tao末尾EF构造及跟帖",
+      "version": "Manners2012-03-19（23:38编辑）；Tao2012-03-20 00:35（00:40编辑）；2026-11-26规范slug页正文已读",
+      "subquestions": [
+        "一维Green90基准与量词"
+      ],
+      "role": "进展",
+      "publication": "社区帖子",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Freddie Manners（提问）、Terry Tao（回答）",
+      "claim_date": "2012-03-20",
+      "note": "原作者文献[5][8]真实可追溯。讨论F_p上大小一致有界（元素可随p变化）的仿射族，并借交换扩张/平移的近不变集说明非相对扩展现象。回答并非半密度集的最优增长阈值，也不证明任意矩阵仿射群的F_p^k版本。四次短URL请求失败后，精确题名搜索获得规范slug并实读；不能将先前失败抹去。未独立重证此帖的全部论证。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "1026-CODE-AFP",
+      "url": "https://github.com/isabelle-prover/mirror-afp-devel/blob/02fd3c6b5326d1c53704c52c09cabb3fd2a772f5/thys/Expander_Graphs/Expander_Graphs_MGG.thy",
+      "locator": "mgg_graph_step；mgg_graph；locale margulis_gaber_galil；mgg_numerical_radius；直接Definition文件的Λ_a",
+      "version": "镜像commit02fd3c6b5326d1c53704c52c09cabb3fd2a772f5；MGG blob f2e25740a67548e48543610752920511ea42916f；AFP条目初始2023-03-03，current页面于2026-11-26定向复读",
+      "subquestions": [
+        "二维全小矩阵分支的扩展图障碍"
+      ],
+      "role": "形式化",
+      "publication": "原始档案",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "Emin Karayel / Archive of Formal Proofs",
+      "note": "取得MGG、直接Definition和ROOT三文件，读定义/关键接口/末尾定理：m>0，顶点(Z/mZ)^2，四类仿射映射及逆映射共8个带标号步骤，剪切系数为2；归一化绝对数值半径Λ_a≤5√2/8。此版本与root引用的系数1 Lee/Dvir八步图分开。静态两thy文件未见sorry/oops/axiomatization/oracle字面标记，但未审计全部传递依赖、未锁定Isabelle发行版、未构建会话。将该谱界桥接为题卡对称差障碍的推导未在此源码形式化；它既不是Green90的一维形式化，也不是未定义多维最优阈值的直接形式化证明。 固定Git文件清单={\n  \"scope\": \"Only the nine Git files retrieved by the code/community/duplicate agent; other files in this shared directory belong to other routes.\",\n  \"files\": [\n    {\n      \"name\": \"vibemath_green90.json\",\n      \"url\": \"https://github.com/cyanseek/VibeMath/blob/b97b11de6be385c3c7b10aeca8863bf244b96611/public/api/v1/handoffs/green-open-problem-90.json\",\n      \"version\": \"b97b11de6be385c3c7b10aeca8863bf244b96611\",\n      \"git_blob_sha\": \"fb361dd2b389ed73716c7af1d84ffcb51723bc8a\",\n      \"sha256\": \"74f9c2583fd93dd0882d827df20115a58b657a1c4cdd46c417b841bef625a0bf\",\n      \"bytes\": 5727\n    },\n    {\n      \"name\": \"cross_theory_200506_author_proof.tex\",\n      \"url\": \"https://github.com/AlexenderSokolov/cross-theory-formal-database/blob/3b9207c03d9dc146f393f68bcb683bbc4583979a/editable-corpus/items/200506_author_proof.tex\",\n      \"version\": \"3b9207c03d9dc146f393f68bcb683bbc4583979a\",\n      \"git_blob_sha\": \"65ea84771ef34eff75f5c14401fca7e147068de0\",\n      \"sha256\": \"6e9c5bc1e2df0873f3209b0a771d804b2668c66bbb5492cde59c8984513a78cd\",\n      \"bytes\": 7170\n    },\n    {\n      \"name\": \"QX-P-001026.meta.json\",\n      \"url\": \"https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001026.meta.json\",\n      \"version\": \"73290369a8dcc632e25e555aec525565ea6e08f8\",\n      \"git_blob_sha\": \"7d5317cec9129f5bc2f9927d709404d4d1253a7b\",\n      \"sha256\": \"766a5b3f64b01f247258403e888b200d1f25674708bc3d9ed0edb5c904d8452f\",\n      \"bytes\": 3839\n    },\n    {\n      \"name\": \"QX-P-001026.text.md\",\n      \"url\": \"https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001026.text.md\",\n      \"version\": \"73290369a8dcc632e25e555aec525565ea6e08f8\",\n      \"git_blob_sha\": \"c523ed9ffae72d7f500c9c0682338e1b1119c7a8\",\n      \"sha256\": \"8ec5442f148ebf65b161c1133f3102ba1317a7ca671e8991fb4f708b1e7c60b0\",\n      \"bytes\": 2813\n    },\n    {\n      \"name\": \"QX-P-000767.meta.json\",\n      \"url\": \"https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000767.meta.json\",\n      \"version\": \"73290369a8dcc632e25e555aec525565ea6e08f8\",\n      \"git_blob_sha\": \"91764b12f78d466c093fdbb0d972dd1892b9459e\",\n      \"sha256\": \"bd35cd80c43db779646c9d708d73e4bfe455a8902fe8592bf6092b7a83a44461\",\n      \"bytes\": 3849\n    },\n    {\n      \"name\": \"QX-P-000767.text.md\",\n      \"url\": \"https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000767.text.md\",\n      \"version\": \"73290369a8dcc632e25e555aec525565ea6e08f8\",\n      \"git_blob_sha\": \"75e0eae2487aed0316f017d85edef30dc09fa3dd\",\n      \"sha256\": \"a84db38a9fff4136503f3cbd136126266da8c3fce666bb86ce6387f97d1d3590\",\n      \"bytes\": 3251\n    },\n    {\n      \"name\": \"afp_Expander_Graphs_MGG.thy\",\n      \"url\": \"https://github.com/isabelle-prover/mirror-afp-devel/blob/02fd3c6b5326d1c53704c52c09cabb3fd2a772f5/thys/Expander_Graphs/Expander_Graphs_MGG.thy\",\n      \"version\": \"02fd3c6b5326d1c53704c52c09cabb3fd2a772f5\",\n      \"git_blob_sha\": \"f2e25740a67548e48543610752920511ea42916f\",\n      \"sha256\": \"c1ffd2637417927a9c4a214091f7f62aa2c735e8f4902ea2274e4bbca9a1963f\",\n      \"bytes\": 56776\n    },\n    {\n      \"name\": \"afp_Expander_Graphs_Definition.thy\",\n      \"url\": \"https://github.com/isabelle-prover/mirror-afp-devel/blob/02fd3c6b5326d1c53704c52c09cabb3fd2a772f5/thys/Expander_Graphs/Expander_Graphs_Definition.thy\",\n      \"version\": \"02fd3c6b5326d1c53704c52c09cabb3fd2a772f5\",\n      \"git_blob_sha\": \"77b0150f2d0c6a961b70beb94c66d65cf73166ef\",\n      \"sha256\": \"4b62255e3198a90e1232f0d3c227d0518fc3d801a2c7cf6b924c406ce11fb64c\",\n      \"bytes\": 42180\n    },\n    {\n      \"name\": \"afp_ROOT\",\n      \"url\": \"https://github.com/isabelle-prover/mirror-afp-devel/blob/02fd3c6b5326d1c53704c52c09cabb3fd2a772f5/thys/Expander_Graphs/ROOT\",\n      \"version\": \"02fd3c6b5326d1c53704c52c09cabb3fd2a772f5\",\n      \"git_blob_sha\": \"6830debc7c4c346855dbb6684c54b65f51ac4b56\",\n      \"sha256\": \"e7ad6c7e3163779129c84de91635d842d14682e37f97c43ec373d112471dcdeb\",\n      \"bytes\": 726\n    }\n  ]\n}\n 实际静态审计日志（仅校验文件身份及字面标记，非形式化复跑）={\n  \"task\": \"QX-P-001026\",\n  \"card_rev\": \"d0da77c40b351917\",\n  \"integrity\": [\n    {\n      \"file\": \"vibemath_green90.json\",\n      \"git_blob_sha\": \"fb361dd2b389ed73716c7af1d84ffcb51723bc8a\",\n      \"bytes\": 5727\n    },\n    {\n      \"file\": \"cross_theory_200506_author_proof.tex\",\n      \"git_blob_sha\": \"65ea84771ef34eff75f5c14401fca7e147068de0\",\n      \"bytes\": 7170\n    },\n    {\n      \"file\": \"QX-P-001026.meta.json\",\n      \"git_blob_sha\": \"7d5317cec9129f5bc2f9927d709404d4d1253a7b\",\n      \"bytes\": 3839\n    },\n    {\n      \"file\": \"QX-P-001026.text.md\",\n      \"git_blob_sha\": \"c523ed9ffae72d7f500c9c0682338e1b1119c7a8\",\n      \"bytes\": 2813\n    },\n    {\n      \"file\": \"QX-P-000767.meta.json\",\n      \"git_blob_sha\": \"91764b12f78d466c093fdbb0d972dd1892b9459e\",\n      \"bytes\": 3849\n    },\n    {\n      \"file\": \"QX-P-000767.text.md\",\n      \"git_blob_sha\": \"75e0eae2487aed0316f017d85edef30dc09fa3dd\",\n      \"bytes\": 3251\n    },\n    {\n      \"file\": \"afp_Expander_Graphs_MGG.thy\",\n      \"git_blob_sha\": \"f2e25740a67548e48543610752920511ea42916f\",\n      \"bytes\": 56776\n    },\n    {\n      \"file\": \"afp_Expander_Graphs_Definition.thy\",\n      \"git_blob_sha\": \"77b0150f2d0c6a961b70beb94c66d65cf73166ef\",\n      \"bytes\": 42180\n    },\n    {\n      \"file\": \"afp_ROOT\",\n      \"git_blob_sha\": \"6830debc7c4c346855dbb6684c54b65f51ac4b56\",\n      \"bytes\": 726\n    }\n  ],\n  \"formal_conjectures_directory_scope_only\": [\n    {\n      \"ref\": \"5bd8bfb9def462c19a87d2d275af3db3341dc727\",\n      \"entries\": 78,\n      \"contains_90_lean\": false\n    },\n    {\n      \"ref\": \"f743e2f2fdf4331b0f64b6a080fde80458815edc\",\n      \"entries\": 78,\n      \"contains_90_lean\": false\n    }\n  ],\n  \"vibemath_source_report\": {\n    \"declared_status\": \"resolved\",\n    \"verification\": {\n      \"id\": \"vibemathed:green-open-problem-90:verification\",\n      \"problem_id\": \"vibemathed:green-open-problem-90\",\n      \"solution_event_id\": \"vibemathed:green-open-problem-90:event\",\n      \"level\": \"unreviewed\",\n      \"mathematical_correctness\": \"unknown\",\n      \"statement_fidelity\": \"unaudited\",\n      \"peer_review\": \"none\",\n      \"verifier\": \"VibeMathed (source-reported label)\",\n      \"verified_at\": null,\n      \"note\": \"arXiv preprint, not peer-reviewed. The authors state the model's original arguments contained many logical mistakes and gaps, so the published proof is their reconstruction rather than model output.\",\n      \"sources\": [\n        {\n          \"label\": \"VibeMathed: Ben Green's Open Problem 90\",\n          \"url\": \"https://vibemathed.com/problem/green-open-problem-90\",\n          \"kind\": \"source-assertion\",\n          \"license\": \"https://vibemathed.com/data-license\"\n        },\n        {\n          \"label\": \"arXiv:2605.13454 - Almost Affine Invariance Over Prime Fields: Green Problem 90\",\n          \"url\": \"https://arxiv.org/abs/2605.13454\",\n          \"kind\": \"primary-mathematical-source\",\n          \"license\": null\n        }\n      ]\n    },\n    \"attempt_artifacts\": [],\n    \"prompt_public\": null,\n    \"independence\": \"unknown\"\n  },\n  \"afp_static\": {\n    \"commit\": \"02fd3c6b5326d1c53704c52c09cabb3fd2a772f5\",\n    \"MGG_lines\": 1260,\n    \"Definition_lines\": 1049,\n    \"ROOT_lines\": 28,\n    \"source_marker_counts_only\": {\n      \"MGG\": {\n        \"sorry\": 0,\n        \"oops\": 0,\n        \"axiomatization\": 0,\n        \"oracle\": 0\n      },\n      \"Definition\": {\n        \"sorry\": 0,\n        \"oops\": 0,\n        \"axiomatization\": 0,\n        \"oracle\": 0\n      }\n    },\n    \"definition_and_result_locations\": [\n      {\n        \"line\": 21,\n        \"source\": \"fun mgg_graph_step :: \\\"nat \\\\<Rightarrow> (int \\\\<times> int) \\\\<Rightarrow> (nat \\\\<times> int) \\\\<Rightarrow> (int \\\\<times> int)\\\"\"\n      },\n      {\n        \"line\": 26,\n        \"source\": \"definition mgg_graph :: \\\"nat \\\\<Rightarrow> (int \\\\<times> int, (int \\\\<times> int, nat \\\\<times> int) arc) pre_digraph\\\" where\"\n      },\n      {\n        \"line\": 33,\n        \"source\": \"locale margulis_gaber_galil =\"\n      },\n      {\n        \"line\": 35,\n        \"source\": \"  assumes m_gt_0: \\\"m > 0\\\"\"\n      },\n      {\n        \"line\": 1244,\n        \"source\": \"definition MGG_bound :: real\"\n      },\n      {\n        \"line\": 1249,\n        \"source\": \"lemma mgg_numerical_radius: \\\"\\\\<Lambda>\\\\<^sub>a \\\\<le> MGG_bound\\\"\"\n      }\n    ],\n    \"scope\": \"Fixed eight-map MGG graph on (Z/mZ)^2, m>0; normalized absolute numerical radius <= 5*sqrt(2)/8. No statement of Green90 or of an unspecified multidimensional threshold.\",\n    \"build_executed\": false,\n    \"transitive_dependency_audit\": false,\n    \"formal_card_bridge_checked\": false\n  },\n  \"cross_theory_file\": {\n    \"file_type\": \"LaTeX editorial excerpt of one author lemma and its proof\",\n    \"proof_assistant_build_executed\": false,\n    \"new_mathematical_or_formal_proof_claim_confirmed\": false\n  },\n  \"duplicate\": {\n    \"self\": \"QX-P-001026\",\n    \"self_rev\": \"d0da77c40b351917\",\n    \"other\": \"QX-P-000767\",\n    \"other_rev\": \"9b8c5ff75383de79\",\n    \"owner\": \"QX-P-000767\",\n    \"owner_in_this_pack\": false\n  }\n}\n",
+      "rerun": {
+        "commit": "02fd3c6b5326d1c53704c52c09cabb3fd2a772f5",
+        "theorem": "margulis_gaber_galil.mgg_numerical_radius",
+        "toolchain": "未锁定完整Isabelle/AFP依赖；未运行证明助手",
+        "command": "未执行Isabelle build；只执行python 〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material",
+        "axioms": "未审计传递依赖；两个已取thy中字面sorry/oops/axiomatization/oracle为0，不等于独立内核验证"
+      },
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "formalization",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "1026-CODE-TEX",
+      "url": "https://github.com/AlexenderSokolov/cross-theory-formal-database/blob/3b9207c03d9dc146f393f68bcb683bbc4583979a/editable-corpus/items/200506_author_proof.tex",
+      "locator": "Editorial scope；eq:L-choice；lem:Folner及其proof",
+      "version": "commit3b9207c03d9dc146f393f68bcb683bbc4583979a；blob65ea84771ef34eff75f5c14401fca7e147068de0；引自arXiv2605.13454v1",
+      "subquestions": [
+        "一维Green90基准与量词"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "这是LaTeX编辑性摘录：一条原论文引理及71行原证明，并非证明助手代码。文件自己列明省略大量上下文，不将其当完整主论文或独立自洽验证包；仓库名含formal不能升级证据。未编译、未独立重证、未逐行核复制忠实性；没有新的多维完整解声明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "1026-D-original",
+      "url": "https://arxiv.org/html/2605.13454",
+      "locator": "Theorem1.2 Eq1；Problem1.1；Remark1.3；Notation",
+      "version": "Ma–Tang–Xu，arXiv:2605.13454v1，2026-05-13；本轮2026-11-26直接读HTML并核abs版本历史",
+      "subquestions": [
+        "主问题",
+        "一维Green90基准与量词"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "本贡献核准确陈述与量词，不声称独立复核全文上下界证明。Thm1.2为给定K(p)下∃A_p近半密度且允许maps上的最大归一化差→0 iff K/logp→0；Remark1.3未给sharp epsilon依赖。该一维结果不能直接决定未定义的多变量变换族。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "1026-D-box-translations",
+      "url": "urn:qunxing:private-material",
+      "locator": "“单独明确化的条件性分支：全坐标盒平移”之定义、充分性及必要性完整证明",
+      "version": "本轮2026-11-26独立数学论证；只针对逐坐标|b_i|≤K的完整平移盒；不是改写后的主问题或新文献归属",
+      "subquestions": [
+        "主问题",
+        "明确全坐标盒纯平移分支"
+      ],
+      "role": "完整证明",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "对任意正维数序列k(p)，存在近半密度A_p在完整平移盒上uniform o(p^k) iff K=o(p)。slab给2K/p上界；若K≥cp子序列，每个平移是有界个盒平移之和，triangle与所有平移平均差2alpha(1−alpha)→1/2矛盾。此分支明确单列，不能迁移到scalar/full-matrix affine。 完整本轮分支证明={\"status\":\"独立完整证明的明确化分支，不替换原主问。\",\"quantifiers\":\"p→∞沿奇素数；任意k(p)≥1及K(p)≥1整数序列；存在A_p⊂F_p^{k(p)}，alpha_p→1/2且盒内max归一化差→0 iff K/p→0。\",\"sufficiency\":\"A_p={0,…,(p−3)/2}×F_p^{k−1}；最终K≤(p−1)/2时盒误差≤2K/p，密度(p−1)/(2p)→1/2。\",\"necessity\":\"若K≥cp于某子序列，任意平移h以balanced坐标同时拆成≤ceil(1/(2c))+1个盒向量；triangle推出所有平移的归一化差uniform o1。但其平均恒为2alpha_p(1−alpha_p)→1/2，矛盾。\",\"dimension_uniformity\":\"分解步数用所有坐标的最大值控制而非坐标数求和，因此此明确完整盒分支的证明对k一致；不能将这一点迁移到其他只给有限方向或不同norm的定义。\"} 必要性平均式的精确计数：sum_h|A∩(A+h)|=|A|²，故sum_h|A△(A+h)|=2|A|(N−|A|)。分解每个balanced h_i为同一个M≤ceil((p−1)/(2K))个[-K,K]整数（不足补0），逐坐标同时进行，M与k无关；同一平移的三角不等式将盒内o(N)传给全部h。根代理另独立核量词、计数和维数一致性。 密度取整完整估计：若B由A经r点对称差编辑得到，且φ是双射，则|δ_A(φ)−δ_B(φ)|≤2r，来自对称差三角不等式和|φ(A)△φ(B)|=r。近半密度使编辑到floor/ceil N/2仅需o(N)点，故保留任意指定双射族的uniform o(N)误差。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "1026-D-small",
+      "url": "urn:qunxing:private-material",
+      "locator": "one_dimensional、map_results、translation_average、box_results；完整log同名.log",
+      "version": "本轮2026-11-26，Python 3.12.14；有限集合/整数/Fraction精确计算，exit0",
+      "subquestions": [
+        "主问题",
+        "明确全坐标盒纯平移分支"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "仅小例和恒等式的有限核算。p7两个等大小A在平移1下差2与6；p5矩阵整数det5但mod5奇异；二维各类变换、取整编辑误差和全平移平均式均有明细。一般平移阈值来自单独的分析证明，不由这些样本统计推出。 脚本SHA256=c222735019eb09bac8dd86235eb20b34bfe7dd30771943d877329e42b79f102d；日志SHA256=8fb0d712dd0acdb202d117784a43dca3c53d1592317dd2d69cf7d9aee2c4b741；实际exit0；完整实际日志={\n  \"id\": \"QX-P-001026\",\n  \"card_rev\": \"d0da77c40b351917\",\n  \"python\": \"3.12.14\",\n  \"arithmetic\": \"Exact finite sets, integer matrix arithmetic, and Fraction ratios.\",\n  \"one_dimensional_exists_vs_every\": [\n    {\n      \"name\": \"interval_translation_example\",\n      \"p\": 7,\n      \"A\": [\n        0,\n        1,\n        2\n      ],\n      \"size\": 3,\n      \"translation\": 1,\n      \"difference\": 2,\n      \"normalized_difference\": \"2/7\"\n    },\n    {\n      \"name\": \"alternating_counterexample_to_every_A\",\n      \"p\": 7,\n      \"A\": [\n        0,\n        2,\n        4\n      ],\n      \"size\": 3,\n      \"translation\": 1,\n      \"difference\": 6,\n      \"normalized_difference\": \"6/7\"\n    }\n  ],\n  \"two_dimensional_sets\": {\n    \"p\": 5,\n    \"k\": 2,\n    \"N\": 25,\n    \"slab\": [\n      [\n        0,\n        0\n      ],\n      [\n        0,\n        1\n      ],\n      [\n        0,\n        2\n      ],\n      [\n        0,\n        3\n      ],\n      [\n        0,\n        4\n      ],\n      [\n        1,\n        0\n      ],\n      [\n        1,\n        1\n      ],\n      [\n        1,\n        2\n      ],\n      [\n        1,\n        3\n      ],\n      [\n        1,\n        4\n      ]\n    ],\n    \"slab_density\": \"2/5\",\n    \"rounded_half_set\": [\n      [\n        0,\n        0\n      ],\n      [\n        0,\n        1\n      ],\n      [\n        0,\n        2\n      ],\n      [\n        0,\n        3\n      ],\n      [\n        0,\n        4\n      ],\n      [\n        1,\n        0\n      ],\n      [\n        1,\n        1\n      ],\n      [\n        1,\n        2\n      ],\n      [\n        1,\n        3\n      ],\n      [\n        1,\n        4\n      ],\n      [\n        2,\n        0\n      ],\n      [\n        2,\n        1\n      ]\n    ],\n    \"rounded_density\": \"12/25\",\n    \"edit_count\": 2\n  },\n  \"map_class_checks\": [\n    {\n      \"name\": \"translation_x\",\n      \"type\": \"translation\",\n      \"matrix\": [\n        [\n          1,\n          0\n        ],\n        [\n          0,\n          1\n        ]\n      ],\n      \"b\": [\n        1,\n        0\n      ],\n      \"integer_determinant\": 1,\n      \"det_mod_p\": 1,\n      \"slab_difference\": 10,\n      \"slab_normalized\": \"2/5\",\n      \"rounded_difference\": 10,\n      \"rounded_normalized\": \"2/5\"\n    },\n    {\n      \"name\": \"translation_y\",\n      \"type\": \"translation\",\n      \"matrix\": [\n        [\n          1,\n          0\n        ],\n        [\n          0,\n          1\n        ]\n      ],\n      \"b\": [\n        0,\n        1\n      ],\n      \"integer_determinant\": 1,\n      \"det_mod_p\": 1,\n      \"slab_difference\": 0,\n      \"slab_normalized\": \"0\",\n      \"rounded_difference\": 2,\n      \"rounded_normalized\": \"2/25\"\n    },\n    {\n      \"name\": \"scalar_2\",\n      \"type\": \"scalar affine\",\n      \"matrix\": [\n        [\n          2,\n          0\n        ],\n        [\n          0,\n          2\n        ]\n      ],\n      \"b\": [\n        0,\n        0\n      ],\n      \"integer_determinant\": 4,\n      \"det_mod_p\": 4,\n      \"slab_difference\": 10,\n      \"slab_normalized\": \"2/5\",\n      \"rounded_difference\": 10,\n      \"rounded_normalized\": \"2/5\"\n    },\n    {\n      \"name\": \"diagonal_2_1\",\n      \"type\": \"diagonal affine\",\n      \"matrix\": [\n        [\n          2,\n          0\n        ],\n        [\n          0,\n          1\n        ]\n      ],\n      \"b\": [\n        0,\n        0\n      ],\n      \"integer_determinant\": 2,\n      \"det_mod_p\": 2,\n      \"slab_difference\": 10,\n      \"slab_normalized\": \"2/5\",\n      \"rounded_difference\": 10,\n      \"rounded_normalized\": \"2/5\"\n    },\n    {\n      \"name\": \"swap\",\n      \"type\": \"full matrix affine\",\n      \"matrix\": [\n        [\n          0,\n          1\n        ],\n        [\n          1,\n          0\n        ]\n      ],\n      \"b\": [\n        0,\n        0\n      ],\n      \"integer_determinant\": -1,\n      \"det_mod_p\": 4,\n      \"slab_difference\": 12,\n      \"slab_normalized\": \"12/25\",\n      \"rounded_difference\": 8,\n      \"rounded_normalized\": \"8/25\"\n    },\n    {\n      \"name\": \"shear_x_plus_y\",\n      \"type\": \"full matrix affine\",\n      \"matrix\": [\n        [\n          1,\n          1\n        ],\n        [\n          0,\n          1\n        ]\n      ],\n      \"b\": [\n        0,\n        0\n      ],\n      \"integer_determinant\": 1,\n      \"det_mod_p\": 1,\n      \"slab_difference\": 12,\n      \"slab_normalized\": \"12/25\",\n      \"rounded_difference\": 12,\n      \"rounded_normalized\": \"12/25\"\n    },\n    {\n      \"name\": \"shear_y_plus_x\",\n      \"type\": \"full matrix affine\",\n      \"matrix\": [\n        [\n          1,\n          0\n        ],\n        [\n          1,\n          1\n        ]\n      ],\n      \"b\": [\n        0,\n        0\n      ],\n      \"integer_determinant\": 1,\n      \"det_mod_p\": 1,\n      \"slab_difference\": 0,\n      \"slab_normalized\": \"0\",\n      \"rounded_difference\": 4,\n      \"rounded_normalized\": \"4/25\"\n    }\n  ],\n  \"singular_matrix_not_allowed\": {\n    \"matrix\": [\n      [\n        2,\n        1\n      ],\n      [\n        -1,\n        2\n      ]\n    ],\n    \"integer_determinant\": 5,\n    \"det_mod_5\": 0,\n    \"largest_absolute_entry\": 2,\n    \"image_size_of_F5_squared\": 5\n  },\n  \"integer_nonzero_not_field_unit\": {\n    \"p\": 5,\n    \"a\": 5,\n    \"integer_nonzero\": true,\n    \"a_mod_p\": 0,\n    \"map_image_size\": 1\n  },\n  \"translation_box_checks\": [\n    {\n      \"K\": 1,\n      \"box_map_count_before_duplicate_reduction\": 9,\n      \"max_slab_difference\": 10,\n      \"max_normalized\": \"2/5\",\n      \"formula_2K_over_p\": \"2/5\",\n      \"common_chain_bound_for_every_translation\": 2,\n      \"max_chain_used\": 2\n    },\n    {\n      \"K\": 2,\n      \"box_map_count_before_duplicate_reduction\": 25,\n      \"max_slab_difference\": 20,\n      \"max_normalized\": \"4/5\",\n      \"formula_2K_over_p\": \"4/5\",\n      \"common_chain_bound_for_every_translation\": 1,\n      \"max_chain_used\": 1\n    }\n  ],\n  \"exact_all_translation_averages\": [\n    {\n      \"p\": 7,\n      \"k\": 1,\n      \"N\": 7,\n      \"size\": 3,\n      \"sum_over_all_translations\": 24,\n      \"mean_difference\": \"24/7\",\n      \"mean_normalized_difference\": \"24/49\",\n      \"maximum_difference\": 6,\n      \"all_translation_differences\": [\n        {\n          \"b\": [\n            0\n          ],\n          \"difference\": 0\n        },\n        {\n          \"b\": [\n            1\n          ],\n          \"difference\": 2\n        },\n        {\n          \"b\": [\n            2\n          ],\n          \"difference\": 4\n        },\n        {\n          \"b\": [\n            3\n          ],\n          \"difference\": 6\n        },\n        {\n          \"b\": [\n            4\n          ],\n          \"difference\": 6\n        },\n        {\n          \"b\": [\n            5\n          ],\n          \"difference\": 4\n        },\n        {\n          \"b\": [\n            6\n          ],\n          \"difference\": 2\n        }\n      ]\n    },\n    {\n      \"p\": 5,\n      \"k\": 2,\n      \"N\": 25,\n      \"size\": 10,\n      \"sum_over_all_translations\": 300,\n      \"mean_difference\": \"12\",\n      \"mean_normalized_difference\": \"12/25\",\n      \"maximum_difference\": 20,\n      \"all_translation_differences\": [\n        {\n          \"b\": [\n            0,\n            0\n          ],\n          \"difference\": 0\n        },\n        {\n          \"b\": [\n            0,\n            1\n          ],\n          \"difference\": 0\n        },\n        {\n          \"b\": [\n            0,\n            2\n          ],\n          \"difference\": 0\n        },\n        {\n          \"b\": [\n            0,\n            3\n          ],\n          \"difference\": 0\n        },\n        {\n          \"b\": [\n            0,\n            4\n          ],\n          \"difference\": 0\n        },\n        {\n          \"b\": [\n            1,\n            0\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            1,\n            1\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            1,\n            2\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            1,\n            3\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            1,\n            4\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            2,\n            0\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            2,\n            1\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            2,\n            2\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            2,\n            3\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            2,\n            4\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            3,\n            0\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            3,\n            1\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            3,\n            2\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            3,\n            3\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            3,\n            4\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            4,\n            0\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            4,\n            1\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            4,\n            2\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            4,\n            3\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            4,\n            4\n          ],\n          \"difference\": 10\n        }\n      ]\n    },\n    {\n      \"p\": 5,\n      \"k\": 2,\n      \"N\": 25,\n      \"size\": 12,\n      \"sum_over_all_translations\": 312,\n      \"mean_difference\": \"312/25\",\n      \"mean_normalized_difference\": \"312/625\",\n      \"maximum_difference\": 20,\n      \"all_translation_differences\": [\n        {\n          \"b\": [\n            0,\n            0\n          ],\n          \"difference\": 0\n        },\n        {\n          \"b\": [\n            0,\n            1\n          ],\n          \"difference\": 2\n        },\n        {\n          \"b\": [\n            0,\n            2\n          ],\n          \"difference\": 4\n        },\n        {\n          \"b\": [\n            0,\n            3\n          ],\n          \"difference\": 4\n        },\n        {\n          \"b\": [\n            0,\n            4\n          ],\n          \"difference\": 2\n        },\n        {\n          \"b\": [\n            1,\n            0\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            1,\n            1\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            1,\n            2\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            1,\n            3\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            1,\n            4\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            2,\n            0\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            2,\n            1\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            2,\n            2\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            2,\n            3\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            2,\n            4\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            3,\n            0\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            3,\n            1\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            3,\n            2\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            3,\n            3\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            3,\n            4\n          ],\n          \"difference\": 20\n        },\n        {\n          \"b\": [\n            4,\n            0\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            4,\n            1\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            4,\n            2\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            4,\n            3\n          ],\n          \"difference\": 10\n        },\n        {\n          \"b\": [\n            4,\n            4\n          ],\n          \"difference\": 10\n        }\n      ]\n    }\n  ],\n  \"rounding_p3_k2\": {\n    \"N\": 9,\n    \"exact_half_integer_possible\": false,\n    \"floor_density\": \"4/9\",\n    \"ceil_density\": \"5/9\",\n    \"error_from_half\": \"1/18\"\n  },\n  \"checks\": {\n    \"all_assertions_passed\": true,\n    \"no_random_experiment\": true,\n    \"no_asymptotic_claim_inferred_from_finite_data\": true,\n    \"no_expander_check_repeated\": true\n  },\n  \"limitations\": [\n    \"These examples distinguish definitions; they do not define the missing multi-variable problem on the user's behalf.\",\n    \"The exact pure-translation asymptotic theorem is proved separately using the explicit slab and chaining/averaging argument.\",\n    \"No conclusion that the slab works for scalar or full-matrix affine transformations.\",\n    \"No claim that a failed example rules out every possible set A.\"\n  ]\n}\n",
+      "rerun": {
+        "toolchain": "Python3.12.14标准库；有限集合、整数、Fraction；非证明助手",
+        "command": "python 〔私有材料定位已省略〕 > 〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material",
+        "axioms": "未运行Lean/Isabelle；有限计算不认证渐近定理"
+      },
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000767",
+      "other_card_rev": "9b8c5ff75383de79",
+      "relation": "待核",
+      "reason": "双方固定commit73290369a8dcc632e25e555aec525565ea6e08f8的meta/text全文均已取得，当前001026 rev d0da77c40b351917与对侧rev相符。本卡要求F_p^k的密度集在未定义‘小’仿射族下的渐近对称差阈值；000767要求有限整数集内{0,1,3}仿射副本数M(A)/|A|²的精确上确界，及一般三点模式。量词、底空间、验收对象不同，有限域近不变性和整数模式计数不能因同属Green列表/含affine而合并。小编号000767不在本包，本轮仅提交范围对照，关系由其负责人复核。",
+      "positions": {
+        "self": "题面；形式化表述；人话版；原文摘录；meta.acceptance.criteria",
+        "other": "题面；形式化表述；人话版；原文摘录；边界与约定；meta.acceptance.criteria"
+      },
+      "note": "pair QX-P-000767__QX-P-001026，负责人000767。本轮未另行查新Green24；对侧实际正文的有限sup/渐近误差及d=0退化表述保留原状，未默默代换成修正版。本卡旧novelty.card_rev也未继承。双方文件与Git blob/SHA256见1026_sources/code_manifest.json。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "sources.original；proposer；first_published；原题归属",
+      "old": "主问以Ma, Tang, Xu为提出者、2026-05-13为首次发表，并把Fp^k改写称为Green Problem 90的多变量版。",
+      "new": "补Green《100 open problems》Problem 90原文：所载问题是一维，Comments归于Eberhard、Mrazović与Green的未刊讨论。Ma–Tang–Xu的2026日期应属一维解稿；高维改写的提出者、首次日期和原始定义尚无本轮可核来源，不直接沿用这三个元数据。",
+      "reason": "作者原题没有Fp^k；整份题集2018/2013的沿革亦不能确定单题首次日期。",
+      "evidence_ids": [
+        "1026-S-GREEN90"
+      ],
+      "small_case_check": "令k=2后，φ需说明是aI、对角矩阵或一般2×2矩阵；原题的一个整数a没有规定后三种解释中的哪一种。仅把p换成p²不能补出该定义。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述 / 存在集合与同时全称",
+      "old": "A⊂F_p^k密度固定，φ仿射；阈值K(k,p)=?使|A△φ(A)|=o(p^k)对所有“小”φ成立。",
+      "new": "主问至少须写清：对给定维数及增长序列K，是否存在集合序列A_{p,k}，密度趋1/2，并使max_{φ∈S_{p,k,K}} |A_{p,k}△φ(A_{p,k})|/p^k→0。先定义S_{p,k,K}再谈阈值；这只是需要补齐的量词模板，不在本回执中擅选S作为新正式题面。",
+      "reason": "原一维问存在A，不是任意半密度A，也不是对每个φ另选A。同时对增长中的maps集合成立需要uniform max；逐个固定φ的极限不是同一陈述。",
+      "evidence_ids": [
+        "1026-D-original",
+        "1026-D-small"
+      ],
+      "small_case_check": "p7时区间A={0,1,2}对平移1的差2，而交错B={0,2,4}差6；一般奇p的交错半集差p−1，故“任意A”即使只有平移1也失败。这不能反驳原存在性量词。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "题面 / “小仿射群”、仿射超平面与矩阵类型",
+      "old": "多变量仿射变换群；确定仿射超平面/多方向平移下的阈值类比。",
+      "new": "必须选择并说明：纯平移、标量仿射x↦ax+b、对角仿射，还是一般x↦Mx+b（M∈GL_k(F_p)），以及固定坐标系下的系数范数/word length等“小”的定义。仿射超平面不是变换。还须区分有界maps集合与由它生成的整个群；不能静默用其中一种替换原卡。",
+      "reason": "这些选择会改变可满足性和阈值。仅平移1在F_p上已生成全部平移；若要求整个生成群uniform几乎不变，近半密度不可能。当前主问没有唯一变换族，故不是仅靠数值就能给唯一K(k,p)的完整命题。",
+      "evidence_ids": [
+        "1026-D-original",
+        "1026-D-box-translations",
+        "1026-D-small"
+      ],
+      "small_case_check": "p5二维slab在y平移下不变，但交换坐标或x+y剪切有非零大差；只展示同一集合对不同变换类的行为，不以其失败推出所有A失败。完整全平移平均归一化差=2alpha(1−alpha)，趋1/2而不趋0。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述 / k、epsilon、K的极限次序",
+      "old": "阈值K(k,p)=?；数值实验固定epsilon并估sup K，检验o(logp)。",
+      "new": "说明k是固定正整数，还是允许k=k(p)；说明给定K序列后存在某个误差序列epsilon_p→0，或预先指定epsilon与其衰减率。o(p^k)是沿p→∞的统一极限，不是单个有限p上的判定值。K=o(logp)描述一类增长率，而非一个有限p最大阈值函数。",
+      "reason": "原Thm1.2的定性if-and-only-if不提供任意预给epsilon_p的可实现性，也未解决sharp fixed-epsilon dependence。改变k和epsilon量词可能改变问题，不能由有限随机样本选择一种解释。",
+      "evidence_ids": [
+        "1026-D-original",
+        "1026-D-box-translations"
+      ],
+      "small_case_check": "一维非空真子集在平移1下若非不变，对称差至少2；若预给epsilon_p<2/p，就要求差为0，循环平移迫使集合为空或全体。因此“任意快趋0的epsilon”比原定性存在误差强。纯平移盒证明的常数对k一致，但只在该明确盒定义下成立。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定 / 密度取整和仿射双射条件",
+      "old": "密度恰1/2；a≠0；|a|,|b|≤K折回模p。",
+      "new": "奇p且k≥1时p^k为奇数，密度精确1/2不可取；使用floor/ceil或1/2+o(1)并说明。标量a须p∤a，一般矩阵须det(M) modp≠0；单说整数a或det非零不足。系数应明确为整数lift界或固定坐标下的balanced residue范数。",
+      "reason": "对双射φ，改动r个点使对称差误差变化至多2r，因此近半密度与floor/ceil的o(p^k)修正可兼容；而非双射会破坏相关基数与编辑估计，不能被叫作仿射群元素。",
+      "evidence_ids": [
+        "1026-D-original",
+        "1026-D-small"
+      ],
+      "small_case_check": "p3,k2时N9，floor/ceil密度为4/9、5/9。p5矩阵[[2,1],[-1,2]]整数det5≠0且所有系数绝对值≤2，但模5行列式0，整个F5²像只有5点；a5在F5也不是单位。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展 / 一维基准与明确平移分支分开",
+      "old": "已知k1时K=o(logp)；F_p^k推广无结果。",
+      "new": "一维基准按Ma–Tang–Xu v1 Thm1.2准确登记：给定正整数K(p)，存在近半密度A_p对全部指定小标量仿射maps统一几乎不变 iff K=o(logp)。另可单列已明确定义的“全坐标盒纯平移”分支，其精确条件为K=o(p)，见独立证明。原卡未定义的高维主问不能概括为一个已确定的“无结果”命题。",
+      "reason": "两个结论的变换族不同，纯平移是单列分支而非正式主问的默认替代；更不能把一维阈值或纯平移阈值迁移到含可逆矩阵的情形。全矩阵扩展图分支见1026-R-EXPANDER。",
+      "evidence_ids": [
+        "1026-D-original",
+        "1026-D-box-translations",
+        "1026-D-small"
+      ],
+      "small_case_check": "纯平移slab A=I×F_p^{k−1}在每个|b_i|≤K下差≤2Kp^{k−1}，给K=o(p)的确定构造；它并未被声称对标量2、swap或shears也几乎不变。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "独立验证建议 / 随机有限样本的验收意义",
+      "old": "p≤101、k≤2随机密度1/2集合，统计sup K分布，检验o(logp)阈值。",
+      "new": "先固定一个完整变换族与epsilon谓词，再把有限小例用于排查定义和实现。随机A的失败不能否定存在特殊A，有限p统计也不能认证little-o最优阈值。欲证上界须覆盖任意A，欲证下界须给有证明的构造或存在性论证。",
+      "reason": "原问题的存在量词和渐近量词都不能由该随机统计建议直接验收。本轮只作精确有限检查及明确分支的完整数学论证。",
+      "evidence_ids": [
+        "1026-D-small",
+        "1026-D-box-translations"
+      ],
+      "small_case_check": "同一p7、同一大小的两集合在同一平移下差2与6，已足以说明随机选择的表现不等于存在性；全平移平均恒等式与slab/chaining证明才提供所述分支的全称/渐近控制。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展；difficulty.note；k=2最小新情形",
+      "old": "Fp^k推广无结果；k=2为最小新情形。",
+      "new": "先定义允许的仿射变换族。对二维逐元素小系数的全可逆矩阵版本，经典8步扩展图已阻止K≥1的半密度同时近不变；纯平移版本又有不同阈值。不能把所有推广统一标成无已知结果。",
+      "reason": "明确系数1八步已经给非消失边界；这不是空泛的检索阴性，也没有为题卡擅自选定版本。",
+      "evidence_ids": [
+        "1026-R-EXPANDER"
+      ],
+      "small_case_check": "八步矩阵均det=1，元素0、±1，平移为0或单位向量；任何素数下均为双射。取p=5薄片的逐步差见1026-D-small，本轮谱隙推导才是渐近障碍，有限例本身不证明无穷结论。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "既有查新版本及状态证据",
+      "old": "novelty.card_rev=a8c0805e2bda5f40；basic/pass；当前卡d0da77c40b351917沿用旧开放性。",
+      "new": "保留旧记录为历史线索；本回执固定当前d0da77c40b351917。原题与出处、学术、代码/AI/社区和库内查重分别按实际访问登记。任何高维定义修订须产生新card_rev并重查受影响路线。",
+      "reason": "旧revision的阴性及无链接OpenAlex行不能冒充本轮或当前版证据；目前主问的定义缺口会改变命题。",
+      "evidence_ids": [
+        "1026-R-MTX",
+        "1026-R-EXPANDER"
+      ],
+      "small_case_check": "k=1退化为来源定理；k=2允许剪切时出现扩展图，说明只改维数记号并非保留同一问题。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "一维稿已取得并核关键步骤，但本轮没有逐行审计全部标准估计和随机构造，且未得正式刊发确认。",
+      "next_step": "如需把一维子问由完整证明声明转为题库闭合状态，按包规另行二审完整上下界证明；保留其存在性、uniform max、可逆与渐近密度条件，不将结论迁移到未定义高维主问。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "当前高维改写缺原始提出文本且未定义变换族；本轮Green原文只核到一维。",
+      "next_step": "修订时由原卡维护者明确高维版本的变换族、参数极限、存在量词及验收对象，并补可核提出来源；若属题库自行提出，应如实标明。选择版本后按新card_rev重查受影响路线，不能把一维已解状态迁移过去。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "候选pair较小编号000767在当前100题之外；尽管双方固定全文已读，当前包没有最终关系负责权。",
+      "next_step": "由QX-P-000767所在包负责人读取同一对照快照，按双方现rev确认关系；当前保留待核，不提议合并。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "主卡F_p^k中的‘小’仿射映射、标量或矩阵线性部分、k的增长方式及一致误差未定义。现有AI记录只重述一维基准，MGG形式化仅覆盖系数2的特定二维图。",
+      "next_step": "先由主路线提出明确题面修订并冻结新rev，再针对选定映射族重查形式化陈述对应性；不把一维解决标签或MGG图的谱界直接移植到当前主问。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "AFP已取得三个固定源文件并静态核范围，尚未固定完整Isabelle环境/传递依赖或本轮构建；VibeMath未提供证明附件。",
+      "next_step": "本轮维持‘已静态检查未复跑’。只有将来需要升级为独立形式化验证时，才锁定完整AFP/Isabelle环境、构建会话并保存日志和具体题卡桥接定理；当前不把静态标记扫描充作验证。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "d0da77c40b351917",
+      "codes": {}
+    }
+  ]
+}

@@ -1,0 +1,3091 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000047",
+  "card_rev": "0a30c22b48b9d994",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-02"
+      ],
+      "parts": [
+        {
+          "subquestion": "历史与书目纠错",
+          "value": "partial",
+          "note": "本轮最早已实际读取的完整题句是Caro–Davila–Pepper arXiv1909.09093v1（2019-09-19 16:57:01UTC）p10 Conjecture1；2022正式DMGT42(3):921–935变编号Conj15，2025 arXiv2507.17780v1 §2.3重述为Conj3。2025的OpenSince2020标签与2019已公开原文不一致，不能把first_published记2025。DMGT同题DOI为2317，2025References误印2353指另一篇；正式PDF访问失败，Conj15仅出版社缓存摘录，早期数学原文则实际已阅。2104.01092作者是Caro/Davila/Henning/Pepper，非Tauraso；其2022AJC84(2):258–274与三作者DMGT论文分开。"
+        },
+        {
+          "subquestion": "相邻猜想与旧不等式范围",
+          "value": "partial",
+          "note": "2019已证α≤μ针对最大独立与最大匹配，不能以μ*替换μ；其较弱α≤2μ*也不闭合本题。2104.01092 Thm9下界μ*≥δn/[2(Δ+δ−1)]的双计数短证本轮已核；r正则给rn/[2(2r−1)]，对n48或50三正则图取整均至少15，可支撑反例的饱和数证书，不能自身推i≤μ*。Gupta2606.15761作者原README明确针对Conj4 μ*≤H；其官方当前正文访问失败，未将镜像标题/常数当已核，也不把harmonic反例混为本题反例。"
+        },
+        {
+          "subquestion": "按原文定义恢复的主命题",
+          "value": "claimed_counterexample",
+          "note": "提议\"原题已推翻\"，待二审；采用原文μ*=最小极大匹配边数后，djma固定commit7810f30c5e9da0af9ece566bdffa5844d6b34f1b给出的50顶点简单连通三正则图满足μ*=15<i=16。本轮用独立C++实现从raw edge list核图结构及全部3^15选择，计算下界并核16点上界见证，因此不只登记作者声称。这个r3且connected的实例直接否定r≥1全称、r≥3限制及附录connected版本；不主张它是最小反例或本轮首次发现。原卡定义修订的新rev与接收端数学二审仍需按规则办理，不把这些手续冒充尚未执行计算。"
+        },
+        {
+          "subquestion": "50点明确反例及本轮独立有限核验",
+          "value": "claimed_counterexample",
+          "note": "提议\"原题已推翻\"，待二审；固定图50点75边，literal顶点0…29恰有15条pair边，每个literal再连两个clause，20个clause顶点彼此不邻且每个度3。图原始bytes SHA2569942c669906060093925b23388043f59617269c59f9a78d382cf1dc65f4015c3、Gitblob314e491018d84e79b091a8898351f15930b575a5；下载副本额外LF已按blob校正，未改变JSON图。任一IDS在每pair只能选0/左/右；给定这些选择，clause必须恰选无已选literal邻点者；遗漏pair两端分别必须被已选clause支配。独立C++完整枚举14,348,907种选择，合法IDS939,975，≤15者0、最小16，每个接受集还直接检查全图独立与支配。一个最小见证为{15,20,24,29,32,33,36,37,39,41,42,43,45,46,48,49}。15条pair边是极大匹配；每条匹配边至多支配5条边，75条边都须被支配，故μ*≥15并取等号。g++14.2 C++20 -O2实际exit0；计算只覆盖这张图，未运行Lean或作者SAT/LRAT内核。"
+        },
+        {
+          "subquestion": "48点明确反例及本轮独立整数搜索",
+          "value": "claimed_counterexample",
+          "note": "提议\"原题已推翻\"，待二审；固定order48源commit46a53247cedfcba35b0e2b59474d0099eb962b36的简单连通三正则图有72边，15条pair匹配极大，边支配计数给所有极大匹配至少ceil(72/5)=15。给定16点IDS上界见证逐点检查。独立写出的DFS只读原边表/正面见证，状态(D=N[S],剩余预算b)，完整遍历每个未支配w的所有可选邻点N[w]\\D，并用|V\\D|>4b剪枝，缓存(D,b)保留全部未来约束。实际穷尽2696状态、4479分支边、1784缓存命中，无≤15 IDS，故i16>μ*15。最终重新运行绑定原字节Gitblobecb4d64d3499163bead71e2cef33d53f124d7f37和SHA256a231f7aaa6c437dc977eaa6603f3dae40a81fad4065cad6cac22a45174ff65ac，不把初次多LF哈希当原blob通过。此结果只说明有48阶反例，不证明48最小、唯一、优先或已同行评审。"
+        },
+        {
+          "subquestion": "正则性、连通性与参数边界",
+          "value": "partial",
+          "note": "r1时i=μ*=n/2；r2不连通时应写Σ_j ceil(|C_j|/3)，2C4使总值4，不能用总n的ceil(n/3)=3。K_{r+1}中i1、μ*=floor((r+1)/2)，无须“若μ*≥1”的占位。零顶点两参数0；非空r0图有i=n>μ*0，正度数限制必要；非正则P4也有i2>μ*1，但不解决原正则问题。48/50实例均r3且连通，直接落在题域；两参数按分量加性说明连通/任意图全称等价。"
+        },
+        {
+          "subquestion": "有限反例验收与搜索范围",
+          "value": "partial",
+          "note": "一张图加k边极大匹配与所有IDS大小≥k+1的证书已足够否定全称，无需证明最小反例阶数。本轮48/50还分别得到两个参数精确值。只有16点IDS正面见证、普通匹配或对应CNF无解均不自动给完整图论反例；混合literal/clause选择已由独立算法覆盖。没有执行n≤12正则图全集、geng或任意更大阶数搜索；有限未命中本来不能证明全称，旧卡“纯有限验证目标”须据此澄清。"
+        },
+        {
+          "subquestion": "形式化题面与否定命题源码",
+          "value": "claimed_counterexample",
+          "note": "提议\"原题已推翻\"，待二审；当前FC ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8的3.lean仍是研究open+sorry题面，不能据此否定已得数学反例。Puri accepted4d006aa2add6f41604be1d143adfc6a645394621的txgraffiti3_false实际证明原FC全称的否定，构造Fin48度3图、μ*≤15、i≥16。主证明/定义/TxSound/TxTop关键源码静态读，G_ind用16点IDS确保Nat.sInf取值集合非空，未混用最大匹配或普通domination。旧FC锁df3f12d7bd06feb3f71ae37abae0ca7cb798d9b1的目标/三定义文件与当前FC同blob，只证明这四文件相同。12个大chunk和全传递依赖未逐一取得，未本轮build；形式化层仍他人声称已验证，数学否定另有本轮48/50独立有限证明。"
+        },
+        {
+          "subquestion": "公开验证报告与实际复跑边界",
+          "value": "partial",
+          "note": "Puri checker run37220457904及job111489564010原API元数据、workflow、frozen challenge/config、源commit status和完整原job日志已实际核。日志明确实际checkout3298e2cb4d674b6c61d8465177adda8dcc4205fc，构建12个TxChunk、TxSound、TxTop、Solution后默认Lean内核接受并写success；accepted4d006aa2add6f41604be1d143adfc6a645394621与该实际run源码完整tree同为314b1f1ececf27e9a370a5b66ba50444ff9a74e7，是同tree沿用而非新build。run.head_sha是checker版本，不能当proof提交。日志亦记录依赖cache及Comparator固定key命中；允许公理propext/Quot.sound/Classical.choice，AxiomCheck成功但guard抑制预期消息、没有裸公理列表，Nanoda关闭。通用日志接口先失败、专用接口后成功，原日志缺口已消除。aiXiv2610.03026v1报告本题48点negation accepted，属作者报告，不是原不等式证明或同行评审。本轮读第三方原日志并独立C++/Python核图，没有本轮Lean/Comparator运行。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "claimed_verified",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/Solution.lean"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://github.com/djma/TxGraffiti-conjecture3-counterexample/blob/7810f30c5e9da0af9ece566bdffa5844d6b34f1b/counterexample_note.md",
+      "review": "independent_check",
+      "by": "djma仓库；原稿自述OpenAI GPT-5.6 Sol/Codex产生，未声称人类同行评审完成",
+      "date": "2026-07-23"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "当前题卡把μ*写成未定义的“饱和数上界参数/图不变量组合”，与原文明确的最小极大匹配数不符，须先恢复参数定义。按2019/2025原文恢复为有限简单无向r正则图、r≥1、i(G)≤μ*(G)后，已取得完整有限反例，且本轮独立精确计算核得一个连通50顶点三正则图μ*=15<i=16，故恢复后的原猜想已反驳，另列数学子项而不延续旧open-confirmed。主卡补定义/域或验收写回须新rev；本回执仍锚0a30c22b48b9d994，接收端二审/版本操作不等于数学计算尚未执行。",
+      "evidence_ids": [
+        "E47-A1",
+        "E47-A2",
+        "E47-R1",
+        "E47-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "μ*定义与原题范围",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "μ*(G)=min{|M|:M是G的极大匹配}，极大按包含关系、不可再加一条边；不是最大匹配数μ，也不是机器生成的饱和数上界。i(G)是最小极大独立集基数，等价独立支配数。原图域有限简单无向、r>0；正文未要求连通。两参数均对不交并可加，所以全称连通版本与任意图版本等价；本轮反例本身连通，不依赖此桥接扩大反例范围。原2025附录题面额外connected/nonempty且sorry，不能当证明。",
+      "evidence_ids": [
+        "E47-A1",
+        "E47-A2",
+        "E47-M2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "历史与书目纠错",
+      "math_status": "有部分进展",
+      "scope_note": "本轮最早已实际读取的完整题句是Caro–Davila–Pepper arXiv1909.09093v1（2019-09-19 16:57:01UTC）p10 Conjecture1；2022正式DMGT42(3):921–935变编号Conj15，2025 arXiv2507.17780v1 §2.3重述为Conj3。2025的OpenSince2020标签与2019已公开原文不一致，不能把first_published记2025。DMGT同题DOI为2317，2025References误印2353指另一篇；正式PDF访问失败，Conj15仅出版社缓存摘录，早期数学原文则实际已阅。2104.01092作者是Caro/Davila/Henning/Pepper，非Tauraso；其2022AJC84(2):258–274与三作者DMGT论文分开。",
+      "evidence_ids": [
+        "E47-A1",
+        "E47-A2",
+        "E47-A3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "相邻猜想与旧不等式范围",
+      "math_status": "有部分进展",
+      "scope_note": "2019已证α≤μ针对最大独立与最大匹配，不能以μ*替换μ；其较弱α≤2μ*也不闭合本题。2104.01092 Thm9下界μ*≥δn/[2(Δ+δ−1)]的双计数短证本轮已核；r正则给rn/[2(2r−1)]，对n48或50三正则图取整均至少15，可支撑反例的饱和数证书，不能自身推i≤μ*。Gupta2606.15761作者原README明确针对Conj4 μ*≤H；其官方当前正文访问失败，未将镜像标题/常数当已核，也不把harmonic反例混为本题反例。",
+      "evidence_ids": [
+        "E47-A2",
+        "E47-A3",
+        "E47-A4"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "按原文定义恢复的主命题",
+      "math_status": "原题已反驳",
+      "scope_note": "采用原文μ*=最小极大匹配边数后，djma固定commit7810f30c5e9da0af9ece566bdffa5844d6b34f1b给出的50顶点简单连通三正则图满足μ*=15<i=16。本轮用独立C++实现从raw edge list核图结构及全部3^15选择，计算下界并核16点上界见证，因此不只登记作者声称。这个r3且connected的实例直接否定r≥1全称、r≥3限制及附录connected版本；不主张它是最小反例或本轮首次发现。原卡定义修订的新rev与接收端数学二审仍需按规则办理，不把这些手续冒充尚未执行计算。",
+      "evidence_ids": [
+        "E47-R1",
+        "E47-A1",
+        "E47-A2",
+        "E47-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "math_status": "disproved"
+      }
+    },
+    {
+      "subquestion": "50点明确反例及本轮独立有限核验",
+      "math_status": "原题已反驳",
+      "scope_note": "固定图50点75边，literal顶点0…29恰有15条pair边，每个literal再连两个clause，20个clause顶点彼此不邻且每个度3。图原始bytes SHA2569942c669906060093925b23388043f59617269c59f9a78d382cf1dc65f4015c3、Gitblob314e491018d84e79b091a8898351f15930b575a5；下载副本额外LF已按blob校正，未改变JSON图。任一IDS在每pair只能选0/左/右；给定这些选择，clause必须恰选无已选literal邻点者；遗漏pair两端分别必须被已选clause支配。独立C++完整枚举14,348,907种选择，合法IDS939,975，≤15者0、最小16，每个接受集还直接检查全图独立与支配。一个最小见证为{15,20,24,29,32,33,36,37,39,41,42,43,45,46,48,49}。15条pair边是极大匹配；每条匹配边至多支配5条边，75条边都须被支配，故μ*≥15并取等号。g++14.2 C++20 -O2实际exit0；计算只覆盖这张图，未运行Lean或作者SAT/LRAT内核。",
+      "evidence_ids": [
+        "E47-R1",
+        "E47-A3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "math_status": "disproved"
+      }
+    },
+    {
+      "subquestion": "48点明确反例及本轮独立整数搜索",
+      "math_status": "原题已反驳",
+      "scope_note": "固定order48源commit46a53247cedfcba35b0e2b59474d0099eb962b36的简单连通三正则图有72边，15条pair匹配极大，边支配计数给所有极大匹配至少ceil(72/5)=15。给定16点IDS上界见证逐点检查。独立写出的DFS只读原边表/正面见证，状态(D=N[S],剩余预算b)，完整遍历每个未支配w的所有可选邻点N[w]\\D，并用|V\\D|>4b剪枝，缓存(D,b)保留全部未来约束。实际穷尽2696状态、4479分支边、1784缓存命中，无≤15 IDS，故i16>μ*15。最终重新运行绑定原字节Gitblobecb4d64d3499163bead71e2cef33d53f124d7f37和SHA256a231f7aaa6c437dc977eaa6603f3dae40a81fad4065cad6cac22a45174ff65ac，不把初次多LF哈希当原blob通过。此结果只说明有48阶反例，不证明48最小、唯一、优先或已同行评审。",
+      "evidence_ids": [
+        "E47-M1",
+        "E47-A3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "math_status": "disproved"
+      }
+    },
+    {
+      "subquestion": "正则性、连通性与参数边界",
+      "math_status": "有部分进展",
+      "scope_note": "r1时i=μ*=n/2；r2不连通时应写Σ_j ceil(|C_j|/3)，2C4使总值4，不能用总n的ceil(n/3)=3。K_{r+1}中i1、μ*=floor((r+1)/2)，无须“若μ*≥1”的占位。零顶点两参数0；非空r0图有i=n>μ*0，正度数限制必要；非正则P4也有i2>μ*1，但不解决原正则问题。48/50实例均r3且连通，直接落在题域；两参数按分量加性说明连通/任意图全称等价。",
+      "evidence_ids": [
+        "E47-M2",
+        "E47-R1",
+        "E47-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限反例验收与搜索范围",
+      "math_status": "有部分进展",
+      "scope_note": "一张图加k边极大匹配与所有IDS大小≥k+1的证书已足够否定全称，无需证明最小反例阶数。本轮48/50还分别得到两个参数精确值。只有16点IDS正面见证、普通匹配或对应CNF无解均不自动给完整图论反例；混合literal/clause选择已由独立算法覆盖。没有执行n≤12正则图全集、geng或任意更大阶数搜索；有限未命中本来不能证明全称，旧卡“纯有限验证目标”须据此澄清。",
+      "evidence_ids": [
+        "E47-M2",
+        "E47-R1",
+        "E47-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "形式化题面与否定命题源码",
+      "math_status": "原题已反驳",
+      "scope_note": "当前FC ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8的3.lean仍是研究open+sorry题面，不能据此否定已得数学反例。Puri accepted4d006aa2add6f41604be1d143adfc6a645394621的txgraffiti3_false实际证明原FC全称的否定，构造Fin48度3图、μ*≤15、i≥16。主证明/定义/TxSound/TxTop关键源码静态读，G_ind用16点IDS确保Nat.sInf取值集合非空，未混用最大匹配或普通domination。旧FC锁df3f12d7bd06feb3f71ae37abae0ca7cb798d9b1的目标/三定义文件与当前FC同blob，只证明这四文件相同。12个大chunk和全传递依赖未逐一取得，未本轮build；形式化层仍他人声称已验证，数学否定另有本轮48/50独立有限证明。",
+      "evidence_ids": [
+        "E47-P1",
+        "E47-P4",
+        "E47-M1",
+        "E47-R1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "math_status": "disproved"
+      }
+    },
+    {
+      "subquestion": "公开验证报告与实际复跑边界",
+      "math_status": "有部分进展",
+      "scope_note": "Puri checker run37220457904及job111489564010原API元数据、workflow、frozen challenge/config、源commit status和完整原job日志已实际核。日志明确实际checkout3298e2cb4d674b6c61d8465177adda8dcc4205fc，构建12个TxChunk、TxSound、TxTop、Solution后默认Lean内核接受并写success；accepted4d006aa2add6f41604be1d143adfc6a645394621与该实际run源码完整tree同为314b1f1ececf27e9a370a5b66ba50444ff9a74e7，是同tree沿用而非新build。run.head_sha是checker版本，不能当proof提交。日志亦记录依赖cache及Comparator固定key命中；允许公理propext/Quot.sound/Classical.choice，AxiomCheck成功但guard抑制预期消息、没有裸公理列表，Nanoda关闭。通用日志接口先失败、专用接口后成功，原日志缺口已消除。aiXiv2610.03026v1报告本题48点negation accepted，属作者报告，不是原不等式证明或同行评审。本轮读第三方原日志并独立C++/Python核图，没有本轮Lean/Comparator运行。",
+      "evidence_ids": [
+        "E47-P4",
+        "E47-P5",
+        "E47-P6",
+        "E47-R1",
+        "E47-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "本地原题包",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000705〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "QX-P-000047 rev0a30c22b48b9d994",
+      "note": "μ*未定义且旧说明猜作机器组合上界；后续必须以原稿纠正。 proof代理亦实际独立读当前卡全文，合并本地读取记录。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.open",
+      "query": "open abs/2507.17780",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/2507.17780",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "v1唯一上传2025-07-23 00:49:32UTC；标题In Reverie Together: Ten Years of Mathematical Discovery with a Machine Collaborator。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.open",
+      "query": "open pdf/2507.17780",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2507.17780",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "取得8页全文文本；后定向读§2.3与Appendix/References。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv / web.open",
+      "query": "open abs/2104.01092",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/2104.01092",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "作者Caro/Davila/Henning/Pepper，无Tauraso；v1 2021-04-02。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv / web.open",
+      "query": "open abs/2606.15761",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2606.15761",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "DisabledError，未读摘要页。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.find",
+      "query": "find Conjecture 3 in pdf/2507.17780",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2507.17780",
+      "locator": "〔原始工具引用已私有留存〕;§2.3 printed5",
+      "note": "μ*=minimum cardinality maximal matching；Conj3 r>0，正文无connected，OpenSince2020是此稿标签。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.find",
+      "query": "find saturation in pdf/2507.17780",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2507.17780",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "读Conj3及相邻Conj4/μ*=i(L(G))；二者不得混题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv / web.open",
+      "query": "open pdf/2104.01092",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2104.01092",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "取得16页文本，后实际核§3 Thm9/Cor11/12。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv / web.open",
+      "query": "open html/2606.15761v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/html/2606.15761v1",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "DisabledError。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv / web.open",
+      "query": "open pdf/2606.15761",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/2606.15761",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "DisabledError。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "\"independent domination\" \"saturation\" \"regular\" conjecture",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中同题索引、Achour不同方向新猜想与aiXiv trace线索；后者交public核原稿。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "\"2606.15761\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "索引出现旧题The saturation number is not bounded by the harmonic index与新题Sharp bounds between the saturation number and the harmonic index；索引日期/版本不一致不据此定当前版本，作者repo后核针对Conj4。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv / web.find",
+      "query": "find Theorem 2 in pdf/2104.01092",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://arxiv.org/pdf/2104.01092",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "仅该定位词未匹配，非整篇无定理。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv / web.find",
+      "query": "find γe in pdf/2104.01092",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2104.01092",
+      "locator": "〔原始工具引用已私有留存〕;§3 Thm9/Cor10–12",
+      "note": "μ*下界δn/[2(Δ+δ−1)]，不直接给i≤μ*。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv / web.find",
+      "query": "find independent domination in pdf/2104.01092",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2104.01092",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "核定义和书目；同词引用不等于当前猜想已证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.find",
+      "query": "find Tauraso in pdf/2507.17780",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://arxiv.org/pdf/2507.17780",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "随后实际读References核正确作者，不仅靠无命中断言。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv / web.open",
+      "query": "open html/2606.15761v3",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/html/2606.15761v3",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "DisabledError；不继续将镜像版本标签冒充原版本历史。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub / web.open",
+      "query": "open ChakshuGupta13/lab/tree/main/gupta2026saturation",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/ChakshuGupta13/lab/tree/main/gupta2026saturation",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "初始索引推断路径不可访问；后从实际root README定位其math子目录。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "AJC / web.open",
+      "query": "open pdf/84/ajc_v84_p179.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://ajc.maths.uq.edu.au/pdf/84/ajc_v84_p179.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "初始推测页码入口不可访问，不能据此引用；后原References确认258–274。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system1 recency365",
+      "query": "\"TxGraffiti\" \"independent domination\" \"regular\" (proof OR counterexample OR solved)",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "P0命中HirotadaIwane、djma50顶点及48顶点完整反例声称，已即时交root/public/proof核原文件与计算；不按搜索摘要关题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system1",
+      "query": "\"A Degree–Independent-Domination Bound\" \"Hassine\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "Achour所提s(G)≤ceil(Δi/2)是不同方向的猜想，摘要自称仅有限检验；未将其作为本题证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "DMGT / web.open",
+      "query": "open publish/pdf.php?doi=2317",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://www.dmgt.uz.zgora.pl/publish/pdf.php?doi=2317",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "502 Bad Gateway；搜索缓存题段仍单列为检索摘录，未称正式PDF已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub author repository / web.open",
+      "query": "open ChakshuGupta13/lab",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/ChakshuGupta13/lab",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "作者README原页可读；其saturation条目标明refutation of Conj4。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.open",
+      "query": "open pdf/2507.17780 at lineno343",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2507.17780",
+      "locator": "〔原始工具引用已私有留存〕;AppendixA/References printed7",
+      "note": "conjecture_three骨架额外connected/nonempty且sorry；References将2022b DOI写2353，后溯源发现应核2317。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv / web.open",
+      "query": "open pdf/2104.01092 at lineno339",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2104.01092",
+      "locator": "〔原始工具引用已私有留存〕;pp9–10",
+      "note": "完整读Thm9双计数短证及Cor11/12：最小极大匹配M未匹配集独立，两侧计边得下界。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "\"2606.15761\" site:arxiv.org",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "未取得可读官方版本页；搜索结果与其他同call结果保留raw，不能由镜像元数据锁当前版本。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web search system2",
+      "query": "\"Conjecture 15\" \"TxGraffiti 2019\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://www.dmgt.uz.zgora.pl/publish/pdf.php?doi=2317",
+      "locator": "〔原始工具引用已私有留存〕/13",
+      "note": "出版社及国家图书馆缓存摘录给2022正式Conj15、原稿称TxGraffiti2019；继续追2019原稿。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Biblioteka Nauki / web.open",
+      "query": "open articles/32304143.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://bibliotekanauki.pl/articles/32304143.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "403；未称正式期刊镜像全文已得。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "AJC / web.open",
+      "query": "open pdf/84/ajc_v84_p258.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://ajc.maths.uq.edu.au/pdf/84/ajc_v84_p258.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "按2025References修正入口，restricted URL；本轮只以arXiv v1核定理全文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "DOI / web.open",
+      "query": "open doi.org/10.7151/dmgt.2317",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://doi.org/10.7151/dmgt.2317",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "not accessible；正式DOI信息按出版社indexed原题/其他书目交叉核，完整原刊访问仍缺。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub author repository / web.find",
+      "query": "find gupta2026saturation in ChakshuGupta13/lab",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/ChakshuGupta13/lab",
+      "locator": "〔原始工具引用已私有留存〕;README lines200–208",
+      "note": "原作者条目明确2606.15761反驳2507.17780 Conj4 μ*≤H；旁边2608.22498是普通domination而非independent domination，也不承袭。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web search system2",
+      "query": "\"New results relating independence and matchings\" arxiv",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位原arXiv1909.09093v1，Caro/Davila/Pepper三作者；随后实际打开。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web search system2",
+      "query": "\"10.7151/dmgt.2353\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中Guowei Dai The existence of path-factor covered graphs（43(1)(2023)5–16），不同论文；2025本题参考文献DOI误引不能沿用。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.open",
+      "query": "open abs/1909.09093",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/1909.09093",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "唯一v1 2019-09-19 16:57:01UTC，题名/三作者核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.open",
+      "query": "open pdf/1909.09093",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1909.09093",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "取得12页，定义p2、Theorem10 p7及后续Conjecture1 p10实际核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "GitHub / web.click",
+      "query": "click author root README link85 gupta2026saturation",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "url": "https://github.com/ChakshuGupta13/lab/blob/main/math/gupta2026saturation",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "robots denied；未读其证明/代码或复跑，作者root范围声明已足够排除本题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.find",
+      "query": "find Conjecture 15 in pdf/1909.09093",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://arxiv.org/pdf/1909.09093",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "v1编号不同，不能把此无匹配误为原稿无本题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.find",
+      "query": "find Conjecture in pdf/1909.09093",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1909.09093",
+      "locator": "〔原始工具引用已私有留存〕;§4 printed10",
+      "note": "Conjecture1已于2019精确给r>0时i≤μ*；Question1是δi≤Δμ*的更一般问。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.find",
+      "query": "find minimum maximal in pdf/1909.09093",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1909.09093",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "μ*定义p2及p10重复明确；不是最大匹配μ。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "DMGT / local urllib",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://www.dmgt.uz.zgora.pl/publish/pdf.php?doi=2317 〔私有记录编号：PR-000706〕",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://www.dmgt.uz.zgora.pl/publish/pdf.php?doi=2317",
+      "locator": "47_primary_download_log.json",
+      "note": "实际503 Service Unavailable；未保存PDF/未运行pdftotext，不增加第三次抓取。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Crossref / web.open",
+      "query": "open api.crossref.org/works/10.7151/dmgt.2317",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://api.crossref.org/works/10.7151/dmgt.2317",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "not accessible，未获得注册JSON。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Crossref / web.open",
+      "query": "open api.crossref.org/works/10.7151/dmgt.2353",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://api.crossref.org/works/10.7151/dmgt.2353",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "not accessible，未获得注册JSON。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system2",
+      "query": "\"independent domination\" \"saturation number\" regular graphs conjecture",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中50/48点同题反例及FC6591；另有同名但graph-product不同猜想，后者不当同题。随后取完整数学稿和原始图。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system2",
+      "query": "\"TxGraffiti\" \"conjecture 3\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中50/48点同题反例及FC6591；另有同名但graph-product不同猜想，后者不当同题。随后取完整数学稿和原始图。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.open",
+      "query": "open abs/2507.17780",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/2507.17780",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "v1 2025-07-23；三作者Davila/Brimkov/Pepper；不是据其2025 open标签判断2026状态。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.open",
+      "query": "open pdf/2507.17780",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2507.17780",
+      "locator": "〔原始工具引用已私有留存〕; 〔原始工具引用已私有留存〕",
+      "note": "实际全文可取；主核§2.3定义和Conj3、§2.4区别及Appendix3 sorry骨架。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / web.open",
+      "query": "open ipitchford/txgraffiti-order48-successor",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/ipitchford/txgraffiti-order48-successor",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "DisabledError；public随后通过GitHub connector取得固定46a53247源，不把本次失败算覆盖。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / web.open",
+      "query": "open djma/TxGraffiti-conjecture3-counterexample/blob/main/counterexample_note.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/djma/TxGraffiti-conjecture3-counterexample/blob/main/counterexample_note.md",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "已读50点构造、完整手证、有限引理及混合IDS不能只检total SAT的警告；public另固定commit7810f30。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / web.open",
+      "query": "open google-deepmind/formal-conjectures/issues/6591",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/issues/6591",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "2026-09-25开issue；同题行称48反例，列表自注AI辅助可能有错；不能把该报告直接当本轮验证。只读取当前题相关正文，不审邻题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / web.find",
+      "query": "find Proof of in counterexample_note.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/djma/TxGraffiti-conjecture3-counterexample/blob/main/counterexample_note.md",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "返回末段验证/出处，随后已取指定行完整数学链。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / web.open",
+      "query": "open counterexample_note.md at lineno236",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/djma/TxGraffiti-conjecture3-counterexample/blob/main/counterexample_note.md",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "读全部partial-assignment到independent-domination归约、极大匹配与有限引理、原稿claimed computational verification。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.find",
+      "query": "find 2.3 in pdf/2507.17780",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2507.17780",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "μ*是minimum cardinality of maximal matching；Appendix connected额外条件且sorry；2025参考书目2353与原刊2317差异已交academic核实。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl，2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000707〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 1,
+      "note": "实际逐条扫描id/title/title_en/aliases/path/url；简索引不含正文与来源号，因此来源号无命中不等于正文无同题。最相关304/236另取得固定正文；宽词其余只是粗排候选，不声称全部全文已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl，2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000708〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 2,
+      "note": "实际逐条扫描id/title/title_en/aliases/path/url；简索引不含正文与来源号，因此来源号无命中不等于正文无同题。最相关304/236另取得固定正文；宽词其余只是粗排候选，不声称全部全文已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl，2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000709〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 2,
+      "note": "实际逐条扫描id/title/title_en/aliases/path/url；简索引不含正文与来源号，因此来源号无命中不等于正文无同题。最相关304/236另取得固定正文；宽词其余只是粗排候选，不声称全部全文已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl，2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000710〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "实际逐条扫描id/title/title_en/aliases/path/url；简索引不含正文与来源号，因此来源号无命中不等于正文无同题。最相关304/236另取得固定正文；宽词其余只是粗排候选，不声称全部全文已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl，2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000711〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "实际逐条扫描id/title/title_en/aliases/path/url；简索引不含正文与来源号，因此来源号无命中不等于正文无同题。最相关304/236另取得固定正文；宽词其余只是粗排候选，不声称全部全文已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl，2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000712〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 10,
+      "note": "实际逐条扫描id/title/title_en/aliases/path/url；简索引不含正文与来源号，因此来源号无命中不等于正文无同题。最相关304/236另取得固定正文；宽词其余只是粗排候选，不声称全部全文已读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/000/QX-P-000304.meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000304.meta.json",
+      "locator": "blob e1a287e0a9ae64ad9c7c2bd44270c6572107d49e",
+      "note": "实际读metadata的card_rev/核心条件与整个题卡正文；只作47的重复比较，不启动该题查新。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/000/QX-P-000304.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000304.text.md",
+      "locator": "blob 4667a9fd1f09c850b3af0c9646eeda4a6c2b71c1",
+      "note": "实际读metadata的card_rev/核心条件与整个题卡正文；只作47的重复比较，不启动该题查新。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/000/QX-P-000236.meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000236.meta.json",
+      "locator": "blob 9b4c29f55b175b56fcc484b860250bee97041594",
+      "note": "实际读metadata的card_rev/核心条件与整个题卡正文；只作47的重复比较，不启动该题查新。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub connector fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/000/QX-P-000236.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000236.text.md",
+      "locator": "blob c422228cfe91a1a72977f5840e7d914ae75f8686",
+      "note": "实际读metadata的card_rev/核心条件与整个题卡正文；只作47的重复比较，不启动该题查新。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地固定原始资料",
+      "query": "read 47_source/order50/counterexample.json and verify git blob/SHA256",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/djma/TxGraffiti-conjecture3-counterexample/blob/7810f30c5e9da0af9ece566bdffa5844d6b34f1b/counterexample.json",
+      "note": "public获取的初始文本副本多末尾LF；移去这一LF后5896bytes、Gitblob314e491018d84e79b091a8898351f15930b575a5及SHA9942c669…均与源/原稿匹配，另存exact。public后来也将副本恢复为原字节。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本轮独立C++/Python验证",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000713〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "47_order50_independent_result.json; 47_verify_order50.cpp",
+      "note": "实际exit0。由边重建公式并核相等，检查simple/connected/cubic、16IDS见证和15极大匹配，独立完整遍历3^15=14348907部分选择；939975个合法IDS，最小16，无<=15。g++ Debian14.2.0；枚举用时约0.179s（单次观测非基准）。不是Lean/SAT kernel运行，也未执行作者C++/LRAT脚本。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本轮独立审稿",
+      "query": "read 47_independent_check.py and 47_independent_check.json from proof_review",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "root reviewed complete independent 48-vertex DFS implementation",
+      "note": "root静态复核N[S]状态充分性、全候选分支和capacity4剪枝；proof实际执行48点精确DFS，输入字节换行修正后应以proof最终result为准。未把root阅读算第二次执行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / web.open",
+      "query": "open ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/README.md",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/README.md",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "DisabledError；不算新增覆盖，固定源已有public经connector取得。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "aiXiv / web.open",
+      "query": "open https://aixiv.online/pdf/2610.03026v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://aixiv.online/pdf/2610.03026v1",
+      "locator": "〔原始工具引用已私有留存〕; §2、Table1 p3、§9",
+      "note": "原稿6页，root实际读与当前题相关的48点否定、外部checker机制及固定FC df3f12d7bd06说明；不把作者28项通过报告当本轮Lean通过，其余题未开展核查。public继续读取对应acceptedcommit/target/log。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "固定FC源码本地阅读",
+      "query": "read 47_source/fc/3.lean; Domination.lean; Saturation.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Arxiv/2507.17780/3.lean",
+      "note": "root实际读当前目标和两个定义文件：finite SimpleGraph、r>=1、Nat.sInf独立支配集大小与极大匹配边数，目标仍sorry/open。Matching.lean定义闭包交public补；本次只静态阅读，无Lean执行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地读取固定formal源与原始job日志",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000714〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "47_source/checker/job111489564010.log; 47_formal_graph_alignment.json",
+      "note": "root实际读原run关键片段：AGENT_COMMIT3298…、chunks0–11等build、Lean default kernel接受、status success；原日志缺口已由public专用接口解决。Python核Puri48个cmL mask与固定48 raw graph完全相等，另核其不同的D16见证成立。均不是本轮Lean/Comparator执行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C1-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地原题包",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000715〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "按固定 card_rev 核对象；卡把 μ* 描述为机器线性上界参数且缺精确定义。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C1-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "openai/math 本地固定 overview 缓存",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000716〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "实际复用并搜索先前固定 3344da59991ed94f9ba711217b29c1d760badfa6 的 overview 缓存；退出码 1。范围仅该文件，不推断仓库不存在所有相关结果。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "P47-C1-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"TxGraffiti\" \"independent domination\" \"matching\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批实际检索，命中 djma 50 点反例、48 点后续、FC issue；另外同名 Conjecture 3 和相邻 TxGraffiti 第4/9条不可转移。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P47-C1-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"independent domination\" \"minimum maximal matching\" regular proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批实际检索，命中 djma 50 点反例、48 点后续、FC issue；另外同名 Conjecture 3 和相邻 TxGraffiti 第4/9条不可转移。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P47-C1-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"TxGraffiti\" \"Conjecture 3\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批实际检索，命中 djma 50 点反例、48 点后续、FC issue；另外同名 Conjecture 3 和相邻 TxGraffiti 第4/9条不可转移。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P47-C1-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub openai/math",
+      "query": "repository=openai/math; query=independent domination; topn=10",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "result_count": 10,
+      "note": "返回10项为 Haar/analysis 等词语匹配，无同题定理；所有结果 ref 为3344da59991ed94f9ba711217b29c1d760badfa6。仅检索层级范围排除。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "P47-C1-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub formal-conjectures",
+      "query": "repository=google-deepmind/formal-conjectures; query=TxGraffiti; topn=10",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 Arxiv/2507.17780/1–4.lean，随后取第3条全文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P47-C2-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Arxiv/2507.17780/3.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Arxiv/2507.17780/3.lean",
+      "locator": "3.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 19165e91dc90ec287d8ce7a896457bda397468cf。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C2-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub issues",
+      "query": "fetch_issue google-deepmind/formal-conjectures #6591",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/issues/6591",
+      "note": "全文读取；KitaKen1 的清单同时列48点与50点反例线索，作者注明由AI辅助且可能有错；仅线索，非独立证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C2-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub issues",
+      "query": "fetch_issue_comments google-deepmind/formal-conjectures #6591",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "result_count": 0,
+      "note": "实际返回0评论；未虚构评论背书或争议。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C2-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/djma/TxGraffiti-conjecture3-counterexample/commits/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/djma/TxGraffiti-conjecture3-counterexample/commits/main",
+      "note": "解析固定完整提交、日期和树；日期作版本信息，不据此声称最早公开时间。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C2-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/ipitchford/txgraffiti-conjecture3-resolution/commits/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/ipitchford/txgraffiti-conjecture3-resolution/commits/main",
+      "note": "解析固定完整提交、日期和树；日期作版本信息，不据此声称最早公开时间。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C2-5",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/ipitchford/txgraffiti-order48-successor/commits/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/ipitchford/txgraffiti-order48-successor/commits/main",
+      "note": "解析固定完整提交、日期和树；日期作版本信息，不据此声称最早公开时间。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C3-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/counterexample.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/counterexample.json",
+      "locator": "counterexample.json",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob ecb4d64d3499163bead71e2cef33d53f124d7f37。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C3-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/MANUSCRIPT.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/MANUSCRIPT.md",
+      "locator": "MANUSCRIPT.md",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob f0e0f177c4c570ebfba8c46db34b778e4d7656d4。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C3-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/check_ids15_certificate.py",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/check_ids15_certificate.py",
+      "locator": "check_ids15_certificate.py",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 84779405fcd15de0af68ee0d554f7bffe30efc20。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C3-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/README.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/README.md",
+      "locator": "README.md",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob e5520bc4f4e028feb1faf377cc51df0c51c9d653。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C3-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/EVIDENCE_SUPPLEMENT.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/EVIDENCE_SUPPLEMENT.md",
+      "locator": "EVIDENCE_SUPPLEMENT.md",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob c9e06142e01f073a07ee25e63969d926f94b2275。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C3-5",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/ENVIRONMENT.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/ENVIRONMENT.md",
+      "locator": "ENVIRONMENT.md",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob e5e18e9d7e6434a15caf98437922ca28e638845c。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C3-6",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/djma/TxGraffiti-conjecture3-counterexample/blob/7810f30c5e9da0af9ece566bdffa5844d6b34f1b/counterexample_note.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/djma/TxGraffiti-conjecture3-counterexample/blob/7810f30c5e9da0af9ece566bdffa5844d6b34f1b/counterexample_note.md",
+      "locator": "counterexample_note.md",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 60deb43d7bd000344caa8eb7fd911bd5764728ec。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C3-7",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/djma/TxGraffiti-conjecture3-counterexample/blob/7810f30c5e9da0af9ece566bdffa5844d6b34f1b/counterexample.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/djma/TxGraffiti-conjecture3-counterexample/blob/7810f30c5e9da0af9ece566bdffa5844d6b34f1b/counterexample.json",
+      "locator": "counterexample.json",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 314e491018d84e79b091a8898351f15930b575a5。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C4-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/ipitchford/txgraffiti-order48-successor/git/trees/46a53247cedfcba35b0e2b59474d0099eb962b36?recursive=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/ipitchford/txgraffiti-order48-successor/git/trees/46a53247cedfcba35b0e2b59474d0099eb962b36?recursive=1",
+      "note": "完整树 truncated=false；定位图、手稿、stdlib证书检查器、压缩证书及环境说明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C4-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub formal-conjectures",
+      "query": "repository=google-deepmind/formal-conjectures; query=indepDominationNumber; topn=10",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 6,
+      "note": "返回6条，包括本题与其他独立支配猜想，后者不自动同题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P47-C4-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub formal-conjectures",
+      "query": "repository=google-deepmind/formal-conjectures; query=saturationNumber; topn=10",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 3,
+      "note": "返回3条，定位实际 Saturation 定义。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P47-C4-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub conjecture-bench",
+      "query": "repository=bespokelabsai/conjecture-bench; query=2507.17780; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "未找到相应 CB JSON，不能凭卡号猜路径；不声称已读取不存在的 cb 文件。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "P47-C4-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/HirotadaIwane/independent-domination-counterexample/commits/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/HirotadaIwane/independent-domination-counterexample/commits/main",
+      "note": "固定8926d62a37001134469143aa487dea3210913295。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C4-5",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"TxGraffiti\" \"counterexample\" (error OR correction OR verified OR Lean)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际近期查询，第一项 recency=180、第二项365；命中 aiXiv 形式化报告和评审资料，随后追主源；同名邻题排除。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P47-C4-5",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"independent-domination-counterexample\" (Lean OR certificate OR review)",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际近期查询，第一项 recency=180、第二项365；命中 aiXiv 形式化报告和评审资料，随后追主源；同名邻题排除。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "P47-C5-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Domination.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Domination.lean",
+      "locator": "Domination.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 832eaf745422d08c205e3041802c4e60e2c0f886。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C5-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Saturation.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Saturation.lean",
+      "locator": "Saturation.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob d3aaab6a628fd1e4715b9ac7677f15397ecd2b7d。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C5-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lean-toolchain",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lean-toolchain",
+      "locator": "lean-toolchain",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob a8afa7d1b02d96f0671eba854a8dc4b416beb473。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C5-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lake-manifest.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lake-manifest.json",
+      "locator": "lake-manifest.json",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob fae5d498d3f9dc3f6d1efd7c2adc03dd5bb6c8d6。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C5-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/HirotadaIwane/independent-domination-counterexample/blob/8926d62a37001134469143aa487dea3210913295/README.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/HirotadaIwane/independent-domination-counterexample/blob/8926d62a37001134469143aa487dea3210913295/README.md",
+      "locator": "README.md",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob dafa1a8220407dd293ab3ebdb30898d9fd1a6f77。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C5-5",
+      "route": "代码、公开 AI 和社区",
+      "site": "aiXiv primary HTML",
+      "query": "open https://aixiv.online/html/2610.03026v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://aixiv.online/html/2610.03026v1",
+      "locator": "Table 1; checker design; early logging bug and fixes",
+      "note": "实际读取 Table 1 的 txgraffiti3 negation、48点对象、外部 Comparator 设计、已修复日志假阳性问题；全文不是本轮验证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C5-6",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub conjecture-bench",
+      "query": "repository=bespokelabsai/conjecture-bench; query=TxGraffiti; topn=10",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "第二个实际定向查询未命中；未取得本题CB记录，不将无命中提升为不存在。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "P47-C5-7",
+      "route": "代码、公开 AI 和社区",
+      "site": "raw.githubusercontent.com",
+      "query": "公开 urllib 下载固定46a53247cedfcba35b0e2b59474d0099eb962b36/ids_le15.tree.gz 并核 SHA256 / Git blob",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://raw.githubusercontent.com/ipitchford/txgraffiti-order48-successor/46a53247cedfcba35b0e2b59474d0099eb962b36/ids_le15.tree.gz",
+      "note": "HTTP200，27643字节；blob7a8b7b4649bbcbbeb178b3fb621d49dc846251a4，SHA256 0ab03dac14afccd0c3bfc287a3731465cf994a76ec3ef2fd9edab18fb94a91d1。仅取得并核完整性，未运行作者checker。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C6-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-formalization/blob/main/PROOFS.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-formalization/blob/main/PROOFS.md",
+      "locator": "PROOFS.md",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 23da45b17c6f48361185b8119550b01f7892383c。请求时ref省略，按默认main取得；未把随后解析的mainSHA冒称该请求参数。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C6-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/danielpuri1901/erdos-lean-formalization/commits/main",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/danielpuri1901/erdos-lean-formalization/commits/main",
+      "note": "解析main为c838d73ab2fe196d852fe58c51e115f57a92d2b7；PROOFS.md 是默认分支请求，随后直接取其记录的固定accepted提交。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C6-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地已取源码",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000717〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际静态阅读：独立支配数与最小极大匹配边数均由Nat.sInf定义；非最大匹配/分数匹配。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C6-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地已取源码",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000718〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "README声称41个50点与72个60点反例，但本路线未逐图取证/重跑；其SAT-DIM与图侧检查不可混同。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C6-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/ipitchford/txgraffiti-conjecture3-resolution/blob/d992637bda0ecd17a9188985801457e96164e1cf/EXTERNAL_REVIEW_2026-08-06.md",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/ipitchford/txgraffiti-conjecture3-resolution/blob/d992637bda0ecd17a9188985801457e96164e1cf/EXTERNAL_REVIEW_2026-08-06.md",
+      "locator": "EXTERNAL_REVIEW_2026-08-06.md",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 341685d7510337d7b05c27f3037fdac1e406b3a0。阅读其major revisions与限定审阅性质；不作传统同行评审通过。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C7-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API",
+      "query": "GET /repos/danielpuri1901/erdos-lean-formalization/git/trees/4d006aa2add6f41604be1d143adfc6a645394621?recursive=1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/danielpuri1901/erdos-lean-formalization/git/trees/4d006aa2add6f41604be1d143adfc6a645394621?recursive=1",
+      "note": "完整树 truncated=false；定位Solution、TxDefs/TxSound/TxTop与12个TxChunk文件；图edgelist blob与48原仓库对应文件相同。未取阅12个大型chunk全文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C7-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/Challenge.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/Challenge.lean",
+      "locator": "Challenge.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 67c442c855ce29e5aed2fa5eff4e4cbfa7ff85cf。这是冻结题面，唯一sorry为目标占位，必须与实际Solution证明区分。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C7-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/Solution.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/Solution.lean",
+      "locator": "Solution.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob b90237d7c48800010acf8a3eeede35a8318652bc。实际阅读全文：Fin48三正则图、15边极大匹配、16点IDS、Nat.sInf非空桥、否定原forall目标。没有本轮Lean运行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C7-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/lean-toolchain",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/lean-toolchain",
+      "locator": "lean-toolchain",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob a8afa7d1b02d96f0671eba854a8dc4b416beb473。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C7-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/lake-manifest.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/lake-manifest.json",
+      "locator": "lake-manifest.json",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 01e425df0a470b5eaf6b258b838bb340689e56df。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C7-5",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub Actions API",
+      "query": "GET /repos/danielpuri1901/erdos-lean-checker/actions/runs/37220457904",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/danielpuri1901/erdos-lean-checker/actions/runs/37220457904",
+      "note": "run success，2026-10-04；head_sha640802…是checker工作流提交，不误写成被测试proof提交。输入agent_commit未由该元数据暴露。 其后专用job日志已明确实际AGENT_COMMIT=3298e2cb4d674b6c61d8465177adda8dcc4205fc。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C7-6",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Matching.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Matching.lean",
+      "locator": "Matching.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 16430b466c7504cf6a05adf1d8b970aeeac9cb2e。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C8-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/Solution/TxDefs.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/Solution/TxDefs.lean",
+      "locator": "TxDefs.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 6f05843222ca85c795ae20bb7fb045456703e7c4。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C8-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/Solution/TxSound.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/Solution/TxSound.lean",
+      "locator": "TxSound.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob f69553231f573e8cec0971354e3c8a8e86a4d61f。实际全文静态阅读chk_sound：穷尽某未支配点的闭邻域选择、排除状态及4k计数剪枝；未独立构建其Lean依赖闭包。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C8-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/Solution/TxTop.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/Solution/TxTop.lean",
+      "locator": "TxTop.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 61b02694e5f31937b3e96779b117fee560b1118f。实际读取36个chunk根状态组合与P15；12个chunk正文未逐个取读，本轮不称全项目已形式化检查。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C8-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/google-deepmind/formal-conjectures/blob/df3f12d7bd06feb3f71ae37abae0ca7cb798d9b1/FormalConjectures/Arxiv/2507.17780/3.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/df3f12d7bd06feb3f71ae37abae0ca7cb798d9b1/FormalConjectures/Arxiv/2507.17780/3.lean",
+      "locator": "3.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 19165e91dc90ec287d8ce7a896457bda397468cf。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C8-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/google-deepmind/formal-conjectures/blob/df3f12d7bd06feb3f71ae37abae0ca7cb798d9b1/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Domination.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/df3f12d7bd06feb3f71ae37abae0ca7cb798d9b1/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Domination.lean",
+      "locator": "Domination.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 832eaf745422d08c205e3041802c4e60e2c0f886。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C8-5",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/google-deepmind/formal-conjectures/blob/df3f12d7bd06feb3f71ae37abae0ca7cb798d9b1/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Saturation.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/df3f12d7bd06feb3f71ae37abae0ca7cb798d9b1/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Saturation.lean",
+      "locator": "Saturation.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob d3aaab6a628fd1e4715b9ac7677f15397ecd2b7d。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C8-6",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/google-deepmind/formal-conjectures/blob/df3f12d7bd06feb3f71ae37abae0ca7cb798d9b1/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Matching.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/df3f12d7bd06feb3f71ae37abae0ca7cb798d9b1/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Matching.lean",
+      "locator": "Matching.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 16430b466c7504cf6a05adf1d8b970aeeac9cb2e。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C8-7",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-checker/blob/640802ded50420b9fcaea44590889a9a6e6553bc/.github/workflows/verify.yml",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-checker/blob/640802ded50420b9fcaea44590889a9a6e6553bc/.github/workflows/verify.yml",
+      "locator": "verify.yml",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 88c250cd4c96b998c358593f5fc932e4b5c64c57。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C8-8",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub Actions API",
+      "query": "GET /repos/danielpuri1901/erdos-lean-checker/actions/runs/37220457904/jobs",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/danielpuri1901/erdos-lean-checker/actions/runs/37220457904/jobs",
+      "note": "verify job111489564010各实际步骤success（冻结/构建/statement检查/Comparator/axiom audit）；negative job skipped，不能称此run执行了恶意负例套件。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C8-9",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub commit status",
+      "query": "GET /repos/danielpuri1901/erdos-lean-formalization/commits/4d006aa2add6f41604be1d143adfc6a645394621/status",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/danielpuri1901/erdos-lean-formalization/commits/4d006aa2add6f41604be1d143adfc6a645394621/status",
+      "note": "status success 的 description 明写 Same file tree as 3298e2cb4d67; Your solution is okay!，target为run37220457904；这是一条同树传播记录，不冒称accepted SHA被本轮直接构建。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C9-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub commit API",
+      "query": "GET /repos/danielpuri1901/erdos-lean-formalization/git/commits/4d006aa2add6f41604be1d143adfc6a645394621",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/danielpuri1901/erdos-lean-formalization/git/commits/4d006aa2add6f41604be1d143adfc6a645394621",
+      "note": "两次原始commit响应给出相同完整Git tree 314b1f1ececf27e9a370a5b66ba50444ff9a74e7，独立证实状态所称源码同一性；不是新的运行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C9-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub commit API",
+      "query": "GET /repos/danielpuri1901/erdos-lean-formalization/commits/3298e2cb4d67",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://api.github.com/repos/danielpuri1901/erdos-lean-formalization/commits/3298e2cb4d67",
+      "note": "两次原始commit响应给出相同完整Git tree 314b1f1ececf27e9a370a5b66ba50444ff9a74e7，独立证实状态所称源码同一性；不是新的运行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C9-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub Actions log",
+      "query": "GET /repos/danielpuri1901/erdos-lean-checker/actions/jobs/111489564010/logs",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://api.github.com/repos/danielpuri1901/erdos-lean-checker/actions/jobs/111489564010/logs",
+      "note": "工具返回HTTP400：日志endpoint不在允许的公开GitHub endpoint清单。没有实际获得Comparator/axiom原始日志；没有再试认证或提权。 后续P47-C10-0使用专用job日志接口成功，原始通用接口失败保留为真实过程记录。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "P47-C9-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-checker/blob/640802ded50420b9fcaea44590889a9a6e6553bc/challenge/txgraffiti3.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-checker/blob/640802ded50420b9fcaea44590889a9a6e6553bc/challenge/txgraffiti3.lean",
+      "locator": "txgraffiti3.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 67c442c855ce29e5aed2fa5eff4e4cbfa7ff85cf。这是冻结题面，唯一sorry为目标占位，必须与实际Solution证明区分。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C9-4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-checker/blob/640802ded50420b9fcaea44590889a9a6e6553bc/comparator/txgraffiti3.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-checker/blob/640802ded50420b9fcaea44590889a9a6e6553bc/comparator/txgraffiti3.json",
+      "locator": "txgraffiti3.json",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 443371bde5fa0ad336fb7a451d5993c32217fcd1。明确enable_nanoda=false，允许propext/Quot.sound/Classical.choice。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C9-5",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-checker/blob/640802ded50420b9fcaea44590889a9a6e6553bc/frozen/lean-toolchain",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-checker/blob/640802ded50420b9fcaea44590889a9a6e6553bc/frozen/lean-toolchain",
+      "locator": "lean-toolchain",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob a8afa7d1b02d96f0671eba854a8dc4b416beb473。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C9-6",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-checker/blob/640802ded50420b9fcaea44590889a9a6e6553bc/frozen/lake-manifest.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-checker/blob/640802ded50420b9fcaea44590889a9a6e6553bc/frozen/lake-manifest.json",
+      "locator": "lake-manifest.json",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob 01e425df0a470b5eaf6b258b838bb340689e56df。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C9-7",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub source",
+      "query": "fetch_file https://github.com/danielpuri1901/erdos-lean-checker/blob/640802ded50420b9fcaea44590889a9a6e6553bc/scripts/axioms/txgraffiti3.lean",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-checker/blob/640802ded50420b9fcaea44590889a9a6e6553bc/scripts/axioms/txgraffiti3.lean",
+      "locator": "txgraffiti3.lean",
+      "note": "实际fetch_file取得完整UTF-8内容；Git blob eb6ae1ba72ad73a7692b483955d339846e529afe。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "P47-C10-0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub Actions 专用 job logs 接口",
+      "query": "fetch_workflow_job_logs repo_full_name=danielpuri1901/erdos-lean-checker job_id=111489564010",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/danielpuri1901/erdos-lean-checker/actions/runs/37220457904/job/111489564010",
+      "locator": "checkout env AGENT_COMMIT; Building Solution; kernel verdict; final source status; AxiomCheck",
+      "note": "通用fetch日志endpoint拒绝后，按专用接口成功取得全部解码日志。实际checkout3298e2cb4d674b6c61d8465177adda8dcc4205fc，12个chunks和主证明构建成功，Lean default kernel accepts the solution，Comparator最终成功；AxiomCheck为#guard_msgs所以无裸axioms列表输出；Comparator缓存命中。本轮读取他人运行记录，没有本轮Lean执行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立计算语义复核",
+      "site": "Local fixed files",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000719〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "root独立实现与实际结果，由academic再静态核算法范围",
+      "note": "三态覆盖literal每对0/left/right；clause集被迫为未被literal覆盖者；检查遗漏双literal受clause支配，并对每个接受集再核完整图独立/支配谓词。该二次静态读不冒称academic另运行C++。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.open",
+      "query": "open html/2507.17780v1 and pdf/2507.17780v1",
+      "url": "https://arxiv.org/html/2507.17780v1",
+      "outcome": "原文已阅且同题",
+      "locator": "〔原始工具引用已私有留存〕/1",
+      "note": "均取得，refs 〔原始工具引用已私有留存〕/1。首次合并输出截断且未显示全部关键节，随后定点补读，不将截断部分算已读。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv / web.open",
+      "query": "open 〔原始工具引用已私有留存〕 at lineno108 〔私有记录编号：PR-000720〕",
+      "url": "https://arxiv.org/html/2507.17780v1",
+      "outcome": "原文已阅且同题",
+      "locator": "〔原始工具引用已私有留存〕;§2.3/Appendix",
+      "note": "〔原始工具引用已私有留存〕；实际读§2.3定义/Conj3及附录占位，恢复μ*与r>0，看到Open Since2020。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / web.open",
+      "query": "open ipitchford/txgraffiti-order48-successor",
+      "url": "https://github.com/ipitchford/txgraffiti-order48-successor",
+      "outcome": "原文已阅且同题",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "〔原始工具引用已私有留存〕，实际读仓库candidate范围、48/16/15声明、未宣称最小阶及内部review边界。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / web.click",
+      "query": "click counterexample.json and MANUSCRIPT.md from order48 repository",
+      "url": "https://github.com/ipitchford/txgraffiti-order48-successor",
+      "outcome": "原文已阅且同题",
+      "locator": "〔原始工具引用已私有留存〕/1;随后完整fixedbytes另取",
+      "note": "〔原始工具引用已私有留存〕/1；GitHub网页有大量逐行编号，未作为完整原字节来源。完整固定文件改由public connector落盘后阅读。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立计算语义复核",
+      "site": "Local fixed files",
+      "query": "read order48 MANUSCRIPT.md, counterexample.json, check_ids15_certificate.py, EVIDENCE_SUPPLEMENT.md",
+      "url": "https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/counterexample.json",
+      "outcome": "原文已阅且同题",
+      "locator": "47_source/order48/",
+      "note": "四文件全文实际读取，核匹配计数、独立支配证书语义与出处/复跑边界。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立计算核验",
+      "site": "Local Python",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000721〕",
+      "url": "https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/counterexample.json",
+      "outcome": "原文已阅且同题",
+      "locator": "47_independent_check.py/json",
+      "note": "第一次完整独立DFS通过，但发现本地JSON多LF导致hash不等于源；public修复原字节后第二次实际重跑通过，最终SHA256/Gitblob匹配且输出i16/mu15。两次均整数完整单图搜索，非作者checker重放。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立计算语义复核",
+      "site": "Local fixed files",
+      "query": "read 47_verify_order50.cpp, 47_order50_independent_result.json, 47_source/exact_file_hashes.json",
+      "outcome": "原文已阅且同题",
+      "locator": "proof代理对root50路径的静态第二阅读",
+      "note": "实际完整静态读root50验证器/结果，核3^15枚举的数学充要转化与位宽/编译检查；读public exact-hash manifest验证48输入身份。本人没有重跑50。",
+      "date": "2026-11-27",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E47-A1",
+      "url": "https://arxiv.org/pdf/2507.17780",
+      "locator": "§2.3 printed p5: definitions/Conjecture3 and r2 remark; AppendixA/References printed7",
+      "version": "Davila–Brimkov–Pepper, arXiv2507.17780v1, submitted2025-07-23 00:49:32UTC, 8pages",
+      "subquestions": [
+        "主问题",
+        "μ*定义与原题范围",
+        "历史与书目纠错",
+        "相邻猜想与旧不等式范围",
+        "按原文定义恢复的主命题"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "i为最小极大独立集大小；μ*为最小极大匹配边数即saturation number，不是机器生成的另一个组合上界。Conj3精确r>0且正文不要求connected，有限简单无向图约定；标签OpenSince2020只代表该稿叙述，与更早2019实际原稿冲突。r2显然成立的备注不等于任意r证明。AppendixA的conjecture_three另加connected/nonempty并sorry，只是示意题面；全称连通/任意图可用两参数分量加性桥接。Conj4另问μ*≤H，不能混题。References中的2022b DOI2353误指另一篇，原同题是2317；原稿标题不要省略成另一文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E47-A2",
+      "url": "https://arxiv.org/pdf/1909.09093",
+      "locator": "Definition of μ* printed p2; Theorem10 and its Hall proof p7; §4 Conjecture1/Question1 printed p10",
+      "version": "Yair Caro, Randy Davila, Ryan Pepper, New results relating independence and matchings, arXiv1909.09093v1, submitted2019-09-19 16:57:01UTC",
+      "subquestions": [
+        "主问题",
+        "历史与书目纠错",
+        "μ*定义与原题范围",
+        "相邻猜想与旧不等式范围",
+        "按原文定义恢复的主命题"
+      ],
+      "role": "最早可核实出处",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "note": "本轮最早实际读到的本题完整原句是2019 v1 Conjecture1：r正则、r>0、i≤μ*，i定义为最小极大独立集；p2明确μ*最小极大匹配。故first_published不能写2025，2025 OpenSince2020标签不覆盖这份已公开2019原文。2022正式版DMGT42(3):921–935的Conj15(TxGraffiti2019)在出版社缓存原段可核，正式PDF各入口502/503/403未取得；不冒称正式全文已读。已读p7 Hall短证明α≤μ，但这是最大独立/最大匹配，不能将μ改μ*后认作本题。p10仅得到较弱α≤2μ*并另提本猜想。正式DOI2317由原刊链接/书目交叉核，2025所写2353索引为Guowei Dai异题；未取得CrossrefJSON。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E47-A3",
+      "url": "https://arxiv.org/pdf/2104.01092",
+      "locator": "§3, Theorem9 and complete counting proof printed pp9–10; Corollaries10–12",
+      "version": "Caro–Davila–Michael A.Henning–Pepper, arXiv2104.01092v1, 2021-04-02 15:31:27UTC; bibliography assigns AJC84(2)(2022)258–274",
+      "subquestions": [
+        "主问题",
+        "相邻猜想与旧不等式范围",
+        "历史与书目纠错",
+        "反例的饱和数下界",
+        "50点明确反例及本轮独立有限核验",
+        "48点明确反例及本轮独立整数搜索"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "本轮完整核Thm9短双计数：令M最小极大匹配，A为端点、B未匹配且独立；δ(n−2|M|)≤e(A,B)≤2(Δ−1)|M|，得μ*=γe≥δn/[2(Δ+δ−1)]。r正则给rn/[2(2r−1)]，故50顶点三正则图下界15、48顶点三正则图下界14.4取整15，可与显式15边极大匹配组成饱和数证书。Cor11给μ*≥rμ/(2r−1)，不是i≤μ*，不把该一般下界闭合当前猜想。arXiv作者明确Henning而非Tauraso；正式AJC PDF restricted，本轮不声称正式版逐页核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E47-A4",
+      "url": "https://github.com/ChakshuGupta13/lab",
+      "locator": "Author repository README math table, gupta2026saturation entry; original2025 §2.4 separately confirms Conj4 statement",
+      "version": "Author root README accessed2026-11-27; arXiv2606.15761 directabs/html/pdf inaccessible this audit; no fixedpaper revision claimed",
+      "subquestions": [
+        "相邻猜想与旧不等式范围"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "note": "作者原README明确2606.15761是对2507.17780 Conj4 μ*≤H的反驳，不是Conj3 i≤μ*。本轮未取得该论文完整当前版本，索引有旧题The saturation number is not bounded by the harmonic index及新题Sharp bounds...，故不报告未经版本核实的当前精确改进常数/计算界。作者仓库该子目录抓取受robots限制，未静态审代码或运行；只作范围排除。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E47-R1",
+      "url": "https://github.com/djma/TxGraffiti-conjecture3-counterexample/blob/7810f30c5e9da0af9ece566bdffa5844d6b34f1b/counterexample_note.md",
+      "locator": "Complete 50-vertex construction and §§3–4; counterexample.json; independent audit 47_verify_order50.cpp / 47_order50_independent_result.json",
+      "version": "commit7810f30c5e9da0af9ece566bdffa5844d6b34f1b (2026-07-23); note blob60deb43d7bd000344caa8eb7fd911bd5764728ec; graph blob314e491018d84e79b091a8898351f15930b575a5; independently checked2026-11-27",
+      "subquestions": [
+        "主问题",
+        "按原文定义恢复的主命题",
+        "50点明确反例及本轮独立有限核验",
+        "正则性、连通性与参数边界",
+        "有限反例验收与搜索范围",
+        "形式化题面与否定命题源码",
+        "公开验证报告与实际复跑边界"
+      ],
+      "role": "反例",
+      "publication": "代码仓库",
+      "scope_match": "严格蕴含",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "claimant": "djma仓库；原稿自述OpenAI GPT-5.6 Sol/Codex产生，未声称人类同行评审完成",
+      "claim_date": "2026-07-23",
+      "note": "原始图50点75边、简单连通三正则，15条literal-pair边构成极大匹配；每条匹配边至多支配5条边，故μ*≥75/5=15且等号成立。手证把任意IDS精确归约到每个literal pair三选一（不选/负/正），clause顶点由是否已有已选邻点唯一决定；未选literal两端需各被clause支配。root另写C++仅从raw edges输入，完整遍历3^15=14,348,907选择，合法IDS939,975，最小16，≤15数量0；每个被接受的集合又用全图邻接复核独立及支配。给定16点见证亦通过。所以i=16>μ*=15，足以否定原文全称及connected/r≥3限制。源码SHA2560b67f6dc46a85e0ec533ab7c51aaa82a52a91e49bee1dd1caa4a84d582edf943；原graph SHA2569942c669906060093925b23388043f59617269c59f9a78d382cf1dc65f4015c3。g++14.2.0，命令python3 47_run_order50.py实际exit0；这是独立数学/有限枚举核验，不是Lean形式化复跑，未跑作者LRAT或声称#print axioms。仅检查这张图，不证明最小反例阶数或发现优先权。 公开路线同源E47-P2并入：原稿/原图完整取得，作者C++、MILP和LRAT报告非本轮重放；此处本轮结论只依独立raw-edge枚举，不给软件静态记录附形式化通过状态。academic与proof亦各自实际静态核了root算法的三态充要转化。 具体r3图及16/15精确值严格蕴含恢复后原全称的否定；不主张原题否定反推此指定图。",
+      "rerun": {
+        "commit": "7810f30c5e9da0af9ece566bdffa5844d6b34f1b",
+        "theorem": "此50点图μ*=15、i=16；独立有限整数检查，不是Lean定理",
+        "toolchain": "g++ (Debian14.2.0-19)14.2.0; C++20 -O2; no -DNDEBUG",
+        "command": "python3 47_run_order50.py; internally g++ -std=c++20 -O2 47_verify_order50.cpp -o 47_verify_order50, then feed raw edge list",
+        "log_url": "47_order50_independent_result.json",
+        "cache": "实际exit0，compile/run stderr空；非SAT/MILP/Lean内核执行"
+      },
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "implies",
+        "role": "counterexample",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E47-P1",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Arxiv/2507.17780/3.lean",
+      "locator": "tx_graffiti_conjecture_3；Domination.lean 的 IsNIndepDominatingSet/indepDominationNumber；Saturation.lean 的 saturationNumber；Matching.lean 的 IsEdgeMatching/IsMaximalEdgeMatching",
+      "version": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+      "subquestions": [
+        "主问题",
+        "恢复原定义后的 TxGraffiti 猜想 3",
+        "形式化题面与否定命题源码"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "核过关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "与恢复μ*=最小极大匹配边数后的∀有限简单图∀r≥1题句相同，无connected假设。indepDominationNumber是有限独立支配集大小的Nat.sInf，saturationNumber是极大边匹配大小的Nat.sInf。Matching真边/两两端点不交/不可插入新边定义已读，未借用旁支edgeDominationNumber替代。目标含sorry且category research open只代表该快照标记，不能据此认定数学仍开放。工具链v4.33.1，Mathlib0df444a360eaa60ab8c11dca51a86af692955474；本轮未build。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E47-P4",
+      "url": "https://github.com/danielpuri1901/erdos-lean-formalization/blob/4d006aa2add6f41604be1d143adfc6a645394621/Solution.lean",
+      "locator": "txgraffiti3_false; Tx.G_deg/G_sat/G_ind; Solution/TxDefs.lean, TxSound.lean, TxTop.lean",
+      "version": "accepted 4d006aa2add6f41604be1d143adfc6a645394621; source tree314b1f1ececf27e9a370a5b66ba50444ff9a74e7",
+      "subquestions": [
+        "恢复原定义后的 TxGraffiti 猜想 3",
+        "形式化题面与否定命题源码",
+        "公开验证报告与实际复跑边界"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Daniel Puri; AI-assisted erdos-lean-formalization",
+      "rerun": {
+        "commit": "4d006aa2add6f41604be1d143adfc6a645394621",
+        "theorem": "txgraffiti3_false : ¬ (type_of% @Arxiv.«2507.17780».tx_graffiti_conjecture_3)",
+        "toolchain": "作者锁定Lean4 v4.33.1；formal-conjectures df3f12d7bd06feb3f71ae37abae0ca7cb798d9b1；Mathlib0df444a360eaa60ab8c11dca51a86af692955474",
+        "command": "本轮未运行Lean/lake/Comparator；静态读取主证明、定义、checker soundness和top组合。",
+        "axioms": "第三方配置仅允许propext、Quot.sound、Classical.choice；本轮未产生#print axioms输出。"
+      },
+      "note": "Solution主定理是真实证明体，无sorry；Challenge的sorry是冻结题面，不能混成主证明缺口。构造Fin48三正则图，证明μ*≤15与i≥16；G_ind用显式16点IDS确立Nat.sInf取值集合非空，排除了空集sInf=0漏洞。TxSound逐预算证明分支checker完备排除，TxTop组合36根状态；12个大chunk正文及所有传递依赖未逐一取读，未作完整形式化审计。其依赖旧FC的目标3.lean以及Domination/Saturation/Matching三定义文件，合计四文件Gitblob与当前ea8完全一致；只声称这些关键文件同一，不声称当前FC整个环境已接受。 根另实际读取固定Solution/TxDefs并执行纯数据对照：48个cmL闭邻域位掩码与已独立核过的固定48点raw graph完全相同；Puri使用的另一16点见证（0至28所有偶数及34）亦实际核独立且支配。记录47_formal_graph_alignment.json，TxDefs SHA256fd0c0d7edc57ad34ed205309e26de0ced30ce71fe88bd1ab1e6159ad46159521。此对象对齐不是本轮Lean运行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E47-P5",
+      "url": "https://github.com/danielpuri1901/erdos-lean-checker/actions/runs/37220457904",
+      "locator": "run metadata; verify job111489564010; source commit status; frozen challenge/config; verify.yml",
+      "version": "run2026-10-04；checker640802ded50420b9fcaea44590889a9a6e6553bc；status2026-10-05",
+      "subquestions": [
+        "恢复原定义后的 TxGraffiti 猜想 3",
+        "公开验证报告与实际复跑边界"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "danielpuri1901/erdos-lean-checker",
+      "rerun": {
+        "commit": "日志实际checkout3298e2cb4d674b6c61d8465177adda8dcc4205fc；accepted4d006aa2add6f41604be1d143adfc6a645394621；两者tree同为314b1f1ececf27e9a370a5b66ba50444ff9a74e7",
+        "theorem": "txgraffiti3_false",
+        "toolchain": "Lean4v4.33.1；Comparator3927ad383f208ae977c340a91c48ac9b497d2097；landrun5ed4a3db3a4a",
+        "command": "第三方workflow先覆盖Challenge/构建锁并清除agent .lake，再lake build Challenge、Comparator；本轮仅读取源码、API状态及原job日志。",
+        "log_url": "https://github.com/danielpuri1901/erdos-lean-checker/actions/runs/37220457904",
+        "cache": "第三方run实际执行lake exe cache get，并命中Comparator固定3927ad3工具链缓存；agent .lake在冻结步骤被删除后取依赖cache。不是本轮缓存或构建。",
+        "axioms": "配置允许propext/Quot.sound/Classical.choice；enable_nanoda=false。原日志AxiomCheck步骤执行并成功，但#guard_msgs抑制预期消息，未出现裸#print axioms列表；源码guard期望三公理。"
+      },
+      "note": "实际完整job日志明确checkout3298e2cb4d674b6c61d8465177adda8dcc4205fc，构建12个TxChunk、TxSound、TxTop与Solution后输出Lean default kernel accepts the solution及Your solution is okay!，并向该SHA写入success。accepted4d006状态是Same file tree as3298…的传播；两个完整commit API核实同tree。run.head_sha640802…是checker提交，非proof提交。verify各步骤success，负例job为skipped；通用fetch日志接口先失败，随后专用接口成功，旧缺口已消除。本轮只读原运行日志，没有Lean/Comparator复跑，没有Nanoda独立kernel。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E47-P6",
+      "url": "https://aixiv.online/html/2610.03026v1",
+      "locator": "Table1 txgraffiti3 negation48；trusted referee design；early logging false-positive fix",
+      "version": "v1, 2026-10-28",
+      "subquestions": [
+        "恢复原定义后的 TxGraffiti 猜想 3",
+        "公开验证报告与实际复跑边界"
+      ],
+      "role": "形式化",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Daniel Puri, Untrusted Prover, Trusted Referee",
+      "note": "实际HTML正文读取，报告28条外部checker接受的Lean证明，其中本题是48点反例否定，非证明原不等式为真。其对AI模型、验证器边界、早期日志错误已修复的叙述属于作者报告；具体目标/依赖/当前accepted版本已另以固定源核对，不能用表格accepted单独替代本轮完整数学验证或正式同行评审。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E47-M1",
+      "url": "https://github.com/ipitchford/txgraffiti-order48-successor/blob/46a53247cedfcba35b0e2b59474d0099eb962b36/counterexample.json",
+      "locator": "Fixed counterexample.json, MANUSCRIPT.md and EVIDENCE_SUPPLEMENT.md; independent 47_independent_check.py/json",
+      "version": "order48 commit46a53247cedfcba35b0e2b59474d0099eb962b36; graph Gitblobecb4d64d3499163bead71e2cef33d53f124d7f37 / SHA256a231f7aaa6c437dc977eaa6603f3dae40a81fad4065cad6cac22a45174ff65ac; independent check2026-11-27",
+      "subquestions": [
+        "主问题",
+        "按原文定义恢复的主命题",
+        "48点明确反例及本轮独立整数搜索",
+        "正则性、连通性与参数边界",
+        "有限反例验收与搜索范围",
+        "形式化题面与否定命题源码",
+        "公开验证报告与实际复跑边界"
+      ],
+      "role": "反例",
+      "publication": "代码仓库",
+      "scope_match": "严格蕴含",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "commit": "46a53247cedfcba35b0e2b59474d0099eb962b36",
+        "theorem": "此48点图μ*=15、i=16；不是证明助理定理",
+        "command": "python 47_independent_check.py",
+        "log_url": "47_independent_check.json",
+        "cache": "独立整数DFS；未导入作者checker/tree/generator；实际exit0；scriptSHA256d7600b54fdfac1dbec868cea6336031fae800e40f64eb783dc1c7eccff8cbf32"
+      },
+      "note": "固定48点72边简单连通三正则图；15条pair边{0,1},{2,3},…,{28,29}极大，未匹配30…47独立。每匹配边至多支配5边，72/5取整给μ*≥15，故μ*=15。16点独立支配见证{0,5,8,11,19,21,27,28,33,35,36,38,39,41,45,46}实际核。独立整数DFS状态(D=N[S],b)，新点必须在V\\D；取未支配w，遍历所有x∈N[w]\\D，每步D←D∪N[x],b减1，缓存(D,b)不丢解；未支配点>4b是安全剪枝。完整排除b初值15的全部扩张，2696状态/2081分支状态/4479分支边/1784缓存命中，返回False，故i≥16并取等号。root逐行核该DFS，proof另核root50转化，两个指定图均独立检查但不宣称它们同构。首次本地JSON多LF后已修复并重新实际运行，最终hash严格匹配。作者证书树仅静态审语义；没有本轮Lean、作者tree重放或全图阶数枚举。为便于回执独立恢复，顶点0…47完整边表：[[0,1],[0,31],[0,40],[1,32],[1,39],[2,3],[2,25],[2,46],[3,36],[3,44],[4,5],[4,38],[4,42],[5,6],[5,43],[6,7],[6,42],[7,35],[7,38],[8,9],[8,13],[8,32],[9,35],[9,38],[10,11],[10,43],[10,47],[11,34],[11,37],[12,13],[12,32],[12,35],[13,39],[14,15],[14,44],[14,46],[15,33],[15,37],[16,17],[16,40],[16,41],[17,31],[17,36],[18,19],[18,41],[18,45],[19,40],[19,44],[20,21],[20,31],[20,39],[21,34],[21,47],[22,23],[22,36],[22,41],[23,30],[23,45],[24,25],[24,30],[24,33],[25,45],[26,27],[26,37],[26,46],[27,30],[27,34],[28,29],[28,42],[28,43],[29,33],[29,47]] 公开路线同源E47-P3并入：原图4302字节、原手稿、stdlib检查器及27643字节压缩树取得；匿名未审稿candidate发布2026-08-24，未声称原release已独立复跑/形式化。本轮未执行作者tree；后续Puri形式化单列。 具体r3图及16/15精确值严格蕴含恢复后原全称的否定；不主张原题否定反推此指定图。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "implies",
+        "role": "counterexample",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E47-M2",
+      "url": "https://arxiv.org/html/2507.17780v1",
+      "locator": "§2.3定义/附录；本轮47_proof_audit.json independent_boundary_proofs和counterexample_acceptance",
+      "version": "arXiv2507.17780v1；边界手证与验收语义核对2026-11-27",
+      "subquestions": [
+        "μ*定义与原题范围",
+        "正则性、连通性与参数边界",
+        "有限反例验收与搜索范围"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "note": "本轮自含边界证明：r1图为K2不交并，两参数均n/2；r2图为C_m不交并，i(C_m)=ceil(m/3)且L(C_m)≅C_m给μ*相等，总值须按分量相加，2C4给4而非ceil(8/3)=3。K_s(s≥2)有i1、μ*=floor(s/2)。零顶点时两参数0，非空r0无边图i=n、μ*=0；P4非正则，i2>μ*1不能当原题反例。两个参数分量可加，故正文与连通附录全称可互推。仅给一个16点IDS只证i≤16；仅给15条matching而未核极大也不够；需明确i≥16及μ*≤15。本轮未运行geng或所有n≤12图枚举；旧geng旗标未核，不补造正确调用。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000304",
+      "other_card_rev": "c3627ccb35f93a3c",
+      "relation": "仅相似",
+      "reason": "304讨论任意无孤立点图的偶最大度D下(D+2)^2 i(G)≤(D^2+4)n；47讨论r>0正则图的i(G)与最小极大匹配μ*。对象域、右端参数及全称条件不同。共同独立支配数不足以判同题，47的cubic反例也不在304偶最大度主域。",
+      "positions": {
+        "self": "47_task.json：题面、形式化表述、acceptance；原文2507.17780§2.3用于核μ*定义",
+        "other": "固定commit73290369…的QX-P-000304.meta.json card_rev/acceptance及QX-P-000304.text.md题面/形式化表述"
+      },
+      "note": "只核双方正文关系；304另在本包后段，未开始其查新或给状态判断。47为较小编号，本pair由本回执负责。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-000236",
+      "other_card_rev": "fe7963b2be652d25",
+      "relation": "仅相似",
+      "reason": "236的sat(Q_n,C_2k)是给定宿主中不含指定偶圈、任加缺边产生该圈的饱和生成子图最小边数；47的saturation number是最小极大匹配。两种不同定义同译饱和数，不能据名称或极值风格合并。",
+      "positions": {
+        "self": "47_task.json：题面及μ*定义缺口；原文2507.17780§2.3/2.4明确定义",
+        "other": "固定commit73290369…的QX-P-000236.meta.json card_rev/acceptance及QX-P-000236.text.md题面、人话版定义"
+      },
+      "note": "未对236主问题开展进展检索；关系以所读实际正文为准。47为较小编号，本pair由本回执负责。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "修复公式",
+      "field": "title、题面、形式化表述、μ*定义及acceptance",
+      "old": "μ*称饱和数上界参数/机器图不变量组合，定义待核。",
+      "new": "μ*(G)=最小极大匹配的边数（饱和数），i(G)=最小极大独立集大小；原主式在有限简单无向r正则图、r≥1上为i≤μ*。恢复定义后的该全称已被连通三正则反例否定。",
+      "reason": "不是另选一个上界参数使不等式成立；核心定义/正式域或验收修订须接收端新card_rev，本回执保原rev。",
+      "evidence_ids": [
+        "E47-A1",
+        "E47-A2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "card_action": "fix_formula"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "first_published、sources、原文摘录",
+      "new": "至迟2019-09-19：Caro–Davila–Pepper arXiv1909.09093v1 p10 Conj1；2022 DMGT Conj15；2025 Davila–Brimkov–Pepper §2.3 Conj3是重述，OpenSince2020标签须与2019原段注明冲突。",
+      "reason": "已取得2019实际原题全文，不能继续以2025为最早发表。",
+      "evidence_ids": [
+        "E47-A1",
+        "E47-A2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "参考文献作者、DOI及相邻结果",
+      "new": "2104.01092的四作者为Caro/Davila/Henning/Pepper；同题原DMGT文章只有Caro/Davila/Pepper，DOI2317。2025引文2353误指异题。Gupta2606.15761属于Conj4。",
+      "reason": "作者/文献混并与同号猜想误迁移会把无关结论当本题状态；正式PDF未取得的层级如实注明。",
+      "evidence_ids": [
+        "E47-A1",
+        "E47-A2",
+        "E47-A3",
+        "E47-A4"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "track、informal_status、novelty、相关进展与声称解决",
+      "old": "open/confirmed、无声称解决、仅相邻部分结果。",
+      "new": "现卡缺定义先纠正；按原文恢复的i≤μ*全称已被具体连通三正则图反驳，50点μ*=15<i=16已有本轮独立完整有限复算。列明固定源与核验范围，取消旧无声明表述。",
+      "reason": "单个有效r3反例足以否定全称；不需要穷举所有阶数，也不以代码仓库存在代替实际验证。旧novelty的rev dc4ec0848788a4fa与本回执当前rev不同。",
+      "evidence_ids": [
+        "E47-R1",
+        "E47-A1",
+        "E47-A2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "ai_claims、证据与验收记录",
+      "new": "保留50/48等完整反例来源及各自核验层级；把本轮独立整数图枚举、作者SAT/LRAT报告、第三方/aiXiv形式化报告和本轮未执行Lean分别记录。",
+      "reason": "不能把C++数学核验表述为本轮Lean通过，也不把作者报告都归并成独立认证。",
+      "evidence_ids": [
+        "E47-R1",
+        "E47-M1",
+        "E47-P4",
+        "E47-P5",
+        "E47-P6"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "边界与约定、难度依据及验证建议",
+      "new": "区分极大与最大；r2按圈分量相加，Kn给明确μ*=floor(n/2)；r0非空图域外而零顶点按约定单列。反例需极大匹配上界与IDS严格下界，有限小图未命中不证全称。",
+      "reason": "原n≤12/geng描述只是未执行建议；本轮不声称跑过geng，不猜替代旗标。仅解释性澄清不改变原数学域。",
+      "evidence_ids": [
+        "E47-M2"
+      ],
+      "small_case_check": "r1 K2不交并；r2两C4给4而非3；Ks值1/floor(s/2)；非正则P4给2/1；空顶点0/0。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "formal_status、ai_claims及源码版本",
+      "new": "FC当前快照只有题面；另记录Puri fixed accepted源码对原全称的否定及checker状态/同tree传播，形式化状态他人声称已验证。本轮48/50独立整数核验另记，不叫Lean通过。",
+      "reason": "旧open标签与新数学/形式化资料必须按时间版本拆开；源码四文件同一不等于整个当前FC依赖环境通过。",
+      "evidence_ids": [
+        "E47-P1",
+        "E47-P4",
+        "E47-P5",
+        "E47-P6",
+        "E47-R1",
+        "E47-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "现卡μ*缺定义且误释，须写回正式定义；恢复原义已有独立核实的明确反例，数学证据与接收端版本/结案手续分离。",
+      "next_step": "接收端补定义/域并生成新card_rev后进行结案二审，引用本回执当前rev及固定48/50对象；不把数学结论退回无声明，也不在本轮暗改卡片。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "原job逐行日志已经取得并核到实际源码/构建/内核接受；本轮仍未完整取读12个大chunk与全部传递依赖，没有自己运行Lean/Comparator，Nanoda在作者配置中关闭。",
+      "next_step": "若需升级到群星独立形式化复跑，使用accepted4d006/实际run同tree3298及冻结环境另行重放；当前保持他人声称已形式化验证，已消除日志访问缺口，不影响另外独立整数验证的有限反例。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "2019原稿与2025正文已实际核；2022 DMGT/AJC正式PDF访问失败，Gupta2606.15761当前原稿不可访问，其Conj4范围仅作者README可核。",
+      "next_step": "需要逐字正式版本或引用Gupta具体新常数时再补固定全文；本题历史用已读2019原稿，不以这些访问缺口重开已明确的反例。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮只独立核48/50两指定图，未穷举全部更小阶图、其他113候选或全部同类包；没有最小阶/唯一性/发现优先权证明。",
+      "next_step": "结论仅写存在48阶反例且两个对象各自已核；如另有最小性/优先权任务再开展专门审查，当前不扩张有限核验范围。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "0a30c22b48b9d994",
+      "codes": {}
+    }
+  ]
+}

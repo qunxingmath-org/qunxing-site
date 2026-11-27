@@ -1,0 +1,636 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001187",
+  "card_rev": "8ecc2808534ccc4b",
+  "summary": {
+    "math_status": {
+      "value": "no_evidence_in_scope",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-09"
+      ],
+      "parts": [
+        {
+          "subquestion": "题卡边界算例与解释",
+          "value": "statement_error",
+          "note": "错误限于原卡的边界手算及难度解释：f(10)=17而非26，且f(26)=45而非66；正确前缀6,10,17,41,101,251,626,1095,2736,2995。通用停机问题不可判定不推出该固定机器已被证明不可判定。未据此关闭主问题。复现见附件checks/QX-R3-09_前5题_小例核验_v1.py。"
+        },
+        {
+          "subquestion": "有限范围计算",
+          "value": "partial",
+          "note": "Seiji仓库报告对0≤n≤100000000检查未命中2的幂，且说明旧二进制与修订代码的终点检查差别；这是作者报告，本轮未复算该范围。本轮独立Python精确整数检查仅0≤n≤1000，无命中，不能外推无限轨道。"
+        },
+        {
+          "subquestion": "同一机器的宏观规则与停机等价性",
+          "value": "partial",
+          "note": "cryptids固定提交的文件给出is_valid_acceleration及isHalt_iff_highLevel_acceleration。它把机器停机归约到仍待解决的迭代停机，并非¬IsHalt证明。本轮只静态读代码；未锁依赖构建、未运行#print axioms；其highLevelNext与题卡f的逐式映射未在本轮形式验证。"
+        },
+        {
+          "subquestion": "原卡指定的FC P6形式化出处",
+          "value": "undeterminable",
+          "note": "固定提交下的BeaverMathOlympiad.lean主体至L250，列P1、P2、P3、P4、P5、P8而无P6；仓库代码搜索Space Needle未命中。不能用本文件的其他题或官网总计数为P6背书；这不证明其他仓库不存在P6形式化。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/google-deepmind/cryptids/blob/d1d231afe3a5f6310ac9f956d5687b5a45d7a13d/BusyBeaver/BB6/M_1RB1LA_1LC0RE_1LF1LD_0RB0LA_1RC1RE_HHH0LD.lean"
+      ],
+      "note": "只覆盖：仅子问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "按原定义b=(2a+1)2^k、f(b)=b+k+3a，从6出发，要求所有n≥0均不等于任何2^m（m≥0）。BMO现页仍列P6于未解决区；本轮取得的有限计算与机器加速等价性均不覆盖全称断言。该结论是限定检索范围的无确证记录，不是穷尽性开放证明。",
+      "evidence_ids": [
+        "SN-E1",
+        "SN-E5"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "题卡边界算例与解释",
+      "math_status": "题面有误",
+      "scope_note": "错误限于原卡的边界手算及难度解释：f(10)=17而非26，且f(26)=45而非66；正确前缀6,10,17,41,101,251,626,1095,2736,2995。通用停机问题不可判定不推出该固定机器已被证明不可判定。未据此关闭主问题。复现见附件checks/QX-R3-09_前5题_小例核验_v1.py。",
+      "evidence_ids": [
+        "SN-E1",
+        "SN-E5"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "有限范围计算",
+      "math_status": "仅特例",
+      "scope_note": "Seiji仓库报告对0≤n≤100000000检查未命中2的幂，且说明旧二进制与修订代码的终点检查差别；这是作者报告，本轮未复算该范围。本轮独立Python精确整数检查仅0≤n≤1000，无命中，不能外推无限轨道。",
+      "evidence_ids": [
+        "SN-E2"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "同一机器的宏观规则与停机等价性",
+      "math_status": "部分进展",
+      "scope_note": "cryptids固定提交的文件给出is_valid_acceleration及isHalt_iff_highLevel_acceleration。它把机器停机归约到仍待解决的迭代停机，并非¬IsHalt证明。本轮只静态读代码；未锁依赖构建、未运行#print axioms；其highLevelNext与题卡f的逐式映射未在本轮形式验证。",
+      "evidence_ids": [
+        "SN-E4"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "原卡指定的FC P6形式化出处",
+      "math_status": "现有材料无法判定",
+      "scope_note": "固定提交下的BeaverMathOlympiad.lean主体至L250，列P1、P2、P3、P4、P5、P8而无P6；仓库代码搜索Space Needle未命中。不能用本文件的其他题或官网总计数为P6背书；这不证明其他仓库不存在P6形式化。",
+      "evidence_ids": [
+        "SN-E3"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "math_status": "undeterminable"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "R09-ROOT-W01",
+      "route": "原题与出处",
+      "site": "BusyBeaverWiki；web.open",
+      "query": "https://wiki.bbchallenge.org/wiki/Beaver_Math_Olympiad",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://wiki.bbchallenge.org/wiki/Beaver_Math_Olympiad",
+      "locator": "Unsolved problems §6；oldid=11335",
+      "shared_with": [
+        "QX-P-000755"
+      ],
+      "match_reason": "共用打开请求中本题匹配P6的起点6和f定义。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R09-ROOT-W01",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub；web.open",
+      "query": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Other/BeaverMathOlympiad.lean",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/Other/BeaverMathOlympiad.lean",
+      "shared_with": [
+        "QX-P-000755"
+      ],
+      "match_reason": "原卡指定同一BMO文件；正文实际没有P6。",
+      "note": "之后使用GitHub连接器取得固定提交全文。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R09-ROOT-W02",
+      "route": "学术",
+      "site": "网页搜索system1，recency=365",
+      "query": "\"Space Needle\" \"Beaver\" proof solved",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "shared_with": [
+        "QX-P-000755"
+      ],
+      "match_reason": "检到BMO、100M计算和cryptids资料；未在此搜索结果取得永不停机证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R09-ROOT-W02",
+      "route": "代码、公开 AI 和社区",
+      "site": "网页搜索system1，recency=365",
+      "query": "\"Beaver Math Olympiad\" \"6\" solution",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "shared_with": [
+        "QX-P-000755"
+      ],
+      "match_reason": "结果中P3/P4等其他BMO题须与P6区分。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R09-ROOT-W03",
+      "route": "原题与出处",
+      "site": "BusyBeaverWiki；web.open",
+      "query": "https://wiki.bbchallenge.org/wiki/Space_Needle",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://wiki.bbchallenge.org/w/index.php?title=Space_Needle&oldid=8870",
+      "locator": "Higher Level Rules；Trajectory",
+      "shared_with": [
+        "QX-P-000755"
+      ],
+      "match_reason": "机器转移串和f的定义均匹配。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R09-ROOT-W05",
+      "route": "学术",
+      "site": "网页搜索system2",
+      "query": "site:arxiv.org \"Space Needle\" \"beaver\"",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "shared_with": [
+        "QX-P-000755"
+      ],
+      "match_reason": "本次结果没有可核的同题学术全文；出现的Space Needle建筑/密码谜题不作为数学证据。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "R09-ROOT-GH01",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub连接器fetch_file",
+      "query": "google-deepmind/formal-conjectures:FormalConjectures/Other/BeaverMathOlympiad.lean@9097e2f90e66d2f6244209cb1c07f7120d17ec53",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/Other/BeaverMathOlympiad.lean",
+      "note": "固定代码全文已取得；P6不存在于此文件，无P6构建可复跑。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R09-ROOT-GH02",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub连接器fetch_file",
+      "query": "oohzaim1-afk/space-needle-100M:README.md@96e50a6ad829fa43e4ecfdf881b6679e599ef0b4",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/oohzaim1-afk/space-needle-100M/blob/96e50a6ad829fa43e4ecfdf881b6679e599ef0b4/README.md",
+      "locator": "Result；Indexing conventions；What this does NOT show",
+      "note": "先读main后锁提交；两次README blob均3ceef8f100f4eb26d5a946d51460ad01e2775efb，内容相同。仅阅读作者报告，不作100M复跑。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R09-ROOT-W07",
+      "route": "原题与出处",
+      "site": "作者主页；web.click",
+      "query": "BusyBeaverWiki Space_Needle 的 All About Space Needle 链接",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://katelyndoucette.com/articles/all-about-space-needle",
+      "locator": "Basic Rules：f(b)与起点6；2025-09-01",
+      "shared_with": [
+        "QX-P-000755"
+      ],
+      "match_reason": "作者给出的数学重述与主题相同。",
+      "note": "阅读重述与部分推导，未逐行验证整篇归约证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R09-ROOT-GH03",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub连接器search",
+      "query": "Space Needle；repository_name=google-deepmind/formal-conjectures",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "只指此仓库代码检索结果，不能推出全网不存在形式化。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "R09-ROOT-GH04",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub连接器fetch_file",
+      "query": "google-deepmind/cryptids:BusyBeaver/BB6/M_1RB1LA_1LC0RE_1LF1LD_0RB0LA_1RC1RE_HHH0LD.lean@d1d231afe3a5f6310ac9f956d5687b5a45d7a13d",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/cryptids/blob/d1d231afe3a5f6310ac9f956d5687b5a45d7a13d/BusyBeaver/BB6/M_1RB1LA_1LC0RE_1LF1LD_0RB0LA_1RC1RE_HHH0LD.lean",
+      "locator": "机器转移串；theorem is_valid_acceleration；isHalt_iff_highLevel_acceleration",
+      "note": "同一机器，证明对象是加速/等价性子问。已读取文件全文并静态定位声明，未编译。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R09-ROOT-W12",
+      "route": "学术",
+      "site": "arXiv；web.open",
+      "query": "https://arxiv.org/html/2610.22603v1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/html/2610.22603v1",
+      "note": "工具返回DisabledError；改取v2成功。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R09-ROOT-W13",
+      "route": "学术",
+      "site": "arXiv；web.open",
+      "query": "https://arxiv.org/html/2610.22603v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2610.22603v2",
+      "locator": "Abstract；Table 1及说明",
+      "shared_with": [
+        "QX-P-000755"
+      ],
+      "match_reason": "报告研究BB(6)规则加速，表中相似机器和P5/P8不是P6永不停机证明。",
+      "note": "全文可达；已读摘要与表1，未通读全部附录。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R09-ROOT-LOCAL01",
+      "route": "库内查重",
+      "site": "附件固定快照全库查重简索引；Python正则",
+      "query": "Space.?Needle|BMO.{0,15}(6|Six)|1RB1LA_1LC0RE|Beaver|河狸|海狸",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "匹配本卡及QX-P-000051；后者来自Beaver宽词。索引筛选不等于全文关系核对或查重完成。",
+      "shared_with": [
+        "QX-P-000755"
+      ],
+      "match_reason": "同次本地脚本分别用各题正则扫描2469条固定版全库简索引；本记录只列本题实际pattern及匹配。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "SN-E1",
+      "url": "https://wiki.bbchallenge.org/w/index.php?title=Beaver_Math_Olympiad&oldid=11335",
+      "locator": "Unsolved problems §6 Space Needle",
+      "version": "oldid=11335；页脚最后修改2026-11-21；本轮读取2026-11-26",
+      "subquestions": [
+        "主问题",
+        "题卡边界算例与解释"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "社区帖子",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "核对f定义、起点6和存在性/否定命题的对应；开放栏目不证明数学上的未解决性。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "SN-E2",
+      "url": "https://github.com/oohzaim1-afk/space-needle-100M/blob/96e50a6ad829fa43e4ecfdf881b6679e599ef0b4/README.md",
+      "locator": "Result；Verification performed；Indexing conventions；What this does NOT show",
+      "version": "commit 96e50a6ad829fa43e4ecfdf881b6679e599ef0b4（2026-09-16）；README blob 3ceef8f100f4eb26d5a946d51460ad01e2775efb",
+      "subquestions": [
+        "有限范围计算"
+      ],
+      "scope_match": "特例",
+      "role": "进展",
+      "publication": "项目报告",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Seiji",
+      "claim_date": "2026-09",
+      "note": "作者报告有限轨道与多实现交叉检查；本轮未复算100M、未核全部哈希。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "SN-E3",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9097e2f90e66d2f6244209cb1c07f7120d17ec53/FormalConjectures/Other/BeaverMathOlympiad.lean",
+      "locator": "文件主体至L250；命题列表P1/P2/P3/P4/P5/P8，文件末尾end BeaverMathOlympiad",
+      "version": "commit 9097e2f90e66d2f6244209cb1c07f7120d17ec53；blob 0739648221c4b16daff836cad781aa7e5e6815d3",
+      "subquestions": [
+        "原卡指定的FC P6形式化出处"
+      ],
+      "scope_match": "同源不同问",
+      "role": "重述",
+      "publication": "代码仓库",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "这里指此指定文件未检到P6，不把其他BMO定理及sorry当作P6证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "SN-E4",
+      "url": "https://github.com/google-deepmind/cryptids/blob/d1d231afe3a5f6310ac9f956d5687b5a45d7a13d/BusyBeaver/BB6/M_1RB1LA_1LC0RE_1LF1LD_0RB0LA_1RC1RE_HHH0LD.lean",
+      "locator": "L368 is_closed_pattern_set；L415 is_valid_acceleration；L599–615高层加速及停机等价性",
+      "version": "commit d1d231afe3a5f6310ac9f956d5687b5a45d7a13d（2026-11-26）；blob 5c9c7f08fc15fb7fcf94613ff6cb8a3991c76a20",
+      "subquestions": [
+        "同一机器的宏观规则与停机等价性"
+      ],
+      "scope_match": "仅子问",
+      "role": "形式化",
+      "publication": "代码仓库",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "google-deepmind/cryptids contributors",
+      "note": "目标转移串严格一致；声明是IsHalt↔CollatzHalts，不是¬IsHalt。本轮未独立核Lean依赖、公理和构建。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "SN-E5",
+      "url": "https://katelyndoucette.com/articles/all-about-space-needle",
+      "locator": "Basic Rules：重述f(b)及起点6",
+      "version": "作者页面标注2025-09-01；读取2026-11-26",
+      "subquestions": [
+        "主问题",
+        "题卡边界算例与解释"
+      ],
+      "scope_match": "原题等价",
+      "role": "最早可核实出处",
+      "publication": "作者主页",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "note": "这里只将其作为本轮可直接读的早期公开重述；发现机器的Discord更早消息未进入或验证，不断言绝对最早。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "author_page"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000051",
+      "other_card_rev": "6d87a81eef104126",
+      "relation": "待核",
+      "reason": "宽词扫描命中同BMO系列的P1索引；未取得并核对该卡固定版正文，且责任卡000051不在本包，不作同题或不同题结论。",
+      "positions": {
+        "self": "题面与人话版：f(b)=b+k+3a，起点6",
+        "other": "全库查重简索引第49行；正文未读取"
+      },
+      "note": "pair_id=QX-P-000051__QX-P-001187；负责人QX-P-000051；仅转交候选，无合并建议。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "修正人话版",
+      "field": "边界与约定的初段手算基准",
+      "old": "10=5·2^1→f=10+1+15=26；26=13·2^1→f=26+1+39=66",
+      "new": "10=(2·2+1)·2^1，a=2,k=1，f(10)=17；17=(2·8+1)·2^0，f(17)=41。若单独代入26，则a=6,k=1，f(26)=45。",
+      "reason": "原文把奇数部分误当作a，直接算错；主定义未变。",
+      "evidence_ids": [
+        "SN-E1",
+        "SN-E5"
+      ],
+      "small_case_check": "独立运行checks/QX-R3-09_前5题_小例核验_v1.py：前缀6→10→17→41；0..1000无2的幂。仅纠正算例，不把有限检查作全称证明。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补量词",
+      "field": "形式化表述",
+      "old": "∀n≥0: f^n(6) ≠ 2^m（f 如上定义）",
+      "new": "令f:Z_{>0}→Z_{>0}，b唯一写为(2a+1)2^k，a,k∈Z_{≥0}，f(b)=b+k+3a。判断是否∀n,m∈Z_{≥0}，f^n(6)≠2^m。",
+      "reason": "补出m的量词、整数域与函数定义的就地引用；按规则修改正式题面后应新card_rev并重查受影响路线，本回传仍保留原rev。",
+      "evidence_ids": [
+        "SN-E1"
+      ],
+      "small_case_check": "n=0给6≠2^m；b>0唯一分解；f(b)≥b故轨道≥6，m=0给1不可能命中，与只取m≥1对本轨道等价。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "人话版中的计算不可判定难度",
+      "old": "等价于特定6状态图灵机不停机，因此天然带有计算不可判定的难度",
+      "new": "与一台固定机器的停机问题等价；通用停机问题不可判定，并不说明此固定实例已经被证明不可判定或独立。",
+      "reason": "纠正从一般不可判定到单个实例的逻辑跳跃。",
+      "evidence_ids": [
+        "SN-E1"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展及formal出处",
+      "old": "长程计算无触及；FC BeaverMathOlympiad.lean形式化",
+      "new": "补Seiji有限计算的固定提交与边界；指定FC文件未见P6。另列cryptids同机器加速/停机等价性代码，标本轮静态检查未复跑；永不停机主问题不结案。",
+      "reason": "分开计算范围、形式化对象与主猜想。",
+      "evidence_ids": [
+        "SN-E2",
+        "SN-E3",
+        "SN-E4"
+      ],
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "100M计算只阅读作者报告；Lean没有独立构建与#print axioms。",
+      "next_step": "需要验证轨道时固定仓库提交与toolchain，复算作者检查点并独立构建目标模块、保存公理清单；随后证明highLevelNext到题卡f的范围对应。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "学术检索未穷尽；2610.22603v2只核摘要与表1；未独立核完整停机归约。",
+      "next_step": "沿作者页面与论文引用继续核查同一转移串的新声明、撤回和勘误；出现全称结论后单独二审。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "QX-P-000051责任卡不在本包，宽词扫描也不构成全库查重完成。",
+      "next_step": "将pair_id=QX-P-000051__QX-P-001187交责任包核固定版双方正文；未完成前保留待核。",
+      "batch_id": "QX-R3-09",
+      "card_rev": "8ecc2808534ccc4b",
+      "codes": {}
+    }
+  ]
+}

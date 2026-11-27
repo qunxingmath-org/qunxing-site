@@ -1,0 +1,2419 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000656",
+  "card_rev": "4c32a5759e637cbc",
+  "summary": {
+    "math_status": {
+      "value": "statement_error",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-04"
+      ],
+      "parts": [
+        {
+          "subquestion": "原始问题：超多项式下界",
+          "value": "no_evidence_in_scope",
+          "note": "按建议的标准强口径，对每个固定p，须对每个d>0证明f_p(n)/n^d→∞。已核Ω(n²)，它只排除某些较低次多项式上界，不能排除所有多项式。原文未内联极限定义，若后续只得“不存在全局多项式上界”或limsup结论，还须核与采用口径的关系。本轮未取得此子问完整证明或否定证明。"
+        },
+        {
+          "subquestion": "原始问题：亚指数上界",
+          "value": "no_evidence_in_scope",
+          "note": "按建议的标准强口径，对每个固定p，须证明log f_p(n)/n→0，等价于对每个c>1有f_p(n)/c^n→0。现有Sylow容器仅给O(p^n)指数上界，不能满足所求。Glasby无证明的精细花环积构造另有反例，不能补此缺口；原问题未因此被否定。"
+        },
+        {
+          "subquestion": "一般有限存在性及指数上界",
+          "value": "partial",
+          "note": "任一p^n阶群由正则作用嵌入S_(p^n)，其像落在某个Sylow p子群，借共轭移入预先固定的同一个Sylow P。因此f_p(n)≤v_p((p^n)!)=Σ_{j=1}^n p^(n−j)=(p^n−1)/(p−1)。证明保持统一宿主∃P∀G；这是指数上界，尚不证明log f_p(n)/n→0。主审、出处和查重支线均独立核对，未执行GAP。"
+        },
+        {
+          "subquestion": "一般二次下界的独立核对",
+          "value": "partial",
+          "note": "令a_p(n)为p^n阶群同构类数；若U阶p^m，每个p^n子群至多n生成，可补单位成n元组，故a_p(n)≤p^(mn)。本轮重建标准class2计数：d+r=n，V=F_p^d，W=F_p^r；任选w_ij∈W(i<j)，设c(v,v′)=Σ_(i<j)v_i v′_j w_ij，并以(v,w)(v′,w′)=(v+v′,w+w′+c(v,v′))赋V×W群律。双线性c满足2-cocycle恒等式，给p^n阶群；逆为(−v,−w+c(v,v))，W中心。共p^(r*binom(d,2))组参数。固定同构类H最多容纳p^(n²)组参数：同构下n个指定生成元x_i,z_j的有序像唯一决定交换子在独立z_j基中的坐标。无需假设W为全中心或由交换子满生成。于是a_p(n)≥p^(r*binom(d,2)−n²)，m≥r*binom(d,2)/n−n。取d=floor(2n/3)即得f_p(n)≥(2/27)n²−O(n)，尤其Ω(n²)。p=2时一般元素可阶4但仍为合法2群，故无奇素数限制。此为主审与原题支线分别检查的已知下界重建，不冒称读完Higman/Sims原始证明；二次下界不证明快于所有多项式。"
+        },
+        {
+          "subquestion": "小值、群阶对数与群指数",
+          "value": "partial",
+          "note": "f_p(1)=1。p²阶群恰有C_(p²)与C_p×C_p两类，任何p²阶宿主若含其中一个阶p²子群便等于它，不能同时容纳非同构的两类，故f_p(2)>2；C_(p²)×C_p阶p³同时容纳两者，故f_p(2)=3。若允许n=0，唯一输入和最小宿主均为平凡群，得f_p(0)=0。m=3是log_p|U|，该宿主群指数为p²；容器阶、群指数、放大倍数均不同。根、出处、查重分工独立手核；没有借若干小值外推渐近。"
+        },
+        {
+          "subquestion": "Glasby2014无证明wreath构造断言",
+          "value": "statement_error",
+          "note": "其答案153364声称任意相应G(p,e2,n2) wr G(p,e1,n1)容纳所有阶p^(n1+n2)、指数p^(e1+e2)群。p=2,e1=e2=1,n1=1,n2=3给反例：可取合法最小容器C2与C2³，W=C2³ wr C2的基群B=C2⁶正规且指数2。若K≅C4×C4≤W，则|K∩B|≥8；但K中阶整除2的元素只有4个，与K∩B≤B全为阶≤2矛盾。根与代码支线独立核此排除。它只否定该花环积构造的普遍断言/证明路径，不反驳18.51，也不自动否定数值不等式F(2,2,4)≤7，因为别的容器仍可能达到该界。"
+        },
+        {
+          "subquestion": "按群指数细分的合法范围",
+          "value": "partial",
+          "note": "Glasby定义F(p,e,n)为只需容纳阶p^n且群指数恰p^e的输入类时最小宿主log阶。由包含与有限直积可得max_e F(p,e,n)≤f_p(n)≤Σ_e F(p,e,n)，1≤e≤n；F(p,n,n)=n，F(2,1,n)=n。此处第二参数e指输入群指数p^e，与宿主阶的log混写会改变问题。这些观察和猜测的最困难指数层都未给一般渐近。Nick Gill的分拆乘积Π_(i=1)^n C_(p^floor(n/i))可作为最小阿贝尔宿主，但其评论未补允许非交换宿主的普遍最优性证明，本轮不把该n log n断言/2^66例用作一般f_p的证明。"
+        },
+        {
+          "subquestion": "模表示与增长口径的边界",
+          "value": "not_assessed",
+          "note": "特征p下C_(p^n)的忠实矩阵表示至少有度p^(n−1)+1：阶p^n矩阵必为1+N，且N^(p^(n−1))≠0；该度可由一个Jordan块达到。这阻止朴素低度模表示统一路线直接改良，但不推出f_p(n)指数下界，因C_(p^n)自身log阶仅n。此题的f_p不是有限生成无限群的词球增长函数，也不是p^n阶群的数量a_p(n)。按标准强增长口径须分别核对每个固定p的所有多项式阶和每个指数底数；有限样本、p随n变化或相邻题18.50的形式化不能代替。"
+        },
+        {
+          "subquestion": "代码、公开AI与库内查重范围",
+          "value": "no_evidence_in_scope",
+          "note": "MO已读取两答及全部23评论，各API端点has_more=false；未见同题完整增长率证明或可复跑GAP/Lean证书。评论的奇p小值f_p(3)=5仅自报，本轮不提升为独立验证。FC/OAI等按实际关键词和固定目录筛查未得同题形式化；作者的18.50 Aristotle解为邻题。冻结库7候选meta/正文均核版本，无严格同题，不合并。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "none_found",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "原始18.51问每个固定素数p的最小统一p群宿主对数f_p(n)是否超多项式且亚指数。冻结正式定义与原文基本对应，但人话“自由群装下所有n生成群”把满射误作嵌入，又把f、宿主阶和放大倍数混用；验收把否定限定成落入两种整齐端点也过强，应修正并明确增长量词。这些错误不反驳Kourovka原题。本轮一般两个渐近子问均未获确证，仅核有效上下界和小值；不因旧标记、目录或无检索命中证明开放。",
+      "evidence_ids": [
+        "E656-ORIGIN-V50",
+        "E656-ORIGIN-V1",
+        "E656-ORIGIN-MO2013",
+        "P656-DUP-SELF",
+        "E656-ROOT-MO",
+        "E656-CODE-MO"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "原始问题：超多项式下界",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "按建议的标准强口径，对每个固定p，须对每个d>0证明f_p(n)/n^d→∞。已核Ω(n²)，它只排除某些较低次多项式上界，不能排除所有多项式。原文未内联极限定义，若后续只得“不存在全局多项式上界”或limsup结论，还须核与采用口径的关系。本轮未取得此子问完整证明或否定证明。",
+      "evidence_ids": [
+        "E656-ORIGIN-V50",
+        "E656-ORIGIN-MO2013",
+        "E656-ROOT-MO",
+        "E656-CODE-REGISTRY"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "原始问题：亚指数上界",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "按建议的标准强口径，对每个固定p，须证明log f_p(n)/n→0，等价于对每个c>1有f_p(n)/c^n→0。现有Sylow容器仅给O(p^n)指数上界，不能满足所求。Glasby无证明的精细花环积构造另有反例，不能补此缺口；原问题未因此被否定。",
+      "evidence_ids": [
+        "E656-ORIGIN-V50",
+        "E656-ROOT-MO",
+        "E656-CODE-WREATH"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "一般有限存在性及指数上界",
+      "math_status": "部分进展",
+      "scope_note": "任一p^n阶群由正则作用嵌入S_(p^n)，其像落在某个Sylow p子群，借共轭移入预先固定的同一个Sylow P。因此f_p(n)≤v_p((p^n)!)=Σ_{j=1}^n p^(n−j)=(p^n−1)/(p−1)。证明保持统一宿主∃P∀G；这是指数上界，尚不证明log f_p(n)/n→0。主审、出处和查重支线均独立核对，未执行GAP。",
+      "evidence_ids": [
+        "E656-ROOT-MO",
+        "E656-ORIGIN-MOBOUNDS",
+        "E656-ORIGIN-V50",
+        "P656-DUP-SELF"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "一般二次下界的独立核对",
+      "math_status": "部分进展",
+      "scope_note": "令a_p(n)为p^n阶群同构类数；若U阶p^m，每个p^n子群至多n生成，可补单位成n元组，故a_p(n)≤p^(mn)。本轮重建标准class2计数：d+r=n，V=F_p^d，W=F_p^r；任选w_ij∈W(i<j)，设c(v,v′)=Σ_(i<j)v_i v′_j w_ij，并以(v,w)(v′,w′)=(v+v′,w+w′+c(v,v′))赋V×W群律。双线性c满足2-cocycle恒等式，给p^n阶群；逆为(−v,−w+c(v,v))，W中心。共p^(r*binom(d,2))组参数。固定同构类H最多容纳p^(n²)组参数：同构下n个指定生成元x_i,z_j的有序像唯一决定交换子在独立z_j基中的坐标。无需假设W为全中心或由交换子满生成。于是a_p(n)≥p^(r*binom(d,2)−n²)，m≥r*binom(d,2)/n−n。取d=floor(2n/3)即得f_p(n)≥(2/27)n²−O(n)，尤其Ω(n²)。p=2时一般元素可阶4但仍为合法2群，故无奇素数限制。此为主审与原题支线分别检查的已知下界重建，不冒称读完Higman/Sims原始证明；二次下界不证明快于所有多项式。",
+      "evidence_ids": [
+        "E656-ROOT-MO",
+        "E656-ROOT-COUNT",
+        "E656-ROOT-HIGMAN",
+        "E656-ORIGIN-MOBOUNDS",
+        "E656-ORIGIN-V50",
+        "P656-DUP-SELF"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "小值、群阶对数与群指数",
+      "math_status": "仅特例",
+      "scope_note": "f_p(1)=1。p²阶群恰有C_(p²)与C_p×C_p两类，任何p²阶宿主若含其中一个阶p²子群便等于它，不能同时容纳非同构的两类，故f_p(2)>2；C_(p²)×C_p阶p³同时容纳两者，故f_p(2)=3。若允许n=0，唯一输入和最小宿主均为平凡群，得f_p(0)=0。m=3是log_p|U|，该宿主群指数为p²；容器阶、群指数、放大倍数均不同。根、出处、查重分工独立手核；没有借若干小值外推渐近。",
+      "evidence_ids": [
+        "E656-ROOT-MO",
+        "E656-ORIGIN-MOBOUNDS",
+        "E656-ORIGIN-V50",
+        "P656-DUP-SELF"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Glasby2014无证明wreath构造断言",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "其答案153364声称任意相应G(p,e2,n2) wr G(p,e1,n1)容纳所有阶p^(n1+n2)、指数p^(e1+e2)群。p=2,e1=e2=1,n1=1,n2=3给反例：可取合法最小容器C2与C2³，W=C2³ wr C2的基群B=C2⁶正规且指数2。若K≅C4×C4≤W，则|K∩B|≥8；但K中阶整除2的元素只有4个，与K∩B≤B全为阶≤2矛盾。根与代码支线独立核此排除。它只否定该花环积构造的普遍断言/证明路径，不反驳18.51，也不自动否定数值不等式F(2,2,4)≤7，因为别的容器仍可能达到该界。",
+      "evidence_ids": [
+        "E656-ROOT-MO",
+        "E656-CODE-WREATH"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "按群指数细分的合法范围",
+      "math_status": "仅特例",
+      "scope_note": "Glasby定义F(p,e,n)为只需容纳阶p^n且群指数恰p^e的输入类时最小宿主log阶。由包含与有限直积可得max_e F(p,e,n)≤f_p(n)≤Σ_e F(p,e,n)，1≤e≤n；F(p,n,n)=n，F(2,1,n)=n。此处第二参数e指输入群指数p^e，与宿主阶的log混写会改变问题。这些观察和猜测的最困难指数层都未给一般渐近。Nick Gill的分拆乘积Π_(i=1)^n C_(p^floor(n/i))可作为最小阿贝尔宿主，但其评论未补允许非交换宿主的普遍最优性证明，本轮不把该n log n断言/2^66例用作一般f_p的证明。",
+      "evidence_ids": [
+        "E656-ROOT-MO",
+        "E656-CODE-WREATH"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "模表示与增长口径的边界",
+      "math_status": "未作判断",
+      "scope_note": "特征p下C_(p^n)的忠实矩阵表示至少有度p^(n−1)+1：阶p^n矩阵必为1+N，且N^(p^(n−1))≠0；该度可由一个Jordan块达到。这阻止朴素低度模表示统一路线直接改良，但不推出f_p(n)指数下界，因C_(p^n)自身log阶仅n。此题的f_p不是有限生成无限群的词球增长函数，也不是p^n阶群的数量a_p(n)。按标准强增长口径须分别核对每个固定p的所有多项式阶和每个指数底数；有限样本、p随n变化或相邻题18.50的形式化不能代替。",
+      "evidence_ids": [
+        "E656-ROOT-MO",
+        "E656-ROOT-COUNT",
+        "E656-ROOT-AUTHOR"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    },
+    {
+      "subquestion": "代码、公开AI与库内查重范围",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "MO已读取两答及全部23评论，各API端点has_more=false；未见同题完整增长率证明或可复跑GAP/Lean证书。评论的奇p小值f_p(3)=5仅自报，本轮不提升为独立验证。FC/OAI等按实际关键词和固定目录筛查未得同题形式化；作者的18.50 Aristotle解为邻题。冻结库7候选meta/正文均核版本，无严格同题，不合并。",
+      "evidence_ids": [
+        "E656-CODE-MO",
+        "E656-CODE-BENCH",
+        "E656-CODE-CORPUS",
+        "E656-CODE-REGISTRY",
+        "E656-CODE-AUTHOR",
+        "P656-DUP-SELF"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "arXiv官方固定PDF",
+      "query": "find 18.51 in 1401.0300v50",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核原问题、p先固定而n趋无穷、最小宿主为同一个p群和S.Kohl署名；相邻18.50有解标记不属本题。",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "印刷p130，PDF零基页129，L5164–5170",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv官方固定PDF",
+      "query": "find 18.51 in 1401.0300v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "原题文字与v50相同；此固定2014题录并非本轮找到的最早公开问题记录，后追至2013提出者原帖。",
+      "url": "https://arxiv.org/pdf/1401.0300v1",
+      "locator": "印刷p132，PDF零基页131，L5415–5421",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Kourovka官方Repository",
+      "query": "find 18.51",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "复用已核入口，实际查询本题号；不以目录阴性推开放。",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Kourovka官方更新固定缓存",
+      "query": "find 18.51",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "November2026更新PDF39页的本题身份检索；未逐篇审查全部证明。",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21upd.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "互联网检索system2",
+      "query": "\"Kohl\" \"18.51\" \"polynomial\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "召回Stefan Kohl本人2013年MathOverflow原帖和作者主页，随后读原文。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "互联网检索system2",
+      "query": "\"Kourovka\" \"18.51\" universal p groups",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核同题措辞及出处线索，没有以转录或搜索摘要作为新证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "提出者MathOverflow原帖",
+      "query": "open question121719",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得212行当前页面，读取问题、2013年添加段及后续两答；页有隐藏问题评论，随后API取得全部17条。",
+      "url": "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups",
+      "locator": "题文L32–53；两答L106–193",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Stefan Kohl作者主页",
+      "query": "open publications_kohl.html",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "本人列18.51为其Kourovka问题之一；相邻其他题已解链接未移用于本题，不从缺解标记推出开放性。",
+      "url": "https://stefan-kohl.github.io/publications_kohl.html",
+      "locator": "Other段L113–115；页尾last modified2026-10-27",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Kourovka官方多题稿固定缓存",
+      "query": "find 18.51",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "v4(2026-09-19)92页报告未检得本题号。",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Kourovka官方多题稿固定缓存",
+      "query": "find Kohl",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "提出者名定位无命中；未研究该稿其他队列题。",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Kourovka官方更新固定缓存",
+      "query": "find polynomially",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "使用原题特征词补充定位；没有把阴性结果当数学证明。",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21upd.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "互联网检索system1",
+      "query": "\"18.51\" \"Kohl\" universal group proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "较强搜索核同题完整结果线索，主要回原帖/原题转录，本支线未取得一般渐近结论的完整证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "互联网检索system1",
+      "query": "\"Richness of the subgroup structure of p-groups\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "召回原帖及指定答案页面；以实际原帖与修订历史为准。",
+      "url": "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "MathOverflow原帖",
+      "query": "open near lines86,140",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "已读两个答案和页面可见答复评论：Glasby2014提出按群指数分层及明标无证明的wreath断言；Yakov2015提出另一嵌入问题。它们没有给本题超多项式且亚指数的完整证明；未在此审相关未证wreath断言。",
+      "url": "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups",
+      "locator": "两答及可见评论",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "MathOverflow修订记录",
+      "query": "click edited Dec4,2013 link",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得修订1至8的时间和说明；随后直接读首版与第8版源文本。",
+      "url": "https://mathoverflow.net/posts/121719/revisions",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Stefan Kohl作者主页",
+      "query": "find 18.51",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "确认本题归属本人，而非仅由题录姓名猜测；页面其他题结果不纳入本题状态。",
+      "url": "https://stefan-kohl.github.io/publications_kohl.html",
+      "locator": "L113–115",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "MathOverflow修订记录",
+      "query": "open revisions near line25",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "已读第8版2013-12-04补入明确猜想/将收录18.51，第6版2013-02-21讨论增长档次，初版2013-02-13提出同一函数的一般渐近问题。并未声称2013-02-13已明写强合取猜想。",
+      "url": "https://mathoverflow.net/posts/121719/revisions",
+      "locator": "revisions8、6、1；全部8条修订元数据",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Stack Exchange公开API，经网页工具",
+      "query": "open question121719/comments pagesize100 filterwithbody",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "网页工具不支持该API URL；随后标准库HTTP读取成功，见后条。",
+      "url": "https://api.stackexchange.com/2.3/questions/121719/comments?site=mathoverflow&filter=withbody&pagesize=100&order=asc&sort=creation",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "MathOverflow固定首版源文本",
+      "query": "click revision1 Source",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "亲读2013-02-13最初定义与广义渐近问题；首版只列粗线性/直积界，尚无明确中间增长合取句。",
+      "url": "https://mathoverflow.net/revisions/0b56fccc-f7fa-41cf-9706-e17d183ad62f/view-source",
+      "locator": "revision GUID0b56fccc-f7fa-41cf-9706-e17d183ad62f",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "MathOverflow固定第8版源文本",
+      "query": "click revision8 Source",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "亲读2013-12-04明确f_p(n)超多项式且亚指数的句子，并指向将出版的2014第18版18.51。",
+      "url": "https://mathoverflow.net/revisions/7110a7d1-5c14-42ec-aa75-231351896a0f/view-source",
+      "locator": "revision GUID7110a7d1-5c14-42ec-aa75-231351896a0f",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Stack Exchange公开API，经本地urllib",
+      "query": "GET question121719/comments; page1; pagesize100; filterwithbody; sortcreation asc",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "成功取得问题下全部17条评论，has_more=false；逐条读完，包括Brunault指数上界、Sawin计数二次下界、f_p(2)=3及小阶wreath改进讨论。原始响应存internal/p656_mo_comments_api.json；没有以评论自述代替所需推导。",
+      "url": "https://api.stackexchange.com/2.3/questions/121719/comments?site=mathoverflow&filter=withbody&pagesize=100&order=asc&sort=creation",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本轮手工数学复核",
+      "query": "f_p(1), f_p(2), free-group counterexample, Cayley-Sylow bound",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全素数推导而非仅小p枚举：分类p²阶群并给同一p³宿主；用Z到Cp的满射/无嵌入区分；核固定Sylow可经共轭容纳每一个p^n阶群。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "本轮独立交叉复核",
+      "query": "bilinear central extension count with d+r=n",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "按主审提出的标准class2构造独立核结合律、p=2与同构多重计数，再接宿主n元组计数得到Ω(n²)。这是本轮重建标准下界，不声称读完Higman1960/Sims1965原稿或新颖结果。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "Kohl \"18.51\" p groups growth",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "找到提出者MO原帖；混有Kohl股票同名噪声，均未当数学来源。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"universal p-groups\" order embedding",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "结果混有无限阿贝尔/模型论万有性，均须与有限统一宿主区别。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"smallest\" \"every group of order\" \"Kohl\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中MO121719及Glasby按群指数细分的答案。",
+      "url": "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"f_p(n)\" \"groups\" polynomial",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位同一增长问题；有限域和多项式映射同符号结果不作同题证据。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1，recency=1095",
+      "query": "\"18.51\" \"Kohl\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中作者研究目录及原问，未得到同题完整解；作者目录的18.50已解标签属于邻题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"universal\" \"p-groups\" \"growth\" Kohl",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "直接命中MO；词球增长论文与本题容器规模不是同一函数。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"universal\" \"p-groups\" \"order\" asymptotic",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "发现群计数文献与不相同的万有性问题，继而按定义排除。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Richness of the subgroup structure\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "确认原帖标题及公开讨论范围。",
+      "url": "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "MathOverflow primary question and answers",
+      "query": "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "根读主帖、两答和可见评论；折叠评论/完整API由代码支线读取。独立审Sylow上界、计数桥与wreath断言的反例。",
+      "url": "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups",
+      "locator": "问题正文；Brunault/Sawin评论；answer153364",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"universal p-group\" embedding smallest order",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同题MO及其他无限万有群语境；未得更强同题定理。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Kohl\" \"f_p\" \"groups\" polynomial exponential",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中提出者原问，未得超多项式/亚指数的完整证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "Higman Enumerating p groups I inequalities 1960 24 30",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位原始计数论文官方书目与DOI。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1，recency=1095",
+      "query": "\"18.51\" \"groups\" solved",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "作者目录显示相邻18.50解的链接，不把它贴到18.51。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Numdam journal full text",
+      "query": "https://www.numdam.org/item/PMIHES_2000__92__63_0.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得51页du Sautoy2000论文，实际读pp63–66的函数定义/计数渐近定位及参考文献，未审全篇zeta和coclass证明。",
+      "url": "https://www.numdam.org/item/PMIHES_2000__92__63_0.pdf",
+      "locator": "印刷p64 Definition1.1和Eq(1)；参考文献[22],[38]",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Author publication list",
+      "query": "https://stefan-kohl.github.io/publications_kohl.html",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核18.51作为作者问题列表项目；18.50、21.75等解的注记不属于本题。列表缺标记不证明仍开放。",
+      "url": "https://stefan-kohl.github.io/publications_kohl.html",
+      "locator": "Other / Kourovka problems",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"p-groups\" \"universal\" \"Kohl\" -site:mathoverflow.net -site:scribd.com",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "返回p-Coxeter群、Hopf–Galois等语境，未定位本题有限统一宿主结果。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1，recency=1095",
+      "query": "\"18.51\" \"polynomial\" \"proof\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "有其他文献公式编号18.51等噪声，未得本题证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"groups of order\" \"universal p\" \"bound\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "无限阿贝尔万有模型/SEP-cover等非同题；不据universal一词迁移。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Kohl\" \"embedding\" \"subexponential\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "未定位明确本题亚指数证明；只陈述本次检索范围。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "LMS/Wiley original article metadata",
+      "query": "https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/plms/s3-10.1.24",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "Higman1960 24–30，官方DOI；网页没有可读完整数学正文。",
+      "url": "https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/plms/s3-10.1.24",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Numdam PDF find",
+      "query": "HIGMAN",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "找到p64计数公式及p111参考文献；f(n,p)是同构类数量，不是Kohl的f_p(n)。",
+      "url": "https://www.numdam.org/item/PMIHES_2000__92__63_0.pdf",
+      "locator": "Eq(1)、refs22/38",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Author page find",
+      "query": "18.51",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "确认前后邻题标记归属；未把无解标记当证明。",
+      "url": "https://stefan-kohl.github.io/publications_kohl.html",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "LMS/Wiley page find",
+      "query": "PDF",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "找到Download PDF链接，随后点击检查访问。",
+      "url": "https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/plms/s3-10.1.24",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Numdam web screenshot",
+      "query": "PDF page index2 (printed p64)",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "返回ImageDisplayed文字但无可读取image数据块，未声称视觉确认OCR公式。因而本轮自行重建足够的class2二次下界，不依赖读出该OCR常数。",
+      "url": "https://www.numdam.org/item/PMIHES_2000__92__63_0.pdf",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "LMS/Wiley PDF click",
+      "query": "Download PDF link18",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "重定向回doi/abs HTML书目，未取得原1960七页正文。",
+      "url": "https://londmathsoc.onlinelibrary.wiley.com/doi/pdf/10.1112/plms/s3-10.1.24",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Enumerating p-groups\" Sims 1965 151 166",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核Sims1965原论文与DOI；2016是网站版本上线，不作原刊年。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Kourovka\" \"18.51\" solution -site:scribd.com -site:studylib.net",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中原问和作者目录；未得同题完整解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"universal\" \"p-groups\" \"subexponential\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "多数为词球增长、GS或包络代数问题，不是有限统一容器大小。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "主审手工与原题支线独立复核",
+      "query": "reconstruct class-2 p-group counting lower bound; Cayley/Sylow upper; C4^2 versus C2^3 wr C2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "直接核群律、p=2、同构类计数和子群计数；不把标准二次界当作超多项式证明。wreath反例同时交代码支线独立核，不依赖软件运行。",
+      "url": "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search / google-deepmind/formal-conjectures",
+      "query": "\"18.51\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "topn20，results=[]。题号检索未得同题代码，不能排除无题号或未索引文件。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search / google-deepmind/formal-conjectures",
+      "query": "\"universal\" \"p-group\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "topn20，results=[]；只覆盖所列字符串。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub issues / google-deepmind/formal-conjectures",
+      "query": "\"18.51\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "topn20，issues=[]。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub PRs / google-deepmind/formal-conjectures",
+      "query": "\"18.51\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "state=all，topn20，issues=[]。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search / openai/math",
+      "query": "\"universal\" \"p-group\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "2个命中均为 Finite-Congruence-Lattices 目录，匹配 universal cuts/central cover 与 top-group；只读匹配片段，没有读整篇或判其证明。固定结果 commit 3344da59991ed94f9ba711217b29c1d760badfa6。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search / openai/math",
+      "query": "\"Kohl\"",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "3个命中来自 O3 Spin Field 稿的 Köhler-Schindler 引文，不是 Stefan Kohl 或18.51。只读匹配片段。固定结果 commit 3344da59991ed94f9ba711217b29c1d760badfa6。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地固定 OpenAI overview.tex 全文再检",
+      "query": "18\\.51|Kohl|universal.{0,40}p.group|every.{0,40}order.{0,20}p\\^",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "沿用实际已取得全文 internal/p997_code_source_cache.json，commit 3344da59991ed94f9ba711217b29c1d760badfa6，blob1a56184b1f28a8750722dc2dd6306af8424da0b6；本次正则扫描返回空。不是遍历所有论文证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地固定 OpenAI CONTENTS.md 全文再检",
+      "query": "18\\.51|Kohl|universal.{0,40}p.group|every.{0,40}order.{0,20}p\\^",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "沿用实际已取得全文 internal/p997_code_source_cache.json，commit 3344da59991ed94f9ba711217b29c1d760badfa6，blob7d4a8770643439016a70f23a4524d0ebacc78900；本次正则扫描返回空。目录阴性不证明不存在公开新解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub global code search",
+      "query": "\"18.51\" \"Kourovka\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "topn20；取得12个结果并读全部匹配片段：题库、机器提取、作者索引为同题；余有天文Kourovka、SVG坐标、视频时间戳、Erdos37会话日志误命中。实际相关正文另列逐个读取。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system1，recency1095",
+      "query": "\"Kourovka\" \"18.51\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回旧 Notebook、作者页、pitmonticone/Kourovka README等；作者页及固定源码另行读取。README摘要列18.50等邻题解，不把它认作18.51。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system1，recency1095",
+      "query": "\"Kohl\" \"universal\" \"p-groups\" \"OpenAI\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "批量查询返回来源中未取得18.51完整解决声明；搜索覆盖有限，不据此宣称无人解决。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system1，recency1095",
+      "query": "\"f_p(n)\" \"groups\" \"Lean\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批限定检索未取得可读同题 Lean 证明；不把未命中等同无形式化。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed file",
+      "query": "GET kourovka-main-18-051.json @8d494791ace5894b860585d67ba8e69dbfed6376",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整JSON statement/status_observation/provenance；listed-unsolved仅2026-07-03编目观察。",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-18-051.json",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed file",
+      "query": "GET kourovka-issue-18-2014.md @b0b0c8e69546f911cd9d5f8534e323bda4142dd2；定位18.51",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取得整份机器提取文件，只精读18.51小节L311–316；仅原题重述，数学上标已在纯文本丢失。",
+      "url": "https://github.com/ai-math-edu-lab/math-agents/blob/b0b0c8e69546f911cd9d5f8534e323bda4142dd2/obsidian/Research/Group%20theory/Open%20problems/Kourovka/corpus/kourovka-issue-18-2014.md",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地已取得固定 GitHub registry",
+      "query": "从 b9d61554169114a31b937828c955726ec8509bb1 kourovka.json 定位 \"18.51\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整注册表先前已取得；本次读L10206–10213，page130、header_marker:null、part_markers:[]、ai:null。搜索片段的 ai:unverified 属别条，不能移到本题。",
+      "url": "https://github.com/ericjiang18/agent_monitor_math/blob/b9d61554169114a31b937828c955726ec8509bb1/agent_monitor/data/problem_sources/kourovka.json",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed author source",
+      "query": "GET publications_kohl.html @3836b8c3fcfbba4497ade953e0ba37b930ae6915",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "取全文380行，精读L339–348：18.51仅列题号；AI Aristotle解决标签明确附于18.50。作者索引未给18.51证明链接不是一般开放性证明。",
+      "url": "https://github.com/Stefan-Kohl/stefan-kohl.github.io/blob/3836b8c3fcfbba4497ade953e0ba37b930ae6915/publications_kohl.html",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "MathOverflow webpage",
+      "query": "GET question121719（主文、回答153364与226520及可见评论）",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "网页先读主帖/2回答/可见评论；折叠12条问题评论随后用StackExchange API补齐。",
+      "url": "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open / StackExchange API",
+      "query": "GET /2.3/questions/121719?site=mathoverflow&filter=withbody",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "web入口不能打开该API；后改同URL普通HTTP成功，不能把第一次失败记为无评论/无内容。",
+      "url": "https://api.stackexchange.com/2.3/questions/121719?site=mathoverflow&filter=withbody",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open / StackExchange API",
+      "query": "GET /2.3/questions/121719/answers?site=mathoverflow&filter=withbody&pagesize=100&page=1&order=asc&sort=creation",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "web入口不能打开；随后urllib实际GET成功。",
+      "url": "https://api.stackexchange.com/2.3/questions/121719/answers?site=mathoverflow&filter=withbody&pagesize=100&page=1&order=asc&sort=creation",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "MathOverflow webpage click",
+      "query": "点击 Show 12 more comments（网页链接id23）",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "网页工具返回原页，未展开隐藏评论；未据此声称读全，随后API补齐。",
+      "url": "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "StackExchange API / urllib HTTP",
+      "query": "GET questions/121719/answers；site=mathoverflow；filter=withbody；pagesize=100；page=1；order=asc；sort=creation",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "HTTP200；2个回答153364、226520均完整body，has_more=false，无下一页；均is_accepted=false不影响逐正文核查。缓存p656_mo_answers_page1.json。",
+      "url": "https://api.stackexchange.com/2.3/questions/121719/answers?site=mathoverflow&filter=withbody&pagesize=100&page=1&order=asc&sort=creation",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "StackExchange API / urllib HTTP",
+      "query": "GET questions/121719；site=mathoverflow；filter=withbody",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "HTTP200；1题完整body、answer_count2、has_more=false；精读定义及2013-02-21/2013-12-04补记。缓存p656_mo_question.json。",
+      "url": "https://api.stackexchange.com/2.3/questions/121719?site=mathoverflow&filter=withbody",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "StackExchange API / urllib HTTP",
+      "query": "GET posts/121719;153364;226520/comments；site=mathoverflow；filter=withbody；pagesize=100；page=1；order=asc；sort=creation",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "HTTP200；23条评论完整body全部读到：问题17、回答153364共2、回答226520共4；has_more=false，无下一页/漏翻。未发现GAP命令、日志或嵌入证书。缓存p656_mo_comments_page1.json。",
+      "url": "https://api.stackexchange.com/2.3/posts/121719;153364;226520/comments?site=mathoverflow&filter=withbody&pagesize=100&page=1&order=asc&sort=creation",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "date": "2026-11-27",
+      "request_id": "P656-DUP-TASK",
+      "site": "题包 package/任务.jsonl",
+      "query": "Python逐行JSON读取id == QX-P-000656的完整task/card_metadata/card_text/prior_evidence",
+      "outcome": "原文已阅且同题",
+      "locator": "QX-P-000656 rev 4c32a5759e637cbc",
+      "result_count": 1,
+      "note": "同版prior_evidence为legacy=true、无queries/evidence，不算本轮回传；meta.novelty.card_rev另为旧1728795d6ca6c1df。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "date": "2026-11-27",
+      "request_id": "P656-DUP-INDEX-1",
+      "site": "题包 package/全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002132〕",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "2469条全库简索引",
+      "result_count": 12,
+      "note": "命中167、656、958、998、1026、1544、1599、1888、2114、2325、2326、2343；含有限域F_p等词面噪声，不能据此判同题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "date": "2026-11-27",
+      "request_id": "P656-DUP-INDEX-2",
+      "site": "题包 package/全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002133〕",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "2469条全库简索引",
+      "result_count": 78,
+      "note": "全字段输出出现截断，后续相同式重跑仅输出id/title补读全部78项；范围包含非群论嵌入与universal关键词噪声。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "date": "2026-11-27",
+      "request_id": "P656-DUP-INDEX-2-COMPACT",
+      "site": "题包 package/全库查重简索引.jsonl",
+      "query": "重复Python re.I检索：嵌入|embedding|embed|p.group.{0,30}order|群.{0,16}阶|universal；仅打印id和title",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "补读首次截断的完整召回列表",
+      "result_count": 78,
+      "note": "补出1076/1077等有限p群嵌入候选；未将未取全文的其他索引项计入严格比较。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "date": "2026-11-27",
+      "request_id": "P656-DUP-INDEX-3",
+      "site": "题包 package/全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002134〕",
+      "outcome": "仅标题、索引或摘要",
+      "locator": "2469条全库简索引",
+      "result_count": 35,
+      "note": "进一步召回83的群计数函数、1076/1077嵌入等；结合前两式选择83、2304、1076、1077、2327、2343、2487共7候选取完整meta和正文。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "date": "2026-11-27",
+      "request_id": "P656-DUP-FETCH-000656",
+      "site": "GitHub connector github_fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; 两次请求 path=problems/000/QX-P-000656.meta.json 及 problems/000/QX-P-000656.text.md",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000656.text.md",
+      "result_count": 2,
+      "locator": "完整meta.json+text.md；card_rev 4c32a5759e637cbc；meta blob b7a6e3766732c65cdb65ba2f9a64f17ef194f891；text blob c5f1516e8bd6f36aa0458d223f6827b4ee2f69e1",
+      "note": "完整核对对象、量词、函数/参数含义、嵌入方向、验收及旧进展；card_rev/path与简索引一致。自身meta对象与正文分别与任务相等。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "date": "2026-11-27",
+      "request_id": "P656-DUP-FETCH-000083",
+      "site": "GitHub connector github_fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; 两次请求 path=problems/000/QX-P-000083.meta.json 及 problems/000/QX-P-000083.text.md",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000083.text.md",
+      "result_count": 2,
+      "locator": "完整meta.json+text.md；card_rev 1719a673da1072ba；meta blob cb92409087de7e3c0b8287e2e87aaa24e67974b1；text blob cdcafb8c09581be368263b2c2a936984b3c3e222",
+      "note": "完整核对对象、量词、函数/参数含义、嵌入方向、验收及旧进展；card_rev/path与简索引一致。候选旧文献记录只用于辨认范围，未作为本轮外部查新访问或已证状态。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "date": "2026-11-27",
+      "request_id": "P656-DUP-FETCH-002304",
+      "site": "GitHub connector github_fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; 两次请求 path=problems/002/QX-P-002304.meta.json 及 problems/002/QX-P-002304.text.md",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002304.text.md",
+      "result_count": 2,
+      "locator": "完整meta.json+text.md；card_rev 90440e6347aad3c8；meta blob e4a5e3fe521ef851fe136183959d4c51f5ceda88；text blob 517f79d0fa214a0a4ad318d268ff1b36bf999fab",
+      "note": "完整核对对象、量词、函数/参数含义、嵌入方向、验收及旧进展；card_rev/path与简索引一致。候选旧文献记录只用于辨认范围，未作为本轮外部查新访问或已证状态。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "date": "2026-11-27",
+      "request_id": "P656-DUP-FETCH-001076",
+      "site": "GitHub connector github_fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; 两次请求 path=problems/001/QX-P-001076.meta.json 及 problems/001/QX-P-001076.text.md",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001076.text.md",
+      "result_count": 2,
+      "locator": "完整meta.json+text.md；card_rev e378523fde7bed0b；meta blob 0ac3734cdab5a0c1bd32bd1fd4490e85d682ffe9；text blob a377ad762428cef7359a41f1de7f91a7db6bd958",
+      "note": "完整核对对象、量词、函数/参数含义、嵌入方向、验收及旧进展；card_rev/path与简索引一致。候选旧文献记录只用于辨认范围，未作为本轮外部查新访问或已证状态。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "date": "2026-11-27",
+      "request_id": "P656-DUP-FETCH-001077",
+      "site": "GitHub connector github_fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; 两次请求 path=problems/001/QX-P-001077.meta.json 及 problems/001/QX-P-001077.text.md",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001077.text.md",
+      "result_count": 2,
+      "locator": "完整meta.json+text.md；card_rev 530308eef8d21bdf；meta blob 1e8cdd23a170872b856d0208acc84ee35d07c8bc；text blob 33f97204e8ee39286c5b36bb2c7c5522a196892a",
+      "note": "完整核对对象、量词、函数/参数含义、嵌入方向、验收及旧进展；card_rev/path与简索引一致。候选旧文献记录只用于辨认范围，未作为本轮外部查新访问或已证状态。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "date": "2026-11-27",
+      "request_id": "P656-DUP-FETCH-002327",
+      "site": "GitHub connector github_fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; 两次请求 path=problems/002/QX-P-002327.meta.json 及 problems/002/QX-P-002327.text.md",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002327.text.md",
+      "result_count": 2,
+      "locator": "完整meta.json+text.md；card_rev 4b002c47d0fb39cb；meta blob 6d5a71596f0e8b6a3fd7a66b82e2003a45e114bb；text blob d7fafcceb912bed619002a1e711d3b2e8be494d4",
+      "note": "完整核对对象、量词、函数/参数含义、嵌入方向、验收及旧进展；card_rev/path与简索引一致。候选旧文献记录只用于辨认范围，未作为本轮外部查新访问或已证状态。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "date": "2026-11-27",
+      "request_id": "P656-DUP-FETCH-002343",
+      "site": "GitHub connector github_fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; 两次请求 path=problems/002/QX-P-002343.meta.json 及 problems/002/QX-P-002343.text.md",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002343.text.md",
+      "result_count": 2,
+      "locator": "完整meta.json+text.md；card_rev f6e3da32d3ab9531；meta blob 62f46626f98b7bbd056162ad760514187ad095b2；text blob 5efd59137e66a7e2d81a73725f2d53cfff48805d",
+      "note": "完整核对对象、量词、函数/参数含义、嵌入方向、验收及旧进展；card_rev/path与简索引一致。候选旧文献记录只用于辨认范围，未作为本轮外部查新访问或已证状态。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "date": "2026-11-27",
+      "request_id": "P656-DUP-FETCH-002487",
+      "site": "GitHub connector github_fetch_file",
+      "query": "repository=qunxingmath-org/qunxing-data; ref=73290369a8dcc632e25e555aec525565ea6e08f8; 两次请求 path=problems/002/QX-P-002487.meta.json 及 problems/002/QX-P-002487.text.md",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002487.text.md",
+      "result_count": 2,
+      "locator": "完整meta.json+text.md；card_rev 75824ebb1f6b3c1d；meta blob 4317f5c1d661e7bfa0db342acb5f1e11f81889c9；text blob 3b323279451fc4fa17a55a15d03aef8cb01d5003",
+      "note": "完整核对对象、量词、函数/参数含义、嵌入方向、验收及旧进展；card_rev/path与简索引一致。候选旧文献记录只用于辨认范围，未作为本轮外部查新访问或已证状态。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E656-ORIGIN-V50",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "18.51，印刷p130，PDF零基页129，L5164–5170",
+      "version": "1401.0300v50，2026-11-02",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "预印本",
+      "review_status": "已读未核关键步骤",
+      "note": "原题先给素数p，研究n趋无穷时的f_p(n)；m=f_p(n)是统一宿主群阶p^m中的指数，不是群的元素阶指数，也不是宿主阶本身。每一n要同一个宿主包含全部p^n阶群。原文自然语言提出两种增长率，没有写p一致的常数要求。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E656-ORIGIN-V1",
+      "url": "https://arxiv.org/pdf/1401.0300v1",
+      "locator": "18.51，印刷p132，PDF零基页131，L5415–5421",
+      "version": "1401.0300v1，2014-01-01；2014年第18辑",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "预印本",
+      "review_status": "已读未核关键步骤",
+      "note": "文字及S.Kohl署名与v50一致。2014是题录收录年，提出者本人更早的2013原帖和固定修订已取得，不能继续把2014无条件标为首次公开提出。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E656-ORIGIN-MO2013",
+      "url": "https://mathoverflow.net/revisions/7110a7d1-5c14-42ec-aa75-231351896a0f/view-source",
+      "locator": "2013-12-04 revision8源文本L14–22；配合修订历史revision1/6及初版源文本",
+      "version": "Stefan Kohl，MathOverflow121719；初版2013-02-13；增长档次追问2013-02-21；明确合取问题2013-12-04，GUID7110a7d1-5c14-42ec-aa75-231351896a0f",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "最早可核实出处",
+      "publication": "社区帖子",
+      "review_status": "已读未核关键步骤",
+      "note": "本轮最早可定位的明确同题合取猜想是2013-12-04固定源文本；同一f_p(n)的一般渐近问题已在2013-02-13初版公开。首版GUID0b56fccc-f7fa-41cf-9706-e17d183ad62f及8条修订元数据已读，不把后加内容错误前推到首帖日期。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "E656-ORIGIN-MOBOUNDS",
+      "url": "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups",
+      "locator": "问题评论：Brunault2013-02-13、Sawin2013-02-17；API评论313283、314436；两答和可见答复评论",
+      "version": "本轮读取当前页及全部17条问题评论；API has_more=false",
+      "subquestions": [
+        "一般初等界限",
+        "小阶校验"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "社区帖子",
+      "review_status": "本轮独立数学核对",
+      "note": "Brunault给f_p(n)≤(p^n−1)/(p−1)；Sawin给同构类计数/生成元元组计数的二次下界思路，其原评论“at least O(n²)”应按下界写Ω(n²)。本轮独立核上界并自足重建二次下界；未采纳另答明标无证明的精细wreath断言为一般解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "E656-ORIGIN-AUTHOR",
+      "url": "https://stefan-kohl.github.io/publications_kohl.html",
+      "locator": "Other段L113–115；页尾last modified2026-10-27",
+      "version": "提出者当前公开发表清单，本轮2026-11-27读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "作者主页",
+      "review_status": "已读未核关键步骤",
+      "note": "作者本人列明18.51属其问题；页面相邻已解题目的链接不属于18.51，缺少该题解标记本身不是开放性证明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E656-ORIGIN-UPDATES",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21upd.pdf",
+      "locator": "November2026更新稿39页：18.51与polynomially定位；另Repository题号定位",
+      "version": "固定更新稿，本轮实际查当前关键词",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "尚未确认",
+      "role": "重述",
+      "publication": "原始档案",
+      "review_status": "未读全文",
+      "note": "更新稿与Repository未检得18.51；仅记录覆盖边界，不从编目阴性推出无解。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E656-ORIGIN-MULTIREPORT",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/kourovka-mathematics.pdf",
+      "locator": "92页多题稿：18.51及Kohl检索",
+      "version": "v4，2026-09-19，官方Repository所链固定版本",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "尚未确认",
+      "role": "进展",
+      "publication": "预印本",
+      "review_status": "未读全文",
+      "note": "两关键词无命中；未逐篇审无关证明。原题支线没有取得同题一般增长结论的完整证明，主审学术/代码支线另行合并。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E656-ROOT-MO",
+      "url": "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups",
+      "locator": "Brunault2013-02-13/Sawin2013-02-17评论及Glasby answer153364（2014-01-02）",
+      "version": "原帖2013-02-13；增长问题补记2013-02-21；明确18.51补记2013-12-04；本轮2026-11-27读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "进展",
+      "publication": "社区帖子",
+      "review_status": "本轮独立数学核对",
+      "note": "原题身份相同；本轮独立核的是有限存在性、Cayley+同一Sylow上界及计数到Ω(n²)的桥，不认证整帖所有断言。Sawin原文字面at least O(n²)应按其推导写Ω(n²)。Glasby的无证明wreath构造有小例问题，详见本回执单独数学结果。Folded评论由代码支线全取；未取得同题一般增长率答案。",
+      "claim_state": "无声明",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "E656-ROOT-COUNT",
+      "url": "https://www.numdam.org/item/PMIHES_2000__92__63_0.pdf",
+      "locator": "印刷p64 Definition1.1/Eq(1)，pp111–112参考文献",
+      "version": "Marcus du Sautoy，Counting p-groups and nilpotent groups，Publ.Math.IHES92(2000)63–112，Numdam扫描51页",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "正式刊发",
+      "review_status": "已读未核关键步骤",
+      "note": "实读引言与计数函数定位，文中f(n,p)指p^n阶群同构类数而非最小宿主log阶。Eq(1)重述固定p的Higman–Sims渐近；OCR指数抽取欠佳且截图未返回实际图像。本轮二次下界另以class2群律和同构计数重建并独立复核，不把该51页全文可达写成全篇证明审计。",
+      "claim_state": "无声明",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E656-ROOT-HIGMAN",
+      "url": "https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/plms/s3-10.1.24",
+      "locator": "官方题名、卷页和DOI；PDF入口重定向摘要",
+      "version": "Graham Higman，Enumerating p-Groups. I: Inequalities；Proc.LMS s3-10(1)(1960)24–30；DOI10.1112/plms/s3-10.1.24",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "正式刊发",
+      "review_status": "未读全文",
+      "note": "计数下界的原始书目追溯；本轮没有取得原稿全文，不能写成读过其证明。主审及出处支线独立重建的class2计数见数学结果，不冒充逐页复现Higman原证。",
+      "claim_state": "无声明",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E656-ROOT-SIMS",
+      "url": "https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/plms/s3-15.1.151",
+      "locator": "官方索引书目",
+      "version": "Charles C.Sims，Enumerating p-Groups；Proc.LMS s3-15(1)(1965)151–166；DOI10.1112/plms/s3-15.1.151；收稿1964-03-06",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "正式刊发",
+      "review_status": "未读全文",
+      "note": "仅核书目和原刊年，未依其完整计数上界推本题任何新结论；2016在线再发布不等于1965结果新近解决18.51。",
+      "claim_state": "无声明",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E656-ROOT-AUTHOR",
+      "url": "https://stefan-kohl.github.io/publications_kohl.html",
+      "locator": "Other段落：Kourovka问题列表中的18.50、18.51相邻项目",
+      "version": "Stefan Kohl作者目录；2026-11-27访问，无固定网页版本日期",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "进展",
+      "publication": "作者主页",
+      "review_status": "未读全文",
+      "note": "等价仅指作者本人题号列表同一性。18.50带Monticone/Aristotle解链接，18.51单列；未把邻题标签或本题无标记当作数学状态证明。本轮未在该目录取得18.51解稿。",
+      "claim_state": "无声明",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "equivalent",
+        "role": "progress",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "E656-CODE-MO",
+      "url": "https://mathoverflow.net/questions/121719/richness-of-the-subgroup-structure-of-p-groups",
+      "locator": "主帖全部；问题评论313283、313455、313460、314436、314557、315599、322038、322111、322142、322230、322247；API共17条问题评论全读",
+      "version": "主帖创建2013-02-13，最近正文编辑2013-12-04；评论读取截至2026-11-27；API has_more=false",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "进展",
+      "publication": "社区帖子",
+      "review_status": "仅核关键步骤",
+      "note": "固定p、共同一个p群容器、嵌入定义一致。2013-02-21明确问多项式/指数/中间，2013-12-04明确将成18.51。Brunault的Sylow Sym(p^n)给指数f_p(n)≤(p^n−1)/(p−1)，本轮手核Cayley与Sylow共轭桥。Sawin计数注释中at least O(n²)按其推导应为Ω(n²)；所用p群数p^{Θ(n³)}原定理由学术支线核，不能推出超所有多项式。Gill的循环因子直积明确I think，本轮仅认可它是阿贝尔宿主子问题，未补一般非交换容器下界，不沿用主帖2^66数值为已证普遍下界。评论322230自报f_p(2)=3及奇p的f_p(3)=5、以Cp为商递推；本轮仅独立手核前者，后者未复核，且来源无GAP代码/日志。",
+      "claim_state": "无声明",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "E656-CODE-WREATH",
+      "url": "https://mathoverflow.net/a/153364",
+      "locator": "Glasby完整回答；尤其 I claim (without proof) 段；该回答全部2评论393200、393223",
+      "version": "2014-01-02原回答；2026-11-27全文/API读到",
+      "subquestions": [
+        "Glasby按群指数分层的辅助函数与wreath包含断言"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "社区帖子",
+      "review_status": "核对发现漏洞",
+      "note": "F(p,e,n)只容纳阶p^n、群指数恰为p^e的一层；max_e F≤f≤sum_e F用直积成立，本轮手核。其任意分层容器G(p,e2,n2) wr G(p,e1,n1)含目标层全群的无证明断言有明确反例：p=2，(e1,n1)=(1,1)，(e2,n2)=(1,3)，合法最小容器分别C2和C2^3。W=C2^3 wr C2有初等阿贝尔基群B=C2^6且[W:B]=2。目标K=C4×C4阶2^4、指数4；若K嵌入W，则|K∩B|≥8，而K中平方为1的元素仅4个，矛盾。此为纸面独立核对，无GAP执行。只否定该构造断言/其证明路径；不能据此断言F(2,2,4)≤7数值界为假，更不能判18.51已反驳。",
+      "claim_state": "公开声称",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "gap_found",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "E656-CODE-MO-OTHER",
+      "url": "https://mathoverflow.net/a/226520",
+      "locator": "Yakov完整回答及4评论559168、559186、559213、598546",
+      "version": "2015-12-19发表、2016-06-16编辑；2026-11-27 API has_more=false",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "同源不同问",
+      "role": "进展",
+      "publication": "社区帖子",
+      "review_status": "已读未核关键步骤",
+      "note": "提问每个H能否放进一个2生成p群的Frattini子群；Barnea评论以Nottingham群及有限商回应。未给按n统一阶上界；逐H存在的宿主与18.51一个共同容器的最小指数增长不同。本轮未核Nottingham依赖或该Frattini嵌入断言，不把社区建议当全题解。",
+      "claim_state": "无声明",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "E656-CODE-BENCH",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-18-051.json",
+      "locator": "完整JSON statement/status_observation/provenance",
+      "version": "commit8d494791ace5894b860585d67ba8e69dbfed6376；blobf6dba488ffd6fbfc5dee69c0723c11921f98398e",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "二手索引",
+      "review_status": "已读未核关键步骤",
+      "note": "转录18.51及S.Kohl；listed-unsolved仅2026-07-03的旧编目观察，未附证明/反例。PDF提取上标扁平化须按原定义恢复，不得把pfp(n)读成乘积。",
+      "claim_state": "无声明",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "secondary_index"
+      }
+    },
+    {
+      "evidence_id": "E656-CODE-CORPUS",
+      "url": "https://github.com/ai-math-edu-lab/math-agents/blob/b0b0c8e69546f911cd9d5f8534e323bda4142dd2/obsidian/Research/Group%20theory/Open%20problems/Kourovka/corpus/kourovka-issue-18-2014.md",
+      "locator": "18.51小节L311–316",
+      "version": "commitb0b0c8e69546f911cd9d5f8534e323bda4142dd2；blob7dfe892373fa46a0705cba0fc3718dd5cebd71ce",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "代码仓库",
+      "review_status": "已读未核关键步骤",
+      "note": "实际文件是pdftotext机器转录的Kourovka题目，不是Lean证明；只核本题小节，未逐读全文件。",
+      "claim_state": "无声明",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E656-CODE-REGISTRY",
+      "url": "https://github.com/ericjiang18/agent_monitor_math/blob/b9d61554169114a31b937828c955726ec8509bb1/agent_monitor/data/problem_sources/kourovka.json",
+      "locator": "L10206–10213，18.51条目",
+      "version": "commitb9d61554169114a31b937828c955726ec8509bb1；blob699d23db3b8c0d0d9d9902f6656e288d2e74ad60",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "二手索引",
+      "review_status": "已读未核关键步骤",
+      "note": "实际本条header_marker=null、part_markers=[]、ai=null；GitHub搜索结果中别条的ai:unverified不可移到18.51。此索引没有证明，空标签不作为当前开放性证明。",
+      "claim_state": "无声明",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "secondary_index"
+      }
+    },
+    {
+      "evidence_id": "E656-CODE-AUTHOR",
+      "url": "https://github.com/Stefan-Kohl/stefan-kohl.github.io/blob/3836b8c3fcfbba4497ade953e0ba37b930ae6915/publications_kohl.html",
+      "locator": "完整源码取到；精读L339–348题号/解答列表",
+      "version": "commit3836b8c3fcfbba4497ade953e0ba37b930ae6915；blobf4b6de8019bce7ebb743899d2c1d328b1f5425ef",
+      "subquestions": [
+        "主问题"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "作者主页",
+      "review_status": "已读未核关键步骤",
+      "note": "作者列表18.51只列题号；紧邻的18.50明确标Pietro Monticone使用Aristotle解出，不是本题。页面没有给18.51新解链接；不从沉默推出数学上仍开放。",
+      "claim_state": "无声明",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "P656-DUP-SELF",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000656.text.md",
+      "locator": "自身冻结text.md §§题面、人话、18.51原文摘录、边界；meta.acceptance.criteria；自身meta与正文分别和题包逐项比对",
+      "version": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；card_rev 4c32a5759e637cbc；text blob c5f1516e8bd6f36aa0458d223f6827b4ee2f69e1；meta blob b7a6e3766732c65cdb65ba2f9a64f17ef194f891",
+      "subquestions": [
+        "固定素数p时统一容器阶对数f_p(n)的超多项式下增长与亚指数上增长"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "等价只指冻结18.51原文摘录中的统一容器定义及增长问题；不认证自由群错误解释、把m当群指数/放大倍数或旧无解记录。精确定量增长约定仍应由原题/主审确认后写明。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000083",
+      "other_card_rev": "1719a673da1072ba",
+      "relation": "仅相似",
+      "reason": "83的12.55定义f(n,p)为p^n阶群的同构类个数，固定n≥5并让素数p变化，问该计数关于p是否单调递增。656定义f_p(n)为一个容纳全部p^n阶群的p群U的最小log_p|U|，固定p并让n趋于无穷，问增长标度。两者函数含义、变动参数和结论均不同。计数可参与容器下界或直积构造，但计数单调性不等于最小统一容器的增长。",
+      "positions": {
+        "self": "自身冻结text.md §§题面、人话、18.51原文摘录、边界；meta.acceptance.criteria",
+        "other": "候选冻结text.md §§12.55原文、已修正形式化、人话；meta.acceptance.criteria"
+      },
+      "note": "命名相似不能视为同一f；例如p²阶群同构类数为2，而本轮小例推得f_p(2)=3。此例只辨定义，不处理83的n≥5主命题。 无严格同题，不合并；未来严格等价获核后由较小ID QX-P-000083 承担主卡及二审合并提议责任。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-002304",
+      "other_card_rev": "90440e6347aad3c8",
+      "relation": "仅相似",
+      "reason": "2304定义g(N)为N阶有限群的同构类数，问对每个m≥0及1≤N≤2^m是否g(N)≤g(2^m)。这是跨所有整数阶的枚举支配问题，不构造包含这些群的公共群。656固定任意素数p，以n=log_p目标群阶作参数，优化公共p群容器的阶对数。较小阶的群数被某计数支配，不意味着这些群能作为子群嵌入同一个p群；其他素数阶群甚至不能嵌入p群。",
+      "positions": {
+        "self": "自身冻结text.md §§题面、人话、18.51原文摘录、边界；meta.acceptance.criteria",
+        "other": "候选冻结text.md §§题面、边界；meta.acceptance.criteria与statement_issues"
+      },
+      "note": "候选允许等号、不要求g一般单调，并有更强求和变体；这些计数范围均不能代替656的统一嵌入定义。 无严格同题，不合并；未来严格等价获核后由较小ID QX-P-000656 承担主卡及二审合并提议责任。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001076",
+      "other_card_rev": "e378523fde7bed0b",
+      "relation": "仅相似",
+      "reason": "1076的5.55要求寻找有限p群P，使P不能嵌入任何Schur乘子平凡的有限p群U；其容器有M(U)=1的结构限制，且问单个P是否存在这种障碍。656对容器不加乘子条件，要求同一个U容纳所有p^n阶群，并最小化log_p|U|。就算某P有上述受限嵌入障碍，它仍可以进入一个不限制乘子的统一容器，因此该反例不回答656的增长率。",
+      "positions": {
+        "self": "自身冻结text.md §§题面、人话、18.51原文摘录、边界；meta.acceptance.criteria",
+        "other": "候选冻结text.md §5.55原文、人话；meta.acceptance.criteria"
+      },
+      "note": "候选把Schur乘子解释为无冗余表现的口语说法未用于本比较；结构受限逐群嵌入与无附加结构的最小统一容器不同。 无严格同题，不合并；未来严格等价获核后由较小ID QX-P-000656 承担主卡及二审合并提议责任。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001077",
+      "other_card_rev": "530308eef8d21bdf",
+      "relation": "仅相似",
+      "reason": "1077的5.56(a)对每个素数p>3及每个指数p的有限群P，问是否存在指数p的有限群U使P嵌入U′；目标U可依赖P，且指定落在导群。656量化全部p^n阶群，不限群指数p，也不要求嵌入导群，而要对这一整层共用一个U及优化其阶。指数p与p^m阶不是一个参数：指数p的容器不能含有C_{p²}，所以它根本不能成为n≥2时656的全类容器。",
+      "positions": {
+        "self": "自身冻结text.md §§题面、人话、18.51原文摘录、边界；meta.acceptance.criteria",
+        "other": "候选冻结text.md §5.56(a)完整原文、人话；meta.acceptance.criteria"
+      },
+      "note": "不把∀P∃U_P的存在断言当成∃U∀P的定量断言，也不把群指数exp(U)=p当作656中m=log_p|U|。 无严格同题，不合并；未来严格等价获核后由较小ID QX-P-000656 承担主卡及二审合并提议责任。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-002327",
+      "other_card_rev": "4b002c47d0fb39cb",
+      "relation": "仅相似",
+      "reason": "2327的21.102固定一个有限群H及群簇V=var(H)，令F_n(V)为n生成相对自由群，问(log|F_n(V)|)^(1/n)的普通极限是否存在且为整数。n在这里是生成元个数，F_n是指定群簇中的自由对象而非容纳所有p^n阶群的最小群；自由泛性质给相应生成群的商映射，不给其子群嵌入。656的n是目标p群阶的p底对数，且图景遍历这一阶的全部p群，不固定同一个有限群生成的簇。两种对数规模函数不存在已核等价转换。",
+      "positions": {
+        "self": "自身冻结text.md §§题面、人话、18.51原文摘录、边界；meta.acceptance.criteria",
+        "other": "候选冻结text.md §§题面、21.102原文、边界；meta.acceptance.criteria"
+      },
+      "note": "候选还混写了对数换底：在n次根内换底实际乘(ln b)^(-1/n)，极限因子趋1，非其口语所写固定倍数；该错误未被移植到656。此处只做范围比较，不修候选或查其状态。 无严格同题，不合并；未来严格等价获核后由较小ID QX-P-000656 承担主卡及二审合并提议责任。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-002343",
+      "other_card_rev": "f6e3da32d3ab9531",
+      "relation": "仅相似",
+      "reason": "2343研究一个有限生成群G及有限生成集S的词球计数γ_G,S(n)，主断言是超多项式增长时存在依赖G,S的C使最终exp(sqrt(n))≤γ_G,S(Cn)。656的f_p(n)是不同有限群容器的优化数列，不是已给定一个群的词球增长函数；亦不问sqrt(n)间隙下界或线性半径缩放。不能把某些中间增长群的存在，或词增长间隙结论，直接用作f_p(n)超多项式/亚指数的证明。",
+      "positions": {
+        "self": "自身冻结text.md §§题面、人话、18.51原文摘录、边界；meta.acceptance.criteria",
+        "other": "候选冻结text.md §§题面、形式化、原文及G/G*区别；meta.acceptance.criteria"
+      },
+      "note": "共有超多项式/亚指数词汇不提供群或增长函数的实现定理；若欲迁移结果，须先构造并证明比较关系，本轮没有这种桥梁。 无严格同题，不合并；未来严格等价获核后由较小ID QX-P-000656 承担主卡及二审合并提议责任。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-002487",
+      "other_card_rev": "75824ebb1f6b3c1d",
+      "relation": "仅相似",
+      "reason": "2487定义u(n)为一个同时含所有n元偏序集为诱导子偏序集的最小偏序集元素数，要求强序嵌入保持且反射次序，问精确规模或最优指数。656对象为有限p群、映射为单射群同态，优化的是容器元素数的p底对数。二者虽然都采用单一万有对象，但对象范畴、子对象结构、参数n与目标函数都不同；偏序集编码或计数不自动给出保群运算、保p群及保渐近标度的等价归约。",
+      "positions": {
+        "self": "自身冻结text.md §§题面、人话、18.51原文摘录、边界；meta.acceptance.criteria",
+        "other": "候选冻结text.md §§题面、形式化、边界；meta.acceptance.criteria"
+      },
+      "note": "不把候选的指数规模上/下界或部分改进作为656的亚指数/超多项式结论；本轮没有检到可保持全部参数的互相转换。 无严格同题，不合并；未来严格等价获核后由较小ID QX-P-000656 承担主卡及二审合并提议责任。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补条件量词",
+      "field": "formal_statement",
+      "old": "见题面。",
+      "new": "对每个固定素数p和整数n≥1，定义f_p(n)=min{m∈Z_{≥0}:存在有限群U，|U|=p^m，且对每个有限群H（|H|=p^n）存在单射群同态H→U}。同一个U要容纳该层全部群；U可以随p,n变化，各嵌入不要求相互兼容或像正规。",
+      "reason": "把统一宿主的存在量词置于所有H之前；n是输入群阶的log_p，不是固定生成元数，m也不是群的元素阶指数。",
+      "evidence_ids": [
+        "E656-ORIGIN-V50",
+        "E656-ORIGIN-V1"
+      ],
+      "small_case_check": "f_p(1)=1；f_p(2)=3。若U可随H选择，则会平凡地总取U=H得到m=n，这不是原题。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "growth_rates;acceptance",
+      "new": "原文只用自然语言描述两种增长率。建议明确采用标准强形式：对每个固定p，∀d>0有f_p(n)/n^d→∞，且∀c>1有f_p(n)/c^n→0；分别等价于log f_p(n)/log n→∞和log f_p(n)/n→0。极限起点/常数可依p,d,c，不增加对p一致的要求。",
+      "reason": "“不多项式有界”与每个多项式的最终严格支配、以及“非指数增长”与亚指数不能未经正则性证明直接视为同义。原文没有明写极限式，以上应标为明确化建议，不伪称原作者逐字定义。",
+      "evidence_ids": [
+        "E656-ORIGIN-V50",
+        "E656-ORIGIN-MO2013"
+      ],
+      "small_case_check": "假设数值函数g(n)=n²，则g为多项式而p^{g(n)}已快于任意固定底c^n；这是尺度检验，不是对真实f_p的结论。n=1、2的有限样本不能判断任何渐近极限。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "free_group_upper_bound",
+      "old": "n个生成元的自由群能装下所有n生成群，所以上界不难。",
+      "new": "每个p^n阶群都能通过正则置换作用嵌入S_{p^n}，再经Sylow子群共轭嵌入同一个Sylow p子群。因此f_p(n)≤(p^n−1)/(p−1)，给出可行但仍为指数量级的上界。自由群的普适性质只保证相应满射。",
+      "reason": "修正嵌入与商群的实质混淆，并给真正有限p群宿主。",
+      "evidence_ids": [
+        "E656-ORIGIN-MOBOUNDS",
+        "E656-ORIGIN-V50"
+      ],
+      "small_case_check": "F_1=Z可满射C_p，但因Z无非零有限阶元素，C_p不能嵌入其中。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "quantity_being_measured",
+      "old": "f_p(n)衡量放大多少倍；难的是这个最小阶数的增长速度。",
+      "new": "f_p(n)是最小宿主阶数的以p为底的对数；最小宿主阶数为M_p(n)=p^{f_p(n)}，相对输入阶p^n的倍数为p^{f_p(n)−n}。所问多项式/指数增长针对f_p(n)，不是M_p(n)。",
+      "reason": "避免混淆指数参数、实际群阶和体积倍数这三个不同量。",
+      "evidence_ids": [
+        "E656-ORIGIN-V50",
+        "E656-ORIGIN-MO2013"
+      ],
+      "small_case_check": "n=2时f_p(2)=3，宿主阶p³，放大倍数p；这三个值一般不同。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "first_published;sources",
+      "old": "2014年辑首刊/在列。",
+      "new": "提出者Stefan Kohl于2013-02-13在MO121719首次公开同一f_p(n)的渐近问题；2013-02-21追问增长档次；不晚于2013-12-04固定revision8已明确超多项式且亚指数的合取问题，并预告收录2014年第18辑18.51。2014应标题录收录年。",
+      "reason": "用本人固定修订记录区分最初一般问题、明确猜想以及后来的题录出版，不把后加猜想提前到首帖日期。",
+      "evidence_ids": [
+        "E656-ORIGIN-MO2013",
+        "E656-ORIGIN-V1",
+        "E656-ORIGIN-AUTHOR"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "known_results",
+      "old": "Kohl嵌入纲领；无解。",
+      "new": "可列已核基本界Ω(n²)≤f_p(n)≤(p^n−1)/(p−1)，并列f_p(1)=1、f_p(2)=3；这些仍不足以证明所问中间增长。一般状态按本轮学术和公开证明核验范围表达，删除无来源的“无解”。",
+      "reason": "给可定位或自足复核的具体界限，避免把旧未单独检索或无标记记录当结论。",
+      "evidence_ids": [
+        "E656-ORIGIN-MOBOUNDS",
+        "E656-ORIGIN-UPDATES",
+        "E656-ORIGIN-MULTIREPORT"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "acceptance.negative_direction",
+      "new": "若采用上述标准强形式，否定其中任一项即可否定合取；对“每固定p”的普遍版本，一个明确素数的反例即可否定全称。不要要求所有否定结果都必须证明稳定的多项式端点或指数端点，也不要用单个小n异常否定渐近命题。",
+      "reason": "原验收“或证明落在多项式或指数一端”把逻辑否定限制成了更强的二分结论；原问题未提供足以排除其他渐近行为的正则性定理。",
+      "evidence_ids": [
+        "E656-ORIGIN-V50",
+        "E656-ORIGIN-MO2013"
+      ],
+      "small_case_check": "对每固定p的全称合取，否定一个明确素数上的其中一项即足以否定全称；单个n的异常不足。无需额外假定真实f_p没有振荡或一定属于预列的两个端点。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "universe of input groups；embedding convention",
+      "new": "可等价表述为容纳所有阶不超过p^n的p群：阶p^k的H先嵌入H×C_(p^(n−k))，其阶恰p^n，再嵌入同一U。该等价仍限p群，不扩大成任意阶≤p^n的有限群；不要求各嵌入相互兼容或像正规。",
+      "reason": "同一层容器存在量词不能移到各H之后，且补阶只对p幂阶对象适用。",
+      "evidence_ids": [
+        "P656-DUP-SELF",
+        "E656-ORIGIN-V50"
+      ],
+      "small_case_check": "若允许每个H独选U_H=H，将平凡得到m=n，与已核f_p(2)=3冲突。若把≤p^n包括别的素数阶C_q，q≠p，则不可能嵌入p群。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "community_auxiliary_claims",
+      "new": "Glasby2014的F分层max/sum基本关系可保留；任意容器的wreath包含断言须附本轮小例质疑，不能作为一般上界证明。Gill阿贝尔容器评论与奇p时f_p(3)=5自报分开列范围。",
+      "reason": "完整读到帖子不等于其中所有断言成立；根与代码支线独立核到C4²不能嵌入C2³ wr C2，但未核F(2,2,4)真实最小值。",
+      "evidence_ids": [
+        "E656-CODE-WREATH",
+        "E656-CODE-MO",
+        "E656-ROOT-MO"
+      ],
+      "small_case_check": "W=C2³ wr C2有B=C2⁶正规指数2。C4²若嵌入，交B至少8阶；C4²的平方为1元素只有4个，矛盾。该反例不声称其他2^7阶容器也不可能。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "informal_status；novelty；formal",
+      "old": "Kohl嵌入纲领；无解；旧novelty绑定1728795d6ca6c1df且写未单独检索。",
+      "new": "本轮绑定4c32a5759e637cbc，覆盖逐题粗查有缺口；先列人话/尺度/验收修订，再分别保留超多项式与亚指数未获确证。公开AI仅题录、关键词或邻题解，不记同题已形式化；未执行Lean/GAP。",
+      "reason": "现卡已知结果需给可定位界限，旧未检索/无注释状态不可当本轮成果；新数学结案一律另审。",
+      "evidence_ids": [
+        "E656-ORIGIN-UPDATES",
+        "E656-ORIGIN-MULTIREPORT",
+        "E656-CODE-BENCH",
+        "E656-CODE-REGISTRY",
+        "E656-CODE-AUTHOR",
+        "P656-DUP-SELF"
+      ],
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "原题与2013明确猜想均用自然语言，没有给超多项式/亚指数的极限定义或额外正则性假设。",
+      "next_step": "修订卡时明示采用的标准强极限含义；比较后续结果时保留其原量词，不能把limsup型无多项式上界自动记作最终支配每个多项式，也不加p一致性。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮未找到一般超多项式下界或亚指数上界的完整稿；检得的有限宿主界仍夹在二次与指数之间。",
+      "next_step": "以本次范围未发现确证描述原始渐近问题；不能因上下界未碰合或作者目录无标记宣称已证明开放。新的候选须保持固定p、n趋无穷、同一宿主及f为log阶。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Higman1960、Sims1965原始全文未取得；du Sautoy引言已读但公式OCR欠佳、截图无可读图像。",
+      "next_step": "书目只按已核层级记录；本轮已自足重建足以支持Ω(n²)的计数下界，未使用Sims完整上界或声称审完原始计数证明。如需精确群枚举渐近或引用原证，另取可读原稿。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "FC与OpenAI为所列字符串/固定目录的有限覆盖；未取得同题完整证明文件。",
+      "next_step": "若后续出现明确18.51新声明，应核固定p、共同单一p群容器、所有阶p^n群的embedding及f而非p^f的增长，不从题号或AI标签判解决。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "评论322230的奇p小值f_p(3)=5没有源码/日志；Gill阿贝尔容器最小化未给一般宿主下界桥。",
+      "next_step": "保留为作者/评论者自报或特定宿主讨论，除非取得明确共同容器、全部嵌入及最小性证明；本轮不运行无目标GAP枚举。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "已手核Glasby构造反例，但未尝试确定F(2,2,4)的真实最小值。",
+      "next_step": "只撤除其任意容器wreath推导的可信性，勿将此当F数值不等式反例或18.51否定。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "7候选的meta及全文已核，均仅相似；索引没有召回另一张统一容器最小阶对数同题卡，但未穷尽全库全文。",
+      "next_step": "当前不合并。若后续命中阶≤p^n的p群版本，可用已给补阶证明核定与精确阶版的等价；若命中容器阶a_p(n)，先验证a_p(n)=p^{f_p(n)}并转换目标增长量词，再谈严格同题。严格等价获核后由较小ID提二审合并。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "回执绑定原冻结card_rev4c32a5759e637cbc，未修改线上题卡。自由群说明、尺度与验收量词修订应按各自性质处理；不随修订把一般数学状态结案。",
+      "next_step": "仅修正人话/补引文按包规处理；若正式定义、参数域或验收条件改动，则生成新版本并重查受影响原题、学术和相关代码路线。主问题保持未获一般确证，辅助构造反例单独记范围。",
+      "batch_id": "QX-R3-04",
+      "card_rev": "4c32a5759e637cbc",
+      "codes": {}
+    }
+  ]
+}

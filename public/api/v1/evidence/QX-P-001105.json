@@ -1,0 +1,1677 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001105",
+  "card_rev": "043929ed37711c57",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-05"
+      ],
+      "parts": [
+        {
+          "subquestion": "周期剩余有限p′特例",
+          "value": "claimed_proof",
+          "note": "Theorem1.3：periodic residually finite p′群若有阶为素数p的分裂自同构，则G幂零且类≤f(p)，f只依赖p；无需额外轨道子群幂零假设。已读正式正文证明，未通审全部经典依赖。periodic保留为明确假设，不由“无p阶元素”偷换成所有有限商都是p′群。"
+        },
+        {
+          "subquestion": "periodic Tarski monster排除",
+          "value": "claimed_proof",
+          "note": "按论文§3明确约定，讨论所有真非平凡子群为同一素数阶循环群的periodic Tarski monsters。Proposition3.1排除有非平凡有限阶自同构且所有元素轨道生成子群幂零的情形；Theorem1.5应用于原题。没有把它扩大到torsion-free Tarski用法，或一切含Tarski subgroup/section的群。"
+        },
+        {
+          "subquestion": "去掉p′的边界",
+          "value": "partial",
+          "note": "Example3.4给H×Cq：H为exponent p的periodic Tarski monster，p|q−1，φ固定H并在Cq上取无固定点的p阶自同构。轨道子群有限循环，但G不局部幂零；它含p阶元素且非RF，故只反驳去掉p′的更弱题设，不是10.59反例。"
+        },
+        {
+          "subquestion": "版本范围核对",
+          "value": "not_assessed",
+          "note": "v1 Thm1.3和当前arXiv元数据摘要漏p′，但v2正文及2026-08-01正式版本均明确p′；采用现行有条件定理。未取得后续撤回或勘误，不等于证明其不存在。"
+        },
+        {
+          "subquestion": "10.59的Lean题面与p′/轨道子群量词编码",
+          "value": "not_assessed",
+          "note": "固定JSON内嵌同题Lean候选，主定理含answer(sorry)与by sorry；只有辅助引理和小例，不能算一般原题证明。第三方compiled/complete仅生成检查元数据，本轮未编译或核公理；元数据所指正式仓库基线路径404，不能宣称已合入。"
+        },
+        {
+          "subquestion": "定义与轨道量词",
+          "value": "partial",
+          "note": "从p项splitting和无p阶元自含推出固定点自由，不需周期性；定义有限集合的φ闭包K(S)，区分逐g轨道幂零、逐有限S幂零及统一类界。没有把几个幂零子群的生成群自动判为幂零。"
+        },
+        {
+          "subquestion": "p=2完整边界",
+          "value": "partial",
+          "note": "p2时φ必为反演，反演又为同态遂使G阿贝尔。此特例无需p′或轨道条件；C3反演确阶2，C2反演阶1不能充作例子。完整自含推导已内嵌，不推广至所有素数。"
+        },
+        {
+          "subquestion": "有限、局部有限及RF提升",
+          "value": "partial",
+          "note": "以有限Higman统一类界为外部输入，核局部有限群的φ不变有限闭包、periodic RF群的φ不变有限商；逐项证明非平凡限制/商上的自同构恰阶p及周期p′在商上保持。Z→Cp说明只无p阶元不够支持此商步骤。不是本轮重证外部有限深定理，也不是去除RF/局部有限假设。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "statement_only",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/tadamcz/autoformalization-results/blob/2f3747e0233049f1695dbd725e42e1b19a6ec3ff/data/entries/kourovka-10.59.json"
+      ]
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "正式2026论文给periodic RF p′特例和periodic Tarski排除，未覆盖一般非RF情形。本轮一般解/反例与撤回勘误检索未取得完整解决稿；不能用这些无命中结果证明原题仍开放。",
+      "evidence_ids": [
+        "1105-A1-journal",
+        "1105-A2-v2",
+        "1105-R1-original",
+        "1105-M2-p2"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "周期剩余有限p′特例",
+      "math_status": "完整证明声明",
+      "scope_note": "Theorem1.3：periodic residually finite p′群若有阶为素数p的分裂自同构，则G幂零且类≤f(p)，f只依赖p；无需额外轨道子群幂零假设。已读正式正文证明，未通审全部经典依赖。periodic保留为明确假设，不由“无p阶元素”偷换成所有有限商都是p′群。",
+      "evidence_ids": [
+        "1105-A1-journal",
+        "1105-A2-v2",
+        "1105-M3-lifts"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "periodic Tarski monster排除",
+      "math_status": "完整证明声明",
+      "scope_note": "按论文§3明确约定，讨论所有真非平凡子群为同一素数阶循环群的periodic Tarski monsters。Proposition3.1排除有非平凡有限阶自同构且所有元素轨道生成子群幂零的情形；Theorem1.5应用于原题。没有把它扩大到torsion-free Tarski用法，或一切含Tarski subgroup/section的群。",
+      "evidence_ids": [
+        "1105-A1-journal"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "去掉p′的边界",
+      "math_status": "仅特例",
+      "scope_note": "Example3.4给H×Cq：H为exponent p的periodic Tarski monster，p|q−1，φ固定H并在Cq上取无固定点的p阶自同构。轨道子群有限循环，但G不局部幂零；它含p阶元素且非RF，故只反驳去掉p′的更弱题设，不是10.59反例。",
+      "evidence_ids": [
+        "1105-A1-journal",
+        "1105-M4-nonexample"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "版本范围核对",
+      "math_status": "未作判断",
+      "scope_note": "v1 Thm1.3和当前arXiv元数据摘要漏p′，但v2正文及2026-08-01正式版本均明确p′；采用现行有条件定理。未取得后续撤回或勘误，不等于证明其不存在。",
+      "evidence_ids": [
+        "1105-A2-v2",
+        "1105-A3-v1",
+        "1105-A4-arxiv-history"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    },
+    {
+      "subquestion": "10.59的Lean题面与p′/轨道子群量词编码",
+      "math_status": "未作判断",
+      "scope_note": "固定JSON内嵌同题Lean候选，主定理含answer(sorry)与by sorry；只有辅助引理和小例，不能算一般原题证明。第三方compiled/complete仅生成检查元数据，本轮未编译或核公理；元数据所指正式仓库基线路径404，不能宣称已合入。",
+      "evidence_ids": [
+        "QX-P-001105-CODE-AUTOFORMAL"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    },
+    {
+      "subquestion": "定义与轨道量词",
+      "math_status": "部分进展",
+      "scope_note": "从p项splitting和无p阶元自含推出固定点自由，不需周期性；定义有限集合的φ闭包K(S)，区分逐g轨道幂零、逐有限S幂零及统一类界。没有把几个幂零子群的生成群自动判为幂零。",
+      "evidence_ids": [
+        "1105-R1-original",
+        "1105-M1-definitions"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "p=2完整边界",
+      "math_status": "仅特例",
+      "scope_note": "p2时φ必为反演，反演又为同态遂使G阿贝尔。此特例无需p′或轨道条件；C3反演确阶2，C2反演阶1不能充作例子。完整自含推导已内嵌，不推广至所有素数。",
+      "evidence_ids": [
+        "1105-M2-p2"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有限、局部有限及RF提升",
+      "math_status": "条件性结果",
+      "scope_note": "以有限Higman统一类界为外部输入，核局部有限群的φ不变有限闭包、periodic RF群的φ不变有限商；逐项证明非平凡限制/商上的自同构恰阶p及周期p′在商上保持。Z→Cp说明只无p阶元不够支持此商步骤。不是本轮重证外部有限深定理，也不是去除RF/局部有限假设。",
+      "evidence_ids": [
+        "1105-A1-journal",
+        "1105-M3-lifts"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-05-1105-R01",
+      "route": "原题与出处",
+      "site": "arXiv",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/abs/2604.01011 〔私有记录编号：PR-002406〕",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2604.01011",
+      "locator": "Abstract/Submission history",
+      "note": "主审读取摘要及版本元数据；当前摘要漏p′，不得覆盖正文的条件。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-R02",
+      "route": "原题与出处",
+      "site": "Kourovka官方全文",
+      "query": "检索词／定位词：10.59. 〔私有记录编号：PR-002407〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21tkt.pdf",
+      "locator": "10.59；印刷页45/PDF页索引44",
+      "note": "逐项核对p′-group、素数p的确切阶、自同构分裂范数恒等式、逐g的轨道子群幂零、结论局部幂零；与包内原文对应。该处未定义p′惯例，不从无解标记推出今日未解。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-R03",
+      "route": "原题与出处",
+      "site": "Kourovka官方增补",
+      "query": "检索词／定位词：10.59 〔私有记录编号：PR-002408〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21upd.pdf",
+      "locator": "本轮已打开的官方增补PDF内定位10.59",
+      "note": "此官方增补PDF中10.59字面查找未命中；不当成不存在新解的证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-R04",
+      "route": "原题与出处",
+      "site": "Kourovka官方Repository",
+      "query": "检索词／定位词：10.59 〔私有记录编号：PR-002409〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "locator": "Repository页面内定位10.59",
+      "note": "未取得同题条目；不把相邻问题的AI声明移入本题。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-R05",
+      "route": "原题与出处",
+      "site": "arXiv固定v2",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/html/2604.01011v2 〔私有记录编号：PR-002410〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2604.01011v2",
+      "locator": "全文§1–4",
+      "note": "主审读v2定理及证明：周期、RF、p′缺一不可用于当前归类，Tarski排除限§3所定periodic类型。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-R06",
+      "route": "原题与出处",
+      "site": "DOI解析",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://doi.org/10.1007/s00013-026-02278-3 〔私有记录编号：PR-002411〕",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://doi.org/10.1007/s00013-026-02278-3",
+      "locator": "DOI入口",
+      "note": "返回不可访问；随后使用显式Springer article路径成功，不掩盖失败。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-R07",
+      "route": "原题与出处",
+      "site": "arXiv固定v1",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/html/2604.01011v1 〔私有记录编号：PR-002412〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2604.01011v1",
+      "locator": "Abstract/Theorem1.3",
+      "note": "读旧版本。其定理漏p′，随后定位现行定理与证明来约束范围。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-R08",
+      "route": "原题与出处",
+      "site": "Springer正式刊文",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://link.springer.com/article/10.1007/s00013-026-02278-3 〔私有记录编号：PR-002413〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00013-026-02278-3",
+      "locator": "Abstract/Published/Theorem1.3",
+      "note": "正式刊发2026-08-01；正文已补p′。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-R09",
+      "route": "原题与出处",
+      "site": "Kourovka官方全文",
+      "query": "检索词／定位词：Notation 〔私有记录编号：PR-002414〕",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21tkt.pdf",
+      "locator": "Notation关键词定位",
+      "note": "命中的是各题中局部notation用法，没有取得p′-group统一术语定义；未命中指所需定义，非声称整个词零命中。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-R10",
+      "route": "原题与出处",
+      "site": "arXiv固定v1",
+      "query": "检索词／定位词：Theorem 1.3 〔私有记录编号：PR-002415〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2604.01011v1",
+      "locator": "Theorem1.3/§4",
+      "note": "确认旧定理没有p′而后续证明却用p′；不接受省略条件的较强断言。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-R11",
+      "route": "原题与出处",
+      "site": "Springer正式刊文",
+      "query": "检索词／定位词：Theorem 1.3 〔私有记录编号：PR-002416〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00013-026-02278-3",
+      "locator": "Theorem1.3/Cor1.4/Theorem1.5",
+      "note": "逐项核对现行条件、p统一类界、轨道条件在Thm1.3中并不需要。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-R12",
+      "route": "原题与出处",
+      "site": "Springer正式刊文",
+      "query": "检索词／定位词：Proof of Theorem 1.3 〔私有记录编号：PR-002417〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00013-026-02278-3",
+      "locator": "§4完整主证明与Example3.4",
+      "note": "读取φ不变核交、有限商与固定点自由推导；补核诱导自同构恰阶p（非平凡商）及periodic保证商仍p′；历史Higman输入没有独立重证。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A01",
+      "route": "学术",
+      "site": "arXiv 原始版本",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/abs/2604.01011 〔私有记录编号：PR-002406〕",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2604.01011",
+      "locator": "Abstract及Submission history",
+      "note": "确认题名、三名作者、最新页面v2=2026-06-11；abs元数据摘要省略p′，不能仅凭摘要外推范围。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A02",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Kourovka\" \"10.59\" splitting automorphism 〔私有记录编号：PR-002418〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/2604.01011",
+      "locator": "Kourovka10.59及近期解决声明定向检索",
+      "note": "命中同题新论文和旧题集索引；部分旧PDF搜索片段漏prime符号，后续采用原始正文。实际recency=730。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A03",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"2604.01011\" Di Bartolo splitting automorphism 〔私有记录编号：PR-002419〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/2604.01011",
+      "locator": "arXiv编号、作者和splitting automorphism组合检索",
+      "note": "确认真实论文及正式刊文DOI线索；索引同时返回版本不同的范围，不把聚合摘要当证明。实际recency=730。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A04",
+      "route": "学术",
+      "site": "arXiv 原始版本",
+      "query": "{\"click\":{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"id\":10}} 〔私有记录编号：PR-002420〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2604.01011v2",
+      "locator": "arXiv abs的HTML链接10；v2正文§1–§3开头",
+      "note": "已读Theorem1.3/Cor1.4/Thm1.5声明：主定理明确periodic、RF、p′；仅有附加假设下的部分解。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A05",
+      "route": "学术",
+      "site": "arXiv 原始版本",
+      "query": "{\"click\":{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"id\":9}} 〔私有记录编号：PR-002421〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/pdf/2604.01011",
+      "locator": "arXiv abs的PDF链接9；当前返回7页/354行元数据",
+      "note": "本次PDF入口仅返回文档信息，没有输出证明内容；全文阅读使用固定v2 HTML，不冒称本次PDF逐页已读。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A06",
+      "route": "学术",
+      "site": "Springer / Archiv der Mathematik",
+      "query": "{\"click\":{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"id\":14}} 〔私有记录编号：PR-002422〕",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "url": "https://doi.org/10.1007/s00013-026-02278-3",
+      "locator": "arXiv abs的Related DOI链接14",
+      "note": "DOI重定向到Springer非article路径后报不可达；随后显式article页面成功。保留此次失败。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A07",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"2604.01011\" correction OR erratum OR withdrawn OR revised 〔私有记录编号：PR-002423〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/2604.01011",
+      "locator": "按arXiv编号检索correction/erratum/withdrawn/revised",
+      "note": "实际recency=730。命中v1/v2历史及正式刊文，未取得后续撤回或独立勘误通知；版本差异另由原文逐项核。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A08",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Sozutov\" \"10.59\" solved OR solution OR counterexample 〔私有记录编号：PR-002424〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/2604.01011",
+      "locator": "Sozutov10.59的完整解/反例声明检索",
+      "note": "实际recency=730。返回同一RF部分解及其Tarski排除结果，未取得覆盖非RF一般情形的完整解或反例。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A09",
+      "route": "学术",
+      "site": "arXiv 原始版本",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002425〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2604.01011v2",
+      "locator": "§3 Proposition3.1、Example3.4及§4 Theorem1.3完整证明",
+      "note": "读取有限不变商/Higman统一界的主证明，并核§3只讨论periodic Tarski monsters。Example3.4不满足p′，不能作为原题反例。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A10",
+      "route": "学术",
+      "site": "Springer / Archiv der Mathematik",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://link.springer.com/article/10.1007/s00013-026-02278-3 〔私有记录编号：PR-002413〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00013-026-02278-3",
+      "locator": "正式发表页面，Abstract、Problem1.2、Theorems1.3/1.5、Corollary1.4",
+      "note": "2026-08-01正式刊发。正文主定理与arXiv v2一致，保留periodic RF p′假设；不是一般10.59的完结。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A11",
+      "route": "学术",
+      "site": "arXiv 原始版本",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/html/2604.01011v1 〔私有记录编号：PR-002412〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2604.01011v1",
+      "locator": "固定v1=2026-04-01，Abstract、Theorem1.3、Corollary1.4",
+      "note": "实际读v1，Thm1.3确实省略p′；不能引用其较强文字替代修订后的v2/正式版本。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A12",
+      "route": "学术",
+      "site": "Springer / Archiv der Mathematik",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002426〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00013-026-02278-3",
+      "locator": "Proposition2.5及§3 periodic Tarski约定与Proposition3.1",
+      "note": "正式正文确认使用有限指数φ不变正规核；Tarski排除仅按作者明确的periodic类型记录。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A13",
+      "route": "学术",
+      "site": "Springer / Archiv der Mathematik",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002427〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00013-026-02278-3",
+      "locator": "References、Acknowledgements、出版页面后段",
+      "note": "读取Higman、Cooper等参考文献与作者信息；没有声称本轮另读这些历史依赖全文。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A14",
+      "route": "学术",
+      "site": "arXiv 原始版本",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002428〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2604.01011v1",
+      "locator": "v1 §3 Example3.4及§4主证明开头",
+      "note": "v1定理漏p′但其证明已经使用G/N为有限p′群；与v2添加该条件的版本差异吻合。例3.4在v2将轨道子群进一步写为有限循环。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A15",
+      "route": "学术",
+      "site": "web system2_search_query",
+      "query": "检索词／定位词：\"Sozutov\" \"splitting automorphism\" \"locally nilpotent\" -site:researchgate.net -site:scribd.com 〔私有记录编号：PR-002429〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/2604.01011",
+      "locator": "Sozutov+splitting+locally nilpotent，排除ResearchGate/Scribd聚合站的检索",
+      "note": "命中arXiv、作者机构记录及旧题集；没有新的已读完整解。机构搜索结果的Published相对时间不替代正式刊发日期。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A16",
+      "route": "学术",
+      "site": "web system2_search_query",
+      "query": "检索词／定位词：\"A residually finite analogue of Kegel\" \"correction\" OR \"erratum\" OR \"retraction\" 〔私有记录编号：PR-002430〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://link.springer.com/article/10.1007/s00013-026-02278-3",
+      "locator": "精确题名加correction/erratum/retraction检索",
+      "note": "返回论文和索引，未取得正式撤回或后续勘误通知。实际只完成此查询范围，不能证明这些通知绝不存在。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A17",
+      "route": "学术",
+      "site": "Springer / Archiv der Mathematik",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002431〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00013-026-02278-3",
+      "locator": "§3完整论证、Example3.4、§4主定理完整证明及About this article",
+      "note": "已读正式正文主要证明，与v2关键参数相符；未独立通审Higman统一界和Cooper幂自同构定理原始证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A18",
+      "route": "学术",
+      "site": "Springer / Archiv der Mathematik",
+      "query": "检索词／定位词：Received 〔私有记录编号：PR-002432〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://link.springer.com/article/10.1007/s00013-026-02278-3",
+      "locator": "About this article：Received/Revised/Accepted/Published/Version of record",
+      "note": "Received2026-03-31，Revised06-11，Accepted06-26，Published及Version of record08-01。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-A19",
+      "route": "学术",
+      "site": "arXiv 原始版本",
+      "query": "检索词／定位词：withdraw 〔私有记录编号：PR-002433〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "url": "https://arxiv.org/abs/2604.01011",
+      "locator": "当前arXiv摘要页find withdraw",
+      "note": "该具体词未命中；与v1/v2历史一起记录，不能扩大为所有渠道均无撤回。",
+      "result_count": 0,
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"Kourovka\" \"10.59\"；topn=20",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/search?q=%22Kourovka%22%20%2210.59%22&type=code",
+      "locator": "返回20项的索引片段",
+      "note": "实际执行GitHub connector检索；此为可复述搜索URL，并未另在浏览器打开。取得同题CB目录、autoformalization JSON、JUrban既有部分结果线索；同时混入10.67引用10.59定义及数字/时间戳误命中。仅跟读明确同题文件，不能借10.67或其他Kourovka编号宣布本题解决。",
+      "request_id": "QX1105-C01",
+      "result_count": 20,
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"splitting automorphism\" \"nilpotent\"；topn=20",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/search?q=%22splitting%20automorphism%22%20%22nilpotent%22&type=code",
+      "locator": "返回20项的text_matches",
+      "note": "同题线索之外，atlas命中1.10、budden-bench命中1.10/7.53/10.67/15.96；其问题对象与结论不相同。A residually finite analogue的RSS/缓存摘要只作定位，数学假设交全文核，不据摘要省略p′扩大结论。",
+      "request_id": "QX1105-C02",
+      "result_count": 20,
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"splitting\" \"automorphism\"；repository=google-deepmind/formal-conjectures；topn=10",
+      "date": "2026-11-27",
+      "outcome": "限流",
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "locator": "GitHub search API 429",
+      "note": "返回RATE_LIMITED、retry_after_seconds=204；此请求没有搜索结果，不能记为无命中。没有反复重试；已通过独立全局命中取得同题autoformalization固定文件。",
+      "request_id": "QX1105-C03",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system1",
+      "query": "\"Kourovka\" \"10.59\" Lean AI；recency=365",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/alunik/kourovka-lean",
+      "locator": "三词组批请求合并结果；alunik公开仓库摘要及AI索引",
+      "note": "本批返回其他Kourovka题的Lean/AI成功目录；展示的21.xx、16.68、18.50等未匹配10.59，不跨编号采用其验证标签。仅读搜索返回，未打开/复跑这些不同题项目。",
+      "request_id": "QX1105-W01",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system1",
+      "query": "\"splitting automorphism\" \"locally nilpotent\" code GitHub",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://www.mathnet.ru/php/archive.phtml?jrnid=sm&option_lang=rus&paperid=1853&wshow=paper",
+      "locator": "同批合并结果；Khukhro1986/1987书目及论文摘要线索",
+      "note": "书目讨论已假设局部幂零的群与分裂自同构，不能只凭标题把10.59所求局部幂零结论当作已得。未从该批获得一般情形的可执行证明；数学原文由学术路线核。",
+      "request_id": "QX1105-W01",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "Web search system1",
+      "query": "\"2604.01011\" code Lean GitHub",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://doi.org/10.48550/arXiv.2604.01011",
+      "locator": "同批合并结果；arXiv摘要/版本v2、相关DOI",
+      "note": "命中Di Bartolo–Ersoy–Falcone论文记录与多站摘要，未由此取得同题完整Lean证书。摘要metadata有省略p′风险；不据仅摘要把periodic RF特例变成10.59通解。",
+      "request_id": "QX1105-W01",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed file",
+      "query": "fetch_file bespokelabsai/conjecture-bench problems/extended-catalog/kourovka-notebook/kourovka-main-10-059.json ref=8d494791ace5894b860585d67ba8e69dbfed6376",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-10-059.json",
+      "locator": "完整JSON：statement/status_observation/provenance",
+      "note": "blob=ad47a220bf7a831d3c62443ee47026de0c2ec18f；是同题pdf-text-entry转录，listed-unsolved的as_of=2026-07-03。contains_placeholder=false是抽取质量，不是证明完整性；无数学证明或代码执行。",
+      "request_id": "QX1105-C04",
+      "result_count": 1,
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed file",
+      "query": "fetch_file tadamcz/autoformalization-results data/entries/kourovka-10.59.json ref=2f3747e0233049f1695dbd725e42e1b19a6ec3ff",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/tadamcz/autoformalization-results/blob/2f3747e0233049f1695dbd725e42e1b19a6ec3ff/data/entries/kourovka-10.59.json",
+      "locator": "完整JSON及内嵌lean；checks、claims、fc、reviewer_notes",
+      "note": "blob=89a591502d113c4c981ac394eb3d26477254be78。已静态读定义、主定理及两项辅助证明。主题为research open，`answer(sorry) ↔ ∀ ...`后仍`by sorry`；outcome.complete与checks.compiled=true是作者的题面生成/编译记录，非主问题证明。p′编码为∀g,orderOf g≠p，未加周期性；每个orbitSubgroup幂零而不要求统一类界。只辅助证明nilpotent→locallynilpotent和ZMod3逆自同构非空例。本轮未Lean复跑。",
+      "request_id": "QX1105-C05",
+      "result_count": 1,
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed file",
+      "query": "fetch_file google-deepmind/formal-conjectures FormalConjectures/Kourovka/10_59.lean ref=9cbe1d3c12998c786b7c2cd99ce28a21b6631f66",
+      "date": "2026-11-27",
+      "outcome": "档案或版本缺失",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/9cbe1d3c12998c786b7c2cd99ce28a21b6631f66/FormalConjectures/Kourovka/10_59.lean",
+      "locator": "JSON中fc.commit与fc.path对应的直接文件请求",
+      "note": "GitHub返回404 NOT_FOUND。仅凭autoformalization里的fc元数据不能声称文件已合入该仓库或该基线；本轮实际可核Lean文本来自tadamcz固定JSON内嵌字段。",
+      "request_id": "QX1105-C06",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub code search",
+      "query": "\"10.59\"；repository=JUrban/kour1；topn=15",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/JUrban/kour1",
+      "locator": "返回15项；research/10.59-prior-result.md与results/10.59-prior-summary.json",
+      "note": "命中专条标PRIOR_PARTIAL及公共研究过程片段；其他题的GAP日志和数字10.59误命中排除。随后只取同题研究笔记和摘要完整内容。",
+      "request_id": "QX1105-C07",
+      "result_count": 15,
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed file",
+      "query": "fetch_file JUrban/kour1 research/10.59-prior-result.md ref=dce7931e980c7db83100a07fbe084fc1dd655fdb",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/JUrban/kour1/blob/dce7931e980c7db83100a07fbe084fc1dd655fdb/research/10.59-prior-result.md",
+      "locator": "完整专条：Status、Source and precise scope、Audited deduction、Tarski-monster exclusion、Internal review",
+      "note": "blob=c8f3b7baa9fb3d75d9b24320f19d86dfd83328ab。自记2026-09-11审查既有周期RF p′特例，明确无一般解和无新优先权；列φ不变有限指数正规子群交、统一幂零类界及周期Tarski-monster排除。是公开研究笔记/作者自行审查，不是形式化证书或本轮独立外部复核；不把含Tarski子群/截面的任意群也排除。",
+      "request_id": "QX1105-C08",
+      "result_count": 1,
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed file",
+      "query": "fetch_file JUrban/kour1 results/10.59-prior-summary.json ref=dce7931e980c7db83100a07fbe084fc1dd655fdb",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/JUrban/kour1/blob/dce7931e980c7db83100a07fbe084fc1dd655fdb/results/10.59-prior-summary.json",
+      "locator": "完整summary：problem/status/scope/checked_utc/sha256",
+      "note": "blob=de3eacad1491d513b76344f95175abb9560f41e2。status=PRIOR_PARTIAL；scope=Periodic residually finite p-prime groups; periodic Tarski-monster exclusion；checked_utc=2026-09-11T20:45:33.228798+00:00。内列源文件哈希只证该记录的溯源安排，本轮未重新取得全部PDF/图片计算哈希或复跑。",
+      "request_id": "QX1105-C09",
+      "result_count": 1,
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fixed file",
+      "query": "fetch_file facebookresearch/atlas-lean WantedExt/GroupTheory/SplittingAutomorphismSolubleNilpotentKourovka1Problem10Wanted.lean ref=b3b19b29e31405dccfd8a80fc1729f870a3d9866",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/facebookresearch/atlas-lean/blob/b3b19b29e31405dccfd8a80fc1729f870a3d9866/WantedExt/GroupTheory/SplittingAutomorphismSolubleNilpotentKourovka1Problem10Wanted.lean",
+      "locator": "完整Lean文件；Problem1.10说明与两个theorem_wanted",
+      "note": "blob=6fe1e4161e885f3ad36935068bd7e8840a3d3d65。目标为soluble群的分裂自同构⇒幂零，文件明确Archive1.10，两个目标都是theorem_wanted；不是10.59的任意p′群轨道子群条件。静态读文件、不编译；仅作为排异查询，不给当前主问挂其形式化标签。",
+      "request_id": "QX1105-C10",
+      "result_count": 1,
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "已取得的GitHub固定文件缓存",
+      "query": "从同会话已取得的 ericjiang18/agent_monitor_math kourovka.json 固定b9d61554169114a31b937828c955726ec8509bb1中解析problems[\"10.59\"]",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/ericjiang18/agent_monitor_math/blob/b9d61554169114a31b937828c955726ec8509bb1/agent_monitor/data/problem_sources/kourovka.json",
+      "locator": "problems[\"10.59\"]；源arXiv1401.0300v48，fetched_at2026-10-11",
+      "note": "实际复用已下载的同一固定JSON并读取目标条目，没有新发网络请求：page45，header_marker=null，part_markers=[]，ai=null，in_main_section=true。历史二手目录不证明当前没有AI声称；也不覆盖新发现的自动形式化候选。",
+      "request_id": "QX1105-CACHE01",
+      "result_count": 1,
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内全库查重简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002434〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/tree/73290369a8dcc632e25e555aec525565ea6e08f8",
+      "locator": "包内全库2469条索引；616、1015、1092行",
+      "result_count": 3,
+      "request_id": "QX1105-D01",
+      "note": "实际3命中：000625、001028、self001105；前两者作为合理候选取固定metadata和正文。URL为固定仓库背景地址，并未声称包内索引文件在该URL可下载。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "包内任务清单",
+      "query": "读取package/任务.jsonl并查询000625、001028、001105是否属于本包",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.qunxingmath.org/p/QX-P-001105/",
+      "locator": "包内100题任务清单成员检查",
+      "result_count": 3,
+      "request_id": "QX1105-D02",
+      "note": "实际结果000625=False，001028=False，001105=True；两个候选均较小且不在本包，因此正式pair仅待核，不在当前任务合并。此URL只标当前题，不是本地清单下载地址。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub fixed qunxing-data",
+      "query": "fetch_file qunxingmath-org/qunxing-data problems/000/QX-P-000625.meta.json ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000625.meta.json",
+      "locator": "id/card_rev/title/acceptance及完整metadata",
+      "request_id": "QX1105-D-000625-M",
+      "result_count": 1,
+      "note": "blob=5f8e1076f25c547cdcca70b5fad16b3815065204；other card_reva6063f3bb17438b5与包内索引/当前题卡匹配。只作固定候选比较，没有启动对侧查新。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub fixed qunxing-data",
+      "query": "fetch_file qunxingmath-org/qunxing-data problems/000/QX-P-000625.text.md ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000625.text.md",
+      "locator": "完整正文：题面/人话版/原文摘录/边界",
+      "request_id": "QX1105-D-000625-T",
+      "result_count": 1,
+      "note": "blob=a85049ef1915ce05eba93ae6e3adc5f4f1b18977；other card_reva6063f3bb17438b5与包内索引/当前题卡匹配。只作固定候选比较，没有启动对侧查新。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub fixed qunxing-data",
+      "query": "fetch_file qunxingmath-org/qunxing-data problems/001/QX-P-001028.meta.json ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001028.meta.json",
+      "locator": "id/card_rev/title/acceptance及完整metadata",
+      "request_id": "QX1105-D-001028-M",
+      "result_count": 1,
+      "note": "blob=f23afca5c989144fe2e528c975cbe593a879cd8d；other card_rev401477721e471b8b与包内索引/当前题卡匹配。只作固定候选比较，没有启动对侧查新。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub fixed qunxing-data",
+      "query": "fetch_file qunxingmath-org/qunxing-data problems/001/QX-P-001028.text.md ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001028.text.md",
+      "locator": "完整正文：题面/人话版/原文摘录/边界",
+      "request_id": "QX1105-D-001028-T",
+      "result_count": 1,
+      "note": "blob=d4f7c85bb01ba93a04685940f587ec06a401f1df；other card_rev401477721e471b8b与包内索引/当前题卡匹配。只作固定候选比较，没有启动对侧查新。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub fixed qunxing-data",
+      "query": "fetch_file qunxingmath-org/qunxing-data problems/001/QX-P-001105.meta.json ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001105.meta.json",
+      "locator": "id/card_rev/title/acceptance及完整metadata",
+      "request_id": "QX1105-D-001105-M",
+      "result_count": 1,
+      "note": "blob=2d31e54ce4cb5716a5a6422269b863155ee5e149；self card_rev043929ed37711c57与包内索引/当前题卡匹配。只作固定候选比较，没有启动对侧查新。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub fixed qunxing-data",
+      "query": "fetch_file qunxingmath-org/qunxing-data problems/001/QX-P-001105.text.md ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001105.text.md",
+      "locator": "完整正文：题面/人话版/原文摘录/边界",
+      "request_id": "QX1105-D-001105-T",
+      "result_count": 1,
+      "note": "blob=31fed478930367b58d4e2e079ffd4d70c64fbc2a；self card_rev043929ed37711c57与包内索引/当前题卡匹配。只作固定候选比较，没有启动对侧查新。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-1105-M01",
+      "route": "原题与出处",
+      "site": "本轮手工数学核对",
+      "query": "按固定题卡检查splitting有序p项乘积、精确阶、固定点、轨道量词、p2、有限φ闭包与RF商提升，以及H×Cq构造缺p′的边界",
+      "date": "2026-11-27",
+      "outcome": "不适用",
+      "url": "https://www.qunxingmath.org/p/QX-P-001105/",
+      "locator": "1105-M1至M4完整推导",
+      "note": "自含数学与外部定理适用范围检查，非外部文献检索或程序复跑；未运行GAP/Sage/Lean。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "not_applicable"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "1105-R1-original",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21tkt.pdf",
+      "locator": "问题10.59，印刷页45（PDF索引44）；原文定义splitting紧接题面",
+      "version": "Kourovka Notebook第21版，2026-11-02官方PDF；本轮2026-11-27读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "原始提出",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "原题给p′群、阶恰为素数p的分裂自同构、对每个g的轨道生成子群幂零，问所有有限生成子群是否幂零；不是要求这些轨道子群有统一幂零类界。提出人为A.I.Sozutov。此条与该轮官方增补/Repository没有本轮取得的全题解决声明，不能据此证明仍开放。p′是否隐含周期性未获统一定义，现行部分定理中的periodic条件明确保留。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "1105-A1-journal",
+      "url": "https://link.springer.com/article/10.1007/s00013-026-02278-3",
+      "locator": "Theorem1.3、Corollary1.4；§3 periodic Tarski约定、Proposition3.1、Example3.4；§4主证明；About this article",
+      "version": "Archiv der Mathematik，DOI10.1007/s00013-026-02278-3；Version of record2026-08-01，revised06-11、accepted06-26；2026-11-27查阅",
+      "subquestions": [
+        "主问题",
+        "周期剩余有限p′特例",
+        "periodic Tarski monster排除",
+        "去掉p′的边界"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "claimant": "Alfonso di Bartolo; Kıvanç Ersoy; Giovanni Falcone",
+      "claim_date": "2026-08-01",
+      "note": "主定理需periodic、RF、p′和素阶splitting，结论class≤f(p)，不需轨道幂零；作者以Cor1.4应用于原题。§3只排除periodic Tarski monsters；H×Cq例有p阶元素，不能反驳原题。已读对应证明，未独立复证Higman/Cooper历史依赖。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "1105-A2-v2",
+      "url": "https://arxiv.org/html/2604.01011v2",
+      "locator": "固定v2，Abstract、Theorem1.3及§4；§3开头与Proposition3.1",
+      "version": "arXiv:2604.01011v2，2026-06-11 15:13:24 UTC；2026-11-27查阅HTML全文",
+      "subquestions": [
+        "周期剩余有限p′特例",
+        "版本范围核对"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "claimant": "Alfonso Di Bartolo; Kıvanç Ersoy; Giovanni Falcone",
+      "claim_date": "2026-06-11",
+      "note": "v2正文明确补入p′，与正式刊文关键范围一致。主证明取φ不变有限指数核，再用有限p′商中的固定点自由性和统一类界；RF用于分离非平凡交换子。该修订稿与正式刊文不是两个独立证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "1105-A3-v1",
+      "url": "https://arxiv.org/html/2604.01011v1",
+      "locator": "Theorem1.3与§4主证明中“Since G is a p′-group”步骤",
+      "version": "arXiv:2604.01011v1，2026-04-01 15:16:11 UTC；2026-11-27查阅",
+      "subquestions": [
+        "版本范围核对"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "尚未确认",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "note": "v1定理文字没有p′，证明却已使用p′。本轮只将此记录为被v2范围修订取代的旧文字，不接受缺p′的较强断言，也不把此历史漏写说成现行定理已被推翻。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "1105-A4-arxiv-history",
+      "url": "https://arxiv.org/abs/2604.01011",
+      "locator": "Abstract、Submission history和Related DOI",
+      "version": "2026-11-27当前页面：v1=2026-04-01，latest v2=2026-06-11；Related DOI指向正式刊文",
+      "subquestions": [
+        "版本范围核对"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "尚未确认",
+      "claim_state": "有修订",
+      "review_status": "未读全文",
+      "formal_status": "未检索",
+      "note": "此元数据摘要仍省略p′，与v2正文/正式刊文不同。版本记录未显示后续版本；find withdraw未命中，定向搜索未取得撤回通知。摘要与索引不用于升级定理范围。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "revised",
+        "claim_review": "not_read",
+        "scope_match": "unconfirmed",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "QX-P-001105-CODE-CB",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-10-059.json",
+      "locator": "statement / status_observation / provenance",
+      "version": "commit8d494791ace5894b860585d67ba8e69dbfed6376；blobad47a220bf7a831d3c62443ee47026de0c2ec18f；访问2026-11-27（Asia/Shanghai）",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "完整JSON仅题面转录，历史listed-unsolved截至2026-07-03；没有证明/算法或形式化定理。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-001105-CODE-AUTOFORMAL",
+      "url": "https://github.com/tadamcz/autoformalization-results/blob/2f3747e0233049f1695dbd725e42e1b19a6ec3ff/data/entries/kourovka-10.59.json",
+      "locator": "lean字段：IsLocallyNilpotent、IsSplittingAutomorphism、orbitSubgroup、kourovka.«10.59»；checks / claims / fc / reviewer_notes",
+      "version": "commit2f3747e0233049f1695dbd725e42e1b19a6ec3ff；blob89a591502d113c4c981ac394eb3d26477254be78；访问2026-11-27（Asia/Shanghai）",
+      "subquestions": [
+        "10.59的Lean题面与p′/轨道子群量词编码"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "仅对应当前题卡将p′解释为无p阶元素的读法；不假设周期性，orderOfφ=p，非交换有序List.prod范数式、每个轨道生成子群幂零、每个FG子群幂零的结论均可静态定位。主定理是research open，含answer(sorry)及by sorry。outcome.complete/checks.compiled=true不是主定理已证，也不是本轮复跑；仅两个辅助项（幂零⇒局部幂零及ZMod3逆映射）有证明脚本。JSON给Lean4.27.0、mathlib a3a10db0e9d66acbebf76c5e6a135066525ac900、FormalConjectures基线9cbe1d3c12998c786b7c2cd99ce28a21b6631f66，但按其基线/路径直接取文件404；不宣称已合入正式仓库，未编译或核axioms。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-001105-CODE-JURBAN",
+      "url": "https://github.com/JUrban/kour1/blob/dce7931e980c7db83100a07fbe084fc1dd655fdb/research/10.59-prior-result.md",
+      "locator": "Status；Source and precise scope；Audited deduction；Internal review；配套results/10.59-prior-summary.json",
+      "version": "commitdce7931e980c7db83100a07fbe084fc1dd655fdb；笔记blobc8f3b7baa9fb3d75d9b24320f19d86dfd83328ab；summary blobde3eacad1491d513b76344f95175abb9560f41e2；自记2026-09-11审查，访问2026-11-27",
+      "subquestions": [
+        "周期剩余有限p′特例",
+        "periodic Tarski monster排除"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "公开研究笔记和摘要明确PRIOR_PARTIAL、归既有Di Bartolo–Ersoy–Falcone结果，不声称一般10.59通解或新优先权。列φ不变有限指数正规交与统一类界，以及Tarski特例论证；本路线只读其文本和边界，未独立验证经典输入或全部来源哈希，不把作者自行审查当第三方形式化/独立复跑。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "1105-M1-definitions",
+      "url": "https://www.qunxingmath.org/p/QX-P-001105/",
+      "locator": "本回执note内嵌完整推导；URL仅标识题卡，不声称题卡已有本轮证明",
+      "version": "固定题卡043929ed37711c57；2026-11-27手工核对",
+      "subquestions": [
+        "定义与轨道量词"
+      ],
+      "role": "进展",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": " 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress"
+      }
+    },
+    {
+      "evidence_id": "1105-M2-p2",
+      "url": "https://www.qunxingmath.org/p/QX-P-001105/",
+      "locator": "本回执note内嵌完整推导；URL仅标识题卡，不声称题卡已有本轮证明",
+      "version": "固定题卡043929ed37711c57；2026-11-27手工核对",
+      "subquestions": [
+        "p=2完整边界"
+      ],
+      "role": "进展",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": " 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress"
+      }
+    },
+    {
+      "evidence_id": "1105-M3-lifts",
+      "url": "https://www.qunxingmath.org/p/QX-P-001105/",
+      "locator": "本回执note内嵌完整推导；URL仅标识题卡，不声称题卡已有本轮证明",
+      "version": "固定题卡043929ed37711c57；2026-11-27手工核对",
+      "subquestions": [
+        "有限、局部有限及RF提升"
+      ],
+      "role": "进展",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": " 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress"
+      }
+    },
+    {
+      "evidence_id": "1105-M4-nonexample",
+      "url": "https://www.qunxingmath.org/p/QX-P-001105/",
+      "locator": "本回执note内嵌完整推导；URL仅标识题卡，不声称题卡已有本轮证明",
+      "version": "固定题卡043929ed37711c57；2026-11-27手工核对",
+      "subquestions": [
+        "去掉p′的边界"
+      ],
+      "role": "进展",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": " 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000625",
+      "other_card_rev": "a6063f3bb17438b5",
+      "relation": "待核",
+      "reason": "固定全文/meta均取得：001105假设p′群有素阶splitting automorphism且每个单元素轨道生成子群幂零，求G局部幂零；000625原文是17.71(b)，另假设G周期、无非平凡p元素和固定点自由，所求为自同构splitting本身。两卡目标及假设不同，不能把fixed-point-free与splitting无条件互换。000625较小且不在本包，依小号负责仅记待核，不作合并或最终蕴含判定。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001105.text.md §人话版/原文摘录；meta rev043929ed37711c57",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000625.text.md §题面/原文摘录17.71(b)；meta reva6063f3bb17438b5"
+      },
+      "note": "共同固定commit73290369a8dcc632e25e555aec525565ea6e08f8；没有先改写对侧周期性条件再比对。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-001028",
+      "other_card_rev": "401477721e471b8b",
+      "relation": "待核",
+      "reason": "固定全文/meta均取得：001028为15.96，已假设d生成幂零p群，求分裂自同构条件下导长统一界（a/b）；001105为p′群局部幂零性问题。p群与p′群、已假设幂零与待证局部幂零、导长界与结构性质均不同。对侧正文pn等排版按原样保留，本轮不擅补指数再强弱比较。001028较小且不在本包，正式pair留其负责，只待核。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001105.text.md §题面/原文摘录；meta rev043929ed37711c57",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001028.text.md §题面/人话版/原文摘录(a)(b)；meta rev401477721e471b8b"
+      },
+      "note": "共同固定commit73290369a8dcc632e25e555aec525565ea6e08f8；不合并、不修订对侧。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补进展",
+      "field": "开放状态证据 / 已知结果与进展",
+      "old": "arXiv:2604.01011（2026, Di Bartolo 等）证明周期 RF p′-群+素阶分裂自同构⇒p-有界类幂等（Kegel 定理 RF 类比）；一般（非RF）情形开放",
+      "new": "Di Bartolo–Ersoy–Falcone，arXiv2604.01011v2（2026-06-11），已正式发表于Archiv der Mathematik（2026-08-01，DOI10.1007/s00013-026-02278-3）。Theorem1.3证明周期、剩余有限的p′群若有素阶p分裂自同构，则幂零类至多f(p)；该定理无需轨道幂零假设。一般原题在本轮已读材料内未获完整解确证。",
+      "reason": "补正式发表版本并将数学术语“幂等”改为“幂零”；保留全部定理假设和p有界量词，不以部分结果或编目无标记闭合一般原题。",
+      "evidence_ids": [
+        "1105-A1-journal",
+        "1105-A2-v2"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "相关进展与声称解决",
+      "new": "同文Theorem1.5/Proposition3.1排除作者§3所指的periodic Tarski monster反例。Example3.4仅给去除p′条件后的反例边界，不能用来反驳原题。引用需固定v2或正式刊文，因为v1定理和现行arXiv摘要页有漏p′的旧文字。",
+      "reason": "保留Tarski类型限定及版本差异，避免摘要误读和把不同题设的构造当原题反例。",
+      "evidence_ids": [
+        "1105-A1-journal",
+        "1105-A2-v2",
+        "1105-A3-v1",
+        "1105-A4-arxiv-history"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "人话版 / p′-group",
+      "old": "p′-群指不含p阶元素的群。",
+      "new": "按原题或作者约定注明p′-group是否还包含周期性；若含周期性，应写“每个元素有与p互素的有限阶”。本轮固定点与p=2证明仅需无非单位p阶元素；引用2026 RF结果时必须逐项保留periodic、RF、p′条件。",
+      "reason": "不能只凭术语猜是否已含周期性，也不能据未查清的约定把主问题判错。",
+      "evidence_ids": [
+        "1105-M1-definitions"
+      ],
+      "small_case_check": "Z无p阶元素但有有限商Cp；周期p′群的有限商则每个元素阶仍与p互素。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "人话版 / splitting乘积",
+      "old": "沿整条轨道乘起来恰好回到单位元。",
+      "new": "对所有g，按i=0,…,p−1的顺序乘p项g·φ(g)·…·φ^(p−1)(g)=1；φ阶恰为p。不能把非交换乘积任意重排，固定点也重复p项。",
+      "reason": "规范右上标与顺序，并保留精确阶。",
+      "evidence_ids": [
+        "1105-M1-definitions"
+      ],
+      "small_case_check": "φ(g)=g时公式给g^p=1，而不是只留一个轨道点就写g=1；再结合无p阶元素推出g=1。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "边界与约定 / 轨道子群量词",
+      "old": "对每个g，由g,gφ,…生成的子群都幂零。",
+      "new": "明确是∀g∃c(g)，使H_g类≤c(g)；所求局部幂零是∀有限S∃c(S)，使〈S〉幂零。可用K(S)=〈φ^i(s):s∈S〉作有限φ闭包，但不能把单轨道假设直接当成所有K(S)均幂零，也不能无依据交换成统一类界。",
+      "reason": "这是主问核心的量词缺口，不是文字同义改写。",
+      "evidence_ids": [
+        "1105-M1-definitions"
+      ],
+      "small_case_check": "S3由两个循环子群生成而非幂零，只说明一般闭包推理失败，不构造原题反例。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果 / p=2",
+      "old": "未分列p=2的直接结论。",
+      "new": "p=2时splitting迫φ为反演，而反演是自同构只可能G阿贝尔。因此p=2全特例成立，甚至不需额外p′/轨道幂零假设；阶恰2仍须排除反演为恒等的例子。",
+      "reason": "给可自含核验的完整边界，不扩大为所有素数。",
+      "evidence_ids": [
+        "1105-M2-p2"
+      ],
+      "small_case_check": "C3反演是阶2的有效例；C2反演阶1。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "相关反例 / Example3.4",
+      "old": "若提到splitting且每个轨道群有限循环的非幂零构造，容易漏掉p′条件。",
+      "new": "H(exp p Tarski monster)×Cq的构造确为splitting且所有轨道群有限循环，但含p阶元素，不是p′，因此不能作为10.59反例；怪兽存在性是外部依赖。",
+      "reason": "逐项核候选是否满足原题全部假设。",
+      "evidence_ids": [
+        "1105-A1-journal",
+        "1105-M4-nonexample"
+      ],
+      "small_case_check": "H×1为非单位固定点群，元素p次幂为1，正好触发缺失p′的边界。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "边界与约定 / 实际计算",
+      "old": "独立验证：小p′群构造GAP。",
+      "new": "本轮完成手工固定点、p=2、有限φ闭包、RF提升及条件性构造核验；没有实际运行GAP或形式化内核。",
+      "reason": "不把计划中的实验或外部定理记作本轮程序复跑。",
+      "evidence_ids": [
+        "1105-M1-definitions",
+        "1105-M2-p2",
+        "1105-M3-lifts"
+      ],
+      "small_case_check": "C3例与商上阶检查均为逐式手算。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "formal_status / formal",
+      "new": "补同题自动形式化骨架来源，等级仅有题面或骨架；主定理仍含sorry，未独立复跑，不能记为已形式化证明。",
+      "reason": "区分题面可编译、辅助引理与主问证明；固定JSON源码已静态读取。",
+      "evidence_ids": [
+        "QX-P-001105-CODE-AUTOFORMAL"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "学术论文把periodic单列；这本身不足以确定Kourovka原提出者对p′-group的全部惯例。",
+      "next_step": "按题包原文及原始出处的术语约定核p′是否自带周期性；在未核明前，保留论文的periodic假设，不将“无p阶元素”与“每个元素有限阶且阶互素于p”无条件等同。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "一般非RF情形未取得完整证明或反例；当前只核到部分定理及其所附证明，未独立复证所引Higman类界/Cooper幂自同构结果。",
+      "next_step": "若后续出现全题解决声明，取精确版本并核是否真的去除RF、是否保持p′及所有g的轨道幂零条件。若升级现有部分定理的独立数学复核层级，再核经典依赖；当前不标整题已解决。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "已取得同题自动形式化候选但主定理仍双sorry；其宣称compiled仅第三方元数据。限定formal-conjectures搜索429，按fc基线路径取源404，未有本轮Lean/GAP执行。",
+      "next_step": "保持“仅有形式化题面或骨架”等级。若以后出现无占位证明，须取得实际源码提交、依赖和构建命令，复核p′含义、φ确切阶、有序范数乘积与逐g而非统一幂零类量词后再核build/axioms；不以辅助小例、有限群定理或题面可编译替代一般10.59。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "000625和001028均较小且不在本包；双方实际固定正文/rev虽已齐，最终pair归小号。",
+      "next_step": "交各小号负责人复核原始周期性、群类与结论量词及对侧排版后确定关系；本包仅保留待核索引，不合并、不启动对侧查新。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "043929ed37711c57",
+      "codes": {}
+    }
+  ]
+}

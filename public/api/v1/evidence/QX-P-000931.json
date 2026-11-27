@@ -1,0 +1,2019 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000931",
+  "card_rev": "e91b9fb9d726891a",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-05"
+      ],
+      "parts": [
+        {
+          "subquestion": "可解素图的抽象同构刻画与等价重述",
+          "value": "claimed_proof",
+          "note": "Gruber等Theorem2.10完整稿已取得，原定理为有限简单图抽象同构可解实现当且仅当补图无三角且可3染色。由此本轮核出19.52等价于存在真实有限群G，其GK补图无三角且色数至少4；群的可实现性不可删。构造会选新素数，不能说任意固定标签都可实现。两AI工作流独立核陈述、量词及等价推论，未重建全部辅助引理，非人工二审或形式化内核。"
+        },
+        {
+          "subquestion": "几乎单群子问：无3-余团时存在同标签素图的有限可解群",
+          "value": "claimed_proof",
+          "note": "Gorshkov–Maslova Theorem1有完整稿，且2018正式刊发记录可核：对有限几乎单G，若GK无3-余团，则存在有限可解H满足同标签GK(G)=GK(H)，因此更满足题目要求的抽象同构。这里的无例仅指几乎单群。已核精确命题、标签约定及证明路线，未对全部分类分支作本轮独立证明审计；不因子问闭合把主问题结案。"
+        },
+        {
+          "subquestion": "有限子类：PSL(2,13)-solvable 与 A12-solvable 群中不存在19.52例子",
+          "value": "claimed_proof",
+          "note": "2025v1中，PSL(2,13)-solvable指每个组成因子均为阿贝尔或PSL(2,13)；Lemma2.2.2保证其素图补图3色可染，故无3-余团时由可解素图判据得到抽象可解实现。Prop2.1.8对A12-solvable给更强完整补图分类：无三角且3色可染。均为特定有限群子类；补图与原图不混同。本轮读局部着色证明与分类陈述，未重算依赖的表示论/GAP表或审完引理链。"
+        },
+        {
+          "subquestion": "条件分支：2025年T-solvable结构化实现定理",
+          "value": "partial",
+          "note": "TheoremA假设T非阿贝尔简单、Schur multiplier阶为1或2、Out(T)为可能平凡的2群；G严格T-solvable且其素图补图在π(T)内至少有一条边；另须满足文中两项之一的外部邻接条件。所得实现A⋊(H×K)或A⋊(E×K)中A,K可解而H/E保持T因子。故它不是把所有这种图实现为可解群；同页更宽版本Conj0.3仍是猜想。"
+        },
+        {
+          "subquestion": "Cameron–Maslova识别判据的范围与条件推论",
+          "value": "partial",
+          "note": "从Thm1.2/1.3推出：本题的有限非可解G若GK无3余团，其GK有无限多两两不同构有限实现群，并可选一个可解根非平凡的实现H。若原图不能由任何可解群抽象实现，则此H仍非可解，所以主问若有见证可选带非平凡可解根的见证。条件推论不提供见证，不把R(H)>1说成H可解，也不把无限多个有限群说成无穷群。只定向核主定理与推论，没有完整CFSG依赖审计。"
+        },
+        {
+          "subquestion": "S5与可解AGL1(F7)的抽象同构小例",
+          "value": "partial",
+          "note": "Python精确枚举两个指定群并核导出列和元素阶：S5非可解、AGL1(F7)可解；素图各为K2⊔K1，分别孤立5/7，抽象同构。S5因满足可解实现而不是19.52见证；不据此排除全部小群，不称GAP或形式化复跑。完整脚本/日志嵌入证据。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/unconditional/CFSGOutsideClean/KimmerleKonovalov.lean"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://arxiv.org/pdf/1606.01402v1",
+      "review": "read_unchecked",
+      "by": "I. B. Gorshkov、N. V. Maslova",
+      "date": "2016-06-04"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "保留原量词：存在有限非可解G，使GK(G)无3-余团，并且对每个有限可解H都不存在抽象图同构GK(G)≅GK(H)。本路线核得几乎单群及指定T-solvable子类的排除结果；没有获得一般有限群的完整构造或不存在性证明。2026-10原稿仍明确重述19.52。四路已合并；当前题面与Notebook原文一致，只有出处年代和进展注记需修订。完整稿、作者代码/形式化声称、本轮静态阅读及两个有限Python实例分别记录；未取得主问全解或对应形式化证书。旧rev阴性不计本轮覆盖。",
+      "evidence_ids": [
+        "0931-S-GM-ORIGIN",
+        "0931-S-GM-THM1",
+        "0931-S-AFK2025",
+        "0931-S-RENNER2026",
+        "0931-R-NOTEBOOK",
+        "0931-D-characterization",
+        "0931-R-CAMERON",
+        "0931-CODE-CB"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "可解素图的抽象同构刻画与等价重述",
+      "math_status": "完整证明声明",
+      "scope_note": "Gruber等Theorem2.10完整稿已取得，原定理为有限简单图抽象同构可解实现当且仅当补图无三角且可3染色。由此本轮核出19.52等价于存在真实有限群G，其GK补图无三角且色数至少4；群的可实现性不可删。构造会选新素数，不能说任意固定标签都可实现。两AI工作流独立核陈述、量词及等价推论，未重建全部辅助引理，非人工二审或形式化内核。",
+      "evidence_ids": [
+        "0931-D-characterization",
+        "0931-D-equivalence",
+        "0931-R-NOTEBOOK"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "几乎单群子问：无3-余团时存在同标签素图的有限可解群",
+      "math_status": "完整证明声明",
+      "scope_note": "Gorshkov–Maslova Theorem1有完整稿，且2018正式刊发记录可核：对有限几乎单G，若GK无3-余团，则存在有限可解H满足同标签GK(G)=GK(H)，因此更满足题目要求的抽象同构。这里的无例仅指几乎单群。已核精确命题、标签约定及证明路线，未对全部分类分支作本轮独立证明审计；不因子问闭合把主问题结案。",
+      "evidence_ids": [
+        "0931-S-GM-THM1"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "有限子类：PSL(2,13)-solvable 与 A12-solvable 群中不存在19.52例子",
+      "math_status": "完整证明声明",
+      "scope_note": "2025v1中，PSL(2,13)-solvable指每个组成因子均为阿贝尔或PSL(2,13)；Lemma2.2.2保证其素图补图3色可染，故无3-余团时由可解素图判据得到抽象可解实现。Prop2.1.8对A12-solvable给更强完整补图分类：无三角且3色可染。均为特定有限群子类；补图与原图不混同。本轮读局部着色证明与分类陈述，未重算依赖的表示论/GAP表或审完引理链。",
+      "evidence_ids": [
+        "0931-S-AFK2025",
+        "0931-D-characterization"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "条件分支：2025年T-solvable结构化实现定理",
+      "math_status": "条件性结果",
+      "scope_note": "TheoremA假设T非阿贝尔简单、Schur multiplier阶为1或2、Out(T)为可能平凡的2群；G严格T-solvable且其素图补图在π(T)内至少有一条边；另须满足文中两项之一的外部邻接条件。所得实现A⋊(H×K)或A⋊(E×K)中A,K可解而H/E保持T因子。故它不是把所有这种图实现为可解群；同页更宽版本Conj0.3仍是猜想。",
+      "evidence_ids": [
+        "0931-S-AFK2025"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Cameron–Maslova识别判据的范围与条件推论",
+      "math_status": "条件性结果",
+      "scope_note": "从Thm1.2/1.3推出：本题的有限非可解G若GK无3余团，其GK有无限多两两不同构有限实现群，并可选一个可解根非平凡的实现H。若原图不能由任何可解群抽象实现，则此H仍非可解，所以主问若有见证可选带非平凡可解根的见证。条件推论不提供见证，不把R(H)>1说成H可解，也不把无限多个有限群说成无穷群。只定向核主定理与推论，没有完整CFSG依赖审计。",
+      "evidence_ids": [
+        "0931-R-CAMERON"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "S5与可解AGL1(F7)的抽象同构小例",
+      "math_status": "仅特例",
+      "scope_note": "Python精确枚举两个指定群并核导出列和元素阶：S5非可解、AGL1(F7)可解；素图各为K2⊔K1，分别孤立5/7，抽象同构。S5因满足可解实现而不是19.52见证；不据此排除全部小群，不称GAP或形式化复跑。完整脚本/日志嵌入证据。",
+      "evidence_ids": [
+        "0931-D-exact"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "一般有限群主问题的完整解、反例及形式化声称",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "本轮实际执行8个system1查询（含近365天过滤的完整解/反例/勘误/撤回定向检索），并取得2016v1/v2、2025v1、2026v1原稿。未取得一般有限群主问全解、反例或上述核心结论撤回/勘误。不是零命中检索，也不是证明不存在更新；2026-10原稿§6仍保留问题，arXiv2610.02696的实时摘要/完整版本历史页面未能读取。 代码/公开AI路线另对固定题目目录、语料、GAP作者工具和群环PQ的Lean来源逐项定范围；本轮没有主问的内核复跑。目录开放标签或未搜到不构成绝对开放证明。",
+      "evidence_ids": [
+        "0931-S-RENNER2026",
+        "0931-R-CATALOG",
+        "0931-CODE-CB",
+        "0931-CODE-AXIOM",
+        "0931-CODE-AI-CORPUS"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "包内固定任务清单",
+      "query": "逐字段读取任务.jsonl中的QX-P-000931/e91b9fb9d726891a、正文、验收及prior_evidence",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "locator": "包序15，list_row415，original_queue_rank743",
+      "note": "仅在第14题001191单题回执保存并列目录确认后开始。本题当前同rev历史记录为empty legacy；旧novelty.card_rev=089cc88b2fdb8f0f不是当前题面覆盖证据。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv摘要和版本史",
+      "query": "open https://arxiv.org/abs/1401.0300（两次定向读取）",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/1401.0300",
+      "locator": "当前v50及版本史、摘要中的AI标记定义",
+      "note": "当前v50时间2026-11-02 10:50:33UTC；历史v11 2018-04-18 withdrawn只是一版题集上传状态，之后v12及多版仍发布，不能当19.52证明撤回。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv HTML与官方更新PDF入口",
+      "query": "批量open https://arxiv.org/html/2012.01482v3；open https://arxiv.org/html/1401.0300v50；click旧官方首页updates链接",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "该次工具返回超出可见上下文并截断；不据此声称HTML或更新PDF已读、也不推断源站不可访问。随后改为实际下载固定PDF、单独打开更新PDF并定向find，成功记录另列。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "官方题集网站",
+      "query": "open https://kourovkanotebookorg.wordpress.com/（两次定向读取）",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://kourovkanotebookorg.wordpress.com/",
+      "locator": "November2026 update首条、标记说明、Archive说明",
+      "note": "实际页面最新更新为2026-11-02；♯为未获数学家确认的AI提议，仍当未解决；∗为正式解答标记，并非仅表示AI解答。网站的日期/标记只证明其当前编目状态，不单独证明世界范围开放。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "官方更新PDF",
+      "query": "click 〔原始工具引用已私有留存〕 id6；find \"19.52\"；find \"16.26\" 〔私有记录编号：PR-002306〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21upd.pdf",
+      "locator": "39页2026-11更新文件的文本检索",
+      "note": "PDF已打开，读首段标记说明；两次指定字面find均No matching text。未逐页通读39页，不把阴性扩成不存在其他公开解答。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕/1。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv公开PDF HTTP",
+      "query": "GET https://arxiv.org/pdf/1401.0300v50；pdftotext -layout；定向文本及pdftoppm/view_image核读",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "完整文件319页；实际读PDF/印pp4、103、147，19.52及16.26，视觉核p147",
+      "note": "HTTP200，1487532bytes；SHA256=b7027dd8e29cc5b187304f4bb0f3bddb30839089c44967f5fadaa4c0e5e60dc7；完整文件已取得不等于全文所有证明逐行审计。root_fetch_log.json保存实际下载结果。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv公开PDF HTTP",
+      "query": "GET https://arxiv.org/pdf/2012.01482v3；pdftotext -layout；定向文本及pdftoppm/view_image核读",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2012.01482v3",
+      "locator": "完整文件32页；实际读pp1–5、17–18；Thm1.2、1.3陈述与p17证明，视觉核p5",
+      "note": "HTTP200，377492bytes；SHA256=6c27fd8cb63e13e4dcee0dbf33d2cd98c63b3cfe3c6f1044bdbf5218038bfb35；完整文件已取得不等于全文所有证明逐行审计。root_fetch_log.json保存实际下载结果。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv摘要和版本史",
+      "query": "open https://arxiv.org/abs/2012.01482（两次定向读取）",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2012.01482",
+      "locator": "作者、摘要、Submission history、journal reference",
+      "note": "Peter J.Cameron/Natalia V.Maslova；v1 2020-12-02，v2 2021-02-12，v3 2023-01-31；正式J.Algebra607 PartA(2022)186–213，DOI10.1016/j.jalgebra.2021.12.005。刊本正文未另取；所读正文是2023v3。refs 〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "固定PDF局部独立数学核对",
+      "query": "在Cameron–Maslova v3精确定位Theorem1.2/Theorem1.3及Proof of Theorem1.2/1.3，读pp2–5和17；并复读p18的多项式界开头",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2012.01482v3",
+      "locator": "所有群有限；p3的k-recognizable计数为群同构类；图等号保留素数标签",
+      "note": "本轮对题目中的有限非可解G核出无3-coclique时不可为有限重数识别，故有无限多两两不同构有限群同标签图，并有一个H其可解根非平凡。但R(H)>1不等于H可解；若G是19.52见证，则此H仍非可解。只核这段推论，未重证CFSG/既引引理或整篇分类。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv原作者刻画的独立复读",
+      "query": "open https://arxiv.org/abs/1305.2368v1；open https://arxiv.org/pdf/1305.2368v1；后用urllib取得PDF并pdftotext读取第7、8页",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/1305.2368v1",
+      "locator": "Theorem2.8印p6；Theorem2.10印p7",
+      "note": "摘要可读；web PDF请求DisabledError（〔原始工具引用已私有留存〕），不意味着文件无法取得：随后HTTP200成功299841bytes，SHA256=910acf0a7a0e01304fd3d96d06eb178f936f9bd160d852ceff8cafb8809dc4da。根代理实际复读定理和Dirichlet选新素数构造，确认是抽象图同构，不是任意预给标签均可实现；未重证所引模论引理。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "已取得原PDF的另一AI工作流定向复读",
+      "query": "读1606.01402v1 pp1–2；2511.16403 pp2–3、27；2610.02696 p19",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "2016英文摘要/俄文QUESTION；2025 Theorem A、Prop2.1.8/Lemma2.2.2；2026§6Outlook",
+      "note": "根代理独立确认2016v1已有同一一般问句；2025两个T子类能排除见证，但Theorem A仍保留非可解H/E且有技术条件；2026Outlook仍把有限群实现问题列为开放。该复读者是AI代理，不是人工同行评审，未据此把整篇证明升级独立审定。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0931-S01-1",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"Kourovka\" \"19.52\" solution; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "同批返回编辑网站、旧论文索引及2026-10相关稿；索引没有提供可核的一般有限群完整解。原题页面由根代理另核。主要refs: 〔原始工具引用已私有留存〕/search7。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0931-S01-2",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"Maslova\" \"prime graph\" \"3-cocliques\" almost simple",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中Gorshkov–Maslova几乎单群论文；后续实际取原稿，不能将这次索引命中本身算全文。refs 〔原始工具引用已私有留存〕/search4。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0931-S01-3",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"19.52\" \"prime graph\" 2025 2026; recency=730",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "命中arXiv2610.02696的镜像索引，§6提19.52；后续改取arXiv原始PDF核范围。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0931-S02-1",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"Maslova\" \"prime graphs\" conjecture counterexample proof; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际返回几乎单群、可识别性和不同群类的邻近结果；未取得一般有限群主问完整证明/反例。不能记为零结果。refs 〔原始工具引用已私有留存〕–6/academia7–8。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0931-S02-2",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"Finite almost simple groups\" \"solvable groups\" Gorshkov Maslova arxiv",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "定位arXiv1606.01402与MathNet正式刊物记录。ref turn463368064academia7。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0931-S02-O1",
+      "route": "学术",
+      "site": "web.open arXiv",
+      "query": "GET https://arxiv.org/abs/2610.02696",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2610.02696",
+      "note": "DisabledError，ref 〔原始工具引用已私有留存〕。后续PDF成功不抹除此摘要/版本历史页面失败。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0931-S02-O2",
+      "route": "学术",
+      "site": "web.open MathNet",
+      "query": "GET https://www.mathnet.ru/php/archive.phtml?jrnid=al&option_lang=eng&paperid=842&wshow=paper",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://www.mathnet.ru/php/archive.phtml?jrnid=al&option_lang=eng&paperid=842&wshow=paper",
+      "locator": "正式刊物记录、摘要及英译本链接",
+      "note": "实际读记录：俄文Algebra i logika57(2)(2018)175–196, DOI10.17377/alglog.2018.57.203；英译Algebra and Logic57(2)(2018)115–129, DOI10.1007/s10469-018-9484-7。这里未取得正式刊本全文。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0931-S03-O1",
+      "route": "学术",
+      "site": "web.open arXiv",
+      "query": "GET https://arxiv.org/abs/1606.01402",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/1606.01402",
+      "locator": "abstract、submission history",
+      "note": "实际读v1=2016-06-04、v2=2016-06-12；后续两版本PDF明确区分。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0931-S03-O2",
+      "route": "学术",
+      "site": "web.open arXiv",
+      "query": "GET https://arxiv.org/abs/2511.16403",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://arxiv.org/abs/2511.16403",
+      "locator": "abstract、submission history",
+      "note": "实际读v1=2025-11-20，所见历史仅此版；摘要中的T-solvable不是solvable。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0931-S03-F1",
+      "route": "学术",
+      "site": "urllib arXiv + 本地PDF",
+      "query": "GET https://arxiv.org/pdf/1606.01402; pdftotext -layout；后续分段读pp1–2,4",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1606.01402",
+      "locator": "PDF侧栏v2；p2定义、Theorem1及QUESTION；p4证明结构",
+      "note": "HTTP200，281521bytes；sha256=60d00976cf8175b00af7c3fd4b7b255a1628e541530d5403d7278cd99f3145d5。已取得11页完整稿，但仅上述部分实际阅读，未逐个核完分类分支。p2另渲染视觉核对。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0931-S03-F2",
+      "route": "学术",
+      "site": "urllib arXiv + 本地PDF",
+      "query": "GET https://arxiv.org/pdf/2610.02696; pdftotext -layout；后续分段读pp1–2,19",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2610.02696",
+      "locator": "侧栏arXiv2610.02696v1(2Oct2026)；p19§6 Outlook",
+      "note": "HTTP200，379467bytes；sha256=65e8ac3deb6918282a9437a917a96db56c7cdb322802e35c66798e5ffdaf5b2a。题头日期October5；§6明确重述有限群19.52，其他主题涉及无限/locally torsion群。p19已视觉读。未通审模型论证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "0931-S03-F3",
+      "route": "学术",
+      "site": "urllib arXiv + 本地PDF",
+      "query": "GET https://arxiv.org/pdf/2511.16403; pdftotext -layout；后续读pp1–3,27,29–31,33",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2511.16403",
+      "locator": "v1；TheoremA、Prop2.1.8、Lemma2.2.2、Thm2.2.8及AppendixA",
+      "note": "HTTP200，555666bytes；sha256=ca58ef90f657ad684e0add8a9e92448588023318f719c95dfe92d23f74edf176。只覆盖特定T及有条件结构定理；不是一般有限群全解。p27已视觉读，确认符号为素图补图。计算表未复跑。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "0931-S03-L1",
+      "route": "学术",
+      "site": "本地PDF提取输出",
+      "query": "首次一次性打印三篇首数页及全部19.52命中页",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "输出超过上下文限制而截断，未把该次打印标为已阅；随后小批读页及视觉核对才形成上面三个访问结论。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0931-S04-1",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"19.52\" Maslova (solved OR counterexample OR proof OR solution); recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "批次返回旧正式论文/作者索引及2026-10稿索引，没有取得主问完整解。检索阴性仅限本轮，不推出绝对开放。refs 〔原始工具引用已私有留存〕–7。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0931-S04-2",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"Gorshkov\" \"Maslova\" \"solvable groups\" (erratum OR corrigendum OR correction OR withdrawn); recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "返回2018论文与作者索引，没有取得针对该论文主结论的撤回/勘误声明。索引中其他论文addendum不属于此稿。refs 〔原始工具引用已私有留存〕/1/6/7。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0931-S04-3",
+      "route": "学术",
+      "site": "web.system1",
+      "query": "\"2610.02696\" (revision OR withdrawn OR correction OR counterexample); recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "返回v1索引/镜像，未取得更正、撤回或一般有限群反例。镜像submission history不能替代arXiv实时历史页面。refs 〔原始工具引用已私有留存〕–5。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "0931-S04-O1",
+      "route": "学术",
+      "site": "web.open arXiv",
+      "query": "GET https://arxiv.org/pdf/2610.02696v1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/2610.02696v1",
+      "note": "DisabledError；ref 〔原始工具引用已私有留存〕。此路径失败与已成功取得的原站未版本化PDF及其实际侧栏版本分开记录。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0931-S04-O2",
+      "route": "学术",
+      "site": "web.open arXiv",
+      "query": "GET https://arxiv.org/pdf/1606.01402v2",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/1606.01402v2",
+      "note": "DisabledError；ref 〔原始工具引用已私有留存〕。此路径失败与已成功取得的原站未版本化PDF及其实际侧栏版本分开记录。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0931-S04-O3",
+      "route": "学术",
+      "site": "web.open arXiv",
+      "query": "GET https://arxiv.org/pdf/2511.16403v1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/2511.16403v1",
+      "note": "DisabledError；ref 〔原始工具引用已私有留存〕。此路径失败与已成功取得的原站未版本化PDF及其实际侧栏版本分开记录。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "0931-S05-F1",
+      "route": "学术",
+      "site": "urllib arXiv + 本地PDF",
+      "query": "GET https://arxiv.org/pdf/1606.01402v1; pdftotext -layout；读侧栏及p2；比对v1/v2的Theorem1+QUESTION段",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1606.01402v1",
+      "locator": "p1侧栏4Jun2016；p2 Theorem1及QUESTION",
+      "note": "HTTP200，281521bytes；sha256=264b9c5116b571debb5999620ca6591a2edd2d5d55724e657216bad2ac8fcd3a。两版该段实际比对相同；由此可定位2016-06-04已明确提出同题。未推断所有页或所有定理在两版完全相同。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N01",
+      "route": "库内查重",
+      "site": "固定全库简索引",
+      "query": "2469条title/title_en/aliases；prime graph; prime-graph; gruenberg; kegel; coclique; 素数图; 素图; 19.52; 16.26",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 2,
+      "locator": "QX-R3-05_source/全库查重简索引.jsonl；0931_sources/code_duplicate_scan.json",
+      "note": "一次定向扫描仅本卡与000714（Kegel性质的Fitting形成）。后者是同姓词面命中，不选为疑似同题；未取对侧全文，不登记pair。无16.26编号索引命中不等于它不在任何材料中。有限标题/别名筛查不升级全库全文排重。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N02",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "\"GAP\" \"PrimeGraph\" group",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–16,search35；code_retrieval_metadata.json",
+      "note": "三条检索合并返回；命中作者GAP仓库、AxiomMath旁支及论文线索。未从合并结果推算单查询精确数量；论文线索交学术路线，索引不算独立证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N03",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "\"Kourovka\" \"19.52\" Lean AI proof",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–16,search35；code_retrieval_metadata.json",
+      "note": "三条检索合并返回；命中作者GAP仓库、AxiomMath旁支及论文线索。未从合并结果推算单查询精确数量；论文线索交学术路线，索引不算独立证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N04",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "\"Gruenberg\" \"Kegel\" \"github\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–16,search35；code_retrieval_metadata.json",
+      "note": "三条检索合并返回；命中作者GAP仓库、AxiomMath旁支及论文线索。未从合并结果推算单查询精确数量；论文线索交学术路线，索引不算独立证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N05",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "PrimeGraph GAP",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "result_count": 10,
+      "note": "本次返回前10条为前端/性能工具、Erdős390等不同PrimeGraph用法；仅据返回路径/片段排除本题线索，非全文审查，更非全站无群论代码。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N06",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "Gruenberg repo:google-deepmind/formal-conjectures repo:leanprover-community/mathlib4 repo:openai/curated-math-problems repo:The-Omega-Institute/trureturing",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "实际四仓库限定查询返回0；不推出所有形式化库无相关对象或本题未形式化。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N07",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "\"19.52\" \"Kourovka\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 10,
+      "note": "前10条含CB条目、AI题目语料及无关数字命中；未见返回片段中的完整同题证明。进一步只读CB和一个AI语料条目。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N08",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/000/QX-P-000931.meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000931.meta.json",
+      "locator": "blob e7843f72f1fcd2ef2cfd70adfa3f2a3f411923c7；0931_sources/QX-P-000931.meta.json",
+      "note": "完整固定文件；meta card_rev=e91b9fb9d726891a。旧novelty.card_rev不同，不继承此前basic/pass。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N09",
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/000/QX-P-000931.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000931.text.md",
+      "locator": "blob 1fc6cda5942cf5f366ff05147babf1cef5726ef9；0931_sources/QX-P-000931.text.md",
+      "note": "完整固定文件；meta card_rev=e91b9fb9d726891a。旧novelty.card_rev不同，不继承此前basic/pass。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N10",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST",
+      "query": "GET /repos/lucasalland/Code-For-Prime-Graph-Complements-Calculations/commits/HEAD",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/lucasalland/Code-For-Prime-Graph-Complements-Calculations/commits/HEAD",
+      "locator": "commit c78dc9c9a46f54042c63522dbfb680ff97dd91b1；2025-11-10T20:04:56Z",
+      "note": "实际HEAD响应，后续源码全部固定此commit。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N11",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST",
+      "query": "GET /repos/AxiomMath/CFSG-applications/commits/HEAD",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://api.github.com/repos/AxiomMath/CFSG-applications/commits/HEAD",
+      "locator": "commit 3e9c51c6670343c4a740818fa1027f5fe3252b7b；2026-11-15T22:08:14Z",
+      "note": "实际HEAD响应；不以早期搜索索引的conditional字样替代此版本完整README与wrapper。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N12",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "bespokelabsai/conjecture-bench problems/extended-catalog/kourovka-notebook/kourovka-main-19-052.json @ 8d494791ace5894b860585d67ba8e69dbfed6376",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-19-052.json",
+      "locator": "blob 7d6d486acd7349a997c5db110f79d96778f74a52；0931_sources/kourovka-main-19-052.json",
+      "note": "取得完整catalog JSON、题面和历史listed-unsolved日期2026-07-03。CB版本来自本轮搜索返回的固定URL；本题未再请求CB HEAD。摘录SHA已核，来源整本PDF SHA在本贡献未回源核。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N13",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "GeneratePGC repo:lucasalland/Code-For-Prime-Graph-Complements-Calculations",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "搜索返回0，但随后固定仓库tree和fetch_file成功取得同名文件。明确保留索引覆盖缺口，不能用0命中说代码不存在。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N14",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "Gruenberg repo:AxiomMath/CFSG-applications",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 6,
+      "note": "6条含README、conditional挑战/证明、unconditional wrapper及formalization.yaml；定向取所需文件，未由全文命名推论19.52已证。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N15",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1",
+      "query": "\"Kourovka\" \"19.52\" proof solved AI；recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–10",
+      "note": "近期检索返回AI解题索引、Maidenhead及其他Kourovka题、GAP仓库和群环PQ论文线索；本次结果未识别具体覆盖19.52的完整新解声明。没有实读所有索引站或扩大阴性范围。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N16",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system1",
+      "query": "\"Gruenberg-Kegel\" Lean GAP \"PrimeGraph\"；recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–10",
+      "note": "近期检索返回AI解题索引、Maidenhead及其他Kourovka题、GAP仓库和群环PQ论文线索；本次结果未识别具体覆盖19.52的完整新解声明。没有实读所有索引站或扩大阴性范围。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N17",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub REST",
+      "query": "GET /repos/lucasalland/Code-For-Prime-Graph-Complements-Calculations/git/trees/c78dc9c9a46f54042c63522dbfb680ff97dd91b1?recursive=1",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 5,
+      "locator": "tree truncated=false；3个程序、README、LICENSE",
+      "note": "固定树完整5项；源码单独取得。无环境锁或运行日志出现在这棵树，不据此推断其他位置都没有。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N18",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "lucasalland/Code-For-Prime-Graph-Complements-Calculations README.md @ c78dc9c9a46f54042c63522dbfb680ff97dd91b1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/lucasalland/Code-For-Prime-Graph-Complements-Calculations/blob/c78dc9c9a46f54042c63522dbfb680ff97dd91b1/README.md",
+      "locator": "blob 8d82b673e8c81ab315ba59604dfc1b69d944159e；0931_sources/gap_README.md",
+      "note": "作者称代码为2511.16403附录A计算提供支持；程序说明不是本题全解或独立复跑记录。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N19",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "AxiomMath/CFSG-applications README.md @ 3e9c51c6670343c4a740818fa1027f5fe3252b7b",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/README.md",
+      "locator": "blob 12e8ab507274e167a00ebd1da230863be43bbfaf；0931_sources/axiom_README.md",
+      "note": "取得完整README，定向读版本、Kimmerle–Konovalov条目、conditional/unconditional说明与comparator说明；其只标准Lean公理及构建成功是作者报告，本轮未独立验证。其他headline未逐个审查。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N20",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "AxiomMath/CFSG-applications unconditional/CFSGOutsideClean/KimmerleKonovalov.lean @ 3e9c51c6670343c4a740818fa1027f5fe3252b7b",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/unconditional/CFSGOutsideClean/KimmerleKonovalov.lean",
+      "locator": "blob 392e8387d14352880fe89b900a9919fa2c036dc5；0931_sources/axiom_unconditional_KimmerleKonovalov.lean",
+      "note": "完整50行wrapper，cor26/cor26_corpus/cor26_abstract比较给定p,q在G和V(ℤG)的边；从corpus供应classification/Schreier。未构建、未审全部依赖。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N21",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "AxiomMath/CFSG-applications conditional/Challenge/KimmerleKonovalov/Clean.lean @ 3e9c51c6670343c4a740818fa1027f5fe3252b7b",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/conditional/Challenge/KimmerleKonovalov/Clean.lean",
+      "locator": "blob 27ae71a176befdc5073ac4a08babdfc94ff115d4；0931_sources/axiom_Challenge_Clean.lean",
+      "note": "完整挑战文件含2个刻意的sorry占位；与实际proof文件分开，不能因此否定已有实现或判定主问已证明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N22",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "\"19.52\" repo:alunik/kourovka-lean repo:pitmonticone/Kourovka repo:subroy13/awesome-ai-proofs repo:The-Omega-Institute/trureturing",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "四个所列仓库范围内实际返回0；不声称所有AI/Lean仓库无同题结果。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N23",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "Gruenberg repo:ai-math-edu-lab/math-agents repo:ericjiang18/agent_monitor_math repo:subroy13/awesome-ai-proofs",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 7,
+      "note": "7条主要是公开AI工作语料、21.94/21.95识别问题和20.6群环PQ；只有19期corpus的19.52摘录是同题，进一步取固定全文。不同编号不串为本题解答。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N24",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "lucasalland/Code-For-Prime-Graph-Complements-Calculations GeneratePGC @ c78dc9c9a46f54042c63522dbfb680ff97dd91b1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/lucasalland/Code-For-Prime-Graph-Complements-Calculations/blob/c78dc9c9a46f54042c63522dbfb680ff97dd91b1/GeneratePGC",
+      "locator": "blob d1b0e2ec9eda857c96c0c5f81786356f1fce48b4；0931_sources/gap_GeneratePGC.g",
+      "note": "13行完整读取。取共轭类代表阶后生成补图边，顶点用实际素数；返回不含单独顶点表/孤立点信息。无3色、3余团、抽象同构或非可解性检查，未运行。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N25",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "lucasalland/Code-For-Prime-Graph-Complements-Calculations FindFixedPointsFromTables @ c78dc9c9a46f54042c63522dbfb680ff97dd91b1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/lucasalland/Code-For-Prime-Graph-Complements-Calculations/blob/c78dc9c9a46f54042c63522dbfb680ff97dd91b1/FindFixedPointsFromTables",
+      "locator": "blob 65415a173df36b3c427c86308718d276d2095c53；0931_sources/gap_FindFixedPointsFromTables.g",
+      "note": "完整39行静态读；发现p与裸UnderlyingCharacteristic比较，未调用(tbl)，随后定向核官方API。仅报告复现/语义疑点，未据此宣布附录数表错误。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N26",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "lucasalland/Code-For-Prime-Graph-Complements-Calculations FindFixedPointsFromRepresentations @ c78dc9c9a46f54042c63522dbfb680ff97dd91b1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/lucasalland/Code-For-Prime-Graph-Complements-Calculations/blob/c78dc9c9a46f54042c63522dbfb680ff97dd91b1/FindFixedPointsFromRepresentations",
+      "locator": "blob a1fc9fd956a4c166a1cd0ca1874207e356897752；0931_sources/gap_FindFixedPointsFromRepresentations.g",
+      "note": "完整32行静态读。实际枚举Sylow子群中Order(x)=r的素数阶元素、寻找固定向量，再去掉特征；注释的prime-power措辞不能替代代码范围。未运行。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N27",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "AxiomMath/CFSG-applications conditional/CFSGOutside/KimmerleKonovalov/Definitions.lean @ 3e9c51c6670343c4a740818fa1027f5fe3252b7b",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/conditional/CFSGOutside/KimmerleKonovalov/Definitions.lean",
+      "locator": "blob 01d2aa105865e4605239c9707d6ce0ea3109dcda；0931_sources/axiom_Definitions.lean",
+      "note": "完整50行，V为ℤG增广1单位群；IsAdj为p,q素且不同且存在阶p*q元素；PQ比较同一数值p,q的标号顶点/边，而非抽象图同构或可解实现。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N28",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "AxiomMath/CFSG-applications conditional/CFSGOutside/KimmerleKonovalov/Paper.lean @ 3e9c51c6670343c4a740818fa1027f5fe3252b7b",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/conditional/CFSGOutside/KimmerleKonovalov/Paper.lean",
+      "locator": "blob ee45cf6012a89fe1d9a195957aa21657d2fc1696；0931_sources/axiom_Paper.lean",
+      "note": "完整1266行源已取得；实际定向读开头依赖说明、cor26/cor26_abstract与调用，未核中间全部数学步骤。条件版显式Schreier类型类和ClassificationStatement；局部占位扫描另记。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N29",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "AxiomMath/CFSG-applications conditional/lean-toolchain @ 3e9c51c6670343c4a740818fa1027f5fe3252b7b",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/conditional/lean-toolchain",
+      "locator": "blob f0e00b3338bac0d6f050d9a64e277314a9f7830f；0931_sources/axiom_lean-toolchain",
+      "note": "固定声明Lean v4.35.0-rc3；没有安装或运行。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N30",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "AxiomMath/CFSG-applications conditional/lakefile.toml @ 3e9c51c6670343c4a740818fa1027f5fe3252b7b",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/conditional/lakefile.toml",
+      "locator": "blob df4d55f48685ec1252b98193a140cfbcf688dea3；0931_sources/axiom_conditional_lakefile.toml",
+      "note": "固定Mathlib b63f6e8a68d220e3b3bc4f3792bb53650d375f24、TauCeti 6e0c6acab5f4c6f42e5f5bab9bd5e4e84f74c380；Challenge不是默认构建目标。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N31",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "AxiomMath/CFSG-applications unconditional/lakefile.toml @ 3e9c51c6670343c4a740818fa1027f5fe3252b7b",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/unconditional/lakefile.toml",
+      "locator": "blob 5193c937d9aab990faf9af13b8a4b4c89e67963f；0931_sources/axiom_unconditional_lakefile.toml",
+      "note": "固定CFSG corpus 69cb972f587a3ecc035e092253167ff2e303c962；未下载递归corpus或验证其公理闭包。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N32",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "ai-math-edu-lab/math-agents obsidian/Research/Group theory/Open problems/Kourovka/corpus/kourovka-issue-19-2018.md @ b0b0c8e69546f911cd9d5f8534e323bda4142dd2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/ai-math-edu-lab/math-agents/blob/b0b0c8e69546f911cd9d5f8534e323bda4142dd2/obsidian/Research/Group%20theory/Open%20problems/Kourovka/corpus/kourovka-issue-19-2018.md",
+      "locator": "blob 47aa7357255b3625dc7745601eb5dbc69486662c；0931_sources/ai_corpus_issue19.md",
+      "note": "取得完整2018期corpus文件，实际只读元数据及§19.52；元数据自称从Notebook No.20/2022/arxiv v23提取，2026-08-11生成。对应段落仅题面，无本题新解声明。未把其他110题纳入查新。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N33",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "site:docs.gap-system.org \"UnderlyingCharacteristic\" \"table\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–13",
+      "note": "合并结果命中GAP官方手册71.9-5及CTblLib例子；没有从合并结果推算单查询数量。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N34",
+      "route": "代码、公开 AI 和社区",
+      "site": "web system2",
+      "query": "site:gap-packages.github.io \"UnderlyingCharacteristic\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–13",
+      "note": "合并结果命中GAP官方手册71.9-5及CTblLib例子；没有从合并结果推算单查询数量。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N35",
+      "route": "代码、公开 AI 和社区",
+      "site": "GAP official manual open",
+      "query": "https://docs.gap-system.org/doc/ref/chap71.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://docs.gap-system.org/doc/ref/chap71.html",
+      "locator": "〔原始工具引用已私有留存〕；初始返回为目录和章前段",
+      "note": "原站读取成功；API细节随后find定位。不是执行GAP。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N36",
+      "route": "代码、公开 AI 和社区",
+      "site": "GAP official manual find",
+      "query": "find \"71.9-5 UnderlyingCharacteristic\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://docs.gap-system.org/doc/ref/chap71.html",
+      "locator": "〔原始工具引用已私有留存〕 L733–748",
+      "note": "实际读到UnderlyingCharacteristic(tbl)/(psi)接口：普通表0、p-Brauer表p。确认裸标识符guard未按文档取特征；没运行程序，不推出数表错误。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-N37",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地静态审计",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002307〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "0931_code_static_audit.py/.log；exit 0",
+      "note": "核16份固定Git blob/SHA256/字节数、当前rev、CB摘录hash、GAP实际语句、Lean局部sorry/admit/axiom计数与版本。实际只执行自己的读文件审计，不执行GAP或Lean/作者代码，不是数学复跑。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-D00",
+      "route": "原题与出处",
+      "site": "本包固定题卡",
+      "query": "Python读取 〔私有材料定位已省略〕，核 id/card_rev、题面、形式化、原文摘录和边界；输出过长后重读 〔私有记录编号：PR-002308〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "主卡问图的抽象同构，未要求素数标签不变；主问在来源语境下完整，不能因需要澄清标签而判题面有误。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-D01",
+      "route": "学术",
+      "site": "Web search system2",
+      "query": "\"characterization\" \"prime graphs of solvable groups\" triangle free 3 colorable；\"solvable groups\" \"prime graph\" \"Gruber\" \"Keller\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "初次请求实际执行，但合并输出超长，命中细节未完整保留；不以该次输出支持定理结论，随后精确题名和原PDF重新获取。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-D02",
+      "route": "学术",
+      "site": "Web search system2；arXiv和期刊摘要索引",
+      "query": "\"A characterization of the prime graphs of solvable groups\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://arxiv.org/abs/1305.2368",
+      "note": "命中原作者2013预印本与2015期刊元数据；索引 ref turn300784602academia12、〔原始工具引用已私有留存〕。未把期刊索引当作已取得期刊全文。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-D03",
+      "route": "学术",
+      "site": "Web search system1；arXiv原作者版本",
+      "query": "site:arxiv.org/abs/1305.2368 \"Characterization\"；open https://arxiv.org/abs/1305.2368 和 https://arxiv.org/pdf/1305.2368",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/abs/1305.2368v1",
+      "locator": "v1提交记录；前言Theorem2；§2 Theorem2.8与Theorem2.10",
+      "note": "原PDF全文可解析，v1为2013-05-10。该文完整刻画可解群图，但不解决本题非可解群中无3余团图的普遍可解实现问题。refs 〔原始工具引用已私有留存〕/1。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-D04",
+      "route": "学术",
+      "site": "arXiv原PDF定向查找与截图请求",
+      "query": "find Theorem 2.8. / Dirichlet / finite graph / Proposition 2.7.；screenshot pageno=6,7",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/1305.2368",
+      "locator": "印刷p5 Corollary2.7，p6 Theorem2.8及新素数选择，p7 Theorem2.10；PDF分别第6、7、8页",
+      "note": "finite graph无字面匹配；Proposition2.7查询返回相邻Corollary2.7，引用已按原文纠正。定理2.10是抽象同构，构造自行选素数。以可解析原文作证；截图返回图片标识，不额外声称完成视觉核验。refs 〔原始工具引用已私有留存〕/1/2/3、〔原始工具引用已私有留存〕/1。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-D05",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地shell PATH",
+      "query": "command -v gap（两次）",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "其他：本地工具能力检查；重查退出码1且无路径，Python shutil.which('gap')亦为null；只据此说PATH中未找到GAP。未安装或调用GAP。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-05-0931-D06",
+      "route": "代码、公开 AI 和社区",
+      "site": "Python 3.12.14标准库",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-002309〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "urn:qunxing:private-material",
+      "locator": "两个群全部元素阶、导出子群、素图、补图着色和显式图同构",
+      "note": "其他：本轮独立精确小例；实际退出码0。只核S5的120个元素与AGL1(F7)的42个元素；所有算术精确；没有对其他群搜索，也不是GAP或证明助手运行。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "0931-R-NOTEBOOK",
+      "url": "https://arxiv.org/abs/1401.0300v50",
+      "locator": "PDF/印p147第19.52问；p103第16.26问；p4 Preface",
+      "version": "v50 2026-11-02；SHA256=b7027dd8e29cc5b187304f4bb0f3bddb30839089c44967f5fadaa4c0e5e60dc7",
+      "subquestions": [
+        "主问题",
+        "可解素图的抽象同构刻画与等价重述",
+        "一般有限群主问题的完整解、反例及形式化声称"
+      ],
+      "role": "原始提出",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "claimant": "N.V.Maslova；题集编辑E.I.Khukhro、V.D.Mazurov",
+      "note": "原问准确为有限非可解G、GK(G)无3-余团、且不与任何有限可解群的GK抽象同构；卡片主问及pq元素阶定义忠实。当前19.52无♯/∗/解题评论，支持本版本编目开放。16.26另问是否存在统一k排除k个两两不同构的非交换简单群有同一带素数标签GK（猜k=5），不是19.52。页头2018为第19辑归属，不能据此排除更早论文原问。19.52下相邻19.56的AI注释不可串题迁移。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "0931-R-CATALOG",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/11/21upd.pdf",
+      "locator": "November2026 update首页标记说明；全文文本find19.52/16.26为0",
+      "version": "官方2026-11更新；2026-11-26实际读取；首页公告日期2026-11-02",
+      "subquestions": [
+        "主问题",
+        "一般有限群主问题的完整解、反例及形式化声称"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "未读全文",
+      "note": "只读更新文件首段及定向匹配；两个题号无命中。本版本未列更新不等于不存在未收录论文。♯表示未确认的AI提议，仍开放；∗是正式解答通用标记。题卡将∗专释为AI确认解过窄，宜修订。历史题集v11 withdrawn不是此题解决稿被撤回。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "0931-R-CAMERON",
+      "url": "https://arxiv.org/abs/2012.01482v3",
+      "locator": "pp2–5定义与Thm1.2/1.3；p17二定理证明；p18Thm1.4证明开头",
+      "version": "arXiv v3 2023-01-31；J.Algebra607(2022)186–213刊本另有版本；所读PDF SHA256=6c27fd8cb63e13e4dcee0dbf33d2cd98c63b3cfe3c6f1044bdbf5218038bfb35",
+      "subquestions": [
+        "主问题",
+        "Cameron–Maslova识别判据的范围与条件推论"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "claimant": "Peter J.Cameron、Natalia V.Maslova",
+      "note": "Thm1.2：与G有同一带标签GK的有限群有无限多个同构类，等价于其中存在可解根非平凡的H。在本题的有限非可解群范围内，Thm1.3说明只有有限多个实现群同构类时，各实现群几乎单，且图有3余团。由逆否命题，本题无3余团的非可解G的GK有无限多个有限实现群，并可选R(H)>1。本轮据此作条件推论：若19.52有G见证，同标签图的这个H也是非可解见证；否则H本身即为被禁止的可解实现。它不证明存在见证，也不证明所有此类图可解可实现。无穷多个有限群不是无穷群；有非平凡可解根不等于整个群可解。已核p17的逻辑及所列陈述，未逐项重核CFSG相关文献，未运行形式化内核。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "0931-S-GM-ORIGIN",
+      "url": "https://arxiv.org/pdf/1606.01402v1",
+      "locator": "p2：有限群约定、图相等/抽象同构定义，Theorem1后独立QUESTION；p1侧栏日期",
+      "version": "arXiv1606.01402v1，2016-06-04；实际完整PDF已取得",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "claimant": "I. B. Gorshkov、N. V. Maslova",
+      "claim_date": "2016-06-04",
+      "note": "p2的问题正为存在无3-余团、不能与任何可解群素图抽象同构的有限非可解群。v1/v2这段已实际比较相同。只支持本轮目前最早可核公开文本；Notebook仍按其原署名保留提出人Maslova，不把论文合著者自动都改成题目提出人。文件与sha见0931_sources/gorshkov_v1_fetch_log.json；abs版本日期web ref 〔原始工具引用已私有留存〕。 固定v1文件SHA256=264b9c5116b571debb5999620ca6591a2edd2d5d55724e657216bad2ac8fcd3a，实际281521bytes；根代理另复读pp1–2。正式俄文记录Algebra i logika57(2)(2018)175–196，DOI10.17377/alglog.2018.57.203；英译Algebra and Logic57(2)(2018)115–129，DOI10.1007/s10469-018-9484-7。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "0931-S-GM-THM1",
+      "url": "https://arxiv.org/pdf/1606.01402v2",
+      "locator": "pp1–2 Theorem1；p2相等/抽象同构定义；p4分类证明总结构",
+      "version": "arXiv1606.01402v2，2016-06-12；正式发表记录为2018年（刊本全文未取得）",
+      "subquestions": [
+        "主问题",
+        "几乎单群子问：无3-余团时存在同标签素图的有限可解群"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "claimant": "I. B. Gorshkov、N. V. Maslova",
+      "claim_date": "2016-06-12",
+      "note": "对有限几乎单群G，三条件等价：GK(G)无3-余团；与某有限可解群GK抽象同构；与某有限可解群GK连素数标签均相同。p4说明逐类证明(1)⇒(3)，其余两向由图相等与可解群结论推出。本轮读命题、定义及证明框架，未通核所有分类/引用。实际下载未版本化原站PDF，侧栏确认为v2，web版本化open失败单列；数学依据不是MathNet摘要。正式刊物元数据ref 〔原始工具引用已私有留存〕。 固定下载稿SHA256=60d00976cf8175b00af7c3fd4b7b255a1628e541530d5403d7278cd99f3145d5。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "0931-S-AFK2025",
+      "url": "https://arxiv.org/pdf/2511.16403v1",
+      "locator": "pp2–3 TheoremA及Conj0.3；p27 Prop2.1.8、Lemma2.2.1–2.2.2；pp29–31 Thm2.2.8；p33 AppendixA",
+      "version": "arXiv2511.16403v1，2025-11-20",
+      "subquestions": [
+        "主问题",
+        "有限子类：PSL(2,13)-solvable 与 A12-solvable 群中不存在19.52例子",
+        "条件分支：2025年T-solvable结构化实现定理"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Lucas Alland、Andrei Fridman、Thomas Michael Keller",
+      "claim_date": "2025-11-20",
+      "note": "Lemma2.2.2称全部PSL(2,13)-solvable有限群的素图补图3色可染；Prop2.1.8给A12-solvable补图恰为无三角且3色可染图。故这些子类不提供19.52例子。TheoremA仅在指定Schur multiplier、Out(T)、边条件下把素图实现化为A⋊(H×K)或A⋊(E×K)，H/E仍有T因子。已读相关命题与局部着色证明，但未通核全部引理、表示论表或GAP；不把附加条件定理、Conj0.3或摘要当一般全解。实际完整PDF从未版本化URL200取得，侧栏v1；abs ref 〔原始工具引用已私有留存〕。 固定稿SHA256=ca58ef90f657ad684e0add8a9e92448588023318f719c95dfe92d23f74edf176。根代理另读pp2–3、27，核T-solvable为组成因子限制而非可解性。TheoremA的两项附加条件按原补图记为：(i)2邻接某个π(G)∖π(T)素数；或(ii)每个Fermat素数t∈π(T)及与t相邻的奇q∈π(G)，有非Fermat r∈π(T)与q相邻。所构造H/E仍保留T因子，故不能删除。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "0931-S-RENNER2026",
+      "url": "https://arxiv.org/pdf/2610.02696v1",
+      "locator": "pp1–2定义与文章范围；p19 §6 Outlook明确引用[12,19.52]",
+      "version": "取得的PDF侧栏arXiv2610.02696v1，2026-10-02；题头October5,2026",
+      "subquestions": [
+        "主问题",
+        "一般有限群主问题的完整解、反例及形式化声称"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "claimant": "Alexa Renner",
+      "claim_date": "2026-10-02",
+      "note": "§6把有限无三角但非3色可染图能否成为有限群素图补图明确列为19.52后续方向；这是一份2026-10原稿对问题状态的直接表述，不是穷尽新文献的证明。本文的一般化涉及locally torsion、ultragroups等，不能代换有限群量词。本轮仅读范围/定义/Outlook，未审模型论证明。原站PDF200，abs及版本化web.open均DisabledError；无成功web全文ref，详见本地sha和原始URL。 固定稿SHA256=65e8ac3deb6918282a9437a917a96db56c7cdb322802e35c66798e5ffdaf5b2a；根代理另复读§6 p19。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "0931-CODE-CB",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-19-052.json",
+      "locator": "statement.text/sha256；status_observation；provenance",
+      "version": "CB commit8d494791ace5894b860585d67ba8e69dbfed6376；blob7d6d486acd7349a997c5db110f79d96778f74a52；历史as_of 2026-07-03",
+      "subquestions": [
+        "主问题",
+        "一般有限群主问题的完整解、反例及形式化声称"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "note": "固定catalog完整JSON明确同题：GK无3-coclique且不同构于任何有限可解群GK；不是16.26识别问题。statement SHA256 07d7598b0a847770fb58dfac1fb728485a60b11dc2ab4028554ca7a47b99bbb3已本地核。listed-unsolved只为2026-07-03历史观察；源整本PDF hash301b0cdc...在本贡献未独立核，主路线另查Notebook。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "0931-CODE-GAP",
+      "url": "https://github.com/lucasalland/Code-For-Prime-Graph-Complements-Calculations/blob/c78dc9c9a46f54042c63522dbfb680ff97dd91b1/GeneratePGC",
+      "locator": "GeneratePGC函数；同commit README、FindFixedPointsFromTables、FindFixedPointsFromRepresentations",
+      "version": "commitc78dc9c9a46f54042c63522dbfb680ff97dd91b1（2025-11-10）；GeneratePGC blobd1b0e2ec9eda857c96c0c5f81786356f1fce48b4",
+      "subquestions": [
+        "有限子类：PSL(2,13)-solvable 与 A12-solvable 群中不存在19.52例子",
+        "S5与可解AGL1(F7)的抽象同构小例"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "作者README将其用于2511.16403附录A；本轮完整静态读3个短程序，未执行GAP/复现数表。GeneratePGC枚举全部共轭类代表阶，筛恰有两个不同素因子的阶得到GK边，再从π(G)二元组合取补；完整元素阶枚举下，p^a q^b阶元素可取幂产生pq阶元素，故这一筛法不把元素阶条件改成别的问题。返回实际素数标号边集，未单独返回补图孤立点。没有三角形/3色、抽象同构、非可解性或主问反例证书。固定点表程序裸UnderlyingCharacteristic缺(tbl)实参与官方71.9-5接口不符；仅作为静态复现疑点，Brauer表本身无该特征的元素类，未据此认定表格错误。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "0931-CODE-AXIOM",
+      "url": "https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/unconditional/CFSGOutsideClean/KimmerleKonovalov.lean",
+      "locator": "CFSGOutsideClean.KimmerleKonovalov.cor26/cor26_corpus/cor26_abstract；Definitions.IsVertex/IsAdj/PQ；conditional.Paper.cor26",
+      "version": "commit3e9c51c6670343c4a740818fa1027f5fe3252b7b（2026-11-15）；wrapper blob392e8387d14352880fe89b900a9919fa2c036dc5；Lean v4.35.0-rc3",
+      "subquestions": [
+        "一般有限群主问题的完整解、反例及形式化声称"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "AxiomMath",
+      "note": "这是Kimmerle–Konovalov2017 Cor2.6：几乎单G中p∈π(S)、q∈π(G)\\π(S)的指定边，在G与V(ℤG)中等价；不含19.52的无3余团/任意可解H/抽象图同构量词。当前固定README同时有conditional与unconditional，前者显式要求CFSG/Schreier，后者从固定corpus69cb972...供应。作者报告构建与仅标准Lean公理，本轮只读相关定义/陈述/调用及锁定依赖，未build、未comparator、未审递归corpus。Clean challenge两处sorry为设计用比较题面；实际Definitions/Paper/wrapper局部无sorry/admit，不由此升级本轮验证或主问状态。 所取固定Git文件完整身份清单：[\n  {\n    \"name\": \"QX-P-000931.meta.json\",\n    \"repository\": \"qunxingmath-org/qunxing-data\",\n    \"path\": \"problems/000/QX-P-000931.meta.json\",\n    \"commit\": \"73290369a8dcc632e25e555aec525565ea6e08f8\",\n    \"git_blob_sha\": \"e7843f72f1fcd2ef2cfd70adfa3f2a3f411923c7\",\n    \"display_url\": \"https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000931.meta.json\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 4246,\n    \"sha256\": \"ed30cc901dd767b2df05f15c45f24213ee18150ad1e25b2838e80bb2b7d125e3\"\n  },\n  {\n    \"name\": \"QX-P-000931.text.md\",\n    \"repository\": \"qunxingmath-org/qunxing-data\",\n    \"path\": \"problems/000/QX-P-000931.text.md\",\n    \"commit\": \"73290369a8dcc632e25e555aec525565ea6e08f8\",\n    \"git_blob_sha\": \"1fc6cda5942cf5f366ff05147babf1cef5726ef9\",\n    \"display_url\": \"https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000931.text.md\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 3445,\n    \"sha256\": \"f590b8a09ae97d8a4a3928a5bbf3cd25da88d7876dad9dbfce3e17fad5f3aa2a\"\n  },\n  {\n    \"name\": \"kourovka-main-19-052.json\",\n    \"repository\": \"bespokelabsai/conjecture-bench\",\n    \"path\": \"problems/extended-catalog/kourovka-notebook/kourovka-main-19-052.json\",\n    \"commit\": \"8d494791ace5894b860585d67ba8e69dbfed6376\",\n    \"git_blob_sha\": \"7d6d486acd7349a997c5db110f79d96778f74a52\",\n    \"display_url\": \"https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-19-052.json\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 1546,\n    \"sha256\": \"843e4346ac440ca9bfaf4f4142b4f4364ef6d526547d83069feb71cce81ee58b\"\n  },\n  {\n    \"name\": \"gap_README.md\",\n    \"repository\": \"lucasalland/Code-For-Prime-Graph-Complements-Calculations\",\n    \"path\": \"README.md\",\n    \"commit\": \"c78dc9c9a46f54042c63522dbfb680ff97dd91b1\",\n    \"git_blob_sha\": \"8d82b673e8c81ab315ba59604dfc1b69d944159e\",\n    \"display_url\": \"https://github.com/lucasalland/Code-For-Prime-Graph-Complements-Calculations/blob/c78dc9c9a46f54042c63522dbfb680ff97dd91b1/README.md\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 905,\n    \"sha256\": \"3b38bf40a5501b9b4ad7afce46eb7e7aa93065aac786dc4386f7bf2631837875\"\n  },\n  {\n    \"name\": \"gap_GeneratePGC.g\",\n    \"repository\": \"lucasalland/Code-For-Prime-Graph-Complements-Calculations\",\n    \"path\": \"GeneratePGC\",\n    \"commit\": \"c78dc9c9a46f54042c63522dbfb680ff97dd91b1\",\n    \"git_blob_sha\": \"d1b0e2ec9eda857c96c0c5f81786356f1fce48b4\",\n    \"display_url\": \"https://github.com/lucasalland/Code-For-Prime-Graph-Complements-Calculations/blob/c78dc9c9a46f54042c63522dbfb680ff97dd91b1/GeneratePGC\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 496,\n    \"sha256\": \"f47ba0388f2298ec1e921ec871e638492dac2ba17966b29a264cfb62284f97be\"\n  },\n  {\n    \"name\": \"gap_FindFixedPointsFromTables.g\",\n    \"repository\": \"lucasalland/Code-For-Prime-Graph-Complements-Calculations\",\n    \"path\": \"FindFixedPointsFromTables\",\n    \"commit\": \"c78dc9c9a46f54042c63522dbfb680ff97dd91b1\",\n    \"git_blob_sha\": \"65415a173df36b3c427c86308718d276d2095c53\",\n    \"display_url\": \"https://github.com/lucasalland/Code-For-Prime-Graph-Complements-Calculations/blob/c78dc9c9a46f54042c63522dbfb680ff97dd91b1/FindFixedPointsFromTables\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 1271,\n    \"sha256\": \"d3f56fc7836e01cbfb16ccf14e7798d039f9a420862cb5b4dd6b2f70ac73552e\"\n  },\n  {\n    \"name\": \"gap_FindFixedPointsFromRepresentations.g\",\n    \"repository\": \"lucasalland/Code-For-Prime-Graph-Complements-Calculations\",\n    \"path\": \"FindFixedPointsFromRepresentations\",\n    \"commit\": \"c78dc9c9a46f54042c63522dbfb680ff97dd91b1\",\n    \"git_blob_sha\": \"a1fc9fd956a4c166a1cd0ca1874207e356897752\",\n    \"display_url\": \"https://github.com/lucasalland/Code-For-Prime-Graph-Complements-Calculations/blob/c78dc9c9a46f54042c63522dbfb680ff97dd91b1/FindFixedPointsFromRepresentations\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 1218,\n    \"sha256\": \"b3c6c3ae04b47452ca27b2141ef6257c280eead4c65bc2dc36cb7c18697b974a\"\n  },\n  {\n    \"name\": \"axiom_README.md\",\n    \"repository\": \"AxiomMath/CFSG-applications\",\n    \"path\": \"README.md\",\n    \"commit\": \"3e9c51c6670343c4a740818fa1027f5fe3252b7b\",\n    \"git_blob_sha\": \"12e8ab507274e167a00ebd1da230863be43bbfaf\",\n    \"display_url\": \"https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/README.md\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 26285,\n    \"sha256\": \"26d36e73c68ea8c7fbab645f509acd75f2c0a4c61e8b6728dffc3083ab0f6252\"\n  },\n  {\n    \"name\": \"axiom_unconditional_KimmerleKonovalov.lean\",\n    \"repository\": \"AxiomMath/CFSG-applications\",\n    \"path\": \"unconditional/CFSGOutsideClean/KimmerleKonovalov.lean\",\n    \"commit\": \"3e9c51c6670343c4a740818fa1027f5fe3252b7b\",\n    \"git_blob_sha\": \"392e8387d14352880fe89b900a9919fa2c036dc5\",\n    \"display_url\": \"https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/unconditional/CFSGOutsideClean/KimmerleKonovalov.lean\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 3060,\n    \"sha256\": \"cc5ef15fcefa9519cf99227269e849f5e2cf31adf86ffe3606d43c39e388af2a\"\n  },\n  {\n    \"name\": \"axiom_Challenge_Clean.lean\",\n    \"repository\": \"AxiomMath/CFSG-applications\",\n    \"path\": \"conditional/Challenge/KimmerleKonovalov/Clean.lean\",\n    \"commit\": \"3e9c51c6670343c4a740818fa1027f5fe3252b7b\",\n    \"git_blob_sha\": \"27ae71a176befdc5073ac4a08babdfc94ff115d4\",\n    \"display_url\": \"https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/conditional/Challenge/KimmerleKonovalov/Clean.lean\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 1607,\n    \"sha256\": \"c2f10d46e9650d8e33af53a2e560be5550b1e74eb5eeb34e694a1e98cf92cf48\"\n  },\n  {\n    \"name\": \"axiom_Definitions.lean\",\n    \"repository\": \"AxiomMath/CFSG-applications\",\n    \"path\": \"conditional/CFSGOutside/KimmerleKonovalov/Definitions.lean\",\n    \"commit\": \"3e9c51c6670343c4a740818fa1027f5fe3252b7b\",\n    \"git_blob_sha\": \"01d2aa105865e4605239c9707d6ce0ea3109dcda\",\n    \"display_url\": \"https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/conditional/CFSGOutside/KimmerleKonovalov/Definitions.lean\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 1605,\n    \"sha256\": \"4a7545acb4f03babbd43f4da0bf966f440a1e5159408e0bb2b76926cc7c4d83d\"\n  },\n  {\n    \"name\": \"axiom_Paper.lean\",\n    \"repository\": \"AxiomMath/CFSG-applications\",\n    \"path\": \"conditional/CFSGOutside/KimmerleKonovalov/Paper.lean\",\n    \"commit\": \"3e9c51c6670343c4a740818fa1027f5fe3252b7b\",\n    \"git_blob_sha\": \"ee45cf6012a89fe1d9a195957aa21657d2fc1696\",\n    \"display_url\": \"https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/conditional/CFSGOutside/KimmerleKonovalov/Paper.lean\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 57179,\n    \"sha256\": \"e1d419ecc6866649c896389cd5f0af1a68253d89ad795086200518610f1330e5\"\n  },\n  {\n    \"name\": \"axiom_lean-toolchain\",\n    \"repository\": \"AxiomMath/CFSG-applications\",\n    \"path\": \"conditional/lean-toolchain\",\n    \"commit\": \"3e9c51c6670343c4a740818fa1027f5fe3252b7b\",\n    \"git_blob_sha\": \"f0e00b3338bac0d6f050d9a64e277314a9f7830f\",\n    \"display_url\": \"https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/conditional/lean-toolchain\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 29,\n    \"sha256\": \"bc84812c94489d1e3e191baa1dc10d5eb684382d7fe9d2a5ab085e72c1c67e47\"\n  },\n  {\n    \"name\": \"axiom_conditional_lakefile.toml\",\n    \"repository\": \"AxiomMath/CFSG-applications\",\n    \"path\": \"conditional/lakefile.toml\",\n    \"commit\": \"3e9c51c6670343c4a740818fa1027f5fe3252b7b\",\n    \"git_blob_sha\": \"df4d55f48685ec1252b98193a140cfbcf688dea3\",\n    \"display_url\": \"https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/conditional/lakefile.toml\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 723,\n    \"sha256\": \"d02cca9b69a5354b2dc41c57f3aeb76cb56c74fe3dd8703ddae4e67466403fca\"\n  },\n  {\n    \"name\": \"axiom_unconditional_lakefile.toml\",\n    \"repository\": \"AxiomMath/CFSG-applications\",\n    \"path\": \"unconditional/lakefile.toml\",\n    \"commit\": \"3e9c51c6670343c4a740818fa1027f5fe3252b7b\",\n    \"git_blob_sha\": \"5193c937d9aab990faf9af13b8a4b4c89e67963f\",\n    \"display_url\": \"https://github.com/AxiomMath/CFSG-applications/blob/3e9c51c6670343c4a740818fa1027f5fe3252b7b/unconditional/lakefile.toml\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 398,\n    \"sha256\": \"51ab68d1e9c17a2d1064b1ef277780f7492aedc912b16a8b92c71f8d19a4e374\"\n  },\n  {\n    \"name\": \"ai_corpus_issue19.md\",\n    \"repository\": \"ai-math-edu-lab/math-agents\",\n    \"path\": \"obsidian/Research/Group theory/Open problems/Kourovka/corpus/kourovka-issue-19-2018.md\",\n    \"commit\": \"b0b0c8e69546f911cd9d5f8534e323bda4142dd2\",\n    \"git_blob_sha\": \"47aa7357255b3625dc7745601eb5dbc69486662c\",\n    \"display_url\": \"https://github.com/ai-math-edu-lab/math-agents/blob/b0b0c8e69546f911cd9d5f8534e323bda4142dd2/obsidian/Research/Group%20theory/Open%20problems/Kourovka/corpus/kourovka-issue-19-2018.md\",\n    \"encoding\": \"utf-8\",\n    \"bytes\": 57314,\n    \"sha256\": \"81b24b759c226e2dc4caabfd014a35876267c6cdf94987ca27ba2fdf125f2534\"\n  }\n]\n 实际静态审计日志（非Lean/GAP执行）：{\n  \"task\": \"QX-P-000931\",\n  \"card_rev\": \"e91b9fb9d726891a\",\n  \"legacy_novelty_card_rev\": \"089cc88b2fdb8f0f\",\n  \"integrity\": [\n    {\n      \"file\": \"QX-P-000931.meta.json\",\n      \"git_blob_sha\": \"e7843f72f1fcd2ef2cfd70adfa3f2a3f411923c7\",\n      \"bytes\": 4246\n    },\n    {\n      \"file\": \"QX-P-000931.text.md\",\n      \"git_blob_sha\": \"1fc6cda5942cf5f366ff05147babf1cef5726ef9\",\n      \"bytes\": 3445\n    },\n    {\n      \"file\": \"kourovka-main-19-052.json\",\n      \"git_blob_sha\": \"7d6d486acd7349a997c5db110f79d96778f74a52\",\n      \"bytes\": 1546\n    },\n    {\n      \"file\": \"gap_README.md\",\n      \"git_blob_sha\": \"8d82b673e8c81ab315ba59604dfc1b69d944159e\",\n      \"bytes\": 905\n    },\n    {\n      \"file\": \"gap_GeneratePGC.g\",\n      \"git_blob_sha\": \"d1b0e2ec9eda857c96c0c5f81786356f1fce48b4\",\n      \"bytes\": 496\n    },\n    {\n      \"file\": \"gap_FindFixedPointsFromTables.g\",\n      \"git_blob_sha\": \"65415a173df36b3c427c86308718d276d2095c53\",\n      \"bytes\": 1271\n    },\n    {\n      \"file\": \"gap_FindFixedPointsFromRepresentations.g\",\n      \"git_blob_sha\": \"a1fc9fd956a4c166a1cd0ca1874207e356897752\",\n      \"bytes\": 1218\n    },\n    {\n      \"file\": \"axiom_README.md\",\n      \"git_blob_sha\": \"12e8ab507274e167a00ebd1da230863be43bbfaf\",\n      \"bytes\": 26285\n    },\n    {\n      \"file\": \"axiom_unconditional_KimmerleKonovalov.lean\",\n      \"git_blob_sha\": \"392e8387d14352880fe89b900a9919fa2c036dc5\",\n      \"bytes\": 3060\n    },\n    {\n      \"file\": \"axiom_Challenge_Clean.lean\",\n      \"git_blob_sha\": \"27ae71a176befdc5073ac4a08babdfc94ff115d4\",\n      \"bytes\": 1607\n    },\n    {\n      \"file\": \"axiom_Definitions.lean\",\n      \"git_blob_sha\": \"01d2aa105865e4605239c9707d6ce0ea3109dcda\",\n      \"bytes\": 1605\n    },\n    {\n      \"file\": \"axiom_Paper.lean\",\n      \"git_blob_sha\": \"ee45cf6012a89fe1d9a195957aa21657d2fc1696\",\n      \"bytes\": 57179\n    },\n    {\n      \"file\": \"axiom_lean-toolchain\",\n      \"git_blob_sha\": \"f0e00b3338bac0d6f050d9a64e277314a9f7830f\",\n      \"bytes\": 29\n    },\n    {\n      \"file\": \"axiom_conditional_lakefile.toml\",\n      \"git_blob_sha\": \"df4d55f48685ec1252b98193a140cfbcf688dea3\",\n      \"bytes\": 723\n    },\n    {\n      \"file\": \"axiom_unconditional_lakefile.toml\",\n      \"git_blob_sha\": \"5193c937d9aab990faf9af13b8a4b4c89e67963f\",\n      \"bytes\": 398\n    },\n    {\n      \"file\": \"ai_corpus_issue19.md\",\n      \"git_blob_sha\": \"47aa7357255b3625dc7745601eb5dbc69486662c\",\n      \"bytes\": 57314\n    }\n  ],\n  \"catalog\": {\n    \"statement_sha_verified\": \"07d7598b0a847770fb58dfac1fb728485a60b11dc2ab4028554ca7a47b99bbb3\",\n    \"status_observation\": {\n      \"state\": \"listed-unsolved\",\n      \"as_of\": \"2026-07-03\",\n      \"evidence\": \"pinned 21st Kourovka Notebook edition\"\n    },\n    \"original_pdf_source_sha_not_checked_here\": \"301b0cdcc53abc88b57cc0732cad73bf8fbe1c9ba0de5a0a794070398e3395fe\"\n  },\n  \"gap_static\": {\n    \"commit\": \"c78dc9c9a46f54042c63522dbfb680ff97dd91b1\",\n    \"GeneratePGC\": {\n      \"scope\": \"All conjugacy-class orders of one input finite group; returns labelled complement edges only.\",\n      \"missing_from_return\": \"Vertex list, including isolated vertices of the complement.\",\n      \"not_implemented\": [\n        \"triangle-free test\",\n        \"3-colourability\",\n        \"abstract graph isomorphism\",\n        \"Kourovka 19.52 existence certificate\"\n      ],\n      \"executed\": false\n    },\n    \"table_characteristic_guard\": [\n      {\n        \"line\": 14,\n        \"text\": \"\\t\\t\\tif p = UnderlyingCharacteristic then continue; fi;\"\n      }\n    ],\n    \"guard_note\": \"Bare attribute identifier is compared with p; no argument tbl. Official GAP manual 71.9-5 specifies UnderlyingCharacteristic(tbl). No runtime result is inferred.\",\n    \"representation_prime_order_filter\": [\n      {\n        \"line\": 11,\n        \"text\": \"        \\teltsOfOrderR := Filtered(Elements(SylowSubgroup(G, r)), x -> Order(x) = r);\"\n      },\n      {\n        \"line\": 18,\n        \"text\": \"\\tRemoveSet(finalList, p);\"\n      }\n    ],\n    \"runtime_or_dependency_versions_verified\": false\n  },\n  \"lean_static\": {\n    \"commit\": \"3e9c51c6670343c4a740818fa1027f5fe3252b7b\",\n    \"counts\": {\n      \"axiom_Definitions.lean\": {\n        \"lines\": 50,\n        \"literal_sorry\": 0,\n        \"literal_admit\": 0,\n        \"top_level_axiom_declarations\": 0\n      },\n      \"axiom_Paper.lean\": {\n        \"lines\": 1266,\n        \"literal_sorry\": 0,\n        \"literal_admit\": 0,\n        \"top_level_axiom_declarations\": 0\n      },\n      \"axiom_unconditional_KimmerleKonovalov.lean\": {\n        \"lines\": 50,\n        \"literal_sorry\": 0,\n        \"literal_admit\": 0,\n        \"top_level_axiom_declarations\": 0\n      },\n      \"axiom_Challenge_Clean.lean\": {\n        \"lines\": 31,\n        \"literal_sorry\": 2,\n        \"literal_admit\": 0,\n        \"top_level_axiom_declarations\": 0\n      }\n    },\n    \"definitions\": [\n      {\n        \"line\": 28,\n        \"text\": \"def V : Subgroup (MonoidAlgebra ℤ G)ˣ := (Units.map (aug G).toMonoidHom).ker\"\n      },\n      {\n        \"line\": 37,\n        \"text\": \"def HasEltOfOrder (H : Type*) [Monoid H] (n : ℕ) : Prop := ∃ h : H, orderOf h = n\"\n      },\n      {\n        \"line\": 40,\n        \"text\": \"def IsVertex (H : Type*) [Monoid H] (p : ℕ) : Prop := p.Prime ∧ HasEltOfOrder H p\"\n      },\n      {\n        \"line\": 43,\n        \"text\": \"def IsAdj (H : Type*) [Monoid H] (p q : ℕ) : Prop :=\"\n      },\n      {\n        \"line\": 47,\n        \"text\": \"def PQ (G : Type*) [Group G] : Prop :=\"\n      }\n    ],\n    \"conditional_cor26\": [\n      {\n        \"line\": 1183,\n        \"text\": \"theorem cor26 [CFSGOutside.Corpus.Schreier]\"\n      },\n      {\n        \"line\": 1184,\n        \"text\": \"    (hCFSG : TauCeti.ClassificationStatement.{0}) {S : Type} [Group S] [Finite S]\"\n      },\n      {\n        \"line\": 1219,\n        \"text\": \"theorem cor26_abstract [CFSGOutside.Corpus.Schreier]\"\n      },\n      {\n        \"line\": 1220,\n        \"text\": \"    (hCFSG : TauCeti.ClassificationStatement.{0}) {G : Type} [Group G]\"\n      }\n    ],\n    \"unconditional_wrapper\": [\n      {\n        \"line\": 6,\n        \"text\": \"`CFSGComparator.classification`, and Schreier's conjecture for the catalogue supplied by the corpus.\"\n      },\n      {\n        \"line\": 19,\n        \"text\": \"theorem CFSGOutsideClean.KimmerleKonovalov.cor26\"\n      },\n      {\n        \"line\": 27,\n        \"text\": \"  _root_.KimmerleKonovalov.cor26 CFSGComparator.classification.{0} hS G hG hq hqG hqS hp hpS\"\n      },\n      {\n        \"line\": 30,\n        \"text\": \"theorem CFSGOutsideClean.KimmerleKonovalov.cor26_corpus\"\n      },\n      {\n        \"line\": 44,\n        \"text\": \"theorem CFSGOutsideClean.KimmerleKonovalov.cor26_abstract\"\n      },\n      {\n        \"line\": 50,\n        \"text\": \"  _root_.KimmerleKonovalov.cor26_abstract CFSGComparator.classification.{0} S hS hC hq hqG hqS hp hpS\"\n      }\n    ],\n    \"lean_toolchain\": \"leanprover/lean4:v4.35.0-rc3\",\n    \"mathlib_commit\": \"b63f6e8a68d220e3b3bc4f3792bb53650d375f24\",\n    \"tau_ceti_commit\": \"6e0c6acab5f4c6f42e5f5bab9bd5e4e84f74c380\",\n    \"cfsg_commit\": \"69cb972f587a3ecc035e092253167ff2e303c962\",\n    \"scope\": \"Specified prime-labelled edge equivalence between an almost simple group and normalized integral group-ring units; different from 19.52.\",\n    \"challenge_sorry_is_intentional_comparator_placeholder\": true,\n    \"build_executed\": false,\n    \"comparator_executed\": false,\n    \"transitive_corpus_axiom_audit\": false\n  },\n  \"duplicate_scan\": {\n    \"terms\": [\n      \"prime graph\",\n      \"prime-graph\",\n      \"gruenberg\",\n      \"kegel\",\n      \"coclique\",\n      \"素数图\",\n      \"素图\",\n      \"19.52\",\n      \"16.26\"\n    ],\n    \"total\": 2469,\n    \"hits\": [\n      {\n        \"id\": \"QX-P-000714\",\n        \"card_rev\": \"227c3adcff42aa4b\",\n        \"title\": \"14.28 Kegel 性质的可解 Fitting 形成是否饱和\",\n        \"title_en\": \"Kourovka 14.28: is a soluble Fitting formation with Kegel's property saturated?\",\n        \"aliases\": [],\n        \"path\": \"problems/000/QX-P-000714.meta.json\",\n        \"url\": \"https://www.qunxingmath.org/p/QX-P-000714/\"\n      },\n      {\n        \"id\": \"QX-P-000931\",\n        \"card_rev\": \"e91b9fb9d726891a\",\n        \"title\": \"Kourovka 19.52：（Maslova）GK 图（素图）顶点为 |G| 素因子，p~q 当且仅当 pq 为元素阶；[题面全文见原文] 相关…\",\n        \"title_en\": \"Kourovka 19.52: a non-solvable group whose prime graph has no 3-coclique and is not solvable-realizable\",\n        \"aliases\": [],\n        \"path\": \"problems/000/QX-P-000931.meta.json\",\n        \"url\": \"https://www.qunxingmath.org/p/QX-P-000931/\"\n      }\n    ]\n  },\n  \"no_foreign_source_execution\": true\n}\n",
+      "rerun": {
+        "commit": "3e9c51c6670343c4a740818fa1027f5fe3252b7b",
+        "theorem": "CFSGOutsideClean.KimmerleKonovalov.cor26/cor26_corpus/cor26_abstract：群环指定边，非19.52",
+        "toolchain": "静态读取Lean v4.35.0-rc3锁定信息；未构建Lean或递归corpus",
+        "command": "未运行lake build或comparator；仅python 〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material",
+        "axioms": "作者报告标准Lean公理；本轮未#print axioms，未审全部传递依赖。challenge占位与实际实现局部扫描分开，不由局部无sorry推断内核验证。"
+      },
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "0931-CODE-AI-CORPUS",
+      "url": "https://github.com/ai-math-edu-lab/math-agents/blob/b0b0c8e69546f911cd9d5f8534e323bda4142dd2/obsidian/Research/Group%20theory/Open%20problems/Kourovka/corpus/kourovka-issue-19-2018.md",
+      "locator": "YAML source/extracted；§19.52",
+      "version": "commitb0b0c8e69546f911cd9d5f8534e323bda4142dd2；blob47aa7357255b3625dc7745601eb5dbc69486662c；自述2026-08-11从Notebook2022/v23提取",
+      "subquestions": [
+        "主问题",
+        "一般有限群主问题的完整解、反例及形式化声称"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "note": "整个语料文件已取得，只读元数据及19.52段落；该段落是机器提取的题面，不是AI完成证明、反例或运行报告。该具体记录无新解声明，不代表整个仓库或全部AI社区都无声明。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "claim_state": "none",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "0931-D-characterization",
+      "url": "https://arxiv.org/abs/1305.2368v1",
+      "locator": "Theorem2.10，印刷p7/PDF第8页；Theorem2.8构造，印刷p6/PDF第7页；Corollary2.7，p5",
+      "version": "Gruber–Keller–Lewis–Keeley Naughton–Strasser，arXiv:1305.2368v1，2013-05-10；本轮原PDF可解析全文定向读取",
+      "subquestions": [
+        "主问题",
+        "可解素图的抽象同构刻画与等价重述",
+        "有限子类：PSL(2,13)-solvable 与 A12-solvable 群中不存在19.52例子"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "note": "有限简单图可由有限可解群素图抽象实现，当且仅当补图无三角形且可3染色。已读定理2.10短证明及2.8构造并核新素数选择；未逐一重建模论辅助引理。定理是抽象同构，不保证任意预给素数标签。它提供本题等价重述，不独立解答原主问。 根代理另以HTTP200取得固定v1 PDF299841bytes，SHA256=910acf0a7a0e01304fd3d96d06eb178f936f9bd160d852ceff8cafb8809dc4da，实际复读PDF第7/8页Theorem2.8/2.10，核Dirichlet选新素数及抽象图同构量词；未重证模论辅助引理。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "0931-D-equivalence",
+      "url": "urn:qunxing:private-material",
+      "locator": "§1定义与同构；§3五步等价推导及边界",
+      "version": "2026-11-26本轮独立逻辑核对，依赖0931-D-characterization的一手刻画",
+      "subquestions": [
+        "主问题",
+        "可解素图的抽象同构刻画与等价重述"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "note": "原题等价于存在真实有限群G，使GK(G)补图无三角形且色数≥4。无3余团等价于补图无三角形，在此假设下可解实现的否定等价于不可3染色。非可解性随即自动成立，因为可解G可令H=G。必须保留群可实现性；任意无三角形4色抽象图本身不构成例子。 完整定义/逻辑与有限例解释：# QX-P-000931：定义、量词、可解素图刻画与两个精确小例\n\n- 固定题卡：`QX-P-000931`，`card_rev=e91b9fb9d726891a`。\n- 核对日期：2026-11-26。\n- 分工：只核当前题的定义与逻辑、原始可解素图刻画及指定有限小例。Notebook 原问题、Cameron 的不同识别问题、最新结果及 almost simple 范围由根代理和学术代理负责。此文件不是正式逐题回执，也不是正式群星结案二审。\n\n## 1. 主问与抽象同构\n\n对有限群 G，令 π(G) 是 |G| 的不同素因子集合。GK(G) 是有限简单无向图；不同素数 p、q 相邻，当且仅当存在阶恰为 pq 的元素。把条件写成“有元素阶被 pq 整除”等价：若 g 的阶为 m 且 pq 整除 m，则 g 的 m/(pq) 次方阶为 pq。这里不讨论 p=q，也不加自环。\n\n3-余团是三个不同且两两不相邻的顶点；因此 GK(G) 无3-余团等价于补图没有三角形。它不表示整个图没有边，也不等价于 G 可解。\n\n当前题面问的是：存在有限非可解 G，使其素图无3-余团，且对每个有限可解 H，两个素图都不抽象同构。图同构允许重新标记顶点，不要求对应的素数数值相同。题卡使用“不 同构/≇”，而非要求同一素数集上的带标签图相等；按来源语境读，主问完整，本分工不判“题面有误”。\n\n“G 非可解”在第二个条件下自动成立：若 G 可解，可令 H=G，矛盾。保留它有助于表达研究对象，无须删改。\n\n## 2. 一手刻画：确切版本、定理与构造标签\n\n本轮读取原作者预印本：Alexander Gruber、Thomas M. Keller、Mark Lewis、Keeley Naughton、Benjamin Strasser，*A Characterization of the Prime Graphs of Solvable Groups*，arXiv:1305.2368v1，2013-05-10。\n\n- 固定版本页：<https://arxiv.org/abs/1305.2368v1>\n- 原PDF：<https://arxiv.org/pdf/1305.2368>\n- 版本记录只列 v1；本次使用该版本的定理号，不把期刊不同排版的编号混进来。\n- **Theorem 2.10，印刷 p7 / PDF 第8页**：有限简单图是某有限可解群素图的抽象同构类型，当且仅当它的补图无三角形且可3染色。前言 Theorem 2，印刷 p1，也给同一概括。\n- **Theorem 2.8，印刷 p6 / PDF 第7页**：从无三角形、可3染色的图构造可解群，使该图为其素图的补图；它还处理适当无环定向与 Frobenius 有向图。\n- **Corollary 2.7，印刷 p5 / PDF 第6页**：可解群的 Frobenius 有向图没有长度3的有向路。Theorem 2.10 的必要性由此配合染色定理及三素数引理得出，充分性引用 Theorem 2.8。\n- 定理2.8的构造按照定向分三层，运用 Dirichlet 选择满足同余的新素数，再构造循环群、模和半直积。因此它给抽象图实现；它没有承诺对任意预先指定的素数标签都能实现。\n\n读到的访问级别是原论文 PDF 可解析全文，定向读了上述声明、定理2.10短证明与定理2.8构造；没有逐项重建其所有模论辅助引理。网页截图请求也执行了，但本分工的结论依据可解析正文，不把返回的图片占位标识当作额外完成的视觉核对。\n\n期刊站本轮搜索索引另给 Journal of Algebra 442 (2015), 397–422，DOI 10.1016/j.jalgebra.2014.08.040；本分工不把该索引升级为已读期刊PDF。准确数学定位使用上面的 v1。\n\n## 3. 本轮独立推导的等价重述\n\n记 Γ=GK(G)，Δ 为 Γ 的补图。在有限群范围内：\n\n1. 无3-余团等价于 Δ 无三角形。\n2. 根据上述刻画，“不存在有限可解 H 使 Γ 同构于 GK(H)”等价于“Δ 无三角形且可3染色”这个合取的否定。\n3. 在第1步的假设下，该否定恰等价于 Δ 不可3染色。\n4. 因 Δ 有限，不可3染色等价于 χ(Δ)≥4。\n5. 若这样的 G 存在，则由第2步 G 自动非可解。\n\n所以原题等价于：是否存在一个真实的有限群 G，使 GK(G) 的补图无三角形且色数至少4。\n\n这是将原问题转为一个精确的群图实现问题，不是解答。即使拿到一个无三角形、4色的抽象图，也还必须证明其补图是某个有限群的素图；不能把任意 Mycielski 构造的图直接当作群论反例。本分工没有构造或枚举此类候选图。\n\n边界：平凡群的素图为空，仍由可解群自身实现；素数幂阶群只有一个顶点，也不可能满足排除所有可解 H 的条件。至多两个顶点的任意图均可由可解群抽象实现（有边用 C6，无边用 S3，单点用 C2，空图用平凡群）。无3-余团这一条件在顶点不足3时为空真；它本身不会产生主问见证。\n\n## 4. 小例的群定义与数学解释\n\n### 4.1 S5\n\n枚举集合 {0,1,2,3,4} 的全部120个置换，以函数复合为乘法。元素阶既用逐次乘法求得，又用不交循环长度最小公倍数独立复核。\n\n| 元素阶 | 1 | 2 | 3 | 4 | 5 | 6 |\n|---|---:|---:|---:|---:|---:|---:|\n| 元素数 | 1 | 25 | 20 | 30 | 24 | 20 |\n\n由循环结构可直接解释：两个不交循环长2与3给阶6；在5个点上没有阶10或15。故 π(S5)={2,3,5}，唯一边是 {2,3}，5孤立。\n\n程序另从群乘法和逆元生成所有交换子的子群，算出 [S5,S5]=A5 且 [A5,A5]=A5，大小依次120、60、60。非平凡导出子群已稳定，故 S5 不可解；这里没有依赖“S5 非可解”的外源数据库标记。\n\n### 4.2 AGL1(F7)=C7⋊C6\n\n元素是 (a,b)，a 属于 F7 的非零元素，b 属于 F7。它表示映射 x↦ax+b。乘法为\n\n\\[\n(a,b)(c,d)=(ac,ad+b)\\pmod7,\n\\]\n\n单位元 (1,0)，逆元为 (a^{-1},-a^{-1}b)。全部42个映射均为不同置换，程序逐对核了该公式与7点函数复合的一致性。函数复合保证结合律。\n\n平移子群 T={(1,b)} 是阶7的正规循环群；投影 (a,b)↦a 的像是 F7×，它由3生成且阶6，核恰为T。因此群有阿贝尔正规子群与阿贝尔商群，是可解群。程序也独立核得导出列大小42、7、1，第一导出子群恰为T。\n\n| 元素阶 | 1 | 2 | 3 | 6 | 7 |\n|---|---:|---:|---:|---:|---:|\n| 元素数 | 1 | 7 | 14 | 14 | 6 |\n\n若 a=1，非单位平移阶为7；若 a≠1，该映射有唯一不动点，并经平移共轭到 x↦ax，故阶为 a 在 F7× 中的阶。由此也可手算上表。π={2,3,7}，唯一边仍是 {2,3}，7孤立。\n\n### 4.3 该例说明什么\n\n同构映射 2↦2、3↦3、5↦7 将两个素图互相对应；它们均为一条边加一个孤立点。补图均为3点路径，可用2色染色，无三角形。因此 S5 是“非可解且无3-余团”的例子，却不是主问所需的群，因为它的图已经由上面的可解群实现。\n\n两个素图的素数标签集合不同，故它们不是带相同素数标签的相等图。这足以说明不能把“同构”静默换成“相等”；它不声称不存在其他同标签的可解实现。\n\n## 5. 实际工具、请求与范围\n\n按实际发生顺序记录；前两次工具批次同时做了相互独立的本地读取、能力检查及检索。\n\n1. 读取当前题卡，并执行 `command -v gap`。初次检索使用 system2，查询 `\"characterization\" \"prime graphs of solvable groups\" triangle free 3 colorable` 与 `\"solvable groups\" \"prime graph\" \"Gruber\" \"Keller\"`。该次总输出超长，未保留足够命中细节来独立支持数学结论，因而随后重取。\n2. 重读 `〔私有材料定位已省略〕，再次执行 `command -v gap`，退出码1且无路径；使用 system2 精确题名 `\"A characterization of the prime graphs of solvable groups\"`。命中期刊摘要/元数据与 arXiv 作者预印本。索引 ref 为 `〔原始工具引用已私有留存〕`、`turn300784602academia12`。\n3. 用 system1 作定向一手来源确认：`site:arxiv.org/abs/1305.2368 \"Characterization\"`；同批打开 arXiv 摘要页与原PDF。摘要版本 ref `〔原始工具引用已私有留存〕`，原文 ref `〔原始工具引用已私有留存〕`。\n4. 对原PDF实际 find：`Theorem 2.8.`、`Dirichlet`、`finite graph`、`Proposition 2.7.`。其中 `finite graph` 无匹配；最后一项检索返回相邻 **Corollary** 2.7，而不是一个叫 Proposition 2.7 的定理。定位 ref `〔原始工具引用已私有留存〕/1/2/3`。读原文后采用正确名称 Corollary 2.7、Theorem 2.8 和 Theorem 2.10。\n5. 请求原PDF第7、8页截图（零基 pageno=6,7）；返回 ref `〔原始工具引用已私有留存〕/1`。本分工没有因图片占位输出而追加声称视觉核验。\n6. 编写并运行 `python 〔私有材料定位已省略〕 > 〔私有材料定位已省略〕，退出码0；随后完整读取日志。Python版本3.12.14，纯标准库，`shutil.which('gap')` 也为 null。未安装程序，未调用GAP，未使用群数据库。\n7. 对贡献JSON的 queries/evidence/card_actions/pending 数组按包内正式Schema逐项验收；完整逐题回执与原版导入验收仍由根代理负责。\n\n## 6. 复核限制\n\n- 只枚举 S5 的120个元素与 AGL1(F7) 的42个元素，且只在这两个群内部计算导出子群；不是某阶上界内的所有群搜索。\n- 补图色数穷举只用于两个3顶点图；没有进行任意群的可解性或图可实现性搜索。\n- Python精确执行支持这两个有限例，不构成定理2.10的机器形式化，也不解答原题的无限量词。\n- 本轮没有独立证明刻画定理所引全部辅助结果；本轮原文定位与针对标签的构造审查足以明确它的使用范围。\n- 本分工不从卡内过去的 OPEN 或 GAP 检查点推断本轮状态；最终主问状态应结合根代理本轮读取的 Notebook 与学术代理的当前结果。\n",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "0931-D-exact",
+      "url": "urn:qunxing:private-material",
+      "locator": "main、derived_group、graph_data；完整输出0931_small_check.log",
+      "version": "2026-11-26本轮自编有限检查；Python3.12.14标准库；实际执行exit0",
+      "subquestions": [
+        "S5与可解AGL1(F7)的抽象同构小例",
+        "可解素图的抽象同构刻画与等价重述"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "toolchain": "Python3.12.14；标准库collections/itertools/math/json/platform/shutil；精确整数与有限置换",
+        "command": "python 〔私有材料定位已省略〕 > 〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material",
+        "cache": "无外部群数据库、无GAP、无缓存证明成果",
+        "axioms": "非证明助手任务；精确有限程序检查，不声称公理审计或一般定理形式化"
+      },
+      "note": "S5导出列120→60→60且稳定子群为A5，故不可解；AGL1(F7)导出列42→7→1且群运算(a,b)(c,d)=(ac,ad+b)mod7，故可解。两图都是唯一边2–3和孤立点5/7，补图P3、色数2、无三角形；同构2→2,3→3,5→7。它仅说明无3余团不判群可解性及标签与抽象同构的区别，绝不是主问见证。 脚本SHA256=3a35d10d516aa3c7a17381de62904bf3e3ef21d182b27be3a46df0bac461c5bb；日志SHA256=6dc4870e3c86bfcdd50e12069fc4314af5c9d59978239580dd83f4735c93cd82。完整 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [],
+  "card_actions": [
+    {
+      "action": "暂不改卡",
+      "field": "题面/形式化表述/acceptance",
+      "old": "存在有限非可解G，其GK无3-余团且不同构于任意有限可解H的GK。",
+      "new": "保留当前存在性主问、有限性和抽象图同构量词；补充可计算的等价检测框架及有限小例时另列其限定范围。",
+      "reason": "与v50 p147逐句数学核对一致。几乎单群无例、可解图刻画和个别可计算图例只排除子类，不否定一般存在性。",
+      "evidence_ids": [
+        "0931-R-NOTEBOOK",
+        "0931-D-exact",
+        "0931-D-characterization"
+      ],
+      "small_case_check": "S5与AGL1(F7)素数顶点分别{2,3,5}/{2,3,7}，两图都仅有边2–3；允许5映到7后抽象同构，故S5不是见证。改为标签必须相同将改变比较命题。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "已知结果与进展/开放状态证据的标记释义",
+      "old": "无♯(AI拟解)/∗(AI确认解)/解题评论标注→编目级开放。",
+      "new": "注明已实际核v50 p147与2026-11官方更新，19.52当前无解题标记/评论；♯=未经数学家确认的AI提议，∗=正式解答通用标记。该事实只作为编目状态，并与实际论文及代码检索分列。",
+      "reason": "官方前言中∗不限AI来源；没有标记不能替代本轮四路查新。相邻19.56的AI注释不属于本题。",
+      "evidence_ids": [
+        "0931-R-NOTEBOOK",
+        "0931-R-CATALOG"
+      ],
+      "small_case_check": "当前同页19.56有♯及AI注释、19.52没有，按题号切分即可避免跨题迁移。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "Cameron2022不可识别判据/相关进展与声称解决",
+      "old": "Cameron2022不可识别判据及Maslova2022/2025系列、无穷单群列首例；19.52/16.26合并为一个簇。",
+      "new": "精确列Cameron–Maslova Thm1.2/1.3：本题无3余团的有限非可解G的GK有无限多个有限实现群且某一实现的可解根非平凡；此处不能把该群写成可解。19.52与16.26分别写量词和结论；保留其他系列时须逐条给题名、版本和实际覆盖范围。",
+      "reason": "带标签识别重数、抽象图可解实现、有限群族及无穷群是不同概念；模糊进展句可能误当全解。",
+      "evidence_ids": [
+        "0931-R-CAMERON",
+        "0931-R-NOTEBOOK",
+        "0931-S-AFK2025",
+        "0931-S-RENNER2026"
+      ],
+      "small_case_check": "C2×A5的可解根含非平凡C2，但商A5非可解，说明“可解根非平凡⇒群可解”推理不成立。此反例只解释逻辑区别，不作为19.52见证。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "first_published / sources",
+      "old": "2018 年辑",
+      "new": "目前最早可核公开原问：2016-06-04，Gorshkov–Maslova arXiv1606.01402v1 p2；该论文正式发表为2018年。Notebook自身辑次、收录年代与首次公开提问分别记载。",
+      "reason": "已实际取得并读v1原问，不再仅由v2或abs发布日期推定；不改变Notebook署名提出人Maslova。",
+      "evidence_ids": [
+        "0931-S-GM-ORIGIN"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展／几乎单群无例",
+      "old": "已知几乎单群中无此例。",
+      "new": "Gorshkov–Maslova Theorem1（2016预印本、2018正式发表）：有限几乎单群GK无3-余团，当且仅当其图与某有限可解群素图抽象同构；事实上可保持全部素数标签。原稿取得并核命题范围，本轮未通审分类证明。",
+      "reason": "补一手定理、版本及更强标签结论，保持主问题仍要求抽象同构。",
+      "evidence_ids": [
+        "0931-S-GM-THM1"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展／未具体列明的2025后续",
+      "old": "Maslova 2022/2025 系列；簇活跃；两题开放。",
+      "new": "可具体定位的学术后续包括Alland–Fridman–Keller arXiv2511.16403v1：PSL(2,13)-solvable和A12-solvable子类不提供19.52例子，另有保留非可解因子的条件性结构定理；Alexa Renner arXiv2610.02696v1 §6仍明确把一般有限群19.52列为后续问题。19.52与16.26的不同量词另据原题分别记载。",
+      "reason": "用实际取得的定理替换无题名/无链接的泛称；不把T-solvable误译为solvable，不把无限群一般化、可识别性或状态目录作本题全解。",
+      "evidence_ids": [
+        "0931-S-AFK2025",
+        "0931-S-RENNER2026"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "边界与约定 / 图同构及素数标签",
+      "old": "GK(G) 不同构于任何有限可解群的GK图；未展开是否保留素数标签。",
+      "new": "此处同构指有限简单图的抽象同构，允许顶点素数重新标记；量词是对每个有限可解H都无图同构，不是只比较固定素数集上的相等图。",
+      "reason": "与原问及可解素图刻画一致，仅澄清约定，不改变主问题，也不把原问登记题面有误。",
+      "evidence_ids": [
+        "0931-D-characterization",
+        "0931-D-equivalence",
+        "0931-D-exact"
+      ],
+      "small_case_check": "S5的顶点{2,3,5}与AGL1(F7)的{2,3,7}不同，但映射2→2,3→3,5→7保持唯一边，故抽象同构；该例不声称无同标签可解实现。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展 / 基础刻画和等价重述",
+      "old": "仅泛列Cameron 2022与Maslova系列，未列可解素图抽象同构的完整刻画。",
+      "new": "补Gruber等arXiv:1305.2368v1，Theorem2.10（p7）：可解群素图的补图恰为无三角形且可3染色的有限简单图；据此原题等价于寻找真实有限群G，使GK(G)补图无三角形且色数≥4。",
+      "reason": "这是可核的基础等价转换，不是原主问已解决；Theorem2.8构造会选择新素数，且任意抽象4色图还须证明群可实现。",
+      "evidence_ids": [
+        "0931-D-characterization",
+        "0931-D-equivalence"
+      ],
+      "small_case_check": "两个指定3顶点小例的补图均为P3，色数2，故刻画判定它们可解实现；平凡/单顶点边界也不会满足排除全部可解群的要求。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定 / 历史检查点与本轮实际工具",
+      "old": "性质：仅列检查点（不执行证明/反例搜索）；独立验证：小群GK图枚举GAP。",
+      "new": "保留该句作为历史待执行检查点；本轮另记实际用Python3.12.14标准库核S5与AGL1(F7)，附脚本和日志，PATH未找到GAP。不要把历史检查点写成本轮已运行GAP或已枚举全部小群。",
+      "reason": "确保方法旁注与真实运行范围一致，不把工具建议当证据。",
+      "evidence_ids": [
+        "0931-D-exact"
+      ],
+      "small_case_check": "实际范围恰120个置换和42个仿射映射；退出码0；图和导出子群均用精确运算，未访问群数据库。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "历史查新版本与本轮证据覆盖",
+      "old": "novelty.card_rev=089cc88b2fdb8f0f；当前e91b9fb9d726891a的prior_evidence为legacy且batches/queries/evidence为空。",
+      "new": "旧结果仅作历史线索。本回执严格绑定e91b9fb9d726891a，保留原主问题；书目、标记定义和进展范围的建议另行审定，不自动改卡或改写旧哈希。",
+      "reason": "同版空legacy不是实际本轮四路查新，旧版basic/pass不能替代当前证据。",
+      "evidence_ids": [
+        "0931-R-NOTEBOOK",
+        "0931-S-GM-ORIGIN"
+      ],
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "reason": "Cameron–Maslova刊本全文未另取，实际核的是2023v3与其关键推论；更广CFSG/分类证明未逐条独立审计。",
+      "next_step": "如据相关特例结案或正式修订数学状态，再由维护者对照相应发表版本及被引用引理；当前仅登记其明确范围内的进展，不据识别判据关闭19.52。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "几乎单群分类证明并未在本轮逐分支独立核完；取得的是arXiv完整稿，正式刊本只读到刊物元数据。",
+      "next_step": "若将几乎单群子问作为已证闭合导入，按包规二审Theorem1的分类分支及2018正式版本；保持本轮“完整证明声明／命题范围已核”与独立全证明复核分开。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2025有限子类的局部着色证明已读，但所依赖表示论数据、GAP表及跨论文引理未在本路线独立重算。",
+      "next_step": "如需将这些子类从文献完整证明声明升级为本轮独立复核，优先核Lemma2.2.1–2.2.2和Prop2.1.8的依赖，再核AppendixA计算；代码路线的静态审查不能代替实际复跑。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "arXiv2610.02696原站PDF成功取得并识别为v1，但摘要/版本历史页面实际DisabledError。",
+      "next_step": "以后复查P0时优先补读该稿原站版本历史和任何明确更正/撤回入口；本轮不凭镜像索引宣称版本历史已穷尽。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "作者GAP代码及Appendix A计算说明已取得，但没有在本轮执行；固定点表函数的UnderlyingCharacteristic调用形式存在静态疑点，不能继承题卡中‘独立验证：小群GAP枚举’字样。",
+      "next_step": "本轮维持作者提供代码/已静态未复跑层级。若后续将某项数表用于主证，再指定输入群、GAP/CTblLib版本与预期输出作有限复核，并核特征过滤；不因现成函数、注释或抽样枚举给19.52结案。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "2469条标题/英文标题/别名做了有限检索，唯一额外词面命中000714为Kegel形成问题而非素图，未产生适当配对候选；没有逐张全库正文排重。",
+      "next_step": "保持duplicates为空，仅表示本轮未识别候选；若未来出现具体同题/16.26卡号，先取固定版本双方meta和全文核card_rev及量词，再按较小题号责任规则提交，不能凭词面或题集同源直接合并。",
+      "batch_id": "QX-R3-05",
+      "card_rev": "e91b9fb9d726891a",
+      "codes": {}
+    }
+  ]
+}

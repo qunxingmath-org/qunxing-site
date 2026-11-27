@@ -1,0 +1,2379 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000182",
+  "card_rev": "10134f524bc1c364",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-01"
+      ],
+      "parts": [
+        {
+          "subquestion": "无条件全次数正下界及低次因子排除",
+          "value": "partial",
+          "note": "对充分大的 d，BSKK Theorem 3.5 可取不可约比例≥0.00068053；同文给有界非集中分布的线性小因子排除。后者仍允许两个或更多线性规模因子，不能推出概率趋1。"
+        },
+        {
+          "subquestion": "无条件特殊次数与极限存在性",
+          "value": "partial",
+          "note": "BHKP 对 d=2^r−1（及定理中其他 p^r−1）给概率≥1−d^(−c)，从而 limsup=1。完整极限的存在性并未由此证明；若存在，则由 limsup=1 必等于1。旧 d=2^r−1 至少50% 不可约已被明显加强。"
+        },
+        {
+          "subquestion": "GRH 条件性全次数结果",
+          "value": "partial",
+          "note": "BV Corollary 3 对 ±1、N=1 的直接特化给 P(irred)=1+O(d^(−1/2))→1，条件为数域 Dedekind ζ 函数的 RH。不能删除此条件，也不能把 Theorem 2 的去分圆部分误差直接用于整个多项式。"
+        },
+        {
+          "subquestion": "邻题：0/1系数完整声明及形式化边界",
+          "value": "claimed_resolution",
+          "note": "此状态仅登记相关的0/1邻题：Kogler固定v2声称无条件证明首末项1、中间iid0/1模型不可约概率趋1，并报告Lean验证；本轮取得全文并重点读pp1–3与范围，固定commit静态核模型，未独立复跑或核全证明。其正文明确一般系数分布留待未来，不覆盖主问题的iid±1模型。Green93仍为邻题骨架；Challenge中的独立验收sorry不能直接否定另行实现的Solution。精确d=4例也表明逐系数0/1→±1仿射变换不保持不可约，不能借此宣称模型等价。"
+        },
+        {
+          "subquestion": "首项归一化及低次边界",
+          "value": "partial",
+          "note": "定义S_d={f=Σ_(i=0)^d ε_i x^i:ε_i∈{−1,1}}，d≥1。系数内容为1，故Gauss引理使Q[x]不可约与Z[x]中不能分解成两个正次数因子等价。归一化g=ε_d f为monic；每个monic g恰对应f=g和f=−g，乘单位±1不改变不可约性。因此全2^(d+1)模型与monic 2^d模型的比例精确相等，归一化后的其余系数仍独立均匀±1。一次非零多项式全不可约，包括x+1；f(−1)=0并不在d=1构成可约性，因为商为常数单位。d=0只有±1，均为单位而非不可约元；单个零次边界不影响d→∞。 此处只澄清模型和边界，不裁定一般渐近结论。"
+        },
+        {
+          "subquestion": "±1根的结构概率",
+          "value": "partial",
+          "note": "令N=d+1。全符号均匀模型下f(1)是N个独立±1之和，f(−1)具有相同分布。若N为奇数（d偶），两者都不能为0；若N为偶数，各自零概率为binom(N,N/2)/2^N。两者同时为0等价于偶下标系数和、奇下标系数和各为0，故交概率在4|N时为binom(N/2,N/4)^2/2^N，否则0。并概率为两单概率之和减交概率，是O(N^(−1/2))→0；这由中央二项式估计得到。对d≥2，这些根给出真线性因子与可约性；d=1须排除。常数和首项为±1也使任何Q有理根只能为±1，但排除它们只排除有理线性因子，不能排除较高次数因子。 这些显式结构性因素的概率消失，不蕴含全部可约多项式概率消失。"
+        },
+        {
+          "subquestion": "d=2^r−1的二分之一下界",
+          "value": "partial",
+          "note": "取r≥1,d=2^r−1，先归一化monic。所有系数模2为1，故在F_2[x]中x·f(x+1)=(x+1)^(d+1)−1=x^(d+1)，从而f(x+1)≡x^d。它的首项不被2整除，其余系数都被2整除。常数f(1)=Σ ε_i为偶数；翻转自由常数系数ε_0把模4余数0与2互换，故恰一半的monic符号串满足f(1)≡2(mod4)。对这些串，f(x+1)满足2-Eisenstein，故在Q上不可约；平移x↦x+1保持不可约性。于是该无穷次数子序列的不可约比例至少1/2，而非可约比例至少1/2。r=0给单位，故不在断言中。这只是下界，不是证明比例趋于1，也不能推断另一半全可约。"
+        },
+        {
+          "subquestion": "d=1到10的精确枚举",
+          "value": "partial",
+          "note": "本轮实际执行SymPy1.14.0精确ZZ因式分解，枚举全部2046个monic多项式，并逐个因式分解其负式校验首项符号对称。d=1..10不可约比例依次1,1,1/2,1,3/8,3/4,1/2,3/4,65/128,1。所有因子乘回核对一致；±1根计数符合组合公式；d1,3,7平移Eisenstein充分条件命中恰半且全部不可约。没有运行d≤40或证明渐近极限；未用证明助理核验SymPy算法。"
+        },
+        {
+          "subquestion": "旧Poonen部分结果与原模型",
+          "value": "partial",
+          "note": "已亲读MO原题及Poonen答。旧不可约计数≫2^d/d的构造只沿偶数d；另有GRH下无限次数全部不可约与d=2^r−1至少半数不可约。不能从4个回答/accepted标志判断2026全网状态，也不把原帖S_d记号笔误当新的计数主张。旧结果已由本回执另列的全次数正下界、无条件limsup=1及GRH全次数结果补强。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/ckkogler/odlyzko-poonen-lean/blob/e79540e23d591907eed55268f1ada10340d1de69/OdlyzkoPoonen/Probability/BinaryModel.lean"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://mathoverflow.net/questions/7969/irreducible-polynomials-with-constrained-coefficients/7978",
+      "review": "key_steps_checked"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "固定模型为 degree d 的全部 d+1 个系数 iid 均匀 ±1，在 Q[x] 不可约的比例。已核无条件统一正下界与 limsup=1、GRH 条件下全次数极限1；当前取得的完整解 Kogler 2026 不适用于 ±1。这里是本轮取得证据的范围判断，不是全球仍开放证明。",
+      "evidence_ids": [
+        "F182-AE01",
+        "F182-AE03",
+        "F182-AE04",
+        "F182-AE05",
+        "C182-R-E01",
+        "Q182-SEM-E01",
+        "C182-C-E04"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "无条件全次数正下界及低次因子排除",
+      "math_status": "实质进展",
+      "scope_note": "对充分大的 d，BSKK Theorem 3.5 可取不可约比例≥0.00068053；同文给有界非集中分布的线性小因子排除。后者仍允许两个或更多线性规模因子，不能推出概率趋1。",
+      "evidence_ids": [
+        "F182-AE03"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "无条件特殊次数与极限存在性",
+      "math_status": "实质进展",
+      "scope_note": "BHKP 对 d=2^r−1（及定理中其他 p^r−1）给概率≥1−d^(−c)，从而 limsup=1。完整极限的存在性并未由此证明；若存在，则由 limsup=1 必等于1。旧 d=2^r−1 至少50% 不可约已被明显加强。",
+      "evidence_ids": [
+        "F182-AE01",
+        "F182-AE02"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "GRH 条件性全次数结果",
+      "math_status": "条件性结果",
+      "scope_note": "BV Corollary 3 对 ±1、N=1 的直接特化给 P(irred)=1+O(d^(−1/2))→1，条件为数域 Dedekind ζ 函数的 RH。不能删除此条件，也不能把 Theorem 2 的去分圆部分误差直接用于整个多项式。",
+      "evidence_ids": [
+        "F182-AE04"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "邻题：0/1系数完整声明及形式化边界",
+      "math_status": "完整声明待核",
+      "scope_note": "此状态仅登记相关的0/1邻题：Kogler固定v2声称无条件证明首末项1、中间iid0/1模型不可约概率趋1，并报告Lean验证；本轮取得全文并重点读pp1–3与范围，固定commit静态核模型，未独立复跑或核全证明。其正文明确一般系数分布留待未来，不覆盖主问题的iid±1模型。Green93仍为邻题骨架；Challenge中的独立验收sorry不能直接否定另行实现的Solution。精确d=4例也表明逐系数0/1→±1仿射变换不保持不可约，不能借此宣称模型等价。",
+      "evidence_ids": [
+        "C182-R-E02",
+        "F182-AE05",
+        "C182-C-E01",
+        "C182-C-E02",
+        "C182-C-E03",
+        "C182-C-E05"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "首项归一化及低次边界",
+      "math_status": "有部分进展",
+      "scope_note": "定义S_d={f=Σ_(i=0)^d ε_i x^i:ε_i∈{−1,1}}，d≥1。系数内容为1，故Gauss引理使Q[x]不可约与Z[x]中不能分解成两个正次数因子等价。归一化g=ε_d f为monic；每个monic g恰对应f=g和f=−g，乘单位±1不改变不可约性。因此全2^(d+1)模型与monic 2^d模型的比例精确相等，归一化后的其余系数仍独立均匀±1。一次非零多项式全不可约，包括x+1；f(−1)=0并不在d=1构成可约性，因为商为常数单位。d=0只有±1，均为单位而非不可约元；单个零次边界不影响d→∞。 此处只澄清模型和边界，不裁定一般渐近结论。",
+      "evidence_ids": [
+        "Q182-SEM-E01",
+        "Q182-SEM-E04"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "±1根的结构概率",
+      "math_status": "有部分进展",
+      "scope_note": "令N=d+1。全符号均匀模型下f(1)是N个独立±1之和，f(−1)具有相同分布。若N为奇数（d偶），两者都不能为0；若N为偶数，各自零概率为binom(N,N/2)/2^N。两者同时为0等价于偶下标系数和、奇下标系数和各为0，故交概率在4|N时为binom(N/2,N/4)^2/2^N，否则0。并概率为两单概率之和减交概率，是O(N^(−1/2))→0；这由中央二项式估计得到。对d≥2，这些根给出真线性因子与可约性；d=1须排除。常数和首项为±1也使任何Q有理根只能为±1，但排除它们只排除有理线性因子，不能排除较高次数因子。 这些显式结构性因素的概率消失，不蕴含全部可约多项式概率消失。",
+      "evidence_ids": [
+        "Q182-SEM-E02",
+        "Q182-SEM-E04",
+        "Q182-SEM-E05"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "d=2^r−1的二分之一下界",
+      "math_status": "有部分进展",
+      "scope_note": "取r≥1,d=2^r−1，先归一化monic。所有系数模2为1，故在F_2[x]中x·f(x+1)=(x+1)^(d+1)−1=x^(d+1)，从而f(x+1)≡x^d。它的首项不被2整除，其余系数都被2整除。常数f(1)=Σ ε_i为偶数；翻转自由常数系数ε_0把模4余数0与2互换，故恰一半的monic符号串满足f(1)≡2(mod4)。对这些串，f(x+1)满足2-Eisenstein，故在Q上不可约；平移x↦x+1保持不可约性。于是该无穷次数子序列的不可约比例至少1/2，而非可约比例至少1/2。r=0给单位，故不在断言中。这只是下界，不是证明比例趋于1，也不能推断另一半全可约。",
+      "evidence_ids": [
+        "Q182-SEM-E03",
+        "Q182-SEM-E04"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "d=1到10的精确枚举",
+      "math_status": "仅特例",
+      "scope_note": "本轮实际执行SymPy1.14.0精确ZZ因式分解，枚举全部2046个monic多项式，并逐个因式分解其负式校验首项符号对称。d=1..10不可约比例依次1,1,1/2,1,3/8,3/4,1/2,3/4,65/128,1。所有因子乘回核对一致；±1根计数符合组合公式；d1,3,7平移Eisenstein充分条件命中恰半且全部不可约。没有运行d≤40或证明渐近极限；未用证明助理核验SymPy算法。",
+      "evidence_ids": [
+        "Q182-SEM-E04"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "旧Poonen部分结果与原模型",
+      "math_status": "部分进展",
+      "scope_note": "已亲读MO原题及Poonen答。旧不可约计数≫2^d/d的构造只沿偶数d；另有GRH下无限次数全部不可约与d=2^r−1至少半数不可约。不能从4个回答/accepted标志判断2026全网状态，也不把原帖S_d记号笔误当新的计数主张。旧结果已由本回执另列的全次数正下界、无条件limsup=1及GRH全次数结果补强。",
+      "evidence_ids": [
+        "C182-R-E01",
+        "Q182-SEM-E03",
+        "F182-AE01",
+        "F182-AE03",
+        "F182-AE04"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "C182-R01",
+      "route": "原题与出处",
+      "site": "MathOverflow",
+      "query": "open https://mathoverflow.net/questions/7969",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://mathoverflow.net/questions/7969",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "短地址工具不可达；稍后用检索返回完整slug取得实际题面与4答。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "C182-R02",
+      "route": "原题与出处",
+      "site": "Web search/system2",
+      "query": "site:mathoverflow.net/questions/7969 \"irreducible\" Poonen",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://mathoverflow.net/questions/7969/irreducible-polynomials-with-constrained-coefficients/7978",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "找到原问及回答入口；检索摘要混排回答，未凭摘要判断作者归属。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "C182-R03",
+      "route": "原题与出处",
+      "site": "Web search/system2",
+      "query": "\"Irreducible polynomials with\" \"proportion\" Poonen",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://mathoverflow.net/questions/7969/irreducible-polynomials-with-constrained-coefficients/7978",
+      "locator": "〔原始工具引用已私有留存〕/22/24",
+      "note": "命中原帖、特殊次数论文索引、Banff问题集及无关非负系数/有限域文章；只有随后所读相应原文作为结论依据。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "C182-R04",
+      "route": "原题与出处",
+      "site": "StackExchange API",
+      "query": "open https://api.stackexchange.com/2.3/questions/7969/answers?site=mathoverflow&filter=withbody",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://api.stackexchange.com/2.3/questions/7969/answers?site=mathoverflow&filter=withbody",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "工具报告不可达；不能沿用卡内2026-11-20 API查询作为本次执行。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "C182-R05",
+      "route": "原题与出处",
+      "site": "MathOverflow完整原文",
+      "query": "open https://mathoverflow.net/questions/7969/irreducible-polynomials-with-constrained-coefficients/7978",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://mathoverflow.net/questions/7969/irreducible-polynomials-with-constrained-coefficients/7978",
+      "locator": "〔原始工具引用已私有留存〕；原题与四答及更正评论",
+      "note": "原问2009-12-06，Poonen回答2009-12-27。原问明确±1不含0；Greg最初三元误解后来更正。原页面是问题和旧结果，不是2026开放性证明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "C182-R06",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "site:mathoverflow.net/questions/7969 \"Poonen\" \"GRH\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://mathoverflow.net/questions/7969/irreducible-polynomials-with-constrained-coefficients/7978",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "结果含其他GRH题噪声；实际采用已读MO完整答复，非噪声页。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "C182-R07",
+      "route": "原题与出处",
+      "site": "Web search/system1",
+      "query": "site:mathoverflow.net/questions/7969 \"Bary\" \"2^\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://mathoverflow.net/questions/7969/irreducible-polynomials-with-constrained-coefficients/7978",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "返回原帖及无关索引；不可按条数作无结果断言。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "C182-R08",
+      "route": "原题与出处",
+      "site": "Canadian Mathematical Society原文入口",
+      "query": "click原MO link22，Brillhart–Filaseta–Odlyzko原文",
+      "date": "2026-11-26",
+      "outcome": "限流或权限",
+      "url": "https://www.cms.math.ca/cjm/v33/cjm1981v33.1055-1059.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "实际返回验证等待HTML，未取得论文PDF或直接重审Theorem2。Poonen证明摘要另有来源定位。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "C182-R09",
+      "route": "原题与出处",
+      "site": "Konyagin原刊PDF入口",
+      "query": "click原MO link23",
+      "date": "2026-11-26",
+      "outcome": "限流或权限",
+      "url": "https://matwbn.icm.edu.pl/ksiazki/aa/aa88/aa8844.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "403；不把0/1邻题全文记成本次已阅。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "C182-R10",
+      "route": "原题与出处",
+      "site": "n-Category Café原讨论",
+      "query": "click原MO link13",
+      "date": "2026-11-26",
+      "outcome": "限流或权限",
+      "url": "https://golem.ph.utexas.edu/category/2009/12/this_weeks_finds_in_mathematic_46.html",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "403；MO自己指出此前有Café讨论，目前最早亲读入口是MO，不能断言MO为绝对首次提出。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "blocked"
+      }
+    },
+    {
+      "request_id": "C182-R11",
+      "route": "学术",
+      "site": "arXiv元数据",
+      "query": "open https://arxiv.org/abs/2609.26771",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2609.26771",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "Kogler v1=2026-09-22，最新v2=2026-10-14 minor clarifications，11页；摘要是首末项1的0/1模型。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "C182-R12",
+      "route": "学术",
+      "site": "arXiv固定旧版HTML",
+      "query": "open https://arxiv.org/html/2609.26771v1",
+      "date": "2026-11-26",
+      "outcome": "全文不可访问",
+      "url": "https://arxiv.org/html/2609.26771v1",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "DisabledError；本次随后实际审阅最新v2，不据此推断v1内容。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "request_id": "C182-R13",
+      "route": "学术",
+      "site": "arXiv固定v2全文",
+      "query": "open https://arxiv.org/html/2609.26771v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2609.26771v2",
+      "locator": "〔原始工具引用已私有留存〕；Introduction/Theorems1.1–1.3及范围声明",
+      "note": "明确仅0/1端点1模型、Theorem1.3专用于该模型、一般分布留未来工作；不可由标题把±1主问结案。作者形式化及他人检查报告分开登记。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-R14",
+      "route": "学术",
+      "site": "arXiv PDF",
+      "query": "open https://arxiv.org/pdf/2609.26771",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/pdf/2609.26771",
+      "locator": "〔原始工具引用已私有留存〕；11页，页眉2609.26771v2 14Oct2026",
+      "note": "原文取得，重点读pp1–3模型、主定理、机器贡献与Lean声明；未独立重证全文或复跑证明助手。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-R15",
+      "route": "学术",
+      "site": "arXiv固定PDF",
+      "query": "open https://arxiv.org/pdf/2308.04878v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2308.04878v2",
+      "locator": "〔原始工具引用已私有留存〕；4页，Theorems1.1/1.2、Remark1.3、§2",
+      "note": "v2=2024-01-06。实际PDF文本对≥符号有丢横线，后续R16直接页图核准：p=2或p≥7且2生成(Z/p²Z)^×，r≥1，d=p^r−1；概率≥1−d^−c。p=2子序列即得limsup=1，不推出全次数极限。§2证明结构已读，未重审全部引用定理。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "C182-R16",
+      "route": "学术",
+      "site": "arXiv固定PDF页图",
+      "query": "screenshot https://arxiv.org/pdf/2308.04878v2 page0，核Theorem1.2的≥数学符号",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/2308.04878v2",
+      "locator": "〔原始工具引用已私有留存〕；印刷p1 Theorem1.2",
+      "note": "根代理目视确认p≥7、r≥1和概率≥1−n^{-c}，纠正PDF提取文本将≥丢横线成>的风险。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-SEM01",
+      "route": "原题与出处",
+      "site": "本包任务.jsonl",
+      "query": "读取QX-P-000182@10134f524bc1c364全文、acceptance与difficulty.note，核比例模型、边界及≥50%处的内部差异",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "locator": "任务.jsonl list_row18",
+      "note": "未在本分工重新访问MO或学术论文，原出处由主流程核；这条仅是实际包内正文核对。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-SEM02",
+      "route": "原题与出处",
+      "site": "本轮独立数学语义核对",
+      "query": "核Gauss域口径、f↦ε_d f二对一归一化、一次/单位边界、±1根精确组合概率、d=2^r−1平移2-Eisenstein下界",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "locator": "Q182-SEM-E01–E03内嵌推理",
+      "note": "这些是本题新做的独立推理，不冒充新检得文献、也不宣称证明一般不可约概率极限。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-SEM03",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地Python3/SymPy1.14.0",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000191〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "Q182-SEM-E04内嵌完整代码、实际stdout、版本及SHA-256",
+      "note": "已实际运行且退出码0。只枚举d1..10；每个monic f和−f均用精确ZZ factor_list分解并将因子乘回；这不是独立证明助理复跑。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-SEM04",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地Python3/SymPy1.14.0",
+      "query": "枚举d=6的monic±1多项式，取第一个factor_list显示可约者，打印完整因式分解与f(±1)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "Q182-SEM-E05内嵌实际短脚本与输出",
+      "note": "用于说明无±1根仍可有高次因子，未将该有限例写成概率极限的反例。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A01",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Littlewood polynomials\" \"irreducibility\" 2026 [recency=730]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–10",
+      "note": "命中 BHKP 特殊次数论文、2026 学位论文及近邻分布文献；仅对相关原稿继续追踪。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A02",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"random polynomials\" \"irreducibility\" \"Bary-Soroker\" \"Kozma\" \"Koukoulopoulos\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–10",
+      "note": "命中 general measures 作者稿与正式刊发信息。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A03",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Breuillard\" \"Varju\" \"irreducibility\" 2025 2026 [recency=1095]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–10",
+      "note": "定位条件性一般分布结果及后续文献；不能仅凭摘要删除 RH 条件。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A04",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open abs/2308.04878；pdf/2308.04878",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/2308.04878",
+      "locator": "〔原始工具引用已私有留存〕/1",
+      "note": "实际 PDF 页眉为 v2，4 页；取得完整稿，核 Theorems 1.1/1.2 和分布，随后转固定 HTML 消除 PDF 不等号提取误差。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A05",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open abs/2007.14567；pdf/2007.14567",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/2007.14567",
+      "locator": "〔原始工具引用已私有留存〕/3",
+      "note": "取得 v3 完整 65 页稿；只核相关定理及适用范围，未独立复核整篇证明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A06",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open abs/1810.13360；pdf/1810.13360",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/1810.13360",
+      "locator": "〔原始工具引用已私有留存〕/5",
+      "note": "取得 v2 完整 50 页稿；一般分布结果有 Dedekind zeta RH 条件。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A07",
+      "route": "学术",
+      "site": "Oxford Academic",
+      "query": "open https://academic.oup.com/imrn/article/2025/21/rnaf326/8300532",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://academic.oup.com/imrn/article/2025/21/rnaf326/8300532",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "直接打开返回 500/重定向不可用；随后出版社被索引的内容与 arXiv 固定 v2 可读，不能称直接读完正式版。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A08",
+      "route": "学术",
+      "site": "arXiv PDF/HTML",
+      "query": "find 2308.04878 PDF: Proof of Theorem；open PDF line 60；open html/2308.04878v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2308.04878v2",
+      "locator": "〔原始工具引用已私有留存〕/1/8",
+      "note": "核特殊次数定理及 p=2 的 Newton polygon 论证；不将 limsup 误作全体次数的极限。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A09",
+      "route": "学术",
+      "site": "arXiv PDF/HTML",
+      "query": "find 2007.14567 PDF: Theorem 3.5；Theorem 1.；open html/2007.14567v3",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2007.14567v3",
+      "locator": "〔原始工具引用已私有留存〕/4/5",
+      "note": "Theorem 1 的连续整数支撑与 ±1 不同；相关 ±1 正下界来自 Theorem 3.5。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A10",
+      "route": "学术",
+      "site": "arXiv PDF/HTML",
+      "query": "find 1810.13360 PDF: Theorem 2.；cyclotomic；open html/1810.13360v2",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/1810.13360v2",
+      "locator": "〔原始工具引用已私有留存〕/6/7",
+      "note": "核去分圆因子结论与 RH 前提；未把去分圆因子后不可约直接当整个多项式不可约。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A11",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "find 2007.14567v3: Theorem 3.5.；Theorem 2.",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2007.14567v3",
+      "locator": "〔原始工具引用已私有留存〕/3",
+      "note": "明确 ±1 可取 δ=0.00068053；一般分布小因子排除仅给线性次数阈值。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A12",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "find 1810.13360v2: Corollary 3.；Corollary 4.；open line 90",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/1810.13360v2",
+      "locator": "〔原始工具引用已私有留存〕/4/5",
+      "note": "Corollary 3 是一般 iid 分布；Corollary 4 单列 0/1 首末项为 1 模型，不可混为本题。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A13",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "open 2308.04878v2 line 35",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2308.04878v2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "再核摘要声明为无条件 limsup=1。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A14",
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Littlewood\" \"irreducibility\" \"2026\" proof",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–34/academia30",
+      "note": "命中新 Kogler 2026 完整解摘要，先按 0/1 分布候选处理，未据标题关闭 ±1 问题。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A15",
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"random\" \"polynomials\" \"±1\" \"irreducible\" 2026",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–34/academia32",
+      "note": "检出 random multiplicative coefficients 等依赖系数近邻；不视为 iid ±1 结果。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A16",
+      "route": "学术",
+      "site": "web system2",
+      "query": "\"Littlewood polynomials\" \"irreducibility\" correction erratum",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–34",
+      "note": "本次返回项未确认针对主相关定理的撤回/勘误；结果有限，不能表述为全库不存在。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A17",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open abs/2609.26771；pdf/2609.26771；html/2609.26771v1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2609.26771",
+      "locator": "〔原始工具引用已私有留存〕/1/2",
+      "note": "三个入口均工具 DisabledError；是访问执行失败，不是论文不存在或没有正文。之后 v2 固定入口成功。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A18",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "open 1810.13360v2 line 113；open 2308.04878v2 line 44",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "locator": "〔原始工具引用已私有留存〕/4",
+      "note": "前者核 Theorem 2 条件及分圆因子；后者准确核 p≥7、r≥1、概率≥1−n^(−c)。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A19",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Littlewood\" \"irreducibility\" \"2026\" \"proof\" [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–8",
+      "note": "加强时效检索，命中 Kogler、BHKP 等；没有以二手解题标签替代分布核对。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A20",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Kogler\" \"Littlewood\" [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–8",
+      "note": "返回 0/1 新稿及相关清单；此时仍需原文核 general theorem 范围。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A21",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"random polynomials\" \"plus minus\" \"2026\" irreducibility [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–8",
+      "note": "与 ±1 英文别名交叉检索；未从索引推导无条件一般结论。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A22",
+      "route": "学术",
+      "site": "MathWorld（发现线索）",
+      "query": "open RandomPolynomial.html",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://mathworld.wolfram.com/RandomPolynomial.html",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "二手页面区分 0/1 与 Littlewood，并转述 Kogler 与 Lean 声明；只作发现线索，不作本题数学证明/独立验证证据。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A23",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open abs/2609.26771v1；pdf/2609.26771v1",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2609.26771v1",
+      "locator": "〔原始工具引用已私有留存〕/2",
+      "note": "实际工具 DisabledError；保留失败记录。后续固定 v2 成功，不再遗留为当前全文缺口。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A24",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Constantin Kogler\" \"Odlyzko\" pdf [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–8/academia9",
+      "note": "命中作者主页、arXiv 摘要及 Lean 仓库；代码范围已交代码代理核查。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A25",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"2609.26771\" \"Littlewood\" [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–8/academia9",
+      "note": "未凭混列结果认定 ±1 扩展；找到可能 v2 的线索。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A26",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Odlyzko-Poonen\" \"Kogler\" \"coefficients\" theorem [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕–8/academia9",
+      "note": "arXiv 摘要明确首末为 1、中间 iid 0/1；固定正文待下一步。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A27",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "open 1810.13360v2 line 130",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/1810.13360v2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "核 Corollary 3 完整式。取 μ=Uniform{−1,1}, N=1，U_1={0}，推出 GRH 下本题概率=1+O(d^(−1/2))。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A28",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "open 2308.04878v2 line 35",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2308.04878v2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "准确排版再核 p≥7、r≥1、概率≥；并读 §2 p=2 的论证，不等号不沿用 PDF 抽取丢横线的 >。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A29",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "open 2609.26771v2 line 40",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2609.26771v2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "v2 原稿可读；§1 Theorems 1.1–1.3 仅 P_n=1+Σp_j x^j+x^n，p_j∈{0,1}。完整稿取得，重点读分布与声明范围，未核全证明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A30",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "open 2609.26771v2 line 73",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://arxiv.org/html/2609.26771v2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "L75 明确 Theorem 1.3 特定于 0/1，一般 coefficient measures 留未来工作；读机器贡献与形式化声明，未将作者声明升级为本轮复跑。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A31",
+      "route": "学术",
+      "site": "arXiv HTML",
+      "query": "open 2007.14567v3 line 910",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2007.14567v3",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "完整核 Theorem 3.5 的 AP 步长、四个不整除步长的素数、n 大小条件，以及 ±1 显式 δ。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A32",
+      "route": "学术",
+      "site": "arXiv metadata",
+      "query": "open abs/2609.26771v2",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/2609.26771v2",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "v1=2026-09-22，v2=2026-10-14；11 页，Comments 为 Minor clarifications to previous version；未显示撤回。；合并质检校准：本次请求只取得摘要/版本页，正文模型排除另由A29/A30已取得的固定v2全文支持。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A33",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"Irreducibility of Littlewood polynomials of special degrees\" erratum correction withdrawn [recency=1095]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕/1",
+      "note": "实际返回出版社题录和被索引 §1、作者机构刊发记录；未命中针对该文的明确撤回或正式勘误。不能据此断言全球没有勘误。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-01-000182-A34",
+      "route": "学术",
+      "site": "web system1",
+      "query": "\"The Odlyzko-Poonen conjecture\" \"Kogler\" erratum correction withdrawn [recency=365]",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "turn472388593academia6/search2/3",
+      "note": "返回 arXiv 摘要及二手索引；v2 原始 metadata 已核为小澄清，未以二手 AI-Verified 标签作数学审核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "C182-C-001",
+      "route": "库内查重",
+      "site": "本地题包和全库查重索引",
+      "query": "读取QX-P-000182全文；全库查重简索引逐行regex(ignore case)：Littlewood|随机.*(多项式|不可约)|random.*polynomial|polynomial.*irreducib|伯努利.*多项式|Bernoulli.*polynomial；另扫不可约|irreducib",
+      "date": "2026-11-26",
+      "outcome": "命中但同一性待定",
+      "locator": "package/任务.jsonl；package/全库查重简索引.jsonl",
+      "note": "第一扫描命中本题、251、2407及Hardy/Littlewood同名噪声；补扫不可约词发现1747。仅将251/2407/1747作为正文比较候选，未据标题合并。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "identity_pending"
+      }
+    },
+    {
+      "request_id": "C182-C-002",
+      "route": "库内查重",
+      "site": "GitHub connector/qunxing-data",
+      "query": "fetch_file repository_full_name=qunxingmath-org/qunxing-data; path=problems/000/QX-P-000182.meta.json; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000182.meta.json",
+      "note": "取得固定全文；Git blob=7222b23fbe08de8841cb5b739254708f85213d9c。本次只为182查重读取候选，不另作候选题的完整查新。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "C182-C-003",
+      "route": "库内查重",
+      "site": "GitHub connector/qunxing-data",
+      "query": "fetch_file repository_full_name=qunxingmath-org/qunxing-data; path=problems/000/QX-P-000182.text.md; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000182.text.md",
+      "note": "取得固定全文；Git blob=fd1e5ad060fe1e737788856a04c68cbdec13fc2b。本次只为182查重读取候选，不另作候选题的完整查新。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "C182-C-004",
+      "route": "库内查重",
+      "site": "GitHub connector/qunxing-data",
+      "query": "fetch_file repository_full_name=qunxingmath-org/qunxing-data; path=problems/000/QX-P-000251.meta.json; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000251.meta.json",
+      "note": "取得固定全文；Git blob=1e86da4178b2fee67411f42026480a3e07bb1061。本次只为182查重读取候选，不另作候选题的完整查新。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-C-005",
+      "route": "库内查重",
+      "site": "GitHub connector/qunxing-data",
+      "query": "fetch_file repository_full_name=qunxingmath-org/qunxing-data; path=problems/000/QX-P-000251.text.md; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000251.text.md",
+      "note": "取得固定全文；Git blob=961cc6680ae2ed5966663a5cd9d7d0ec6735a4fd。本次只为182查重读取候选，不另作候选题的完整查新。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-C-006",
+      "route": "库内查重",
+      "site": "GitHub connector/qunxing-data",
+      "query": "fetch_file repository_full_name=qunxingmath-org/qunxing-data; path=problems/002/QX-P-002407.meta.json; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002407.meta.json",
+      "note": "取得固定全文；Git blob=c4aa9d0fd2b33c9e98bf1900ec37a8f209334d03。本次只为182查重读取候选，不另作候选题的完整查新。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-C-007",
+      "route": "库内查重",
+      "site": "GitHub connector/qunxing-data",
+      "query": "fetch_file repository_full_name=qunxingmath-org/qunxing-data; path=problems/002/QX-P-002407.text.md; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002407.text.md",
+      "note": "取得固定全文；Git blob=5e340fd5992ff6359b127acc262d4585809bdba7。本次只为182查重读取候选，不另作候选题的完整查新。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-C-008",
+      "route": "库内查重",
+      "site": "GitHub connector/qunxing-data",
+      "query": "fetch_file repository_full_name=qunxingmath-org/qunxing-data; path=problems/001/QX-P-001747.meta.json; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001747.meta.json",
+      "note": "取得固定全文；Git blob=281515c1da5f8a92cbbe2580e367fa58b7fccd2b。本次只为182查重读取候选，不另作候选题的完整查新。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-C-009",
+      "route": "库内查重",
+      "site": "GitHub connector/qunxing-data",
+      "query": "fetch_file repository_full_name=qunxingmath-org/qunxing-data; path=problems/001/QX-P-001747.text.md; ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001747.text.md",
+      "note": "取得固定全文；Git blob=44bf59436471ee791d5a298635651af7205337a0。本次只为182查重读取候选，不另作候选题的完整查新。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-C-010",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web/system1",
+      "query": "检索词／定位词：\"Littlewood\" \"irreducible\" (\"Lean\" OR \"formalization\")；\"random polynomials\" \"irreducibility\" \"AI\"；\"Littlewood polynomials\" \"proof\" \"irreducible\" 〔私有记录编号：PR-000192〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "发现TheoremDB同题P2846/R1137、Green93邻题目录、2025特殊次数论文及Littlewood平坦性同名结果；索引不作全题证明。学术论文全文由学术线核，本线继续代码和社区记录。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "C182-C-011",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector code search",
+      "query": "query=random polynomial; repository_name=google-deepmind/formal-conjectures; topn=15",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回Green93、Erdos521/522/525等不同随机多项式问题；只进一步读取与不可约性相关的Green93。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "C182-C-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector fixed source",
+      "query": "fetch_file repository_full_name=google-deepmind/formal-conjectures; path=FormalConjectures/GreensOpenProblems/93.lean; ref=a88aee564684360292318c61b9b8e27febef2ae0",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/a88aee564684360292318c61b9b8e27febef2ae0/FormalConjectures/GreensOpenProblems/93.lean",
+      "locator": "monicPoly、irreducibleProb；green_93 99–100行及variants",
+      "note": "模型为首一0/1系数且常数非零。主题及Konyagin/BSKK/GRH各变体均sorry；概率范围API有证明。不属于±1主模型，research solved不能解释成形式化通过。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-C-013",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector code search",
+      "query": "query=Littlewood irreducible; topn=12",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 12,
+      "note": "返回Littlewood–Richardson表示论、计算工具等词义误匹配，没有在此查询返回项中取得±1随机不可约概率证明；不据此断言全网无代码。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "C182-C-014",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web/同题社区记录",
+      "query": "open https://theoremdb.org/statements/P2846/",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://theoremdb.org/statements/P2846/",
+      "locator": "题面、有限模型、Status、Records/Lean work",
+      "note": "同题首一±1模型，平台快照日期2026-07-31；记录1个open attempt，Artifacts0、Lean work0。只说明该平台快照，非当前全网开放性证明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "C182-C-015",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web/同题社区记录",
+      "query": "open https://theoremdb.org/records/random-littlewood-irreducibility-limit-attempt-resolution-route/",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://theoremdb.org/records/random-littlewood-irreducibility-limit-attempt-resolution-route/",
+      "locator": "R1137 Status/Outcome/Agent packet；约35–116行",
+      "note": "记录open_strategy、source_only；无可执行replay，formal_statement=null，models=[]。‘Resolve’是任务名称，不能看成已解决或已形式化。未执行网页内给代理的任务指令。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "C182-C-016",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web/system2",
+      "query": "检索词／定位词：site:mathoverflow.net \"Littlewood\" \"irreducibility\" -7969；site:aiproofwatch.com \"random\" \"irreducible\" \"polynomials\"；site:github.com \"Littlewood\" \"irreducibility\" 〔私有记录编号：PR-000193〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回MO标签页、AI Proof Watch有限域/稀疏多项式异题、wustep/maths的0/1研究笔记。未因题名中有irreducible或Littlewood把有限域、复杂度或平坦性结论并入本题。MO7969主帖由根代理读取，本线未重复。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "C182-C-017",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web/system1",
+      "query": "检索词／定位词：\"Kogler\" \"Odlyzko\" \"Lean\"；\"2609.26771\" (\"Lean\" OR \"code\" OR \"formal\")；\"random Littlewood\" \"irreducibility\" \"formal\" 〔私有记录编号：PR-000194〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://constantinkogler.com/",
+      "note": "由学术线Kogler线索定向检索，找到作者主页及ckkogler/odlyzko-poonen-lean。MathWorld和社交镜像只作发现入口；人审/AI/Lean声明随后按作者实际代码元数据核范围。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "C182-C-018",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector code search",
+      "query": "query=2609.26771; topn=10",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回作者仓库README/Challenge/formalization.yaml固定commit e79540e23d591907eed55268f1ada10340d1de69，以及二手摘要库。仅读取作者仓库为代码证据。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "C182-C-019",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector fixed source",
+      "query": "fetch_file repository_full_name=ckkogler/odlyzko-poonen-lean; path=README.md; ref=e79540e23d591907eed55268f1ada10340d1de69",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/ckkogler/odlyzko-poonen-lean/blob/e79540e23d591907eed55268f1ada10340d1de69/README.md",
+      "note": "作者声明及范围全文已读；目标是0/1模型，作者报告完整Lean/Comparator/NanoDa验证；未据自报结果写成本轮复跑通过。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-C-020",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector fixed source",
+      "query": "fetch_file repository_full_name=ckkogler/odlyzko-poonen-lean; path=formalization.yaml; ref=e79540e23d591907eed55268f1ada10340d1de69",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/ckkogler/odlyzko-poonen-lean/blob/e79540e23d591907eed55268f1ada10340d1de69/formalization.yaml",
+      "note": "作者声明及范围全文已读；目标是0/1模型，作者报告完整Lean/Comparator/NanoDa验证；未据自报结果写成本轮复跑通过。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-C-021",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector fixed source",
+      "query": "fetch_file repository_full_name=ckkogler/odlyzko-poonen-lean; path=Challenge.lean; ref=e79540e23d591907eed55268f1ada10340d1de69",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/ckkogler/odlyzko-poonen-lean/blob/e79540e23d591907eed55268f1ada10340d1de69/Challenge.lean",
+      "note": "独立Challenge带6个刻意占位；definitions显式0/1首末1模型。不能单看这些sorry就否定另行实现。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-C-022",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector fixed source",
+      "query": "fetch_file repository_full_name=ckkogler/odlyzko-poonen-lean; path=Solution.lean; ref=e79540e23d591907eed55268f1ada10340d1de69",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/ckkogler/odlyzko-poonen-lean/blob/e79540e23d591907eed55268f1ada10340d1de69/Solution.lean",
+      "note": "全文仅import OdlyzkoPoonen并说明不导入Challenge；本轮未检查全部传递依赖。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-C-023",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector fixed source",
+      "query": "fetch_file repository_full_name=ckkogler/odlyzko-poonen-lean; path=OdlyzkoPoonen/Probability/BinaryModel.lean; ref=e79540e23d591907eed55268f1ada10340d1de69",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/ckkogler/odlyzko-poonen-lean/blob/e79540e23d591907eed55268f1ada10340d1de69/OdlyzkoPoonen/Probability/BinaryModel.lean",
+      "note": "实际实现的binaryProbability是m个内部公平bits推送，degree=m+1；binaryProbability_eq_count给2^m分母。静态核模型，不是独立编译。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-C-024",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector commit listing",
+      "query": "query=\"\"; repository_full_name=wustep/maths; topn=1",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/wustep/maths/commit/b98424fa6dfbf3a780ab7f609f7d335020aebb9f",
+      "note": "返回b98424fa6dfbf3a780ab7f609f7d335020aebb9f，2026-11-12T03:56:59Z，用于锁研究笔记版本。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "C182-C-025",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub connector fixed source",
+      "query": "fetch_file repository_full_name=wustep/maths; path=problems/zero-one-polynomials/ATTACK.md; ref=b98424fa6dfbf3a780ab7f609f7d335020aebb9f",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/wustep/maths/blob/b98424fa6dfbf3a780ab7f609f7d335020aebb9f/problems/zero-one-polynomials/ATTACK.md",
+      "locator": "定向阅读开头Green100#93、What BSKK actually prove及Other sources段，约前5500字符",
+      "note": "全文文件已取得，本轮只定向读模型/文献段。它的工作目标是0/1系数首末1，自己把Littlewood特殊次数结果列为邻题并说明不直接转移；不将其有限计数/研究日志当±1全次数证明。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-C-026",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地精确模型小例",
+      "query": "python执行SymPy：g=1+x^2+x^4；f=2g-(1+x+x^2+x^3+x^4)；核g因子分解、f=Phi_10及QQ不可约",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "C182-C-E05内嵌实际代码与stdout",
+      "note": "SymPy1.14.0成功；只有一次4次多项式的模型比较，不是随机模型全枚举、渐近证明或形式化验证。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "C182-R17",
+      "route": "学术",
+      "site": "arXiv固定HTML",
+      "query": "open https://arxiv.org/html/2007.14567v3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2007.14567v3",
+      "locator": "〔原始工具引用已私有留存〕；Theorems1/2及模型定义，随后R19定点核Theorem3.5",
+      "note": "根代理合并复核：本题±1不满足至少35个连续整数的高概率结论条件；Theorem2只排除一定比例以下的小因子。HTML重建所显Date不作为新的arXiv版本日期；以v3元数据及已取得PDF核版本。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "C182-R18",
+      "route": "学术",
+      "site": "arXiv固定HTML",
+      "query": "open https://arxiv.org/html/1810.13360v2",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/1810.13360v2",
+      "locator": "〔原始工具引用已私有留存〕；L119–142 Theorem2/Corollary3",
+      "note": "根代理逐项核Corollary3：有限二阶矩非单点iid整数分布，数域Dedekind ζ的RH；N=1时U1={0}，±1常数不为0，给1+O(d^(−1/2))。不把去分圆部分的更强误差移给整个多项式。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "C182-R19",
+      "route": "学术",
+      "site": "arXiv固定HTML",
+      "query": "find https://arxiv.org/html/2007.14567v3 pattern=\"0.00068053\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2007.14567v3",
+      "locator": "〔原始工具引用已私有留存〕；L924–942 Theorem3.5",
+      "note": "直接核到充分大n的不可约比例≥δ，支撑{−1,1}明确可取δ=0.00068053；未独立重算δ。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "C182-R20",
+      "route": "学术",
+      "site": "arXiv固定HTML",
+      "query": "find https://arxiv.org/html/2007.14567v3 pattern=\"Theorem 3.5\"",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2007.14567v3",
+      "locator": "〔原始工具引用已私有留存〕；Theorem3.5及Remark3.3",
+      "note": "与R19交叉定位同一已取得定理；这是定向复核请求，不计为额外数学成果。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "C182-R-E01",
+      "url": "https://mathoverflow.net/questions/7969/irreducible-polynomials-with-constrained-coefficients/7978",
+      "locator": "原题2009-12-06与Poonen2009-12-27答第1–3项及证明；Greg回答末尾更正；〔原始工具引用已私有留存〕",
+      "version": "本次2026-11-26读取页面；Poonen答2009-12-27；公开旧答按当时范围使用",
+      "subquestions": [
+        "主问题",
+        "旧Poonen部分结果与原模型"
+      ],
+      "role": "原始提出",
+      "publication": "社区帖子",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "原问为所有d+1系数均±1，不含0；可以按f与−f归一化首项。Poonen给出的≫2^d/d不可约计数只沿偶数d；GRH推无限多个d全部不可约；d=2^r−1平移Eisenstein至少半数。第一项原帖S_d文字定义为全体而紧接式误写|S_d|，按后续明确构造不可约多项式的证明解释计数，不能把这个排版笔误当成新的数学主张。Greg公开Sage代码仅实验至d16，先前三元模型误解已更正；Meckes结果只谈指定阶数整除d+1的分圆因子。4答/accepted状态不能证明截至2026主问题未解。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "C182-R-E02",
+      "url": "https://arxiv.org/html/2609.26771v2",
+      "locator": "pp1–3 Theorems1.1–1.3；p3明确模型范围及Machine Contribution/Lean Formalization/Acknowledgments",
+      "version": "arXiv2609.26771v2，2026-10-14；v1=2026-09-22；11页",
+      "subquestions": [
+        "邻题：0/1系数完整声明及形式化边界"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Constantin Kogler",
+      "claim_date": "2026-09-22",
+      "note": "作者声称无条件证明首一且常数项1、中间独立公平0/1的概率趋1，并给误差渐近；正文明确关键Theorem1.3专用于0/1，一般分布是未来工作。这不是本卡独立公平±1模型的解。作者称证明由GPT-6 Astra获得并由其重写核查，感谢Breuillard检查和Filaseta阅读，报告Lean形式化；这是作者文中的报告，不是本轮独立验证或已独立读取第三方审查日志。代码路线另核固定仓库模型，未复跑。 合并阅读口径：全文已取得，重点阅读pp1–3的模型、定理与声明范围，未独立核完整证明；各条review_status保留各实际阅读层级。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "C182-R-E03",
+      "url": "https://arxiv.org/pdf/2308.04878v2",
+      "locator": "p1 Theorems1.1/1.2；Remark1.3；p2 §2；p1页图turn236582288view0，精确≥符号已目视核对",
+      "version": "arXiv2308.04878v2，2024-01-06；4页；内文日期2023-12-26",
+      "subquestions": [
+        "无条件特殊次数与极限存在性"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "根代理直接核到limsup概率=1及其更精确子序列界：p=2，或p≥7且2在模p²乘法群为生成元，r≥1、d=p^r−1时概率≥1−d^−c，绝对c>0。正文把随机首项±1与首一模型通过符号对称对应。p=2已经无条件给子序列趋1；不能把limsup写成lim，也不必借GRH才能得该子序列。读了§2平移/大因子与小因子排除拼接，未独立重证所引BSKK定理；正式刊发版本信息由学术证据另列。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q182-SEM-E01",
+      "url": "urn:qunxing:private-material",
+      "locator": "本note的域、归一化与低次边界推理",
+      "version": "2026-11-26本题新做；输入card_rev10134f524bc1c364",
+      "subquestions": [
+        "主问题",
+        "首项归一化及低次边界"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "定义S_d={f=Σ_(i=0)^d ε_i x^i:ε_i∈{−1,1}}，d≥1。系数内容为1，故Gauss引理使Q[x]不可约与Z[x]中不能分解成两个正次数因子等价。归一化g=ε_d f为monic；每个monic g恰对应f=g和f=−g，乘单位±1不改变不可约性。因此全2^(d+1)模型与monic 2^d模型的比例精确相等，归一化后的其余系数仍独立均匀±1。一次非零多项式全不可约，包括x+1；f(−1)=0并不在d=1构成可约性，因为商为常数单位。d=0只有±1，均为单位而非不可约元；单个零次边界不影响d→∞。 与主题等价是以Q/Z不可约口径为前提；原MO的域口径由主流程来源核对。未将C或F_p上的不可约性替代此题。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q182-SEM-E02",
+      "url": "urn:qunxing:private-material",
+      "locator": "本note的精确组合概率与极限边界",
+      "version": "2026-11-26本题独立推导",
+      "subquestions": [
+        "主问题",
+        "±1根的结构概率"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "令N=d+1。全符号均匀模型下f(1)是N个独立±1之和，f(−1)具有相同分布。若N为奇数（d偶），两者都不能为0；若N为偶数，各自零概率为binom(N,N/2)/2^N。两者同时为0等价于偶下标系数和、奇下标系数和各为0，故交概率在4|N时为binom(N/2,N/4)^2/2^N，否则0。并概率为两单概率之和减交概率，是O(N^(−1/2))→0；这由中央二项式估计得到。对d≥2，这些根给出真线性因子与可约性；d=1须排除。常数和首项为±1也使任何Q有理根只能为±1，但排除它们只排除有理线性因子，不能排除较高次数因子。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q182-SEM-E03",
+      "url": "urn:qunxing:private-material",
+      "locator": "本note的平移及2-Eisenstein完整短证明",
+      "version": "2026-11-26本题独立核对；r≥1",
+      "subquestions": [
+        "主问题",
+        "d=2^r−1的二分之一下界"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q182-SEM-E04",
+      "url": "urn:qunxing:private-material",
+      "locator": "本note完整可复跑代码及stdout；源文件q182_exact_check.py，输出q182_exact_output.json",
+      "version": "2026-11-26实际执行；Python3.12.14；SymPy1.14.0",
+      "subquestions": [
+        "主问题",
+        "首项归一化及低次边界",
+        "±1根的结构概率",
+        "d=2^r−1的二分之一下界",
+        "d=1到10的精确枚举"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "这是有限精确计算的代码/输出留存，不是一般极限或机器定理证明证书。实际命令python q182_exact_check.py > q182_exact_output.json，退出码0。CODE_SHA256=7bd728aa4bda0f6a01f816e9d95ed89906657793df640bd90c3016f7053987a0；OUTPUT_SHA256=677bbb164082af0f9649f7ce32f757650bb83b2d6c63a9c5f7324f96692ebc28。 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q182-SEM-E05",
+      "url": "urn:qunxing:private-material",
+      "locator": "本note的无±1根可约例、实际搜索短代码与输出",
+      "version": "2026-11-26本题新执行；Python/SymPy1.14.0",
+      "subquestions": [
+        "±1根的结构概率"
+      ],
+      "role": "反例",
+      "publication": "项目报告",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "本题新执行的小例搜索找到f=x^6+x^5−x^4−x^3−x²−x−1=(x³−x−1)(x³+x²+1)，f(1)=−3、f(−1)=−1。两因子相乘可直接核对；故去掉±1根并不足以保证不可约。此为单个有限例，不否定不可约概率趋1。 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "F182-AE01",
+      "url": "https://arxiv.org/html/2308.04878v2",
+      "locator": "Theorems 1.1/1.2、Remark 1.3/1.4，printed p.1；§2 printed p.2；HTML L49–82；〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕；完整 PDF 〔原始工具引用已私有留存〕",
+      "version": "arXiv:2308.04878v2，2024-01-06；稿内日期 2023-12-26；v1=2023-08-09",
+      "subquestions": [
+        "主问题",
+        "无条件特殊次数与极限存在性"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "Bary-Soroker–Hokken–Kozma–Poonen；真实模型为所有 n+1 个系数 iid 均匀 ±1。Theorem 1.1 无条件 limsup P(irred)=1。Theorem 1.2：绝对 c>0；p=2，或 p≥7 素数且 2 生成 (Z/p²Z)^×；r≥1，n=p^r−1，则 P(irred)≥1−n^(−c)。故 2^r−1 子序列改善旧 50% 结果。PDF 抽取曾把 ≥ 丢成 >，此处按固定 HTML/出版社索引排版核准。§2 核 p=2 关键衔接：平移后 mod4 均匀偶系数、Newton polygon 大不可约因子、引用 BSKK 小因子排除，未独立复核全部其他 p 情形及引用定理。limsup 不能推出完整极限；但若极限存在便只能为 1（本轮直接推论）。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "F182-AE02",
+      "url": "https://academic.oup.com/imrn/article/2025/21/rnaf326/8300532?searchresult=1",
+      "locator": "出版社被搜索索引的 Abstract、§1 Theorems 1.1/1.2、Article history；〔原始工具引用已私有留存〕；机构作者记录 〔原始工具引用已私有留存〕；直接 open 失败 〔原始工具引用已私有留存〕",
+      "version": "IMRN 2025(21), rnaf326；online 2025-10-24，issue 2025-11；DOI 10.1093/imrn/rnaf326",
+      "subquestions": [
+        "主问题",
+        "无条件特殊次数与极限存在性"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "正式刊发题名、四作者、limsup 及特殊次数条件与已取得固定 arXiv v2 一致。访问层级为出版社索引的较长正文节选和机构刊发记录，未直接读取完整出版社页面。不得把正式刊发本身写成群星独立数学复核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "F182-AE03",
+      "url": "https://arxiv.org/html/2007.14567v3",
+      "locator": "Theorem 3.5 printed pp.21–22，HTML L924–931；Theorem 2 printed p.3，HTML L136–154；〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕/3；完整 PDF 〔原始工具引用已私有留存〕；根代理复核turn875499892view0、〔原始工具引用已私有留存〕/1",
+      "version": "arXiv:2007.14567v3，2023-06-02；PDF 稿内日期 2023-06-05；最终接受稿；Invent. Math. 233(3) (2023),1041–1120，DOI 10.1007/s00222-023-01193-6",
+      "subquestions": [
+        "主问题",
+        "无条件全次数正下界及低次因子排除"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "Bary-Soroker–Koukoulopoulos–Kozma。Theorem 3.5 对固定有限等差数列系数给充分大次数的统一正不可约比例；对 {−1,1} 明写 δ=0.00068053。定理用 monic 模型，非首项独立均匀且常数项非零；本题按 f↦leading(f)·f 二对一归一化，概率相同。Theorem 2 给非集中有界分布在非零常数项条件下，以 1−n^(−c) 的概率排除次数 <θn 的非恒定因子；这不等于所有因子被排除。Theorem 1 的至少 35 个连续整数支撑不能直接用于 ±1。δ 数值未在本轮独立重算，长篇证明未全面复核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "F182-AE04",
+      "url": "https://arxiv.org/html/1810.13360v2",
+      "locator": "Theorem 2、Corollary 3，printed pp.3–4；HTML L119–142；〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕；完整 PDF 〔原始工具引用已私有留存〕；metadata 〔原始工具引用已私有留存〕；根代理复核turn875499892view1 L119–142",
+      "version": "arXiv:1810.13360v2，2019-10-16；v1=2018-10-31；Acta Math. 223(2) (2019),195–249，DOI 10.4310/ACTA.2019.v223.n2.a1",
+      "subquestions": [
+        "主问题",
+        "GRH 条件性全次数结果"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "有附加假设",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "Breuillard–Varjú。Corollary 3：对非单点、有限二阶矩 iid 整数系数分布 μ，在数域 Dedekind ζ 函数 RH 假设下，P(P_d 在 Q[x] 不可约)=1−P(存在 ω∈U_N 使 P_d(ω)=0)+O_{μ,N}(d^(−N/2))，U_N={0}∪{次数<N的单位根}。本题取 μ 均匀 ±1、N=1，则 U_1={0} 且常数项非零，直接得概率=1+O(d^(−1/2))→1（本轮核对的特化）。Theorem 2 的近指数高概率结论只保证去掉受控分圆因子后的部分不可约，不能把其误差直接移给原多项式。Theorem 1/Corollary 4 单列的 0/1 模型也不应替代本题。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "F182-AE05",
+      "url": "https://arxiv.org/html/2609.26771v2",
+      "locator": "§1 定义 P_n、Theorems 1.1–1.3、L75 future work、Machine Contribution / Lean Formalization；printed pp.1–3；〔原始工具引用已私有留存〕、〔原始工具引用已私有留存〕；metadata 〔原始工具引用已私有留存〕",
+      "version": "arXiv:2609.26771v2，2026-10-14 14:16:59 UTC；v1=2026-09-22；11 页，v2 comments: Minor clarifications to previous version",
+      "subquestions": [
+        "邻题：0/1系数完整声明及形式化边界",
+        "主问题"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "未读全文",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Constantin Kogler",
+      "claim_date": "2026-09-22",
+      "note": "作者声明无条件解决的是 P_n=1+Σ_{j=1}^{n−1}p_j x^j+x^n、p_j iid Uniform{0,1}。Theorem 1.1 给不可约概率→1及可约率 sqrt(2/(πn))+O(n^(−1))；Theorem 1.2 为此同一模型的非分圆部分。L75 明确 Theorem 1.3 特定于 0/1、任意系数分布拟在未来工作处理，故不能关闭本题 iid ±1。完整 HTML 已取得，本分工重点阅读题面和范围，未作其完整证明核验。作者亲述 GPT-6 Astra 产生证明/Lean 代码、本人改写检查，并致谢 Breuillard/Filaseta 阅读；这是作者报告，代码分工另有固定 commit 静态核查，不能写成本轮独立复跑。 合并阅读口径：全文已取得，重点阅读pp1–3的模型、定理与声明范围，未独立核完整证明；各条review_status保留各实际阅读层级。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "full_manuscript",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "C182-C-E01",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/a88aee564684360292318c61b9b8e27febef2ae0/FormalConjectures/GreensOpenProblems/93.lean",
+      "locator": "irreducibleProb定义63行；green_93 99–100行；variants 108–166行",
+      "version": "commit a88aee564684360292318c61b9b8e27febef2ae0；blob07d4e41e39641f136657480ff5726068a5e968da",
+      "subquestions": [
+        "邻题：0/1系数完整声明及形式化边界"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "Green93使用0/1系数、首一、常数非零的有限计数概率，原主式和四个文献变体均以sorry结束；两条0≤p≤1的API证明不能替代渐近式。该固定文件是邻题骨架，不是本题±1版本的形式化。后续Kogler独立库的作者验证声明也不能用来把本文件sorry改写为已完成。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C182-C-E02",
+      "url": "https://github.com/ckkogler/odlyzko-poonen-lean/blob/e79540e23d591907eed55268f1ada10340d1de69/formalization.yaml",
+      "locator": "project.description、status、automation、fidelity、review；README模型及Checking段",
+      "version": "commit e79540e23d591907eed55268f1ada10340d1de69；metadata v0.4；来源arXiv2609.26771（论文版本由学术线另核）",
+      "subquestions": [
+        "邻题：0/1系数完整声明及形式化边界"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Constantin Kogler；README称GPT-6 Astra写码，元数据记录GPT-6(Codex)",
+      "note": "作者范围是均匀0/1系数首一多项式且常数1，样本数2^(n−1)。作者报告Lean4.34.0-rc2、mathlib85e3a25e006c35636f0e53b0e9296caca2685bc0，完整构建、Comparator及NanoDa/Lean重放通过；自报公理仅propext/Classical.choice/Quot.sound且无独立人类形式化review。以上均为作者报告，本轮未执行构建/重放或验证日志真实性。sign/nonmonic说明针对因子见证归一化，不代表抽样系数模型扩展为±1。不能关闭000182。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C182-C-E03",
+      "url": "https://github.com/ckkogler/odlyzko-poonen-lean/blob/e79540e23d591907eed55268f1ada10340d1de69/OdlyzkoPoonen/Probability/BinaryModel.lean",
+      "locator": "binaryProbability与binaryProbability_eq_count；对照Challenge.lean 39–69,126行及Solution.lean",
+      "version": "commit e79540e23d591907eed55268f1ada10340d1de69；BinaryModel blob431983398d0717ace0c2338c776ca796fd191012；Solution bloba7b8936596378f2c0ef15dbc4e9737fc5db13cd4",
+      "subquestions": [
+        "邻题：0/1系数完整声明及形式化边界"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "本条‘完整稿已取得’仅指这些所列代码文件全文，不指全部288模块已审阅。实际BinaryModel从Fin m→Bool的公平内部bits推送至wordPolynomial，计数等于2^m分母；Challenge显式IsBinary coeff=0或1、首末1，degree=m+1。Solution仅导入实际OdlyzkoPoonen库，不直接导入含6个独立验收占位的Challenge。未审完整传递依赖，也未复跑Lean，因此不把Challenge的sorry当整个项目失败，也不把README自报成功当本轮验证。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "C182-C-E04",
+      "url": "https://theoremdb.org/records/random-littlewood-irreducibility-limit-attempt-resolution-route/",
+      "locator": "R1137 Status/Outcome及结构化Agent packet 35–116行；父P2846题面与Records",
+      "version": "平台记录/快照2026-07-31；访问2026-11-26",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "重述",
+      "publication": "社区帖子",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "模型是首一n次、其余n项独立公平±1；与全d+1项随机±1模型有精确二对一符号归一化对应，概率相同。记录标题Resolve实际状态open_strategy、evidence self_reported、replay source_only，formal_statement=null，未附source/command/runtime/expected_output；父页Lean work0。这里只登记平台已有同题尝试，没有新证明或可执行证书，不能以2026-07-31快照断言当前全网开放。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "C182-C-E05",
+      "url": "urn:qunxing:private-material",
+      "locator": "下列内嵌完整Python代码和实际stdout",
+      "version": "2026-11-26；SymPy1.14.0；单个d=4精确例",
+      "subquestions": [
+        "邻题：0/1系数完整声明及形式化边界"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "note": "g=1+x²+x⁴=(x²+x+1)(x²−x+1)可约；2g−Σ_{i=0}^4x^i=1−x+x²−x³+x⁴=Phi_10不可约。该例只反对未经证明的逐系数仿射保不可约推断，不证明两个渐近命题之间没有其他归约，更不证明000182极限。 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000251",
+      "other_card_rev": "3d25b657fc6765b2",
+      "relation": "相关但不等价",
+      "reason": "双方固定正文/验收已核：182是每个系数独立公平±1，归一化首一后仍有n个±1随机下系数；251是首一、常数1、内部0/1公平模型。样本族分别2^n与2^(n−1)，无已核等价归约。单纯0/1→±1的系数仿射替换不保不可约性（C182-C-E05）。Kogler邻题成果不能仅凭‘随机多项式不可约’标题转入182。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000182.text.md；题面/形式化表述/边界及同目录.meta.json acceptance.criteria；rev10134f524bc1c364",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000251.text.md；题面/形式化表述/边界及同目录.meta.json acceptance.criteria；rev3d25b657fc6765b2"
+      },
+      "note": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8；182较小，负责配对。按现题面不合并；251旧旁述关于0.6243及版本状态不由本题代修，未来改题面后重核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-002407",
+      "other_card_rev": "a76282546b61e321",
+      "relation": "相关但不等价",
+      "reason": "同为±1系数多项式，但2407要求每个充分大长度存在一组符号，使同一多项式在整个单位圆上渐近平坦；182问均匀随机全部符号的有理不可约概率。存在性逐点模长界、有限优化或其Lean声明均不直接给出不可约比例极限。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000182.text.md；题面/形式化表述/边界及同目录.meta.json acceptance.criteria；rev10134f524bc1c364",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002407.text.md；题面/形式化表述/边界及同目录.meta.json acceptance.criteria；reva76282546b61e321"
+      },
+      "note": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8；182较小，负责配对。只核2407原卡，不重新审其OpenAI平坦性稿件。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-001747",
+      "other_card_rev": "a2ee3de54c9bdffe",
+      "relation": "仅相似",
+      "reason": "1747正文指定由乘法表指数求和的确定性多项式族，系数含重数且无本题独立均匀±1抽样。其有限n不可约计算/全n命题与182的随机比例极限不同。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000182.text.md；题面/形式化表述/边界及同目录.meta.json acceptance.criteria；rev10134f524bc1c364",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001747.text.md；题面/形式化表述/边界及同目录.meta.json acceptance.criteria；reva2ee3de54c9bdffe"
+      },
+      "note": "source_commit=73290369a8dcc632e25e555aec525565ea6e08f8；182较小，负责配对。不评价1747自身上下限或去x因子的题面疑点，只就现版本区别模型。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补条件量词",
+      "field": "S_d定义、不可约基域、概率模型（由维护者核原文后正式处理）",
+      "old": "lim_(d→∞) #{f∈S_d:f不可约}/2^(d+1)=?1；S_d及不可约基域未在形式化行明示。",
+      "new": "明确S_d={Σ_(i=0)^d ε_i x^i:ε_i∈{−1,1}}，以全部独立均匀符号计数，在Q[x]上判不可约；因内容为1，可等价使用Z[x]的正次数因式分解。首项允许±1的2^(d+1)模型与monic 2^d模型比例精确一致。 全部次数、特殊子序列和GRH条件版分别记录；由已知limsup=1，若证明完整极限存在即可确定其值为1。",
+      "reason": "不能把Q/Z上的主问题替换成C或有限域不可约性；补定义不应改变现有模型意图，但若正式数学域、定义或量词被改动仍须依包规则生成新rev，本回执不改输入rev。",
+      "evidence_ids": [
+        "Q182-SEM-E01",
+        "F182-AE01",
+        "F182-AE04",
+        "C182-C-E04",
+        "C182-C-E05"
+      ],
+      "small_case_check": "d=1的4个全符号多项式全部不可约；x+1有根−1，但因次数为1并非可约。d=0只有单位±1，与极限无关。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "边界与约定及“结构性可约”表述",
+      "old": "f=x+1型小次可约性；只要f(−1)=0，x+1整除它。",
+      "new": "d=1所有多项式都不可约，包含x+1。只有当d≥2时，±1根给出真线性因子从而可约；d=0的±1是单位而非不可约元，不影响渐近问题。",
+      "reason": "整除并不在一次情形给出两个正次数因子；该边界纠正不证明或否定主极限。",
+      "evidence_ids": [
+        "Q182-SEM-E01",
+        "Q182-SEM-E04"
+      ],
+      "small_case_check": "d=1 monic样本{x−1,x+1}均不可约，却都具有一个±1根。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "difficulty.note中d=2^n−1的50%结果方向",
+      "old": "d=2^n−1时≥50%可约。",
+      "new": "d=2^r−1、r≥1时，平移2-Eisenstein给至少50%不可约。不要将这项充分条件误写成无穷次数子序列的可约比例下界。 同时加入BHKP对此子序列概率趋1的加强。",
+      "reason": "正文已写不可约，元数据写成可约；本轮完整独立推导确认该下界指不可约。它不说明另一半全部可约，也不是一般概率极限结论。",
+      "evidence_ids": [
+        "Q182-SEM-E03",
+        "Q182-SEM-E04",
+        "F182-AE01"
+      ],
+      "small_case_check": "d=1,3,7的monic样本总数为2,8,128，Eisenstein命中1,4,64，全部不可约；不可约总数分别2,4,64。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "独立验证建议的工作量与验收含义",
+      "old": "d≤40全枚举2^(d+1)多项式计不可约比例（判别式/已约因子）。",
+      "new": "先做小度精确枚举并记录使用的Q/Z精确因式分解、样本总数和版本。d=40单度已有2^41个全符号多项式，monic归一化仍有2^40个；不要把此作为未经资源估计的常规验证。有限度计数、去±1根或排除固定低次因子都不能替代全极限证明。",
+      "reason": "本题实际仅执行d1..10，既要避免虚报40度计算，也要区分有限观测、充分判据和渐近理论。",
+      "evidence_ids": [
+        "Q182-SEM-E02",
+        "Q182-SEM-E04",
+        "Q182-SEM-E05"
+      ],
+      "small_case_check": "d=6有16/64个monic可约多项式，但没有任何±1根；显式三次×三次因子例见Q182-SEM-E05。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "已知结果中的Poonen2009计数范围及原出处",
+      "old": "下界≫2^d/d（BFO方法+PNT），未标次数限制",
+      "new": "按原答复，这一旧构造给d沿偶数趋无穷时的不可约数量≫2^d/d；其GRH无限次数全不可约和2^r−1至少半数是另两项。更新时优先列后来的全次数正下界和子序列趋1结果。",
+      "reason": "原答复明确偶数d用于排除f(1)=0，不应漏条件；旧结果不代表当前最佳进展。",
+      "evidence_ids": [
+        "C182-R-E01",
+        "C182-R-E03"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知进展、最新进展、progress、key_references",
+      "old": "主要列 Poonen MO、Konyagin 1999、特殊次数至少50% 等旧结果。",
+      "new": "加入 Breuillard–Varjú 2019 条件性全次数结果；Bary-Soroker–Koukoulopoulos–Kozma 2023 的 ±1 统一正下界≥0.00068053；Bary-Soroker–Hokken–Kozma–Poonen v2/IMRN2025 的无条件 limsup=1，且 d=2^r−1 时概率≥1−d^(−c)。",
+      "reason": "这些已取得原稿并核定理范围的进展直接改变旧卡的知识边界；特殊次数结果不能替代全次数极限。",
+      "evidence_ids": [
+        "F182-AE01",
+        "F182-AE02",
+        "F182-AE03",
+        "F182-AE04"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "相关进展与声称解决中的0/1邻题",
+      "new": "单列Kogler2609.26771v2的0/1首末项1完整证明及作者形式化声明；该文明确一般系数分布留待未来，不按题名将其写成±1全次数主问题已解。",
+      "reason": "模型和端点条件不同，所谓AI/Lean证明必须跟随精确命题，不得按宽标题迁移。",
+      "evidence_ids": [
+        "C182-R-E02",
+        "F182-AE05",
+        "C182-C-E02",
+        "C182-C-E03",
+        "C182-C-E05"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "formal_status/相关代码备注",
+      "old": "formal_status.value=none，未注明相关骨架及Kogler代码的模型范围",
+      "new": "记录本轮发现的Green93骨架与Kogler实际形式化库均属0/1首末1邻题；前者主式为sorry，后者有作者验证报告但本轮未复跑。当前未取得覆盖182一般±1模型的形式化证明，不据邻题更新主问题为已解。",
+      "reason": "同一关键词下存在题面骨架、独立实现和不同随机模型，须分别记录。",
+      "evidence_ids": [
+        "C182-C-E01",
+        "C182-C-E02",
+        "C182-C-E03"
+      ],
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "原MO已取得，但其BFO原刊入口返回验证页、Konyagin PDF与更早Café讨论返回403。",
+      "next_step": "当前旧结果按亲读的Poonen原答复及新文献范围使用；若需完整溯源历史构造再取原刊，不声称已直接重审BFO/Konyagin全文或确定绝对最早提出。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮对 BV/BSKK 取得完整稿并核定理、分布及参数，未全面重做各自长篇证明，也未重算 BSKK 显式 δ。",
+      "next_step": "若后续要提升为群星本轮独立数学复核，针对被引用的关键引理和 δ 计算另行复核；当前按已有学术进展和已读范围记录，不误标本轮全证明验证。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "BHKP 正式出版社页面直接 open 失败；正式刊发信息及 §1 由出版社索引取得，完整证明使用固定 arXiv v2。",
+      "next_step": "需要正式版逐字校勘时，取得 rnaf326 完整正式稿并对比 v2；当前已核的模型与 Theorems1.1/1.2 在索引正文中一致，此访问限制不抹去已取得的预印本证据。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "有限d≤10与无穷特殊次数≥1/2均不处理全部大次数的可约概率；±1根只是可约事件的一小部分。",
+      "next_step": "完整极限判断仍须由一般学术定理或全范围证明支持，逐项保留条件、系数分布、基域和次数序列限制；不能据有限非单调比例否定极限，也不能由线性根概率消失肯定极限。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "使用SymPy精确ZZ因式分解，未用第二因式分解系统核遍或证明助理认证。",
+      "next_step": "如用于正式计算附件，可按内嵌代码和版本复跑并保留输出；该升级仍只认证有限范围，不升级为一般猜想形式化验证。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "已取得Kogler邻题代码及作者验证说明，但抽样模型不覆盖本题；本轮未独立构建或审全依赖。",
+      "next_step": "保留模型差异，不以0/1完整解/Lean报告关闭±1问题。只有获得针对±1的定理或严格概率模型转移证明，才重审主题覆盖；本题无须为已排除模型的仓库做288模块全面复跑。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "GitHub/社区搜索只覆盖实际查询返回项，同题TheoremDB快照较旧；未取得一般±1全次数形式化证明或公开AI解决原稿。",
+      "next_step": "将结论限制为本轮检索范围，不写全网不存在证明。若出现同题新声明，固定版本逐项核全部次数、所有有理因子及无条件假设。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "全库索引关键词检索及3个候选固定正文已核，非穷尽所有别名正文。",
+      "next_step": "现版本不合并182与251/1747/2407；后续若候选修订随机模型、验收或量词，按新card_rev复核。",
+      "batch_id": "QX-R3-01",
+      "card_rev": "10134f524bc1c364",
+      "codes": {}
+    }
+  ]
+}

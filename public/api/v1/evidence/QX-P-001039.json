@@ -1,0 +1,3438 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-001039",
+  "card_rev": "f6a681e14f5facda",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-10"
+      ],
+      "parts": [
+        {
+          "subquestion": "Dixon 2016 完整证明声明",
+          "value": "conflicting",
+          "note": "旧稿完整证明已由作者于2017撤回，本轮明确核出Prop1(iv)与消元的反例；此冲突只对应失效证明链，不是原猜想反例。当前不能因2016更新的*或摘要中的proved回写已证。"
+        },
+        {
+          "subquestion": "早期出处与定义边界",
+          "value": "not_assessed",
+          "note": "Fulman2001在线/2002卷册已提Thompson乘积分解意图，但有限域上下文及literal everymatrix使其不能无条件作任意域GL的精确首发。保留2006Kourovka编目年份并补早期提及；不擅自改正式域。"
+        },
+        {
+          "subquestion": "三维全域至少两种列置换使e1循环",
+          "value": "partial",
+          "note": "对任意域F、每个A∈GL3(F)，独立展开Delta引理和Krylov恒等式可证至少2种置换使e1循环；n≤2另为初等。仅n3子问已手核，不宣称主问题全维数解或本轮Lean复跑。 根独立核至少一个的源码数学链及学术分工至少两个的手证；actual Lean type匹配全域n3，但kernel未执行。"
+        },
+        {
+          "subquestion": "Chen正文式(2)能否字面使用",
+          "value": "conflicting",
+          "note": "这里只记录外部预印本式(2)漏右乘Pτ的局部等式错误，不指群星主问题题面。正确式保留所需秩等式，固定Lean源码也使用正确因式分解；该局部笔误不构成整项部分结果的反例或正式撤回。"
+        },
+        {
+          "subquestion": "n=4及受限高维族的公开进展声明",
+          "value": "claimed_proof",
+          "note": "此状态仅指有限维/受限族子问的公开完整声明：n4不可约二次minpoly有真实Lean源码；n4一般矩阵仅特定及除有限多个特征，n5仅rank-one特定特征，更高n仅附加结构族。C6/C8未全证书复核；未知例外素数与n≥5整维问题仍不在解决范围。"
+        },
+        {
+          "subquestion": "公开验证器的实际验证层级",
+          "value": "not_assessed",
+          "note": "作者日志和验证脚本的PASS层级已核；本轮没有Lean/求解器复跑，不能将目录、样本或保存日志检查升级为独立形式化/全证书通过。脚本局限不直接推翻数学结论。"
+        },
+        {
+          "subquestion": "单换位限制规则的有限反例",
+          "value": "conflicting",
+          "note": "只要求P是单换位的加强规则被一个GF7四阶矩阵否定：六个单换位均不cyclic，但明确双换位有满秩Krylov见证。原卡允许任意置换，因此该矩阵满足原猜想，不是QX-P-001039主问题反例。此附属核对不提议主卡闭合。"
+        },
+        {
+          "subquestion": "特例：n=1,2对全部域",
+          "value": "partial",
+          "note": "n=1显然。n=2中任意非标量矩阵最小多项式次数2，故取P=I；若A=aI且可逆，交换矩阵给循环向量e1。notes另给直接按b,c,d−a选向量的构造，适用于所有特征，不是有限枚举外推。"
+        },
+        {
+          "subquestion": "特例：任意阶可逆对角矩阵",
+          "value": "partial",
+          "note": "取n-cycle满足P e_i=e_(i+1)。B=diag(a1,…,an)P时B^j e1=(a2…a_(j+1))e_(j+1)，j=0,…,n−1；Krylov determinant=∏_(i=2)^n a_i^(n−i+1)非零。因此μ_B=χ_B=t^n−∏a_i。char整除n造成多项式重根不破坏cyclic；未由可相似对角化偷换到原坐标置换。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "static_checked",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/CLAIMS.md"
+      ],
+      "note": "只覆盖：特例"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "revised",
+      "url": "https://algebra-lincoln.org/wp-content/uploads/2016/12/18upd-e.pdf",
+      "review": "read_unchecked"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "有部分进展",
+      "scope_note": "保持任务f6a681e14f5facda的任意域F、任意正整数n与每个A∈GL(n,F)，存在列置换P使minpoly(AP)=charpoly(AP)的量词。本轮未取得覆盖一般n的有效完整证明或排除全部P的反例。Dixon旧完整证明已撤回，Q3负控只反驳旧判据而不反驳Thompson。HaoyuChen2026公开稿及固定专库有n≤3全域、n4指定特征/除有限多特征、n5指定秩一等进展；根与分工分别核准三维存在性的六候选行列式和Krylov数学链，形式化仍是静态源码审查而非本轮内核验证。四维一般域未全覆盖，其他证书未完成独立全量核验；不得从标题n≤4、旧索引allfields或quick脚本PASS扩写为原题已解。",
+      "evidence_ids": [
+        "R10-Q015-E-ORIGINAL",
+        "R10-Q015-E-WITHDRAWAL",
+        "R10-Q015-E-N3-MATH",
+        "R10-Q015-E-CLAIMS"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Dixon 2016 完整证明声明",
+      "math_status": "有冲突",
+      "scope_note": "旧稿完整证明已由作者于2017撤回，本轮明确核出Prop1(iv)与消元的反例；此冲突只对应失效证明链，不是原猜想反例。当前不能因2016更新的*或摘要中的proved回写已证。",
+      "evidence_ids": [
+        "R10-Q015-E-WITHDRAWAL",
+        "R10-Q015-E-DIXON-CHECK",
+        "R10-Q015-E-HISTORICAL",
+        "Q015-A-E01",
+        "Q015-A-E02",
+        "Q015-A-E03",
+        "Q015-A-E04",
+        "Q015-A-E05",
+        "Q015-D-E-COUNTER"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "math_status": "conflicting"
+      }
+    },
+    {
+      "subquestion": "早期出处与定义边界",
+      "math_status": "未作判断",
+      "scope_note": "Fulman2001在线/2002卷册已提Thompson乘积分解意图，但有限域上下文及literal everymatrix使其不能无条件作任意域GL的精确首发。保留2006Kourovka编目年份并补早期提及；不擅自改正式域。",
+      "evidence_ids": [
+        "R10-Q015-E-EARLY",
+        "R10-Q015-E-ORIGINAL"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    },
+    {
+      "subquestion": "三维全域至少两种列置换使e1循环",
+      "math_status": "仅特例",
+      "scope_note": "对任意域F、每个A∈GL3(F)，独立展开Delta引理和Krylov恒等式可证至少2种置换使e1循环；n≤2另为初等。仅n3子问已手核，不宣称主问题全维数解或本轮Lean复跑。 根独立核至少一个的源码数学链及学术分工至少两个的手证；actual Lean type匹配全域n3，但kernel未执行。",
+      "evidence_ids": [
+        "Q015-A-E08",
+        "Q015-A-E10",
+        "R10-Q015-E-N3-MATH",
+        "QX-P-001039-code-e2"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "Chen正文式(2)能否字面使用",
+      "math_status": "有冲突",
+      "scope_note": "这里只记录外部预印本式(2)漏右乘Pτ的局部等式错误，不指群星主问题题面。正确式保留所需秩等式，固定Lean源码也使用正确因式分解；该局部笔误不构成整项部分结果的反例或正式撤回。",
+      "evidence_ids": [
+        "Q015-A-E09"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "math_status": "conflicting"
+      }
+    },
+    {
+      "subquestion": "n=4及受限高维族的公开进展声明",
+      "math_status": "完整证明声明",
+      "scope_note": "此状态仅指有限维/受限族子问的公开完整声明：n4不可约二次minpoly有真实Lean源码；n4一般矩阵仅特定及除有限多个特征，n5仅rank-one特定特征，更高n仅附加结构族。C6/C8未全证书复核；未知例外素数与n≥5整维问题仍不在解决范围。",
+      "evidence_ids": [
+        "QX-P-001039-code-e1",
+        "QX-P-001039-code-e3",
+        "QX-P-001039-code-e6",
+        "Q015-A-E08",
+        "Q015-A-E09",
+        "Q015-A-E11"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "math_status": "claimed_proof"
+      }
+    },
+    {
+      "subquestion": "公开验证器的实际验证层级",
+      "math_status": "未作判断",
+      "scope_note": "作者日志和验证脚本的PASS层级已核；本轮没有Lean/求解器复跑，不能将目录、样本或保存日志检查升级为独立形式化/全证书通过。脚本局限不直接推翻数学结论。",
+      "evidence_ids": [
+        "QX-P-001039-code-e4"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "math_status": "not_assessed"
+      }
+    },
+    {
+      "subquestion": "单换位限制规则的有限反例",
+      "math_status": "有冲突",
+      "scope_note": "只要求P是单换位的加强规则被一个GF7四阶矩阵否定：六个单换位均不cyclic，但明确双换位有满秩Krylov见证。原卡允许任意置换，因此该矩阵满足原猜想，不是QX-P-001039主问题反例。此附属核对不提议主卡闭合。",
+      "evidence_ids": [
+        "QX-P-001039-code-e5"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "math_status": "conflicting"
+      }
+    },
+    {
+      "subquestion": "特例：n=1,2对全部域",
+      "math_status": "仅特例",
+      "scope_note": "n=1显然。n=2中任意非标量矩阵最小多项式次数2，故取P=I；若A=aI且可逆，交换矩阵给循环向量e1。notes另给直接按b,c,d−a选向量的构造，适用于所有特征，不是有限枚举外推。",
+      "evidence_ids": [
+        "Q015-D-E-SPECIAL"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "特例：任意阶可逆对角矩阵",
+      "math_status": "仅特例",
+      "scope_note": "取n-cycle满足P e_i=e_(i+1)。B=diag(a1,…,an)P时B^j e1=(a2…a_(j+1))e_(j+1)，j=0,…,n−1；Krylov determinant=∏_(i=2)^n a_i^(n−i+1)非零。因此μ_B=χ_B=t^n−∏a_i。char整除n造成多项式重根不破坏cyclic；未由可相似对角化偷换到原坐标置换。",
+      "evidence_ids": [
+        "Q015-D-E-SPECIAL"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "R10-Q015-root-01",
+      "route": "原题与出处",
+      "site": "arXiv作者版本档案",
+      "query": "OPEN https://arxiv.org/abs/1606.02238",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "原站明确withdrawn；v1=2016-06-07，v2=2017-11-14撤回且当前v2无PDF。撤回理由Prop1(iv)⇒(i)对n>2错误。摘要还保留旧证明声称，不能略过页首及comments判已解决。",
+      "url": "https://arxiv.org/abs/1606.02238",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-02",
+      "route": "原题与出处",
+      "site": "Kourovka固定v50",
+      "query": "FIND \"16.95.\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "印刷p110/PDF零基109完整原问：任意域F、A∈GL(n,F)，存在置换P使AP的极小多项式=特征多项式。无♯/*和解题评论仅是该版编目状况，不证明世界上无新结果。",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-03",
+      "route": "代码、公开 AI 和社区",
+      "site": "Kourovka公开AI目录",
+      "query": "FIND \"16.95\"",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "本次页内查找无匹配；仅覆盖实际目录文本，不能推断所有公开AI项目无此题。后续独立GitHub检索确发现专库。",
+      "url": "https://kourovkanotebookorg.wordpress.com/repository/",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-04",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"Recognizing cyclic matrices\" \"Thompson\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批命中Dixon原稿/撤回、作者主页、2016旧更新及Fulman综述；索引的近月抓取时间不是论文首发或修订时间。没有把同名有限单群conjugacy-class-square猜想混作此题。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-05",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"Thompson\" \"cyclic\" \"permutation\" matrices conjecture ; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批命中Dixon原稿/撤回、作者主页、2016旧更新及Fulman综述；索引的近月抓取时间不是论文首发或修订时间。没有把同名有限单群conjugacy-class-square猜想混作此题。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-06",
+      "route": "原题与出处",
+      "site": "arXiv固定v1",
+      "query": "OPEN https://arxiv.org/pdf/1606.02238v1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "取得3页旧稿，实际读循环性定义、Prop1(iv)、错误消元及Cor2。页边标2016-06-07 v1，标题区另印2018-09-02；按档案版史，不把内部日期视为撤回后的修复版本。",
+      "url": "https://arxiv.org/pdf/1606.02238v1",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-07",
+      "route": "原题与出处",
+      "site": "作者Carleton主页",
+      "query": "OPEN https://people.math.carleton.ca/~jdixon/",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "作者主页自标2024.07，SelectedPublications直接将1606.02238列为withdrawn，独立支持撤回状态。",
+      "url": "https://people.math.carleton.ca/~jdixon/",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-08",
+      "route": "原题与出处",
+      "site": "Kourovka 18辑历史更新",
+      "query": "OPEN https://algebra-lincoln.org/wp-content/uploads/2016/12/18upd-e.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "2016-12 cumulative update共6页；随后find定位16.95旧已解注记。历史版本不是截至本轮有效闭合。",
+      "url": "https://algebra-lincoln.org/wp-content/uploads/2016/12/18upd-e.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-09",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"Thompson\" \"cyclic matrices\" conjecture 2026 ; recency=365",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批命中Dixon旧摘要、Fulman综述、1999矩阵分解与2026conjugacy-class论文索引。同名Thompson有限单群猜想的覆盖结论不等价于给定A的列置换轨道有cyclic元素。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-10",
+      "route": "学术",
+      "site": "WebSearch system1",
+      "query": "\"16.95\" \"cyclic\" proof \"n\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "同批命中Dixon旧摘要、Fulman综述、1999矩阵分解与2026conjugacy-class论文索引。同名Thompson有限单群猜想的覆盖结论不等价于给定A的列置换轨道有cyclic元素。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-11",
+      "route": "原题与出处",
+      "site": "arXiv固定v1",
+      "query": "OPEN fixed-v1 starting line70",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "读Prop1(iv)强可逆块、k步消元、nested minors保持断言和Cor2全部论证。根手核Q3的A=J−I满足(iv)却不cyclic，见独立证书；不把这个判据反例当Thompson原问反例。",
+      "url": "https://arxiv.org/pdf/1606.02238v1",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-12",
+      "route": "学术",
+      "site": "Zenodo新候选落地页",
+      "query": "OPEN https://zenodo.org/records/22186784",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "web工具InternalError/notaccessible；本次没有正文。学术分工后续通过普通PythonHTTP读取API/PDF是另列请求，不能倒记本次成功。",
+      "url": "https://zenodo.org/records/22186784",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-13",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub网页入口",
+      "query": "OPEN https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/CLAIMS.md",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "web工具DisabledError；随后GitHub连接器同固定文件读取成功，分别留痕。",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/CLAIMS.md",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-14",
+      "route": "原题与出处",
+      "site": "Kourovka 2016历史更新",
+      "query": "FIND \"16.95\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "p3精确命中*16.95及Dixon证明已解注记。这一2016历史结论被2017作者撤回推翻，不能据星号回写今日已证。",
+      "url": "https://algebra-lincoln.org/wp-content/uploads/2016/12/18upd-e.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-15",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub文件连接器",
+      "query": "fetch_file CLAIMS.md @ca33948337e7874cc6faf2a8268a36e0dcb99416",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "blob fb9cbcc518bc48ca3b575f1cb1adf6aa1874e30d；根逐项读C1–C10：n3全域；n4有指定特征/除有限多；n5仅rankone指定特征；任意n有限结构族。明确未解n4未知例外特征和更高一般维数。不是全问题证明。",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/CLAIMS.md",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-16",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub文件连接器",
+      "query": "fetch_file README.md @ca33948337e7874cc6faf2a8268a36e0dcb99416",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "blob e73e46bbf62cd333ecd2abfb7db916ec63b39cd1；quick/lean仅检查已记录审计，lean-build才是可选新kernel构建。README说prepublication/nothingpushed属于残留说明；实际公开固定GitHub可读取，不能由此断言未公开。没有在本轮执行verify.sh。",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/README.md",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-17",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub文件连接器",
+      "query": "fetch_file paper/ABSTRACT.md @ca33948337e7874cc6faf2a8268a36e0dcb99416",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "blob 5e643730de968810e407740b31f2eb7f11977b19；只是作者摘要，所称first/Leanchecked不等于独立优先权或内核复跑。n4 exceptional integer N仍未完整算出，显式不称allfields。",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/paper/ABSTRACT.md",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-18",
+      "route": "原题与出处",
+      "site": "Fulman正式AMS论文机构镜像",
+      "query": "OPEN https://web.mit.edu/18.338/Spring04/S0273-0979-01-00920-X.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "35页，卷39(1)51–85，电子发表2001-10-05。实际读首页日期及pp55–56Example1：有限域语境的cyclic×permutation提问，早于2006编目。但literal everymatrix含singular会被0矩阵否定，不能擅改现题GL或把此处当任意域精确首发；也未全审综述概率定理。",
+      "url": "https://web.mit.edu/18.338/Spring04/S0273-0979-01-00920-X.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-19",
+      "route": "学术",
+      "site": "arXiv同名猜想检索候选",
+      "query": "OPEN https://arxiv.org/abs/2606.17885",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "DisabledError，未取得该入口摘要/正文；已有检索元数据称nonprimarycyclicconjugacyclassproducts，不能凭标题作本题解。",
+      "url": "https://arxiv.org/abs/2606.17885",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-20",
+      "route": "学术",
+      "site": "Zenodo DOI入口",
+      "query": "OPEN https://doi.org/10.5281/zenodo.22186784",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "web工具notaccessible；另一次API下载成功独立列于学术分工。",
+      "url": "https://doi.org/10.5281/zenodo.22186784",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-21",
+      "route": "原题与出处",
+      "site": "本轮独立数学核对",
+      "query": "手算J3−I3及稿内第1步消元；对照q015_boundary_certificate.json",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "note": "F=Q,A=[[0,1,1],[1,0,1],[1,1,0]],det2，minpoly(t−2)(t+1)而charpoly(t−2)(t+1)^2。块rows2..3cols1..2=[[1,0],[1,1]]leadingminors1,1。E=I−E32给EAE^-1=[[0,2,1],[1,1,1],[0,0,−1]]，新块det0，直接核错。3cycleP却使AP的Krylov[e1,APe1,(AP)^2e1]det−1，所以原猜想在这个A成立。普通有理数计算，不是Lean/Sage复跑。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-22",
+      "route": "原题与出处",
+      "site": "版本与定义审校",
+      "query": "对照task_015当前metadata/card_text/prior_evidence及固定全量题卡",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "note": "本轮身份保持f6a681e14f5facda；卡内novelty.card_rev=5eaad4c300a6d1c2陈旧不能算本轮同版查新；toppriorlegacy同rev但空路线，不复用成新检索。形式短句的量词由标题/题面/人话/验收明确给足，不凭缩写制造原题错误。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-23",
+      "route": "学术",
+      "site": "Zenodo PDF API的web入口",
+      "query": "OPEN https://zenodo.org/api/records/22186784/files/main5.pdf/content",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "web工具notaccessible；学术分工普通HTTP已经取得同一文件并校MD5/SHA，根后续读本地正文，与此web失败分别记录。",
+      "url": "https://zenodo.org/api/records/22186784/files/main5.pdf/content",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-24",
+      "route": "学术",
+      "site": "学术分工取得的作者原PDF",
+      "query": "根读取q015_zenodo_record.json及q015_chen_2026.txt前7页",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "元数据HaoyuChen，Zenodo公开2026-08-31，稿内修订2026-08-30；main5.pdf476774字节、SHA49b5431fb103ce981d47090792bf65c9bdc128eee88b48a9428c36b882087341。根实读Thm1.1/1.2/1.4，Lemma2.1–2.3和§3三维方法；不是遍历全部证书。eq(2)漏右乘P，正确(AP−tI)=(E+tddT)P；秩不变可修，代码对应式正确，不由排版等式错误判定整个特例结果错误。",
+      "url": "https://zenodo.org/records/22186784",
+      "locator": "q015_chen_2026.txt PDF页1–7",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "R10-Q015-root-25",
+      "route": "代码、公开 AI 和社区",
+      "site": "固定Lean源码的独立数学审读",
+      "query": "根读CyclicVectorThree.lean的scalar六分支/deflation与CyclicToMinpoly.lean主定理",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "独立核低维代数核心及从Krylov独立到minpoly=charpoly的桥。类型仅FieldK、A:MatrixFin3、IsUnitdet，无有限域或CharZero附加假设；无Lean执行。数学内容核对与形式内核复跑分轴。",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/CyclicToMinpoly.lean",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q015-A-W01-system1_search_query-1",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Recognizing cyclic matrices\" \"Thompson\" 〔私有记录编号：PR-003658〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W01-system1_search_query-2",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Recognising cyclic matrices\" \"Thompson\" 〔私有记录编号：PR-003659〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W01-system1_search_query-3",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Kourovka\" \"16.95\" \"2026\" 〔私有记录编号：PR-003660〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W01-system1_search_query-4",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Thompson\" \"permutation matrix\" \"cyclic\" 2026 〔私有记录编号：PR-003661〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W01-open-1",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/abs/1606.02238 〔私有记录编号：PR-003662〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/abs/1606.02238",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "arXiv abs撤回声明、Errata及v1/v2版史已读。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q015-A-W02-system1_search_query-1",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Thompson\" \"cyclic\" \"permutation\" matrices conjecture 2025 2026 〔私有记录编号：PR-003663〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W02-system1_search_query-2",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"1606.02238\" proof correction 2026 〔私有记录编号：PR-003664〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W02-system1_search_query-3",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Thompson conjecture\" \"cyclic matrices\" finite field n 3 〔私有记录编号：PR-003665〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W02-open-1",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/pdf/1606.02238v1 〔私有记录编号：PR-003666〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1606.02238v1",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "取得并读全部3页；Prop1、错误消元与Cor2；稿内2018日期不能作修复版。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q015-A-W02-open-2",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://people.math.carleton.ca/~jdixon/ 〔私有记录编号：PR-003667〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://people.math.carleton.ca/~jdixon/",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "作者发表目录标withdrawn，页自记[2024.07]。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q015-A-W02-open-3",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://dornsife.usc.edu/jason-fulman/wp-content/uploads/sites/224/2023/06/SurveyEigenval.pdf 〔私有记录编号：PR-003668〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://dornsife.usc.edu/jason-fulman/wp-content/uploads/sites/224/2023/06/SurveyEigenval.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "48页作者长稿，读§2.2 pp7–8同意图问题；有限域背景，未重述全称GL量词。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q015-A-W03-system1_search_query-1",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"16.95\" \"cyclic\" proof matrix 〔私有记录编号：PR-003669〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W03-system1_search_query-2",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Thompson\" \"cyclic matrices\" \"n=3\" 〔私有记录编号：PR-003670〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W03-system1_search_query-3",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Thompson\" \"cyclic\" \"permutation matrix\" \"finite fields\" 〔私有记录编号：PR-003671〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W03-system1_search_query-4",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Random Matrix Theory over Finite Fields\" Fulman 2002 arxiv 〔私有记录编号：PR-003672〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W03-open-1",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003673〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1606.02238v1",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "实际继续读原稿pp2–3，Prop1(iv)消元。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q015-A-W03-open-2",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/abs/2606.17885 〔私有记录编号：PR-003674〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/abs/2606.17885",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "DisabledError，未取得2606.17885原页。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q015-A-W03-find-1",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "检索词／定位词：Thompson 〔私有记录编号：PR-003675〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://dornsife.usc.edu/jason-fulman/wp-content/uploads/sites/224/2023/06/SurveyEigenval.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "Thompson页内命中，读Fulman长稿对应段；不是独立全文通审。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q015-A-W04-system2_search_query-1",
+      "route": "学术",
+      "site": "web system2_search_query",
+      "query": "检索词／定位词：\"cyclic\" \"permuting columns\" Thompson conjecture 〔私有记录编号：PR-003676〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W04-system2_search_query-2",
+      "route": "学术",
+      "site": "web system2_search_query",
+      "query": "检索词／定位词：\"permutation matrix\" \"Thompson\" conjecture cyclic 2025 2026 〔私有记录编号：PR-003677〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W04-system2_search_query-3",
+      "route": "学术",
+      "site": "web system2_search_query",
+      "query": "检索词／定位词：\"16.95\" Dixon Stasinski cyclic 〔私有记录编号：PR-003678〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W04-open-1",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://web.mit.edu/18.338/Spring04/S0273-0979-01-00920-X.pdf 〔私有记录编号：PR-003679〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://web.mit.edu/18.338/Spring04/S0273-0979-01-00920-X.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "正式2002刊稿35页，取得第一页出版日及pp55–56同意图记载；未把有限域背景改成所有域原题。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q015-A-W04-open-2",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/abs/math/0003195 〔私有记录编号：PR-003680〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://arxiv.org/abs/math/0003195",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "仅abs与版本史：v1 2000-03-28、v2 2001-03-27，不等于已读v1。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W04-open-3",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/html/2606.17885v1 〔私有记录编号：PR-003681〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/html/2606.17885v1",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "DisabledError，未取得2026近名稿HTML。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q015-A-W04-open-4",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003682〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1606.02238v1",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "实际继续读Dixon p3 Corollary2及参考文献。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q015-A-W05-system1_search_query-1",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Products of nonprimary cyclic conjugacy classes in the general linear group\" 〔私有记录编号：PR-003683〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。 命中primary arXiv2606.17885摘要：循环共轭类之积，与本题置换因子量词不同；正文打开失败分列。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W05-system1_search_query-2",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Thompson\" \"cyclic matrices\" proof counterexample 2026 〔私有记录编号：PR-003684〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W05-system1_search_query-3",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Dixon\" \"Stasinski\" \"cyclic\" correction 〔私有记录编号：PR-003685〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W05-open-1",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/pdf/math/0003195v1 〔私有记录编号：PR-003686〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/math/0003195v1",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "DisabledError；未读2000v1，不能把早期段落由版史倒推。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q015-A-W05-open-2",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://arxiv.org/pdf/2606.17885 〔私有记录编号：PR-003687〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://arxiv.org/pdf/2606.17885",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "DisabledError；2026近名稿仍仅primary搜索摘要。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q015-A-W05-find-1",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "检索词／定位词：Thompson 〔私有记录编号：PR-003688〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://web.mit.edu/18.338/Spring04/S0273-0979-01-00920-X.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "正式刊稿Thompson段命中，印刷pp55–56/PDF5–6；不当成已读2000v1。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q015-A-W06-open-1",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://zenodo.org/records/22186784 〔私有记录编号：PR-003689〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://zenodo.org/records/22186784",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "Internal Error，record未由web取得；之后独立HTTP恢复另记。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q015-A-W06-open-2",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://algebra-lincoln.org/wp-content/uploads/2016/12/18upd-e.pdf 〔私有记录编号：PR-003690〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://algebra-lincoln.org/wp-content/uploads/2016/12/18upd-e.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "December2016 cumulativeupdate p3 *16.95为旧已解标记，早于Dixon2017撤回。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q015-A-W07-system1_search_query-1",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"22186784\" \"cyclic\" 〔私有记录编号：PR-003691〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。 本批只见无关编号或账号结果，未得到可核实的新修复/撤回；不伪写搜索总结果为0。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W07-system1_search_query-2",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"chy4pro\" \"16.95\" 〔私有记录编号：PR-003692〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。 本批只见无关编号或账号结果，未得到可核实的新修复/撤回；不伪写搜索总结果为0。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W07-open-1",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://github.com/chy4pro/kourovka-16-95/tree/ca33948337e7874cc6faf2a8268a36e0dcb99416 〔私有记录编号：PR-003693〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://github.com/chy4pro/kourovka-16-95/tree/ca33948337e7874cc6faf2a8268a36e0dcb99416",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "DisabledError；固定树web失败，随后GitHub连接器成功另记。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q015-A-W08-open-1",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://zenodo.org/record/22186784 〔私有记录编号：PR-003694〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://zenodo.org/record/22186784",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "Internal Error。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q015-A-W08-open-2",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://zenodo.org/api/records/22186784 〔私有记录编号：PR-003695〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://zenodo.org/api/records/22186784",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "Internal Error；web API失败，Python GET同URL成功另记。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q015-A-W08-open-3",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://doi.org/10.5281/zenodo.22186784 〔私有记录编号：PR-003696〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://doi.org/10.5281/zenodo.22186784",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "Internal Error，DOI未由web取得。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q015-A-W09-open-1",
+      "route": "学术",
+      "site": "web open/find",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 公开来源：https://zenodo.org/api/records/22186784/files/main5.pdf/content 〔私有记录编号：PR-003697〕",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://zenodo.org/api/records/22186784/files/main5.pdf/content",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "Internal Error；web PDF入口失败，同URL随后Python GET真实200取得全文。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "Q015-A-W10-system1_search_query-1",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Thompson's permutation-cyclicity problem\" Chen correction withdrawal 〔私有记录编号：PR-003698〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。 本批只见无关编号或账号结果，未得到可核实的新修复/撤回；不伪写搜索总结果为0。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W10-system1_search_query-2",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"22186784\" \"Thompson\" 〔私有记录编号：PR-003699〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。 本批只见无关编号或账号结果，未得到可核实的新修复/撤回；不伪写搜索总结果为0。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-W10-system1_search_query-3",
+      "route": "学术",
+      "site": "web system1_search_query",
+      "query": "检索词／定位词：\"Kourovka 16.95\" \"2026\" \"Chen\" 〔私有记录编号：PR-003700〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "note": "该实际单条检索与同批结果保存于审计。搜索批次合并返回标题/索引/摘要，不能分配每条精确命中数，也未因未见相关命中就称已证明不存在。 本批只见无关编号或账号结果，未得到可核实的新修复/撤回；不伪写搜索总结果为0。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-G01-fetch-1",
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "{\"url\":\"https://api.github.com/repos/chy4pro/kourovka-16-95/contents/paper?ref=ca33948337e7874cc6faf2a8268a36e0dcb99416\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/chy4pro/kourovka-16-95/contents/paper?ref=ca33948337e7874cc6faf2a8268a36e0dcb99416",
+      "locator": "paper目录，唯一ABSTRACT.md",
+      "note": "成功目录读取，只目录元数据，不能算读论文全文。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q015-A-G01-fetch_file-2",
+      "route": "学术",
+      "site": "GitHub connector",
+      "query": "{\"path\":\"paper/ABSTRACT.md\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"repository_full_name\":\"chy4pro/kourovka-16-95\"}",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/paper/ABSTRACT.md",
+      "locator": "blob5e643730de968810e407740b31f2eb7f11977b19",
+      "note": "成功读取配套摘要，n≤3及n4等部分范围；完整稿随后独立HTTP取得。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-HTTP01",
+      "route": "学术",
+      "site": "Zenodo API / Python urllib",
+      "query": "GET https://zenodo.org/api/records/22186784 ; urllib.request.urlopen(timeout=20)",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "url": "https://zenodo.org/api/records/22186784",
+      "locator": "metadata、files、publication_date、creator",
+      "note": "HTTP200 application/json，实际保存q015_zenodo_record.json；非全文。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-HTTP02",
+      "route": "学术",
+      "site": "Zenodo PDF / Python urllib + PyMuPDF",
+      "query": "GET https://zenodo.org/api/records/22186784/files/main5.pdf/content ; urllib.request.urlopen(timeout=30)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://zenodo.org/api/records/22186784/files/main5.pdf/content",
+      "locator": "21页，pp1–21分段全部已阅；关键Thm1.1/1.2/1.4、Lemma2.2/2.3/3.1、Prop6.6/7.1、Cor8.6/8.10",
+      "note": "HTTP200，476774bytes；md5与API一致；SHA256=49b5431fb103ce981d47090792bf65c9bdc128eee88b48a9428c36b882087341；取得并阅读全文，不等于独立核完全部证明或复跑证书。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q015-A-HTTP03",
+      "route": "学术",
+      "site": "Zenodo versions API / Python urllib",
+      "query": "GET https://zenodo.org/api/records/22186784/versions/latest ; urllib.request.urlopen(timeout=20)",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "url": "https://zenodo.org/api/records/22186784/versions/latest",
+      "locator": "id22186784，modified2026-08-31T04:35:04.810698+00:00",
+      "note": "HTTP200保存q015_zenodo_latest.json；该端点latest仍同版本，未升级为所有渠道不存在后续。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q015-A-LOCAL01",
+      "route": "学术",
+      "site": "共享本地固定版文本",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003701〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "urn:qunxing:private-material",
+      "locator": "C1–C10、OPEN段",
+      "note": "代码代理已取固定ca33948337e7874cc6faf2a8268a36e0dcb99416版本；本学术分工读声明，不重复算作新远程请求。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q015-A-LOCAL02",
+      "route": "学术",
+      "site": "共享本地固定版源码",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003702〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/TranspositionLemma.lean",
+      "locator": "l2_rank_identity / hfactor / hexpand",
+      "note": "源码采用正确秩等式，未沿用论文式2漏P；仅静态阅读，无kernel复跑。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q015-A-LOCAL03",
+      "route": "学术",
+      "site": "本地PDF渲染 + view_image",
+      "query": "PyMuPDF render PDF page index2 at scale1.6; view_image(q015_chen_page3.png)",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "urn:qunxing:private-material",
+      "locator": "p3 式(2)",
+      "note": "实际显示图像并核等式漏右乘P，非截图占位。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-001",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Kourovka\" \"16.95\" proof Lean",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365；命中Kourovka原题、Dixon论文摘要与相关AI索引。真正同题代码随后固定读取，索引层没有认证证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-002",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Thompson\" \"cyclic matrices\" \"AI\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365；命中AI数学目录与cyclicity/Thomson等同名或其他问题，未直接取得一般解。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-003",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"permutation matrix\" \"AP is cyclic\" proof",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=365；Dixon摘要明确含ERRATA，不能只取前半句prove conjecture；学术原稿由另一分工核。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-004",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Recognizing cyclic matrices\" code GitHub",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中Dixon与群论背景等索引，代码线随后另列；旧文不算2026新证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-005",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\":\"\\\"16.95\\\" \\\"Kourovka\\\"\",\"topn\":12}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 12,
+      "note": "12项含CB和chy4pro/automath同题公开AI工作记录，出现n≤4全域的早期brief与较窄历史状态，列为必须核源的候选。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-006",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\":\"\\\"Thompson\\\" \\\"cyclic\\\"\",\"repository_name\":\"google-deepmind/formal-conjectures\",\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "result_count": 1,
+      "note": "唯一命中是Feit–Thompson/有限群相关2604.08040，非16.95矩阵问题，未读该文件全文。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-007",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\":\"\\\"Kourovka16Problem95\\\"\",\"repository_name\":\"facebookresearch/atlas-lean\",\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "ATLAS精确名称返回0；不视为别名全库穷尽。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-008",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\":\"\\\"16.95\\\"\",\"repository_name\":\"tadamcz/autoformalization-results\",\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "autoformalization-results精确题号入口返回0；不推出其他库无形式化。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-009",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/automath\",\"ref\":\"5542184180d014b68637851941109dd5e584e920\",\"path\":\"orchestration/results/k1695_state.md\"}",
+      "date": "2026-11-26",
+      "outcome": "档案或版本缺失",
+      "url": "https://github.com/chy4pro/automath/blob/5542184180d014b68637851941109dd5e584e920/orchestration/results/k1695_state.md",
+      "locator": "orchestration/results/k1695_state.md",
+      "note": "精确路径在固定提交返回404/NOT_FOUND。registry后来指出这是历史内部路径，不凭缺档推断数学结果不存在。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-010",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/automath\",\"ref\":\"5542184180d014b68637851941109dd5e584e920\",\"path\":\"orchestration/results/k1695_litcheck.md\"}",
+      "date": "2026-11-26",
+      "outcome": "档案或版本缺失",
+      "url": "https://github.com/chy4pro/automath/blob/5542184180d014b68637851941109dd5e584e920/orchestration/results/k1695_litcheck.md",
+      "locator": "orchestration/results/k1695_litcheck.md",
+      "note": "精确路径在固定提交返回404/NOT_FOUND。未取得该历史检索记录，不把他人文献检索当本轮已执行。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-011",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/automath\",\"ref\":\"5542184180d014b68637851941109dd5e584e920\",\"path\":\"engine/briefs/gacha_scan_0830.md\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/chy4pro/automath/blob/5542184180d014b68637851941109dd5e584e920/engine/briefs/gacha_scan_0830.md",
+      "locator": "engine/briefs/gacha_scan_0830.md",
+      "note": "完整读2026-08-30候选扫描brief，早期声称n≤4全域；该文件是研究任务背景而非最终论文。后续正式CLAIMS明确收窄。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"bespokelabsai/conjecture-bench\",\"ref\":\"8d494791ace5894b860585d67ba8e69dbfed6376\",\"path\":\"problems/extended-catalog/kourovka-notebook/kourovka-main-16-095.json\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-16-095.json",
+      "locator": "problems/extended-catalog/kourovka-notebook/kourovka-main-16-095.json",
+      "note": "完整读CB题面重述；listed-unsolved的as_of为2026-07-03，无证明，contains_placeholder=false只指文本。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-013",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\":\"\\\"k1695\\\" \\\"theorem\\\"\",\"repository_name\":\"chy4pro/automath\",\"topn\":15}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 15,
+      "note": "命中n3证明、Lean任务单、论文修订任务和registry。任务要求不等于完成；随后取实际源。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-014",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\":\"\\\"n4\\\" \\\"all fields\\\"\",\"repository_name\":\"chy4pro/automath\",\"topn\":15}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 2,
+      "note": "搜索n4全域描述的版本沿革，命中候选任务/registry；不将任务目标当已证范围。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-015",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\":\"\\\"k1695\\\" \\\"lean\\\"\",\"repository_name\":\"chy4pro/automath\",\"topn\":15}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 15,
+      "note": "命中Lean任务说明、文件与日志路径；精确类型、proof体和依赖通过后续固定文件核查。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-016",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\":\"\\\"k1695_state\\\"\",\"repository_name\":\"chy4pro/automath\",\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "result_count": 7,
+      "note": "命中状态文件引用及campaign_registry，定位公开记录。历史所报MathSciNet/zbMATH检索非本轮执行。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-017",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/automath\",\"ref\":\"5542184180d014b68637851941109dd5e584e920\",\"path\":\"problems/k1695/campaign_registry.md\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/chy4pro/automath/blob/5542184180d014b68637851941109dd5e584e920/problems/k1695/campaign_registry.md",
+      "locator": "problems/k1695/campaign_registry.md",
+      "note": "取得3729行registry，核Statement、R3.6、R6.107、R6.110、R6.117–131及后续范围；非逐行审所有实验。正式发布改为n3全域、n4特定/除有限特征，general仍open；由此找到专库与Zenodo。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-018",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/automath\",\"ref\":\"5542184180d014b68637851941109dd5e584e920\",\"path\":\"lean/proofenv/K1695/CyclicVectorThree.lean\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/automath/blob/5542184180d014b68637851941109dd5e584e920/lean/proofenv/K1695/CyclicVectorThree.lean",
+      "locator": "lean/proofenv/K1695/CyclicVectorThree.lean",
+      "note": "取得531行CyclicVectorThree；核Ctrl3定义、n3主定理与右乘置换方向。后续专库相同blob；无本轮编译。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-019",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/automath\",\"ref\":\"5542184180d014b68637851941109dd5e584e920\",\"path\":\"lean/proofenv/K1695/CyclicToMinpoly.lean\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/automath/blob/5542184180d014b68637851941109dd5e584e920/lean/proofenv/K1695/CyclicToMinpoly.lean",
+      "locator": "lean/proofenv/K1695/CyclicToMinpoly.lean",
+      "note": "取得271行CyclicToMinpoly；n3主定理明确任意Field、det单位、存在右乘perm及minpoly=charpoly，有by体。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-020",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/automath\",\"ref\":\"5542184180d014b68637851941109dd5e584e920\",\"path\":\"engine/harvest/k1695_paper/main.tex\"}",
+      "date": "2026-11-26",
+      "outcome": "档案或版本缺失",
+      "url": "https://github.com/chy4pro/automath/blob/5542184180d014b68637851941109dd5e584e920/engine/harvest/k1695_paper/main.tex",
+      "locator": "engine/harvest/k1695_paper/main.tex",
+      "note": "精确路径在固定提交返回404/NOT_FOUND。内部论文路径未公开于此提交，改交学术分工由Zenodo核全文。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-021",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub commits",
+      "query": "{\"query\":\"\",\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"topn\":1}",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://github.com/chy4pro/kourovka-16-95/commit/ca33948337e7874cc6faf2a8268a36e0dcb99416",
+      "result_count": 1,
+      "note": "定位正式专库提交ca33948337e7874cc6faf2a8268a36e0dcb99416，2026-08-30T23:12:47Z，message Package v1.3。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-022",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub search",
+      "query": "{\"query\":\"kourovka_16_95_n3\",\"repository_name\":\"chy4pro/kourovka-16-95\",\"topn\":10}",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "result_count": 0,
+      "note": "在确有随后可读取文件的正式专库中，连接器精确定理名返回0；表明该入口有召回限制，不据此否认形式化。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-023",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub网页",
+      "query": "open https://github.com/chy4pro/kourovka-16-95",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://github.com/chy4pro/kourovka-16-95",
+      "note": "Web入口DisabledError；GitHub连接器固定文件读取成功，未将网页失败与仓库不公开混淆。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-024",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Thompson\" \"cyclic\" \"MathOverflow\" permutation",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "note": "主要返回Higman–Thompson群、共轭类大小的Thompson猜想等，非本题；未声称已读这些误命中的全部评论。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-025",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"kourovka-16-95\" proof review",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未得到独立核验本题完整一般解的社区原稿；公开专库仍通过固定API路径另读。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-026",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"README.md\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/README.md",
+      "locator": "README.md",
+      "note": "完整README明示不声称n4全域或任何n≥5整维解；同时有prepublication/未push残留文字，实际固定GitHub可访问，不据残留推断未公开。quick、lean记录检查与lean-build区分。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-027",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"VERSIONS\"}",
+      "date": "2026-11-26",
+      "outcome": "档案或版本缺失",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/VERSIONS",
+      "locator": "VERSIONS",
+      "note": "精确路径在固定提交返回404/NOT_FOUND。REPRODUCE后来指实际文件VERSIONS.md，后续该路径成功读取。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "archive_missing"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-028",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/AXIOMS.txt\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/AXIOMS.txt",
+      "locator": "lean/AXIOMS.txt",
+      "note": "读保存的AXIOMS及构建时间记录，仅是作者此前成功运行声明，不是本轮#print axioms或独立构建。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-029",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"CLAIMS.md\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/CLAIMS.md",
+      "locator": "CLAIMS.md",
+      "note": "完整读C1–C10及OPEN：n3全域；n4不可约二次minpoly特例；n4char0、p≤23所列素数及除有限多个特征；n5 rank-one有限特征；任意n受限rank-one族。均不得升级主问题全解。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-030",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/K1695/CyclicVectorThree.lean\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/CyclicVectorThree.lean",
+      "locator": "lean/K1695/CyclicVectorThree.lean",
+      "note": "静态核完整源码中的定义/关键证明、n3 cyclic-vector定理，import Mathlib；与automath文件blob相同。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-031",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/K1695/CyclicToMinpoly.lean\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/CyclicToMinpoly.lean",
+      "locator": "lean/K1695/CyclicToMinpoly.lean",
+      "note": "静态核n3 exact-type和向量循环⇒minpoly桥，有实际by证明；仅n=3主声明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-032",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/K1695/StratumBMinpoly.lean\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/StratumBMinpoly.lean",
+      "locator": "lean/K1695/StratumBMinpoly.lean",
+      "note": "完整核34行stratumB_minpoly：Fin4、det单位、minpoly为不可约二次、任意非平凡换位；有真实by体，但不涵盖所有4×4矩阵。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-033",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/K1695/RankToMinpoly.lean\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/RankToMinpoly.lean",
+      "locator": "lean/K1695/RankToMinpoly.lean",
+      "note": "核rank→minpoly桥及标量扩张量词、证明体；它是带rank假设的辅助定理，不是任意n全题。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-034",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/lean-toolchain\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/lean-toolchain",
+      "locator": "lean/lean-toolchain",
+      "note": "实际toolchain为leanprover/lean4:v4.34.0-rc1。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-035",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/lake-manifest.json\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/lake-manifest.json",
+      "locator": "lean/lake-manifest.json",
+      "note": "实际Mathlib pin为de5ce8a9a66a4aa68a9bdbb35b63a06d34d9ca11，并含传递依赖固定rev；未下载/构建依赖。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-036",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"REPRODUCE.md\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/REPRODUCE.md",
+      "locator": "REPRODUCE.md",
+      "note": "完整读重现层级与开销说明；元数据、已存日志、求解器与kernel重跑分开。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-037",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"verify.sh\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/verify.sh",
+      "locator": "verify.sh",
+      "note": "完整静态读130行验证脚本：lean只grep已存日志；rank1/rank2-*只核目录/数量/样本。full会调用msolve但自身未比较新输出与unit basis，PASS不足以独立证明全证书；本轮未运行这些target。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-038",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/recorded_checks/round6_gc3lean_check.log\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/recorded_checks/round6_gc3lean_check.log",
+      "locator": "lean/recorded_checks/round6_gc3lean_check.log",
+      "note": "读作者2026-08-29 goodCount3日志：EXIT0，列三标准公理；仅他人历史运行记录，非本轮复跑。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-039",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/K1695/StratumBAssembly.lean\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/StratumBAssembly.lean",
+      "locator": "lean/K1695/StratumBAssembly.lean",
+      "note": "核stratumB_rank_form与局部imports，连接二次极小多项式和换位后的rank界；局部依赖后续均取得。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-040",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/K1695/StratumB.lean\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/StratumB.lean",
+      "locator": "lean/K1695/StratumB.lean",
+      "note": "核二次扩域/极小多项式相关声明及依赖；有证明体，仅静态审。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-041",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/K1695/RankCriterion.lean\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/RankCriterion.lean",
+      "locator": "lean/K1695/RankCriterion.lean",
+      "note": "核四维二次根/非根rank声明；依赖StratumB，不等于全n猜想。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-042",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/K1695/TranspositionLemma.lean\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/TranspositionLemma.lean",
+      "locator": "lean/K1695/TranspositionLemma.lean",
+      "note": "重点核l2_rank_identity：AP−μI=(A−μP)P，使用右乘P保持rank后得rank(E+μddᵀ)。形式化没有使用论文漏P的错误字面矩阵等式。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-043",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/K1695/TranspositionLemmaFull.lean\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/TranspositionLemmaFull.lean",
+      "locator": "lean/K1695/TranspositionLemmaFull.lean",
+      "note": "取得rank-one更新辅助证明与依赖；不单独声称主问题全解。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-044",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/K1695/GoodCount3.lean\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/GoodCount3.lean",
+      "locator": "lean/K1695/GoodCount3.lean",
+      "note": "核goodCount3类型：任意域3×3可逆矩阵，至少两个列置换使e1循环；与n3主命题同维加强。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-045",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"lean/K1695/DeflatedFamilies.lean\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/DeflatedFamilies.lean",
+      "locator": "lean/K1695/DeflatedFamilies.lean",
+      "note": "只有Krylov反馈行列式不变与零坐标降维核心两项结构lemma，不能把C9全部纸面论证称已形式化。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-046",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"VERSIONS.md\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/VERSIONS.md",
+      "locator": "VERSIONS.md",
+      "note": "正确文件为VERSIONS.md：msolve0.10.1 commit1e3af01f3864f6c848814b02a450f384c108adea、Singular4.3.2、Lean/Mathlib pins；本轮未运行求解器。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-047",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"data/refutations/REFUTATIONS.json\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/data/refutations/REFUTATIONS.json",
+      "locator": "data/refutations/REFUTATIONS.json",
+      "note": "完整取4个中间规则反例矩阵；仅选GF7的单换位限制例进行本轮独立计算，不是原猜想反例。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-048",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub固定文件",
+      "query": "{\"repository_full_name\":\"chy4pro/kourovka-16-95\",\"ref\":\"ca33948337e7874cc6faf2a8268a36e0dcb99416\",\"path\":\"data/refutations/verify_refutations.py\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/data/refutations/verify_refutations.py",
+      "locator": "data/refutations/verify_refutations.py",
+      "note": "完整静态读自包含验证器；未执行原脚本。特别其potential打印PASS只核kd/neutral集合，不能未经另核就扩大到全部势函数断言；本轮只独立重写并验证GF7一个例。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-049",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地环境",
+      "query": "python: shutil.which for lean,lake,msolve,Singular,cc",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "lean/lake/msolve/Singular均None；cc=/usr/bin/cc。没有安装或启动Lean/求解器；环境查询不是构建失败。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-050",
+      "route": "代码、公开 AI 和社区",
+      "site": "本轮独立有限计算",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003703〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "仅一个GF7四阶矩阵及24个右列置换。6个单换位全部不循环，2个双换位循环；sigma=(1,0,3,2)与e1给Krylov秩4。身份矩阵负控、4-cycle正控通过。未枚举整个GL、未跑Sage/Lean。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-051",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地静态审计",
+      "query": "python: scan 11 retrieved Lean files for imports and sorry/admit/native_decide/new axiom text; resolve local K1695 imports",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "11个取得的数学源码未见指定占位/新增公理文本，局部K1695依赖均取得；不是全Mathlib审计或kernel证据。初版快照多一末尾换行，后续按取得字节规范化并重新比对blob。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-10-001039-code-052",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地来源一致性核对",
+      "query": "python: Git blob SHA1 check after rewriting snapshots to exact retrieved UTF-8 bytes",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "11份数学Lean源码本地Git blob与固定GitHub blob全部一致，日志q015_static_audit.json；该检查只保证副本和静态范围，不证明编译。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003704〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 6,
+      "note": "实际命中6行含本题；选最直接的circulant术语混淆候选001201作全文对照，不以标题判重。输出q015_index_scan_1.log。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库查重简索引.jsonl",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003705〕",
+      "date": "2026-11-26",
+      "outcome": "仅标题、索引或摘要",
+      "result_count": 13,
+      "note": "13行含本题；Thompson群F及其他同名猜想不是本命题，没有扩为冗余配对。输出q015_index_scan_2.log。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定题卡全文",
+      "query": "{\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/001/QX-P-001039.meta.json\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001039.meta.json",
+      "locator": "problems/001/QX-P-001039.meta.json",
+      "note": "完整读取meta/text；Git blob SHA=34631df40a3864bbd113ee76e1629ced57a6e69b。历史查新仅按文件内容读取，不算本轮新检索。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定题卡全文",
+      "query": "{\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/001/QX-P-001039.text.md\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001039.text.md",
+      "locator": "problems/001/QX-P-001039.text.md",
+      "note": "完整读取meta/text；Git blob SHA=c0a4b6848bee03b56cbac7a75cadf7eaa26464b2。历史查新仅按文件内容读取，不算本轮新检索。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定题卡全文",
+      "query": "{\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/001/QX-P-001201.meta.json\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001201.meta.json",
+      "locator": "problems/001/QX-P-001201.meta.json",
+      "note": "完整读取meta/text；Git blob SHA=39e3ea54fbc0d1d7f53ac219ef03aa61afaa3d76。历史查新仅按文件内容读取，不算本轮新检索。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub固定题卡全文",
+      "query": "{\"repository_full_name\":\"qunxingmath-org/qunxing-data\",\"path\":\"problems/001/QX-P-001201.text.md\",\"ref\":\"73290369a8dcc632e25e555aec525565ea6e08f8\"}",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001201.text.md",
+      "locator": "problems/001/QX-P-001201.text.md",
+      "note": "完整读取meta/text；Git blob SHA=368ba068bc49e52fa1b4e715336fc55d227e517f。历史查新仅按文件内容读取，不算本轮新检索。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "本地固定源核验",
+      "query": "重算四个Git blob SHA；本题meta/text逐字比task_015.json；双方rev比全库简索引；扫描任务.jsonl确认配对owner。",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "四个SHA匹配，本题完整内容与任务一致；001039 revf6a681e14f5facda、001201 reva8bb1493e606b17d匹配索引。本题为第15行，小号owner001039在本包，001201不在本包；当前包可作配对判断但不接手候选整题。辅助版本核验脚本曾因相对Path.parents失败，改绝对路径后完整核验通过。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv固定v1原稿",
+      "query": "OPEN https://arxiv.org/pdf/1606.02238v1",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/pdf/1606.02238v1",
+      "locator": "〔原始工具引用已私有留存〕；p1定义strongly invertible，p2 Prop1(iv)，p3消元保持子式断言与Cor2",
+      "note": "实际读取3页旧原稿，准确核Prop1(iv)所需右下移子块。v2撤回状态由根/学术另取；此处不把旧稿当有效完整证明。PDF边注v1=7Jun2016，内部标题区另印Sep2,2018，不作为新稿或撤回后新证明的日期证据。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地Python/SymPy",
+      "query": "首次 python q015_boundary_check.py > q015_boundary_check.log",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "首轮矩阵断言之后JSON写出因SymPy整数未转标准int失败，无完整证书；随后修复序列化并增加消元反证检查，最终独立命令exit0。未将失败写成通过。 原分工分类：其他：独立数学边界核对。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地Python3.12.14/SymPy1.14.0",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003706〕",
+      "date": "2026-11-26",
+      "outcome": "不适用",
+      "url": "urn:qunxing:private-material",
+      "note": "实际精确核Q,n3的J−I：det2，Prop1(iv)子块leading minors1,1，μ=(t−2)(t+1)而χ=(t−2)(t+1)^2；3cycle P给AP的e1 Krylov det−1。另核E=I−E32相似消元将指定块det1变0，直接击中错误保持断言。只对符号2×2辅助Krylov行列式和该明确3×3例运算，不做泛矩阵枚举，不是形式化复跑。脚本SHA256418a097233d8447071d62be607f3080cc9335e7e220af534ac7d715eb02fd9d8；日志/证书SHA25627a26a019bd4cde4d491542025bce783bec52755c2c731212aa315b8030f0b1a。 原分工分类：其他：独立数学边界核对。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "not_applicable"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R10-Q015-E-ORIGINAL",
+      "url": "https://arxiv.org/pdf/1401.0300v50",
+      "locator": "16.95 印刷p110 / PDF零基p109",
+      "version": "arXiv1401.0300v50；题源第16辑2006",
+      "subquestions": [
+        "主问题原题范围"
+      ],
+      "role": "原始提出",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "当前任务任意域F、正整数n及每个可逆n×n矩阵A，允许取决于A的任意置换P；要求AP极小多项式=特征多项式。反例须排除该A的全部n!置换。不是只试换位，也不是要求同一P适用于所有A。列置换、相似变换、循环矩阵与circulant的区别须保留。v50无解题标记不等于截至本轮无新候选。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "R10-Q015-E-WITHDRAWAL",
+      "url": "https://arxiv.org/abs/1606.02238",
+      "locator": "withdrawn页首、Comments、ERRATA及v1/v2版史",
+      "version": "v1 2016-06-07；v2 2017-11-14撤回；本轮2026-11-26",
+      "subquestions": [
+        "Dixon旧完整证明声明的失效"
+      ],
+      "role": "撤回/勘误",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完全撤回",
+      "review_status": "核对发现漏洞",
+      "formal_status": "未检到形式化",
+      "note": "作者明确撤回旧完整证明，关键(iv)⇒(i)失败。作者Carleton主页亦标withdrawn。2016Kourovka旧更新的已解星号是被后续撤回淘汰的状态；搜索摘要若仍说prove不应覆盖撤回元数据。撤回只使这份证明无效，不证明原猜想为假，也不是2026全局无解证据。ERRATA给J−I时invertible还需n−1在F中非零；本轮选Q,n3完全满足，不沿用过宽特征说法。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "fully_retracted",
+        "claim_review": "gap_found",
+        "scope_match": "equivalent",
+        "role": "retraction",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "R10-Q015-E-DIXON-CHECK",
+      "url": "https://arxiv.org/pdf/1606.02238v1",
+      "locator": "Prop1(iv)及(ii)⇔(iv)证明；本轮q015_boundary_certificate.json",
+      "version": "固定旧v1；2026-11-26本轮独立数学核对",
+      "subquestions": [
+        "强可逆块判据反例",
+        "消元不保持子式",
+        "反例适用范围"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "Q3取A=J−I，detA=2，μA=(t−2)(t+1)，χA=(t−2)(t+1)^2。其移位块[[1,0],[1,1]]两个leadingminors均1，满足(iv)，却非cyclic。按稿内k1消元取E=I−E32，EAE^-1=[[0,2,1],[1,1,1],[0,0,−1]]，对应2×2子式由1变0，直接定位保持子式的错误。取Pe1=e2,Pe2=e3,Pe3=e1，AP=J−P的[e1,APe1,(AP)^2e1]=[[1,1,1],[0,0,1],[0,1,2]]，det−1，故它是原猜想正例。旧稿正文2018日期与v1侧注不同不表示有新修复版。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "R10-Q015-E-HISTORICAL",
+      "url": "https://algebra-lincoln.org/wp-content/uploads/2016/12/18upd-e.pdf",
+      "locator": "2016-12更新p3 *16.95",
+      "version": "December2016 cumulativeupdate18thissue",
+      "subquestions": [
+        "旧已解编目与后续撤回的时间顺序"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "有修订",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "此历史页面确曾写Dixon已证明。结合2017撤回及作者主页应保留历史记录并标作失效闭合；不能把2016旧星号或v1单独抽出当当前有效证明。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "revised",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "R10-Q015-E-EARLY",
+      "url": "https://web.mit.edu/18.338/Spring04/S0273-0979-01-00920-X.pdf",
+      "locator": "p51电子发表日期；pp55–56 §2.2Example1",
+      "version": "Bull.AMS39(1)(2002)51–85；online2001-10-05",
+      "subquestions": [
+        "早期公开提及与精确题域"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "本轮实际看到早于2006的Thompson cyclic×permutation提及；其上下文有限域且字面everymatrix未限定invertible。A=CP等价AP^-1=C，但若把矩阵域扩展到所有singular则n>1零矩阵即否定，故不可不加说明迁移为当前任意域GL的精确首发。概率结果谈全矩阵集合/GL比例，不保证每个列置换轨道有cyclic元素。2006应记Kourovka编目年代；是否存在更早精确任意域提出尚未核实。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "R10-Q015-E-CLAIMS",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/CLAIMS.md",
+      "locator": "C1–C10与OPEN；README验证入口；paper/ABSTRACT.md",
+      "version": "chy4pro/kourovka-16-95@ca33948337e7874cc6faf2a8268a36e0dcb99416；CLAIMSblobfb9cbcc518bc48ca3b575f1cb1adf6aa1874e30d",
+      "subquestions": [
+        "低维及秩一特例公开声明",
+        "验证证据分层"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "根独立核准确账本：C1n3任意域声称Lean；C2n4最小多项式不可约二次stratum；C6n4特征0及p∈{2,3,5,7,11,13,17,19,23}、除有限多特征，未知例外整数未算完，明确不是所有域；C8n5仅λ(I+uv^T)可逆、char0或素特征p<2000；C9任意n的支持/常值秩一家族；C10仅素域有限范围枚举，不包括扩域/代数闭包。根尚未独立遍历所有Gröbner叶、编码、特征转移或构建Lean，证据轴以分工详细静态核对为准。索引曾写n4allfields不能压过当前显式收窄。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R10-Q015-E-N3-MATH",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/CyclicVectorThree.lean",
+      "locator": "t2_six_choices_scalar；t2_six_choices_of_first_pair；ctrl3_e0_of_ctrl2_lowerBlock；CyclicToMinpoly.kourovka_16_95_n3",
+      "version": "固定ca33948337e7874cc6faf2a8268a36e0dcb99416；2026-11-26本轮手工数学审读",
+      "subquestions": [
+        "n=3任意域的数学核心"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "已静态检查未复跑",
+      "note": "根和边界分工分别核：删去A首行得三个张成K²的列，选独立u=(a,b),v=(c,d)，D=ad−bc≠0，第三列w=αu+βv。六个控制行列式分别等于D乘(a+βb),(βa+b),−(c+αd),−(αc+d),−βw1+αw2,αw1−βw2。若全零则b,d非零，a=−βb,c=−αd，D=(α−β)bd，α²=β²=1且α≠β，故α=−β=±1并有2≠0。第5式分别迫使2b=0或2d=0矛盾；特征2已因α≠β不可能而被覆盖。因此至少一个排列有det[b,Tb]≠0，分块B=[[a,r],[b,T]]给det[e1,Be1,B²e1]=det[b,Tb]，得到循环向量并推出minpoly=charpoly。该论证独立于Dixon错误判据。这里确认三维存在性数学核心，没有扩大到GoodCount3的至少两个加强结论，也没有把静态阅读视为Lean内核复跑。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q015-A-E01",
+      "url": "https://arxiv.org/abs/1606.02238",
+      "locator": "withdrawn notice / Comments / Errata / Submission history",
+      "version": "v1 2016-06-07；v2 2017-11-14撤回；本轮2026-11-26访问",
+      "subquestions": [
+        "Dixon完整解声明的撤回"
+      ],
+      "role": "撤回/勘误",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完全撤回",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "John D.Dixon明确撤回；Prop1(iv)⇒(i)为假，Cor2因此不能证明Thompson。发现归于Alexander Stasinski。本条核声明；错误本轮独立数学核对见E04。网页说remainsopen是撤回当时，不当作自动2026状态。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "fully_retracted",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "retraction",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q015-A-E02",
+      "url": "https://arxiv.org/pdf/1606.02238v1",
+      "locator": "全文3页；Prop1 pp1–2，消元pp2–3，Corollary2 p3",
+      "version": "arXiv显式v1 2016-06-07；PDF稿内date2018-09-02但不视为新修复稿",
+      "subquestions": [
+        "Dixon完整解声明的撤回",
+        "Dixon循环判据(iv)⇒(i)"
+      ],
+      "role": "完整证明",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完全撤回",
+      "review_status": "核对发现漏洞",
+      "formal_status": "未检索形式化",
+      "note": "已读全部原稿。iv要求相似矩阵B的rows2:n cols1:n−1块所有左上主子矩阵可逆；该条件不蕴含cyclic。Cor2通过列置换达iv再调用假蕴含。原稿可达不代表有效完整证明；独立反证见E04。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "fully_retracted",
+        "claim_review": "gap_found",
+        "scope_match": "equivalent",
+        "role": "full_proof",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q015-A-E03",
+      "url": "https://people.math.carleton.ca/~jdixon/",
+      "locator": "papers目录 Recognizing cyclic matrices... (withdrawn)",
+      "version": "主页自记[2024.07]；本轮2026-11-26访问",
+      "subquestions": [
+        "Dixon完整解声明的撤回"
+      ],
+      "role": "撤回",
+      "publication": "作者主页",
+      "scope_match": "原题等价",
+      "claim_state": "完全撤回",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "作者主页独立保留withdrawn标记；访问日不是页面更新日。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "fully_retracted",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "retraction",
+        "publication": "author_page"
+      }
+    },
+    {
+      "evidence_id": "Q015-A-E04",
+      "url": "urn:qunxing:private-material",
+      "locator": "§2.2–2.3；明确有理数3×3矩阵与EAE^{-1}",
+      "version": "本轮2026-11-26独立手算；固定题卡f6a681e14f5facda",
+      "subquestions": [
+        "Dixon循环判据(iv)⇒(i)",
+        "撤回反例是否反驳Thompson原命题"
+      ],
+      "role": "反例",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "Q上A=J3−I3满足iv指定块[[1,0],[1,1]]主子式均1，却minpoly度2；E=I−E32的相似消元使块det由1变0。取3cycleP时AP的e1 Krylov det=−1，因此不是主猜想反例。一般det(Jn−In)=(-1)^(n−1)(n−1)，撤回摘要的char≠2不够覆盖所有n；本例Q无该问题。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "counterexample",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q015-A-E05",
+      "url": "https://algebra-lincoln.org/wp-content/uploads/2016/12/18upd-e.pdf",
+      "locator": "December2016 cumulativeupdate，p3 *16.95及Dixon引用",
+      "version": "2016-12档案；本轮读到6页PDF中的p3",
+      "subquestions": [
+        "历史已解标记与撤回的时间顺序"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "原题等价",
+      "claim_state": "完全撤回",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "旧更新曾标已证，所依赖Dixon稿2017已撤回；claim_state指该旧解声明当前失效，并非档案被撤回。时间顺序解释了旧星号，不能按旧档结案。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "fully_retracted",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "Q015-A-E06",
+      "url": "https://web.mit.edu/18.338/Spring04/S0273-0979-01-00920-X.pdf",
+      "locator": "§2.2 Example1；印刷pp55–56/PDF5–6；首页出版信息",
+      "version": "Bull.AMS39(1)(2002)51–85；electronic2001-10-05；DOI10.1090/S0273-0979-01-00920-X",
+      "subquestions": [
+        "Thompson cyclic×permutation的早期公开记载",
+        "随机矩阵比例与逐轨道命题的区别"
+      ],
+      "role": "重述",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "Fulman在有限域随机矩阵背景记录同意图问题，未重述所有域/可逆性量词，不作为当前题面的逐字最早出处。arXivmath/0003195 abs列v1=2000-03-28，但v1 PDF本轮失败，故不把段落倒推为2000。全空间cyclic密度不保证每个固定A的置换轨道命中。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q015-A-E07",
+      "url": "https://arxiv.org/abs/2606.17885",
+      "locator": "primary搜索摘要：Products of nonprimary cyclic conjugacy classes in the general linear group",
+      "version": "primary索引首投2026-06-16；未能从原页核当前版本",
+      "subquestions": [
+        "2026近名Thompson结果的同一性"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "formal_status": "未检索形式化",
+      "note": "KlausNielsen研究两个规定类型的循环共轭类乘积；不是把第二因子限制为置换矩阵。abs/html/pdf三次主站打开均DisabledError；只有primary搜索摘要足以排除为当前全解，不冒称已审全文或新版日期。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q015-A-E08",
+      "url": "https://zenodo.org/records/22186784",
+      "locator": "实际HTTP取得main5.pdf全文21页；Thm1.1/1.2/1.4，Prop5.1/6.4/6.6/7.1，Cor8.6/8.10",
+      "version": "HaoyuChen，Revision2026-08-30；Zenodo2026-08-31；DOI10.5281/zenodo.22186784；PDF SHA25649b5431fb103ce981d47090792bf65c9bdc128eee88b48a9428c36b882087341",
+      "subquestions": [
+        "2026低维与rank-one部分进展"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "已读全文而未通审全部证明/计算证书。n≤3每域；n4char0、p=2,3,5,7,11,13,17,19,23每域及除有限多特征；n4不可约二次极小式每换位；n5rank-one char0或p<2000；所有n稀疏/常值rank-one家族。未知整数N和剩余异常特征明确未结。论文自称Lean/kernel及双编码需另分证据，不能由取得稿件升级。本地PDF/txt与API元数据实际保存。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q015-A-E09",
+      "url": "urn:qunxing:private-material",
+      "locator": "§3.1，PDFp3式(2)；q015_chen_page3.png视觉核；源码l2_rank_identity",
+      "version": "Chen2026-08-30稿；Git ca33948337e7874cc6faf2a8268a36e0dcb99416；本轮2026-11-26核",
+      "subquestions": [
+        "Chen稿式(2)局部等式错误与等秩修复"
+      ],
+      "role": "勘误",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "本轮发现的局部纠错，非作者正式勘误。原文APτ−tI=E+tddᵀ漏右P；正确(APτ−tI)Pτ=E+tddᵀ。Pτ可逆故等秩保留；本轮实际阅读Lean l2_rank_identity使用正确因式分解，所以不据此否定整个部分结果。p6不可分二次段primaryspace二维文字也需区分eigspace与primarycomponent。未kernel复跑。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "retraction",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q015-A-E10",
+      "url": "urn:qunxing:private-material",
+      "locator": "§3.2：六个Delta至多四个为零的手证",
+      "version": "本轮2026-11-26独立代数展开，针对ChenLemma3.1/Thm1.1",
+      "subquestions": [
+        "三维全域至少两种列置换使e1循环"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "给出任意域直接证明：若首四Delta为零，则P非零、x=εy,z=ηw且ε≠η；排除char2并算后两项同为非零εP(u+v)。循环换标后任意两对为零迫剩余两项非零；否则至少两对各非零。与Krylov determinant恒等式合并得n3每域至少2种；只此子问，非n4或主全称；非Lean复跑。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q015-A-E11",
+      "url": "https://zenodo.org/api/records/22186784/versions/latest",
+      "locator": "实际HTTP200返回id22186784，metadata publication_date与modified",
+      "version": "GET2026-11-26；latestid22186784；modified2026-08-31T04:35:04.810698+00:00",
+      "subquestions": [
+        "Chen后续版本/撤回筛查"
+      ],
+      "role": "重述",
+      "publication": "原始档案",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "公开API最新端点仍为同记录，未显示替代稿；本轮精确题名/DOI/作者撤回修复检索未得可核实后续。仅有范围内观察，不宣称不存在所有后续。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "QX-P-001039-code-e1",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/CLAIMS.md",
+      "locator": "C1–C10与OPEN；README范围说明",
+      "version": "commit ca33948337e7874cc6faf2a8268a36e0dcb99416；2026-08-30 v1.3；CLAIMS blobfb9cbcc518bc48ca3b575f1cb1adf6aa1874e30d",
+      "subquestions": [
+        "n=3任意域的公开Lean特例",
+        "n=4及受限高维族的公开进展声明"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "chy4pro/kourovka-16-95公开AI研究/验证包",
+      "claim_date": "2026-08-30",
+      "note": "C1仅n3全域，n≤2为纸面初等情形；C2为n4不可约二次minpoly特例；C6为n4特征0、2,3,5,7,11,13,17,19,23及除有限多个特征，不声称全部特征；C8为n5 rank-one特征0或p<2000；C9任意n但有support≤3或特定常值条件；C10只是有限素域rank-one枚举，不含扩域。C6/C8本轮未全证书复核，C9纸面部分未全审。README中prepublication/未push是残留文字，不能推翻实际固定公开仓库可访问的事实。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-001039-code-e2",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/CyclicToMinpoly.lean",
+      "locator": "kourovka_16_95_n3（30行）、minpoly_eq_charpoly_of_krylov_linearIndependent；CyclicVectorThree中Ctrl3、t2_six_choices_scalar、n3_e0",
+      "version": "commit ca33948337e7874cc6faf2a8268a36e0dcb99416；CyclicToMinpoly blob54e20529655d26e6862fa853ff624b87272835c6；CyclicVectorThree blobad8a5d5ca55297133a624d1c72558bfc666c0f28",
+      "subquestions": [
+        "n=3任意域的公开Lean特例"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "已静态检查未复跑",
+      "claimant": "chy4pro项目；作者保存了Lean检查报告",
+      "rerun": {
+        "commit": "ca33948337e7874cc6faf2a8268a36e0dcb99416",
+        "theorem": "K1695.kourovka_16_95_n3",
+        "toolchain": "记录pin：Lean4.34.0-rc1；Mathlibde5ce8a9a66a4aa68a9bdbb35b63a06d34d9ca11；本轮未启动Lean",
+        "cache": "无本轮Lean缓存或kernel复跑",
+        "axioms": "作者记录为propext/Classical.choice/Quot.sound；本轮未执行#print axioms"
+      },
+      "note": "实际类型为任意K[Field]、A:Matrix(Fin3)(Fin3)K、IsUnit A.det，结论∃σ，minpoly K(A*σ.permMatrix K)=(A*σ.permMatrix K).charpoly；有完整by体。两个本地依赖文件已完整取得、无sorry/admit/native_decide/新axiom文本。另一队内分工独立核六个det不同时为零的纯域论证、特征2、降维Krylov、σ逆方向与CH/minpoly桥；见q015_n3_static_review.md。formal仍静态未复跑，不把数学核对写成kernel通过。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-001039-code-e3",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/lean/K1695/StratumBMinpoly.lean",
+      "locator": "stratumB_minpoly；RankToMinpoly.minpoly_eq_charpoly_of_rank_ge；TranspositionLemma.l2_rank_identity",
+      "version": "commit ca33948337e7874cc6faf2a8268a36e0dcb99416；StratumBMinpoly blobe19cd6edb8f62ff0b3533db56d76600f939ff07f；RankToMinpoly blob6a27d179d56d0b79ddc3fc174eea987eccbdb624",
+      "subquestions": [
+        "n=4及受限高维族的公开进展声明"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "真实n4定理要求minpoly A为不可约二次，并证每个a≠b换位均可；该假设不能删去。泛n的rank-to-minpoly桥保留对域扩张和所有标量的rank界假设，不是全n猜想。已取得11个相关数学源码并核局部imports闭合、无指定占位文本；未构建。学术分工指出论文等式漏P后，本分工核Lean明确以AP−μI=(A−μP)P再取rank，使用正确秩等式；没有据纸面笔误自动否定此形式化特例。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-001039-code-e4",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/verify.sh",
+      "locator": "check_lean_record、check_bases、rank_target、full_replay、lean_build；REPRODUCE、lean/AXIOMS.txt",
+      "version": "commit ca33948337e7874cc6faf2a8268a36e0dcb99416；verify.sh blobc1f15f85332c5bc7bceb5191221463c64e98a21e；AXIOMS blob93c7486d8fb8d758b63669e9884c42110bcf986f",
+      "subquestions": [
+        "公开验证器的实际验证层级",
+        "n=4及受限高维族的公开进展声明"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "note": "本轮完整静态审脚本，未运行。lean仅检查已存日志和占位文本；quick另核清单/样本及一个小C枚举；rank1/rank2-*只核目录、数量和非空样本；full会调用msolve但自身只检查退出/cap，没有核新输出等于unit basis。这些target的PASS不能自动充当全数学证书或kernel复核；真正Lean构建入口是lean-build。作者AXIOMS/EXIT0日志与本轮执行严格区分。该脚本检查范围的局限不单独构成其数学定理的反例。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-001039-code-e5",
+      "url": "https://github.com/chy4pro/kourovka-16-95/blob/ca33948337e7874cc6faf2a8268a36e0dcb99416/data/refutations/REFUTATIONS.json",
+      "locator": "transposition_only_gf7；本轮q015_finite_check.py和q015_finite_check.log.json",
+      "version": "commit ca33948337e7874cc6faf2a8268a36e0dcb99416；REFUTATIONS bloba9edc017a53101d4137a0b716d0cdb9152e4cfe5；本轮2026-11-26 Python3.12.14",
+      "subquestions": [
+        "单换位限制规则的有限反例"
+      ],
+      "role": "反例",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "公开声称",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "rerun": {
+        "commit": "ca33948337e7874cc6faf2a8268a36e0dcb99416",
+        "theorem": "仅GF7一个4×4矩阵反驳transposition-only加强规则",
+        "toolchain": "普通Python3.12.14，精确模7整数算术；非Sage/Lean",
+        "command": "python 〔私有材料定位已省略〕",
+        "log_url": "urn:qunxing:private-material",
+        "cache": "本轮独立脚本；未运行仓库verify.sh或原verify_refutations.py",
+        "axioms": "不适用：普通有限算术"
+      },
+      "note": "矩阵[[2,3,4,6],[3,2,6,4],[4,6,2,3],[6,4,3,2]]在F7秩4；24个列置换均实际核。6个单换位产品都不循环，但两双换位成功；列序(1,0,3,2)与v=e1给Krylov秩4。身份矩阵负控、4-cycle正控通过。这仅反驳限制P为单换位的加强命题，显式好P证其不是16.95反例。未做全GL枚举。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "independent_check",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "QX-P-001039-code-e6",
+      "url": "https://github.com/chy4pro/automath/blob/5542184180d014b68637851941109dd5e584e920/problems/k1695/campaign_registry.md",
+      "locator": "R6.104、R6.107、R6.117–131；同commit engine/briefs/gacha_scan_0830.md",
+      "version": "commit5542184180d014b68637851941109dd5e584e920；registry blob949eaf95e6415b63d9db4599eb215a198ddd2bb6；brief blobf1ab969527cf6518158d4f95ba3e26d8f500f064",
+      "subquestions": [
+        "n=4及受限高维族的公开进展声明",
+        "公开验证器的实际验证层级"
+      ],
+      "role": "重述",
+      "publication": "项目报告",
+      "scope_match": "同源不同问",
+      "claim_state": "有修订",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "早期brief将n≤4全域列为既得，后续registry明确every-field所需整数收缩/例外素数仍未全部完成，正式CLAIMS收窄。只核相关段落，不把他人审计、文献检索或云计算记成本轮执行；缺失的orchestration状态/检索文件和内部main.tex实际404另记。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "revised",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "QX-P-001039-code-e7",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/kourovka-notebook/kourovka-main-16-095.json",
+      "locator": "statement、status_observation、provenance",
+      "version": "commit8d494791ace5894b860585d67ba8e69dbfed6376；blobcc42427036f741bea8691ad4acf2834cc8427a92；as_of2026-07-03",
+      "subquestions": [
+        "n=3任意域的公开Lean特例",
+        "n=4及受限高维族的公开进展声明"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "题目JSON准确重述任意域和任意n、右乘置换及minpoly=charpoly。listed-unsolved为历史目录状态，contains_placeholder=false仅文本完整，不是形式化证明或本轮最新穷尽状态。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "Q015-D-E-COUNTER",
+      "url": "urn:qunxing:private-material",
+      "locator": "condition_iv_block、leading_principal_minors、minimal/characteristic_polynomial、similarity_Aprime与Krylov_e1；同目录脚本和日志",
+      "version": "2026-11-26；Python3.12.14/SymPy1.14.0；证书SHA25627a26a019bd4cde4d491542025bce783bec52755c2c731212aa315b8030f0b1a",
+      "subquestions": [
+        "Dixon旧Prop1(iv)不足以推出cyclic",
+        "同一矩阵满足Thompson的明确见证"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "条件按本轮实读https://arxiv.org/pdf/1606.02238v1 pp1–3核对；判据反例与原猜想分开。取Q避免J−I可逆性在正特征的遗漏条件。没有证明或反驳一般Thompson猜想，也不是Lean/Sage复跑。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "Q015-D-E-SPECIAL",
+      "url": "urn:qunxing:private-material",
+      "locator": "n=1,2全部域；任意阶可逆对角A的weighted-cycle Krylov证明",
+      "version": "本轮2026-11-26；fixed revf6a681e14f5facda",
+      "subquestions": [
+        "n≤2全部域特例",
+        "对角矩阵全部域特例"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "直接符号证明，非有限样本外推。对diag(a1,…,an)，取P e_i=e_(i+1)，K(e1)行列式为∏_(i=2)^n a_i^(n−i+1)≠0。无需特征根互异，char整除n时仍成立。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001201",
+      "other_card_rev": "a8bb1493e606b17d",
+      "relation": "仅相似",
+      "reason": "完整正文表明‘循环’不同义：本题cyclic/nonderogatory是μ_AP=χ_AP，问任意域GL(n,F)可否通过列置换达到；001201的circulant是行按循环位移排列，且H为实±1矩阵并满足HHᵀ=nI，问n>4不存在。定义、对象与量词完全不同，不构成同题或验证卡。pair_id=QX-P-001039__QX-P-001201；owner=001039在本包，可定此关系，不提合并。",
+      "positions": {
+        "self": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；problems/001/QX-P-001039.text.md题面、人话版cyclic≠元素循环排列、原文摘录16.95及形式化AP；同名.meta.json.acceptance.criteria。meta blob34631df40a3864bbd113ee76e1629ced57a6e69b；text blobc0a4b6848bee03b56cbac7a75cadf7eaa26464b2。",
+        "other": "commit 73290369a8dcc632e25e555aec525565ea6e08f8；problems/001/QX-P-001201.text.md形式化H∈{±1}^{n×n},HHᵀ=nI及人话版逐行循环右移定义；同名.meta.json.acceptance.criteria。meta blob39e3ea54fbc0d1d7f53ac219ef03aa61afaa3d76；text blob368ba068bc49e52fa1b4e715336fc55d227e517f。"
+      },
+      "note": "完整读取仅为查重；候选卡的其他数学断言、AI声明和历史进展未作为本题研究成果，未另开001201任务。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补声明",
+      "field": "sources/已知结果/相关进展",
+      "new": "P0：arXiv1606.02238必须显示2017-11-14已撤回；2016原稿和Kourovka历史已解注记均是失效证明链，附作者主页与实际错误定位。",
+      "reason": "当前卡只列直接对应/OPEN，漏撤回会让检索命中被误认有效闭合。补撤回与审查说明不改数学命题，无需因说明文字本身换card_rev。",
+      "evidence_ids": [
+        "R10-Q015-E-WITHDRAWAL",
+        "R10-Q015-E-HISTORICAL",
+        "R10-Q015-E-DIXON-CHECK"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "ai_claims/数学进展/形式化证据",
+      "new": "登记Chen项目固定版准确特例：n3全域形式化声称、n4有限特征与除有限多特征、n5指定秩一、任意维结构族；区分作者记录的内核日志、本轮静态源码检查、本轮普通代数负控和未执行的Lean构建/全证书复跑。主问题不得标已证。 附原稿式(2)漏P的局部纠错和正确秩等式；本轮另独立核三维至少两种好置换的加强结果。",
+      "reason": "2026公开候选是实质新线索，但未覆盖一般n，且各验证入口强度不同；索引旧简述n4allfields须以当前CLAIMS收窄。",
+      "evidence_ids": [
+        "R10-Q015-E-CLAIMS",
+        "Q015-A-E08",
+        "Q015-A-E09",
+        "Q015-A-E10",
+        "QX-P-001039-code-e2",
+        "QX-P-001039-code-e3",
+        "QX-P-001039-code-e4"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "first_published/来源说明",
+      "new": "2006是Kourovka第16辑编目；补Fulman2001-10-05在线、2002卷册pp55–56较早提及，并注明有限域上下文和非精确任意域GL的措辞。",
+      "reason": "已见早期一手论文，但没有取得更早精确全域原提案；不把背景提及直接改成原题2001完整提出的确定断言。",
+      "evidence_ids": [
+        "R10-Q015-E-EARLY"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "novelty.card_rev/查新覆盖元数据",
+      "old": "当前卡f6a681e14f5facda，但nestednovelty.card_rev=5eaad4c300a6d1c2且旧检查只编目/泛搜。",
+      "new": "把本回执绑定任务f6a681e14f5facda并记录2026-11-26实际四路线；旧nestedrev保留为历史，不当作当前同版新证据。",
+      "reason": "本轮不导入线上、不重写题卡；若以后修改正式量词、定义或验收才需新card_rev，单纯补进展/撤回元数据不自行造新题版本。",
+      "evidence_ids": [
+        "R10-Q015-E-ORIGINAL"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "开放状态证据",
+      "new": "用实际撤回链、2026部分结果和未完成覆盖说明当前状态；有限域随机cyclic比例、两个循环因子分解、2026循环共轭类乘积均不自动蕴含逐A置换轨道命题。",
+      "reason": "无星号或随机比例不能单独代替学术证明/反例查新。",
+      "evidence_ids": [
+        "Q015-A-E01",
+        "Q015-A-E06",
+        "Q015-A-E07",
+        "Q015-A-E08"
+      ],
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "计算验证及反例判定边界",
+      "new": "有限计算须逐一记录域、n、矩阵、右乘约定和循环判据；限制P只取单换位、n-cycle或某启发式所生的失败，只能反驳加强规则。作者verify.sh的记录/清单检查、求解器运行和Lean内核构建须分开记。",
+      "reason": "本轮GF7例虽六个单换位皆失败，仍有双换位给循环产品。不能把启发式失败或脚本PASS标成本卡反例或全题形式化通过。",
+      "evidence_ids": [
+        "QX-P-001039-code-e4",
+        "QX-P-001039-code-e5"
+      ],
+      "small_case_check": "实际核一个4×4矩阵在F7的24个右列置换；sigma=(1,0,3,2)与e1形成满秩Krylov矩阵，证明该中间规则反例满足原猜想。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "正式题面与acceptance的参数域",
+      "reason": "形式化短句只写∃P:AP cyclic，但题名、题面、原文摘录、人话和验收一致明确任意域F、任意可逆n×n矩阵A。不能仅因短句未再展开∀就制造P0或改成所有矩阵；回执保留f6a681e14f5facda。",
+      "small_case_check": "A=0且n≥2时所有AP=0非cyclic，说明可逆前提不可移除；该对象已被当前完整题面排除。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "边界与约定/低维及可逆对角特例",
+      "new": "n=1成立。n=2时非标量A本身cyclic，取P=I；标量A=aI且a≠0时取交换矩阵即可。任意阶可逆对角A选一个n-cycle置换，e1的Krylov行列式为非零对角元素的乘积，故成立；包括char(F)整除n。",
+      "reason": "提供可复核的全域特例而非有限数表；不覆盖任意n下的一般A。只补进展，不改正式题目或版本。",
+      "evidence_ids": [
+        "Q015-D-E-SPECIAL"
+      ],
+      "small_case_check": "char2的2cycle仍有K(e1)=[e1,e2]，虽t²−1=(t−1)²具有重根，矩阵仍cyclic。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "边界与约定/列置换、循环性及证书",
+      "new": "P e_i=e_(σ(i))时，AP的第i列是A的第σ(i)列；不是P⁻¹AP的共轭换基。cyclic要求单向量Krylov矩阵满秩，或最小多项式等于特征多项式，不要求特征根互异，也不等同circulant。候选反例须对所有n!个P证明AP非cyclic，不能只查一个P或只查标准基向量是否循环。",
+      "reason": "当前人话已正确排除circulant歧义，建议保留并补证书要求。只修辅助说明；任何实际更改矩阵域/允许变换/量词须新rev。",
+      "small_case_check": "I_n(n>1)是circulant却非cyclic；diag(1,2)在Q上cyclic却非circulant。共轭保持cyclic，标量矩阵共轭仍标量，右乘n-cycle却可变cyclic。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "原题与出处",
+      "reason": "P0：旧完整证明撤回与2016历史已解编目需一并标明；来源摘要仍保留proved措辞。",
+      "next_step": "人工复核原版及withdrawal后更新来源显示和证据状态，禁止直接据旧星号闭合原题；保留本轮Q3可复核负控。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "新项目有实际Lean源码与作者记录的axiom日志，但本轮没有可用Lean/Lake/msolve/Singular，也未执行正式内核构建或全Gröbner重算。",
+      "next_step": "在固定commit和依赖环境执行真正lean-build并采集主定理类型及#printaxioms；对于n4/n5另独立核编码、所有terminal覆盖、理想单位证书及特征/域下降。quick或读取AXIOMS日志的PASS不得当本轮内核复跑。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "Chen2026 n4/n5完整证书规模大，本分工只读稿和局部手证，未复跑所有单位理想/DPLL树及Lean；N尚未计算完。",
+      "next_step": "保留各子结果的声明/静态/复跑层级；若要升级n4全域必须取得完整整数收缩证书并覆盖全部异常素数，不能用已完成部分的{2,3}代替全列表。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "Fulman现可核正式在线发表日2001-10-05；arXivmath/0003195v1打开失败，段落首次出现时间未定，有限域上下文也未重述精确全称量词。",
+      "next_step": "如需精确最早提出时间，取得2000v1实际全文及早期书信/版本；在此之前将Fulman仅标同意图早期来源。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "2606.17885仅primary索引摘要，abs/html/pdf主站均工具失败；最新题名/DOI检索也不能穷尽所有后续。",
+      "next_step": "若引用该近名论文的具体定理再取全文；当前只按摘要范围排除直接全解，并在全称状态结论保留本轮检索范围限制。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮无lean/lake/msolve/Singular可执行程序；n3已作静态与独立数学核对，但作者保存的构建日志不是本轮kernel结果。",
+      "next_step": "有已就绪的固定依赖环境时，只需针对n3及必要依赖执行真正Lean构建和#print axioms；继续保留作者声明/本轮数学核对/本轮kernel三层，不能用verify.sh lean或quick替代。当前不安装或启动大规模构建。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "C6/C8涉及计算证书、case cover及特征转移，未在本轮全部重新验证；正式声明仍有未知例外特征。",
+      "next_step": "结合主审论文核查，若要把这些计算声明升级为已独立验证，需核完整分支覆盖、由输入到unit ideal的正确性、所有终端而非样本、整数收缩及例外素数；不能只依赖计数/退出码或旧brief的every-field标签。",
+      "batch_id": "QX-R3-10",
+      "card_rev": "f6a681e14f5facda",
+      "codes": {}
+    }
+  ]
+}

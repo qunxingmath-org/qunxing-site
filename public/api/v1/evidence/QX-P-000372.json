@@ -1,0 +1,1977 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000372",
+  "card_rev": "af948e4709058509",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-26",
+      "basis": [
+        "batch:QX-R3-02"
+      ],
+      "parts": [
+        {
+          "subquestion": "1-periods 特例：相等、代数系数线性关系及超越性",
+          "value": "claimed_resolution",
+          "note": "Sertöz–Ouaknine–Worrell 2025 的完整稿给出理论无条件算法，覆盖曲线上的 1-periods；实际核了有效输入、Main Theorem、推论、§2 算法和主要依赖条件，尚未逐项审完长证明或复跑实现。不能扩大成全部 KZ 周期，也不称其首次令 1-period 判等可判定。"
+        },
+        {
+          "subquestion": "每个实周期可计算，以及认证近似能够半判定不等",
+          "value": "partial",
+          "note": "Yoshinaga Theorem 18 给每个实周期为 elementary real，含有效近似模；只靠等位数越来越多不能认证相等。给定认证误差的近似时，不等有可终止检验。任意原始积分输入的统一有效近似桥接由本回执另列的 Cor2.19 分解与半代数网格论证另记，不将存在性常数当成已提供的统一程序。"
+        },
+        {
+          "subquestion": "有效完备证书体系加统一逼近时的条件判等",
+          "value": "partial",
+          "note": "假设所有真的等式都有可有效枚举且可核验的健全证书，则与不等的认证逼近程序交错运行可判定。2020 附录把这一路径关联到 KZ 有限变换猜想，但所读材料未提供全部有效编码论证；保留 KZ2001 对“猜想证明不自动给算法”的提醒，不将条件推论当作主问解答。"
+        },
+        {
+          "subquestion": "有效period输入的不等半判定",
+          "value": "partial",
+          "note": "由Cor2.19有效约化和本轮补写的内外有理网格夹逼，可统一认证输入period的不等；在不等时有限停止，相等时不保证停机。已将有效输入到误差证书的桥接写入372-ROOT-E01，不只用“每个period是computable”这一非统一的集合包含语句。未实现该算法，未取得相等侧的无条件完整程序。"
+        },
+        {
+          "subquestion": "非零period到单一紧半代数体积的半规范化",
+          "value": "partial",
+          "note": "Thm1.1的输入承诺是p≠0，输出sgn(p)·vol(K)；本轮核定这一前提和核心正体积差终止机制，没有把该过程在p=0时的行为冒充一般零判定。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "statement_only",
+      "as_of": "2026-11-26",
+      "basis": [
+        "https://github.com/TauCetiProject/TauCetiRoadmap/blob/8594ee63ad92b22433b324f8574f1e2343326a66/TauCetiRoadmap/PeriodsAndSpecialValues/Suggested.lean"
+      ],
+      "note": "只覆盖：同源不同问"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-26",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://www.ihes.fr/~maxim/TEXTS/Periods.pdf",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "checked_at": "2026-11-26",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "已核MO83004与K–Z2001 Problem1为同一总体相等判定问题：输入两个合法周期的有限积分表示，要求统一算法对所有合法输入都停机并正确判等，或严格证明不存在这种算法。本回执记录的出处、学术、代码及公开社区范围没有取得覆盖任意KZ周期的完整算法或不可判定证明。实周期可计算、认证不等可半判定已有依据；2025年完整稿对1-periods给理论无条件关系空间算法，仅属曲线积分特例且本轮未全审长证明，单独记完整声明待核。主状态“部分进展”不表示一般判等已解决。2013“没有已知算法”只是历史状态，不能改成“不存在算法”。现卡“周期”术语已隐含绝对收敛等标准定义，不因省略展开而判题面错误；应明确有限编码、合法输入承诺、符号及实虚部。KZ规则完备性、数值可计算性、不等半判定及一般等式判定分别登记。旧novelty.card_rev=48f6aa0ea37bc024不匹配本任务af948e4709058509，未将旧记录迁移为本轮查新。",
+      "evidence_ids": [
+        "372-SRC-E01",
+        "372-SRC-E02",
+        "372-SRC-E03",
+        "372-ACA-E01",
+        "372-ACA-E02",
+        "372-ROOT-E01"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "1-periods 特例：相等、代数系数线性关系及超越性",
+      "math_status": "完整声明待核",
+      "scope_note": "Sertöz–Ouaknine–Worrell 2025 的完整稿给出理论无条件算法，覆盖曲线上的 1-periods；实际核了有效输入、Main Theorem、推论、§2 算法和主要依赖条件，尚未逐项审完长证明或复跑实现。不能扩大成全部 KZ 周期，也不称其首次令 1-period 判等可判定。",
+      "evidence_ids": [
+        "372-ACA-E01"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "math_status": "claimed_resolution"
+      }
+    },
+    {
+      "subquestion": "每个实周期可计算，以及认证近似能够半判定不等",
+      "math_status": "实质进展",
+      "scope_note": "Yoshinaga Theorem 18 给每个实周期为 elementary real，含有效近似模；只靠等位数越来越多不能认证相等。给定认证误差的近似时，不等有可终止检验。任意原始积分输入的统一有效近似桥接由本回执另列的 Cor2.19 分解与半代数网格论证另记，不将存在性常数当成已提供的统一程序。",
+      "evidence_ids": [
+        "372-ACA-E02"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有效完备证书体系加统一逼近时的条件判等",
+      "math_status": "条件性结果",
+      "scope_note": "假设所有真的等式都有可有效枚举且可核验的健全证书，则与不等的认证逼近程序交错运行可判定。2020 附录把这一路径关联到 KZ 有限变换猜想，但所读材料未提供全部有效编码论证；保留 KZ2001 对“猜想证明不自动给算法”的提醒，不将条件推论当作主问解答。",
+      "evidence_ids": [
+        "372-ACA-E02",
+        "372-ACA-E03"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "有效period输入的不等半判定",
+      "math_status": "实质进展",
+      "scope_note": "由Cor2.19有效约化和本轮补写的内外有理网格夹逼，可统一认证输入period的不等；在不等时有限停止，相等时不保证停机。已将有效输入到误差证书的桥接写入372-ROOT-E01，不只用“每个period是computable”这一非统一的集合包含语句。未实现该算法，未取得相等侧的无条件完整程序。",
+      "evidence_ids": [
+        "372-ROOT-E01"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "非零period到单一紧半代数体积的半规范化",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "Thm1.1的输入承诺是p≠0，输出sgn(p)·vol(K)；本轮核定这一前提和核心正体积差终止机制，没有把该过程在p=0时的行为冒充一般零判定。",
+      "evidence_ids": [
+        "372-ROOT-E01",
+        "372-ROOT-E02"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "request_id": "QX-R3-02-372-SRC-001-open-1",
+      "route": "原题与出处",
+      "site": "MathOverflow",
+      "query": "open https://mathoverflow.net/questions/83004",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://mathoverflow.net/questions/83004",
+      "note": "短URL直开失败；不是搜索无命中。后续完整slug成功获取正文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-SRC-001-open-2",
+      "route": "原题与出处",
+      "site": "IHES / Kontsevich作者档案",
+      "query": "open https://www.ihes.fr/~maxim/TEXTS/Periods.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.ihes.fr/~maxim/TEXTS/Periods.pdf",
+      "locator": "提取文本行0附近",
+      "note": "实际取得38页IHES/M/01/22、Mai2001作者PDF文本层；精读相关§1.1定义、§1.2 Problem1/Conjecture1，没有声称全篇所有数学结果均已重证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-SRC-002-find-1",
+      "route": "原题与出处",
+      "site": "IHES / Kontsevich作者档案",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=Problem 1 〔私有记录编号：PR-000384〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.ihes.fr/~maxim/TEXTS/Periods.pdf",
+      "locator": "Problem 1",
+      "note": "实际取得38页IHES/M/01/22、Mai2001作者PDF文本层；精读相关§1.1定义、§1.2 Problem1/Conjecture1，没有声称全篇所有数学结果均已重证。 同一定位同时读到p.7 Conjecture1及P1后说明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-SRC-002-find-2",
+      "route": "原题与出处",
+      "site": "IHES / Kontsevich作者档案",
+      "query": "find 〔原始工具引用已私有留存〕 pattern=Conjecture 1 〔私有记录编号：PR-000385〕",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "url": "https://www.ihes.fr/~maxim/TEXTS/Periods.pdf",
+      "locator": "Conjecture 1",
+      "note": "精确字符串find无命中，原因是PDF文本层将Conjecture断成多行；目标Conjecture1已在Problem1定位和后续定点读取中实际读到，不能把本次无命中解释为文中没有该猜想。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-SRC-002-system1_search_query-1",
+      "route": "原题与出处",
+      "site": "Web Search / system1",
+      "query": "site:mathoverflow.net/questions/83004 periods algorithm",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "url": "https://mathoverflow.net/questions/83004/algorithmic-decidability-of-equality-in-the-ring-of-periods",
+      "note": "定位完整MO slug，并在检索返回中读到原问、2011评论和2013唯一答复；随后另行直开完整slug成功。不把其他问题的评论或新活动时间算到MO83004。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-SRC-002-open-1",
+      "route": "原题与出处",
+      "site": "Stack Exchange API",
+      "query": "open https://api.stackexchange.com/2.3/questions/83004?site=mathoverflow&filter=withbody",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "url": "https://api.stackexchange.com/2.3/questions/83004?site=mathoverflow&filter=withbody",
+      "note": "withbody API请求返回not accessible via this tool；本轮不声称API核准accepted状态、更新时间或评论完整性。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-SRC-003-open-1",
+      "route": "原题与出处",
+      "site": "MathOverflow",
+      "query": "open https://mathoverflow.net/questions/83004/algorithmic-decidability-of-equality-in-the-ring-of-periods",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://mathoverflow.net/questions/83004/algorithmic-decidability-of-equality-in-the-ring-of-periods",
+      "locator": "原问L32–L34；历史评论L60–L71；唯一答复L86、L94",
+      "note": "实际读取原问、页面显示的两条2011评论和2013答复。网页工具标为2个月前抓取；本轮读取日期不是动态最后活动日期，未把页面缺accepted标识解释成API确认无accepted。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-SRC-003-open-2",
+      "route": "原题与出处",
+      "site": "IHES / Kontsevich作者档案",
+      "query": "open 〔原始工具引用已私有留存〕 lineno=627 〔私有记录编号：PR-000386〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.ihes.fr/~maxim/TEXTS/Periods.pdf",
+      "locator": "提取文本行627附近",
+      "note": "实际取得38页IHES/M/01/22、Mai2001作者PDF文本层；精读相关§1.1定义、§1.2 Problem1/Conjecture1，没有声称全篇所有数学结果均已重证。 p.6明确有限描述包括integrand与domain；pp.6–7逐项列出三条积分变换规则。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-001",
+      "route": "学术",
+      "site": "Web Search / System1",
+      "query": "\"Kontsevich\" \"Zagier\" \"periods\" \"decidable\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕; 〔原始工具引用已私有留存〕; turn850347957academia8",
+      "note": "组合搜索返回 2025 年 1-periods 算法及 2020 年条件性讨论；搜索阶段仅索引/摘要，后续逐篇实际打开。此请求未检得覆盖全部周期的无条件完整算法或不可判定证明。 检索参数 recency=1095 天。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-001",
+      "route": "学术",
+      "site": "Web Search / System1",
+      "query": "\"equality of periods\" algorithm undecidable",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕; 〔原始工具引用已私有留存〕; turn850347957academia8",
+      "note": "返回原 MO 题与条件性/计算问题资料；不能把一般可计算实数相等不可判定套用到周期子类。组合检索不伪分配每个 query 的命中数。 检索参数 recency=1095 天。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-001",
+      "route": "学术",
+      "site": "Web Search / System1",
+      "query": "\"periods\" \"computability\" \"Yoshinaga\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕; 〔原始工具引用已私有留存〕; 〔原始工具引用已私有留存〕",
+      "note": "检到 Yoshinaga 可计算性及 Tent–Ziegler 改进相关索引；此学术核查只深入 Yoshinaga 原稿，不转移其他论文的版本/勘误信息。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-002",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open({\"ref_id\":\"https://arxiv.org/abs/2505.20397\"})",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "arXiv 摘要、元数据和版本页实读；仅 v1，2025-05-26，当前显示 68 页。",
+      "url": "https://arxiv.org/abs/2505.20397",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-002",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open({\"ref_id\":\"https://arxiv.org/pdf/2505.20397\"})",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "取得 68 页完整 PDF；本次重点阅读定义、主定理和算法，并非已审完全部证明。只涉及 1-periods。",
+      "url": "https://arxiv.org/pdf/2505.20397",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-002",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open({\"ref_id\":\"https://arxiv.org/abs/0805.0349\"})",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "Yoshinaga arXiv 元数据与摘要实读；v1，2008-05-03。",
+      "url": "https://arxiv.org/abs/0805.0349",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-002",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open({\"ref_id\":\"https://arxiv.org/pdf/0805.0349\"})",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "取得 19 页完整 PDF，实读引言与定义；后续定位 Definition 9 / Theorem 18 / Lemma 29。可计算性不等同于等式判定。",
+      "url": "https://arxiv.org/pdf/0805.0349",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-003",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":89}) 〔私有记录编号：PR-000387〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "打开 1-periods 引言和定义附近；当次显示范围不足以替代主定理审读，后续另行定位。",
+      "url": "https://arxiv.org/pdf/2505.20397",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-003",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 18\"}) 〔私有记录编号：PR-000388〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "Theorem 18（p11）与 Lemma 29（p17）相关原文实读。后者的常数 L(D) 是依赖域的存在量，不能仅凭该句宣称已给统一输入算法。",
+      "url": "https://arxiv.org/pdf/0805.0349",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-003",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Definition 9\"}) 〔私有记录编号：PR-000389〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "Definition 9（p7）实读：elementary real 的近似定义包括有效收敛模。",
+      "url": "https://arxiv.org/pdf/0805.0349",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-003",
+      "route": "学术",
+      "site": "Web Search / System1",
+      "query": "\"periods\" \"semidecidable\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕; 〔原始工具引用已私有留存〕",
+      "note": "返回带同词的工作坊/问答索引，未取得可作为一般周期判等算法的直接证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-003",
+      "route": "学术",
+      "site": "Web Search / System1",
+      "query": "\"Kontsevich\" \"Zagier\" \"algorithm\" \"conjecture\" \"enumerate\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕; 〔原始工具引用已私有留存〕; 〔原始工具引用已私有留存〕",
+      "note": "检到 KZ 猜想几何重述及 MO 软件问答索引；未将有限变换的存在性自动当作有效证书枚举。1912.01751 由 ROOT 独立核，本站点摘要不算此学术核查全文证据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-003",
+      "route": "学术",
+      "site": "Web Search / System1",
+      "query": "\"Computing transcendence and linear relations of 1-periods\" correction erratum withdrawn",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕; 〔原始工具引用已私有留存〕; turn959840917academia5",
+      "note": "精确题名加 correction/erratum/withdrawn 搜索，返回论文/作者索引，未返回该稿撤回或勘误通知；这只是限定检索未见。作者摘要索引写 54 页，本次 arXiv 版本页与 PDF 为 68 页，不据此虚构 v2。 检索参数 recency=730 天。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-004",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 1.0\"}) 〔私有记录编号：PR-000390〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "实读 (1.0.7–10) 有效输入约定、Main Theorem (1.0.11)、Corollaries (1.0.12–14)，印刷 p3–4。",
+      "url": "https://arxiv.org/pdf/2505.20397",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-004",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Theorem 1.\"}) 〔私有记录编号：PR-000391〕",
+      "date": "2026-11-26",
+      "outcome": "命中已排除",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "该较宽模式落到后文 Baker 对数定理等引用，不单靠这次 find 认定主定理已定位。",
+      "url": "https://arxiv.org/pdf/2505.20397",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-004",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Algorithm 2.\"}) 〔私有记录编号：PR-000392〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "命中算法的引言交叉引用和末节应用；下一请求用精确标签定位 §2。",
+      "url": "https://arxiv.org/pdf/2505.20397",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-004",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open({\"ref_id\":\"https://arxiv.org/abs/2007.12282\"})",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "2020 年 holonomic sequences 论文 arXiv 题录及摘要实读。",
+      "url": "https://arxiv.org/abs/2007.12282",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-004",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open({\"ref_id\":\"https://arxiv.org/pdf/2007.12282\"})",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "取得 38 页 PDF；当次先读开头，随后核 Appendix A.2，不将它认作主问题完整证明。",
+      "url": "https://arxiv.org/pdf/2007.12282",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-005",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "screenshot({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pageno\":3}) 〔私有记录编号：PR-000393〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "截图核印刷 p4 主定理/推论，确认关系空间系数域为代数数闭包 Q-bar，避免文本提取漏上划线而误写为仅有理线性关系。",
+      "url": "https://arxiv.org/pdf/2505.20397",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-005",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"(2.0.1) Algorithm\"}) 〔私有记录编号：PR-000394〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "§2 (2.0.1–14)，印刷 p7–8 原文已读；输出关系空间基，步骤依赖同调计算、Jacobian 自同态代数、supersaturation 等。未完整核验各依赖证明。",
+      "url": "https://arxiv.org/pdf/2505.20397",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-005",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"Conjecture A.2\"}) 〔私有记录编号：PR-000395〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "Appendix A.2 的 KZ 有限变换猜想与其条件性应用实读。",
+      "url": "https://arxiv.org/pdf/2007.12282",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-005",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "find({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"pattern\":\"A.2 Periods\"}) 〔私有记录编号：PR-000396〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "定位 Appendix A.2；该文不是一般周期问题的新无条件解答。",
+      "url": "https://arxiv.org/pdf/2007.12282",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-005",
+      "route": "学术",
+      "site": "Web Search / System1",
+      "query": "\"equality of periods\" \"undecidable\" \"2025\" OR \"2026\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕; 〔原始工具引用已私有留存〕; 〔原始工具引用已私有留存〕",
+      "note": "针对近期一般判等/不可判定声明的限定检索，命中仍为原问、1-periods 特例和几何重述；未检得覆盖原题的完整无条件声明。 检索参数 recency=730 天。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-005",
+      "route": "学术",
+      "site": "Web Search / System1",
+      "query": "\"Kontsevich\" \"Zagier\" \"period\" \"equality\" \"algorithm\" \"2026\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "locator": "〔原始工具引用已私有留存〕; 〔原始工具引用已私有留存〕; 〔原始工具引用已私有留存〕",
+      "note": "返回 2025 年 1-periods 论文索引及旧文，无覆盖全部周期的新完整证明；日期词命中不能当成 2026 年新版本。 检索参数 recency=730 天。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-006",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":2022}) 〔私有记录编号：PR-000397〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "p27 Appendix A.2 明说猜想将蕴含可判定，但这里未给有效可枚举、机器可检查的证书系统构造；与 KZ2001 caveat 一起谨慎记录。",
+      "url": "https://arxiv.org/pdf/2007.12282",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-006",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":197}) 〔私有记录编号：PR-000398〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "§1.1.17–21：旧分离界已原则上允许 1-period 判等；实用自同态半算法终止依赖 Mumford–Tate，理论无条件替代为 Lombardo 有效构造。不能把整个主定理误记为条件性，也不声称其为首个 1-period 判等算法。",
+      "url": "https://arxiv.org/pdf/2505.20397",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ACA-006",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open({\"ref_id\":\"〔原始工具引用已私有留存〕\",\"lineno\":30}) 〔私有记录编号：PR-000399〕",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "locator": "〔原始工具引用已私有留存〕",
+      "note": "完整 arXiv 元数据再次确认只列 v1（2025-05-26），68 页，未显示撤回标记；无独立期刊审稿结论。",
+      "url": "https://arxiv.org/abs/2505.20397",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-001",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Kontsevich\" \"Zagier\" \"periods\" (Lean OR Isabelle OR Coq OR github) equality",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "与下一条同一次两查询请求。返回KZ原文、1912.01751、2505.20397的论文摘要/镜像、公开项目文档与MO原线程。学术/原出处线索已转各负责人；此代码与社区路线不把摘要升级为已读论文或一般解答。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-001",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"equality of periods\" (algorithm OR code OR \"AI\" OR formalized)",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "refs 〔原始工具引用已私有留存〕–11、turn447280081academia8、turn447280081academia12。1-periods摘要明确仅一维积分/1-motive范围；ProofAtlas为相关Grothendieck period目录，搜索摘录不是已解决证明。没有为合并返回虚构子查询的精确命中数。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-002",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub global code search",
+      "query": "Kontsevich Zagier periods; topn=10",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "检查前10项路径及命中片段，主要是研究笔记、书目、路线图、网页副本等。Prometheus与TauCeti进入定向原文核对；其他未取得全文的仓库不登记为证明。没有将periodic函数、周期群或数值相同当一般period等式决策。",
+      "result_count": 10,
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-003",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / google-deepmind/formal-conjectures / openai/math",
+      "query": "Kontsevich Zagier; repository_name=[google-deepmind/formal-conjectures,openai/math]; topn=10",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "工具实际返回空results；仅支持本次关键词与两个仓库范围内无命中，不排除改名、未索引或其他仓库。",
+      "result_count": 0,
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-004",
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "全部2469条title/title_en/aliases：period|Kontsevich|Zagier|周期|半代数|semialgebraic|积分.*等|等.*积分|computable.*real",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "48项宽匹配，大部分是周期轨道、周期群、递推周期等同名噪声；未仅凭标题判断重复。除本题外，262的Zagier MZV维数是实质相关候选，后续取得双方固定meta+全文。",
+      "result_count": 48,
+      "locator": "全库查重简索引.jsonl，SHA256 f8cb9c4e9e263756a5078cdbb6094c065ecd704586a97e171cebb5e695476701",
+      "match_reason": "查period数的相等/可判定性、KZ与半代数表示；periodic同名结果不作为同题依据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-005",
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "fetch_file problems/000/QX-P-000372.meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核得id=QX-P-000372、card_rev=af948e4709058509，与当前包一致。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000372.meta.json",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-006",
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "fetch_file problems/000/QX-P-000372.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "已读完整正文；任务是从任意两个period的有限积分表示判等，或确定该问题不可判定；不是固定权MZV空间维数公式。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000372.text.md",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-007",
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "fetch_file problems/000/QX-P-000262.meta.json @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "核得id=QX-P-000262、card_rev=87521d2f422b4a06，与索引一致；来源为Zagier MZV维数猜想。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000262.meta.json",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-008",
+      "route": "库内查重",
+      "site": "GitHub / qunxingmath-org/qunxing-data",
+      "query": "fetch_file problems/000/QX-P-000262.text.md @ 73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "已读完整正文，记录其对所有权n的MZV有理线性空间维数递推与初值；与372的输入表示和判定算法目标不同。262编号较小，本题仅回传共同pair和待核转交，不作最终关系判定或合并。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000262.text.md",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-009",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / jcraig949jfi/Prometheus",
+      "query": "fetch_file ergon/docs/kontsevich_period_conjecture.md @ eff323d95f2713a79d0b547b8871854996a2ced6",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "全文为项目研究文档，计算部分明确用高精度L值及PSLQ寻找candidate关系；未提供对任意period表示总停机且正确的等式算法、完整证明或形式化端点。文中若干关于已有结果的强断言未在本轮获原论文支持，故不采用为数学事实，也不据文档宣称主问已解。",
+      "url": "https://github.com/jcraig949jfi/Prometheus/blob/eff323d95f2713a79d0b547b8871854996a2ced6/ergon/docs/kontsevich_period_conjecture.md",
+      "locator": "PSLQ for Discovering Period Relations；Computational Approaches for Ergon",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-010",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / TauCetiProject/TauCetiRoadmap",
+      "query": "fetch_file TauCetiRoadmap/PeriodsAndSpecialValues/README.md @ 8594ee63ad92b22433b324f8574f1e2343326a66",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得2633行README，实际读核头部/How to read the build、PS.2、PS.7.4、PS.9.23范围段，未声称逐行通读全文件。README说明Suggested.lean含sorry目标、不提供证明；PeriodConjecture被保留为evaluation单射性的独立假设，误差区间重叠不建立相等。",
+      "url": "https://github.com/TauCetiProject/TauCetiRoadmap/blob/8594ee63ad92b22433b324f8574f1e2343326a66/TauCetiRoadmap/PeriodsAndSpecialValues/README.md",
+      "locator": "How to read the build；PS.2；PS.7.4；PS.9.23",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-011",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub global code search",
+      "query": "2505.20397; topn=10",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "前10项主要是RSS、书目、论文摘要工具及其他项目的引用；没有取得对应1-period等式算法实现。不进一步打开无关摘要管线或把纸面算法引用当作实现/复跑。",
+      "result_count": 10,
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"2505.20397\" code implementation github",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "与后两条同一次三查询请求。alphaXiv /replicate/2505.20397 搜索结果是启动工具后请求复现论文的通用入口，没有复现结果或运行日志；未执行其安装指令。ref 〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"equality of periods\" Lean github",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "未在返回内容中取得一般period等式判定的Lean证明；混入其他periodicity/Lean材料，未纳入。这里不是全网无形式化的断言，也不为合并结果分配子查询计数。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-012",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Sertöz\" periods software github",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中作者网站PeriodSuite、2019论文Computing periods of hypersurfaces及ore_algebra示例；refs 〔原始工具引用已私有留存〕–11、20–24。随后直接核PeriodSuite固定版本README。它对应2019数值计算项目，不据此说2025年1-period等式算法已有实现。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-013",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub API / emresertoz/PeriodSuite",
+      "query": "GET /repos/emresertoz/PeriodSuite/commits?per_page=1",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "默认分支最新提交实际返回 e3be3aaef02a63cf04265a552fda893f77b9d2cc，提交时间2024-02-22T19:15:44Z；后续按此提交读取文档。",
+      "url": "https://api.github.com/repos/emresertoz/PeriodSuite/commits?per_page=1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-014",
+      "route": "库内查重",
+      "site": "包内全库查重简索引.jsonl",
+      "query": "全部2469条title/title_en/aliases：Kontsevich|Zagier|periods?\\b.*(?:equal|decid)|(?:equal|decid).*periods?\\b|周期数|半代数|semialgebraic",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "收紧后只命中本题和262；两题完整固定版本均已取得。检索仅覆盖简索引字段，并不等于对全部2469张卡正文做语义审查。",
+      "result_count": 2,
+      "match_reason": "排除periodic同名噪声，关注period equality/decidability与KZ命名。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-015",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / emresertoz/PeriodSuite",
+      "query": "fetch_file README.md @ e3be3aaef02a63cf04265a552fda893f77b9d2cc",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整读README：输入超曲面多项式，PeriodHomotopy按precision返回周期矩阵；关联Picard/Hodge计算明确缺少certification，virtual lattice可能因精度不足而不同。没有一般period等式判定接口或相应正确性/终止性声明。本轮未下载执行软件或跑示例。",
+      "url": "https://github.com/emresertoz/PeriodSuite/blob/e3be3aaef02a63cf04265a552fda893f77b9d2cc/README.md",
+      "locator": "Overview；Usage/precision；Hodge rank；Advanced usage",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-AUX-016",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub / TauCetiProject/TauCetiRoadmap",
+      "query": "fetch_file TauCetiRoadmap/PeriodsAndSpecialValues/Suggested.lean @ 8594ee63ad92b22433b324f8574f1e2343326a66",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得246行文件，静态核头部范围、全部目标声明及其sorry证明体。共13个目标以sorry结束，内容为Legendre积分变换/误差、四次超几何、Dwork级数、MZV恒等式与维数上界；没有一般period的等式决策算法声明。文件头明确period-conjecture应用因缺formal-period algebra未能在该依赖版本陈述。未构建或独立复跑。",
+      "url": "https://github.com/TauCetiProject/TauCetiRoadmap/blob/8594ee63ad92b22433b324f8574f1e2343326a66/TauCetiRoadmap/PeriodsAndSpecialValues/Suggested.lean",
+      "locator": "模块头部范围说明；13个theorem声明及sorry；不含一般PeriodConjecture/decidability端点",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-001",
+      "route": "原题与出处",
+      "site": "MathOverflow",
+      "query": "open https://mathoverflow.net/questions/83004",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "短URL直接访问not accessible via this tool；本回执出处路线另以完整slug成功读原问/答案，不将本次失败改写为成功。",
+      "url": "https://mathoverflow.net/questions/83004",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-001",
+      "route": "学术",
+      "site": "Web Search / system2",
+      "query": "periods equality decidable algorithm Kontsevich Zagier computable Yoshinaga",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回Yoshinaga可计算性、2025一元1-periods算法、2022几何研究、半规范化论文及二手词条。前两条交学术路线直接读原稿；root只将二手摘要作导航，不以其条件蕴含说法代替KZ原文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-002",
+      "route": "学术",
+      "site": "Numdam / JTNB",
+      "query": "open https://www.numdam.org/articles/10.5802/jtnb.1204/",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "核书目Cresson–Viu-Sos，JTNB34(2)(2022),323–343，DOI10.5802/jtnb.1204；received2019-12-03/revised2022-04-07/accepted2022-05-21/online2022-10-24，不用搜索爬取日期代替出版年。",
+      "url": "https://www.numdam.org/articles/10.5802/jtnb.1204/",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-002",
+      "route": "学术",
+      "site": "Numdam / JTNB",
+      "query": "open https://www.numdam.org/item/10.5802/jtnb.1204.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得22页正刊PDF，实际读定义、半规范化引理引用、几何猜想及相关障碍；研究一般period关系的几何途径，不是完整等式算法。",
+      "url": "https://www.numdam.org/item/10.5802/jtnb.1204.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-002",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/1912.01751",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "核v1为2019-12-04、v2为2022-04-14；v2说明把Problems A/B改写为conjectures、澄清与KZ关系并纠排版；没有完整解决声明。",
+      "url": "https://arxiv.org/abs/1912.01751",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-002",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/abs/1509.01097",
+      "date": "2026-11-26",
+      "outcome": "仅摘要",
+      "note": "核v1=2015-09-03，最新v4=2020-07-15；v4说明主证明和过程经过重大修订/纠错，正刊将不含附录。先记版本，不凭摘要声称读过主证明。",
+      "url": "https://arxiv.org/abs/1509.01097",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-003",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "open https://arxiv.org/pdf/1509.01097v4",
+      "date": "2026-11-26",
+      "outcome": "工具失败",
+      "note": "该带版本PDF入口返回DisabledError；后续沿abs页ViewPDF成功取得页头标v4的全文，分别保留失败和成功。",
+      "url": "https://arxiv.org/pdf/1509.01097v4",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-003",
+      "route": "学术",
+      "site": "JTNB PDF / web.find",
+      "query": "find pattern=\"non-zero\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "定位p325引述的非零实period半规范化：sgn(p)·vol(K)，不能据此判定p=0。",
+      "url": "https://www.numdam.org/item/10.5802/jtnb.1204.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-003",
+      "route": "学术",
+      "site": "JTNB PDF / web.find",
+      "query": "find pattern=\"Conjecture B\"",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "只表示此精确标签在取得文本中无匹配；正式稿实际改用Conjecture1.1等标签，不能说没有几何猜想。",
+      "url": "https://www.numdam.org/item/10.5802/jtnb.1204.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-003",
+      "route": "学术",
+      "site": "JTNB PDF / web.find",
+      "query": "find pattern=\"counterexample\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "实读pp336–337：去掉剪裁操作后无全局PL映射的障碍不是KZ或等式可判定性的反例；有理多面体标准体积结果也仅覆盖有理数。",
+      "url": "https://www.numdam.org/item/10.5802/jtnb.1204.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-004",
+      "route": "学术",
+      "site": "arXiv",
+      "query": "click 〔原始工具引用已私有留存〕 link_id=7 〔私有记录编号：PR-000400〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得22页原稿，PDF页头明确1509.01097v4 15Jul2020。已读§1.1的两问题区别、Thm1.1非零前提，随后核§2/§3及伪代码范围；非一般等式算法。",
+      "url": "https://arxiv.org/pdf/1509.01097",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-004",
+      "route": "学术",
+      "site": "Web Search / system1",
+      "query": "\"A semi-canonical reduction for periods\" \"zero\"",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际同批两查询，返回论文版本、学位论文及2021正式刊发书目；本轮未获得另行撤回公告。v4已记录的主证明修订不冒充新增2026勘误，也不将论文伪代码当已运行实现。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-004",
+      "route": "学术",
+      "site": "Web Search / system1",
+      "query": "\"A semi-canonical reduction\" erratum correction",
+      "date": "2026-11-26",
+      "outcome": "仅标题/索引或摘要",
+      "note": "实际同批两查询，返回论文版本、学位论文及2021正式刊发书目；本轮未获得另行撤回公告。v4已记录的主证明修订不冒充新增2026勘误，也不将论文伪代码当已运行实现。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-005",
+      "route": "原题与出处",
+      "site": "IHES / KZ作者稿",
+      "query": "open https://www.ihes.fr/~maxim/TEXTS/Periods.pdf",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "取得38页作者稿，页首Mai2001、IHES/M/01/22；随后定点读p7 Problem1与Conjecture1的区别。",
+      "url": "https://www.ihes.fr/~maxim/TEXTS/Periods.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-005",
+      "route": "学术",
+      "site": "Viu-Sos PDF / web.find",
+      "query": "find pattern=\"Nonzero\"",
+      "date": "2026-11-26",
+      "outcome": "执行无命中",
+      "note": "精确拼写Nonzero未匹配；全文实际用non-zero且Thm1.1已读，不把本词无命中解释为没有非零条件。",
+      "url": "https://arxiv.org/pdf/1509.01097",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-005",
+      "route": "学术",
+      "site": "Viu-Sos PDF / web.find",
+      "query": "find pattern=\"while\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "定位AppendixA Algorithm4，其输入明确vol(K2)<vol(K1)，循环终止使用Lemma3.2；未执行伪代码，未将该正差值promise过程当零判定。",
+      "url": "https://arxiv.org/pdf/1509.01097",
+      "locator": "p21 Algorithm4；〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-005",
+      "route": "学术",
+      "site": "Viu-Sos PDF / web.find",
+      "query": "find pattern=\"Conclusions\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "定位§5及附录，区分扩展到exponential periods的讨论与此处普通periods问题；没有以该标题宣称全文理论已独立重证。",
+      "url": "https://arxiv.org/pdf/1509.01097",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-006",
+      "route": "原题与出处",
+      "site": "KZ作者稿 / web.find",
+      "query": "find pattern=\"automati\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅且同题",
+      "note": "p7原文明确Conjecture1的证明不会自动给Problem1算法；本回执不把规则完备性、证书有效可枚举、数值可计算性混为已经得到全算法。",
+      "url": "https://www.ihes.fr/~maxim/TEXTS/Periods.pdf",
+      "locator": "p7 L887–899；〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-006",
+      "route": "学术",
+      "site": "Viu-Sos PDF / web.find",
+      "query": "find pattern=\"Lemma 3.2\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "读§3.1–3.2，网格内外体积差在p>0时最终分离，故可构造正体积差；这一终止论证依赖严格非零差，不给相等情形停机保证。",
+      "url": "https://arxiv.org/pdf/1509.01097",
+      "locator": "pp12–13；〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-006",
+      "route": "学术",
+      "site": "Viu-Sos PDF / web.find",
+      "query": "find pattern=\"Algorithm 1\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "读主定理和附录整体分解路线，确认给出的是算法描述；未生成实现、未执行伪代码，零值覆盖以明确命题前提为准。",
+      "url": "https://arxiv.org/pdf/1509.01097",
+      "locator": "pp3、19–21；〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-007",
+      "route": "学术",
+      "site": "Viu-Sos PDF / web.find",
+      "query": "find pattern=\"Corollary 2.22\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "读体积差表示与Cor2.19；Cor2.22陈述泛指实period但证明起句假设p≠0。本轮统一逼近推论改从没有非零条件的Cor2.19出发，自己处理正负部及零积分，不偷用结论中的非零promise。",
+      "url": "https://arxiv.org/pdf/1509.01097",
+      "locator": "pp10–11；〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-007",
+      "route": "学术",
+      "site": "Viu-Sos PDF / web.find",
+      "query": "find pattern=\"Corollary 2.20\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "返回相关上下文，实际标签是Remark2.20；其中明确整个resolution tree和可早停chart。关键读取是Cor2.19的任意绝对收敛输入、紧域regular rational函数及有效性结论。",
+      "url": "https://arxiv.org/pdf/1509.01097",
+      "locator": "p10 Cor2.19、Remark2.20；〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-007",
+      "route": "学术",
+      "site": "Viu-Sos PDF / web.find",
+      "query": "find pattern=\"admissible\"",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "读Appendix的admissible triple和CompactifyDomain/ResolvePoles输入输出，不将未解释的admissible扩成任意发散积分。",
+      "url": "https://arxiv.org/pdf/1509.01097",
+      "locator": "pp19–21；〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-02-372-ROOT-007",
+      "route": "学术",
+      "site": "Viu-Sos PDF",
+      "query": "open 〔原始工具引用已私有留存〕 lineno=1100 〔私有记录编号：PR-000401〕",
+      "date": "2026-11-26",
+      "outcome": "原文已阅但范围不同",
+      "note": "读Cor2.22下方正负图下区域的表示；本轮重写为0≤t≤max(±f,0)处理符号，避免按文本层不清的负部式直接照抄。",
+      "url": "https://arxiv.org/pdf/1509.01097",
+      "locator": "p11；〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "372-SRC-E01",
+      "url": "https://mathoverflow.net/questions/83004/algorithmic-decidability-of-equality-in-the-ring-of-periods",
+      "locator": "原问L32–L34；2011-12-08/09两条评论L60–L71；Oksana Gimmel答复L86、L94",
+      "version": "原问2011-12-08 21:22，页面显示正文编辑2015-09-01；答复2013-05-12 18:48；本轮2026-11-26读取，工具标注抓取约2个月前，未取得独立API修订快照",
+      "subquestions": [
+        "主问题",
+        "MO原问与K–Z Problem1同一性",
+        "历史开放评论的证据等级"
+      ],
+      "role": "重述",
+      "publication": "社区帖子",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "claimant": "Vladimir Reshetnikov（提问）；François G.Dorais（指向K–Z Problem1）；Oksana Gimmel（历史答复）",
+      "claim_date": "2011/2013",
+      "note": "完整slug页面本轮直开成功，亲读两给定periods的相等是否有已知算法及可判定性是否已知的原问；Dorais于2011明确指向K–Z Problem1，唯一显示答复于2013报告当时没有已知算法、也不知道是否存在算法。这里的no known algorithm不是算法不存在定理；该历史答复及无新答案不能独立证明2026年全球仍无结果。本轮短URL和SE API访问失败；不沿用旧卡的API核验、accepted状态或最新活动日期。Web refs: 〔原始工具引用已私有留存〕；检索定位turn767673339search0。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "372-SRC-E02",
+      "url": "https://www.ihes.fr/~maxim/TEXTS/Periods.pdf",
+      "locator": "§1.1印刷p.3（PDF零基P3），Definition与紧随表示等价说明；§1.2 p.6有限输入说明",
+      "version": "M.Kontsevich and D.Zagier,Periods，IHES/M/01/22，封面Mai2001，38页作者档案稿；本轮2026-11-26",
+      "subquestions": [
+        "周期的精确定义",
+        "输入编码与绝对收敛",
+        "有理/多项式被积函数及实复数范围"
+      ],
+      "role": "原始提出",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索",
+      "note": "定义对象为复数，其实部和虚部分别是有理系数有理函数在由有理系数多项式不等式定义的实域上的绝对收敛积分。原文说明增加变量可改变积分表示而不改变所获数类；p.6将有限描述明确为被积函数和积分域。因而合法输入可用有限有理多项式数据及半代数布尔条件编码，复数用实虚两份数据；给定是有效周期表示的承诺，不能擅把发散积分或任意近似小数当合法输入。多项式被积函数并不自动排除其他周期：有理函数可拆正负部分，以次图像半代数域的体积之差表达，常数1已是多项式；符号与实虚部必须保留。上述有限编码/符号拆分是对定义的明确化和本轮短数学核对，不是给出相等判定算法。Web refs: 〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "372-SRC-E03",
+      "url": "https://www.ihes.fr/~maxim/TEXTS/Periods.pdf",
+      "locator": "§1.2 pp.6–7三条规则；p.7 Conjecture1、Problem1及紧随说明；封面与p.3前言",
+      "version": "IHES/M/01/22，Mai2001；Problem1位于印刷p.7（PDF P7）；前言提到1999报告前身，但未据此断定Problem1在该前身已有",
+      "subquestions": [
+        "主问题",
+        "Problem1与Conjecture1的准确关系",
+        "较早出处与2011重提"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "预印本",
+      "scope_match": "原题等价",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "claimant": "Maxim Kontsevich、Don Zagier",
+      "claim_date": "2001-05",
+      "note": "Problem1直接要求算法判定两个给定P中元素是否相等，早于MO2011。Conjecture1是另一命题：同一周期的两个积分表示可由加法性、代数换元及Newton–Leibniz/Stokes这三种规则连通，相关函数/域保持代数性质和规定系数条件。作者在同页提醒，证明这个规则完备性猜想不自动给出Problem1的求解方法；这里只准确记录2001原文的区分，不把提醒升级成已证明“C1不蕴含任何算法”，也不把C1当成已证的判定算法。若要作条件性算法推论，还须明确有效编码、证书可枚举/可检查与停机论证；此出处证据不凭一句枚举直觉完成这一步。p.7的当时困难评价不作为2026状态更新。Web refs: 〔原始工具引用已私有留存〕；〔原始工具引用已私有留存〕。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "372-ACA-E01",
+      "url": "https://arxiv.org/pdf/2505.20397",
+      "locator": "Main Theorem (1.0.11), Corollaries (1.0.12–14), 有效输入 (1.0.7–10), 印刷 p3–4；§1.1.17–21 p5–6；Algorithm (2.0.1–14) p7–8。refs 〔原始工具引用已私有留存〕 / 〔原始工具引用已私有留存〕 / 〔原始工具引用已私有留存〕 / 〔原始工具引用已私有留存〕；版本页 〔原始工具引用已私有留存〕。",
+      "version": "arXiv:2505.20397v1，2025-05-26；截至 2026-11-26 元数据只列 v1，当前 PDF 68 页",
+      "subquestions": [
+        "1-periods 的相等及代数系数线性关系",
+        "1-periods 的超越性判定"
+      ],
+      "scope_match": "特例",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "claimant": "Emre Can Sertöz, Joël Ouaknine, James Worrell",
+      "claim_date": "2025-05-26",
+      "note": "输入为代数数域上的曲线、微分与可恢复同调类的 1-chain 表示；主定理计算代数系数关系空间的基，判等和判超越性是推论。只读核题域、定理、算法和依赖说明，未审完 68 页证明。旧有效分离界已原则上可判 1-period 相等，故不称此稿首创判等。实用自同态半算法终止有 Mumford–Tate 条件，作者另引理论有效构造以保证无条件终止；不据此把整个主定理改标条件性。一般多维周期不在其覆盖内。精确题名的撤回/勘误检索和版本页未见通知，仅是本次范围内未发现。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "372-ACA-E02",
+      "url": "https://arxiv.org/pdf/0805.0349",
+      "locator": "Definition 9 p7, Lemma 12 p7, Theorem 18 p11, Lemma 29 p17；refs 〔原始工具引用已私有留存〕 / 〔原始工具引用已私有留存〕 / 〔原始工具引用已私有留存〕；版本页 〔原始工具引用已私有留存〕。",
+      "version": "arXiv:0805.0349v1，2008-05-03；本次取得 19 页 PDF，首页另印 2024-11-26，不将该排版日期当成 arXiv 新版本",
+      "subquestions": [
+        "周期的可计算逼近",
+        "带误差保证近似下的不等半判定"
+      ],
+      "scope_match": "仅子问",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "claimant": "Masahiko Yoshinaga",
+      "claim_date": "2008-05-03",
+      "note": "Theorem 18 证明每个实周期是 elementary real；Definition 9 的近似含有效收敛模。它不提供任意周期等式的判定。Lemma 29 用依赖域 D 的存在常数 L(D)，故此学术核查不单凭此文的集合包含命题声称已完成任意积分表示到统一认证近似的全部编码。若输入已给误差各不超过 2^(-n) 的近似 a_n,b_n，则 |a_n-b_n|>2^(1-n) 可认证不等，且不等时最终触发；这是一条直接算法推论，不是对相等的终止证明。本回执另核Cor2.19有效紧域分解与网格夹逼来填补统一输入步骤，详见372-ROOT-E01。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "372-ACA-E03",
+      "url": "https://arxiv.org/pdf/2007.12282",
+      "locator": "Appendix A.2, Conjecture A.2, 印刷 p27；refs 〔原始工具引用已私有留存〕 / 〔原始工具引用已私有留存〕 / 〔原始工具引用已私有留存〕；题录 〔原始工具引用已私有留存〕。",
+      "version": "arXiv:2007.12282v1，2020-07-23；本次完整 PDF 38 页",
+      "subquestions": [
+        "KZ 有限变换猜想与条件性等式判定",
+        "有效相等证书与不等半判定的交错运行"
+      ],
+      "scope_match": "有附加假设",
+      "role": "重述",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "claimant": "George Kenison, Oleksiy Klurman, Engel Lefaucheux, Florian Luca, Pieter Moree, Joël Ouaknine, Markus A. Whiteland, James Worrell",
+      "claim_date": "2020-07-23",
+      "note": "该附录重述有限线性运算、变量替换及 Stokes 变换猜想，并称其会蕴含周期判等；所读段落没有给出规则合法性的机器核验和证书有效枚举的完整构造。此学术核查不把该句提升为 KZ2001 原始猜想无需额外算法化前提便自动推出判定。严格可用的是条件推论：若有健全、完备且有效可枚举的相等证书，并有统一认证逼近，则交错运行相等/不等两半程序，二者必有一个终止。这不构成猜想或一般算法的无条件证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "372-AUX-E001",
+      "url": "https://github.com/emresertoz/PeriodSuite/blob/e3be3aaef02a63cf04265a552fda893f77b9d2cc/README.md",
+      "locator": "Overview；PeriodHomotopy的precision参数与X`periods/X`precision；Hodge rank的virtual lattice说明",
+      "version": "commit e3be3aaef02a63cf04265a552fda893f77b9d2cc; README blob 31b30480b00affe54e3315507260fab7a57ddf38; 2026-11-26读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "此项用于限定检索命中范围，不支持一般等式判定已解。PeriodSuite是超曲面period计算及相关Hodge/Picard探索的软件，README明确其实现对应1803.08068；可指定精度计算周期矩阵，并明确Hodge rank/lattice部分缺少认证、可能因精度不足而失真。数值逼近、特定几何输入和一般period表示判等算法是不同任务。没有把该仓库当作2505.20397的1-period算法实现。仅核README，未审程序实现、未运行示例、更未做形式化复跑。本地source/372_PeriodSuite_README.md与Git blob匹配。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "372-AUX-E002",
+      "url": "https://github.com/TauCetiProject/TauCetiRoadmap/blob/8594ee63ad92b22433b324f8574f1e2343326a66/TauCetiRoadmap/PeriodsAndSpecialValues/Suggested.lean",
+      "locator": "文件头部目标/缺失接口说明；legendre_substitution、legendre_midpoint_error、MZV等13个sorry目标；README How to read the build和PS.7.4",
+      "version": "commit 8594ee63ad92b22433b324f8574f1e2343326a66; Suggested.lean blob 938dcdb1c9de195d78fcecea632a5293d2a7114b; README blob 47a0267b21acac061adf017b092422fab7b45a4b; 2026-11-26读取",
+      "subquestions": [
+        "主问题"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "此处“仅有形式化题面或骨架”只指该相关项目的积分/MZV目标，不表示QX-P-000372的一般判定问题已形式化。已核246行Suggested文件的模块范围及目标：13个theorem证明体均为sorry；头部明确period-conjecture应用因缺formal-period algebra而未能在依赖版本中陈述，没有总停机的算法或不可判定性端点。README https://github.com/TauCetiProject/TauCetiRoadmap/blob/8594ee63ad92b22433b324f8574f1e2343326a66/TauCetiRoadmap/PeriodsAndSpecialValues/README.md PS.7.4将PeriodConjecture保留为evaluation单射性假设，不由torsor性质或数值误差推出；PS.9.23也不把MZV生成/上界升级为数值独立性。未构建、未核完整依赖或声称复跑通过。本地source/372_TauCeti_Suggested.lean的Git blob匹配，已读README范围存source/372_TauCeti_scope.md。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "372-ROOT-E01",
+      "url": "https://arxiv.org/pdf/1509.01097",
+      "locator": "arXiv v4 p3 Thm1.1；p10 Cor2.19；p11 Cor2.22；pp12–13 §3；AppendixA Algorithm4（p21）；note另给统一夹逼推论",
+      "version": "Juan Viu-Sos, arXiv:1509.01097v4，2020-07-15；元数据与2022正刊参考文献确认其刊发于IJNT17(1)(2021),147–174，DOI10.1142/S179304212150007X；本轮实读v4非正刊终版",
+      "subquestions": [
+        "非零period的半规范化",
+        "有效输入表示上的不等半判定"
+      ],
+      "role": "进展",
+      "publication": "预印本",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索",
+      "note": "Thm1.1给非零实period到sgn(p)·vol(K)的有效转换，Algorithm4输入亦要求严格正体积差。它不回答p=0，也不是对相等情形保证停机的算法。§2的Cor2.19则对任意绝对收敛period输入有效生成紧域regular rational积分，是下述统一近似推论的前提。v4元数据记主证明/过程曾作重大修订；本轮以v4为准，没有将2015旧稿当当前终版，也未对附录伪代码作可执行性认证。\n\n【本轮从已读Cor2.19推出的统一逼近与不等半判定；未实现或运行算法】\n输入承诺为有效编码的绝对收敛period积分；系数为有理数，或以最小多项式和隔离信息编码的实代数数。Cor2.19有效地给出有限和∑∫_{D_j}f_j，其中D_j是紧半代数集、f_j是域上无极点的有理函数；该命题没有总积分非零前提。对每片造K_j^+={(x,t):x∈D_j,0≤t≤max(f_j(x),0)}与K_j^-={(x,t):x∈D_j,0≤t≤max(-f_j(x),0)}。它们紧且半代数，体积之差等于原积分；零函数、空域、正负部分抵消均可包含，不需先判断总积分符号。\n对任一个这样的K⊂R^m，枚举正整数R并用实闭域量词消去判K⊂[-R,R]^m，紧性保证找到。对网格间距逐级减半的有限有理方块，分别判方块完全包含于K及与K非空相交，计算相应方块体积总和L_N、U_N；方块公共面为零测度，故L_N≤vol(K)≤U_N。紧半代数集的边界为低维半代数集，测度为零，因此U_N−L_N→0（低维K本身也零测度）。逐级细化直到实际算出的差小于所需有理误差即停；这里不用预先知道几何常数L(K)。有限个正负体积的区间按符号相加，给任意规定精度的严格有理夹逼。实、虚部分别处理得到复period夹逼。\n给α,β执行上述统一逼近并并行提高精度；若任一实/虚分量的认证区间分离，输出不等。若α≠β，至少一个分量差非零，夹逼宽趋零保证有限时分离；若α=β则不会给出错误不等，但未保证停机。这一单向程序不提供相等证书。等价地，若误差分别≤2^(−n)，当某分量近似值差大于2^(1−n)时即可认证不等。\n本推论依赖Cor2.19的已发表有效约化及标准有效实代数几何操作；本轮核了目标条件和上述桥接，不声称重新证明全部消解奇点算法、实现过程或形式化复跑。 本轮另一路独立核对上述Cor2.19到统一网格夹逼的数学桥接通过；此处为独立数学核对，不是程序运行、实现认证或形式化内核复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "372-ROOT-E02",
+      "url": "https://www.numdam.org/item/10.5802/jtnb.1204.pdf",
+      "locator": "§1 p325非零半规范化；p326 Conj1.1及GKZ⇒KZ；pp335–337 PL-GKZ范围、Prop3.2与Thm4.1的特殊体积范围",
+      "version": "Jacky Cresson/Juan Viu-Sos, JTNB34(2)(2022),323–343，DOI10.5802/jtnb.1204；在线2022-10-24；对应arXiv1912.01751v2（2022-04-14），本轮实读22页正刊PDF相关节",
+      "subquestions": [
+        "几何KZ与PL重述的范围",
+        "候选反例和特殊体积结果的排除"
+      ],
+      "role": "进展",
+      "publication": "正式刊发",
+      "scope_match": "仅子问",
+      "claim_state": "完整稿已取得",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检索",
+      "note": "该文提出两种几何猜想及与KZ的单向蕴含，未提供一般等式算法。文中关于没有全局体积保持PL映射的障碍，显式处于去除剪裁操作的情形；它不反驳仍允许剪裁等操作的KZ，更不是等式不可判定证明。有理多面体配标准体积的Thm4.1仅处理有理数（复数相应Q+iQ），不能覆盖任意半代数域或分片代数体积形式。v2注释将旧Problems A/B改为conjectures并澄清关系，不以旧措辞误报解决。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "journal"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000262",
+      "other_card_rev": "87521d2f422b4a06",
+      "relation": "待核",
+      "reason": "共同pair候选的双方meta及完整正文均已按固定提交核验：372针对任意两个period的积分表示，询问一般等式判定算法/不可判定性；262针对各权n的MZV有理线性空间维数，要求特定递推公式及初值。以上是已观察到的输入和目标差异，不据Zagier名称确定同题或数学蕴含。262编号较小，最终关系判定交由262负责人。",
+      "positions": {
+        "self": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000372.text.md ：题面、形式化表述、人话版与原文摘录；对应.meta.json card_rev=af948e4709058509",
+        "other": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000262.text.md ：题面、形式化表述、人话版、原文摘录；对应.meta.json card_rev=87521d2f422b4a06"
+      },
+      "note": "pair QX-P-000262__QX-P-000372；按较小编号负责规则仅待核/转交，本题不产出第二份最终关系决定，不建议或执行合并。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "建议修订",
+      "field": "边界与约定；形式化的输入表示",
+      "old": "周期表示=逐段多项式不等式组积分；给定周期定义（一族不等式的解集，加上要积的多项式）。",
+      "new": "在不改变主问的前提下明确：输入是两份有限编码的合法周期表示，例如有理系数有理函数及Q-半代数积分域，且积分绝对收敛；复周期以实部和虚部各一份表示。问是否有统一图灵算法，对每一对合法输入都停机并正确判定相等。不要求算法同时解决任意无效/发散表达式的合法性识别。允许多项式被积函数或有符号体积等价编码，但需说明转换与符号。",
+      "reason": "周期术语已包含定义限制；这是语义明确化，不是据任意发散积分构造原题反例。固定被积函数类别与数类不能混淆。 若落实为正式题面、定义、参数域或验收字段变动，须生成新card_rev并重查受影响路线；本回执仅提建议且继续绑定当前任务版本。",
+      "evidence_ids": [
+        "372-SRC-E02",
+        "372-SRC-E03"
+      ],
+      "small_case_check": "∫_0^1 dx/x发散，不是合法周期表示，不能用它反驳该承诺问题。空半代数域上的积分为0，与∫_0^1 0dx同值；算法须判数值而不是表达式字符串是否相同。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "有理函数/多项式函数；实数/复数范围",
+      "old": "把有理系数不等式定义的区域拿来积分得到的数，加上要积的多项式。",
+      "new": "解释标准定义允许有理函数；将它拆成正负部分并增添变量，可改成常数1在半代数域上的有限体积之差。负周期须保留负号/有符号积分，复周期须分别给实部和虚部；不要把所有周期等同于单个非负体积。该编码变化不解决相等判定问题。",
+      "reason": "标准周期是复数类；只强调无符号体积会漏掉负数和非实数，但多项式/体积表达本身可以是等价编码。",
+      "evidence_ids": [
+        "372-SRC-E02"
+      ],
+      "small_case_check": "log2=∫_1^2 dx/x=vol{(x,y):1≤x≤2,0≤y,xy≤1}，这里被积函数已变成1；−log2须取负号；iπ可用实部0与虚部单位圆盘面积π编码。不能要求iπ本身是一个实欧氏域的普通体积。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "已知结果与进展；数值检验解释",
+      "old": "两个不等周期总能算到足够高精度被发现；困难是相等。",
+      "new": "若从合法表示统一生成带可靠误差界的有理包围区间，则不等可半判定：不断细化，直到至少一个实/虚分量的两个区间分离。相等时此过程不必终止，因此它不是主问所需的总判定器。单纯显示许多相同小数位不构成相等证明；主张数值算法时须列明误差保证。",
+      "reason": "半判定与对所有输入停机的判定不同；本条逻辑论证的前提是有效且有保证的近似，而不是任意数值软件输出。",
+      "evidence_ids": [
+        "372-SRC-E01",
+        "372-SRC-E02"
+      ],
+      "small_case_check": "0与2^(−M)都是有理周期，前很多小数位可相同但仍不等；任何预先固定的精度都不能对所有输入完成判定。反之∫_0^1 1dx与∫_[0,1]^2 1dxdy精确相等，有限输入甚至可以具有不同维数。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "Kontsevich–Zagier Problem1/Conjecture1；开放状态表",
+      "old": "MO答案确认无算法；K–Z Problem1当时完全不可解；未区分规则猜想和算法问。",
+      "new": "把2013 MO答案准确写为“当时没有已知算法，也不知道是否存在算法”，不能省掉“已知”。K–Z2001 Problem1是相等判定算法问题；Conjecture1是三种积分规则解释全部相等的完备性猜想，不能把它标成已经提供算法。若后续列条件性算法，应另给有效证书搜索和两种输入情形的停机说明。2001难度判断与2013状态评语均保留历史日期，不能当成2026查新结果。",
+      "reason": "“尚无已知算法”“已证不存在算法”“规则猜想的完备性”是不同结论；原文自身也专门区分Problem1与Conjecture1。",
+      "evidence_ids": [
+        "372-SRC-E01",
+        "372-SRC-E03"
+      ],
+      "small_case_check": "单个恒等式∫_0^1 1dx=1可由Newton–Leibniz验证，只是一个实例。它没有给出对任意周期对都终止的算法，也不能证明所有相等都有这类证书。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "proposer；first_published；sources",
+      "old": "Vladimir Reshetnikov；2011-12-08为首发；K–Z只列novelty来源。",
+      "new": "将2001年K–Z《Periods》Problem1列为目前已亲读的较早提出出处，原档IHES/M/01/22、Mai2001、p.7；Vladimir Reshetnikov在2011-12-08的MO83004是重提/讨论。作者前言提1999讲演前身，但未读该前身，不能据此断言Problem1首次提出于1999。2015正文编辑与2025页面活动不等于新数学结果日期。",
+      "reason": "已亲读2001明确提问，MO2011评论也准确指回它。原始数学问题来源与社区讨论来源需分开。",
+      "evidence_ids": [
+        "372-SRC-E01",
+        "372-SRC-E03"
+      ],
+      "small_case_check": "K–Z p.7的问题直接是给两个P中元素判相等；MO原问将“given”展开为有理多项式不等式系统，两者不是因标题相近而被误并。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "独立验证建议；不可判定方向验收",
+      "old": "不可判定方向需从H10到周期等式的归约构造。",
+      "new": "可建议尝试从已知不可判定问题归约，但不把H10规定为唯一允许方法。任何归约都须有效产生有限编码的合法、绝对收敛周期表示，并证明原问题的yes/no与周期相等事件所需的双向关系。不能把整数解存在性直接当作实半代数集存在性。",
+      "reason": "这是证明方法建议，不是原题附加要求；输出合法性和等价性是不可判定论证必须核准的范围。",
+      "evidence_ids": [
+        "372-SRC-E02",
+        "372-SRC-E03"
+      ],
+      "small_case_check": "x²=2在实数中有解，在整数中无解；把H10的整数约束直接换成实多项式等式会改变问题，不能仅凭“都有多项式”就完成归约。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "已知结果与进展 / 相关进展与声称解决",
+      "new": "补记 2025 年 1-periods 的代数系数关系空间算法完整预印本：判等、判超越性为推论；仅曲线积分特例，完整稿已取，关键技术证明与实现尚未由本轮全面复核。作者也指出此前有效分离界已原则上允许 1-period 判等。",
+      "reason": "原卡只有一般开放状态，缺少重要但范围受限的学术进展。",
+      "evidence_ids": [
+        "372-ACA-E01"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "人话版 / 已知结果与进展",
+      "new": "把“不等可由提高精度有限步验证”写明为带可认证误差的有效逼近；该半判定不能在相等时保证终止。KZ 有限变换猜想与判定算法之间还要明确合法证书可核验、可有效枚举及统一逼近前提。",
+      "reason": "区分数值可计算、等式证书存在、统一算法和完整可判定性，避免把原作者 caveat 或存在常数掩去。本回执另列的有效紧域分解可补统一逼近证明。",
+      "evidence_ids": [
+        "372-ACA-E02",
+        "372-ACA-E03"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "informal_status / track",
+      "reason": "本轮实际核查未取得覆盖任意KZ周期的无条件相等算法或不可判定性完整证明。1-periods的算法声明与计算逼近不能用于整题结案；建议补进展并保留一般问题未结状态。",
+      "evidence_ids": [
+        "372-ACA-E01",
+        "372-ACA-E02",
+        "372-ACA-E03"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "card_action": "no_change"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "已知结果与进展；不等的验证；数值实验边界",
+      "new": "补记普通period可有效逼近与不等可半判定，并写清认证误差及有限表示。半规范化仅对非零总值保证输出；几何重述和PL障碍不提供一般等式算法或不可判定结论。",
+      "reason": "已核有效约化、符号和零边界；避免将“能算许多位”“有一段伪代码”或“某类映射不存在”混成相等判定。",
+      "evidence_ids": [
+        "372-ROOT-E01",
+        "372-ROOT-E02"
+      ],
+      "small_case_check": "零输入例∫_{−1}^{1}x dx=0可以是两个相等正体积之差；不满足单一正体积差算法的严格输入前提。∫_0^1 x dx与[0,1/2]的体积同为1/2，即使表示不同，高精度相符本身仍非普适相等证书。发散∫_0^1 dx/x不在承诺有效period表示的输入类，不能当作本题反例。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "next_step": "若把 2025 年 1-periods 声明提升为本轮已核证明，需进一步独立审 §7 自同态有效性及 §9 supersaturation 的依赖闭合，并区分实用半算法与理论无条件替代。",
+      "reason": "本次已读定理与算法全文段落，不等于逐页审完 68 页证明，也未运行实现；这不阻碍保持一般问题的限定未见确证结论。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "next_step": "若进一步主张仅 KZ 原始 Conjecture 1 即足以给统一判定，必须提供确切的有效证书语法、合法性核验和完整性论证，并对照 KZ2001 的原文 caveat。",
+      "reason": "2020 Appendix A.2 的简短蕴含说法没有补出这些步骤；本轮仅保留带明示算法化前提的条件推论。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本轮在记录的Web、GitHub精确命名和两个指定仓库范围内未取得一般period等式判定的完成代码/形式化证明；已命中的数值软件、PSLQ计划、路线图和sorry目标均不覆盖主问。",
+      "next_step": "主问题形式化只能记本轮范围未检到；如出现新代码声明，先核任意有效period表示的输入约定、正确性和对相等/不等两种输入均终止，再核依赖与实际构建。不得从高精度相符、有限常数特例、形式化period名词或第三方目录的状态标签推出一般可判定性。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "2505.20397的一维period算法论文已交学术路线；本回执代码与社区检索未取得对应实现或复跑日志。PeriodSuite文档明确对应2019年的另一算法。",
+      "next_step": "保持1-period理论算法、其是否已有公开实现、一般period等式问题三个范围分离。若后续需要实现级验证，应使用作者明确链接的算法代码及其输入类别；alphaXiv复现入口、RSS和论文摘要脚本不能作为实施或独立复跑证据。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "QX-P-000262是共同pair中较小编号，本题只提供固定版本双方范围核对。",
+      "next_step": "转交262负责人审阅pair QX-P-000262__QX-P-000372及positions，统一作最终关系判定；不由372越权合并或重复出最终结论。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "本轮核过Viu-Sos v4关键定理的适用范围及统一夹逼桥接，未重新证明全部有效消解奇点过程，未取得2021正刊终版或实现附录算法。",
+      "next_step": "若需提升具体实现/形式化级别，应先固定完整输入编码、采用经校对的当前过程并提供实际运行/误差证书；此任务与判定一般相等的未解方向分开，不通过数值拟合或非零前提过程关闭主问题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "任务版本af948e4709058509与卡内旧novelty哈希48f6aa0ea37bc024不同；本轮不补签历史深查。补输入约定若涉及正式定义或验收对象则属于题卡版本变更。",
+      "next_step": "接收方逐项对照本文定义、量词、域和小例后处理建议；正式改题面/定义/验收须新rev并重查受影响路线，仅补引文、进展或修正人话版不借机改变一般period判等的主问。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "af948e4709058509",
+      "codes": {}
+    }
+  ]
+}

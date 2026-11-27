@@ -1,0 +1,2882 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000725",
+  "card_rev": "f3d295a3887edb1b",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-02"
+      ],
+      "parts": [
+        {
+          "subquestion": "定义和正整数边界",
+          "value": "partial",
+          "note": "k-full指每个出现的素指数≥k，不等同于完全k次幂；3-full⇒2-full而非反向。1空真但1→2无效。原题不允许0或负数；若用全素数整除式扩到0，则0满足条件不是因为空真，而FC primeFactors0空集的实现另有定义语义，主目标n>0均排除。补正式正性而不改主正文数学意图。"
+        },
+        {
+          "subquestion": "反向例子与弱化问题",
+          "value": "partial",
+          "note": "8=2³、9=3²；12167=23³、12168=2³·3²·13²：两对均3→2，后一数都非3-full，故不是本题反例；第二对只反驳反向“唯一n=8”，不证明反向只有两对。正向无解若成立才蕴含无连续3-full，不能从较弱3→3结果倒推主问。"
+        },
+        {
+          "subquestion": "OEIS有限计算范围",
+          "value": "partial",
+          "note": "A060355列两侧均2-full的k；官方检索给DonovanJohnson表39项<10^22。主问候选必在此序列，但要采用旧有限无解界还须表完整性及逐项3-full过滤。本路线未取b-file/原计算证书，故只记来源报告层级，不称本轮穷举，也不将全序列只写成反向两项。"
+        },
+        {
+          "subquestion": "公开有限计算报告与独立核验边界",
+          "value": "partial",
+          "note": "frontier-atlas固定结果报告cubefull端≤10^25，13分片共1620172043个a³b⁴c⁵表示（允许重复，不是不同cubefull整数数量），正向无hit、反向仅8/12167。本轮静态核枚举/余因子逻辑、原字节与统计一致性，未运行C、verify或全范围；verify本身只重跑较小范围并信赖RESULT摘要。生产原日志/二进制未取，不记独立大搜索认证。LemmaPark仅另报n+1≤10^21的有限结果，非全题解、非本轮最新上界。"
+        },
+        {
+          "subquestion": "计算端点与测试覆盖",
+          "value": "partial",
+          "note": "生产strict模式实际检查n=C−1，所以C≤10^25先只覆盖n<10^25；遗漏单点n=10^25可另由11|(10^25+1)而121∤(10^25+1)排除。若接受生产报告即可补成n≤10^25；此短算术不认证大扫描。selftest两组标榜对抗/大尺度样例因阈值全部continue，其他测试并非全空。RESULT旧verify hash与历史文件精确一致，当前差异仅tempfile/编译输出位置，不当作来源不明篡改；这些测试/日志局限也不构成原猜想反例。"
+        },
+        {
+          "subquestion": "abc条件下的有限性",
+          "value": "partial",
+          "note": "对0<ε<1/5的统一abc常数Kε，rad(n(n+1))≤(n+1)^(5/6)，所以n+1≤Kε^[6/(1−5ε)]；ε=1/10给K^12。短桥已独立手证，脚本仅核Fraction算术。普通abc未给本轮可用的有效Kε，故无实际穷尽阈值；即使有限也不等于零解。反方向同样条件有限，仍不等于仅两对。"
+        },
+        {
+          "subquestion": "显式Baker条件界的形式化层级",
+          "value": "partial",
+          "note": "固定theofilxeff/erdos_366目标为BakerExplicitABC⇒n<10^16136778163；所用显式radical不等式是明确假设，不能当已证abc或无假设无解。主assembly有体；作者自报Comparator成功且Nanoda关闭，本轮只静态核目标/定义/部分依赖和锁，未build、未核全内部解析数值模块、未获实际日志。因此记他人声称形式化验证；不与主FC的4.33.1/两sorry混同。"
+        },
+        {
+          "subquestion": "完全平方与完全立方的特例",
+          "value": "partial",
+          "note": "Botnet原稿给x²+1=y³仅(0,1)的经典Gaussian论证及有限程序，属于n为完全平方且n+1为完全立方的严格特例；positive n因此该特例无解。公开稿自称无新意；本轮仅静态读论证/程序，不运行、不据展示PASS认证全题。满幂数允许非k倍数指数，不能替换为此完全幂方程。"
+        },
+        {
+          "subquestion": "指定小例的独立核验",
+          "value": "partial",
+          "note": "本轮独立Python只核1、2、8、9、16、27、12167、12168这8个指定数、3对相邻例和abc指数算术；一次真实exit0，完整脚本/结果/日志内嵌。不是≤12168或任何区间扫描，更不是OEIS或1e25重跑，无Lean/GAP构建。"
+        },
+        {
+          "subquestion": "形式化代码和公开完整声明",
+          "value": "no_evidence_in_scope",
+          "note": "FC当前/旧固定源码同blob：主正向存在断言和较弱3→3存在断言各sorry；两个有体证明只关反向例。源码正向断言是卡否定命题的逻辑否定，不能称其已证明原卡。CB和GPT候选文件仅编目/说明；有限公开检索没有得到无条件全题解。2611.20656v1已实际读官方pp1–3，研究相邻k次幂区间中k-full数数量，与本题相邻整数方向不同，已从进展中排除。"
+        },
+        {
+          "subquestion": "反例与有限验证的验收",
+          "value": "partial",
+          "note": "一个明确正整数n及n、n+1的完整素因数分解、素性和乘积证书，若两侧指数分别≥2/≥3，即反驳本卡。finite=true只指这种反例有限可核，不能据此把全称无解化成预定有限扫描；无解证明仍须涵盖所有正整数。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "claimed_verified",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/Erdos366/Main.lean"
+      ],
+      "note": "只覆盖：有附加假设"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "有部分进展",
+      "scope_note": "按正整数域，现卡“不存在2-full n而n+1为3-full”的否定方向忠实1980原书。abc仅条件性地给有限性；公开1e25等有限排除仍是作者报告，未独立重跑全范围。条件Lean只证明另一个显式abc假设下的有限上界，不能关闭无条件全称。本轮未取得正向反例或一般无解证明；不从旧open标签、空检索或反向两例推断全球状态。",
+      "evidence_ids": [
+        "E725-A1",
+        "E725-A3",
+        "E725-A4",
+        "E725-R1",
+        "E725-P1",
+        "E725-P3",
+        "E725-M1",
+        "E725-M3",
+        "E725-M4"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "原题及历史出处",
+      "math_status": "有部分进展",
+      "scope_note": "最早直接读到完整2→3无解问句的是Erdős–Graham1980印刷68页；1976印刷31页是相邻3-full/3-full的较弱前身，会议1975与出版1976分开。现代EP把同一问题写为是否存在，不能因此判卡方向错误。Golomb1970书目核为77(8),848–852，正文未取得，不强称其已提出当前完整问句。",
+      "evidence_ids": [
+        "E725-A1",
+        "E725-A2",
+        "E725-A3",
+        "E725-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "定义和正整数边界",
+      "math_status": "仅特例",
+      "scope_note": "k-full指每个出现的素指数≥k，不等同于完全k次幂；3-full⇒2-full而非反向。1空真但1→2无效。原题不允许0或负数；若用全素数整除式扩到0，则0满足条件不是因为空真，而FC primeFactors0空集的实现另有定义语义，主目标n>0均排除。补正式正性而不改主正文数学意图。",
+      "evidence_ids": [
+        "E725-M1",
+        "E725-M2",
+        "E725-P2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "反向例子与弱化问题",
+      "math_status": "仅特例",
+      "scope_note": "8=2³、9=3²；12167=23³、12168=2³·3²·13²：两对均3→2，后一数都非3-full，故不是本题反例；第二对只反驳反向“唯一n=8”，不证明反向只有两对。正向无解若成立才蕴含无连续3-full，不能从较弱3→3结果倒推主问。",
+      "evidence_ids": [
+        "E725-A1",
+        "E725-A2",
+        "E725-A3",
+        "E725-M1",
+        "E725-M2",
+        "E725-P2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "OEIS有限计算范围",
+      "math_status": "仅特例",
+      "scope_note": "A060355列两侧均2-full的k；官方检索给DonovanJohnson表39项<10^22。主问候选必在此序列，但要采用旧有限无解界还须表完整性及逐项3-full过滤。本路线未取b-file/原计算证书，故只记来源报告层级，不称本轮穷举，也不将全序列只写成反向两项。",
+      "evidence_ids": [
+        "E725-A4",
+        "E725-P4"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "公开有限计算报告与独立核验边界",
+      "math_status": "有部分进展",
+      "scope_note": "frontier-atlas固定结果报告cubefull端≤10^25，13分片共1620172043个a³b⁴c⁵表示（允许重复，不是不同cubefull整数数量），正向无hit、反向仅8/12167。本轮静态核枚举/余因子逻辑、原字节与统计一致性，未运行C、verify或全范围；verify本身只重跑较小范围并信赖RESULT摘要。生产原日志/二进制未取，不记独立大搜索认证。LemmaPark仅另报n+1≤10^21的有限结果，非全题解、非本轮最新上界。",
+      "evidence_ids": [
+        "E725-R1",
+        "E725-R2",
+        "E725-R3",
+        "E725-P5",
+        "E725-M4"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "计算端点与测试覆盖",
+      "math_status": "仅特例",
+      "scope_note": "生产strict模式实际检查n=C−1，所以C≤10^25先只覆盖n<10^25；遗漏单点n=10^25可另由11|(10^25+1)而121∤(10^25+1)排除。若接受生产报告即可补成n≤10^25；此短算术不认证大扫描。selftest两组标榜对抗/大尺度样例因阈值全部continue，其他测试并非全空。RESULT旧verify hash与历史文件精确一致，当前差异仅tempfile/编译输出位置，不当作来源不明篡改；这些测试/日志局限也不构成原猜想反例。",
+      "evidence_ids": [
+        "E725-R2",
+        "E725-R3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "abc条件下的有限性",
+      "math_status": "条件性结果",
+      "scope_note": "对0<ε<1/5的统一abc常数Kε，rad(n(n+1))≤(n+1)^(5/6)，所以n+1≤Kε^[6/(1−5ε)]；ε=1/10给K^12。短桥已独立手证，脚本仅核Fraction算术。普通abc未给本轮可用的有效Kε，故无实际穷尽阈值；即使有限也不等于零解。反方向同样条件有限，仍不等于仅两对。",
+      "evidence_ids": [
+        "E725-A3",
+        "E725-M3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "显式Baker条件界的形式化层级",
+      "math_status": "条件性结果",
+      "scope_note": "固定theofilxeff/erdos_366目标为BakerExplicitABC⇒n<10^16136778163；所用显式radical不等式是明确假设，不能当已证abc或无假设无解。主assembly有体；作者自报Comparator成功且Nanoda关闭，本轮只静态核目标/定义/部分依赖和锁，未build、未核全内部解析数值模块、未获实际日志。因此记他人声称形式化验证；不与主FC的4.33.1/两sorry混同。",
+      "evidence_ids": [
+        "E725-P3",
+        "E725-M3",
+        "E725-M4"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "完全平方与完全立方的特例",
+      "math_status": "仅特例",
+      "scope_note": "Botnet原稿给x²+1=y³仅(0,1)的经典Gaussian论证及有限程序，属于n为完全平方且n+1为完全立方的严格特例；positive n因此该特例无解。公开稿自称无新意；本轮仅静态读论证/程序，不运行、不据展示PASS认证全题。满幂数允许非k倍数指数，不能替换为此完全幂方程。",
+      "evidence_ids": [
+        "E725-P6",
+        "E725-M1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "指定小例的独立核验",
+      "math_status": "仅特例",
+      "scope_note": "本轮独立Python只核1、2、8、9、16、27、12167、12168这8个指定数、3对相邻例和abc指数算术；一次真实exit0，完整脚本/结果/日志内嵌。不是≤12168或任何区间扫描，更不是OEIS或1e25重跑，无Lean/GAP构建。",
+      "evidence_ids": [
+        "E725-M2"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "形式化代码和公开完整声明",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "FC当前/旧固定源码同blob：主正向存在断言和较弱3→3存在断言各sorry；两个有体证明只关反向例。源码正向断言是卡否定命题的逻辑否定，不能称其已证明原卡。CB和GPT候选文件仅编目/说明；有限公开检索没有得到无条件全题解。2611.20656v1已实际读官方pp1–3，研究相邻k次幂区间中k-full数数量，与本题相邻整数方向不同，已从进展中排除。",
+      "evidence_ids": [
+        "E725-P1",
+        "E725-P2",
+        "E725-P4",
+        "E725-P5",
+        "E725-A5"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "反例与有限验证的验收",
+      "math_status": "仅特例",
+      "scope_note": "一个明确正整数n及n、n+1的完整素因数分解、素性和乘积证书，若两侧指数分别≥2/≥3，即反驳本卡。finite=true只指这种反例有限可核，不能据此把全称无解化成预定有限扫描；无解证明仍须涵盖所有正整数。",
+      "evidence_ids": [
+        "E725-M4",
+        "E725-P1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "本地题包",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000949〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "request_id": "725-academic-01",
+      "note": "完整当前题卡；原rev f3d295a3887edb1b。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "site:erdosproblems.com/366 2-full 3-full 12167 12168",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-02",
+      "note": "官方forum/history检索正文：精确正向问题、反向两例与abc评论。",
+      "locator": "725_web1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Erdős\" \"366\" \"powerful\" solved",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-03",
+      "note": "system1 recency365；没有取得一般问题的完整证明或正向反例；命中有限计算另交public/root核。",
+      "locator": "725_web1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"2611.20656\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-04",
+      "note": "命中Narumi–Tachiya稿，数量问题的索引摘要。",
+      "locator": "725_web1",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://www.erdosproblems.com/366",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-05",
+      "note": "restricted URL",
+      "url": "https://www.erdosproblems.com/366",
+      "locator": "725_web2",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://www.erdosproblems.com/history/366",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-06",
+      "note": "restricted URL",
+      "url": "https://www.erdosproblems.com/history/366",
+      "locator": "725_web2",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://oeis.org/A060355",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-07",
+      "note": "403",
+      "url": "https://oeis.org/A060355",
+      "locator": "725_web2",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://www.erdosproblems.com/references",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-08",
+      "note": "not accessible",
+      "url": "https://www.erdosproblems.com/references",
+      "locator": "725_web2",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://arxiv.org/abs/2611.20656",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-09",
+      "note": "DisabledError",
+      "url": "https://arxiv.org/abs/2611.20656",
+      "locator": "725_web2",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "site:oeis.org/A060355 \"10^22\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-10",
+      "note": "官方索引给序列定义、Johnson39项表<10^22及相关评论；不是3-full单独序列。",
+      "locator": "725_web3",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Er76d\" \"ErGr80\" \"Go70\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-11",
+      "note": "原EP书目和方向线索；未将二手书目当原页已读。",
+      "locator": "725_web3",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Erdős\" \"powerful\" \"366\" \"proof\" \"2026\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-12",
+      "note": "system1 recency365；命中frontier-atlas 1e25有限搜索声明，交root/public核原项目。",
+      "locator": "725_web3",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"2611.20656\" site:arxiv.org",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-13",
+      "note": "该组未返回可用官方主页面文本；后用公共HTTP取得官方原字节。",
+      "locator": "725_web3",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地文件检索",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000950〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-14",
+      "note": "找到其他题旧源；没有复用为当前历史阅读。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Er76d\" Erdős",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-15",
+      "note": "定位1976论文题名/页码、1980书及Golomb文献线索；邻题结果未当本题进展。",
+      "locator": "725_web4",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"ErGr80\" \"Some old\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-16",
+      "note": "定位1976论文题名/页码、1980书及Golomb文献线索；邻题结果未当本题进展。",
+      "locator": "725_web4",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Go70\" Golomb \"powerful\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-17",
+      "note": "定位1976论文题名/页码、1980书及Golomb文献线索；邻题结果未当本题进展。",
+      "locator": "725_web4",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "Erdos 1976 powerful numbers page 31 consecutive 3-full",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-18",
+      "note": "定位1976论文题名/页码、1980书及Golomb文献线索；邻题结果未当本题进展。",
+      "locator": "725_web4",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://oeis.org/A060355/internal",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-19",
+      "note": "OEIS403；EP restricted。官方搜索返回的正文另有准确访问层级。",
+      "url": "https://oeis.org/A060355/internal",
+      "locator": "725_web4",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://oeis.org/A060355/b060355.txt",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-20",
+      "note": "OEIS403；EP restricted。官方搜索返回的正文另有准确访问层级。",
+      "url": "https://oeis.org/A060355/b060355.txt",
+      "locator": "725_web4",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://www.erdosproblems.com/forum/thread/366?embed=1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-21",
+      "note": "OEIS403；EP restricted。官方搜索返回的正文另有准确访问层级。",
+      "url": "https://www.erdosproblems.com/forum/thread/366?embed=1",
+      "locator": "725_web4",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://old.renyi.hu/~p_erdos/1976-39.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-22",
+      "note": "404",
+      "url": "https://old.renyi.hu/~p_erdos/1976-39.pdf",
+      "locator": "725_web5",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://www.erdosproblems.com/latex/366",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-23",
+      "note": "restricted",
+      "url": "https://www.erdosproblems.com/latex/366",
+      "locator": "725_web5",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://arxiv.org/pdf/2611.20656v1",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-24",
+      "note": "DisabledError",
+      "url": "https://arxiv.org/pdf/2611.20656v1",
+      "locator": "725_web5",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "Erdos Graham 1980 \"Some old and new problems\" pdf 68 powerful",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-25",
+      "note": "随后恢复准确书名Old and new problems and results in combinatorial number theory。",
+      "locator": "725_web5",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "Golomb \"Powerful numbers\" 1970 77 1031 1039 pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-26",
+      "note": "实际出版社元数据纠正为77(8),848–852；查询所猜页码不是采用的书目。",
+      "locator": "725_web5",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://static.renyi.hu/~p_erdos/1976-39.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-27",
+      "note": "Web not accessible；后普通HTTP取得原PDF",
+      "url": "https://static.renyi.hu/~p_erdos/1976-39.pdf",
+      "locator": "725_web6",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web open",
+      "query": "https://combinatorica.hu/~p_erdos/1976-39.pdf",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-28",
+      "note": "TimeoutError",
+      "url": "https://combinatorica.hu/~p_erdos/1976-39.pdf",
+      "locator": "725_web6",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Rényi原机构目录",
+      "query": "open Articles by Paul Erdős",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "request_id": "725-academic-29",
+      "note": "实际目录页用于书目，非数学原段。",
+      "url": "https://www.renyi.hu/en/belso-oldalak/matematikus-eletmuvek/erdos-pal",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Old and new problems and results in combinatorial number theory\" \"pdf\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-30",
+      "note": "定位Graham作者UCSD存档。",
+      "locator": "725_web6",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"2-full\" \"3-full\" \"consecutive\" proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-31",
+      "note": "system1 recency365；官方帖子abc条件性与有限计算，未取得无条件全解。",
+      "locator": "725_web6",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"cubefull\" \"squarefull\" \"consecutive\" \"Erdos\" 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-32",
+      "note": "仅相关条目/短区间研究；未找到全题声明。",
+      "locator": "725_web6",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Graham作者存档/Web open",
+      "query": "open 80_11_number_theory.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "request_id": "725-academic-33",
+      "note": "HTTP取得124页PDF但Web文本为0行；后下载渲染实际看印刷68页。",
+      "url": "https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Rényi机构目录/Web find",
+      "query": "find 1976-39",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "request_id": "725-academic-34",
+      "note": "核实际书目条目；1976为1975会议的1976出版物；1980书Monographie28。",
+      "url": "https://www.renyi.hu/en/belso-oldalak/matematikus-eletmuvek/erdos-pal",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Rényi机构目录/Web find",
+      "query": "find 1980-20",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "request_id": "725-academic-35",
+      "note": "核实际书目条目；1976为1975会议的1976出版物；1980书Monographie28。",
+      "url": "https://www.renyi.hu/en/belso-oldalak/matematikus-eletmuvek/erdos-pal",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web screenshot",
+      "query": "80_11_number_theory.pdf pageno63",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-36",
+      "note": "仅返回<<ImageDisplayed>>文本占位，无image块；未把此调用当视觉核验。真正看图由后续Poppler+view_image完成。",
+      "url": "https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "普通HTTP urllib.request",
+      "query": "https://arxiv.org/pdf/2611.20656v1",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "request_id": "725-academic-37",
+      "note": "HTTP200；取得原字节，实际局部阅读范围见evidence和local_read记录。SHA256 0d09864b3911f7c9ead66f017dfdbfe96f72c54153e13876c289deedb6d66714",
+      "url": "https://arxiv.org/pdf/2611.20656v1",
+      "locator": "NarumiTachiya2611v1.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "普通HTTP urllib.request",
+      "query": "https://arxiv.org/abs/2611.20656",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "request_id": "725-academic-38",
+      "note": "HTTP200；取得原字节，实际局部阅读范围见evidence和local_read记录。SHA256 7ea0497d4d41d1971ff54957c9e9108948f1488a3b56fd79d26c0247e37905db",
+      "url": "https://arxiv.org/abs/2611.20656",
+      "locator": "NarumiTachiya_abs.html",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "普通HTTP urllib.request",
+      "query": "https://static.renyi.hu/~p_erdos/1976-39.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "request_id": "725-academic-39",
+      "note": "HTTP200；取得原字节，实际局部阅读范围见evidence和local_read记录。SHA256 2c098f2c3e5079ef09a44f693c7db43a29428bb1c8bf7df7ab57b020306a9ad0",
+      "url": "https://static.renyi.hu/~p_erdos/1976-39.pdf",
+      "locator": "Erdos1976.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "普通HTTP urllib.request",
+      "query": "https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "request_id": "725-academic-40",
+      "note": "HTTP200；取得原字节，实际局部阅读范围见evidence和local_read记录。SHA256 0cbf0c32f0ab1e1c71db5121a88bac905bf976c4a6ab6bb6d7d9cf9ddd184ed3",
+      "url": "https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf",
+      "locator": "ErdosGraham1980.pdf",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地PDF文字/页面读取",
+      "query": "pdftotext -layout three fetched PDFs; read Erdos1976 p31/ref12 and NarumiTachiya pp1–3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "request_id": "725-academic-41",
+      "note": "1976只实际阅p31及参考文献Golomb条；新2026稿实际阅定义、Thm1/2、Cor1/2，不通审后续证明；1980扫描无文字层。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Poppler/view_image",
+      "query": "pdftoppm ErdosGraham1980 physical64; view_image ErGr_p64.png",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "request_id": "725-academic-42",
+      "note": "实际图像可见且读完整印刷68页：B_k定义、正向has no solution问句、反向n8唯一性问句。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Poppler/view_image",
+      "query": "pdftoppm Erdos1976 physical7; view_image Er76_p7.png",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "request_id": "725-academic-43",
+      "note": "实际图像可见并核≥r、相邻3-full无解猜想；这是1976弱化前身，不是原题2→3完整句。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"2-full\" \"3-full\" \"366\" proof counterexample",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-44",
+      "note": "system1 recency365；索引仍以条件性/有限结果为主，未取到全题解。",
+      "locator": "725_web9",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"squarefull\" \"cubefull\" \"n+1\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-45",
+      "note": "命中GPT candidate，明确仅重述旧有限范围；交public主审。",
+      "locator": "725_web9",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"2-full\" \"3-full\" \"consecutive\" theorem",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-46",
+      "note": "精确方向搜索，命中原EP及不同目标的形式化占位，不当定理。",
+      "locator": "725_web9",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"2611.20656\" correction withdrawn",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "request_id": "725-academic-47",
+      "note": "未命中更正/撤回；只用于已识别异题的版本说明，非本题开放性证据。",
+      "locator": "725_web9",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Publisher Web open",
+      "query": "Powerful Numbers DOI10.1080/00029890.1970.11992598",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-48",
+      "note": "403；仅从官方搜索元数据核1970/77(8)/848–852，未读1970正文。",
+      "url": "https://www.tandfonline.com/doi/full/10.1080/00029890.1970.11992598",
+      "locator": "〔原始工具引用已私有留存〕",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "官方arXiv HTML本地解析",
+      "query": "parse NarumiTachiya_abs.html with HTMLParser, submission history",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "request_id": "725-academic-49",
+      "note": "只有v1=2026-11-16 07:12:28UTC；PDF稿面Date为Nov17，二者分开。未见withdrawn栏；未审全文证明。",
+      "url": "https://arxiv.org/abs/2611.20656",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "普通HTTP urllib.request",
+      "query": "https://oeis.org/A060355/b060355.txt",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-50",
+      "note": "HTTP Error 403: Forbidden",
+      "url": "https://oeis.org/A060355/b060355.txt",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "普通HTTP urllib.request",
+      "query": "https://oeis.org/search?q=id:A060355&fmt=text",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "request_id": "725-academic-51",
+      "note": "HTTP Error 403: Forbidden",
+      "url": "https://oeis.org/search?q=id:A060355&fmt=text",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库简索引2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000951〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际全扫；宽式366/364会命中题号/哈希噪声，最终标题窄式仅当前725。取491/1424/2029元数据与完整正文核，不将索引空结果当全库无重复。",
+      "result_count": 4,
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库简索引2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000952〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际全扫；宽式366/364会命中题号/哈希噪声，最终标题窄式仅当前725。取491/1424/2029元数据与完整正文核，不将索引空结果当全库无重复。",
+      "result_count": 21,
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库简索引2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000953〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际全扫；宽式366/364会命中题号/哈希噪声，最终标题窄式仅当前725。取491/1424/2029元数据与完整正文核，不将索引空结果当全库无重复。",
+      "result_count": 9,
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "全库简索引2469条",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000954〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "实际全扫；宽式366/364会命中题号/哈希噪声，最终标题窄式仅当前725。取491/1424/2029元数据与完整正文核，不将索引空结果当全库无重复。",
+      "result_count": 1,
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/000/QX-P-000491.meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "只为725同一性比较，双方rev一致且已读正文/验收；不开展外卡其他数学进展核查。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000491.meta.json",
+      "locator": "Git blob 4736a76ea525fe2496a5cd202b2410c1e1ef1f7e",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/000/QX-P-000491.text.md @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "只为725同一性比较，双方rev一致且已读正文/验收；不开展外卡其他数学进展核查。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000491.text.md",
+      "locator": "Git blob ecfc5b9acdeac4210d82b889274bd1b78bcc5ffe",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/001/QX-P-001424.meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "只为725同一性比较，双方rev一致且已读正文/验收；不开展外卡其他数学进展核查。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001424.meta.json",
+      "locator": "Git blob 53a121e51462cd62ecfc25a10285bd8e394751a0",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/001/QX-P-001424.text.md @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "只为725同一性比较，双方rev一致且已读正文/验收；不开展外卡其他数学进展核查。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001424.text.md",
+      "locator": "Git blob 7c51c3ddc9279364475b71da439a51c28e5f9e85",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/002/QX-P-002029.meta.json @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "只为725同一性比较，双方rev一致且已读正文/验收；不开展外卡其他数学进展核查。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002029.meta.json",
+      "locator": "Git blob 8aab122e9ce7380515efd6a2da423a1ecb3de259",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "GitHub fetch_file",
+      "query": "qunxingmath-org/qunxing-data problems/002/QX-P-002029.text.md @73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "只为725同一性比较，双方rev一致且已读正文/验收；不开展外卡其他数学进展核查。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/002/QX-P-002029.text.md",
+      "locator": "Git blob f61308a5f36d5774a87dce565b9877b73ea1cbed",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "web open",
+      "query": "https://www.erdosproblems.com/366",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "restricted URL；academic已用实际可达原始书目/搜索内容进一步核，不把此失败算覆盖。",
+      "locator": "〔原始工具引用已私有留存〕",
+      "url": "https://www.erdosproblems.com/366",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch directory",
+      "query": "https://api.github.com/repos/techno-optimist/erdos-frontier-atlas/contents/certificates/erdos-366?ref=6e875e480b68a5cdccafe7bed490f476a65133af",
+      "date": "2026-11-27",
+      "outcome": "仅标题、索引或摘要",
+      "note": "已读完整目录，随后读取7相关文件；未取得生产shard原始输出。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "techno-optimist/erdos-frontier-atlas certificates/erdos-366/README.md @6e875e480b68a5cdccafe7bed490f476a65133af",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整源码/结果已取并实际读；精确字节已用Git blob SHA1核，未执行外部代码。",
+      "url": "https://github.com/techno-optimist/erdos-frontier-atlas/blob/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/README.md",
+      "locator": "Git blob e2909c55ccc9b8e521dbf00d36ca6fd9903c0499; SHA256 4ffeaa90555d8248dfa6fb0c159a12437b555cce129722bb264077feafd9eecc",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "techno-optimist/erdos-frontier-atlas certificates/erdos-366/RESULT.json @6e875e480b68a5cdccafe7bed490f476a65133af",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整源码/结果已取并实际读；精确字节已用Git blob SHA1核，未执行外部代码。",
+      "url": "https://github.com/techno-optimist/erdos-frontier-atlas/blob/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/RESULT.json",
+      "locator": "Git blob 7c9782d3775de0aa64fe5593085e775b73052347; SHA256 e4c178c63f43b2011b3a044733861b411ceb719166c3b1e9945f4ac22b691199",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "techno-optimist/erdos-frontier-atlas certificates/erdos-366/search366.c @6e875e480b68a5cdccafe7bed490f476a65133af",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整源码/结果已取并实际读；精确字节已用Git blob SHA1核，未执行外部代码。",
+      "url": "https://github.com/techno-optimist/erdos-frontier-atlas/blob/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/search366.c",
+      "locator": "Git blob 2ef8741e4bf76bf1cd9c394806d81dc8d30a34d7; SHA256 d1963a0acaf0a422dea87da8c20ebd394a9c9794498e0f995b655b8adb0396d6",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "techno-optimist/erdos-frontier-atlas certificates/erdos-366/verify.py @6e875e480b68a5cdccafe7bed490f476a65133af",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整源码/结果已取并实际读；精确字节已用Git blob SHA1核，未执行外部代码。",
+      "url": "https://github.com/techno-optimist/erdos-frontier-atlas/blob/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/verify.py",
+      "locator": "Git blob 8dc9e6bb0cb61798f5ca1fb52ffea78d49ae1e01; SHA256 f40cf4b64d8563875bf3f0162bd490dd7e00f37a83d6390a4d79d34697fecc1e",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "techno-optimist/erdos-frontier-atlas certificates/erdos-366/reference.py @6e875e480b68a5cdccafe7bed490f476a65133af",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整源码/结果已取并实际读；精确字节已用Git blob SHA1核，未执行外部代码。",
+      "url": "https://github.com/techno-optimist/erdos-frontier-atlas/blob/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/reference.py",
+      "locator": "Git blob ee89283b6e1dcc68e285e0a89030e64611fc0746; SHA256 2bd0b2643b736e3c50a9b80a2aa3ba0ced779c781f936a999706f7aa3d6f9a1a",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "techno-optimist/erdos-frontier-atlas certificates/erdos-366/emit_result.py @6e875e480b68a5cdccafe7bed490f476a65133af",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整源码/结果已取并实际读；精确字节已用Git blob SHA1核，未执行外部代码。",
+      "url": "https://github.com/techno-optimist/erdos-frontier-atlas/blob/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/emit_result.py",
+      "locator": "Git blob fefb96effdaab420a0b9623ba16a8d70222e788c; SHA256 ce0946f312bbe56ce585ad5044ee20fe93ed587a699aed5364d5307ad592f4b6",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "techno-optimist/erdos-frontier-atlas certificates/erdos-366/run_sweep.sh @6e875e480b68a5cdccafe7bed490f476a65133af",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整源码/结果已取并实际读；精确字节已用Git blob SHA1核，未执行外部代码。",
+      "url": "https://github.com/techno-optimist/erdos-frontier-atlas/blob/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/run_sweep.sh",
+      "locator": "Git blob 936287610976b875ea7ff96bf0e097ae88c71a43; SHA256 ed50ef0b2b9066092e5e54fd02ba361511a9bfa54190bd83ca40a72722533e1e",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地完整源码静态审读",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000955〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核第三方1e25声明、13shards和计数/两反向hits；不是本轮重新计算。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地完整源码静态审读",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000956〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "逐段核生成、cofactor算法、边界和selftest覆盖；两测试循环实际无case，C≤HI与n≤HI端点不同。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地完整源码静态审读",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000957〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "核验证仅小范围重扫+读报告摘要，default/full也不重跑1e25；无生产日志独立认证。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地精确元数据和边界核算",
+      "query": "对7原始UTF8文件算Git blob SHA1/SHA256；对RESULT的13shards求和/B^5及端点模121核算",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "真正执行的只有哈希、报告统计和常数算术，未启动C/Python外部搜索。候选和一致1620172043；四项artifact中verify哈希不同，随后历史字节已找回对齐。",
+      "locator": "725_frontier_static_checks.json",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch commits",
+      "query": "https://api.github.com/repos/techno-optimist/erdos-frontier-atlas/commits?sha=6e875e480b68a5cdccafe7bed490f476a65133af&path=certificates/erdos-366/verify.py&per_page=20",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "返回1条squash ebde8eb20dc3cdd8855ede631726dd89af5d9fb9，实际读变更记录：末改为临时目录编译。未凭提交说明就认定hash相等。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch PR commits",
+      "query": "https://api.github.com/repos/techno-optimist/erdos-frontier-atlas/pulls/125/commits?per_page=100",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "全部6条，1e25结果commit46a915752eb102e3b9242d93e275294ef3dbfc14；其后60d03cacb8d7ece989ac550c98cfb66691544765移编译目录。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub fetch_file",
+      "query": "techno-optimist/erdos-frontier-atlas certificates/erdos-366/verify.py @46a915752eb102e3b9242d93e275294ef3dbfc14",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "历史完整文件已取，Git blob1c96bfae108d8ba46e08522056b6cbdaa5790582；计算SHA恰等RESULT所记旧值。",
+      "url": "https://github.com/techno-optimist/erdos-frontier-atlas/blob/46a915752eb102e3b9242d93e275294ef3dbfc14/certificates/erdos-366/verify.py",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "本地历史原字节对照",
+      "query": "sha256(verify@46a9157)并用difflib与verify@6e875e4逐字比较",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "旧SHA f56fb31ab53e4a1d947f07d98cc253d07c4a35ff1bb51d0600db1ab91f0b71ed；当前f40cf4b64d8563875bf3f0162bd490dd7e00f37a83d6390a4d79d34697fecc1e。唯一功能diff是增加tempfile并将BIN移到TemporaryDirectory，无数学检查逻辑变动；不是无来历篡改，也不补足大范围复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "p725_c1_0",
+      "route": "原题与出处",
+      "site": "本地固定缓存",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000958〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "读取唯一当前题卡及修订号；原题历史及数学边界由另两路线核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "p725_c1_1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_full_name\":\"bespokelabsai/conjecture-bench\",\"path\":\"problems/conjectures/cb-0140.json\",\"ref\":\"8d494791ace5894b860585d67ba8e69dbfed6376\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0140.json",
+      "note": "完整读取固定 cb-0140；否定陈述、finite counterexample:true、maintainer-listed open 2026-07-23。条目文字未显式写 positive，不能据此接受零值。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "p725_c1_2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_full_name\":\"google-deepmind/formal-conjectures\",\"path\":\"FormalConjectures/ErdosProblems/366.lean\",\"ref\":\"ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/366.lean",
+      "note": "完整源码：主存在问与 consecutive 3-full 问均 sorry；有体的两处仅反方向 (8,9)、(12167,12168)。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "p725_c1_3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_full_name\":\"google-deepmind/formal-conjectures\",\"path\":\"FormalConjectures/ErdosProblems/366.lean\",\"ref\":\"b576d527b271b936f9e61c0e367c302d7386bc80\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/b576d527b271b936f9e61c0e367c302d7386bc80/FormalConjectures/ErdosProblems/366.lean",
+      "note": "旧固定快照完整源码，与当前 366.lean Git blob 相同；不是另一个已解决版本。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "p725_c1_4#0",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "query": "{\"q\":\"\\\"Erdos 366\\\" proof\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "搜索结果用于候选定位；不把摘要或页面名称当完整解。 命中条件 Lean、有限枚举、GPT candidate 与 Botnet 材料；随后分别读取。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p725_c1_4#1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "query": "{\"q\":\"\\\"Erdős\\\" \\\"366\\\" powerful cubeful\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "搜索结果用于候选定位；不把摘要或页面名称当完整解。 命中条件 Lean、有限枚举、GPT candidate 与 Botnet 材料；随后分别读取。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p725_c1_4#2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2_search_query",
+      "query": "{\"q\":\"\\\"2-full\\\" \\\"3-full\\\" \\\"n+1\\\"\"}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "搜索结果用于候选定位；不把摘要或页面名称当完整解。 命中条件 Lean、有限枚举、GPT candidate 与 Botnet 材料；随后分别读取。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p725_c2_0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_name\":\"google-deepmind/formal-conjectures\",\"query\":\"\\\"def Full\\\" \\\"primeFactors\\\"\",\"topn\":5}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位 Full 定义文件，随后另以固定提交取正文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p725_c2_1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_name\":\"theofilxeff/erdos_366\",\"query\":\"erdos_366\",\"topn\":10}",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "GitHub 搜索返回零条；不能推出仓库不存在。之后直接 API 成功定位提交并取得源。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "p725_c2_2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_name\":\"techno-optimist/erdos-frontier-atlas\",\"query\":\"\\\"certificates/erdos-366\\\"\",\"topn\":10}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "搜索定位 frontier-atlas 固定 6e875e480b68a5cdccafe7bed490f476a65133af 与 certificates/erdos-366/；1e25、候选数及时间在本路线只读搜索摘录。已交 root 实读算法、结果和 manifest，本路线不重读或重跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p725_c2_3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_name\":\"neelsomani/gpt-erdos\",\"query\":\"\\\"2-full\\\" \\\"3-full\\\"\",\"topn\":5}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位 GPT 仓库 candidate_solution.md；后续固定提交读取全文。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p725_c2_4#0",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1_search_query",
+      "query": "{\"q\":\"\\\"Erdős 366\\\" (proof OR counterexample OR solved)\",\"recency\":400}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "搜索结果用于候选定位；不把摘要或页面名称当完整解。 system1 定向近期检索 recency=400；未凭标签升级为证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p725_c2_4#1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1_search_query",
+      "query": "{\"q\":\"\\\"erdos_366\\\" Lean\",\"recency\":400}",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "搜索结果用于候选定位；不把摘要或页面名称当完整解。 system1 定向近期检索 recency=400；未凭标签升级为证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "p725_c2_4#2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "{\"ref_id\":\"https://lemmapark.com/programs/erdos-open/challenges/Lemma.erdos_366\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://lemmapark.com/programs/erdos-open/challenges/Lemma.erdos_366",
+      "note": "实际读挑战原页 32 行：T121/U92 自报 cubefull m≤1e21 有限扫描，页面明确 dead end，无 candidate；未取得 〔私有材料定位已省略〕 等代码或本轮运行。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c2_4#3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web open",
+      "query": "{\"ref_id\":\"https://botnet.com/artifacts/1ee7ef55-315a-48f3-938c-c000d8b940da\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://botnet.com/artifacts/1ee7ef55-315a-48f3-938c-c000d8b940da",
+      "note": "实际读 artifact 第1页 1–100/152 行，包含平方-立方特例证明、search.py 及部分 checker；不是一般 full-number 问题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c3_0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_full_name\":\"google-deepmind/formal-conjectures\",\"path\":\"FormalConjecturesForMathlib/Data/Nat/Full.lean\",\"ref\":\"ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjecturesForMathlib/Data/Nat/Full.lean",
+      "note": "Full(k,n) 定义为所有 n.primeFactors 的 p^k|n；0、1 vacuous 的已给出引理。主目标 n>0 排除 0。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "p725_c3_1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_full_name\":\"google-deepmind/formal-conjectures\",\"path\":\"FormalConjecturesForMathlib/Data/Nat/Full.lean\",\"ref\":\"b576d527b271b936f9e61c0e367c302d7386bc80\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/b576d527b271b936f9e61c0e367c302d7386bc80/FormalConjecturesForMathlib/Data/Nat/Full.lean",
+      "note": "旧 Full 定义与当前 Git blob 相同。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "p725_c3_2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"url\":\"https://api.github.com/repos/theofilxeff/erdos_366/commits/main\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/theofilxeff/erdos_366/commits/main",
+      "note": "只读 GitHub 提交元数据及变更列表：固定 866c5c5…，时间 2026-07-22T07:47:26Z；提交有 Co-Authored-By: Claude Opus 4.8；不据此证明数学结论或断言首次公开日。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c3_3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_full_name\":\"neelsomani/gpt-erdos\",\"path\":\"data/solutions/366/candidate_solution.md\",\"ref\":\"21b48ae6b97279e9fe6781e3744e1cdd835e2cc1\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/neelsomani/gpt-erdos/blob/21b48ae6b97279e9fe6781e3744e1cdd835e2cc1/data/solutions/366/candidate_solution.md",
+      "note": "全文明确未给正向解或证明，只重述有限查表及反向两例；candidate_solution 文件名不代表全解。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c3_4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_name\":\"openai/math\",\"query\":\"\\\"cubefull\\\"\",\"topn\":5}",
+      "date": "2026-11-27",
+      "outcome": "命中已排除",
+      "note": "三个搜索命中为其他 cubic 模块的 CamelCase 标识符中的 cubeFull，不是本题 2-full/3-full 定理。仅读命中片段。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "excluded"
+      }
+    },
+    {
+      "request_id": "p725_c3_5",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地固定缓存",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000959〕",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "实际复用固定 OAI 3344da59991ed94f9ba711217b29c1d760badfa6 的本地 overview.tex；rg 返回 1。覆盖限此目录概览，不是全仓库形式化排除。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "p725_c3_6#0",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web click",
+      "query": "{\"ref_id\":\"〔原始工具引用已私有留存〕\",\"id\":116} 〔私有记录编号：PR-000960〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://botnet.com/artifacts/1ee7ef55-315a-48f3-938c-c000d8b940da",
+      "note": "实际读 artifact 第2页 101–152/152 行，补齐 checker 与作者 PASS 文本；两页合计全文，未执行其程序，未独立验证作者给的文件 SHA256。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c4_0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_file\",\"repository_full_name\":\"theofilxeff/erdos_366\",\"ref\":\"866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346\",\"path\":\"README.md\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/README.md",
+      "note": "完整静态读取条件 Lean 项目指定文件；其目标有 Baker 显式 abc 附加假设且只给巨大有限上界。未构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c4_1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_file\",\"repository_full_name\":\"theofilxeff/erdos_366\",\"ref\":\"866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346\",\"path\":\"ChallengeDefs.lean\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/ChallengeDefs.lean",
+      "note": "完整静态读取条件 Lean 项目指定文件；其目标有 Baker 显式 abc 附加假设且只给巨大有限上界。未构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c4_2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_file\",\"repository_full_name\":\"theofilxeff/erdos_366\",\"ref\":\"866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346\",\"path\":\"Challenge.lean\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/Challenge.lean",
+      "note": "完整静态读取条件 Lean 项目指定文件；其目标有 Baker 显式 abc 附加假设且只给巨大有限上界。未构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c4_3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_file\",\"repository_full_name\":\"theofilxeff/erdos_366\",\"ref\":\"866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346\",\"path\":\"Solution.lean\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/Solution.lean",
+      "note": "完整静态读取条件 Lean 项目指定文件；其目标有 Baker 显式 abc 附加假设且只给巨大有限上界。未构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c4_4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_file\",\"repository_full_name\":\"theofilxeff/erdos_366\",\"ref\":\"866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346\",\"path\":\"Erdos366/Main.lean\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/Erdos366/Main.lean",
+      "note": "完整静态读取条件 Lean 项目指定文件；其目标有 Baker 显式 abc 附加假设且只给巨大有限上界。未构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c4_5",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_file\",\"repository_full_name\":\"theofilxeff/erdos_366\",\"ref\":\"866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346\",\"path\":\"Erdos366/ABC.lean\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/Erdos366/ABC.lean",
+      "note": "完整静态读取条件 Lean 项目指定文件；其目标有 Baker 显式 abc 附加假设且只给巨大有限上界。未构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c4_6",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_file\",\"repository_full_name\":\"theofilxeff/erdos_366\",\"ref\":\"866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346\",\"path\":\"lean-toolchain\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/lean-toolchain",
+      "note": "完整静态读取条件 Lean 项目指定文件；其目标有 Baker 显式 abc 附加假设且只给巨大有限上界。未构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c4_7",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_file\",\"repository_full_name\":\"theofilxeff/erdos_366\",\"ref\":\"866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346\",\"path\":\"lake-manifest.json\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/lake-manifest.json",
+      "note": "完整静态读取条件 Lean 项目指定文件；其目标有 Baker 显式 abc 附加假设且只给巨大有限上界。未构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c4_8",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地固定缓存",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000961〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "本题实际读取 427_source/public/fc 中当前及旧版四个缓存锁文件；均 Lean4.33.1/mathlib0df444a360eaa60ab8c11dca51a86af692955474。只读取锁，未构建。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c4_9",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"repository_name\":\"openai/math\",\"query\":\"\\\"Erdos366\\\"\",\"topn\":5}",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "精确 Erdos366 GitHub 仓库搜索零条；仅说明本次索引查询未命中。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "p725_c5_0",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_file\",\"repository_full_name\":\"theofilxeff/erdos_366\",\"ref\":\"866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346\",\"path\":\"Erdos366/FinalProof.lean\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/Erdos366/FinalProof.lean",
+      "note": "完整静态读取条件 Lean 项目指定文件；其目标有 Baker 显式 abc 附加假设且只给巨大有限上界。未构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c5_1",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_file\",\"repository_full_name\":\"theofilxeff/erdos_366\",\"ref\":\"866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346\",\"path\":\"config.json\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/config.json",
+      "note": "完整静态读取条件 Lean 项目指定文件；其目标有 Baker 显式 abc 附加假设且只给巨大有限上界。未构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c5_2",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_file\",\"repository_full_name\":\"theofilxeff/erdos_366\",\"ref\":\"866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346\",\"path\":\"formalization.yaml\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/formalization.yaml",
+      "note": "完整静态读取条件 Lean 项目指定文件；其目标有 Baker 显式 abc 附加假设且只给巨大有限上界。未构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c5_3",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_file\",\"repository_full_name\":\"theofilxeff/erdos_366\",\"ref\":\"866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346\",\"path\":\"scripts/comparator.sh\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/scripts/comparator.sh",
+      "note": "完整静态读取条件 Lean 项目指定文件；其目标有 Baker 显式 abc 附加假设且只给巨大有限上界。未构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c5_4",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_file\",\"repository_full_name\":\"theofilxeff/erdos_366\",\"ref\":\"866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346\",\"path\":\"lakefile.toml\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/lakefile.toml",
+      "note": "完整静态读取条件 Lean 项目指定文件；其目标有 Baker 显式 abc 附加假设且只给巨大有限上界。未构建或复跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "p725_c5_5",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub",
+      "query": "{\"kind\":\"github_fetch\",\"url\":\"https://api.github.com/repos/theofilxeff/erdos_366/git/trees/e22d1ee8df45ed3ca4ca98dc1557f3edd99fc5fd?recursive=1\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://api.github.com/repos/theofilxeff/erdos_366/git/trees/e22d1ee8df45ed3ca4ca98dc1557f3edd99fc5fd?recursive=1",
+      "note": "读取固定递归 Git tree，truncated=false；用于文件清单和版本身份，不等于逐一读完 10 个内部 Lean 模块。未见发布的构建/Comparator 运行日志文件。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：独立数学核验",
+      "site": "本地题卡/原页/Python",
+      "query": "725_task.json",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "request_id": "Q725-M1",
+      "note": "完整读取题面、逆序例、正性验收、旧10^22范围及finite=true注记。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核验",
+      "site": "本地题卡/原页/Python",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-000962〕",
+      "date": "2026-11-27",
+      "outcome": "不适用",
+      "request_id": "Q725-M2",
+      "note": "实际一次exit0，所有指定证书断言通过；日志725_run_log.json。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "query_outcome": "not_applicable"
+      }
+    },
+    {
+      "route": "其他：独立数学核验",
+      "site": "本地题卡/原页/Python",
+      "query": "[\"725_check_examples.py\", \"725_example_check.json\"]",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "request_id": "Q725-M3",
+      "note": "实际读取8项因数/性质证书和完整运行结果，核原脚本/结果散列；未重跑。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核验",
+      "site": "本地题卡/原页/Python",
+      "query": "725_source/academic/ErGr_p64.png, from ErdosGraham1980.pdf printedp68",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "request_id": "Q725-M4",
+      "note": "实际视读B_k(n)定义及紧邻两个问题：B2(n)=n且B3(n+1)=n+1是否无解；反方向旧问n8是否唯一。原PDF由academic取得，本agent读此页，不称全书通审。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E725-A1",
+      "url": "https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf",
+      "locator": "Erdős–Graham,Old and new problems and results in combinatorial number theory,印刷68页（本124页作者PDF物理64页）；已Poppler渲染并实际视读",
+      "version": "Monographies de L’Enseignement Mathématique28(1980),128pp；本轮下载原字节SHA256 0cbf0c32f0ab1e1c71db5121a88bac905bf976c4a6ab6bb6d7d9cf9ddd184ed3",
+      "subquestions": [
+        "主问题",
+        "原题及历史出处",
+        "反向例子与弱化问题"
+      ],
+      "role": "目前最早可核实出处",
+      "publication": "正式刊发",
+      "scope_match": "原题等价",
+      "review_status": "已读未核关键步骤",
+      "note": "本轮最早直接读到完整2→3问句的原出处。页上定义B_k(n)为n中指数至少k的完整素数幂之积；明确问B2(n)=n且B3(n+1)=n+1是否没有解，随后另问B3(n)=n且B2(n+1)=n+1是否只有n=8。因此卡否定命题有1980原文依据，不能仅因现代EP改问是否存在而判失真。反向唯一性是另一问；Golomb1970相关引文不等于本轮已读到1970的同一正向猜想。未声称1980是绝对最早提出日。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E725-A2",
+      "url": "https://static.renyi.hu/~p_erdos/1976-39.pdf",
+      "locator": "P.Erdős,Problems and results on number theoretic properties of consecutive integers and related questions,印刷31页（物理7）；末参考文献[12]",
+      "version": "Fifth Manitoba Conference(1975),CongressusNumerantiumXVI,UtilitasMath1976,25–44；PDF SHA256 2c098f2c3e5079ef09a44f693c7db43a29428bb1c8bf7df7ab57b020306a9ad0",
+      "subquestions": [
+        "原题及历史出处",
+        "反向例子与弱化问题"
+      ],
+      "role": "最早可核实出处",
+      "publication": "正式刊发",
+      "scope_match": "同源不同问",
+      "review_status": "已读未核关键步骤",
+      "note": "仅指1976较弱前身的最早已读原段：定义r-powerful为全部素因子指数≥r，推测不存在相邻3-full整数，并猜此类相邻项有正幂大小间隔。该段没有2-full n、3-full n+1的完整正向问句；所以不可把1976前身无说明地当现卡完全同题的首次出版。会议在1975，论文刊出1976。末[12]给Golomb1970 AmerMathMonthly77 pp848–852，和本轮出版社元数据一致；现代EP所列848–855页尾与该原书目/出版社不合，未因此作数学状态判断。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "earliest_source",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "E725-A3",
+      "url": "https://www.erdosproblems.com/forum/thread/366?embed=1",
+      "locator": "官方主页/history/latex及forum的搜索返回正文；原帖abc计算段已在返回内容完整读；direct open restricted",
+      "version": "官方页面检索显示lastedited2026-04-15；本轮2026-11-27，不能当全部后续评论已遍历",
+      "subquestions": [
+        "主问题",
+        "原题及历史出处",
+        "反向例子与弱化问题",
+        "abc条件下的有限性"
+      ],
+      "role": "重述",
+      "publication": "社区帖子",
+      "scope_match": "原题等价",
+      "review_status": "仅核关键步骤",
+      "note": "现代页问存在正整数n使2-full(n)、3-full(n+1)。8/9及12167/12168明确为3→2反向例；不反驳主猜想。Turturean的评论给abc条件下有限性：rad(n)≤n^(1/2),rad(n+1)≤(n+1)^(1/3)，取0<ε<1/5可得n^((1−5ε)/6)≤Kε，因而仅有限个候选。此为假设abc后的有限性，不是无解或已获可计算数值阈值；Kε未提供有效数值。评论披露AI辅助并自述独立核对，本轮不据此声称形式化验证或学术首创；完整短桥由proof路线独立核。原站open标签只是编者状态、有限检索无全解不证明全球开放。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "E725-A4",
+      "url": "https://oeis.org/A060355",
+      "locator": "官方search正文及/internal索引：sequence definition/comments/DonovanJohnson table link；direct页面、internal、b-file及fmt=text实际均403",
+      "version": "本轮2026-11-27取得搜索正文；table caption“n=1..39(terms<10^22)”；未取原b-file字节、未审完整性算法",
+      "subquestions": [
+        "主问题",
+        "OEIS有限计算范围",
+        "反向例子与弱化问题"
+      ],
+      "role": "进展",
+      "publication": "原始档案",
+      "scope_match": "仅子问",
+      "review_status": "未读全文",
+      "note": "A060355对象是k和k+1都powerful（两侧均2-full），不是直接列2→3或3→2。官方索引将39项小于10^22的表归DonovanJohnson；任何2→3候选都属于此序列，故若该范围表完整且逐项排掉3-full(k+1)，才能推出本题的有限无解界。EP说反向仅8和12167及小于10^22无其他，是在该大序列中再按方向过滤；不能把A060355自身只说成两项。此路线未取得b-file或原计算证书，故不把旧1e22作者计算当本轮独立穷举；更近公开有限计算由root/public路线另核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_review": "not_read",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "E725-A5",
+      "url": "https://arxiv.org/pdf/2611.20656v1",
+      "locator": "Shusei Narumi and Yohei Tachiya, On the behavior of the number of k-full integers between successive k-th powers；印刷pp1–3：定义(1)–(3)、Theorems1/2、Corollaries1/2",
+      "version": "官方arXiv仅v1：2026-11-16 07:12:28 UTC；PDF稿面Date为2026-11-17，未混作提交日。8页官方PDF本轮普通HTTP200取得，312742bytes，SHA256 0d09864b3911f7c9ead66f017dfdbfe96f72c54153e13876c289deedb6d66714；官方abs HTML SHA256 7ea0497d4d41d1971ff54957c9e9108948f1488a3b56fd79d26c0247e37905db",
+      "subquestions": [
+        "形式化代码和公开完整声明"
+      ],
+      "role": "重述",
+      "publication": "预印本",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "已实际读官方原稿pp1–3的定义和完整主定理陈述，未通审其后证明。对象h_k(n)=#{m为k-full:n^k<m<(n+1)^k}，k≥2，研究相邻k次幂之间的满幂数计数。Theorem1给含较多k-full数的区间数量下界，Corollaries1/2推出无限多个n上h_k(n)>[k/(2(k+1))]log(n)/loglog(n)及δ_k≥1；Theorem2给满足h_k(n)≥m的最小区间指标η_k(m)的有效上界。其1976来源指向满幂数在相邻幂区间的另一问题，绝非相邻整数n为2-full而n+1为3-full的存在/无解问；对本卡没有完整解或有限排除声明。Web入口Disabled与后续普通HTTP成功均已在既有queries记录，本次仅补证据连结，没有新增检索。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "restatement",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "E725-R1",
+      "url": "https://github.com/techno-optimist/erdos-frontier-atlas/blob/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/RESULT.json",
+      "locator": "固定目录README/RESULT；13shard摘要和源码字节清单；PR125历史结果commit",
+      "version": "现固定commit6e875e480b68a5cdccafe7bed490f476a65133af；1e25结果commit46a915752eb102e3b9242d93e275294ef3dbfc14（2026-07-26 23:58:38UTC）；RESULT SHA256e4c178c63f43b2011b3a044733861b411ceb719166c3b1e9945f4ac22b691199",
+      "subquestions": [
+        "主问题",
+        "公开有限计算报告与独立核验边界"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "note": "第三方报告cubefull端C∈(0,10^25]、13shards、1620172043个原始a³b⁴c⁵表示（有重复，不是不同cubefull数个数）、22565.5core-seconds；strict无hit，reverse仅8/12167。报告摘要的shard编号0..12各一次/计数和/B100001的B^5≥HI+1在本轮已核。生产原始shard输出和二进制未取得，本轮没有重跑此区间；这些数值仍按作者报告登记，不能关闭无限题。READMEs“从未他人复现/最新记录”等广泛历史主张本轮未采信。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E725-R2",
+      "url": "https://github.com/techno-optimist/erdos-frontier-atlas/blob/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/search366.c",
+      "locator": "introot/powle/is_perfect_power/is_powerful、main generator/shards、selftest两组阈值",
+      "version": "commit6e875e480b68a5cdccafe7bed490f476a65133af；Git blob2ef8741e4bf76bf1cd9c394806d81dc8d30a34d7；SHA256d1963a0acaf0a422dea87da8c20ebd394a9c9794498e0f995b655b8adb0396d6",
+      "subquestions": [
+        "公开有限计算报告与独立核验边界",
+        "计算端点与测试覆盖"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "note": "静态核：每e≥3可写3a+4b+5c，故正整数三循环覆盖所有cubefull；按a偏移分13shards无遗漏。powerful余因子算法在B^5≥HI+1下正确：若各残余素数>B且exponents≥2却非perfectpower，指数和≥5，数值已超界。128bit整型/除法guard在1e25范围足够；未执行C。实际strict测试C−1给n≤HI−1，不能笼统由循环写n≤HI。边界HI=10^25本轮另外核(10^25+1)%121=33且%11=0，故n+1并非3full，能补此单点，但不能代替历史运行认证。selftest中67³·71²=1516146283>64^5=1073741824，所有标榜adversarial双素数例被continue；big列表最小1000003^5>1e24，生产尺度planted例也全跳。不是整个selftest空，也不由此断生产算法或有限无解结论为假。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E725-R3",
+      "url": "https://github.com/techno-optimist/erdos-frontier-atlas/blob/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/verify.py",
+      "locator": "main各阶段、RESULT artifactsha；历史verify@46a9157逐字对照",
+      "version": "当前blob8dc9e6bb0cb61798f5ca1fb52ffea78d49ae1e01/SHA256f40cf4b64d8563875bf3f0162bd490dd7e00f37a83d6390a4d79d34697fecc1e；旧blob1c96bfae108d8ba46e08522056b6cbdaa5790582/SHA256f56fb31ab53e4a1d947f07d98cc253d07c4a35ff1bb51d0600db1ab91f0b71ed",
+      "subquestions": [
+        "主问题",
+        "公开有限计算报告与独立核验边界",
+        "计算端点与测试覆盖"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "仅子问",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "note": "完整静态读验证器：重建C、自测、3e5已知例、1e12的7分片对单片；不带--quick还对3e6逐数因式分解。随后以RESULT内摘要相加/个数/两小hit验证打印verified=true。默认与quick都没有重跑1e25，没有独立认证生产日志，也未核RESULT所记artifact哈希。root自行核C/reference/runner三hash对应，当前verify不同；已取结果时点历史verify，旧hash完全相等，diff仅新增tempfile/移动编译目标，故hash差异已解释但RESULT仍记旧值。这里从未执行verify/selftest/reference/build；无独立复跑或Lean通过声明。；外部源仅保留固定下载URL/原Gitblob/SHA256，不转载 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。 公开来源：https://raw.githubusercontent.com/techno-optimist/erdos-frontier-atlas/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/README.md；https://raw.githubusercontent.com/techno-optimist/erdos-frontier-atlas/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/RESULT.json；https://raw.githubusercontent.com/techno-optimist/erdos-frontier-atlas/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/search366.c；https://raw.githubusercontent.com/techno-optimist/erdos-frontier-atlas/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/verify.py；https://raw.githubusercontent.com/techno-optimist/erdos-frontier-atlas/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/reference.py；https://raw.githubusercontent.com/techno-optimist/erdos-frontier-atlas/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/emit_result.py；https://raw.githubusercontent.com/techno-optimist/erdos-frontier-atlas/6e875e480b68a5cdccafe7bed490f476a65133af/certificates/erdos-366/run_sweep.sh",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "subquestion",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E725-P1",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0140.json",
+      "locator": "完整 cb-0140.json；statement/counterexample/status_observation/provenance",
+      "version": "commit 8d494791ace5894b860585d67ba8e69dbfed6376; blob 9f683b95dc200d1568f895969c53f697499ec98e",
+      "subquestions": [
+        "主问题",
+        "形式化代码和公开完整声明",
+        "反例与有限验证的验收"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "在原题正整数域恢复后是本卡否定猜想的同一重述。CB 文本单独未显式写 positive；有限反例须仍满足本卡正整数验收，0 不可使用。open 2026-07-23 为 maintainer-listed 索引状态；有限反例可核不意味着有限穷尽可证全称。唯一状态来源为 EP366。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E725-P2",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/ErdosProblems/366.lean",
+      "locator": "erdos_366；exists_three_full_then_two_full；erdos_366.variants.three_two；variants.weaker；Data/Nat/Full.lean",
+      "version": "current ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8 and old b576d527b271b936f9e61c0e367c302d7386bc80; 366 blob 3fc11d75b59ad83489abcb90d9c61ccbb84e991b; Full blob a23f1b289e97ac767bc555c3b5b53d9ee9ee1ac8",
+      "subquestions": [
+        "定义和正整数边界",
+        "反向例子与弱化问题",
+        "形式化代码和公开完整声明"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "同源不同问",
+      "claim_state": "无声明",
+      "review_status": "仅核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "属于同一存在性决策问题的另一断言方向，不能说正向断言逻辑等价于本卡否定猜想：实际主目标 ∃ n>0, Full 2 n ∧ Full 3(n+1) 正是本卡否定断言的逻辑否定，带 question/research open 且以 sorry 占位。两处有体源码只证明逆向 n=8 的存在和 n=12167 对逆向唯一性的否定，不能反驳本题。更弱连续 3-full 存在目标亦 sorry，总计 2 sorry。Full k n=∀p∈n.primeFactors,p^k∣n；0/1 均 vacuous，但 n>0 排除 0，1 的 successor 2 非 3-full。旧当前两个文件逐字同 blob；锁为 Lean4.33.1/mathlib0df444…，未构建、未导出公理或独立运行这些体。学术路线已从1980原文核实否定问法有历史依据，不以现代 FC 选向判题卡方向错误。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "key_steps_checked",
+        "scope_match": "related",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E725-P3",
+      "url": "https://github.com/theofilxeff/erdos_366/blob/866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346/Erdos366/Main.lean",
+      "locator": "ChallengeDefs.IsFull/BakerInequality/BakerExplicitABC；Challenge/Solution.explicit_conditional_bound；Main.radical_six_lt_fifth/explicit_conditional_bound；FinalProof.abc_explicit_bound；README verification；config and locks",
+      "version": "commit 866c5c5e21589b55808f7b8ad1ec6e4ebf9dc346 (2026-07-22T07:47:26Z), tree e22d1ee8df45ed3ca4ca98dc1557f3edd99fc5fd; files in source_manifest",
+      "subquestions": [
+        "主问题",
+        "显式Baker条件界的形式化层级"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "他人声称已形式化验证",
+      "claimant": "Theofil Xeff；提交声明 Co-Authored-By: Claude Opus 4.8",
+      "claim_date": "2026-07-22（固定提交日期/作者所报验证日期，未断言首次公开）",
+      "note": "实际读定义、完整公共 theorem/最终 assembly、Comparator bridge/config、README 及环境锁。目标仅为在 BakerExplicitABC 假设下，对正整数 n 的 rad(n)^2|n 与 rad(n+1)^3|n+1 推出 n<10^16136778163。BABC 是一个显式参数的单字段 Prop：对正、两两互素 a+b=c 且 rad(abc)>2，有 c<(6/5)N(logN)^ω(N)/ω(N)!。它不是已证或隐藏的零假设结论。Main/FinalProof/Solution 有体；Challenge 故意含 sorry 目标。Main 在正常正整数 radical 语义下与题目 full 条件匹配，未据此给全部引入模块或 mathlib 依赖闭包逐行保证。FinalProof 分小 logN/大 logN及两个 ω 分支调用解析和数值模块，本轮未取得/核完这些全部依赖。作者 README 自报 Windows11/Lean4.32.0 于7月22日 Comparator 成功，使用 passthrough landrun shim；配置仅许可 propext/Quot.sound/Classical.choice，enable_nanoda=false。本轮只静态检查，没有执行脚本、替换 sandbox 或 Lean 构建，未取得实际运行/axiom日志；递归树仅有源码和脚本。其独立 manuscript 不在该提交树。该条件界既不证明 BABC，也不提供解，更不排除界内解，不能解决本题无条件全称。锁 mathlib=81a5d257c8e410db227a6665ed08f64fea08e997、Lean4.32.0；不能与 FC 的4.33.1环境混用。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "formal_evidence": "claimed_verified",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E725-P4",
+      "url": "https://github.com/neelsomani/gpt-erdos/blob/21b48ae6b97279e9fe6781e3744e1cdd835e2cc1/data/solutions/366/candidate_solution.md",
+      "locator": "完整 candidate_solution.md",
+      "version": "commit 21b48ae6b97279e9fe6781e3744e1cdd835e2cc1; blob 9cef1ffb80c7b6ede701421531bc2e4e116685bc",
+      "subquestions": [
+        "OEIS有限计算范围",
+        "形式化代码和公开完整声明"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "文件明言未给正向例或一般证明，引用 OEIS ≤1e22 有限检查并列逆向8/9、12167/12168。本轮读到的是说明文本，无本题完整解或可执行穷尽证书；文件名 candidate_solution 不是完成声明。有限范围和历史归属由学术/根路线另核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E725-P5",
+      "url": "https://lemmapark.com/programs/erdos-open/challenges/Lemma.erdos_366",
+      "locator": "原挑战页全文；T121/U92 attempt 的 Code/evidence/Result 段",
+      "version": "2026-11-27 accessed; web 〔原始工具引用已私有留存〕; page not immutable-commit identified",
+      "subquestions": [
+        "公开有限计算报告与独立核验边界",
+        "形式化代码和公开完整声明"
+      ],
+      "role": "进展",
+      "publication": "社区帖子",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "claimant": "rgbrgb / T121 U92 attempt",
+      "note": "已读完整可访问挑战页，不是其所述 〔私有材料定位已省略〕 等代码全文。作者自报枚举 cubefull m≤1e21 的45,575,049项并检 m−1，未找到主方向解；实际范围是 n+1≤1e21。页面明确 dead end、candidate empty。逆向与连续3-full有限扫描分别是其他方向/子问。未取原代码、日志或重跑，不能升级为已独立复核或无穷证明。更大 frontier-atlas 声明交 root 审，不能将本页较小扫描当最新上界。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "E725-P6",
+      "url": "https://botnet.com/artifacts/1ee7ef55-315a-48f3-938c-c000d8b940da",
+      "locator": "erdos366-square-cube-evidence.txt 两页全部152行；Proof、search.py、checker、作者 PASS summary",
+      "version": "artifact authored 2026-11-06 17:36 UTC; accessed 2026-11-27; author-displayed SHA256 874fef5fd2f9b860270610bd117c4dfbf65638bd5c58272c61468bfa6d939149 (not independently hash-verified)",
+      "subquestions": [
+        "完全平方与完全立方的特例"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "claimant": "Botnet solver-1106-astra-19",
+      "claim_date": "2026-11-06（页面作者时间）",
+      "note": "已读完正文、两个 Python 程序与作者日志摘要；数学范围为 x≥0,y≥1 的 x²+1=y³ 仅有(0,1)，即 n 是完全平方且 n+1 是完全立方的特例。正文明确 classical/no novelty/formal_proof:false。其 Gaussian integer UFD 论证通过 parity、coprime factors、imaginary part b(3a²−b²)=1 排除 x>0；不覆盖一般2-full/3-full因子指数。search/checker各在不同有限坐标域枚举并比对交集，作者 PASS 仅该有限/特例工程。本轮静态读，未执行任何 Python，也未验证展示SHA；不是 Lean、不是全题反例或完整证明。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E725-M1",
+      "url": "https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf",
+      "locator": "1980印刷68页/物理64页已视读；本轮定义与正性手证",
+      "version": "2026-11-27，源PDF SHA256 0cbf0c32f0ab1e1c71db5121a88bac905bf976c4a6ab6bb6d7d9cf9ddd184ed3",
+      "subquestions": [
+        "主问题",
+        "定义和正整数边界",
+        "原题及历史出处",
+        "反向例子与弱化问题",
+        "完全平方与完全立方的特例"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "note": "{\"id\":\"E725-M1\",\"type\":\"definition_direction_boundary_audit\",\"precise_statement\":\"不存在正整数n，使对每个素数p，p|n⇒p²|n，且p|(n+1)⇒p³|(n+1)。等价地，n的每个正素指数≥2，n+1的每个正素指数≥3。\",\"source_alignment\":\"1980原书p68定义B_k(n)=∏_{p^a||n,a≥k}p^a；其B2(n)=n及B3(n+1)=n+1正是本题，不是交换次序的另题。\",\"full_vs_power\":\"每个正整数平方都是2-full，每个正整数立方都是3-full，但逆命题不成立：8=2³是2-full却不是平方；16=2⁴是3-full却不是立方。3-full蕴含2-full，反向不成立，如9=3²。因此不能把本题直接改成x²+1=y³而用完全幂方程结果关闭。\",\"one\":\"按素因子指数条件，1因无素因子而对任意k都是k-full；但n=1时n+1=2的素指数为1，所以不是目标反例。即使某文献另约定full须>1，也不影响本题n=1分支无解。\",\"zero\":\"原题域为正整数，0不允许。若将∀素p的整除式延伸到0，则所有p都整除0，同时p^k也整除0，所以0满足该扩展条件；这不是“没有素因子”的空真。1则由无素因子而空真。故省略正性可能产生0→1退化；本报告不采用任何v_p(0)约定。\",\"negative_extension\":\"若另把full定义延伸为对|n|考察，负数−9→−8会满足正向指数条件。这仅说明正整数域不可省略，不是原题反例。\",\"known_pair_scope\":\"两对给定例子只验证反向存在，不证明反向全局分类。建议用有序对(8,9)、(12167,12168)，避免把分隔竖线误读为整除记号。\"}",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E725-M2",
+      "url": "https://www.qunxingmath.org/p/QX-P-000725/",
+      "locator": "本轮8个指定正数与3个指定相邻例的独立精确证书；脚本/实际结果/一次运行日志原字节内嵌",
+      "version": "2026-11-27；Python3.12.14；只一次实际执行",
+      "subquestions": [
+        "定义和正整数边界",
+        "反向例子与弱化问题",
+        "指定小例的独立核验"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "rerun": {
+        "toolchain": "Python3.12.14标准库；整数trialdivision/isqrt/binarysearch/Fraction，无Lean/GAP",
+        "command": "python 725_check_examples.py",
+        "cache": "从note恢复脚本原字节，在新目录运行；程序写725_example_check.json，勿覆盖本轮原始结果。"
+      },
+      "note": " 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E725-M3",
+      "url": "https://www.erdosproblems.com/forum/thread/366?embed=1",
+      "locator": "本轮独立abc→有限性短手证；原论坛计算段由官方搜索正文取得，direct访问受限",
+      "version": "2026-11-27；条件性数学核对，无abc证明或全范围计算",
+      "subquestions": [
+        "主问题",
+        "abc条件下的有限性",
+        "显式Baker条件界的形式化层级"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "有附加假设",
+      "review_status": "本轮独立数学核对",
+      "note": " 本地证明、核算源码或原始日志已私有留存，公开版不含正文；本条结论、适用范围及核验等级仍以其他字段为准。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E725-M4",
+      "url": "https://www.qunxingmath.org/p/QX-P-000725/",
+      "locator": "本轮有限反例证书/无解验收量词核对",
+      "version": "2026-11-27手工核对",
+      "subquestions": [
+        "主问题",
+        "反例与有限验证的验收",
+        "公开有限计算报告与独立核验边界",
+        "显式Baker条件界的形式化层级"
+      ],
+      "role": "证书",
+      "publication": "项目报告",
+      "scope_match": "仅子问",
+      "review_status": "本轮独立数学核对",
+      "note": "{\"id\":\"E725-M4\",\"type\":\"acceptance_and_finite_certificate_audit\",\"counterexample_requirement\":[\"给出明确n>0，核相邻关系n+1。\",\"提供n与n+1的完整素因数分解；核每个因子的素性和两侧素幂乘积。\",\"核n所有指数≥2、n+1所有指数≥3。只有一侧完整或只知道若干素平方/素立方整除都不够。\"],\"finite_true\":\"满足上述条件的一个有限整数即可反驳全称不存在猜想。finite=true描述的是反例证书的有限性，而非全域搜索可由一个现成有限区间穷尽。\",\"proof_requirement\":\"无解证明须涵盖全部正整数；有限搜索仅排除其明确范围。没有有效全局上界时，任意扩大有限范围都不等于完成证明。\",\"nonproofs\":\"反向例、仅无更多已知例、abc有限性、假定额外explicit radical界的条件结论、未验证完整外层候选范围的枚举，各自只能按实际范围登记。\"}",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "claim_review": "independent_check",
+        "scope_match": "subquestion",
+        "role": "certificate",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-000491",
+      "other_card_rev": "83c5f3ec3f35e73c",
+      "relation": "待核",
+      "reason": "491为更小负责卡且包外。其三连续全部2full目标与725相邻两数2→3目标不同；目前只转交同族线索，不按共用powerful术语认同题或擅断互推。",
+      "positions": {
+        "self": "725§题面/形式化/acceptance",
+        "other": "000491固定提交§题面/形式化（有则）/人话版及metadata.acceptance"
+      },
+      "note": "pair QX-P-000491__QX-P-000725；owner491包外；meta blob4736a76ea525fe2496a5cd202b2410c1e1ef1f7e，text blobecfc5b9acdeac4210d82b889274bd1b78bcc5ffe。双方rev与索引一致，全文已读；外题进展和明显旁支叙述不在本轮评定，不提合并。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "duplicate_relation": "pending"
+      }
+    },
+    {
+      "other_id": "QX-P-001424",
+      "other_card_rev": "99da13a1bae19c13",
+      "relation": "仅相似",
+      "reason": "1424是三连续powerful的同余阻碍及∃偶B∀k的指数族问题；725是一般相邻二数中的2full→3full存在/无解问。对象数目、量词和验收不同，未证任何等价或可合并。",
+      "positions": {
+        "self": "725§题面/形式化/acceptance",
+        "other": "001424固定提交§题面/形式化（有则）/人话版及metadata.acceptance"
+      },
+      "note": "pair QX-P-000725__QX-P-001424；owner725本包；meta blob53a121e51462cd62ecfc25a10285bd8e394751a0，text blob7c51c3ddc9279364475b71da439a51c28e5f9e85。双方rev与索引一致，全文已读；外题进展和明显旁支叙述不在本轮评定，不提合并。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    },
+    {
+      "other_id": "QX-P-002029",
+      "other_card_rev": "a2e4923bcf2888a8",
+      "relation": "仅相似",
+      "reason": "2029问两个powerful数差为素数/无穷性，725差固定1（非素数），并要求一侧3full；不能用素数差的计算/条件结果覆盖本题。",
+      "positions": {
+        "self": "725§题面/形式化/acceptance",
+        "other": "002029固定提交§题面/形式化（有则）/人话版及metadata.acceptance"
+      },
+      "note": "pair QX-P-000725__QX-P-002029；owner725本包；meta blob8aab122e9ce7380515efd6a2da423a1ecb3de259，text blobf61308a5f36d5774a87dce565b9877b73ea1cbed。双方rev与索引一致，全文已读；外题进展和明显旁支叙述不在本轮评定，不提合并。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "duplicate_relation": "similar"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "补最早出处",
+      "field": "proposer/first_published/sources",
+      "old": "原出处主要为CB快照2026-07-23及EP链接，命题年份未恢复。",
+      "new": "补Erdős–Graham1980印刷68页为当前完整2→3无解问句的最早已读原段；1976印刷31页只作3→3弱化前身，会议1975不作出版年。Golomb1970正文未阅，不越级认同题首次。",
+      "reason": "书目年份、编目快照和数学原始出处应区分。",
+      "evidence_ids": [
+        "E725-A1",
+        "E725-A2",
+        "E725-A3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "修正人话版",
+      "field": "已知两对/形式化中的8|9、12167|12168",
+      "old": "已知仅8|9与12167|12168两对（逆序）。",
+      "new": "写为反向已知有序对(8,9)、(12167,12168)，明确不声称已完整分类；用逗号代竖线避免被读作整除。",
+      "reason": "两例只说明反向存在及反向唯一性为假，不是本题解或反向全局穷尽。",
+      "evidence_ids": [
+        "E725-A1",
+        "E725-A3",
+        "E725-M2"
+      ],
+      "small_case_check": "8、12167是3-full，但9和12168非3-full；精确素幂证书已实际核。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述/边界",
+      "old": "¬∃n: n 2-full ∧ n+1 3-full，正式行没有写n>0。",
+      "new": "明确n∈Z且n>0（或Nat且n>0）及全素数指数条件；主正文已有正整数意图。若落实正式域/公式修订，接收方生成新card_rev，本回执仍锚f3d295a3887edb1b。",
+      "reason": "0→1或负数扩展会改变命题；不能把k-full误改为完全k次幂。",
+      "evidence_ids": [
+        "E725-M1",
+        "E725-P2"
+      ],
+      "small_case_check": "n1无效；0若扩域可能满足，负域−9→−8亦非原题。8、16分别显示2-full/3-full不必平方/立方。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "OEIS与有限计算",
+      "old": "OEISA060355 n<10^22无其他；独立验证建议不同源重扫。",
+      "new": "说明A060355是两侧2-full、Johnson39项<10^22的历史表；新增固定frontier作者报告1e25与本轮静态检查层级，注明表示数可重复、strict端点补证、verify不复跑大范围、两组selftest空循环、历史hash差异已解释。",
+      "reason": "分开作者有限计算、自测覆盖和本轮独立有限检查；不能报已完成整段复跑。",
+      "evidence_ids": [
+        "E725-A4",
+        "E725-R1",
+        "E725-R2",
+        "E725-R3",
+        "E725-P5"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "abc/公开形式化",
+      "old": "ABC⇒有限（Turturean）；formal_status=none。",
+      "new": "保留普通abc条件有限性及0<ε<1/5范围；新增显式BakerABC假设下有限上界的固定Lean声明，记他人声称形式化验证/本轮未build，并注明不是无条件无解。FC另为两sorry的题面骨架。",
+      "reason": "公开声明的假设、证明目标与实际执行层级不能混成全题解决。",
+      "evidence_ids": [
+        "E725-A3",
+        "E725-P2",
+        "E725-P3",
+        "E725-M3"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "acceptance/checkability",
+      "old": "验收只写证明不存在正整数n；finite=true注记未给完整证书要求。",
+      "new": "保留证明否定主方向，同时允许明确正向反例推翻：完整核n>0、两侧全素因数分解、素性/乘积和指数门槛。有限无解计算只能按范围登记；落实验收修订需新rev。",
+      "reason": "反例能解决该决策问题；finite=true不意味着可固定有限穷尽证全称。",
+      "evidence_ids": [
+        "E725-M4",
+        "E725-P1"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "调整数学状态",
+      "field": "novelty/旧arXiv命中/状态证据",
+      "old": "旧not_found_in_scope/none；把2611.20656v1列在开放状态证据，凭目录confirmed。",
+      "new": "主问题记有部分进展但未闭合。arXiv2611.20656v1为相邻k次幂区间计数异题，实际官方提交2026-11-16/稿面Nov17；不能作本题进展或开放证明。保留明确检索范围和未核项，不以目录标签确认全球开放。",
+      "reason": "已实际读原稿pp1–3主定义和定理；真正相关的新材料是条件性/有限报告，而非这条异题。",
+      "evidence_ids": [
+        "E725-A3",
+        "E725-R1",
+        "E725-P3",
+        "E725-A5"
+      ],
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {
+        "card_action": "adjust_status"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "reason": "尚未取得覆盖全部正整数的无条件证明或正向反例。普通abc只条件有限，未给可用有效Kε。",
+      "next_step": "保持主问题未闭合；新结果须匹配正整数2→3方向及全部n，不能拿反向例、有限范围或相邻幂计数替代。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "Golomb1970正文和OEIS原b-file/原完整性证书未取得，已读1980精确原页和1976弱化原段。",
+      "next_step": "保留当前最早已读出处及旧计算报告层级；若需升级历史/旧计算确证，再补原文或完整证书。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "1e25计算目前仅报告/源码静态核，生产日志和实际全范围运行未独立复现；verify的小范围输出不能认证大范围。",
+      "next_step": "保留作者有限报告层级，若需升级独立确认，须取得原运行证据或实际重跑；补strict端点口径和selftest空循环，不由日志问题判原猜想真假。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "条件 Lean 只核目标/定义/公共 assembly 和自报验证；独立 manuscript、全部内部解析数值模块及实际 build/Comparator 日志未审或未取得。",
+      "next_step": "如需提升条件界验证等级，取得作者独立稿及同提交运行日志，逐个核内部依赖并在受控环境固定 Lean4.32.0/mathlib81a5d…复跑；即使通过，仍只支持 BakerABC⇒有限界，不关闭主问题。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {}
+    },
+    {
+      "route": "库内查重",
+      "reason": "491是更小负责卡且包外。",
+      "next_step": "转交pair QX-P-000491__QX-P-000725给491负责人，不按同族自动合并。",
+      "batch_id": "QX-R3-02",
+      "card_rev": "f3d295a3887edb1b",
+      "codes": {}
+    }
+  ]
+}

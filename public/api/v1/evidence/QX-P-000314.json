@@ -1,0 +1,2423 @@
+{
+  "schema": "qunxing.evidence/1",
+  "id": "QX-P-000314",
+  "card_rev": "7976e4a013c40aad",
+  "summary": {
+    "math_status": {
+      "value": "partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "batch:QX-R3-11"
+      ],
+      "parts": [
+        {
+          "subquestion": "标准域、操作及四层量词",
+          "value": "statement_error",
+          "note": "标准任务为非空有限连通简单无向图。配置p:V→Z≥0，|p|=Σp(v)；合法动作在uv边上且p(u)≥2时p↦p−2e_u+e_v，每次总数恰减1。π(G)是最小N使∀|p|=N、∀r∈V、∃依赖于(p,r)的有限合法动作序列，使最终目标r至少1颗；根已占据时可用空序列。因为额外石子可以忽略，恰N与至少N等价。不是一个固定序列要同时满足所有r，也不是最终每个点都留有石子。有限性应显式补为原惯例：无限图上任意有限N可在N个不同非目标点各放1颗，无合法动作，故没有有限π；非连通图把任意多颗全放在另一分量也不能到目标。多重边只重复同一允许动作，圈只浪费一颗而不改善送达，通常取底层简单图。"
+        },
+        {
+          "subquestion": "K1、基本上下界与路径的完整手核",
+          "value": "partial",
+          "note": "π(K1)=1且G□K1≅G，给乘积边界等号。对n点连通图，n−1颗分别放在所有非目标顶点各1颗不可动，故π(G)≥n；若直径d，将2^d−1颗堆在距r为d的点，以W_r(p)=Σp(v)2^(−dist(v,r))作势函数，每步Δ=−2w_u+w_v≤0，初值<1而到达r后≥1，故π(G)≥2^d。反之n(2^d−1)+1颗必有一点≥2^d颗，可沿最短路送1颗，故π有限。路径P_m顶点0,…,m−1，目标r两侧长r与s=m−1−r。单侧从最外端向根作二进制进位，能送到根的数为floor(Σ单侧p(v)/2^dist)；每步向根保势，最终各距离残留0或1，其总势<1，证明该公式。若根空且两侧均不能送1，左右颗数分别≤2^r−1、2^s−1，且把这些数堆在两端可实现不可解配置。因此π(P_m,r)=2^r+2^s−1，最大为端点的2^(m−1)，由(2^r−1)(2^s−1)≥0验证。此为路径特例，不以距离势函数的必要条件冒充任意图充分条件。"
+        },
+        {
+          "subquestion": "P2□P2=C4的精确手算证书",
+          "value": "partial",
+          "note": "P2单边有π=2。C4取目标r、两邻点u,v、对面w。3颗分别放u,v,w各1颗不可动，故π(C4)≥4。任意4颗若r已有石子完成；若u或v有≥2颗也一步完成。余下r=0、u,v≤1，所以w=4−p(u)−p(v)。若u,v均0则w4，先向同一邻点送两颗再送根；若恰一邻点有1则w3，向该邻点送1得到2后送根；若两邻点均1则w2，任选邻点送1后送根。全部配置覆盖，故π(C4)=4=π(P2)²。本例无需程序枚举，没有把有限4点等号推广全称。"
+        },
+        {
+          "subquestion": "cover、optimal、rubbling、rooted与weighted不能替换",
+          "value": "statement_error",
+          "note": "cover pebbling要求同一最终配置所有点各≥1；单边P2的cover数是3（2颗堆一端无法同时覆盖两端，3颗任何配置可），而π(P2)=2。optimal pebbling把“∀初始配置”改为“∃一个初始配置”：P3中心放2颗即可分别到任一目标，optimal值2，而标准π(P3)=4。rubbling另允许从目标的两个不同邻点各取1颗并在目标放1颗；P3两端各1、中间0可rubbling到中点，标准pebbling却无任何动作。rooted π(G,r)固定r，π(G)=max_rπ(G,r)；逐根乘积π(G□H,(g,h))≤π(G,g)π(H,h)会蕴含原不等式，但更小的逐根右端不能由原max版本直接推出。weighted边代价或多目标需求需另外定义，不可把相应已知结果当本题。Chung§4等式Question2和所有图具2-pebbling性质Question4的反例，也都不是≤版本Question3的反例。"
+        },
+        {
+          "subquestion": "逐fiber粗压缩的余数障碍与它实际给出的界",
+          "value": "partial",
+          "note": "设p=π(G),q=π(H),h=|V(H)|。固定目标第一坐标g0，把每个G-fiber的s_j颗分成floor(s_j/p)组p颗，各组可独立送1到(g0,j)，至少收集Σfloor(s_j/p)颗到H列。总数pq不能保证此和≥q：p=q=h=2、fiber大小1与3，总数4但floor和仅1。C4的前条证书说明这只是证明方法损失，不是猜想反例。若floor和≤q−1，写s_j=p t_j+r_j、0≤r_j≤p−1，则总数≤p(q−1)+h(p−1)。所以该粗方法能证明π(G□H)≤pq+(h−1)(p−1)，而不能无理由去掉额外余数项。交换因子可取相应较小界。这里是本轮独立核的基础估计，不声称新颖性，也不将“每组可送1”误用为任意分散余数均可合并。"
+        },
+        {
+          "subquestion": "2024 SOL模型的独立精确证明",
+          "value": "partial",
+          "note": "实际读2411v1 §3。设p(r)=0，双向arc变量z_uv∈Z≥0，约束2Σ_out(v)z≤p(v)+Σ_in(v)z，且Σ_out(r)z=0，目标最大化Σ_in(r)z。所有约束求和给Σ_arc z≤|p|，因此最优值存在且有限。若配置可解，截取首次到r的动作序列，之前r从未占据所以没有出r动作；逐arc计次数给可行整数z且目标≥1，足证此方向而无需假设贪心。反向任何可行z目标≥1构成有向多重图；每次删除一个有向圈的各一条arc，该圈顶点balance=p+indeg−2outdeg都增加1，其余不变。root无出弧，圈不含root且不会删除入root的弧，目标值保持。反复得到DAG后按拓扑顺序处理顶点：处理v时其所有计划入流均已到达，balance非负保证足够执行全部计划出流，所以排序成合法pebbling动作并至少1颗到根。整数性不能删去：单边source1,target0时LP允许z=1/2且目标>0，但真实无动作。root不在support也不能删：根原已有1时已解，零arc模型的目标仍可为0。此独立证明核准Lemma3的适用条件，不依赖运行求解器。"
+        },
+        {
+          "subquestion": "bilevel、support≤4与cover-design归约的准确强度",
+          "value": "partial",
+          "note": "Definition4的leader选support⊆S的非负整数初始配置y；follower必须真正最大化SOL入根数，upper约束要求这个最大值为0，故正好编码不可解配置。若只选一个可行零flow会把所有配置误认不可解，所以argmax不可省略。所有follower最优解有相同目标值，upper约束只看该值，故optimistic tie-breaking不改变本模型可行性；改leader max为min也不改变可行集合，但不能据此改follower目标。Class0 cut另要求|y|≥n，因此PI_S不可行只推出π_S(G,r)≤n，不一定π_S=n：在K_n(n≥3)上单点support门槛为2而非n。一般π_1≤π_2≤…≤π_n=π；支持受限结论不能反推全配置。原Theorem1仅对8点Lemke乘积证明π_4≤64。§4的8点cover sets只是覆盖所有4点support的根固定自同构轨道代表：S⊆T时π_S≤π_T，配合根/支持的正确自同构即可给π_4上界，绝非所有8点support或所有64点support均已验。添加边不会增加pebbling数，故核三个minimal Lemke图的六个无序乘积后可推广到其同阶上图；仍保留support≤4。理论归约已核，具体数值实例的无误性没有由该项核查复跑。§5作者明确CPLEX浮点误差风险，exactSCIP/VIPR/QCSP是未来验证路径，不是本轮已有精确证书。"
+        },
+        {
+          "subquestion": "公开AI的G□K_n限定上界：独立完整短链审核",
+          "value": "partial",
+          "note": "固定partial稿设G有限连通简单，m=|G|≥2，κ=vertex connectivity≥1，p=π(G)。它给n≥3时π(G□K_n)≤max{mn+p−m,2p−1+(m−κ)(n−1)}；n≥4可把第一项改善为mn。已完整读并核如下链。dense lemma：G内至多κ−1空点而不能送2到r，则|D|≤m+1；r已占据时删空点仍连通，任意pair可沿内部占据路径再送1，所以若不能送2则根1且其余≤1；r空时删其他≤κ−2点后2-connected，用Menger两条不交u-r路径（u有≥4）或r到两个pair顶点的两扇送2，故pair数B=Σfloor(D(v)/2)≤1，得|D|≤m−1+2。对乘积不可解配置N≥mn、目标(r,0)，记fiber大小a_i、pair数b_i、奇占据数o_i、空点z_i，Q=Σb_i，a_i=2b_i+o_i。把非零fiber所有pair一步送进fiber0，得S=a0+Σ_(i≠0)b_i=Q+b0+o0≤q−1(q=π(G,r))，且N=2S−a0+Σ_(i≠0)o_i。若总空点z≤n，删除除目标外空点至多n−1个，某G-fiber完整未删；完整因子K_n使剩余图连通，因此某pair能沿占据路径到目标，矛盾。故z≥n+1；N=mn−z+E、E=Σmax(C−1,0)≤2Q，得Q≥ceil((n+1)/2)。对非零fiber j若z_j<κ，把其他pair全送j，dense lemma得a_j+Q−b_j≤m+1，进而Q≤z_j+1及o_j≤m+1−Q。若Q≥κ+1，所有非零fiber z_j≥κ，遂N≤2q−2+(m−κ)(n−1)。若Q≤κ，上述o_j界对所有非零fiber也成立，于是N≤mn+(q−m)−(n−2)(Q−1)−b0≤mn+q−m−1(n≥3)。n≥4时改用o0≤m−1，得N≤mn+n−2−(n−3)Q≤mn+7−2n≤mn−1，排除第二分支。故两上界成立。由p≥m及κ≥1，比较右端与pn得到n≥max{3,2+ceil((m−κ−1)/(p−m+κ))}时Graham成立；逐项代数已核。它关键使用K_n可一步在任意fibers间传pair，对一般H不可照搬。标准Menger引理作为外部输入；本轮没有确定此界的文献新颖性，没有宣称解决任意两因子或Lemke平方。"
+        },
+        {
+          "subquestion": "反例验收与有限计算能证明的事项",
+          "value": "partial",
+          "note": "反驳原不等式需要一对有限连通G,H和产品上足够大且对某根不可解的配置，同时核准因子pebbling数或可用上界：若π(G)≤a、π(H)≤b且产品存在ab颗不可解配置，即得π(G□H)≥ab+1>π(G)π(H)，不必执意先求三个精确值。一次贪心失败、MILP超时或有限样本未找到序列不证明不可解。真正有限状态穷尽可用每步总石子减1来证明终止，再遍历所有合法动作；理论模型也须保留整数性和内层最优性。本轮小例均手证，没有编造DP/ILP运行日志或把无反例搜索当全称证明。"
+        },
+        {
+          "subquestion": "近期原刊特殊因子结果与原问的范围",
+          "value": "partial",
+          "note": "2026 C5原刊仅取得odd-two-pebbling条件的摘要层；作者报告普通two-pebbling条件给5π(G)。大型clique子类原刊为2020并有足够大阶数假设。本轮未取得能移除这些假设的完整一般稿。"
+        },
+        {
+          "subquestion": "近期反例命中的对象核对",
+          "value": "no_evidence_in_scope",
+          "note": "2309.01762的反例是随机阈值P1/2的乘积界，并非标准worst-caseπ。列明的2025–2026定向查询中未取得Graham标准全称不等式的完整证明或反例；这不是全网无结果的断言。cover、optimal、rubbling、target-set等变体另须逐项定义核对，不能由共同人名升级同题。"
+        },
+        {
+          "subquestion": "完全图因子 G□K_n 的公开 AI 局部连通度上界",
+          "value": "partial",
+          "note": "本次代码路线全文纸面复核其核心链；仅完全图因子且有n范围，不含任意第二因子或Lemke平方全解。新颖性与已知complete-factor结果比较待核。"
+        },
+        {
+          "subquestion": "固定 Lemke 平方单根 r=(4,4) 的有理权证书 ≤106",
+          "value": "partial",
+          "note": "本轮真实有限证书复跑通过，并独立核产品图/作者图同构；只一个指定根，既非所有根≤106，也不是Graham所需64。"
+        }
+      ]
+    },
+    "formal_evidence": {
+      "value": "rerun_partial",
+      "as_of": "2026-11-27",
+      "basis": [
+        "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/problems/pebbling_cartesian_product/data/pebbling_product/certificates/Hurlbert_path_augmented_v1v1_le106.json"
+      ],
+      "note": "只覆盖：特例"
+    },
+    "search_coverage": {
+      "value": "coarse_gaps",
+      "checked_at": "2026-11-27",
+      "routes": {
+        "academic": true,
+        "code_ai_community": true,
+        "internal_dedup": true,
+        "origin": true
+      }
+    },
+    "claim": {
+      "state": "full_manuscript",
+      "url": "https://www.openproblemgarden.org/op/pebbling_a_cartesian_product",
+      "review": "independent_check"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "checked_at": "2026-11-27",
+      "imported_at": "2026-11-28",
+      "search_summary": "逐题粗查有缺口",
+      "codes": {
+        "search_coverage": "coarse_gaps"
+      }
+    }
+  ],
+  "math_results": [
+    {
+      "subquestion": "主问题",
+      "math_status": "部分进展",
+      "scope_note": "标准问题为所有非空有限连通简单图G,H的最坏配置、任意指定单目标pebbling数π(G□H)≤π(G)π(H)。本轮已核Chung1989原始Q3、2024固定v1 Lemke稿及模型短证、近期限定因子文献和变体反例、公开AI/代码及库内双卡。未取得标准全称的一般完整证明或反例；此结论只覆盖列明来源，不作全网无解证明。2024论文只声称8点Lemke积的π4≤64并明示浮点风险；本轮理论模型核验不等于六积数值实例已精确认证。公开AI完全图因子短证经独立数学审核，固定单根106证书有限复跑另列，但都不能升级普通全π≤64或全题结案。FC主定理仍sorry。随机阈值的Graham反例、乘积等式反例和2-pebbling性质反例均不是本题反例。库内1227严格同题，只登记当前314的关系。",
+      "evidence_ids": [
+        "R0314-CARD",
+        "a0314_chung",
+        "a0314_bilevel",
+        "a0314_threshold",
+        "a0314_c5_2026",
+        "a0314_large_clique",
+        "Q314-M-E3",
+        "Q314-M-E4",
+        "R0314-DUP",
+        "E314-C-FC",
+        "E314-C-CB",
+        "E314-C-BILEVEL",
+        "E314-C-AI-PARTIAL",
+        "E314-C-AI-ROOT106",
+        "E314-C-AI-REPORT"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "标准域、操作及四层量词",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "标准任务为非空有限连通简单无向图。配置p:V→Z≥0，|p|=Σp(v)；合法动作在uv边上且p(u)≥2时p↦p−2e_u+e_v，每次总数恰减1。π(G)是最小N使∀|p|=N、∀r∈V、∃依赖于(p,r)的有限合法动作序列，使最终目标r至少1颗；根已占据时可用空序列。因为额外石子可以忽略，恰N与至少N等价。不是一个固定序列要同时满足所有r，也不是最终每个点都留有石子。有限性应显式补为原惯例：无限图上任意有限N可在N个不同非目标点各放1颗，无合法动作，故没有有限π；非连通图把任意多颗全放在另一分量也不能到目标。多重边只重复同一允许动作，圈只浪费一颗而不改善送达，通常取底层简单图。",
+      "evidence_ids": [
+        "Q314-M-E1",
+        "Q314-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "K1、基本上下界与路径的完整手核",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "π(K1)=1且G□K1≅G，给乘积边界等号。对n点连通图，n−1颗分别放在所有非目标顶点各1颗不可动，故π(G)≥n；若直径d，将2^d−1颗堆在距r为d的点，以W_r(p)=Σp(v)2^(−dist(v,r))作势函数，每步Δ=−2w_u+w_v≤0，初值<1而到达r后≥1，故π(G)≥2^d。反之n(2^d−1)+1颗必有一点≥2^d颗，可沿最短路送1颗，故π有限。路径P_m顶点0,…,m−1，目标r两侧长r与s=m−1−r。单侧从最外端向根作二进制进位，能送到根的数为floor(Σ单侧p(v)/2^dist)；每步向根保势，最终各距离残留0或1，其总势<1，证明该公式。若根空且两侧均不能送1，左右颗数分别≤2^r−1、2^s−1，且把这些数堆在两端可实现不可解配置。因此π(P_m,r)=2^r+2^s−1，最大为端点的2^(m−1)，由(2^r−1)(2^s−1)≥0验证。此为路径特例，不以距离势函数的必要条件冒充任意图充分条件。",
+      "evidence_ids": [
+        "Q314-M-E1",
+        "Q314-M-E2",
+        "Q314-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "P2□P2=C4的精确手算证书",
+      "math_status": "仅特例",
+      "scope_note": "P2单边有π=2。C4取目标r、两邻点u,v、对面w。3颗分别放u,v,w各1颗不可动，故π(C4)≥4。任意4颗若r已有石子完成；若u或v有≥2颗也一步完成。余下r=0、u,v≤1，所以w=4−p(u)−p(v)。若u,v均0则w4，先向同一邻点送两颗再送根；若恰一邻点有1则w3，向该邻点送1得到2后送根；若两邻点均1则w2，任选邻点送1后送根。全部配置覆盖，故π(C4)=4=π(P2)²。本例无需程序枚举，没有把有限4点等号推广全称。",
+      "evidence_ids": [
+        "Q314-M-E1",
+        "Q314-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "cover、optimal、rubbling、rooted与weighted不能替换",
+      "math_status": "题面错误或缺条件",
+      "scope_note": "cover pebbling要求同一最终配置所有点各≥1；单边P2的cover数是3（2颗堆一端无法同时覆盖两端，3颗任何配置可），而π(P2)=2。optimal pebbling把“∀初始配置”改为“∃一个初始配置”：P3中心放2颗即可分别到任一目标，optimal值2，而标准π(P3)=4。rubbling另允许从目标的两个不同邻点各取1颗并在目标放1颗；P3两端各1、中间0可rubbling到中点，标准pebbling却无任何动作。rooted π(G,r)固定r，π(G)=max_rπ(G,r)；逐根乘积π(G□H,(g,h))≤π(G,g)π(H,h)会蕴含原不等式，但更小的逐根右端不能由原max版本直接推出。weighted边代价或多目标需求需另外定义，不可把相应已知结果当本题。Chung§4等式Question2和所有图具2-pebbling性质Question4的反例，也都不是≤版本Question3的反例。",
+      "evidence_ids": [
+        "Q314-M-E1",
+        "Q314-M-E2",
+        "Q314-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "statement_error"
+      }
+    },
+    {
+      "subquestion": "逐fiber粗压缩的余数障碍与它实际给出的界",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "设p=π(G),q=π(H),h=|V(H)|。固定目标第一坐标g0，把每个G-fiber的s_j颗分成floor(s_j/p)组p颗，各组可独立送1到(g0,j)，至少收集Σfloor(s_j/p)颗到H列。总数pq不能保证此和≥q：p=q=h=2、fiber大小1与3，总数4但floor和仅1。C4的前条证书说明这只是证明方法损失，不是猜想反例。若floor和≤q−1，写s_j=p t_j+r_j、0≤r_j≤p−1，则总数≤p(q−1)+h(p−1)。所以该粗方法能证明π(G□H)≤pq+(h−1)(p−1)，而不能无理由去掉额外余数项。交换因子可取相应较小界。这里是本轮独立核的基础估计，不声称新颖性，也不将“每组可送1”误用为任意分散余数均可合并。",
+      "evidence_ids": [
+        "Q314-M-E1",
+        "Q314-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "2024 SOL模型的独立精确证明",
+      "math_status": "实质进展",
+      "scope_note": "实际读2411v1 §3。设p(r)=0，双向arc变量z_uv∈Z≥0，约束2Σ_out(v)z≤p(v)+Σ_in(v)z，且Σ_out(r)z=0，目标最大化Σ_in(r)z。所有约束求和给Σ_arc z≤|p|，因此最优值存在且有限。若配置可解，截取首次到r的动作序列，之前r从未占据所以没有出r动作；逐arc计次数给可行整数z且目标≥1，足证此方向而无需假设贪心。反向任何可行z目标≥1构成有向多重图；每次删除一个有向圈的各一条arc，该圈顶点balance=p+indeg−2outdeg都增加1，其余不变。root无出弧，圈不含root且不会删除入root的弧，目标值保持。反复得到DAG后按拓扑顺序处理顶点：处理v时其所有计划入流均已到达，balance非负保证足够执行全部计划出流，所以排序成合法pebbling动作并至少1颗到根。整数性不能删去：单边source1,target0时LP允许z=1/2且目标>0，但真实无动作。root不在support也不能删：根原已有1时已解，零arc模型的目标仍可为0。此独立证明核准Lemma3的适用条件，不依赖运行求解器。",
+      "evidence_ids": [
+        "Q314-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "bilevel、support≤4与cover-design归约的准确强度",
+      "math_status": "实质进展",
+      "scope_note": "Definition4的leader选support⊆S的非负整数初始配置y；follower必须真正最大化SOL入根数，upper约束要求这个最大值为0，故正好编码不可解配置。若只选一个可行零flow会把所有配置误认不可解，所以argmax不可省略。所有follower最优解有相同目标值，upper约束只看该值，故optimistic tie-breaking不改变本模型可行性；改leader max为min也不改变可行集合，但不能据此改follower目标。Class0 cut另要求|y|≥n，因此PI_S不可行只推出π_S(G,r)≤n，不一定π_S=n：在K_n(n≥3)上单点support门槛为2而非n。一般π_1≤π_2≤…≤π_n=π；支持受限结论不能反推全配置。原Theorem1仅对8点Lemke乘积证明π_4≤64。§4的8点cover sets只是覆盖所有4点support的根固定自同构轨道代表：S⊆T时π_S≤π_T，配合根/支持的正确自同构即可给π_4上界，绝非所有8点support或所有64点support均已验。添加边不会增加pebbling数，故核三个minimal Lemke图的六个无序乘积后可推广到其同阶上图；仍保留support≤4。理论归约已核，具体数值实例的无误性没有由该项核查复跑。§5作者明确CPLEX浮点误差风险，exactSCIP/VIPR/QCSP是未来验证路径，不是本轮已有精确证书。",
+      "evidence_ids": [
+        "Q314-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "公开AI的G□K_n限定上界：独立完整短链审核",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "固定partial稿设G有限连通简单，m=|G|≥2，κ=vertex connectivity≥1，p=π(G)。它给n≥3时π(G□K_n)≤max{mn+p−m,2p−1+(m−κ)(n−1)}；n≥4可把第一项改善为mn。已完整读并核如下链。dense lemma：G内至多κ−1空点而不能送2到r，则|D|≤m+1；r已占据时删空点仍连通，任意pair可沿内部占据路径再送1，所以若不能送2则根1且其余≤1；r空时删其他≤κ−2点后2-connected，用Menger两条不交u-r路径（u有≥4）或r到两个pair顶点的两扇送2，故pair数B=Σfloor(D(v)/2)≤1，得|D|≤m−1+2。对乘积不可解配置N≥mn、目标(r,0)，记fiber大小a_i、pair数b_i、奇占据数o_i、空点z_i，Q=Σb_i，a_i=2b_i+o_i。把非零fiber所有pair一步送进fiber0，得S=a0+Σ_(i≠0)b_i=Q+b0+o0≤q−1(q=π(G,r))，且N=2S−a0+Σ_(i≠0)o_i。若总空点z≤n，删除除目标外空点至多n−1个，某G-fiber完整未删；完整因子K_n使剩余图连通，因此某pair能沿占据路径到目标，矛盾。故z≥n+1；N=mn−z+E、E=Σmax(C−1,0)≤2Q，得Q≥ceil((n+1)/2)。对非零fiber j若z_j<κ，把其他pair全送j，dense lemma得a_j+Q−b_j≤m+1，进而Q≤z_j+1及o_j≤m+1−Q。若Q≥κ+1，所有非零fiber z_j≥κ，遂N≤2q−2+(m−κ)(n−1)。若Q≤κ，上述o_j界对所有非零fiber也成立，于是N≤mn+(q−m)−(n−2)(Q−1)−b0≤mn+q−m−1(n≥3)。n≥4时改用o0≤m−1，得N≤mn+n−2−(n−3)Q≤mn+7−2n≤mn−1，排除第二分支。故两上界成立。由p≥m及κ≥1，比较右端与pn得到n≥max{3,2+ceil((m−κ−1)/(p−m+κ))}时Graham成立；逐项代数已核。它关键使用K_n可一步在任意fibers间传pair，对一般H不可照搬。标准Menger引理作为外部输入；本轮没有确定此界的文献新颖性，没有宣称解决任意两因子或Lemke平方。",
+      "evidence_ids": [
+        "Q314-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "反例验收与有限计算能证明的事项",
+      "math_status": "仅特例/条件性结果/实质进展",
+      "scope_note": "反驳原不等式需要一对有限连通G,H和产品上足够大且对某根不可解的配置，同时核准因子pebbling数或可用上界：若π(G)≤a、π(H)≤b且产品存在ab颗不可解配置，即得π(G□H)≥ab+1>π(G)π(H)，不必执意先求三个精确值。一次贪心失败、MILP超时或有限样本未找到序列不证明不可解。真正有限状态穷尽可用每步总石子减1来证明终止，再遍历所有合法动作；理论模型也须保留整数性和内层最优性。本轮小例均手证，没有编造DP/ILP运行日志或把无反例搜索当全称证明。",
+      "evidence_ids": [
+        "Q314-M-E1",
+        "Q314-M-E3"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "原题出处和早期明确特例",
+      "math_status": "部分进展",
+      "scope_note": "最早本轮可核发表为Chung1989 §4 Q3(RLG)；超立方体和路径积已有精确公式，2-pebbling因子乘完全图有条件性上界。Q2等式反例、Q4 Lemke反例不否定Q3。原稿收稿1988并不足以证明现行Q3已在初稿出现，故不擅改首发表年份。",
+      "evidence_ids": [
+        "a0314_chung",
+        "a0314_opg"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "近期原刊特殊因子结果与原问的范围",
+      "math_status": "部分进展",
+      "scope_note": "2026 C5原刊仅取得odd-two-pebbling条件的摘要层；作者报告普通two-pebbling条件给5π(G)。大型clique子类原刊为2020并有足够大阶数假设。本轮未取得能移除这些假设的完整一般稿。",
+      "evidence_ids": [
+        "a0314_c5_2026",
+        "a0314_c5_seminar",
+        "a0314_large_clique"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "近期反例命中的对象核对",
+      "math_status": "本次范围未发现确证",
+      "scope_note": "2309.01762的反例是随机阈值P1/2的乘积界，并非标准worst-caseπ。列明的2025–2026定向查询中未取得Graham标准全称不等式的完整证明或反例；这不是全网无结果的断言。cover、optimal、rubbling、target-set等变体另须逐项定义核对，不能由共同人名升级同题。",
+      "evidence_ids": [
+        "a0314_threshold",
+        "a0314_chung",
+        "a0314_bilevel"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "no_evidence_in_scope"
+      }
+    },
+    {
+      "subquestion": "完全图因子 G□K_n 的公开 AI 局部连通度上界",
+      "math_status": "仅特例",
+      "scope_note": "本次代码路线全文纸面复核其核心链；仅完全图因子且有n范围，不含任意第二因子或Lemke平方全解。新颖性与已知complete-factor结果比较待核。",
+      "evidence_ids": [
+        "E314-C-AI-PARTIAL"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "partial"
+      }
+    },
+    {
+      "subquestion": "固定 Lemke 平方单根 r=(4,4) 的有理权证书 ≤106",
+      "math_status": "仅特例",
+      "scope_note": "本轮真实有限证书复跑通过，并独立核产品图/作者图同构；只一个指定根，既非所有根≤106，也不是Graham所需64。",
+      "evidence_ids": [
+        "E314-C-AI-ROOT106"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "math_status": "partial"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "route": "原题与出处",
+      "site": "原包任务与固定GitHub正文/meta",
+      "query": "读取QX-P-000314原包任务；fetch_file problems/000/QX-P-000314.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "当前card_rev7976e4a013c40aad；textblob8669d693aa99cf784276e0a17a4e309bab171af8；metablob320ebb2598809cd20d04a22cea9bccced8bdb675。核心及acceptance都是全部连通图的π乘积上界或反例；详细human为任意配置、任意指定单顶点、允许依配置/目标选择动作，首句覆盖容易误指cover pebbling。旧novelty针对3d3cc2edf8cd5bc5，不承接其deep标签为本轮证据。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000314.text.md",
+      "request_id": "QX-R3-11-000314-root-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1首请求",
+      "query": "批量q=\"Graham\" \"pebbling\" conjecture proof 2026；q=\"Graham\" \"pebbling\" counterexample；q=\"Bilevel Programming\" \"Lemke\"，前两项recency=730，并open OPG原页",
+      "date": "2026-11-27",
+      "outcome": "工具失败",
+      "note": "调用已执行，但输出超过上下文而截断，主审没有读到本次返回内容，不据此下无命中或已读结论。随后有界重做前两项并重新open OPG，逐项另列；Bilevel的实际内容由另一次官方页面与已下载全文核对。",
+      "request_id": "QX-R3-11-000314-root-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "tool_failed"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Graham\" \"pebbling\" conjecture proof 2026；recency=730",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "重做后实际返回2024 Lemke restricted-support论文、2026 C5积、2025 threshold版反例、Lemke2017、2019IP界及2018统一因子2界等。数学同一性须看量词/标准π；没有把MathDB近期抓取的open说明、出版社公式缺失摘要当完整状态证明。阈值反例另交原文核范围。",
+      "request_id": "QX-R3-11-000314-root-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Graham\" \"pebbling\" counterexample；recency=730",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "重做后实际返回2024 Lemke restricted-support论文、2026 C5积、2025 threshold版反例、Lemke2017、2019IP界及2018统一因子2界等。数学同一性须看量词/标准π；没有把MathDB近期抓取的open说明、出版社公式缺失摘要当完整状态证明。阈值反例另交原文核范围。",
+      "request_id": "QX-R3-11-000314-root-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Open Problem Garden",
+      "query": "open https://www.openproblemgarden.org/op/pebbling_a_cartesian_product",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整读页面：作者Ronald L.Graham，网页posted2007-09-24；定义是单个任意目标，积图边只改变一个相邻坐标。原出处明确Chung1989pp467–472；页面列路积/两树/两圈/高最小度为部分结果，没有给高最小度阈值。网页抓取日不等于状态更新日，High是重要性不是已独立复核标签。",
+      "url": "https://www.openproblemgarden.org/op/pebbling_a_cartesian_product",
+      "locator": "定义、Conjecture、Notes、Bibliography与posted日期",
+      "request_id": "QX-R3-11-000314-root-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Chung原刊本地完整PDF文本",
+      "query": "读取chung1989.txt原刊页头、§1及§4 Questions1–5",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "主审亲读原刊2(4)(1989-11)467–472，收到1988-08-08、修回接受1989-03-09；§4 Q3(RLG)才是乘积≤猜想。紧邻Q2问乘积等式，K3□P3=9<12反例不会反驳Q3；Lemke反例也仅针对Q4全部图2-pebbling property，原文明确不反驳Q3。本次没有把旧PDF文本OCR漏指数/运算符的公式直接转抄作新证据；关键猜想与定义由OPG/现代原稿并核。",
+      "url": "https://pesc.coppe.ufrj.br/~celina/cursos/cps845/Chung1989.pdf",
+      "locator": "原刊p467页头/收稿信息；p472 §4 Questions2–4",
+      "request_id": "QX-R3-11-000314-root-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方",
+      "query": "open https://arxiv.org/abs/2411.19314",
+      "date": "2026-11-27",
+      "outcome": "仅摘要",
+      "note": "亲读版本历史只有v1，2024-11-28；作者Pulaj/Wood/Yerger。摘要明确8顶点Lemke图的积，初始支持≤4的附加限制；未见后续版本/撤回说明。完整稿与短数学链另外核，不能仅凭此页升级完整证明。",
+      "url": "https://arxiv.org/abs/2411.19314",
+      "locator": "Abstract、Comments、Submission history",
+      "request_id": "QX-R3-11-000314-root-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方HTML",
+      "query": "open https://arxiv.org/html/2411.19314v1，再find floating point",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "首次返回定义、Thm1等段；find后实际读§5浮点限制、未来精确验证及表格范围，与已取得PDF内容一致。",
+      "url": "https://arxiv.org/html/2411.19314v1",
+      "locator": "§1 Theorem1；§5 Computational Discussion",
+      "request_id": "QX-R3-11-000314-root-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Chung候选DOI入口",
+      "query": "open https://doi.org/10.1137/0402041",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "工具返回not accessible；本轮原刊内容和元信息依据已取得高校镜像扫描，而非此失败请求。",
+      "url": "https://doi.org/10.1137/0402041",
+      "request_id": "QX-R3-11-000314-root-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "AJC原刊",
+      "query": "open https://ajc.maths.uq.edu.au/pdf/71/ajc_v71_p246.pdf",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "该主审请求restricted URL失败；先前搜索仅见2018乘积统一因子2界的索引片段，不据此声称已读/复核其整篇。其它路线如另取成功，以其独立请求记录为准。",
+      "url": "https://ajc.maths.uq.edu.au/pdf/71/ajc_v71_p246.pdf",
+      "request_id": "QX-R3-11-000314-root-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "已下载Bilevel固定v1全文",
+      "query": "读取bilevel2411v1.txt §3 Lemma3/Thm5、§4 Thm1完整证明及§5计算/浮点限制",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "主审亲读根不在初始support、根出弧0、非负整数arc流余额条件；删有向圈不会减少根入流、余额在圈顶点反增1，DAG按拓扑顺序可实施动作。Class0 infeasible cut只推πS≤|V|；覆盖设计以8点block覆盖4点support不证π8上界。论文六积主张与Table1均已读；37个超时实例作者说改min目标重跑。§5主动承认浮点风险，exact SCIP/VIPR/SMT或QCSP只是未来验证方案，不作为已完成精确认证。短链另由数学路线独立重建，求解器/完整计算未由本轮复跑。",
+      "url": "https://arxiv.org/pdf/2411.19314v1",
+      "locator": "§3 pp7–9；§4末及§5 pp12–14",
+      "request_id": "QX-R3-11-000314-root-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "公开AI部分稿静态复核",
+      "query": "完整读ai_output.md Theorem、dense lemma、Cases A/B与Consequences",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "主审核对有限connected G与K_n限定目标、κ≥1/m≥2/n≥3，和n≥4改进分支。通过occupied path/Menger支撑dense lemma，Q≥ceil((n+1)/2)并核两分支代数；不是一般第二因子，作者自标partial且不宣称novelty。独立完整推导由数学路线登记，未将此短证明称同行刊发或Lean内核证明。",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/pebbling_a_cartesian_product/output.md",
+      "locator": "完整output.md约7.9KB；§§1–5",
+      "request_id": "QX-R3-11-000314-root-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "固定Formal Conjectures文件本地副本",
+      "query": "读取fc_target.lean完整文件",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "主审亲读PebbleDistribution、NumberOfPebbles、IsPebblingMove、ExistsPebblePath、PebblingNumber及主定理：两个独立有限类型V/W，G/H各Connected，标准Cartesian积，pebbling_number_conjecture末尾sorry。completeGraph辅助证明不等于全主定理已证；sInf定义的空集合风险由连通有限标准域排除，未尝试推广到断开/无限图。固定提交与依赖/代码复跑范围由代码路线记录。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Wikipedia/PebblingNumberConjecture.lean",
+      "locator": "完整文件，特别是主定理及其sorry",
+      "request_id": "QX-R3-11-000314-root-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003971〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中QX-P-000314,QX-P-001227。pebbling标题只有当前314及1227；其它Graham/笛卡尔积条目是树打包、重构、拓扑群、标号、群重排或偏序维数，未按姓名/积图共同词建立同题。完整读1227双文件后才定关系。",
+      "result_count": 2,
+      "request_id": "QX-R3-11-000314-root-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "原包2469条简索引",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003972〕",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中QX-P-000089,QX-P-000314,QX-P-000321,QX-P-000542,QX-P-000746,QX-P-000904,QX-P-001227,QX-P-002441。pebbling标题只有当前314及1227；其它Graham/笛卡尔积条目是树打包、重构、拓扑群、标号、群重排或偏序维数，未按姓名/积图共同词建立同题。完整读1227双文件后才定关系。",
+      "result_count": 8,
+      "request_id": "QX-R3-11-000314-root-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "库内查重",
+      "site": "固定GitHub候选正文/meta",
+      "query": "fetch_file problems/001/QX-P-001227.text.md和.meta.json，ref=73290369a8dcc632e25e555aec525565ea6e08f8；完整读双卡",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "other_card_rev08465a76d9685038；textblobca4b325f7c8584e4092f247cd2e0c88d1ce7dabc；metablobcf86df8fae7effbf65646f56082d8389ded2ef35。首取返回的显示输出丢失，随后从已取原始结果保存并完整读内容，未凭文件名认定。1227的π定义、积图边、全称目标和acceptance同本题；进展中的C5/大K年代另交学术核，不把旧novelty05e4a65b02af8a8c当本轮有效查新。",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001227.text.md",
+      "locator": "题面、human、边界、acceptance及版本字段",
+      "request_id": "QX-R3-11-000314-root-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "internal_dedup",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地题包",
+      "query": "读取work_000314_sources/task.json完整字段，并读取本包Schema各数组定义",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "当前QX-P-000314, rev7976e4a013c40aad；旧novelty.card_rev=3d3cc2edf8cd5bc5只作历史。只查当前题。",
+      "request_id": "QX-R3-11-000314-academic-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "\"Bilevel Programming for Pebbling Numbers of Lemke Graph Products\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位官方arXiv2411.19314及作者；随后取得固定全文。",
+      "request_id": "QX-R3-11-000314-academic-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Web system2",
+      "query": "Graham conjecture pebbling Chung 1989 Open Problem Garden",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位OPG原页、Chung期刊扫描，以及不同pebbling变体；未把目录或变体反例作标准猜想结论。",
+      "request_id": "QX-R3-11-000314-academic-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "OPG原页",
+      "query": "open原题URL并读取正文与参考文献",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "网页署mdevos，2007-09-24；提出人为Ronald Graham；指向Chung1989作为原始论文出现。网页日期不等于猜想首次发表日期。",
+      "url": "https://www.openproblemgarden.org/op/pebbling_a_cartesian_product",
+      "locator": "正文与Reference",
+      "request_id": "QX-R3-11-000314-academic-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "arXiv官方记录",
+      "query": "open abs2411.19314并读取完整版本历史",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "Pulaj–Wood–Yerger；官方记录本轮只列v1，2024-11-28 18:40:47 UTC；摘要已明确support≤4限制。",
+      "url": "https://arxiv.org/abs/2411.19314",
+      "request_id": "QX-R3-11-000314-academic-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Chung原刊扫描／高校镜像",
+      "query": "urllib下载Chung1989.pdf，pdftotext -layout；完整读取6页文本",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "429412 bytes；SHA256 0c69d88c26438dc6ec81ddedd31644f8d98ea4009ec9c0db76c4c556d37b602e；本地chung1989.pdf/.txt。",
+      "url": "https://pesc.coppe.ufrj.br/~celina/cursos/cps845/Chung1989.pdf",
+      "locator": "§1 p467；§3 pp469–471；§4 p472",
+      "request_id": "QX-R3-11-000314-academic-006",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "本地原刊页图",
+      "query": "pdftoppm以170dpi渲染Chung PDF第1、6页，并用view_image实际查看像素",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "亲见November1989、收稿1988-08-08、修订接受1989-03-09；p472 Q3(RLG)为≤，Q2为等式，Q4为2-pebbling property。不是仅截图占位。",
+      "url": "https://pesc.coppe.ufrj.br/~celina/cursos/cps845/Chung1989.pdf",
+      "locator": "chung1989_p1.png、chung1989_p6.png",
+      "request_id": "QX-R3-11-000314-academic-007",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv固定PDF",
+      "query": "urllib下载2411.19314v1，pdftotext -layout；读取§1–6、Thm1/Lemma3/Thm5/Algorithm1/Table1及计算限制",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "213039 bytes；SHA256 ef1f8bbe7da159f48f8b466f017dcaffb951e00dabfdd34438536851137c4490。取得完整稿；独立核关键模型与归约，不冒称复跑六图计算。",
+      "url": "https://arxiv.org/pdf/2411.19314v1",
+      "locator": "bilevel2411v1.pdf/.txt；pp2–14",
+      "request_id": "QX-R3-11-000314-academic-008",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Graham\" \"pebbling\" conjecture proof 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency730；命中原题、特例和近期论文；列明范围内未取得标准全称猜想完整解稿。",
+      "request_id": "QX-R3-11-000314-academic-009",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Graham\" \"pebbling\" counterexample 2025 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency730；命中Thresholds for pebbling on grids的随机阈值反例，随后取官方正文排除。",
+      "request_id": "QX-R3-11-000314-academic-010",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Bilevel Programming for Pebbling\" correction",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中原稿及索引；未取得针对其Thm1的正式撤回或勘误文本，不把未命中当不存在证明。",
+      "request_id": "QX-R3-11-000314-academic-011",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Pebbling Cartesian products of C5\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位2026正式原刊、作者报告与旧1998 C5□C5论文；严格区分时间和范围。",
+      "request_id": "QX-R3-11-000314-academic-012",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Thresholds for pebbling on grids\" authors",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "定位Bushaw–Kettle、官方arXiv2309.01762及2025刊发线索。",
+      "request_id": "QX-R3-11-000314-academic-013",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Graham\" \"pebbling\" \"conjecture\" proof counterexample 2026 November",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中特例、计算与随机阈值变体，没有由所读结果得到标准π的一般证明或反例。",
+      "request_id": "QX-R3-11-000314-academic-014",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Pebbling Cartesian products of C5\" \"Herscovici\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "正式刊页摘要明确odd two-pebbling property；公式在搜索抽取中为空，不能补猜。",
+      "request_id": "QX-R3-11-000314-academic-015",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"Pebbling Cartesian products\" \"114943\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "原刊记录为Discrete Mathematics349(5),May2026,114943，DOI10.1016/j.disc.2025.114943。",
+      "request_id": "QX-R3-11-000314-academic-016",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system2",
+      "query": "\"2411.19314\" correction OR erratum OR withdrawn OR proof",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "原始版本及索引层；本轮没有取得新版本或正式纠错记录，CPLEX浮点限制已在原稿§5写明。",
+      "request_id": "QX-R3-11-000314-academic-017",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "ScienceDirect正式刊页",
+      "query": "open S0012365X25005515",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "返回403；搜索通道可读正式摘要/作者/卷期，但不能称已取得本文完整证明。",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0012365X25005515",
+      "locator": "摘要",
+      "request_id": "QX-R3-11-000314-academic-018",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "期刊DOI",
+      "query": "open DOI10.1016/j.disc.2025.114943",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "工具返回not accessible；本轮不依此核论文精确主定理编号和全部公式。",
+      "url": "https://doi.org/10.1016/j.disc.2025.114943",
+      "request_id": "QX-R3-11-000314-academic-019",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "VCU作者报告档案",
+      "query": "open 2026-seminar-herscovici.pdf并读取一页完整报告摘要",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "2026-02-05报告明确普通two-pebbling property下π(C5□G)≤5π(G)。报告与正式摘要的odd条件层级不同，只各按实际内容记录。",
+      "url": "https://vcumath.github.io/Seminar/2026-seminar-herscovici.pdf",
+      "locator": "PDF p1",
+      "request_id": "QX-R3-11-000314-academic-020",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方记录",
+      "query": "open abs2309.01762并读取版本历史及摘要",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "Neal Bushaw、Nathan Kettle；只列v1=2023-09-04。本文针对均匀随机配置阈值P1/2，不是worst-case π。",
+      "url": "https://arxiv.org/abs/2309.01762",
+      "request_id": "QX-R3-11-000314-academic-021",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "arXiv官方固定全文",
+      "query": "click abs2309.01762的HTML链接；find 4. The Product Conjecture，读取§1–2定义与§4全段",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "Conj12为存在统一常数C的P1/2乘积界；其反例不能迁移标准π。§4介绍把π写成smallest size of a solvable configuration，与§1的worst-case定义不同；不采用该句替代Chung定义。没有审该文全部概率估计。",
+      "url": "https://arxiv.org/html/2309.01762v1",
+      "locator": "§2及§4",
+      "request_id": "QX-R3-11-000314-academic-022",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"pebbling\" \"large complete\" \"2025\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency730；定位Pleanmani2020原刊；2025-09 rooted-product论文的参考文献不是新的大型clique成果。",
+      "request_id": "QX-R3-11-000314-academic-023",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Herscovici\" \"114943\" pdf",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "仍命中正式摘要和目录；未取得C5新文全文，保留访问缺口。",
+      "request_id": "QX-R3-11-000314-academic-024",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Web system1",
+      "query": "\"Graham\" \"pebbling\" \"September 2025\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency730；命中特定rooted product及其引用，未取得标准一般猜想新全解。",
+      "request_id": "QX-R3-11-000314-academic-025",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Theory & Applications of Graphs原刊",
+      "query": "open vol7/iss1/1原刊页并读取完整元信息和摘要",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "Nopparat Pleanmani，2020，7(1)Article1，DOI10.20429/tag.2020.070101。只证明H=足够大完全图，大小依G参数；没有取到具体阈值公式。",
+      "url": "https://digitalcommons.georgiasouthern.edu/tag/vol7/iss1/1/",
+      "request_id": "QX-R3-11-000314-academic-026",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "Theory & Applications of Graphs原刊PDF",
+      "query": "click原刊Download链接11",
+      "date": "2026-11-27",
+      "outcome": "全文不可访问",
+      "note": "https://digitalcommons.georgiasouthern.edu/cgi/viewcontent.cgi?article=1102&context=tag 返回403；不把摘要称原证明已核。",
+      "url": "https://digitalcommons.georgiasouthern.edu/cgi/viewcontent.cgi?article=1102&context=tag",
+      "request_id": "QX-R3-11-000314-academic-027",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "no_full_text"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "原题包与OPG实际页面",
+      "query": "完整读取work_000314_sources/task.json；open https://www.openproblemgarden.org/op/pebbling_a_cartesian_product",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://www.openproblemgarden.org/op/pebbling_a_cartesian_product",
+      "locator": "当前card_rev7976e4a013c40aad；OPG定义、猜想、出处段",
+      "note": "核核心不等式与标准move/配置量词；开头“覆盖”人话不应理解为cover pebbling。没有修改源卡。",
+      "request_id": "QX-R3-11-000314-math-001",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "学术",
+      "site": "固定arXiv原稿",
+      "query": "system2_search_query: \"Bilevel Programming for Pebbling Numbers of Lemke Graph Products\"；实际open https://arxiv.org/html/2411.19314v1，续读§3–5全部模型、证明与计算范围",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://arxiv.org/html/2411.19314v1",
+      "locator": "§1.1–1.3、§3 Lemma3/Definition4/Theorem5、§4覆盖设计归约、§5数值验证限制",
+      "note": "不只依摘要；核support≤4和Class0 cut，独立给cycle删除及合法排序证明。没有运行其ILP、Sage、CPLEX或验证计算日志。",
+      "request_id": "QX-R3-11-000314-math-002",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "academic",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "原题与出处",
+      "site": "Chung1989期刊扫描本（学术路线下载，该项核查实际读）",
+      "query": "读取work_000314_sources/chung1989.txt的Introduction、§2开头、§4 Questions1–4；区分等式Question2与RLG不等式Question3",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "url": "https://pesc.coppe.ufrj.br/~celina/cursos/cps845/Chung1989.pdf",
+      "locator": "SIAM J.Discrete Math.2(4)(1989),467–472，特别p472",
+      "note": "该项核查读文本层，未声称亲看页图；学术路线另有实际像素核对。没有逐行重证全文关于所有树或高维网格的长证明。",
+      "request_id": "QX-R3-11-000314-math-003",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "origin",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "site": "固定GitHub公开AI partial稿",
+      "query": "完整读取work_000314_sources/ai_output.md，并独立审dense lemma、z≥n+1、Q两分支、n≥4改进及clique因子阈值代数",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/pebbling_a_cartesian_product/output.md",
+      "locator": "完整partial稿§1–5；SHA256cff7d3e1a9835a3e587367113e11f0e8cc4cd78193eeabdb91d89c9421e3d2da",
+      "note": "只是G□K_n限定上界，作者明确不报新颖性且不解决任意两因子。该项核查手审证明，没有运行未给出的算法或形式化。",
+      "request_id": "QX-R3-11-000314-math-004",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "route": "其他：独立数学核对",
+      "site": "手工整数配置、势函数与合法动作论证",
+      "query": "手核finiteconnected域、K1/path/C4、cover/optimal/rubbling量词差别、fiber压缩的余数阈值、SOL整数流语义及support单调性",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "locator": "math_results内嵌全部小例输入与证明",
+      "note": "本题没有做图穷举、数值LP/ILP、随机测试或Lean复跑；实际程序仅生成片段并校验JSON Schema。",
+      "request_id": "QX-R3-11-000314-math-005",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q314C-fc_pebbling",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/google-deepmind/formal-conjectures",
+      "query": "pebbling",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "返回精确 Wikipedia/PebblingNumberConjecture.lean，随后按搜索返回的完整提交取源码；索引命中不算证明。",
+      "result_count": 1,
+      "url": "https://github.com/google-deepmind/formal-conjectures",
+      "locator": "github_search topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q314C-cb_pebbling",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/bespokelabsai/conjecture-bench",
+      "query": "pebbling",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "命中 cb-0173 和多个派生目录；随后读取 cb-0173 与 fc-bench-v1-0954 全文。部分其他目录片段误写方向或定义，未用于判定主问题。",
+      "result_count": 7,
+      "url": "https://github.com/bespokelabsai/conjecture-bench",
+      "locator": "github_search topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q314C-openai_pebbling",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/openai/math",
+      "query": "pebbling",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "指定仓库 topn=20 返回空结果；仅是本次字面检索覆盖，不断言所有 OpenAI/公开 AI 无结果。",
+      "result_count": 0,
+      "url": "https://github.com/openai/math",
+      "locator": "github_search topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q314C-github_graham_pebbling",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 全库代码索引",
+      "query": "\"Graham\" \"pebbling\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "topn=20；命中 graph-theory-AI 的完整 partial 稿和 Lemke 局部证书项目，随后固定版本阅读。其余库中同名条目不作原始证明。",
+      "result_count": 20,
+      "url": "https://github.com/search",
+      "locator": "github_search topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q314C-github_bilevel",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub 全库代码索引",
+      "query": "\"bilevel\" \"pebbling\"",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "topn=20；定位作者 KenanWood/Bilevel-Programming-for-Pebbling-Numbers，固定 af7e35c4829a3b1cd78892152c9ba803b3003bd1；其余词形或目录匹配只作线索。",
+      "result_count": 20,
+      "url": "https://github.com/search",
+      "locator": "github_search topn=20",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q314C-web_current-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Graham\" \"pebbling\" proof conjecture 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730 天；本批定位标准猜想的近期特例、Bilevel support≤4 论文及 optimal-hypercube 形式化项目。后者最优化分布量词不同，未按全 Graham 证明深审；完整数学原稿由学术路线另核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q314C-web_current-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Bilevel Programming for Pebbling Numbers of Lemke Graph Products\" code",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730 天；本批定位标准猜想的近期特例、Bilevel support≤4 论文及 optimal-hypercube 形式化项目。后者最优化分布量词不同，未按全 Graham 证明深审；完整数学原稿由学术路线另核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q314C-web_current-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system1",
+      "query": "\"Graham\" \"pebbling\" Lean AI",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "recency=730 天；本批定位标准猜想的近期特例、Bilevel support≤4 论文及 optimal-hypercube 形式化项目。后者最优化分布量词不同，未按全 Graham 证明深审；完整数学原稿由学术路线另核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q314C-web_community-1",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "site:mathoverflow.net \"Graham\" \"pebbling\"",
+      "date": "2026-11-27",
+      "outcome": "执行无命中",
+      "note": "本批命中 Bilevel 作者/论文、C5 特例和 threshold 变体反例。未取得同题 MathOverflow 原帖；不把随机阈值或 target-selectable 的反例当标准单目标最坏配置反例。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "no_hits"
+      }
+    },
+    {
+      "request_id": "Q314C-web_community-2",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Bilevel Programming\" \"Lemke\" github",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本批命中 Bilevel 作者/论文、C5 特例和 threshold 变体反例。未取得同题 MathOverflow 原帖；不把随机阈值或 target-selectable 的反例当标准单目标最坏配置反例。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q314C-web_community-3",
+      "route": "代码、公开 AI 和社区",
+      "site": "Web system2",
+      "query": "\"Graham\" \"pebbling\" counterexample proof 2025 2026",
+      "date": "2026-11-27",
+      "outcome": "仅标题/索引或摘要",
+      "note": "本批命中 Bilevel 作者/论文、C5 特例和 threshold 变体反例。未取得同题 MathOverflow 原帖；不把随机阈值或 target-selectable 的反例当标准单目标最坏配置反例。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "title_only"
+      }
+    },
+    {
+      "request_id": "Q314C-fc_target",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/google-deepmind/formal-conjectures",
+      "query": "github_fetch_file {\"repository_full_name\":\"google-deepmind/formal-conjectures\",\"path\":\"FormalConjectures/Wikipedia/PebblingNumberConjecture.lean\",\"ref\":\"ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整 5496 字节源码已读；两个独立有限顶点类型、Connected 假设、标准单目标定义吻合；主 theorem 的证明体是 sorry。完整图数值的辅助证明不能替代主猜想。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Wikipedia/PebblingNumberConjecture.lean",
+      "locator": "FormalConjectures/Wikipedia/PebblingNumberConjecture.lean；Git blob 02df6f5197fb57ee5a53c0e82e4ad54e37cf3c9d",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q314C-fc_toolchain",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/google-deepmind/formal-conjectures",
+      "query": "github_fetch_file {\"repository_full_name\":\"google-deepmind/formal-conjectures\",\"path\":\"lean-toolchain\",\"ref\":\"ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际固定文件指定 leanprover/lean4:v4.33.1；本轮未编译 Lean。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lean-toolchain",
+      "locator": "lean-toolchain；Git blob a8afa7d1b02d96f0671eba854a8dc4b416beb473",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q314C-fc_manifest",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/google-deepmind/formal-conjectures",
+      "query": "github_fetch_file {\"repository_full_name\":\"google-deepmind/formal-conjectures\",\"path\":\"lake-manifest.json\",\"ref\":\"ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "实际固定 manifest：mathlib rev 0df444a360eaa60ab8c11dca51a86af692955474，inputRev v4.33.1；依赖版本已取，不等于依赖闭包已审。",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/lake-manifest.json",
+      "locator": "lake-manifest.json；Git blob fae5d498d3f9dc3f6d1efd7c2adc03dd5bb6c8d6",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q314C-cb_target",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/bespokelabsai/conjecture-bench",
+      "query": "github_fetch_file {\"repository_full_name\":\"bespokelabsai/conjecture-bench\",\"path\":\"problems/conjectures/cb-0173.json\",\"ref\":\"8d494791ace5894b860585d67ba8e69dbfed6376\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整 JSON 是有限连通图猜想及反例对象说明、2026-07-23 的 source-linked 状态；该文件没有实际 checker、证书或证明。",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0173.json",
+      "locator": "problems/conjectures/cb-0173.json；Git blob 0c041e51c1281bb42f269ae35f65881cd619a32c",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q314C-ai_lemke_readme",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/graph-theory-AI/graph-conjectures",
+      "query": "github_fetch_file {\"repository_full_name\":\"graph-theory-AI/graph-conjectures\",\"path\":\"problems/pebbling_cartesian_product/README.md\",\"ref\":\"c4f7fb172098a9a98561e11d49435408937a6760\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整 README 已读：作者项目自述 global≤246、指定根≤106，自认未复现其引用的 FPY≤96，不声称解决≤64或全猜想。",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/problems/pebbling_cartesian_product/README.md",
+      "locator": "problems/pebbling_cartesian_product/README.md；Git blob 3abf805d88d74d2152452699efd6991b995e2233",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q314C-ai_output",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/graph-theory-AI/Graph-Theory-LLM-Proofs",
+      "query": "github_fetch_file {\"repository_full_name\":\"graph-theory-AI/Graph-Theory-LLM-Proofs\",\"path\":\"attacks_opg/pebbling_a_cartesian_product/output.md\",\"ref\":\"96f91048c5282ac2b8bed0b7e8dc454cf38ba636\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整 7882 字节 Markdown partial 稿已读，主体为 G□K_n 的连通度界；该项核查纸面复核核心链，未将它扩大为任意 H，未确认新颖性。",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/pebbling_a_cartesian_product/output.md",
+      "locator": "attacks_opg/pebbling_a_cartesian_product/output.md；Git blob 1c71e4601529c5af1d682ac55f1989ecba443e4f",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q314C-ai_terminal",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/graph-theory-AI/graph-conjectures",
+      "query": "github_fetch_file {\"repository_full_name\":\"graph-theory-AI/graph-conjectures\",\"path\":\"problems/pebbling_cartesian_product/docs/terminal_report.md\",\"ref\":\"c4f7fb172098a9a98561e11d49435408937a6760\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整报告已读。正文明确 float pricing 非 LP-optimality 证明，但末表又写 proven；按较弱且有依据的范围登记，未采信该末表。22 轨道246与 FPY CSV 兼容性是项目自述，本轮未重做。",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/problems/pebbling_cartesian_product/docs/terminal_report.md",
+      "locator": "problems/pebbling_cartesian_product/docs/terminal_report.md；Git blob fe5327f5f2ffe44fe9252399a87e8bef2339af3e",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q314C-ai_checker",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/graph-theory-AI/graph-conjectures",
+      "query": "github_fetch_file {\"repository_full_name\":\"graph-theory-AI/graph-conjectures\",\"path\":\"problems/pebbling_cartesian_product/scripts/check_pebbling_weight_certificate.py\",\"ref\":\"c4f7fb172098a9a98561e11d49435408937a6760\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整 Python checker 已静态读；只用 Fraction 作接受判断，校验 rooted tree、权重倍增和 dual coverage。随后实际只复跑一个给定证书。",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/problems/pebbling_cartesian_product/scripts/check_pebbling_weight_certificate.py",
+      "locator": "problems/pebbling_cartesian_product/scripts/check_pebbling_weight_certificate.py；Git blob c92a48a7c8689fd6143e8ca58907d3afe94517d2",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q314C-ai_cert106",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/graph-theory-AI/graph-conjectures",
+      "query": "github_fetch_file {\"repository_full_name\":\"graph-theory-AI/graph-conjectures\",\"path\":\"problems/pebbling_cartesian_product/data/pebbling_product/certificates/Hurlbert_path_augmented_v1v1_le106.json\",\"ref\":\"c4f7fb172098a9a98561e11d49435408937a6760\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得原始固定 JSON，28 个 strategy/28 个 multiplier、inline 64 顶点图、root=36、claimed_bound=106；Git blob 与保存字节一致，后续仅核该实例。",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/problems/pebbling_cartesian_product/data/pebbling_product/certificates/Hurlbert_path_augmented_v1v1_le106.json",
+      "locator": "problems/pebbling_cartesian_product/data/pebbling_product/certificates/Hurlbert_path_augmented_v1v1_le106.json；Git blob 52239f27464403954a19cbc46f1f4cf4f5884fc9",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q314C-cb_fc_snapshot",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/bespokelabsai/conjecture-bench",
+      "query": "github_fetch_file {\"repository_full_name\":\"bespokelabsai/conjecture-bench\",\"path\":\"problems/extended-catalog/formal-conjectures/fc-bench-v1-0954.json\",\"ref\":\"8d494791ace5894b860585d67ba8e69dbfed6376\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "完整旧目录摘录已读：源 tag bench-v1-lean4.27.0/source commit 7a41db3d761324599812d6ca6cb6a9f311046dc7，声明使用同 V 且摘录无连通假设，contains_placeholder=false 只针对抽取的声明，不能解释成已有证明；本次实际 FC 源码已不同。",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/extended-catalog/formal-conjectures/fc-bench-v1-0954.json",
+      "locator": "problems/extended-catalog/formal-conjectures/fc-bench-v1-0954.json；Git blob 5d34e0b3c65236bc7eb431acd0c3f07414ee9e18",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "same_problem"
+      }
+    },
+    {
+      "request_id": "Q314C-ai_graphlib",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/graph-theory-AI/graph-conjectures",
+      "query": "github_fetch_file {\"repository_full_name\":\"graph-theory-AI/graph-conjectures\",\"path\":\"problems/pebbling_cartesian_product/scripts/pebbling_graphs.py\",\"ref\":\"c4f7fb172098a9a98561e11d49435408937a6760\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整 helper 已读；有限简单连通无向图、坐标 index=u*|H|+v、真正笛卡尔积；仅标准库依赖。实际独立复核没有只信其 product helper。",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/problems/pebbling_cartesian_product/scripts/pebbling_graphs.py",
+      "locator": "problems/pebbling_cartesian_product/scripts/pebbling_graphs.py；Git blob 2b1cced962d5b2ab426d70d446233088267812e2",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q314C-ai_factor",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/graph-theory-AI/graph-conjectures",
+      "query": "github_fetch_file {\"repository_full_name\":\"graph-theory-AI/graph-conjectures\",\"path\":\"problems/pebbling_cartesian_product/data/pebbling_product/graphs/L_fpy.json\",\"ref\":\"c4f7fb172098a9a98561e11d49435408937a6760\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "取得固定 8 顶点13边 factor、显式重标号；pebbling_number=8 元数据未由本代码复跑证明。独立检验边集与作者 Bilevel Lemke0 同构。",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/problems/pebbling_cartesian_product/data/pebbling_product/graphs/L_fpy.json",
+      "locator": "problems/pebbling_cartesian_product/data/pebbling_product/graphs/L_fpy.json；Git blob 30fa69925d99d3db9d98987c573a828b7f061087",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q314C-bilevel_readme",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/KenanWood/Bilevel-Programming-for-Pebbling-Numbers",
+      "query": "github_fetch_file {\"repository_full_name\":\"KenanWood/Bilevel-Programming-for-Pebbling-Numbers\",\"path\":\"README.md\",\"ref\":\"af7e35c4829a3b1cd78892152c9ba803b3003bd1\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "README 只有仓库标题，无构建环境、参数锁定或端到端验证说明。",
+      "url": "https://github.com/KenanWood/Bilevel-Programming-for-Pebbling-Numbers/blob/af7e35c4829a3b1cd78892152c9ba803b3003bd1/README.md",
+      "locator": "README.md；Git blob 7a98f267feba2fb79790206d3c9f8995ff0cfe4a",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q314C-bilevel_program",
+      "route": "代码、公开 AI 和社区",
+      "site": "GitHub/KenanWood/Bilevel-Programming-for-Pebbling-Numbers",
+      "query": "github_fetch_file {\"repository_full_name\":\"KenanWood/Bilevel-Programming-for-Pebbling-Numbers\",\"path\":\"pebbling_number_bilevel.py\",\"ref\":\"af7e35c4829a3b1cd78892152c9ba803b3003bd1\"}",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "完整 17745 字节源码已读；Sage/NetworkX 求 automorphism/support orbit，Gurobi 写 MPS+AUX，外部 /opt/bilevel/bilevel 返回文本由 float 解析。默认只 i<j mixed pairs、机器 id0/7、support k4/cover8；未知/timeout返回-1而聚合仍取 max，不能只读末尾 is equal 就当全部实例成功。本轮未运行作者求解器。",
+      "url": "https://github.com/KenanWood/Bilevel-Programming-for-Pebbling-Numbers/blob/af7e35c4829a3b1cd78892152c9ba803b3003bd1/pebbling_number_bilevel.py",
+      "locator": "pebbling_number_bilevel.py；Git blob 79209e7d0b3f160685a3e3e0b01d0e8edcdc155c",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q314C-root106_rerun",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地 Python 3.12.14",
+      "query": "原始工具请求或本地核验命令已私有留存；此行保留原检索路线、日期及结果标签。 〔私有记录编号：PR-003973〕",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际执行退出0，约0.016秒；独立重建产品图及同构核验后，调用已静态审核的原 checker，单根证书 accepted=true，sum_alpha_b=169327/1600、derived_bound=106。未运行全22轨道聚合、pricing、64颗反例搜索或作者 Bilevel 求解器。",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/problems/pebbling_cartesian_product/data/pebbling_product/certificates/Hurlbert_path_augmented_v1v1_le106.json",
+      "locator": "work_000314_sources/root106_rerun.json",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "Q314C-local_tools",
+      "route": "代码、公开 AI 和社区",
+      "site": "本地环境",
+      "query": "shutil.which for python, lean, lake, sage, gurobi_cl, cplex",
+      "date": "2026-11-27",
+      "outcome": "原文已阅但范围不同",
+      "note": "实际检查只有 Python 路径；lean/lake/sage/gurobi_cl/cplex 均为 null。没有安装工具链；对 FC 主体有 sorry，编译也不构成解决。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "route": "code_ai_community",
+        "query_outcome": "different_scope"
+      }
+    },
+    {
+      "request_id": "QX-R3-11-000314-root-rule-recheck",
+      "route": "其他：包内规则复核",
+      "site": "原包00_先读我与查新第三轮-规则与任务.md",
+      "query": "实际重读00_先读我及规则全文，特别第2节题卡版本、第3节查重负责人",
+      "date": "2026-11-27",
+      "outcome": "原文已阅且同题",
+      "note": "v02仅明确card_actions中的换版边界：向核心题面/定义/量词/参数域/验收补条件也须新card_rev；不能以恢复原惯例为由免换版。数学结论、来源/查询事实、当前被审card_rev及查重不变，v01保留。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "query_outcome": "same_problem"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "R0314-CARD",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/000/QX-P-000314.text.md",
+      "locator": "当前题面、human、进展、acceptance及旧novelty版本",
+      "version": "commit73290369a8dcc632e25e555aec525565ea6e08f8；card_rev7976e4a013c40aad",
+      "subquestions": [
+        "主问题",
+        "题面忠实度",
+        "库内查重"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "核心不等式与标准Graham问题一致；human详细定义正确，首句覆盖不准确。形式化外部材料不是此卡已验证证明。有限、非空、简单、连通与量词建议补明，数学边界另列。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "R0314-OPG",
+      "url": "https://www.openproblemgarden.org/op/pebbling_a_cartesian_product",
+      "locator": "posted2007-09-24、Conjecture、definition、Notes与Chung原刊引文",
+      "version": "页面2007-09-24；本轮访问2026-11-27",
+      "subquestions": [
+        "最早出处",
+        "主问题",
+        "经典特例"
+      ],
+      "role": "重述",
+      "publication": "二手索引",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "未检到形式化",
+      "note": "它指向Chung1989原刊而非1989年的OPG建页；列High是重要性。此页只作题目和文献索引，未单独证明当下全局open。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "secondary_index"
+      }
+    },
+    {
+      "evidence_id": "R0314-DUP",
+      "url": "https://github.com/qunxingmath-org/qunxing-data/blob/73290369a8dcc632e25e555aec525565ea6e08f8/problems/001/QX-P-001227.text.md",
+      "locator": "候选完整text.md和meta.json：核心、human、acceptance",
+      "version": "commit73290369a8dcc632e25e555aec525565ea6e08f8；card_rev08465a76d9685038",
+      "subquestions": [
+        "库内查重"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "note": "只比对当前题与候选主目标，不执行候选另一轮查新。已核版本与双卡位置，非仅标题同词。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "a0314_opg",
+      "url": "https://www.openproblemgarden.org/op/pebbling_a_cartesian_product",
+      "locator": "原问题、定义、Comments及Reference",
+      "version": "mdevos，2007-09-24网页；本轮2026-11-27实际读取",
+      "subquestions": [
+        "标准乘积猜想的原题同一性",
+        "网页时间与论文时间区别"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "原始档案",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "note": "网页准确给普通pebbling数与Cartesian product不等式，指Chung1989为原始论文出现。网页open状态只是该页记录，不能单独证明2026全网仍无解。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "a0314_chung",
+      "url": "https://pesc.coppe.ufrj.br/~celina/cursos/cps845/Chung1989.pdf",
+      "locator": "§1 p467；§3 Facts1–8及Theorem5 pp469–470；§4 Questions2–5 p472",
+      "version": "Fan R.K.Chung, Pebbling in hypercubes, SIAM J.Discrete Math2(4)(November1989),467–472；收稿1988-08-08、修订接受1989-03-09；期刊扫描SHA256 0c69d88c26438dc6ec81ddedd31644f8d98ea4009ec9c0db76c4c556d37b602e",
+      "subquestions": [
+        "Graham原问与最早可核发表",
+        "普通单目标定义及早期特例",
+        "Q2等式／Q3上界／Q4二卵石性质区别"
+      ],
+      "scope_match": "原题等价",
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "note": "完整6页文本已读，p467及p472实际页图已看。p472 Q3(RLG)是本题≤；Q2等式被K3□P3=9<12否定，Lemke否定Q4而不是Q3。Fact8给路径积精确数2^(各路径边数之和)；Theorem5仅在G有2-pebbling property时给G□Kt≤tπ(G)。1987 Lagarias/Saks通信对应早期游戏，不据此把一般积猜想首提改1987。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0314_bilevel",
+      "url": "https://arxiv.org/pdf/2411.19314v1",
+      "locator": "§1.1–1.3 pp2–5，Theorem1；§3 Lemma3/Definition4/Theorem5 pp7–9；§4 Algorithm1和Thm1证明 pp10–12；§5 Table1及精确验证讨论 pp12–14",
+      "version": "Jonad Pulaj、Kenan Wood、Carl Yerger；arXiv2411.19314v1，2024-11-28；本轮官方记录只列v1；SHA256 ef1f8bbe7da159f48f8b466f017dcaffb951e00dabfdd34438536851137c4490",
+      "subquestions": [
+        "8顶点Lemke图乘积的support≤4结果",
+        "整数移动模型与实际合法移动的桥",
+        "作者计算声明和独立验证层级"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "已取得完整稿",
+      "review_status": "核过关键步骤",
+      "note": "Thm1为π4(L′□L″)≤64；22个8点Lemke图由3个极小图、六个无序积归约。数学模型短链与support覆盖已核，六图求解未复跑。§5明确CPLEX浮点误差风险，exact SCIP/VIPR/SMT/QCSP为未来验证；coverblocks≤8不等于已证π8≤64，个别support20运行也不等于全π20。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a0314_threshold",
+      "url": "https://arxiv.org/html/2309.01762v1",
+      "locator": "§1–2普通数和随机模型定义；§4 Conjecture12、Theorem13及反例段",
+      "version": "Neal Bushaw、Nathan Kettle, Thresholds for Pebbling on Grids；arXiv2309.01762v1，2023-09-04；2025正式刊发线索非本轮完整期刊版本复核",
+      "subquestions": [
+        "近期Graham反例命中的真实范围",
+        "worst-case π与随机P1/2不可替换"
+      ],
+      "scope_match": "同源不同问",
+      "role": "反例",
+      "publication": "预印本",
+      "claim_state": "已取得完整稿",
+      "review_status": "已读未核关键步骤",
+      "note": "全文可读，本轮只审定义和§4范围。反例对象是P1/2(G□H)≤C P1/2(G)P1/2(H)的统一常数版本，使用高维超立方体阈值；标准π(Qd)=2^d反而满足积等式。§4一句smallest-solvable措辞不能作为标准π定义。本题不依赖其概率长证明。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "read_unchecked",
+        "scope_match": "related",
+        "role": "counterexample",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "a0314_c5_2026",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0012365X25005515",
+      "locator": "正式原刊元信息、Highlights和Abstract；公式在检索抽取中缺失",
+      "version": "David S.Herscovici, Pebbling Cartesian products of C5, Discrete Mathematics349(5)(May2026),114943，DOI10.1016/j.disc.2025.114943；本轮未核精确online日期",
+      "subquestions": [
+        "2025–2026近期C5乘积子类进展"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "正式刊发",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "note": "原刊摘要明确G具有odd two-pebbling property；期刊页面直开403、DOI不可访，不能声称论文全证明或精确式已读。作者2026报告另给普通two-pebbling条件下明确5π(G)界；不据报告擅自补齐正式稿所有odd版本公式或C5高次幂结论。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "a0314_c5_seminar",
+      "url": "https://vcumath.github.io/Seminar/2026-seminar-herscovici.pdf",
+      "locator": "1页报告摘要末段",
+      "version": "VCU Discrete Mathematics Seminar，David Herscovici，2026-02-05；PDF文件名与原站活动记录相符",
+      "subquestions": [
+        "带two-pebbling条件的C5乘积上界"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "原始档案",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "note": "报告明确π(C5□G)≤5π(G)且G满足two-pebbling property；仅报告摘要，无完整证明。不能用此闭合任意G,H的原问。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "original_archive"
+      }
+    },
+    {
+      "evidence_id": "a0314_large_clique",
+      "url": "https://digitalcommons.georgiasouthern.edu/tag/vol7/iss1/1/",
+      "locator": "Abstract、Recommended Citation及DOI",
+      "version": "Nopparat Pleanmani, Graham’s Pebbling Conjecture Holds for the Product of a Graph and a Sufficiently Large Complete Graph, Theory & Applications of Graphs7(1)(2020),Article1；DOI10.20429/tag.2020.070101",
+      "subquestions": [
+        "足够大完全图因子的子类范围和年代"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "正式刊发",
+      "claim_state": "公开声称",
+      "review_status": "未读全文",
+      "note": "原刊摘要与元信息已读，PDF403。完全图阶数需依G参数足够大，不能放宽成任意Kt，不能由2025论文引用把成果改年2025。本轮没有读取或补猜阈值公式。",
+      "formal_status": "未检到形式化",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "public_claim",
+        "claim_review": "not_read",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q314-M-E1",
+      "url": "https://www.openproblemgarden.org/op/pebbling_a_cartesian_product",
+      "locator": "定义、猜想与Bibliography",
+      "version": "OPG条目，2007-09-24发布，本轮2026-11-27实际读取",
+      "subquestions": [
+        "核心不等式与标准pebbling量词",
+        "笛卡尔积定义"
+      ],
+      "scope_match": "原题等价",
+      "role": "重述",
+      "publication": "社区帖子",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "仅用于原意与来源，不据旧开放页面直接裁定2026状态。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "community_post"
+      }
+    },
+    {
+      "evidence_id": "Q314-M-E2",
+      "url": "https://pesc.coppe.ufrj.br/~celina/cursos/cps845/Chung1989.pdf",
+      "locator": "Introduction及§4 p472，Question3(RLG)",
+      "version": "Fan R.K.Chung, Pebbling in hypercubes, SIAM J.Discrete Math.2(4)(1989),467–472；PDF SHA2560c69d88c26438dc6ec81ddedd31644f8d98ea4009ec9c0db76c4c556d37b602e",
+      "subquestions": [
+        "原问题出处",
+        "等式与不等式、2-pebbling的范围区别"
+      ],
+      "scope_match": "原题等价",
+      "role": "原始提出",
+      "publication": "正式刊发",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "§4 Question2为等式且原文给反例；Question3才是Graham≤猜想。Lemke反驳Question4的2-pebbling性质不等于反驳Question3。小路径/C4结论本轮另给自含证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "equivalent",
+        "role": "original",
+        "publication": "journal"
+      }
+    },
+    {
+      "evidence_id": "Q314-M-E3",
+      "url": "https://arxiv.org/html/2411.19314v1",
+      "locator": "§1 Theorem1；§3 Lemma3/Definition4/Theorem5；§4–5",
+      "version": "Pulaj–Wood–Yerger, Bilevel Programming for Pebbling Numbers of Lemke Graph Products, arXiv2411.19314v1,2024-11-28",
+      "subquestions": [
+        "8点Lemke乘积的support≤4声明",
+        "整数arc模型与合法动作的桥",
+        "Class0与浮点计算适用范围"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "预印本",
+      "claim_state": "完整稿已取得",
+      "review_status": "仅核关键步骤",
+      "formal_status": "未检索形式化",
+      "note": "本次数学路线实际读§1–5相关全文，独立核理论模型和覆盖设计短归约。具体仓库与计算记录由代码路线另核，该项核查只读论文、未运行。作者§5明确浮点误差风险，exactSCIP/VIPR等仅列未来验证途径；理论模型审核不等于所有实例不可行证书已精确复核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "preprint"
+      }
+    },
+    {
+      "evidence_id": "Q314-M-E4",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/pebbling_a_cartesian_product/output.md",
+      "locator": "公开AI partial稿完整§1–5",
+      "version": "固定commit96f91048c5282ac2b8bed0b7e8dc454cf38ba636；SHA256cff7d3e1a9835a3e587367113e11f0e8cc4cd78193eeabdb91d89c9421e3d2da",
+      "subquestions": [
+        "G□K_n连通度限定上界"
+      ],
+      "scope_match": "有附加假设",
+      "role": "进展",
+      "publication": "代码仓库",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检索形式化",
+      "note": "该项核查完整读并手核短证明，使用Menger两路径/两扇引理为标准外部输入。没有发现所核链缺口，但没有确定此量化界新颖性，也不宣称一般Graham猜想已证。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "not_searched",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E314-C-FC",
+      "url": "https://github.com/google-deepmind/formal-conjectures/blob/ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8/FormalConjectures/Wikipedia/PebblingNumberConjecture.lean",
+      "locator": "PebbleDistribution / IsPebblingMove / PebblePath / PebblingNumber / pebbling_number_conjecture；完整文件",
+      "version": "commit ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8；SHA256 5988946c8f8d40fa3dd2aaf1d3a7578c37ca518bff3c9d2f1072c83e67ea607b",
+      "subquestions": [
+        "标准 Graham 笛卡尔积猜想的形式化题面"
+      ],
+      "role": "形式化",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "只有形式化题面",
+      "rerun": {
+        "commit": "ea8e3e198ded6fc73efb7f5653b74b28ac4ae1a8",
+        "theorem": "PebblingNumberConjecture.pebbling_number_conjecture",
+        "toolchain": "leanprover/lean4:v4.33.1；mathlib 0df444a360eaa60ab8c11dca51a86af692955474",
+        "command": "本轮未执行 Lean/lake；环境未找到二者",
+        "axioms": "目标证明体一个 sorry；没有将辅助 API 证明或编译元信息当主定理证明。仅静态读取目标文件和依赖版本，未审 FormalConjecturesUtil 全导入闭包。"
+      },
+      "note": "实际变量为 V,W 两个独立有限类型，G:SimpleGraph V、H:SimpleGraph W、各自 Connected。配置是 V→ℕ，总数为有限和；合法步从相邻源移去2、给目标加1，有限路径闭包可零步；π用 sInf 表示对每一配置、每一指定根都存在到达配置。主定理为 π(G□H)≤π(G)π(H)，末尾 by sorry。文件的 π(completeGraph)=card 辅助定理有证明，但不解决乘积主问题。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "formalization",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E314-C-CB",
+      "url": "https://github.com/bespokelabsai/conjecture-bench/blob/8d494791ace5894b860585d67ba8e69dbfed6376/problems/conjectures/cb-0173.json",
+      "locator": "完整 cb-0173.json；并读 extended-catalog/formal-conjectures/fc-bench-v1-0954.json",
+      "version": "commit 8d494791ace5894b860585d67ba8e69dbfed6376；cb SHA256 32def9692f8e3baf6d8d9ca18e6eda04d2813e73d53c24d48989040f82772bf4",
+      "subquestions": [
+        "题库目标与验证器状态"
+      ],
+      "role": "重述",
+      "publication": "代码仓库",
+      "scope_match": "原题等价",
+      "claim_state": "无声明",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "仅有形式化题面或骨架",
+      "note": "cb-0173 正确要求有限连通因子、一个积图目标及恰 π(G)π(H) 颗的不可达配置；该 JSON 本身没有 checker 或证书。状态日期2026-07-23不是今日全网结论。旧 FC 目录摘要固定在7a41db3.../Lean4.27，只摘 theorem 声明且 contains_placeholder=false；不能据此否认本次真实源文件的 sorry，也不能将旧同类型/缺连通摘录覆盖本次新目标。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "statement_only",
+        "claim_state": "none",
+        "claim_review": "read_unchecked",
+        "scope_match": "equivalent",
+        "role": "restatement",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E314-C-BILEVEL",
+      "url": "https://github.com/KenanWood/Bilevel-Programming-for-Pebbling-Numbers/blob/af7e35c4829a3b1cd78892152c9ba803b3003bd1/pebbling_number_bilevel.py",
+      "locator": "完整文件；generate_mps_aux / parse_output_infeasible / rooted_pi_S / pi_k_cover / __main__",
+      "version": "commit af7e35c4829a3b1cd78892152c9ba803b3003bd1；SHA256 ac229f53a3eede65499e9a7a25987ca42172ebd680969e648b1c47dfa89a37e9",
+      "subquestions": [
+        "Lemke 图乘积、支持集受限计算的代码与复跑范围"
+      ],
+      "role": "进展",
+      "publication": "代码仓库",
+      "scope_match": "有附加假设",
+      "claim_state": "公开声称",
+      "review_status": "仅核关键步骤",
+      "formal_status": "已静态检查未复跑",
+      "rerun": {
+        "commit": "af7e35c4829a3b1cd78892152c9ba803b3003bd1",
+        "toolchain": "源文件导入 networkx、sage.all、gurobipy，调用外部 /opt/bilevel/bilevel；README 无锁定版本",
+        "command": "本轮未执行作者主程序或求解器；缺 Sage/Gurobi/CPLEX/Bilevel 运行环境",
+        "axioms": "无 Lean 形式化；本文件是数值求解及文本解析程序，不含 exact infeasibility proof certificate checker"
+      },
+      "note": "get_lemke_graph 给三个8顶点因子；笛卡尔积由 networkx 构建。lower-level整数 arc变量满足 pebbling balance，upper-level选择固定 support 的初始配置。当前 __main__ 只运行 i<j 的三个 mixed products、id=0/num_machines=7 的根分片、k=4、cover_size=8；不是一次覆盖论文所有六类积。parse_output 返回 float；未知/超时在 rooted_pi_S 变成−1，pi_k_cover 继续 max 并打印 is equal，故验收必须另查每个实例/根的完成状态。静态审计未否定论文结果；原稿 support≤4 与浮点局限由学术/数学路线另核。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "static_checked",
+        "claim_state": "public_claim",
+        "claim_review": "key_steps_checked",
+        "scope_match": "extra_assumptions",
+        "role": "progress",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E314-C-AI-PARTIAL",
+      "url": "https://github.com/graph-theory-AI/Graph-Theory-LLM-Proofs/blob/96f91048c5282ac2b8bed0b7e8dc454cf38ba636/attacks_opg/pebbling_a_cartesian_product/output.md",
+      "locator": "完整 output.md，Theorem (1)–(3)、§§1–5、What remains unresolved",
+      "version": "commit 96f91048c5282ac2b8bed0b7e8dc454cf38ba636；SHA256 cff7d3e1a9835a3e587367113e11f0e8cc4cd78193eeabdb91d89c9421e3d2da；7882 bytes",
+      "subquestions": [
+        "完全图因子 G□K_n 的公开 AI 局部证明"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "未检到形式化",
+      "claimant": "graph-theory-AI/Graph-Theory-LLM-Proofs 公开输出",
+      "note": "全部正文已读并纸面核核心链。有限简单连通 G，m≥2、k=κ(G)、p=π(G)：n≥3 时 π(G□K_n)≤max{mn+p−m,2p−1+(m−k)(n−1)}；n≥4首项可改mn。足够 n≥max{3,2+ceil((m−k−1)/(p−m+k))} 时推出 Graham。核验要点：删≤k−2空点后用2连通/双扇把两对送到指定根；积图不可达且总数≥mn时空点≥n+1，故总pair数Q≥ceil((n+1)/2)；逐fiber分Q≥k+1及Q≤k得到界，n≥4后者矛盾。完全图的跨fiber一步转移为关键，不能推广任意H。稿自标 partial、would_publish=false，明确未查新颖性；本轮也不报为新的最佳结果或全猜想证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "none_found",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    },
+    {
+      "evidence_id": "E314-C-AI-ROOT106",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/problems/pebbling_cartesian_product/data/pebbling_product/certificates/Hurlbert_path_augmented_v1v1_le106.json",
+      "locator": "固定28策略证书；scripts/check_pebbling_weight_certificate.py、scripts/pebbling_graphs.py、data/pebbling_product/graphs/L_fpy.json",
+      "version": "commit c4f7fb172098a9a98561e11d49435408937a6760；证书 SHA256 6b9ce8f3df901920963c3b10edabee4194fda7931993dc8a9af15242b0b5b3a2",
+      "subquestions": [
+        "Lemke 平方的一个指定根 r=(4,4) 上界106的有限有理证书"
+      ],
+      "role": "证书",
+      "publication": "代码仓库",
+      "scope_match": "特例",
+      "claim_state": "完整稿已取得",
+      "review_status": "本轮独立数学核对",
+      "formal_status": "复跑只覆盖一部分",
+      "rerun": {
+        "commit": "c4f7fb172098a9a98561e11d49435408937a6760",
+        "theorem": "仅 π(L_fpy□L_fpy,r=36=(4,4))≤106",
+        "toolchain": "Python 3.12.14；checker/graph helper 仅标准库，接受条件用 fractions.Fraction",
+        "command": "实际：python 〔私有材料定位已省略〕；脚本导入固定 checker 的 load_certificate_file/check_certificate，未调用优化求解器",
+        "log_url": "urn:qunxing:private-material",
+        "cache": "原31,622字节JSON已取，未用预编译缓存；checker SHA256 25bad0908b564f1d0b48345e6fb89ce357fb18a4a35b3295b60bd1e3e728755e；graph helper 653bfeae1c2bb0631eafe568eb1cf251cadaa62d10424f94383cdb1dbc2c250b",
+        "axioms": "这是 Fraction 有理算术证书复跑，加上树权函数引理的数学核对；不是 Lean kernel 验证。"
+      },
+      "note": "实际退出0。独立从13边8点因子重建积边 {(8a+j,8b+j),(8j+a,8j+b):ab∈E,j=0..7}，与证书64点208边完全一致；双射(1,0,2,6,3,5,7,4)验证与固定作者 Bilevel Lemke0（1-based减1）同构。root36=(4,4)。28策略逐一检查树/合法图边/根0权/非负权/父权≥2子权（basic为等号），再核非负α及每个非根点Σαw≥1。输出sum_alpha_b=169327/1600，floor+1=106，accepted=true。树引理可由沿树向根贪心搬对核验：非根边移动不减权重，不可达使根邻点最多1，终态总权≤Σw。复现脚本 SHA256 1ab6e7925b934fe6fb4f400249636d793d958b4d5636b447b7d88d5bbdfaa495，日志 SHA256 a5cdd740d3953b7b24274249dace4dab0cd155ca5bc894deaf46a7cec1237283。未复跑22轨道global246、FPY96、pricing或64颗反例；一个根的106不证明π≤64。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "rerun_partial",
+        "claim_state": "full_manuscript",
+        "claim_review": "independent_check",
+        "scope_match": "special_case",
+        "role": "certificate",
+        "publication": "code_repo"
+      }
+    },
+    {
+      "evidence_id": "E314-C-AI-REPORT",
+      "url": "https://github.com/graph-theory-AI/graph-conjectures/blob/c4f7fb172098a9a98561e11d49435408937a6760/problems/pebbling_cartesian_product/docs/terminal_report.md",
+      "locator": "完整 terminal_report.md，Pinned negative result / FPY ingestion blocker / Status:terminal",
+      "version": "commit c4f7fb172098a9a98561e11d49435408937a6760；SHA256 fe0af432a13cf6f38792ff1c323581cb0a6835a9f18ead9f2eca6c7df54cb680",
+      "subquestions": [
+        "公开 AI 项目总体范围与数值最优性声称"
+      ],
+      "role": "进展",
+      "publication": "项目报告",
+      "scope_match": "特例",
+      "claim_state": "公开声称",
+      "review_status": "已读未核关键步骤",
+      "formal_status": "复跑只覆盖一部分",
+      "note": "项目报告 global≤246 来自22根轨道，另有单根106；明确不解决 Graham、不达到其引用的已发表96。本轮只独立重跑单根106，不能继承作者声称的22证书全通过。报告正文承认 float pricing 和单一退化LP dual 下无改进仅经验结果、没有 exact reduced-cost；末尾却将同项标 proven，存在内部表述冲突，本轮不接受 LP-optimality 证明。FPY CSV 兼容性/缺失dual也是该项目的复现报告，未被本轮独立重做，不能升为原FPY结果被反驳。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "formal_evidence": "rerun_partial",
+        "claim_state": "public_claim",
+        "claim_review": "read_unchecked",
+        "scope_match": "special_case",
+        "role": "progress",
+        "publication": "project_report"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "other_id": "QX-P-001227",
+      "other_card_rev": "08465a76d9685038",
+      "relation": "严格同题",
+      "reason": "两卡都以标准最坏配置的单目标pebbling数π、笛卡尔积为对象，问∀有限连通G,H的π(G□H)≤π(G)π(H)，接受全称证明或一对反例；两段human的操作与∀配置∀指定目标∃动作序列相同。1227形式行省略连通字样，但依其标准有限π定义及原Graham问题是同一预期域；应补明确域而非另造对无限/断开图的扩展。题卡文献、特殊族和旧状态采集时间不同不改变主问题。",
+      "positions": {
+        "self": "000314形式化表述、human操作/π定义、meta.acceptance",
+        "other": "001227形式化表述、human操作/π及Cartesian定义、meta.acceptance"
+      },
+      "note": "pair_id=QX-P-000314__QX-P-001227；pair_owner=QX-P-000314。建议保留314为带可核原始出处的主卡，将1227作同题入口；导入/合并须二审。本轮只为314查重，不把1227算入本包完成数，不直接改源卡。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "duplicate_relation": "same"
+      }
+    }
+  ],
+  "card_actions": [
+    {
+      "action": "修正人话版",
+      "field": "human一句话",
+      "old": "乘起来就够覆盖它们的笛卡尔积吗？",
+      "new": "不论怎样在积图上放置π(G)π(H)颗石子，也不论指定哪个目标顶点，都能通过每步二取一移的规则把至少一颗送到该顶点吗？",
+      "reason": "应是每次一个任意指定目标，不是同时每顶点至少一颗的cover pebbling，也不是存在一个好初始配置的optimal pebbling。只修human忠实度不自动换rev；若实质改变核心域/定义再按规则换版本。",
+      "evidence_ids": [
+        "R0314-CARD",
+        "R0314-OPG"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "fix_plain_text"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "形式化表述／边界与约定",
+      "new": "明确G,H为非空有限连通无向简单图；π(G)=min{m:∀p:V→Z≥0, |p|=m, ∀r∈V, ∃合法移动序列使终态p′(r)≥1}。同一初态对不同r允许不同序列。",
+      "reason": "当前公式仅写connected，有限性应内联；避免与无限图或空图边界、同时覆盖概念混淆。",
+      "evidence_ids": [
+        "a0314_bilevel",
+        "a0314_chung"
+      ],
+      "small_case_check": "K1的π=1且G□K1≅G，边界为等式；空图不纳入取根和阈值定义。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补最早出处",
+      "field": "first_published／proposer／sources",
+      "new": "补Fan R.K.Chung, Pebbling in hypercubes, SIAM J.Discrete Math2(4)(November1989),467–472，§4 p472 Question3(RLG)；OPG页为2007-09-24重述。收稿1988-08-08、修订接受1989-03-09只作版本历史，不替代首次发表时间。",
+      "reason": "原文直接署RLG；1987 Lagarias/Saks通信的游戏源头不是一般乘积猜想的可核首提。",
+      "evidence_ids": [
+        "a0314_chung",
+        "a0314_opg"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "add_source"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "2024-11-28 Bilevel进展",
+      "old": "专门研究Lemke图乘积的pebbling numbers，为一般猜想提供证据",
+      "new": "精确写为Pulaj–Wood–Yerger arXiv2411.19314v1 Thm1：所有8顶点Lemke因子积的support-4 pebbling number≤64；不能推出不限制支持大小的一般π≤64。Lemma3/Thm5模型链已核；作者CPLEX浮点计算、精确验证为后续工作，代码审阅与本轮复跑范围另列。",
+      "reason": "限定配置大小、图阶和验证层级是该成果不可省略的适用范围。",
+      "evidence_ids": [
+        "a0314_bilevel"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "背景：Lemke图是“已知最难的图族”",
+      "new": "改为相关作者认为它们是值得搜索的候选反例族；这属于研究动机，不是所有图难度排序的定理。Lemke表示不具2-pebbling property，而不是已知违反Graham不等式。",
+      "reason": "Chung已明说Lemke的反例只否定2-pebbling全称性质；2024稿用most likely描述研究判断。",
+      "evidence_ids": [
+        "a0314_chung",
+        "a0314_bilevel"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补进展",
+      "field": "近期特殊因子与年代",
+      "new": "分层加入Herscovici的2026 C5乘积原刊（odd-two条件，本文全文访问缺口）及2026-02-05作者报告中普通two-pebbling条件5π(G)界；Pleanmani足够大完全图因子论文为2020、其阈值全文未得。不用二手2025日期替换原刊年份。",
+      "reason": "近期检索有可信特例但没有解除条件；摘要与完整证明不能记成同一审阅级别。",
+      "evidence_ids": [
+        "a0314_c5_2026",
+        "a0314_c5_seminar",
+        "a0314_large_clique"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议修订",
+      "field": "novelty／counterexample排除规则",
+      "new": "补Bushaw–Kettle随机阈值反例的范围排除；标准π、rootedπ、cover、optimal、rubbling、随机P1/2及target-set数需先核量词和移动定义。更新当前rev实际查新范围，不沿用旧rev的全网无声称标签。",
+      "reason": "本轮命中的反例标题共用Graham名称但不回答本题；未取得一般全解只限实际列出的入口。",
+      "evidence_ids": [
+        "a0314_threshold",
+        "a0314_chung",
+        "a0314_bilevel"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "suggest_revision"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "公开AI部分结果",
+      "new": "登记固定公开AI G□K_n连通度上界及适用n阈值，完整短链经本轮独立数学核对；作者明确partial、不报新颖性，无全题结案。",
+      "reason": "不得遗漏公开AI部分声明，也不得从完整因子一步传pair的特性扩展到任意第二因子。",
+      "evidence_ids": [
+        "Q314-M-E4"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补条件量词",
+      "field": "题面/形式化表述/人话版一句话",
+      "new": "有限连通图；π(G)要求对每一种给定总数的初始分布，以及任意事先指定的单一目标，都可送达一颗石子。一句话可写“两图各自pebbling数的乘积，是否足以在积图上保证任意指定单目标可达”。",
+      "reason": "避免把“够覆盖”误读为同时覆盖全部顶点、optimal分布、rubbling或随机阈值变体。",
+      "evidence_ids": [
+        "E314-C-FC",
+        "E314-C-CB"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "add_quantifiers"
+      }
+    },
+    {
+      "action": "补声明",
+      "field": "formal/形式化状态",
+      "new": "关联固定 FC 标准题面及依赖版本；主定理仍 sorry。CB旧声明 contains_placeholder=false 不能当已证。",
+      "reason": "实际主定理与辅助完整图 API 证明分开，防止目录状态误用。",
+      "evidence_ids": [
+        "E314-C-FC",
+        "E314-C-CB"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "2024 Lemke 计算",
+      "new": "补作者真实固定源码、support≤4/cover8、根分片与外部数值求解器范围；读取每个实例状态后才可汇总覆盖，未完成或浮点输出不能标 exact certificate。",
+      "reason": "当前公开主程序不是无条件全图证明，本轮只静态审核作者程序。",
+      "evidence_ids": [
+        "E314-C-BILEVEL"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "补进展/声明",
+      "field": "公开 AI 及计算验证记录",
+      "new": "分别记录完整 G□K_n 局部证明和单根106的本轮有理证书复跑；一般Graham猜想仍由主审独立判断，不将246/106或受限support升为64及全图结论。",
+      "reason": "每种声明和验算明确量词及实际核验范围；项目末表LP-optimality的proven没有相应exact证据。",
+      "evidence_ids": [
+        "E314-C-AI-PARTIAL",
+        "E314-C-AI-ROOT106",
+        "E314-C-AI-REPORT"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "add_progress"
+      }
+    },
+    {
+      "action": "建议主卡",
+      "field": "duplicates/provenance.possible_duplicates",
+      "new": "当前314为与1227严格同题pair_owner；建议314主卡、1227同题入口，保留来源与进展信息并在导入时二审。",
+      "reason": "已读固定双卡定义、量词与验收，主目标严格一致；不是因为都姓Graham或都含图积。",
+      "evidence_ids": [
+        "R0314-CARD",
+        "R0314-DUP"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "suggest_main"
+      }
+    },
+    {
+      "action": "暂不改卡",
+      "field": "核心/版本与导入",
+      "new": "本轮只交回执；源题卡、候选卡及其状态未被直接修改。原定义下小例/局部结果不结束全称主问题。",
+      "reason": "旧novelty不同rev只能作线索。依包内第2节，凡将有限、非空等条件补入核心题面、定义、量词、参数域或验收条件，即使旨在恢复原题标准含义，也按新card_rev处理，并复核受影响的原题/学术路线，涉及形式化时加代码路线。仅修正人话版、排版、补引文和补进展不换card_rev。",
+      "evidence_ids": [
+        "R0314-CARD",
+        "R0314-DUP"
+      ],
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {
+        "card_action": "no_change"
+      }
+    }
+  ],
+  "pending": [
+    {
+      "route": "学术",
+      "reason": "2026 C5正式稿直访403，DOI不可访；2020足够大clique原刊PDF403。已取得原刊摘要或作者报告，但没有全部精确定理和证明。",
+      "next_step": "仅保留当前已核条件与出版元信息；未来取得合法作者稿/原刊全文后再补C5的odd条件精确公式、定理编号和clique阶数阈值。此缺口不影响排除它们为任意G,H全解。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "有界2025–2026查询未取得标准Graham一般猜想完整证明或反例，不构成不存在新稿的数学证明。",
+      "next_step": "若出现具体全解声明，先固定完整版本和普通π的量词，核关键移动/计数归约，再交独立数学二审；目前停止无界扩搜各变体。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {}
+    },
+    {
+      "route": "原题与出处",
+      "reason": "原稿1988收稿历史并未单独证明现行Question3已在初稿中；OPG高最小度/某些图类只给笼统描述，未逐条追原始阈值。",
+      "next_step": "首次发表暂按可核Chung1989；如需更早口头提出时间或每项旧特例精确参数，再依据对应原始稿逐项补证，不以网页采集日期或泛称当成果年代。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "本次有限代码/公开AI/社区检索未取得覆盖所有有限连通G,H的完整证明或反例。MathOverflow定向查询未取得精确原帖，仓库索引也不是全网穷尽。",
+      "next_step": "若出现同题完整声明，固定全文/版本，核所有初始分布与单根量词，优先排除optimal、cover、rubbling和随机阈值变体，再复核关键证明或有限反例证书。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "作者 Bilevel 程序依赖外部求解器，当前仅静态审；未知实例会返回−1，需要对论文全部实例/根、补跑37例和浮点误差单独验收。",
+      "next_step": "以学术路线原稿范围为准；后续若提供 exact infeasibility certificate 或完整归档日志，再用固定代码独立重跑。不能从函数名 pi 或聚合打印 is equal 推出本轮已验证全π。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {}
+    },
+    {
+      "route": "代码、公开 AI 和社区",
+      "reason": "AI G□K_n 稿明确不主张新颖性；本轮数学核对不等于文献新颖性确认。Lemke项目全22轨道、LP最优性及FPY96复现均未由本轮完成。",
+      "next_step": "主审可结合数学二审记录局部有效性；需要新颖性结论时再对照既有complete-factor结果。只承认已复跑的单根有理证书，不为当前主题扩跑无关优化。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {}
+    },
+    {
+      "route": "学术",
+      "reason": "AI限定上界的数学短证已核，新颖性未核；主一般不等式无从这些特例推出。",
+      "next_step": "将AI结果与原刊complete-factor结果准确对照，但不以未做该对照暂停当前查新回执，也不将其提升为全题证明。",
+      "batch_id": "QX-R3-11",
+      "card_rev": "7976e4a013c40aad",
+      "codes": {}
+    }
+  ]
+}
